@@ -61,7 +61,7 @@ namespace OpenTK.Platform.X
             public IntPtr visual;
             public int visualid;
             public int screen;
-            public uint depth;
+            public int depth;
             public int @class;
             public ulong red_mask;
             public ulong green_mask;
@@ -107,7 +107,7 @@ namespace OpenTK.Platform.X
         extern public static ErrorCodes XGrabPointer(
             IntPtr display,
             IntPtr grab_window,
-            bool owner_events, uint event_mask,
+            bool owner_events, int event_mask,
             GrabMode pointer_mode,
             GrabMode keyboard_mode,
             IntPtr confine_to,
@@ -148,7 +148,7 @@ namespace OpenTK.Platform.X
             ushort vsyncstart; /* Vertical sync start */
             ushort vsyncend;   /* Vertical sync start */
             ushort vtotal;     /* Total vertical pixels */
-            uint flags;      /* Mode flags */
+            int flags;      /* Mode flags */
             int privsize;   /* Size of private */
             IntPtr _private;   /* Server privates */
         }
@@ -162,7 +162,7 @@ namespace OpenTK.Platform.X
             /// <summary>
             /// Pixel clock.
             /// </summary>
-            public uint dotclock;
+            public int dotclock;
 
             /// <summary>
             /// Number of display pixels horizontally
@@ -217,7 +217,7 @@ namespace OpenTK.Platform.X
             /// <summary>
             /// Mode flags
             /// </summary>
-            public uint flags;
+            public int flags;
 
             int privsize;   /* Size of private */
             IntPtr _private;   /* Server privates */

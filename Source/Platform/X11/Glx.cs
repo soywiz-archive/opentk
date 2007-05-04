@@ -50,7 +50,7 @@ namespace OpenTK.OpenGL
 
         public struct Enums
         {
-            public enum GLXAttribute : uint
+            public enum GLXAttribute : int
             {
                 TRANSPARENT_BLUE_VALUE_EXT = 0x27,
                 GRAY_SCALE = 0x8006,
@@ -68,7 +68,7 @@ namespace OpenTK.OpenGL
                 GREEN_SIZE = 9,
                 X_RENDERABLE_SGIX = 0x8012,
                 LARGEST_PBUFFER = 0x801C,
-                DONT_CARE = 0xFFFFFFFF,
+                DONT_CARE = unchecked((int)0xFFFFFFFF),
                 TRANSPARENT_ALPHA_VALUE_EXT = 0x28,
                 PSEUDO_COLOR_EXT = 0x8004,
                 USE_GL = 1,
@@ -169,7 +169,7 @@ namespace OpenTK.OpenGL
                 RENDER_TYPE_SGIX = 0x8011,
             }
 
-            public enum GLXHyperpipeAttrib : uint
+            public enum GLXHyperpipeAttrib : int
             {
                 PIPE_RECT_LIMITS_SGIX = 0x00000002,
                 PIPE_RECT_SGIX = 0x00000001,
@@ -177,20 +177,20 @@ namespace OpenTK.OpenGL
                 HYPERPIPE_PIXEL_AVERAGE_SGIX = 0x00000004,
             }
 
-            public enum GLXStringName : uint
+            public enum GLXStringName : int
             {
                 EXTENSIONS = 0x3,
                 VERSION = 0x2,
                 VENDOR = 0x1,
             }
 
-            public enum GLXEventMask : uint
+            public enum GLXEventMask : int
             {
                 PBUFFER_CLOBBER_MASK = 0x08000000,
                 BUFFER_CLOBBER_MASK_SGIX = 0x08000000,
             }
 
-            public enum GLXRenderTypeMask : uint
+            public enum GLXRenderTypeMask : int
             {
                 COLOR_INDEX_BIT_SGIX = 0x00000002,
                 RGBA_BIT = 0x00000001,
@@ -199,13 +199,13 @@ namespace OpenTK.OpenGL
                 COLOR_INDEX_BIT = 0x00000002,
             }
 
-            public enum GLXHyperpipeTypeMask : uint
+            public enum GLXHyperpipeTypeMask : int
             {
                 HYPERPIPE_RENDER_PIPE_SGIX = 0x00000002,
                 HYPERPIPE_DISPLAY_PIPE_SGIX = 0x00000001,
             }
 
-            public enum GLXPbufferClobberMask : uint
+            public enum GLXPbufferClobberMask : int
             {
                 ACCUM_BUFFER_BIT_SGIX = 0x00000080,
                 FRONT_LEFT_BUFFER_BIT = 0x00000001,
@@ -226,12 +226,12 @@ namespace OpenTK.OpenGL
                 FRONT_RIGHT_BUFFER_BIT = 0x00000002,
             }
 
-            public enum GLXHyperpipeMisc : uint
+            public enum GLXHyperpipeMisc : int
             {
                 HYPERPIPE_PIPE_NAME_LENGTH_SGIX = 80,
             }
 
-            public enum GLXErrorCode : uint
+            public enum GLXErrorCode : int
             {
                 BAD_CONTEXT = 5,
                 NO_EXTENSION = 3,
@@ -244,13 +244,13 @@ namespace OpenTK.OpenGL
                 BAD_HYPERPIPE_CONFIG_SGIX = 91,
             }
 
-            public enum GLXSyncType : uint
+            public enum GLXSyncType : int
             {
                 SYNC_SWAP_SGIX = 0x00000001,
                 SYNC_FRAME_SGIX = 0x00000000,
             }
 
-            public enum GLXDrawableTypeMask : uint
+            public enum GLXDrawableTypeMask : int
             {
                 WINDOW_BIT = 0x00000001,
                 PIXMAP_BIT = 0x00000002,
