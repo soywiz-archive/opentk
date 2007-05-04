@@ -27,6 +27,7 @@
       <File>.\Changelog.txt</File>
       <File>.\License.txt</File>
       <File>.\Instructions.txt</File>
+  	  <File>.\Prebuild.xml</File>
     </Files>
     
     <Project name="OpenTK.Platform.Windows" path=".\Source\Platform\Windows" language="C#" type="Library">
@@ -103,14 +104,14 @@
 
       <Configuration name="Debug">
         <Options>
-          <OutputPath>..\..\..\Binaries\Debug\Exe</OutputPath>
+          <OutputPath>..\..\..\Binaries\Debug\Libraries</OutputPath>
           <AllowUnsafe>true</AllowUnsafe>
         </Options>
       </Configuration>
 
       <Configuration name="Release">
         <Options>
-          <OutputPath>..\..\..\Binaries\Release\Exe</OutputPath>
+          <OutputPath>..\..\..\Binaries\Release\Libraries</OutputPath>
           <AllowUnsafe>true</AllowUnsafe>
         </Options>
       </Configuration>
@@ -119,14 +120,72 @@
       <Reference name="OpenTK.Platform.X11"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
-      <Reference name="System.Windows.Forms"/>
-      
+
       <Files>
         <Match path="." pattern="*.cs" recurse="true"/>
       </Files>
 
     </Project>
 
+    <Project name="OpenTK.OpenGL.GLContext" path=".\Source\OpenGL\GLContext" language="C#" type="Library">
+
+      <Configuration name="Debug">
+        <Options>
+          <OutputPath>..\..\..\Binaries\Debug\Libraries</OutputPath>
+          <AllowUnsafe>true</AllowUnsafe>
+        </Options>
+      </Configuration>
+
+      <Configuration name="Release">
+        <Options>
+          <OutputPath>..\..\..\Binaries\Release\Libraries</OutputPath>
+          <AllowUnsafe>true</AllowUnsafe>
+        </Options>
+      </Configuration>
+
+      <Reference name="OpenTK.Platform.Windows"/>
+      <Reference name="OpenTK.Platform.X11"/>
+      <Reference name="OpenTK.OpenGL"/>
+      <Reference name="System"/>
+      <Reference name="System.Drawing"/>
+      <Reference name="System.Windows.Forms"/>
+
+      <Files>
+        <Match path="." pattern="*.cs" recurse="true"/>
+      </Files>
+
+    </Project>
+    
+    <Project name="OpenTK.OpenGL.GLControl" path=".\Source\OpenGL\GLControl" language="C#" type="Library">
+
+      <Configuration name="Debug">
+        <Options>
+          <OutputPath>..\..\..\Binaries\Debug\Libraries</OutputPath>
+          <AllowUnsafe>true</AllowUnsafe>
+        </Options>
+      </Configuration>
+
+      <Configuration name="Release">
+        <Options>
+          <OutputPath>..\..\..\Binaries\Release\Libraries</OutputPath>
+          <AllowUnsafe>true</AllowUnsafe>
+        </Options>
+      </Configuration>
+
+      <Reference name="OpenTK.Platform.Windows"/>
+      <Reference name="OpenTK.Platform.X11"/>
+      <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK.OpenGL.GLContext"/>
+      <Reference name="System"/>
+      <Reference name="System.Drawing"/>
+      <Reference name="System.Windows.Forms"/>
+
+      <Files>
+        <Match path="." pattern="*.cs" recurse="true"/>
+      </Files>
+
+    </Project>
+    
     <Project name="OpenTK.Framework" path=".\Source\Framework\" language="C#" type="Library">
 
       <Configuration name="Debug">
@@ -144,6 +203,8 @@
       <Reference name="OpenTK.Platform.Windows"/>
       <Reference name="OpenTK.Platform.X11"/>
       <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK.OpenGL.GLContext"/>
+      <Reference name="OpenTK.OpenGL.GLControl"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
@@ -171,6 +232,7 @@
 
       <Reference name="OpenTK.Framework"/>
       <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK.OpenGL.GLContext"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
@@ -198,6 +260,7 @@
 
       <Reference name="OpenTK.Framework"/>
       <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK.OpenGL.GLContext"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
@@ -223,8 +286,8 @@
         </Options>
       </Configuration>
 
-      <Reference name="OpenTK.Framework"/>
       <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK.OpenGL.GLContext"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
@@ -250,8 +313,8 @@
         </Options>
       </Configuration>
 
-      <Reference name="OpenTK.Framework"/>
       <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK.OpenGL.GLContext"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
@@ -279,6 +342,7 @@
 
       <Reference name="OpenTK.Framework"/>
       <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK.OpenGL.GLContext"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
