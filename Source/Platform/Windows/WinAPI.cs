@@ -3,11 +3,17 @@
  * See license.txt for license info
  */
 
+#region --- Using Directives ---
+
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
+#endregion
+
 /* TODO: Update the description of TimeBeginPeriod and other native methods. Update Timer. */
+
+[assembly: CLSCompliant(true)]
 
 namespace OpenTK.Platform.Windows
 {
@@ -34,9 +40,9 @@ namespace OpenTK.Platform.Windows
             public const byte PFD_TYPE_COLORINDEX   = 1;
 
             // Layer types (found in WinGDI.h)
-            public const sbyte PFD_MAIN_PLANE       = 0;
-            public const sbyte PFD_OVERLAY_PLANE    = 1;
-            public const sbyte PFD_UNDERLAY_PLANE   = -1;
+            public const byte PFD_MAIN_PLANE       = 0;
+            public const byte PFD_OVERLAY_PLANE    = 1;
+            public const byte PFD_UNDERLAY_PLANE   = unchecked((byte)-1);
 
             // Device mode types (found in WinGDI.h)
             public const int DM_BITSPERPEL          = 0x00040000;
@@ -72,7 +78,7 @@ namespace OpenTK.Platform.Windows
             public int msg;
             public IntPtr wParam;
             public IntPtr lParam;
-            public uint time;
+            public int time;
             public System.Drawing.Point p;
             //System.Drawing.
         }
@@ -92,9 +98,9 @@ namespace OpenTK.Platform.Windows
         public static extern bool PeekMessage(
             out Message msg,
             IntPtr hWnd,
-            uint messageFilterMin,
-            uint messageFilterMax,
-            uint flags
+            int messageFilterMin,
+            int messageFilterMax,
+            int flags
         );
         //public static extern bool PeekMessage(
         //    out System.Windows.Forms.Message msg,
@@ -113,9 +119,9 @@ namespace OpenTK.Platform.Windows
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetMessage(
             out System.Windows.Forms.Message msg,
-            IntPtr hWnd,
-            uint messageFilterMin,
-            uint messageFilterMax
+            IntPtr windowHandle,
+            int messageFilterMin,
+            int messageFilterMax
         );
 
         #endregion
@@ -129,7 +135,7 @@ namespace OpenTK.Platform.Windows
         /// <returns>(?)</returns>
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("winmm.dll")]
-        public static extern IntPtr TimeBeginPeriod(uint period);
+        public static extern IntPtr TimeBeginPeriod(int period);
 
         #endregion
 
@@ -182,7 +188,8 @@ namespace OpenTK.Platform.Windows
         /// <param name="hDC"></param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern IntPtr ReleaseDC(IntPtr hwnd, IntPtr hDC);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool ReleaseDC(IntPtr hwnd, IntPtr DC);
 
         #endregion
 
@@ -242,7 +249,8 @@ namespace OpenTK.Platform.Windows
         /// </summary>
         /// <param name="dc"></param>
         [DllImport("gdi32.dll")]
-        public static extern void SwapBuffers(IntPtr dc);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SwapBuffers(IntPtr dc);
 
         #endregion
 
@@ -279,14 +287,15 @@ namespace OpenTK.Platform.Windows
         /// <param name="handle"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll")]
-        public static extern IntPtr FreeLibrary(IntPtr handle);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool FreeLibrary(IntPtr handle);
 
         #endregion
 
         #region CreateWindowEx
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int CreateWindowEx(
+        public static extern IntPtr CreateWindowEx(
             [In]ExtendedWindowStyle ExStyle,
             StringBuilder ClassName,
             [In]string WindowName,
@@ -312,7 +321,7 @@ namespace OpenTK.Platform.Windows
             [In]IntPtr Param);
         */
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int CreateWindowEx(
+        public static extern IntPtr CreateWindowEx(
             ExtendedWindowStyle ExStyle,
             IntPtr ClassName,
             IntPtr WindowName,
@@ -324,10 +333,10 @@ namespace OpenTK.Platform.Windows
             IntPtr Instance,
             IntPtr Param);
 
-        public enum WindowStyle : uint
+        public enum WindowStyle : int
         {
             Overlapped      = 0x00000000,
-            Popup           = 0x80000000,
+            Popup           = unchecked((int)0x80000000),
             Child           = 0x40000000,
             Minimize        = 0x20000000,
             Visible         = 0x10000000,
@@ -359,7 +368,8 @@ namespace OpenTK.Platform.Windows
             ChildWindow     = Child
         }
 
-        public enum ExtendedWindowStyle : uint
+        [Flags]
+        public enum ExtendedWindowStyle : int
         {
             DialogModalFrame    = 0x00000001,
             NoParentNotify   = 0x00000004,
@@ -502,17 +512,17 @@ namespace OpenTK.Platform.Windows
             public byte DepthBits   = 0;
             public byte StencilBits = 0;
             public byte AuxBuffers  = 0;
-            public sbyte LayerType  = Constants.PFD_MAIN_PLANE;
+            public byte LayerType  = unchecked((byte)Constants.PFD_MAIN_PLANE);
             byte Reserved = 0;
-            public uint LayerMask  = 0;
-            public uint VisibleMask = 0;
-            public uint DamageMask = 0;
+            public int LayerMask  = 0;
+            public int VisibleMask = 0;
+            public int DamageMask = 0;
         }
         #endregion
 
         #region PixelFormatDescriptorFlags enum
         [Flags]
-        public enum PixelFormatDescriptorFlags : uint
+        public enum PixelFormatDescriptorFlags : int
         {
             // PixelFormatDescriptor flags
             DOUBLEBUFFER,
@@ -531,9 +541,9 @@ namespace OpenTK.Platform.Windows
             SUPPORT_DIRECTDRAW,
 
             // PixelFormatDescriptor flags for use in ChoosePixelFormat only
-            DEPTH_DONTCARE        = 0x20000000,
-            DOUBLEBUFFER_DONTCARE = 0x40000000,
-            STEREO_DONTCARE       = 0x80000000
+            DEPTH_DONTCARE        = unchecked((int)0x20000000),
+            DOUBLEBUFFER_DONTCARE = unchecked((int)0x40000000),
+            STEREO_DONTCARE       = unchecked((int)0x80000000)
         }
         #endregion
 
@@ -598,8 +608,10 @@ namespace OpenTK.Platform.Windows
         #endregion
 
         #region WindowClassStyle enum
+        [Flags]
         public enum WindowClassStyle
         {
+            //None            = 0x0000,
             VRedraw         = 0x0001,
             HRedraw         = 0x0002,
             DoubleClicks    = 0x0008,
