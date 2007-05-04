@@ -1,20 +1,18 @@
+cd..
+
 rem Copying files to output directory
 
-xcopy Source\OpenGL\Bind\bin\Release\*.exe Binaries\Release\Exe\*.* /Q /Y
-xcopy Source\OpenGL\OpenGL\bin\Release\*.dll Binaries\Release\Libraries\*.* /Q /Y
-xcopy Source\OpenGL\OpenGL\*.config Binaries\Release\Libraries\*.* /Q /Y
+dir Source /s /b  | find ".exe" | find /V "build" | find /V "Examples" > exe.txt
+dir Source /s /b  | find ".dll" | find /V "build" | find /V "Examples" > dll.txt
+for /F "delims='" %%f in (exe.txt) do xcopy "%%f" "Binaries\Libraries\*.*" /Q /Y
+for /F "delims='" %%f in (dll.txt) do xcopy "%%f" "Binaries\Libraries\*.*" /Q /Y
 
-xcopy Source\Platform\Windows\bin\Release\*.dll Binaries\Release\Libraries\*.* /Q /Y
-xcopy Source\Platform\X11\bin\Release\*.dll Binaries\Release\Libraries\*.* /Q /Y
+del exe.txt
+del dll.txt
 
-xcopy Source\Framework\bin\Release\*.dll Binaries\Release\Libraries\*.* /Q /Y
+dir Source\Examples /s /b  | find ".exe" | find /V "build" > exe.txt
+for /F "delims='" %%f in (dll.txt) do xcopy "%%f" "Binaries\Examples\*.*" /Q /Y
 
-xcopy Source\Examples\OpenGL\Basic\Lesson01\bin\Release\*.exe Binaries\Release\Examples\*.* /Q /Y
-xcopy Source\Examples\OpenGL\Basic\DisplayLists\bin\Release\*.exe Binaries\Release\Examples\*.* /Q /Y
-xcopy Source\Examples\OpenGL\Basic\NoFramework\bin\Release\*.exe Binaries\Release\Examples\*.* /Q /Y
-xcopy Source\Examples\OpenGL\Basic\QueryDisplayModes\bin\Release\*.exe Binaries\Release\Examples\*.* /Q /Y
-xcopy Source\Examples\OpenGL\GLSL\Lesson01\bin\Release\*.exe Binaries\Release\Examples\*.* /Q /Y
+del exe.txt
 
-xcopy Binaries\Release\Libraries\*.* Binaries\Release\Examples\*.* /Q /Y
-
-pause
+cd Build
