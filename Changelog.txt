@@ -1,3 +1,11 @@
+OpenTK 0.3.6 -> 0.3.7
+
++ Build system
+	+ (Windows) Now removes intermediate "obj" and "bin" directories.
+	+ (Windows) Corrected and simplified PostBuild.bat. It now copies all exe, dll and dll.config files to the output directory.
+	+ (Windows) Build-Mono.bat and Build-Net.bat no longer change directories.
+
+
 OpenTK 0.3.5 -> 0.3.6
 
 + OpenTK.OpenGL.Bind
