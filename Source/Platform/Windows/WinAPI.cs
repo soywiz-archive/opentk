@@ -62,6 +62,7 @@ namespace OpenTK.Platform.Windows
         #endregion
 
         #region WINAPI methods
+
         #region PeekMessage
 
         [StructLayout(LayoutKind.Sequential)]
@@ -87,8 +88,21 @@ namespace OpenTK.Platform.Windows
         /// <returns>True if there is a message pending.</returns>
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
-        //public static extern bool PeekMessage(out System.Windows.Forms.Message msg, IntPtr hWnd, uint messageFilterMin, uint messageFilterMax, uint flags);
-        public static extern bool PeekMessage(out Message msg, IntPtr hWnd, uint messageFilterMin, uint messageFilterMax, uint flags);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool PeekMessage(
+            out Message msg,
+            IntPtr hWnd,
+            uint messageFilterMin,
+            uint messageFilterMax,
+            uint flags
+        );
+        //public static extern bool PeekMessage(
+        //    out System.Windows.Forms.Message msg,
+        //    IntPtr hWnd,
+        //    uint messageFilterMin,
+        //    uint messageFilterMax,
+        //    uint flags
+        //);
 
         #endregion
 
@@ -96,8 +110,13 @@ namespace OpenTK.Platform.Windows
 
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
-        public static extern bool GetMessage(out System.Windows.Forms.Message msg, IntPtr hWnd, uint messageFilterMin,
-            uint messageFilterMax);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetMessage(
+            out System.Windows.Forms.Message msg,
+            IntPtr hWnd,
+            uint messageFilterMin,
+            uint messageFilterMax
+        );
 
         #endregion
 
@@ -123,6 +142,7 @@ namespace OpenTK.Platform.Windows
         /// <returns></returns>
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("kernel32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool QueryPerformanceFrequency(ref long PerformanceFrequency);
 
         #endregion
@@ -136,6 +156,7 @@ namespace OpenTK.Platform.Windows
         /// <returns></returns>
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("kernel32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool QueryPerformanceCounter(ref long PerformanceCount);
 
         #endregion
@@ -148,7 +169,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="hwnd"></param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern int GetDC(int hwnd);
+        public static extern IntPtr GetDC(IntPtr hwnd);
 
         #endregion
 
@@ -161,7 +182,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="hDC"></param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern int ReleaseDC(int hwnd, int hDC);
+        public static extern IntPtr ReleaseDC(IntPtr hwnd, IntPtr hDC);
 
         #endregion
 
@@ -174,7 +195,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="pfd"></param>
         /// <returns></returns>
         [DllImport("gdi32.dll")]
-        public static extern int ChoosePixelFormat(int dc, [In, MarshalAs(UnmanagedType.LPStruct)]PixelFormatDescriptor pfd);
+        public static extern int ChoosePixelFormat(IntPtr dc, [In, MarshalAs(UnmanagedType.LPStruct)]PixelFormatDescriptor pfd);
 
         #endregion
 
@@ -188,7 +209,12 @@ namespace OpenTK.Platform.Windows
         /// <param name="pfd"></param>
         /// <returns></returns>
         [DllImport("gdi32.dll")]
-        public static extern bool SetPixelFormat(int dc, int format, [In, MarshalAs(UnmanagedType.LPStruct)]PixelFormatDescriptor pfd);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetPixelFormat(
+            IntPtr dc,
+            int format,
+            [In, MarshalAs(UnmanagedType.LPStruct)]PixelFormatDescriptor pfd
+        );
 
 
         #endregion
@@ -199,7 +225,13 @@ namespace OpenTK.Platform.Windows
         //                                     __in int X, __in int Y, __in int cx, __in int cy, __in UINT uFlags);
 
         [DllImport("user32.dll")]
-        public static extern bool SetWindowPos(int handle, WindowPlacementOptions placement, int x, int y, int cx, int cy, SetWindowPosFlags flags);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetWindowPos(
+            IntPtr handle,
+            WindowPlacementOptions placement,
+            int x, int y, int cx, int cy,
+            SetWindowPosFlags flags
+        );
 
         #endregion
 
@@ -210,7 +242,7 @@ namespace OpenTK.Platform.Windows
         /// </summary>
         /// <param name="dc"></param>
         [DllImport("gdi32.dll")]
-        public static extern void SwapBuffers(int dc);
+        public static extern void SwapBuffers(IntPtr dc);
 
         #endregion
 
@@ -223,7 +255,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="funcname"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll")]
-        public static extern int GetProcAddress(int handle, String funcname);
+        public static extern IntPtr GetProcAddress(IntPtr handle, string funcname);
 
         #endregion
 
@@ -235,7 +267,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="funcname"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern int LoadLibrary(string funcname);
+        public static extern IntPtr LoadLibrary(string funcname);
 
         #endregion
 
@@ -247,7 +279,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="handle"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll")]
-        public static extern int FreeLibrary(int handle);
+        public static extern IntPtr FreeLibrary(IntPtr handle);
 
         #endregion
 
