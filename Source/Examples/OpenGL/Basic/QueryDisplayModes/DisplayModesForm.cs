@@ -28,12 +28,14 @@ namespace QueryDisplayModes
         {
             InitializeComponent();
 
-            context = GLContext.Create(this, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 0, 0);
+            //context = GLContext.Create(this, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 0, 0);
 
-            DisplayMode[] modes = context.EnumDisplayModes();
+            context = new GLContext(this, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 0, 0, 0, false);
 
-            for (int i = 0; i < modes.Length; i++)
-                listBox1.Items.Add(modes[i]);
+            foreach (DisplayMode mode in context.GetDisplayModes())
+            {
+                listBox1.Items.Add(mode);
+            }
         }
     }
 }
