@@ -319,6 +319,8 @@ namespace OpenTK.OpenGL.Bind
         }
         #endregion
 
+        #region private static bool Search(CodeTypeDeclarationCollection enums, string name)
+
         private static bool Search(CodeTypeDeclarationCollection enums, string name)
         {
             foreach (CodeTypeDeclaration enumerant in enums)
@@ -331,6 +333,8 @@ namespace OpenTK.OpenGL.Bind
 
             return false;
         }
+
+        #endregion
 
         #region private static List<CodeMemberMethod> CreateWrappers(CodeTypeDelegate d)
         private static List<CodeMemberMethod> CreateWrappers(CodeTypeDelegate d)

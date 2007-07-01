@@ -27,6 +27,7 @@
       <File>Changelog.txt</File>
       <File>License.txt</File>
       <File>Instructions.txt</File>
+      <File>Prebuild.xml</File>
     </Files>
 
     <Project name="Build" path=".\Source\Build" language="C#" type="Exe">

@@ -14,6 +14,8 @@ using System.Reflection;
 
 #endregion
 
+[assembly: CLSCompliant(true)]
+
 namespace OpenTK.OpenGL
 {
     /// <summary>

@@ -39,10 +39,10 @@ namespace OpenTK.OpenGL
         public static extern void LookAt(double eyex, double eyey, double eyez, double centerx, double centery, double centerz, double upx, double upy, double upz);
 
         [DllImport(GLUDLLName, EntryPoint = "gluProject")]
-        public static extern void Project(double objx, double objy, double objz, double[] modelMatrix, double[] projMatrix, int[] viewport, out double winx, out double winy, out double winz);
+        public static extern int Project(double objx, double objy, double objz, double[] modelMatrix, double[] projMatrix, int[] viewport, out double winx, out double winy, out double winz);
 
         [DllImport(GLUDLLName, EntryPoint = "gluUnProject")]
-        public static extern void UnProject(double winx, double winy, double winz, double[] modelMatrix, double[] projMatrix, int[] viewport, out double objx, out double objy, out double objz);
+        public static extern int UnProject(double winx, double winy, double winz, double[] modelMatrix, double[] projMatrix, int[] viewport, out double objx, out double objy, out double objz);
 
         [DllImport(GLUDLLName, EntryPoint = "ScaleImage")]
         public static extern void ScaleImage(int format, int widthin, int heightin, int typein, IntPtr datain, int widthout, int heightout, int typeout, IntPtr dataout);
