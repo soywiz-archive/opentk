@@ -12,14 +12,16 @@ using System.Windows.Forms;
 
 using OpenTK.OpenGL;
 using Enums = OpenTK.OpenGL.Enums;
+using OpenTK.Platform;
 
 #endregion
 
 namespace Lesson01
 {
-    public class Cube : OpenTK.Framework
+    public class Cube : Form
     {
         static float angle;
+        private GLControl glControl;
 
         #region Entry point
 
@@ -31,15 +33,17 @@ namespace Lesson01
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new Cube().Run();
+            Cube c = new Cube();
+            c.Run();
         }
 
         #endregion
 
         #region Load event handler
-        protected override void OnLoad(object sender, EventArgs e)
+
+        protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(sender, e);
+            base.OnLoad(e);
 
             Text =
                 GL.GetString(Enums.StringName.VENDOR) + " " +
@@ -49,14 +53,16 @@ namespace Lesson01
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
 
-            OnResize(this, e);
+            OnResize(e);
         }
+
         #endregion
 
         #region Resize event handler
-        protected override void OnResize(object sender, EventArgs e)
+
+        protected override void OnResize(EventArgs e)
         {
-            base.OnResize(sender, e);
+            base.OnResize(e);
 
             //            if (this.Context == null)
             //                return;
@@ -77,12 +83,15 @@ namespace Lesson01
             GL.LoadIdentity();
             Glu.Perspective(45.0, ratio, 1.0, 64.0);
         }
+
         #endregion
 
         #region Paint event handler
 
-        protected override void OnPaint()
+        protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
+
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
@@ -97,16 +106,16 @@ namespace Lesson01
 
             DrawCube();
 
-            ActiveContext.SwapBuffers();
+            //ActiveContext.SwapBuffers();
         }
 
         #endregion
 
         #region KeyDown event handler
 
-        protected override void OnKeyDown(object sender, KeyEventArgs e)
+        protected override void OnKeyDown(KeyEventArgs e)
         {
-            base.OnKeyDown(sender, e);
+            base.OnKeyDown(e);
 
             switch (e.KeyData)
             {
@@ -115,7 +124,7 @@ namespace Lesson01
                     break;
 
                 case Keys.F1:
-                    this.SetResolution(this.Width, this.Height, this.ColorDepth, !this.IsFullscreen);
+                    //this.SetResolution(this.Width, this.Height, this.ColorDepth, !this.IsFullscreen);
                     break;
             }
         }
@@ -160,11 +169,84 @@ namespace Lesson01
             GL.Color3f(0, 1, 1);
             GL.Vertex3f(1.0f, -1.0f, -1.0f);
             GL.Vertex3f(1.0f, 1.0f, -1.0f);
-        GL.Vertex3f(1.0f, 1.0f, 1.0f);
+            GL.Vertex3f(1.0f, 1.0f, 1.0f);
             GL.Vertex3f(1.0f, -1.0f, 1.0f);
 
             GL.End();
         }
         #endregion
+
+        #region --- Main Loop ---
+
+        /// <summary>
+        /// Enters the Framework's main loop, updating state and rendering.
+        /// </summary>
+        public void Run()
+        {
+            while (true)
+            {
+                // TODO: Find a better main loop. This is evil! (Probably a custom main loop or something based on the Idle event).
+                if (this.Focused)
+                {
+                    OnPaint(null);
+
+                    //if (platform.IsIdle() == false)
+                    Application.DoEvents();
+
+                    System.Threading.Thread.Sleep(0);
+                }
+            }
+        }
+
+        #endregion
+
+        Cube()
+        {
+            System.Console.WriteLine("Launching application.");
+
+            this.Show();
+
+            System.Console.WriteLine("Launched!");
+        }
+
+        private void CreateWindowedDisplay(int width, int height)
+        {
+
+            //activeContext = GLContext.Create(activeForm,
+            //    this.ColorDepth, this.ZDepth, this.StencilDepth);
+            //activeContext = new OpenTK.Platform.Windows.WinGLContext(
+
+            //AttachEvents(activeForm);
+
+            //activeForm.ClientSize = new Size(width, height);
+
+            //activeForm.TopMost = true;
+            //activeForm.Enabled = true;
+
+            //activeForm.Show();
+        }
+
+        private void InitializeComponent()
+        {
+            this.glControl = new OpenTK.Platform.GLControl();
+            this.SuspendLayout();
+            // 
+            // glControl
+            // 
+            this.glControl.BackColor = System.Drawing.SystemColors.WindowText;
+            this.glControl.Fullscreen = false;
+            this.glControl.Location = new System.Drawing.Point(24, 23);
+            this.glControl.Name = "glControl";
+            this.glControl.Size = new System.Drawing.Size(150, 150);
+            this.glControl.TabIndex = 0;
+            // 
+            // Cube
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 264);
+            this.Controls.Add(this.glControl);
+            this.Name = "Cube";
+            this.ResumeLayout(false);
+
+        }
     }
 }
