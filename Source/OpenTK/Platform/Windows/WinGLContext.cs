@@ -8,7 +8,7 @@ using OpenTK.OpenGL;
 
 namespace OpenTK.Platform.Windows
 {
-    class WinGLContext : IGLContext
+    class WinGLContext : IGLContext, IDisposable
     {
         IntPtr deviceContext;
         IntPtr renderContext;
@@ -151,7 +151,7 @@ namespace OpenTK.Platform.Windows
 
         #region GetDisplayModes
 
-        public List<DisplayMode> GetDisplayModes()
+        public DisplayMode[] GetDisplayModes()
         {
             List<DisplayMode> modes = new List<DisplayMode>();
             bool done = false;
@@ -188,7 +188,7 @@ namespace OpenTK.Platform.Windows
                 modes.Add(mode);
             }
 
-            return modes;
+            return modes.ToArray();
         }
 
         #endregion
@@ -199,7 +199,7 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
-            //throw new Exception("The method or operation is not implemented.");
+            throw new Exception("The method or operation is not implemented.");
         }
 
         #endregion

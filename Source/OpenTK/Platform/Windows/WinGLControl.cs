@@ -15,7 +15,7 @@ namespace OpenTK.Platform.Windows
             glContext = new OpenTK.Platform.Windows.WinGLContext(
                 c.Handle,
                 new OpenTK.OpenGL.ColorDepth(32),
-                new OpenTK.OpenGL.ColorDepth(32),
+                new OpenTK.OpenGL.ColorDepth(0),
                 24,
                 8,
                 0,
@@ -55,6 +55,15 @@ namespace OpenTK.Platform.Windows
             set
             {
                 fullscreen = fullscreen;
+            }
+        }
+
+        private WinApi.Message msg;
+        public bool IsIdle
+        {
+            get
+            {
+                return !WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
             }
         }
 

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace OpenTK.Platform.X
+namespace OpenTK.Platform.X11
 {
     public static class X11Api
     {

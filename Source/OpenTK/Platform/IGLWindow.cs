@@ -12,6 +12,7 @@ namespace OpenTK.Platform
         DisplayMode SelectDisplayMode(DisplayMode mode, DisplayModeMatchOptions options);
         void SetDisplayMode(DisplayMode mode);
 
+        bool IsIdle { get; }
         bool Fullscreen { get; set; }
         IGLContext Context { get; }
     }

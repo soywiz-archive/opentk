@@ -1,13 +1,17 @@
-#region --- License ---
+﻿#region --- License ---
 /* This source file is released under the MIT license. See License.txt for more information.
  * Coded by Erik Ylvisaker and Stephen Apostolopoulos.
  */
 #endregion
 
-#region --- Using Directives ---
+#region --- Using directives ---
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 using OpenTK.OpenGL;
@@ -16,25 +20,45 @@ using OpenTK.Platform;
 
 #endregion
 
-namespace Lesson01
+namespace Example
 {
-    public class Cube : Form
+    public partial class Cube : Form
     {
         static float angle;
-        private GLControl glControl;
 
-        #region Entry point
+        #region static void Main(string[] args)
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Cube c = new Cube();
-            c.Run();
+            Application.Run(new Cube());
+        }
+
+        #endregion
+
+        #region public Cube()
+
+        public Cube()
+        {
+            InitializeComponent();
+
+            Application.Idle += new EventHandler(MainLoop);
+        }
+
+        #endregion
+
+        #region void MainLoop(object sender, EventArgs e)
+
+        void MainLoop(object sender, EventArgs e)
+        {
+            while (glControl.IsIdle)
+            {
+                OnPaint(null);
+
+                System.Threading.Thread.Sleep(10);
+            }
         }
 
         #endregion
@@ -53,9 +77,11 @@ namespace Lesson01
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
 
+            glControl.KeyDown += new KeyEventHandler(Cube_KeyDown);
+
             OnResize(e);
         }
-
+        
         #endregion
 
         #region Resize event handler
@@ -63,9 +89,6 @@ namespace Lesson01
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
-
-            //            if (this.Context == null)
-            //                return;
 
             if (ClientSize.Height == 0)
                 ClientSize = new System.Drawing.Size(ClientSize.Width, 1);
@@ -106,25 +129,25 @@ namespace Lesson01
 
             DrawCube();
 
-            //ActiveContext.SwapBuffers();
+            glControl.Context.SwapBuffers();
         }
 
         #endregion
 
         #region KeyDown event handler
 
-        protected override void OnKeyDown(KeyEventArgs e)
+        void Cube_KeyDown(object sender, KeyEventArgs e)
         {
-            base.OnKeyDown(e);
+            if (e.Alt && e.Shift)
+            {
+                //this.SetResolution(this.Width, this.Height, this.ColorDepth, !this.IsFullscreen);
+                glControl.Fullscreen = !glControl.Fullscreen;
+            }
 
             switch (e.KeyData)
             {
                 case Keys.Escape:
                     Application.Exit();
-                    break;
-
-                case Keys.F1:
-                    //this.SetResolution(this.Width, this.Height, this.ColorDepth, !this.IsFullscreen);
                     break;
             }
         }
@@ -175,78 +198,5 @@ namespace Lesson01
             GL.End();
         }
         #endregion
-
-        #region --- Main Loop ---
-
-        /// <summary>
-        /// Enters the Framework's main loop, updating state and rendering.
-        /// </summary>
-        public void Run()
-        {
-            while (true)
-            {
-                // TODO: Find a better main loop. This is evil! (Probably a custom main loop or something based on the Idle event).
-                if (this.Focused)
-                {
-                    OnPaint(null);
-
-                    //if (platform.IsIdle() == false)
-                    Application.DoEvents();
-
-                    System.Threading.Thread.Sleep(0);
-                }
-            }
-        }
-
-        #endregion
-
-        Cube()
-        {
-            System.Console.WriteLine("Launching application.");
-
-            this.Show();
-
-            System.Console.WriteLine("Launched!");
-        }
-
-        private void CreateWindowedDisplay(int width, int height)
-        {
-
-            //activeContext = GLContext.Create(activeForm,
-            //    this.ColorDepth, this.ZDepth, this.StencilDepth);
-            //activeContext = new OpenTK.Platform.Windows.WinGLContext(
-
-            //AttachEvents(activeForm);
-
-            //activeForm.ClientSize = new Size(width, height);
-
-            //activeForm.TopMost = true;
-            //activeForm.Enabled = true;
-
-            //activeForm.Show();
-        }
-
-        private void InitializeComponent()
-        {
-            this.glControl = new OpenTK.Platform.GLControl();
-            this.SuspendLayout();
-            // 
-            // glControl
-            // 
-            this.glControl.BackColor = System.Drawing.SystemColors.WindowText;
-            this.glControl.Fullscreen = false;
-            this.glControl.Location = new System.Drawing.Point(24, 23);
-            this.glControl.Name = "glControl";
-            this.glControl.Size = new System.Drawing.Size(150, 150);
-            this.glControl.TabIndex = 0;
-            // 
-            // Cube
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 264);
-            this.Controls.Add(this.glControl);
-            this.Name = "Cube";
-            this.ResumeLayout(false);
-
-        }
     }
 }

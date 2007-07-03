@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
-using OpenTK.Platform.X;
+using OpenTK.Platform.X11;
 
 namespace OpenTK.OpenGL
 {

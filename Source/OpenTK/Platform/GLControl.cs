@@ -18,7 +18,7 @@ namespace OpenTK.Platform
     /// <summary>
     /// 
     /// </summary>
-    public partial class GLControl : UserControl, IGLWindow
+    public partial class GLControl : UserControl, IGLWindow, IDisposable
     {
         #region --- Private Fields ---
 
@@ -59,7 +59,7 @@ namespace OpenTK.Platform
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                      Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                //glControl =  new X11GLControl(width, height, fullscreen);
+                glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
             }
             else
             {
@@ -143,8 +143,19 @@ namespace OpenTK.Platform
 
         #endregion
 
-        #region --- IGLControl Members ---
+        #region --- IGLWindow Members ---
 
+        /// <summary>
+        /// Gets the idle status of the control.
+        /// </summary>
+        public bool IsIdle
+        {
+            get { return glWindow.IsIdle; }
+        }
+
+        /// <summary>
+        /// Gets the opengl context associated with this control.
+        /// </summary>
         public IGLContext Context
         {
             get { return glWindow.Context; }
@@ -210,6 +221,15 @@ namespace OpenTK.Platform
         public void SetDisplayMode(DisplayMode mode)
         {
             glWindow.SetDisplayMode(mode);
+        }
+
+        #endregion
+
+        #region IDisposable Members
+
+        void IDisposable.Dispose()
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
 
         #endregion
