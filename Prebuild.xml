@@ -97,7 +97,7 @@
 
       <Files>
         <Match path="." pattern="*.cs" recurse="true"/>
-        <Match path="." pattern="*.dll.config" recurse="true"/>
+        <!--<Match path="." pattern="*.dll.config" recurse="true"/>-->
       </Files>
 
     </Project>
@@ -116,8 +116,7 @@
         </Options>
       </Configuration>
 
-      <Reference name="OpenTK.Framework"/>
-      <Reference name="OpenTK.OpenGL"/>
+      <Reference name="OpenTK"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
@@ -129,6 +128,7 @@
 
     </Project>
 
+    <!--
     <Project name="OpenTK.Examples.OpenGL.Basic.DisplayLists" path=".\Source\Examples\OpenGL\Basic\DisplayLists" language="C#" type="WinExe">
 
       <Configuration name="Debug">
@@ -236,6 +236,7 @@
       </Files>
 
     </Project>
+    -->
 
   </Solution>
 

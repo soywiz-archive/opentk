@@ -20,9 +20,15 @@ namespace OpenTK.Platform.X11
 
         public X11GLControl(Control c, int width, int height, bool fullscreen)
         {
+            if (c == null/* || c.TopLevelControl == null*/)
+            {
+                throw new Exception("Attempted to bind to non-existent control.");
+            }
+        
             xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
 
             Console.WriteLine("Got XplatUIX11 type.");
+            Console.Out.Flush();
 
             if (xplatui != null)
             {
@@ -40,17 +46,24 @@ namespace OpenTK.Platform.X11
 
                 Console.WriteLine("DisplayHandle: {0}  RootWindow: {1}   ScreenNo: {2}",
                     display, rootWindow, screenNo);
+                Console.Out.Flush();
 
+				IntPtr handleToTopLevelControl;
+				if (c.TopLevelControl == null)
+					handleToTopLevelControl = c.Handle;
+				else
+					handleToTopLevelControl = c.TopLevelControl.Handle;
+					
                 context = new X11GLContext(
                     c.Handle,
                     display,
                     rootWindow,
                     screenNo,
-                    c.TopLevelControl.Handle,
+                    handleToTopLevelControl,
                     new OpenTK.OpenGL.ColorDepth(32),
                     new OpenTK.OpenGL.ColorDepth(0),
-                    24,
-                    8,
+                    16,
+                    0,
                     0,
                     false,
                     true
@@ -71,6 +84,7 @@ namespace OpenTK.Platform.X11
                         null,
                         ((X11GLContext)context).colormap
                     );
+
             }
         }
 
@@ -115,7 +129,7 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                throw new Exception("The method or operation is not implemented.");
+                return context;
             }
         }
 
