@@ -56,8 +56,6 @@ namespace OpenTK.Platform.X11
                 auxBits,
                 stereo,
                 doublebuffer);
-
-
         }
 
         #endregion
@@ -127,19 +125,20 @@ namespace OpenTK.Platform.X11
 
             Console.WriteLine("colormap: {0}", colormap);
             Console.Out.Flush();
+        }
 
+        #endregion
+
+        internal void CreateContext()
+        {
             x11context = Glx.CreateContext(display, glxVisualInfo, IntPtr.Zero, true);
             Console.WriteLine("x11context: {0}", x11context);
             Console.Out.Flush();
 
-            X11Api.XMapRaised(display, handleToTopLevelControl);
-
-            MakeCurrent();
+            //MakeCurrent();
 
             X11Api.Free(glxVisualInfo);
         }
-
-        #endregion
 
         #region IGLContext Members
 

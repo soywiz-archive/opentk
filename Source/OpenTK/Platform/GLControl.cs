@@ -36,6 +36,11 @@ namespace OpenTK.Platform
             this.Setup(640, 480, false);
         }
 
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+        }
+
         /// <summary>
         /// Constructs a new GLControl with the specified width, height and fullscreen modes.
         /// </summary>

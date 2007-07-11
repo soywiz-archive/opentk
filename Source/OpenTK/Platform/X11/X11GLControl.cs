@@ -85,6 +85,9 @@ namespace OpenTK.Platform.X11
                         ((X11GLContext)context).colormap
                     );
 
+                ((X11GLContext)context).CreateContext();
+
+                X11Api.XMapRaised(display, handleToTopLevelControl);
             }
         }
 

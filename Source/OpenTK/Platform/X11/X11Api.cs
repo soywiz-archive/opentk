@@ -12,6 +12,29 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Platform.X11
 {
+    #region Types
+
+    // using XID = System.Int32;
+    using Window = System.Int32;
+    using Drawable = System.Int32;
+    using Font = System.Int32;
+    using Pixmap = System.Int32;
+    using Cursor = System.Int32;
+    using Colormap = System.Int32;
+    using GContext = System.Int32;
+    using KeySym = System.Int32;
+    using Mask = System.Int32;
+    using Atom = System.Int32;
+    using VisualID = System.Int32;
+    using Time = System.Int32;
+    using KeyCode = System.Int32;  /* In order to use IME, the Macintosh needs
+                                   * to pack 3 bytes into the keyCode field in
+                                   * the XEvent.  In the real X.h, a KeyCode is
+                                   * defined as a short, which wouldn't be big
+                                   * enough. */
+
+    #endregion
+
     public static class X11Api
     {
         private const string _dll_name = "libX11";
@@ -53,6 +76,7 @@ namespace OpenTK.Platform.X11
             Async = 1,
         }
         #endregion
+
         #region X11 Structures
 
         [StructLayout(LayoutKind.Sequential)]
@@ -70,8 +94,79 @@ namespace OpenTK.Platform.X11
             public int bits_per_rgb;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        struct SetWindowAttributes
+        {
+            /// <summary>
+            /// background, None, or ParentRelative
+            /// </summary>
+            Pixmap background_pixmap;
+            /// <summary>
+            /// background pixel
+            /// </summary>
+            long background_pixel;
+            /// <summary>
+            /// border of the window or CopyFromParent
+            /// </summary>
+            Pixmap border_pixmap;
+            /// <summary>
+            /// border pixel value
+            /// </summary>
+            long border_pixel;
+            /// <summary>
+            /// one of bit gravity values
+            /// </summary>
+            int bit_gravity;
+            /// <summary>
+            /// one of the window gravity values
+            /// </summary>
+            int win_gravity;
+            /// <summary>
+            /// NotUseful, WhenMapped, Always
+            /// </summary>
+            int backing_store;
+            /// <summary>
+            /// planes to be preserved if possible
+            /// </summary>
+            long backing_planes;
+            /// <summary>
+            /// value to use in restoring planes
+            /// </summary>
+            long backing_pixel;
+            /// <summary>
+            /// should bits under be saved? (popups)
+            /// </summary>
+            bool save_under;
+            /// <summary>
+            /// set of events that should be saved
+            /// </summary>
+            long event_mask;
+            /// <summary>
+            /// set of events that should not propagate
+            /// </summary>
+            long do_not_propagate_mask;
+            /// <summary>
+            /// boolean value for override_redirect
+            /// </summary>
+            bool override_redirect;
+            /// <summary>
+            /// color map to be associated with window
+            /// </summary>
+            Colormap colormap;
+            /// <summary>
+            /// cursor to be displayed (or None)
+            /// </summary>
+            Cursor cursor;
+
+        }
+
         #endregion
+
         #region libX11 Functions
+
+        // Window management
+        [DllImport(_dll_name, EntryPoint="RootWindow")]
+        public static extern Window RootWindow(IntPtr display, int screen);
 
         // Display management
         [DllImport(_dll_name, EntryPoint = "XOpenDisplay")]
