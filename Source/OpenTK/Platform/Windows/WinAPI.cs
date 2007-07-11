@@ -19,50 +19,85 @@ namespace OpenTK.Platform.Windows
     /// For internal use by OpenTK only!
     /// Exposes useful native WINAPI methods and structures.
     /// </summary>
-    public static class WinApi
+    internal static class WinApi
     {
         #region Constants
-        public struct Constants
+
+        internal struct Constants
         {
-            // Keyboard events (found in WinUSER.h)
-            public const int WM_KEYDOWN = 0x0100;
-            public const int WM_KEYUP = 0x101;
-            public const int WM_SYSKEYDOWN = 0x0104;
-            public const int WM_SYSKEYUP = 0x0105;
-            public const int WM_COMMAND = 0x0111;
-            public const int WM_SYSCOMMAND = 0x0112;
-            public const int WM_ENTERIDLE = 0x121;
+            // WM_ACTIVATE state values (found in winuser.h)
+            internal const int WA_INACTIVE    = 0;
+            internal const int WA_ACTIVE      = 1;
+            internal const int WA_CLICKACTIVE = 2;
 
-            // Pixel types (found in WinGDI.h)
-            public const byte PFD_TYPE_RGBA = 0;
-            public const byte PFD_TYPE_COLORINDEX = 1;
+            // Window Messages (found in winuser.h)
+            internal const int WM_NULL                        = 0x0000;
+            internal const int WM_CREATE                      = 0x0001;
+            internal const int WM_DESTROY                     = 0x0002;
+            internal const int WM_MOVE                        = 0x0003;
+            internal const int WM_SIZE                        = 0x0005;
+            internal const int WM_ACTIVATE                    = 0x0006;
+            internal const int WM_SETFOCUS                    = 0x0007;
+            internal const int WM_KILLFOCUS                   = 0x0008;
+            internal const int WM_ENABLE                      = 0x000A;
+            internal const int WM_SETREDRAW                   = 0x000B;
+            internal const int WM_SETTEXT                     = 0x000C;
+            internal const int WM_GETTEXT                     = 0x000D;
+            internal const int WM_GETTEXTLENGTH               = 0x000E;
+            internal const int WM_PAINT                       = 0x000F;
+            internal const int WM_CLOSE                       = 0x0010;
+            // _WIN32_WCE
+            internal const int WM_QUERYENDSESSION             = 0x0011;
+            internal const int WM_QUERYOPEN                   = 0x0013;
+            internal const int WM_ENDSESSION                  = 0x0016;
+            internal const int WM_QUIT                        = 0x0012;
+            internal const int WM_ERASEBKGND                  = 0x0014;
+            internal const int WM_SYSCOLORCHANGE              = 0x0015;
+            internal const int WM_SHOWWINDOW                  = 0x0018;
+            internal const int WM_WININICHANGE                = 0x001A;
+            // WINVER >= 0x400
+            internal const int WM_SETTINGCHANGE               = WM_WININICHANGE;
 
-            // Layer types (found in WinGDI.h)
-            public const byte PFD_MAIN_PLANE = 0;
-            public const byte PFD_OVERLAY_PLANE = 1;
-            public const byte PFD_UNDERLAY_PLANE = unchecked((byte)-1);
+            // Keyboard events (found in winuser.h)
+            internal const int WM_KEYDOWN = 0x0100;
+            internal const int WM_KEYUP = 0x101;
+            internal const int WM_SYSKEYDOWN = 0x0104;
+            internal const int WM_SYSKEYUP = 0x0105;
+            internal const int WM_COMMAND = 0x0111;
+            internal const int WM_SYSCOMMAND = 0x0112;
+            internal const int WM_ENTERIDLE = 0x121;
 
-            // Device mode types (found in WinGDI.h)
-            public const int DM_BITSPERPEL = 0x00040000;
-            public const int DM_PELSWIDTH = 0x00080000;
-            public const int DM_PELSHEIGHT = 0x00100000;
-            public const int DM_DISPLAYFLAGS = 0x00200000;
-            public const int DM_DISPLAYFREQUENCY = 0x00400000;
+            // Pixel types (found in wingdi.h)
+            internal const byte PFD_TYPE_RGBA = 0;
+            internal const byte PFD_TYPE_COLORINDEX = 1;
 
-            // ChangeDisplaySettings types (found in WinUSER.h)
-            public const int CDS_UPDATEREGISTRY = 0x00000001;
-            public const int CDS_TEST = 0x00000002;
-            public const int CDS_FULLSCREEN = 0x00000004;
+            // Layer types (found in wingdi.h)
+            internal const byte PFD_MAIN_PLANE = 0;
+            internal const byte PFD_OVERLAY_PLANE = 1;
+            internal const byte PFD_UNDERLAY_PLANE = unchecked((byte)-1);
 
-            // ChangeDisplaySettings results (found in WinUSER.h)
-            public const int DISP_CHANGE_SUCCESSFUL = 0;
-            public const int DISP_CHANGE_RESTART = 1;
-            public const int DISP_CHANGE_FAILED = -1;
+            // Device mode types (found in wingdi.h)
+            internal const int DM_BITSPERPEL = 0x00040000;
+            internal const int DM_PELSWIDTH = 0x00080000;
+            internal const int DM_PELSHEIGHT = 0x00100000;
+            internal const int DM_DISPLAYFLAGS = 0x00200000;
+            internal const int DM_DISPLAYFREQUENCY = 0x00400000;
 
-            // (found in WinUSER.h)
-            public const int ENUM_REGISTRY_SETTINGS = -2;
-            public const int ENUM_CURRENT_SETTINGS = -1;
+            // ChangeDisplaySettings types (found in winuser.h)
+            internal const int CDS_UPDATEREGISTRY = 0x00000001;
+            internal const int CDS_TEST = 0x00000002;
+            internal const int CDS_FULLSCREEN = 0x00000004;
+
+            // ChangeDisplaySettings results (found in winuser.h)
+            internal const int DISP_CHANGE_SUCCESSFUL = 0;
+            internal const int DISP_CHANGE_RESTART = 1;
+            internal const int DISP_CHANGE_FAILED = -1;
+
+            // (found in winuser.h)
+            internal const int ENUM_REGISTRY_SETTINGS = -2;
+            internal const int ENUM_CURRENT_SETTINGS = -1;
         }
+
         #endregion
 
         #region WINAPI methods
@@ -70,14 +105,14 @@ namespace OpenTK.Platform.Windows
         #region PeekMessage
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct Message
+        internal struct Message
         {
-            public IntPtr hWnd;
-            public int msg;
-            public IntPtr wParam;
-            public IntPtr lParam;
-            public int time;
-            public System.Drawing.Point p;
+            internal IntPtr hWnd;
+            internal int msg;
+            internal IntPtr wParam;
+            internal IntPtr lParam;
+            internal int time;
+            internal System.Drawing.Point p;
             //System.Drawing.
         }
 
@@ -93,14 +128,14 @@ namespace OpenTK.Platform.Windows
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool PeekMessage(
+        internal static extern bool PeekMessage(
             out Message msg,
             IntPtr hWnd,
             int messageFilterMin,
             int messageFilterMax,
             int flags
         );
-        //public static extern bool PeekMessage(
+        //internal static extern bool PeekMessage(
         //    out System.Windows.Forms.Message msg,
         //    IntPtr hWnd,
         //    uint messageFilterMin,
@@ -115,7 +150,7 @@ namespace OpenTK.Platform.Windows
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetMessage(
+        internal static extern bool GetMessage(
             out System.Windows.Forms.Message msg,
             IntPtr windowHandle,
             int messageFilterMin,
@@ -133,7 +168,7 @@ namespace OpenTK.Platform.Windows
         /// <returns>(?)</returns>
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("winmm.dll")]
-        public static extern IntPtr TimeBeginPeriod(int period);
+        internal static extern IntPtr TimeBeginPeriod(int period);
 
         #endregion
 
@@ -147,7 +182,7 @@ namespace OpenTK.Platform.Windows
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("kernel32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool QueryPerformanceFrequency(ref long PerformanceFrequency);
+        internal static extern bool QueryPerformanceFrequency(ref long PerformanceFrequency);
 
         #endregion
 
@@ -161,7 +196,7 @@ namespace OpenTK.Platform.Windows
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("kernel32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool QueryPerformanceCounter(ref long PerformanceCount);
+        internal static extern bool QueryPerformanceCounter(ref long PerformanceCount);
 
         #endregion
 
@@ -173,7 +208,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="hwnd"></param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern IntPtr GetDC(IntPtr hwnd);
+        internal static extern IntPtr GetDC(IntPtr hwnd);
 
         #endregion
 
@@ -187,7 +222,7 @@ namespace OpenTK.Platform.Windows
         /// <returns></returns>
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool ReleaseDC(IntPtr hwnd, IntPtr DC);
+        internal static extern bool ReleaseDC(IntPtr hwnd, IntPtr DC);
 
         #endregion
 
@@ -200,7 +235,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="pfd"></param>
         /// <returns></returns>
         [DllImport("gdi32.dll")]
-        public static extern int ChoosePixelFormat(IntPtr dc, [In, MarshalAs(UnmanagedType.LPStruct)]PixelFormatDescriptor pfd);
+        internal static extern int ChoosePixelFormat(IntPtr dc, [In, MarshalAs(UnmanagedType.LPStruct)]PixelFormatDescriptor pfd);
 
         #endregion
 
@@ -215,7 +250,7 @@ namespace OpenTK.Platform.Windows
         /// <returns></returns>
         [DllImport("gdi32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetPixelFormat(
+        internal static extern bool SetPixelFormat(
             IntPtr dc,
             int format,
             [In, MarshalAs(UnmanagedType.LPStruct)]PixelFormatDescriptor pfd
@@ -231,7 +266,7 @@ namespace OpenTK.Platform.Windows
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetWindowPos(
+        internal static extern bool SetWindowPos(
             IntPtr handle,
             WindowPlacementOptions placement,
             int x, int y, int cx, int cy,
@@ -248,7 +283,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="dc"></param>
         [DllImport("gdi32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SwapBuffers(IntPtr dc);
+        internal static extern bool SwapBuffers(IntPtr dc);
 
         #endregion
 
@@ -261,7 +296,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="funcname"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll")]
-        public static extern IntPtr GetProcAddress(IntPtr handle, string funcname);
+        internal static extern IntPtr GetProcAddress(IntPtr handle, string funcname);
 
         #endregion
 
@@ -273,7 +308,7 @@ namespace OpenTK.Platform.Windows
         /// <param name="funcname"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern IntPtr LoadLibrary(string dllName);
+        internal static extern IntPtr LoadLibrary(string dllName);
 
         #endregion
 
@@ -286,17 +321,17 @@ namespace OpenTK.Platform.Windows
         /// <returns></returns>
         [DllImport("kernel32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FreeLibrary(IntPtr handle);
+        internal static extern bool FreeLibrary(IntPtr handle);
 
         #endregion
 
         #region CreateWindowEx
 
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr CreateWindowEx(
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern IntPtr CreateWindowEx(
             [In]ExtendedWindowStyle ExStyle,
-            StringBuilder ClassName,
-            [In]string WindowName,
+            [In]string className,
+            [In]string windowName,
             [In]WindowStyle Style,
             [In]int X, int Y,
             [In]int Width, int Height,
@@ -306,7 +341,7 @@ namespace OpenTK.Platform.Windows
             [In]IntPtr Param);
         /*
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int CreateWindowEx(
+        internal static extern int CreateWindowEx(
             [In]ExtendedWindowStyle ExStyle,
             [In]IntPtr ClassName,
             [In]IntPtr WindowName,
@@ -318,8 +353,8 @@ namespace OpenTK.Platform.Windows
             [In]IntPtr Instance,
             [In]IntPtr Param);
         */
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr CreateWindowEx(
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern IntPtr CreateWindowEx(
             ExtendedWindowStyle ExStyle,
             IntPtr ClassName,
             IntPtr WindowName,
@@ -331,7 +366,7 @@ namespace OpenTK.Platform.Windows
             IntPtr Instance,
             IntPtr Param);
 
-        public enum WindowStyle : int
+        internal enum WindowStyle : int
         {
             Overlapped = 0x00000000,
             Popup = unchecked((int)0x80000000),
@@ -367,7 +402,7 @@ namespace OpenTK.Platform.Windows
         }
 
         [Flags]
-        public enum ExtendedWindowStyle : int
+        internal enum ExtendedWindowStyle : int
         {
             DialogModalFrame = 0x00000001,
             NoParentNotify = 0x00000004,
@@ -419,17 +454,35 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        #region DestroyWindow
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool DestroyWindow(IntPtr windowHandle);
+
+        #endregion
+
         #region GetModuleHandle
 
         [DllImport("kernel32.dll")]
-        public static extern IntPtr GetModuleHandle([MarshalAs(UnmanagedType.LPTStr)]string module_name);
+        internal static extern IntPtr GetModuleHandle([MarshalAs(UnmanagedType.LPTStr)]string module_name);
 
         #endregion
 
         #region RegisterClass
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern short RegisterClass(WindowClass window_class);
+        internal static extern short RegisterClass(WindowClass window_class);
+
+        #endregion
+
+        #region
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern short UnregisterClass(string className, IntPtr instance);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern short UnregisterClass(IntPtr className, IntPtr instance);
 
         #endregion
 
@@ -441,13 +494,13 @@ namespace OpenTK.Platform.Windows
         /// <param name="flags"></param>
         /// <returns></returns>
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int ChangeDisplaySettings(DeviceMode device_mode, int flags);
+        internal static extern int ChangeDisplaySettings(DeviceMode device_mode, int flags);
         #endregion int ChangeDisplaySettings(ref Gdi.DEVMODE devMode, int flags)
 
         #region EnumDisplaySettings
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int EnumDisplaySettings([MarshalAs(UnmanagedType.LPTStr)] string device_name,
+        internal static extern int EnumDisplaySettings([MarshalAs(UnmanagedType.LPTStr)] string device_name,
             int graphics_mode, IntPtr device_mode);
 
         #endregion
@@ -458,14 +511,14 @@ namespace OpenTK.Platform.Windows
         //#region GetLastError
 
         //[DllImport("kernel32.dll")]
-        //public static extern int GetLastError();
+        //internal static extern int GetLastError();
 
         //#endregion
 
         //#region SetLastError
 
         //[DllImport("kernel32.dll")]
-        //public static extern void SetLastError(int error_code);
+        //internal static extern void SetLastError(int error_code);
 
         //#endregion
 
@@ -484,43 +537,43 @@ namespace OpenTK.Platform.Windows
         /// Found in WinGDI.h
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        public class PixelFormatDescriptor
+        internal class PixelFormatDescriptor
         {
             short Size = 40;   // No need for the user to set the size, since it is predefined.
-            public short Version = 1;
-            public PixelFormatDescriptorFlags Flags =
+            internal short Version = 1;
+            internal PixelFormatDescriptorFlags Flags =
                 //PixelFormatDescriptorFlags.DOUBLEBUFFER |
                 PixelFormatDescriptorFlags.DRAW_TO_WINDOW |
                 PixelFormatDescriptorFlags.SUPPORT_OPENGL;
-            public byte PixelType = Constants.PFD_TYPE_RGBA;
-            public byte ColorBits = 0;
-            public byte RedBits = 0;
-            public byte RedShift = 0;
-            public byte GreenBits = 0;
-            public byte GreenShift = 0;
-            public byte BlueBits = 0;
-            public byte BlueShift = 0;
-            public byte AlphaBits = 8;
-            public byte AlphaShift = 0;
-            public byte AccumBits = 0;
-            public byte AccumRedBits = 0;
-            public byte AccumGreenBits = 0;
-            public byte AccumBlueBits = 0;
-            public byte AccumAlphaBits = 0;
-            public byte DepthBits = 0;
-            public byte StencilBits = 0;
-            public byte AuxBuffers = 0;
-            public byte LayerType = unchecked((byte)Constants.PFD_MAIN_PLANE);
+            internal byte PixelType = Constants.PFD_TYPE_RGBA;
+            internal byte ColorBits = 0;
+            internal byte RedBits = 0;
+            internal byte RedShift = 0;
+            internal byte GreenBits = 0;
+            internal byte GreenShift = 0;
+            internal byte BlueBits = 0;
+            internal byte BlueShift = 0;
+            internal byte AlphaBits = 8;
+            internal byte AlphaShift = 0;
+            internal byte AccumBits = 0;
+            internal byte AccumRedBits = 0;
+            internal byte AccumGreenBits = 0;
+            internal byte AccumBlueBits = 0;
+            internal byte AccumAlphaBits = 0;
+            internal byte DepthBits = 0;
+            internal byte StencilBits = 0;
+            internal byte AuxBuffers = 0;
+            internal byte LayerType = unchecked((byte)Constants.PFD_MAIN_PLANE);
             byte Reserved = 0;
-            public int LayerMask = 0;
-            public int VisibleMask = 0;
-            public int DamageMask = 0;
+            internal int LayerMask = 0;
+            internal int VisibleMask = 0;
+            internal int DamageMask = 0;
         }
         #endregion
 
         #region PixelFormatDescriptorFlags enum
         [Flags]
-        public enum PixelFormatDescriptorFlags : int
+        internal enum PixelFormatDescriptorFlags : int
         {
             // PixelFormatDescriptor flags
             DOUBLEBUFFER,
@@ -547,7 +600,7 @@ namespace OpenTK.Platform.Windows
 
         #region SetWindowPosFlags enum
         [Flags]
-        public enum SetWindowPosFlags
+        internal enum SetWindowPosFlags
         {
             // SetWindowPos Flags
             NOSIZE,
@@ -566,15 +619,15 @@ namespace OpenTK.Platform.Windows
             NOREPOSITION = NOOWNERZORDER
 
             //#if WINVER >= 0x0400
-            //public const int SWP_DEFERERASE     = 0x2000;
-            //public const int SWP_ASYNCWINDOWPOS = 0x4000;
+            //internal const int SWP_DEFERERASE     = 0x2000;
+            //internal const int SWP_ASYNCWINDOWPOS = 0x4000;
             //#endif
         }
         #endregion
 
         #region WindowPlacementOptions enum
 
-        public enum WindowPlacementOptions
+        internal enum WindowPlacementOptions
         {
             TOP = 0,
             BOTTOM = 1,
@@ -586,28 +639,29 @@ namespace OpenTK.Platform.Windows
 
         #region WindowClass
         [StructLayout(LayoutKind.Sequential)]
-        public class WindowClass
+        internal class WindowClass
         {
-            public WindowClassStyle style = WindowClassStyle.VRedraw | WindowClassStyle.HRedraw | WindowClassStyle.OwnDC;
+            internal WindowClassStyle style = WindowClassStyle.VRedraw | WindowClassStyle.HRedraw | WindowClassStyle.OwnDC;
             [MarshalAs(UnmanagedType.FunctionPtr)]
-            public WindowProcedureEventHandler WindowProcedure;
-            public int ClassExtraBytes;
-            public int WindowExtraBytes;
+            internal WindowProcedureEventHandler WindowProcedure;
+            internal int ClassExtraBytes;
+            internal int WindowExtraBytes;
             //[MarshalAs(UnmanagedType.
-            public IntPtr Instance;
-            public IntPtr Icon;
-            public IntPtr Cursor;
-            public IntPtr BackgroundBrush;
+            internal IntPtr Instance;
+            internal IntPtr Icon;
+            internal IntPtr Cursor;
+            internal IntPtr BackgroundBrush;
             //[MarshalAs(UnmanagedType.LPStr)]
-            public IntPtr MenuName;
+            internal IntPtr MenuName;
             //[MarshalAs(UnmanagedType.LPStr)]
-            public IntPtr ClassName;
+            internal IntPtr ClassName;
+            //internal string ClassName;
         }
         #endregion
 
         #region WindowClassStyle enum
         [Flags]
-        public enum WindowClassStyle
+        internal enum WindowClassStyle
         {
             //None            = 0x0000,
             VRedraw = 0x0001,
@@ -685,51 +739,51 @@ namespace OpenTK.Platform.Windows
         } DEVMODE; 
         */
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-        public class DeviceMode
+        internal class DeviceMode
         {
-            public DeviceMode()
+            internal DeviceMode()
             {
                 Size = (short)Marshal.SizeOf(this);
             }
 
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-            public string DeviceName;
-            public short SpecVersion;
-            public short DriverVersion;
+            internal string DeviceName;
+            internal short SpecVersion;
+            internal short DriverVersion;
             private short Size;
-            public short DriverExtra;
-            public int Fields;
+            internal short DriverExtra;
+            internal int Fields;
 
-            public short Orientation;
-            public short PaperSize;
-            public short PaperLength;
-            public short PaperWidth;
-            public short Scale;
-            public short Copies;
-            public short DefaultSource;
-            public short PrintQuality;
+            internal short Orientation;
+            internal short PaperSize;
+            internal short PaperLength;
+            internal short PaperWidth;
+            internal short Scale;
+            internal short Copies;
+            internal short DefaultSource;
+            internal short PrintQuality;
 
-            public short Color;
-            public short Duplex;
-            public short YResolution;
-            public short TTOption;
-            public short Collate;
+            internal short Color;
+            internal short Duplex;
+            internal short YResolution;
+            internal short TTOption;
+            internal short Collate;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-            public string FormName;
-            public short LogPixels;
-            public int BitsPerPel;
-            public int PelsWidth;
-            public int PelsHeight;
-            public int DisplayFlags;
-            public int DisplayFrequency;
-            public int ICMMethod;
-            public int ICMIntent;
-            public int MediaType;
-            public int DitherType;
-            public int Reserved1;
-            public int Reserved2;
-            public int PanningWidth;
-            public int PanningHeight;
+            internal string FormName;
+            internal short LogPixels;
+            internal int BitsPerPel;
+            internal int PelsWidth;
+            internal int PelsHeight;
+            internal int DisplayFlags;
+            internal int DisplayFrequency;
+            internal int ICMMethod;
+            internal int ICMIntent;
+            internal int MediaType;
+            internal int DitherType;
+            internal int Reserved1;
+            internal int Reserved2;
+            internal int PanningWidth;
+            internal int PanningHeight;
         }
 
         #endregion DeviceMode class
@@ -739,11 +793,11 @@ namespace OpenTK.Platform.Windows
         #region Callbacks
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Winapi)]
-        public delegate void WindowProcedureEventHandler(object sender, WindowProcedureEventArgs e);
+        internal delegate void WindowProcedureEventHandler(object sender, WindowProcedureEventArgs e);
 
-        public class WindowProcedureEventArgs : EventArgs
+        internal class WindowProcedureEventArgs : EventArgs
         {
-            public Message Msg;
+            internal Message Msg;
         }
 
         #endregion
