@@ -27,12 +27,6 @@ namespace OpenTK.Platform.Windows
     class WinGLNative : NativeWindow, IGLWindow, IDisposable
     {
         WinGLContext glContext;
-        /*IntPtr handle;
-        IntPtr instance;
-        //string className = "GameWindow";
-        IntPtr className = Marshal.StringToHGlobalAuto("GameWindow");
-        short classAtom;*/
-        //NativeWindow window;
 
         #region Contructors
 
@@ -53,12 +47,9 @@ namespace OpenTK.Platform.Windows
                 (int)WinApi.WindowStyle.OverlappedWindow;
             cp.Width = 640;
             cp.Height = 480;
-            //cp.ClassName = "GameWindow";
             cp.Caption = "OpenTK Game Window";
             CreateHandle(cp);
 
-            /*instance = WinApi.GetModuleHandle(null);
-            CreateWindow();*/
 
             glContext = new OpenTK.Platform.Windows.WinGLContext(
                 this.Handle,
@@ -122,25 +113,57 @@ namespace OpenTK.Platform.Windows
         */
         #endregion
 
+        #region protected override void WndProc(ref Message m)
+
         protected override void WndProc(ref Message m)
         {
-            this.IsIdle = false;
-
             switch (m.Msg)
             {
-                case WinApi.Constants.WM_ENTERIDLE:
-                    this.IsIdle = true;
+                case WinApi.Constants.WM_CLOSE:
+                    WinApi.PostQuitMessage(0);
                     return;
 
-                case WinApi.Constants.WM_CLOSE:
-                    Application.Exit();
-                    return;
+                case WinApi.Constants.WM_QUIT:
+                    quit = true;
+                    break;
             }
             
  	        base.WndProc(ref m);
         }
 
+        #endregion
+
         #region IGLWindow Members
+
+        private System.Windows.Forms.Message msg;
+        public void DoEvents()
+        {
+            isIdle = false;
+            while (WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0))
+            {
+                WinApi.GetMessage(out msg, IntPtr.Zero, 0, 0);
+                WndProc(ref msg);
+            }
+            isIdle = true;
+        }
+
+        #region public bool Quit
+
+        private bool quit;
+        public bool Quit
+        {
+            get { return quit; }
+            set
+            {
+                if (value)
+                {
+                    WinApi.PostQuitMessage(0);
+                    quit = true;
+                }
+            }
+        }
+
+        #endregion
 
         public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode)
         {
@@ -175,7 +198,6 @@ namespace OpenTK.Platform.Windows
             }
         }
 
-        private WinApi.Message msg;
         bool isIdle;
         public bool IsIdle
         {
@@ -196,9 +218,8 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
+            this.Context.Destroy();
             this.DestroyHandle();
-            //WinApi.DestroyWindow(handle);
-            //WinApi.UnregisterClass(className, instance);
         }
 
         #endregion

@@ -28,6 +28,11 @@ namespace OpenTK.Platform
         IntPtr GetAddress(string function);
 
         /// <summary>
+        /// Destroys the OpenGL Context.
+        /// </summary>
+        void Destroy();
+
+        /// <summary>
         /// Returns the display modes supported by the current opengl context.
         /// </summary>
         /// <returns>An array containing all supported display modes.</returns>

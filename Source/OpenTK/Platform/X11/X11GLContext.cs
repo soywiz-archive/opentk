@@ -142,6 +142,11 @@ namespace OpenTK.Platform.X11
 
         #region IGLContext Members
 
+        public void Destroy()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SwapBuffers()
         {
             Glx.SwapBuffers(display, handle);

@@ -1,4 +1,6 @@
-﻿namespace OpenTK.Platform
+﻿using System;
+
+namespace OpenTK.Platform
 {
     partial class GLControl
     {
@@ -30,6 +32,11 @@
         {
             components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        }
+
+        public void DoEvents()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -41,6 +41,30 @@ namespace OpenTK.Platform.Windows
             throw new Exception("The method or operation is not implemented.");
         }
 
+        private WinApi.Message msg;
+        public void DoEvents()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #region public bool Quit
+
+        public bool Quit
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        #endregion
+
+        public bool IsIdle
+        {
+            get
+            {
+                return !WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
+            }
+        }
+
         public IGLContext Context
         {
             get { return glContext; }
@@ -58,14 +82,7 @@ namespace OpenTK.Platform.Windows
             }
         }
 
-        private WinApi.Message msg;
-        public bool IsIdle
-        {
-            get
-            {
-                return !WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
-            }
-        }
+
 
         #endregion
     }

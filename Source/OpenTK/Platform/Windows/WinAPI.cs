@@ -58,6 +58,18 @@ namespace OpenTK.Platform.Windows
             // WINVER >= 0x400
             internal const int WM_SETTINGCHANGE               = WM_WININICHANGE;
 
+            internal const int WM_DEVMODECHANGE               = 0x001B;
+            internal const int WM_ACTIVATEAPP                 = 0x001C;
+            internal const int WM_FONTCHANGE                  = 0x001D;
+            internal const int WM_TIMECHANGE                  = 0x001E;
+            internal const int WM_CANCELMODE                  = 0x001F;
+            internal const int WM_SETCURSOR                   = 0x0020;
+            internal const int WM_MOUSEACTIVATE               = 0x0021;
+            internal const int WM_CHILDACTIVATE               = 0x0022;
+            internal const int WM_QUEUESYNC                   = 0x0023;
+
+            internal const int WM_GETMINMAXINFO               = 0x0024;
+
             // Keyboard events (found in winuser.h)
             internal const int WM_KEYDOWN = 0x0100;
             internal const int WM_KEYUP = 0x101;
@@ -135,18 +147,45 @@ namespace OpenTK.Platform.Windows
             int messageFilterMax,
             int flags
         );
-        //internal static extern bool PeekMessage(
-        //    out System.Windows.Forms.Message msg,
-        //    IntPtr hWnd,
-        //    uint messageFilterMin,
-        //    uint messageFilterMax,
-        //    uint flags
-        //);
+
+        /// <summary>
+        /// Low-level WINAPI function that checks the next message in the queue.
+        /// </summary>
+        /// <param name="msg">The pending message (if any) is stored here.</param>
+        /// <param name="hWnd">Not used</param>
+        /// <param name="messageFilterMin">Not used</param>
+        /// <param name="messageFilterMax">Not used</param>
+        /// <param name="flags">Not used</param>
+        /// <returns>True if there is a message pending.</returns>
+        [System.Security.SuppressUnmanagedCodeSecurity]
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool PeekMessage(
+            out System.Windows.Forms.Message msg,
+            IntPtr hWnd,
+            int messageFilterMin,
+            int messageFilterMax,
+            int flags
+        );
 
         #endregion
 
         #region GetMessage
 
+        /// <summary>
+        /// Low-level WINAPI function that retriives the next message in the queue.
+        /// </summary>
+        /// <param name="msg">The pending message (if any) is stored here.</param>
+        /// <param name="hWnd">Not used</param>
+        /// <param name="messageFilterMin">Not used</param>
+        /// <param name="messageFilterMax">Not used</param>
+        /// <param name="flags">Not used</param>
+        /// <returns>
+        /// Nonzero indicates that the function retrieves a message other than WM_QUIT.
+        /// Zero indicates that the function retrieves the WM_QUIT message, or that lpMsg is an invalid pointer.
+        /// –1 indicates that an error occurred — for example, the function fails if hWnd is an invalid window handle.
+        /// To get extended error information, call GetLastError.
+        /// </returns>
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -156,6 +195,13 @@ namespace OpenTK.Platform.Windows
             int messageFilterMin,
             int messageFilterMax
         );
+
+        #endregion
+
+        #region PostQuitMessage
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        internal static extern void PostQuitMessage(int exitCode);
 
         #endregion
 

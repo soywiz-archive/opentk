@@ -150,6 +150,16 @@ namespace OpenTK.Platform
 
         #region --- IGLWindow Members ---
 
+        #region public bool Quit
+
+        public bool Quit
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        #endregion
+
         /// <summary>
         /// Gets the idle status of the control.
         /// </summary>

@@ -222,7 +222,7 @@ namespace OpenTK.OpenGL
         [DllImport(_dll_name)]
         public static extern IntPtr GetProcAddress(IntPtr hwnd);
 
-        [DllImport(_dll_name, EntryPoint = "wglGetProcAddress")]
+        [DllImport(_dll_name, EntryPoint = "wglGetProcAddress", SetLastError=true)]
         public static extern IntPtr GetProcAddress(string funcname);
 
         #region public static extern IntPtr CreateContext(IntPtr dc);
@@ -281,7 +281,7 @@ namespace OpenTK.OpenGL
 
         #endregion
 
-        [DllImport(_dll_name, EntryPoint = "wglDeleteContext")]
+        [DllImport(_dll_name, EntryPoint = "wglDeleteContext", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DeleteContext(IntPtr rc);
 

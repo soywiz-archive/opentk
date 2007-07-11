@@ -11,6 +11,7 @@ namespace Examples
     class Cube
     {
         GameWindow window;
+        bool exit;
 
         public Cube()
         {
@@ -30,14 +31,12 @@ namespace Examples
 
         public void Run()
         {
-            while (true)
+            while (!window.Quit)
             {
-                while (window.IsIdle)
-                {
-                    Render();
+                window.DoEvents();
 
-                    System.Threading.Thread.Sleep(10);
-                }
+                Render();
+                System.Threading.Thread.Sleep(10);
             }
         }
 

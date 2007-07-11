@@ -108,6 +108,16 @@ namespace OpenTK.Platform.X11
             throw new Exception("The method or operation is not implemented.");
         }
 
+        #region public bool Quit
+
+        public bool Quit
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        #endregion
+
         public bool IsIdle
         {
             get
@@ -134,6 +144,11 @@ namespace OpenTK.Platform.X11
             {
                 return context;
             }
+        }
+
+        public void DoEvents()
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
 
         #endregion

@@ -74,6 +74,17 @@ namespace OpenTK
             get { return glWindow.Context; }
         }
 
+        public void DoEvents()
+        {
+            glWindow.DoEvents();
+        }
+
+        public bool Quit
+        {
+            get { return glWindow.Quit; }
+            set { glWindow.Quit = true; }
+        }
+
         #endregion
 
         #region IDisposable Members

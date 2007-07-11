@@ -122,6 +122,24 @@ namespace OpenTK.Platform.Windows
 
         #region --- IGLContext Members ---
 
+        #region public void Destroy()
+
+        public void Destroy()
+        {
+            if (renderContext != IntPtr.Zero)
+            {
+                if (!Wgl.DeleteContext(renderContext))
+                {
+                    throw new ApplicationException(
+                        "Could not destroy the OpenGL render context. Error: " + Marshal.GetLastWin32Error()
+                    );
+                }
+                renderContext = IntPtr.Zero;
+            }
+        }
+
+        #endregion
+
         #region public void SwapBuffers()
 
         public void SwapBuffers()
@@ -149,7 +167,7 @@ namespace OpenTK.Platform.Windows
 
 	    #endregion
 
-        #region GetDisplayModes
+        #region public DisplayMode[] GetDisplayModes()
 
         public DisplayMode[] GetDisplayModes()
         {
@@ -199,7 +217,7 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
-            throw new Exception("The method or operation is not implemented.");
+            this.Destroy();
         }
 
         #endregion
