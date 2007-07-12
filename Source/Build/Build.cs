@@ -226,7 +226,7 @@ namespace OpenTK.Build
                 File.Copy(m, Path.Combine(ExamplePath, Path.GetFileName(m)));
             }
 
-            FindFiles(SourcePath, "*.config", dll_config_matches);
+            FindFiles(SourcePath, "*.dll.config", dll_config_matches);
             foreach (string m in dll_config_matches)
             {
                 File.Delete(Path.Combine(LibPath, Path.GetFileName(m)));

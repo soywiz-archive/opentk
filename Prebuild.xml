@@ -34,13 +34,13 @@
 
       <Configuration name="Debug">
         <Options>
-          <OutputPath>..\..\Build</OutputPath>
+          <OutputPath>..\..\Binaries\Debug\Exe</OutputPath>
         </Options>
       </Configuration>
 
       <Configuration name="Release">
         <Options>
-          <OutputPath>..\..\Build</OutputPath>
+          <OutputPath>..\..\Binaries\Release\Exe</OutputPath>
         </Options>
       </Configuration>
 
@@ -56,13 +56,13 @@
 
       <Configuration name="Debug">
         <Options>
-          <OutputPath>..\..\..\Binaries\Debug\Exe</OutputPath>
+          <OutputPath>..\..\Binaries\Debug\Exe</OutputPath>
         </Options>
       </Configuration>
 
       <Configuration name="Release">
         <Options>
-          <OutputPath>..\..\..\Binaries\Release\Exe</OutputPath>
+          <OutputPath>..\..\Binaries\Release\Exe</OutputPath>
         </Options>
       </Configuration>
 
@@ -101,7 +101,34 @@
       </Files>
 
     </Project>
-   
+
+    <Project name="Examples" path=".\Source\Examples\Simple" language="C#" type="WinExe">
+
+      <Configuration name="Debug">
+        <Options>
+          <OutputPath>..\..\..\Binaries\Debug\Examples</OutputPath>
+        </Options>
+      </Configuration>
+
+      <Configuration name="Release">
+        <Options>
+          <OutputPath>..\..\..\Binaries\Release\Examples</OutputPath>
+        </Options>
+      </Configuration>
+
+      <Reference name="OpenTK"/>
+      <Reference name="System"/>
+      <Reference name="System.Drawing"/>
+      <Reference name="System.Windows.Forms"/>
+      <Reference name="System.Data"/>
+
+      <Files>
+        <Match path="." pattern="*.cs" recurse="true"/>
+      </Files>
+
+    </Project>
+    
+    <!--
     <Project name="OpenTK.Examples.OpenGL.Basic.001-Cube" path=".\Source\Examples\OpenGL\Basic\001 - Cube" language="C#" type="WinExe">
 
       <Configuration name="Debug">
@@ -128,7 +155,7 @@
 
     </Project>
 
-    <!--
+
     <Project name="OpenTK.Examples.OpenGL.Basic.DisplayLists" path=".\Source\Examples\OpenGL\Basic\DisplayLists" language="C#" type="WinExe">
 
       <Configuration name="Debug">
