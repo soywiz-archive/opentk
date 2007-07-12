@@ -315,16 +315,23 @@ namespace OpenTK.Build
                 sinfo.RedirectStandardOutput = true;
                 sinfo.UseShellExecute = false;
                 p.StartInfo = sinfo;
+                p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
                 p.Start();
-                StreamReader sr = p.StandardOutput;
-                while (!p.HasExited)
-                {
-                    Console.WriteLine(sr.ReadLine());
-                    Console.Out.Flush();
-                }
+                p.BeginOutputReadLine();
+                //StreamReader sr = p.StandardOutput;
+                //while (!p.HasExited)
+                //{
+                //    Console.WriteLine(sr.ReadLine());
+                //    Console.Out.Flush();
+                //}
 
                 p.WaitForExit();
             }
+        }
+
+        static void p_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Console.WriteLine(e.Data);
         }
     }
 }
