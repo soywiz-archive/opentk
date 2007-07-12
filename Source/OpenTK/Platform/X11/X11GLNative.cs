@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define TRACE
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using OpenTK.OpenGL;
@@ -6,19 +8,24 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Platform.X11
 {
-    sealed class X11GLNative : IGLWindow
+    sealed class X11GLNative : IGLWindow, IDisposable
     {
         private X11GLContext glContext;
 
         private IntPtr display;
-        string displayString;
         int screen;
         IntPtr rootWindow;
         IntPtr window;
 
+        #region --- Public Constructors ---
+
+        /// <summary>
+        /// Constructs a new X11GLNative window, with its associated context.
+        /// Safe defaults for visual, colormap, etc.
+        /// </summary>
         public X11GLNative()
         {
-            display = X11Api.OpenDisplay(null);             // null == default display
+            display = X11Api.OpenDisplay(null); // null == default display
             if (display == IntPtr.Zero)
             {
                 throw new Exception("Could not open connection to X");
@@ -45,30 +52,30 @@ namespace OpenTK.Platform.X11
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
 
-//#if DEBUG
-            Console.WriteLine(
-                "Requesting visual: {0} ({1}{2}{3}{4})",
+#if TRACE
+            Console.Write(
+                "Requesting visual: {0} (RGBA: {1}{2}{3}{4})... ",
                 color.ToString(),
                 color.Red,
                 color.Green,
                 color.Blue,
                 color.Alpha);
             Console.Out.Flush();
-//#endif
+#endif
             
             IntPtr low_level_glxVisualInfo =
                 Glx.ChooseVisual(display, screen, visualAttributes.ToArray());
             if (low_level_glxVisualInfo == IntPtr.Zero)
             {
-                throw new Exception("Requested visual not available");
+                throw new Exception("Requested visual not available.");
             }
             VisualInfo glxVisualInfo =
                 (VisualInfo)Marshal.PtrToStructure(low_level_glxVisualInfo, typeof(VisualInfo));
 
-//#if DEBUG
-            Console.WriteLine("GLXVisualInfo: {0}", glxVisualInfo);
+#if TRACE
+            Console.WriteLine("ok!");
             Console.Out.Flush();
-//#endif
+#endif
 
             // Create a window on this display using the visual above
             SetWindowAttributes wnd_attributes = new SetWindowAttributes();
@@ -88,6 +95,10 @@ namespace OpenTK.Platform.X11
                 CreateWindowMask.CWColormap |
                 CreateWindowMask.CWEventMask;
 
+#if TRACE
+            Console.Write("Creating window... ");
+#endif
+
             window = X11Api.CreateWindow(
                 display,
                 rootWindow,
@@ -103,11 +114,13 @@ namespace OpenTK.Platform.X11
 
             if (window == IntPtr.Zero)
             {
-                throw new Exception("Could not create window!");
+                throw new Exception("Could not create window.");
             }
 
-            Console.WriteLine("Created window! (Window ID: {0}", window);
+#if TRACE
+            Console.WriteLine("ok! (id: {0}", window);
             Console.Out.Flush();
+#endif
 
             // Set the window hints
             /*
@@ -130,6 +143,9 @@ namespace OpenTK.Platform.X11
             );
             */
 
+#if TRACE
+            Console.Write("Creating OpenGL context... ");
+#endif
             // Create the GLX context with the specified parameters
             glContext = new X11GLContext();
             glContext.handle = window;
@@ -156,24 +172,27 @@ namespace OpenTK.Platform.X11
                 // TODO: Create a specific exception!
                 throw new Exception("Could not create GLX Context");
             }
-            Console.WriteLine("Created OpenGL Context (id: {0})", glContext.x11context);
+
+#if TRACE
+            Console.WriteLine("ok! (id: {0})", glContext.x11context);
             Console.Out.Flush();
-            
+#endif            
             X11Api.Free(low_level_glxVisualInfo);
             glxVisualInfo = null;
 
-            Console.WriteLine("Freed glxVisualInfo");
-            Console.Out.Flush();
-
             X11Api.MapRaised(display, window);
-
+#if TRACE
             Console.WriteLine("Mapped window.");
             Console.Out.Flush();
-
+#endif
             glContext.MakeCurrent();
+#if TRACE
             Console.WriteLine("Made our shiny new context current! Ready to rock and roll.");
             Console.Out.Flush();
+#endif
         }
+
+        #endregion
 
         #region IGLWindow Members
 
@@ -196,10 +215,23 @@ namespace OpenTK.Platform.X11
 
         #region public bool Quit
 
+        private bool quit;
         public bool Quit
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return quit; }
+            set
+            {
+                if (value)
+                {
+                    /*Event e = new Event();
+                    X11Api.SendEvent(
+                        display,
+                        window,
+                        false,
+                        0,*/
+                    //quit = true;
+                }
+            }
         }
 
         #endregion
@@ -221,14 +253,44 @@ namespace OpenTK.Platform.X11
             }
         }
 
+        #region public IGLContext Context
+
         public IGLContext Context
         {
-            get { throw new Exception("The method or operation is not implemented."); }
+            get { return glContext; }
         }
+
+        #endregion
+
+        #region public void DoEvents()
 
         public void DoEvents()
         {
-            throw new Exception("The method or operation is not implemented.");
+            while (X11Api.Pending(display) > 0)
+            {
+                Event e;
+                X11Api.NextEvent(display, out e);
+                switch (e.type)
+                {
+                    //case EventType.DestroyNotify:
+                    //    quit = true;
+                    //    return;
+
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            glContext.Destroy();
+            X11Api.DestroyWindow(display, window);
+            X11Api.CloseDisplay(display);
         }
 
         #endregion

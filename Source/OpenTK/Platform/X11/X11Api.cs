@@ -26,45 +26,41 @@ namespace OpenTK.Platform.X11
     using Mask = System.IntPtr;
     using Atom = System.IntPtr;
     using VisualID = System.IntPtr;
-    using Time = System.IntPtr;
+    using Time = System.UInt32;
     using KeyCode = System.IntPtr;  /* In order to use IME, the Macintosh needs
                                    * to pack 3 bytes into the keyCode field in
                                    * the XEvent.  In the real X.h, a KeyCode is
                                    * defined as a short, which wouldn't be big
                                    * enough. */
+    using Display = System.IntPtr;
 
     #endregion
+
+    #region internal static class X11Api
 
     internal static class X11Api
     {
         private const string _dll_name = "libX11";
         private const string _dll_name_vid = "libXxf86vm";
 
-        #region libX11 Functions
-
-        // Window management
-        [DllImport(_dll_name, EntryPoint="XRootWindow")]
-        internal static extern Window RootWindow(IntPtr display, int screen);
-
         // Display management
         [DllImport(_dll_name, EntryPoint = "XOpenDisplay")]
         extern internal static IntPtr OpenDisplay([MarshalAs(UnmanagedType.LPTStr)] string display_name);
 
         [DllImport(_dll_name, EntryPoint = "XCloseDisplay")]
-        extern internal static void CloseDisplay(IntPtr display);
-
-
-        [DllImport(_dll_name, EntryPoint = "XResizeWindow")]
-        extern internal static int XResizeWindow(IntPtr display, Window window, int width, int height);
+        extern internal static void CloseDisplay(Display display);
 
         [DllImport(_dll_name, EntryPoint = "XCreateColormap")]
-        extern internal static IntPtr CreateColormap(IntPtr display, Window window, IntPtr visual, int alloc);
+        extern internal static IntPtr CreateColormap(Display display, Window window, IntPtr visual, int alloc);
 
-        #region XCreateWindow, XCreateSimpleWindow
+        #region Window handling
+
+        [DllImport(_dll_name, EntryPoint = "XRootWindow")]
+        internal static extern Window RootWindow(Display display, int screen);
 
         [DllImport(_dll_name, EntryPoint = "XCreateWindow")]
-        extern internal static Window CreateWindow(
-            IntPtr display,
+        internal extern static Window CreateWindow(
+            Display display,
             Window parent,
             int x, int y,
             uint width, uint height,
@@ -77,8 +73,8 @@ namespace OpenTK.Platform.X11
         );
 
         [DllImport(_dll_name, EntryPoint = "XCreateSimpleWindow")]
-        extern internal static Window CreateSimpleWindow(
-            IntPtr display,
+        internal extern static Window CreateSimpleWindow(
+            Display display,
             Window parent,
             int x, int y,
             int width, int height,
@@ -87,21 +83,25 @@ namespace OpenTK.Platform.X11
             long background
         );
 
+        [DllImport(_dll_name, EntryPoint = "XResizeWindow")]
+        internal extern static int XResizeWindow(Display display, Window window, int width, int height);
+
+        [DllImport(_dll_name, EntryPoint = "XDestroyWindow")]
+        internal extern static void DestroyWindow(Display display, Window window);
+
+        [DllImport(_dll_name, EntryPoint = "XMapWindow")]
+        extern internal static void MapWindow(Display display, Window window);
+
+        [DllImport(_dll_name, EntryPoint = "XMapRaised")]
+        extern internal static void MapRaised(Display display, Window window);
+
         #endregion
 
         [DllImport(_dll_name, EntryPoint = "XDefaultScreen")]
-        extern internal static int DefaultScreen(IntPtr display);
+        extern internal static int DefaultScreen(Display display);
 
         [DllImport(_dll_name, EntryPoint = "XDefaultVisual")]
-        extern internal static IntPtr DefaultVisual(IntPtr display, int screen_number);
-
-
-        [DllImport(_dll_name, EntryPoint = "XMapWindow")]
-        extern internal static void MapWindow(IntPtr display, Window window);
-
-        [DllImport(_dll_name, EntryPoint = "XMapRaised")]
-        extern internal static void MapRaised(IntPtr display, Window window);
-
+        extern internal static IntPtr DefaultVisual(Display display, int screen_number);
 
         #region XFree
 
@@ -116,17 +116,35 @@ namespace OpenTK.Platform.X11
 
         #region Event queue management
 
+        [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XEventsQueued")]
-        extern internal static int EventsQueued(IntPtr Display, int mode);
+        extern internal static int EventsQueued(Display display, int mode);
 
+        [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XPending")]
-        extern internal static int Pending(IntPtr Display);
+        extern internal static int Pending(Display display);
+
+        [System.Security.SuppressUnmanagedCodeSecurity]
+        [DllImport(_dll_name, EntryPoint = "XNextEvent")]
+        extern internal static void NextEvent(Display display, out Event e);
+
+        [DllImport(_dll_name, EntryPoint = "XSendEvent")]
+        extern internal static int SendEvent(
+            Display display,
+            Window window,
+            bool propagate,
+            [MarshalAs(UnmanagedType.SysInt)]
+            long event_mask,
+            ref Event event_send
+        );
 
         #endregion
 
+        #region Thing grabbin'
+
         [DllImport(_dll_name, EntryPoint = "XGrabPointer")]
         extern internal static ErrorCodes XGrabPointer(
-            IntPtr display,
+            Display display,
             IntPtr grab_window,
             bool owner_events, int event_mask,
             GrabMode pointer_mode,
@@ -137,14 +155,14 @@ namespace OpenTK.Platform.X11
         );
 
         [DllImport(_dll_name, EntryPoint = "XUngrabPointer")]
-        extern internal static ErrorCodes XUngrabPointer(IntPtr display, int time);
+        extern internal static ErrorCodes XUngrabPointer(Display display, int time);
 
         [DllImport(_dll_name, EntryPoint = "XGrabKeyboard")]
-        extern internal static ErrorCodes XGrabKeyboard(IntPtr display, IntPtr grab_window,
+        extern internal static ErrorCodes XGrabKeyboard(Display display, IntPtr grab_window,
             bool owner_events, GrabMode pointer_mode, GrabMode keyboard_mode, int time);
 
         [DllImport(_dll_name, EntryPoint = "XUngrabKeyboard")]
-        extern internal static void XUngrabKeyboard(IntPtr display, int time);
+        extern internal static void XUngrabKeyboard(Display display, int time);
 
         #endregion
 
@@ -266,7 +284,7 @@ namespace OpenTK.Platform.X11
             int type;                      /* of event */
             ulong serial;          /* # of last request processed by server */
             bool send_event;               /* true if this came from a SendEvent req */
-            IntPtr display;              /* Display the event was read from */
+            Display display;              /* Display the event was read from */
             IntPtr root;                   /* root window of event screen */
             int state;                     /* What happened */
             int kind;                      /* What happened */
@@ -288,20 +306,20 @@ namespace OpenTK.Platform.X11
 
         [DllImport(_dll_name_vid)]
         extern internal static bool XF86VidModeQueryExtension(
-            IntPtr display,
+            Display display,
             out int event_base_return,
             out int error_base_return);
         /*
         [DllImport(_dll_name_vid)]
         extern internal static bool XF86VidModeSwitchMode(
-            IntPtr display,
+            Display display,
             int screen,
             int zoom);
         */
 
         [DllImport(_dll_name_vid)]
         extern internal static bool XF86VidModeSwitchToMode(
-            IntPtr display,
+            Display display,
             int screen,
             IntPtr
             /*XF86VidModeModeInfo* */ modeline);
@@ -309,13 +327,13 @@ namespace OpenTK.Platform.X11
 
         [DllImport(_dll_name_vid)]
         extern internal static bool XF86VidModeQueryVersion(
-            IntPtr display,
+            Display display,
             out int major_version_return,
             out int minor_version_return);
 
         [DllImport(_dll_name_vid)]
         extern internal static bool XF86VidModeGetAllModeLines(
-            IntPtr display,
+            Display display,
             int screen,
             out int modecount_return,
             /*XF86VidModeModeInfo***  <-- yes, that's three *'s. */
@@ -323,7 +341,7 @@ namespace OpenTK.Platform.X11
 
         [DllImport(_dll_name_vid)]
         extern internal static bool XF86VidModeSetViewPort(
-            IntPtr display,
+            Display display,
             int screen,
             int x,
             int y);
@@ -413,6 +431,8 @@ XF86VidModeGetGammaRampSize(
 
         #endregion
     }
+
+    #endregion
 
     #region X11 Structures
 
@@ -537,6 +557,67 @@ XF86VidModeGetGammaRampSize(
 
     #endregion
 
+    #region Event structures
+
+    #region XEvent
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct Event
+    {
+        [FieldOffset(0)]internal EventType type;
+        [FieldOffset(0)]internal AnyEvent xany;
+        [FieldOffset(0)]internal KeyEvent xkey;
+        [FieldOffset(0)]
+        [MarshalAs(UnmanagedType.SysUInt, SizeConst = 24)]
+        byte[] pad;
+    }
+
+    #endregion
+
+    #region XAnyEvent
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AnyEvent
+    {
+	    internal int type;
+	    [MarshalAs(UnmanagedType.SysUInt)]
+        internal ulong serial;	/* # of last request processed by server */
+	    [MarshalAs(UnmanagedType.Bool)]
+        internal bool send_event;	/* true if this came from a SendEvent request */
+	    internal Display display;	/* Display the event was read from */
+	    internal Window window;
+    }
+
+    #endregion
+
+    #region XKeyEvent
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct KeyEvent
+    {
+	    internal int type;		/* KeyPress or KeyRelease */
+        [MarshalAs(UnmanagedType.SysUInt)]
+	    internal ulong serial;	/* # of last request processed by server */
+        [MarshalAs(UnmanagedType.Bool)]
+	    internal bool send_event;	/* true if this came from a SendEvent request */
+	    internal Display display;	/* Display the event was read from */
+	    internal Window window;		/* ``event'' window it is reported relative to */
+	    internal Window root;		/* root window that the event occurred on */
+	    internal Window subwindow;	/* child window */
+	    [MarshalAs(UnmanagedType.SysUInt)]
+        internal Time time;		    /* milliseconds */
+	    internal int x, y;		/* pointer x, y coordinates in event window */
+	    internal int x_root, y_root;	/* coordinates relative to root */
+	    internal uint state;	/* key or button mask */
+	    internal uint keycode;	/* detail */
+        [MarshalAs(UnmanagedType.Bool)]
+	    internal bool same_screen;	/* same screen flag */
+    }
+
+    #endregion
+
+    #endregion
+
     #endregion
 
     #region X11 Constants and Enums
@@ -551,6 +632,45 @@ XF86VidModeGetGammaRampSize(
         internal const int CWX = 1;
         internal const int InputOutput = 1;
         internal const int InputOnly = 2;
+    }
+
+    internal enum EventType : int
+    {
+        NoEventMask	= 0,
+        FocusOut	= 10,
+        KeymapNotify = 11,
+        Expose	= 12,
+        GraphicsExpose	= 13,
+        NoExpose	= 14,
+        VisibilityNotify	= 15,
+        CreateNotify	= 16,
+        DestroyNotify	= 17,
+        UnmapNotify	= 18,
+        MapNotify	= 19,
+        KeyPress	= 2,
+        MapRequest	= 20,
+        ReparentNotify	= 21,
+        ConfigureNotify	= 22,
+        ConfigureRequest	= 23,
+        GravityNotify	= 24,
+        ResizeRequest	= 25,
+        CirculateNotify	= 26,
+        CirculateRequest	= 27,
+        PropertyNotify	= 28,
+        SelectionClear	= 29,
+        KeyRelease	= 3,
+        SelectionRequest	= 30,
+        SelectionNotify	= 31,
+        ColormapNotify	= 32,
+        ClientMessage	= 33,
+        MappingNotify	= 34,
+        LASTEvent	= 35,
+        ButtonPress	= 4,
+        ButtonRelease	= 5,
+        MotionNotify	= 6,
+        EnterNotify	= 7,
+        LeaveNotify	= 8,
+        FocusIn = 9,
     }
 
     internal enum ErrorCodes : int

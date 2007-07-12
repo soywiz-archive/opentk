@@ -150,7 +150,7 @@ namespace OpenTK.Platform.X11
 
         public void Destroy()
         {
-            throw new NotImplementedException();
+            Glx.DestroyContext(display, x11context);
         }
 
         public void SwapBuffers()
@@ -186,7 +186,7 @@ namespace OpenTK.Platform.X11
 
         public void Dispose()
         {
-            throw new Exception("The method or operation is not implemented.");
+            this.Destroy();
         }
 
         #endregion

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OpenTK.Platform
 {
-    public interface IGLContext
+    public interface IGLContext : IDisposable
     {
         /// <summary>
         /// Swaps buffers on a context.  This presents the rendered scene to the user.
