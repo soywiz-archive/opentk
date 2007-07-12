@@ -43,7 +43,7 @@ namespace OpenTK.Platform.X11
         #region libX11 Functions
 
         // Window management
-        [DllImport(_dll_name, EntryPoint="RootWindow")]
+        [DllImport(_dll_name, EntryPoint="XRootWindow")]
         public static extern Window RootWindow(IntPtr display, int screen);
 
         // Display management
