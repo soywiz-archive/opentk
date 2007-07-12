@@ -119,7 +119,7 @@ namespace OpenTK.Platform.X11
             Console.WriteLine("GLXVisualInfo: {0}", glxVisualInfo);
             Console.Out.Flush();
 
-			if (glxVisualInfo == null)
+            if (glxVisualInfo == IntPtr.Zero)
 			{
 				throw new Exception("Requested visual is not available");
 			}

@@ -58,7 +58,7 @@ namespace OpenTK.Platform.X11
             
             IntPtr low_level_glxVisualInfo =
                 Glx.ChooseVisual(display, screen, visualAttributes.ToArray());
-            if (low_level_glxVisualInfo == null)
+            if (low_level_glxVisualInfo == IntPtr.Zero)
             {
                 throw new Exception("Requested visual not available");
             }
