@@ -21,7 +21,6 @@ namespace OpenTK.Platform.X11
             screen = X11Api.DefaultScreen(display);
             rootWindow = X11Api.RootWindow(display, screen);
             
-
             ColorDepth color = new ColorDepth(32);
             int depthBits = 16;
 
@@ -76,7 +75,7 @@ namespace OpenTK.Platform.X11
                 CreateWindowMask.CWColormap |
                 CreateWindowMask.CWEventMask;
 
-            window = X11Api.CreateWindow(
+            /*window = X11Api.CreateWindow(
                 display,
                 rootWindow,
                 0, 0,
@@ -87,6 +86,13 @@ namespace OpenTK.Platform.X11
                 glxVisualInfo.visual,
                 cw_mask,
                 windowAttributes
+            );*/
+            window = X11Api.CreateSimpleWindow(
+                display,
+                rootWindow,
+                0, 0,
+                640, 480,
+                0, 0, 0
             );
 
             // Set the window hints
