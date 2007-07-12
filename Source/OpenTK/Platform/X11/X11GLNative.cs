@@ -132,6 +132,8 @@ namespace OpenTK.Platform.X11
 
             // Create the GLX context with the specified parameters
             glContext = new X11GLContext();
+            glContext.handle = window;
+            glContext.display = display;
             glContext.x11context = Glx.CreateContext(
                 display,
                 glxVisualInfo,
@@ -166,6 +168,10 @@ namespace OpenTK.Platform.X11
             X11Api.MapRaised(display, window);
 
             Console.WriteLine("Mapped window.");
+            Console.Out.Flush();
+
+            glContext.MakeCurrent();
+            Console.WriteLine("Made our shiny new context current! Ready to rock and roll.");
             Console.Out.Flush();
         }
 
