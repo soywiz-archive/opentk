@@ -79,11 +79,11 @@ namespace OpenTK.Platform.X11
                 EventMask.ExposureMask |
                 EventMask.KeyPressMask;
 
-            CreateWindowMask cw_mask = (CreateWindowMask)0;
-                /*CreateWindowMask.CWBackPixel |
+            CreateWindowMask cw_mask =
+                CreateWindowMask.CWBackPixel |
                 CreateWindowMask.CWBorderPixel |
                 CreateWindowMask.CWColormap |
-                CreateWindowMask.CWEventMask;*/
+                CreateWindowMask.CWEventMask;
 
             window = X11Api.CreateWindow(
                 display,
