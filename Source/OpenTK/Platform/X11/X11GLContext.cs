@@ -12,7 +12,7 @@ namespace OpenTK.Platform.X11
         internal IntPtr handle;
         internal IntPtr x11context;
         internal IntPtr display;
-        internal IntPtr rootWindow;
+        internal UIntPtr rootWindow;
         internal int screenNo;
 
         private DisplayMode mode = new DisplayMode();

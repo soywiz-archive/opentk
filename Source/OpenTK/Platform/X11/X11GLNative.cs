@@ -12,16 +12,20 @@ namespace OpenTK.Platform.X11
         private IntPtr display;
         string displayString;
         int screen;
-        IntPtr rootWindow;
-        IntPtr window;
+        UIntPtr rootWindow;
+        int window;
 
         public X11GLNative()
         {
             display = X11Api.OpenDisplay(null);             // null == default display
+            if (display == IntPtr.Zero)
+            {
+                throw new Exception("Could not open connection to X");
+            }
             screen = X11Api.DefaultScreen(display);
             rootWindow = X11Api.RootWindow(display, screen);
             
-            ColorDepth color = new ColorDepth(32);
+            ColorDepth color = new ColorDepth(24);
             int depthBits = 16;
 
             // Create the Visual
@@ -40,7 +44,7 @@ namespace OpenTK.Platform.X11
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
 
-#if DEBUG
+//#if DEBUG
             Console.WriteLine(
                 "Requesting visual: {0} ({1}{2}{3}{4})",
                 color.ToString(),
@@ -49,50 +53,49 @@ namespace OpenTK.Platform.X11
                 color.Blue,
                 color.Alpha);
             Console.Out.Flush();
-#endif
+//#endif
             
             VisualInfo glxVisualInfo =
                 Glx.ChooseVisual(display, screen, visualAttributes.ToArray());
+            if (glxVisualInfo == null)
+            {
+                throw new Exception("Requested visual not available");
+            }
 
-#if DEBUG
+//#if DEBUG
             Console.WriteLine("GLXVisualInfo: {0}", glxVisualInfo);
             Console.Out.Flush();
-#endif
+//#endif
 
             // Create a window on this display using the visual above
-            SetWindowAttributes windowAttributes = new SetWindowAttributes();
-            windowAttributes.background_pixel = 0;
-            windowAttributes.border_pixel = 0;
-            windowAttributes.colormap =
-                X11Api.CreateColormap(display, window, glxVisualInfo.visual, 0/*AllocNone*/);
-            windowAttributes.event_mask =
+            SetWindowAttributes wnd_attributes = new SetWindowAttributes();
+
+            wnd_attributes.background_pixel = 0;
+            wnd_attributes.border_pixel = 0;
+            wnd_attributes.colormap =
+                X11Api.CreateColormap(display, rootWindow, glxVisualInfo.visual, 0/*AllocNone*/);
+            wnd_attributes.event_mask =
                 EventMask.StructureNotifyMask |
                 EventMask.ExposureMask |
                 EventMask.KeyPressMask;
-            X11.CreateWindowMask cw_mask =
+
+            CreateWindowMask cw_mask =
                 CreateWindowMask.CWBackPixel |
                 CreateWindowMask.CWBorderPixel |
                 CreateWindowMask.CWColormap |
                 CreateWindowMask.CWEventMask;
 
-            /*window = X11Api.CreateWindow(
+            window = X11Api.CreateWindow(
                 display,
                 rootWindow,
                 0, 0,
                 640, 480,
                 0,
-                0, // depth?
+                glxVisualInfo.depth,
                 Constants.InputOutput,
                 glxVisualInfo.visual,
                 cw_mask,
-                windowAttributes
-            );*/
-            window = X11Api.CreateSimpleWindow(
-                display,
-                rootWindow,
-                0, 0,
-                640, 480,
-                0, 0, 0
+                wnd_attributes
             );
 
             // Set the window hints
@@ -132,13 +135,13 @@ namespace OpenTK.Platform.X11
                 false,
                 true
             );
-            */
+            
 
             // Create the GLX context with the specified parameters
             glContext = new X11GLContext();
             glContext.x11context = Glx.CreateContext(
                 display,
-                glxVisualInfo.visual,
+                glxVisualInfo,
                 IntPtr.Zero,
                 true
             );
@@ -147,7 +150,7 @@ namespace OpenTK.Platform.X11
                 // If we couldn't get a context, retry with indirect rendering.
                 glContext.x11context = Glx.CreateContext(
                     display,
-                    glxVisualInfo.visual,
+                    glxVisualInfo,
                     IntPtr.Zero,
                     false
                 );
@@ -158,8 +161,9 @@ namespace OpenTK.Platform.X11
                 // TODO: Create a specific exception!
                 throw new Exception("Could not create GLX Context");
             }
-
+            
             X11Api.Free(glxVisualInfo);
+            */
         }
 
         #region IGLWindow Members

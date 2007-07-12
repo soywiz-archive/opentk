@@ -267,12 +267,22 @@ namespace OpenTK.OpenGL
         #region GLX functions
 
         [DllImport(_dll_name, EntryPoint = "glXCreateContext")]
-        public static extern IntPtr CreateContext(IntPtr dpy, IntPtr vis, IntPtr shareList, bool direct);
-        
-        [DllImport(_dll_name, EntryPoint = "glXCreateContext")]
-        public static extern IntPtr CreateContext(IntPtr dpy, VisualInfo vis, IntPtr shareList, bool direct);
-        //public static extern IntPtr CreateContext(IntPtr gc_id, Int32 screen, Int32 visual, IntPtr share_list);
+        internal static extern IntPtr CreateContext(IntPtr dpy, IntPtr vis, IntPtr shareList, bool direct);
 
+        internal static IntPtr CreateContext(IntPtr dpy, VisualInfo vis, IntPtr shareList, bool direct)
+        {
+            GCHandle h0 = GCHandle.Alloc(vis, GCHandleType.Pinned);
+
+            try
+            {
+                return CreateContext(dpy, h0.AddrOfPinnedObject(), shareList, direct);
+            }
+            finally
+            {
+                h0.Free();
+            }
+        }
+        
         [DllImport(_dll_name, EntryPoint = "glXDestroyContext")]
         public static extern void DestroyContext(IntPtr dpy, IntPtr context);
 
@@ -286,19 +296,19 @@ namespace OpenTK.OpenGL
         public static extern IntPtr GetProcAddress([MarshalAs(UnmanagedType.LPTStr)] string procName);
 
         [DllImport(_dll_name, EntryPoint = "glXChooseVisual")]
-        extern public static IntPtr ChooseVisual_(IntPtr dpy, int screen, IntPtr attriblist);
+        internal extern static IntPtr ChooseVisual(IntPtr dpy, int screen, IntPtr attriblist);
 
         #endregion
 
         #region Wrappers
 
-        public static VisualInfo ChooseVisual(IntPtr dpy, int screen, int[] attriblist)
+        internal static VisualInfo ChooseVisual(IntPtr dpy, int screen, int[] attriblist)
         {
             GCHandle h0 = GCHandle.Alloc(attriblist, GCHandleType.Pinned);
 
             try
             {
-                IntPtr ret = ChooseVisual_(dpy, screen, h0.AddrOfPinnedObject());
+                IntPtr ret = ChooseVisual(dpy, screen, h0.AddrOfPinnedObject());
                 return (VisualInfo)Marshal.PtrToStructure(ret, typeof(VisualInfo));
             }
             finally

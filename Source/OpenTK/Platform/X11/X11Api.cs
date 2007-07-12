@@ -15,19 +15,19 @@ namespace OpenTK.Platform.X11
     #region Types
 
     // using XID = System.Int32;
-    using Window = System.IntPtr;
-    using Drawable = System.IntPtr;
-    using Font = System.IntPtr;
-    using Pixmap = System.IntPtr;
-    using Cursor = System.IntPtr;
-    using Colormap = System.IntPtr;
-    using GContext = System.IntPtr;
-    using KeySym = System.IntPtr;
-    using Mask = System.IntPtr;
-    using Atom = System.IntPtr;
-    using VisualID = System.IntPtr;
-    using Time = System.IntPtr;
-    using KeyCode = System.IntPtr;  /* In order to use IME, the Macintosh needs
+    using Window = System.UIntPtr;
+    using Drawable = System.UIntPtr;
+    using Font = System.UIntPtr;
+    using Pixmap = System.UIntPtr;
+    using Cursor = System.UIntPtr;
+    using Colormap = System.UIntPtr;
+    using GContext = System.UIntPtr;
+    using KeySym = System.UIntPtr;
+    using Mask = System.UIntPtr;
+    using Atom = System.UIntPtr;
+    using VisualID = System.UIntPtr;
+    using Time = System.UIntPtr;
+    using KeyCode = System.UIntPtr;  /* In order to use IME, the Macintosh needs
                                    * to pack 3 bytes into the keyCode field in
                                    * the XEvent.  In the real X.h, a KeyCode is
                                    * defined as a short, which wouldn't be big
@@ -54,11 +54,11 @@ namespace OpenTK.Platform.X11
         extern public static void CloseDisplay(IntPtr display);
 
 
-        [DllImport(_dll_name, EntryPoint = "XCreateColormap")]
-        extern public static int XResizeWindow(IntPtr display, IntPtr window, int width, int height);
+        [DllImport(_dll_name, EntryPoint = "XResizeWindow")]
+        extern internal static int XResizeWindow(IntPtr display, Window window, int width, int height);
 
         [DllImport(_dll_name, EntryPoint = "XCreateColormap")]
-        extern public static IntPtr CreateColormap(IntPtr display, IntPtr window, IntPtr visual, int alloc);
+        extern internal static IntPtr CreateColormap(IntPtr display, Window window, IntPtr visual, int alloc);
 
         #region XCreateWindow, XCreateSimpleWindow
 
@@ -67,10 +67,10 @@ namespace OpenTK.Platform.X11
             IntPtr display,
             Window parent,
             int x, int y,
-            int width, int height,
-            int border_width,
+            uint width, uint height,
+            uint border_width,
             int depth,
-            int @class,
+            uint @class,
             IntPtr visual,
             CreateWindowMask valuemask,
             SetWindowAttributes attributes
@@ -84,7 +84,7 @@ namespace OpenTK.Platform.X11
             int width, int height,
             int border_width,
             long border,
-            long  background
+            long background
         );
 
         #endregion
@@ -445,10 +445,10 @@ XF86VidModeGetGammaRampSize(
 
     #endregion
 
-    #region public struct SetWindowAttributes
+    #region public class SetWindowAttributes
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct SetWindowAttributes
+    public class SetWindowAttributes
     {
         /// <summary>
         /// background, None, or ParentRelative
@@ -553,7 +553,7 @@ XF86VidModeGetGammaRampSize(
         public const int QueuedAfterFlush = 2;
 
         public const int CopyFromParent	= 0;
-        public const int CWX = (1<<0);
+        public const int CWX = 1;
         public const int InputOutput = 1;
         public const int InputOnly = 2;
     }
@@ -587,53 +587,53 @@ XF86VidModeGetGammaRampSize(
     }
 
     [Flags]
-    public enum EventMask : long
+    public enum EventMask : ulong
     {
         NoEventMask	= 0,
-        KeyPressMask	= (1<<0),
-        KeyReeaseMask	= (1<<1),
-        Button3MotionMask	= (1<<10),
-        Button4MotionMask	= (1<<11),
-        Button5MotionMask	= (1<<12),
-        ButtonMotionMask	= (1<<13),
-        KeymapStateMask	= (1<<14),
-        ExposureMask	= (1<<15),
-        VisibiityChangeMask	= (1<<16),
-        StructureNotifyMask	= (1<<17),
-        ResizeRedirectMask	= (1<<18),
-        SubstructureNotifyMask	= (1<<19),
-        ButtonPressMask	= (1<<2),
-        SubstructureRedirectMask	= (1<<20),
-        FocusChangeMask	= (1<<21),
-        PropertyChangeMask	= (1<<22),
-        CoormapChangeMask	= (1<<23),
-        ButtonReeaseMask	= (1<<3),
-        EnterWindowMask	= (1<<4),
-        eaveWindowMask	= (1<<5),
-        PointerMotionMask	= (1<<6),
-        PointerMotionHintMask	= (1<<7),
-        Button1MotionMask	= (1<<8),
-        Button2MotionMask	= (1<<9),
+        KeyPressMask	= (1L<<0),
+        KeyReeaseMask	= (1L<<1),
+        Button3MotionMask	= (1L<<10),
+        Button4MotionMask	= (1L<<11),
+        Button5MotionMask	= (1L<<12),
+        ButtonMotionMask	= (1L<<13),
+        KeymapStateMask	= (1L<<14),
+        ExposureMask	= (1L<<15),
+        VisibiityChangeMask	= (1L<<16),
+        StructureNotifyMask	= (1L<<17),
+        ResizeRedirectMask	= (1L<<18),
+        SubstructureNotifyMask	= (1L<<19),
+        ButtonPressMask	= (1L<<2),
+        SubstructureRedirectMask	= (1L<<20),
+        FocusChangeMask	= (1L<<21),
+        PropertyChangeMask	= (1L<<22),
+        CoormapChangeMask	= (1L<<23),
+        ButtonReeaseMask	= (1L<<3),
+        EnterWindowMask	= (1L<<4),
+        eaveWindowMask	= (1L<<5),
+        PointerMotionMask	= (1L<<6),
+        PointerMotionHintMask	= (1L<<7),
+        Button1MotionMask	= (1L<<8),
+        Button2MotionMask	= (1L<<9),
     }
 
     [Flags]
-    public enum CreateWindowMask : long
+    public enum CreateWindowMask : ulong
     {
-        CWBackPixmap	= (1<<0),
-        CWBackPixel     = (1<<1),
-        CWSaveUnder	    = (1<<10),
-        CWEventMask	    = (1<<11),
-        CWDontPropagate	= (1<<12),
-        CWColormap  	= (1<<13),
-        CWCursor	    = (1<<14),
-        CWBorderPixmap	= (1<<2),
-        CWBorderPixel	= (1<<3),
-        CWBitGravity	= (1<<4),
-        CWWinGravity	= (1<<5),
-        CWBackingStore	= (1<<6),
-        CWBackingPlanes	= (1<<7),
-        CWBackingPixel 	= (1<<8),
-        CWOverrideRedirect	= (1<<9),
+        CWBackPixmap	= (1L<<0),
+        CWBackPixel     = (1L<<1),
+        CWSaveUnder	    = (1L<<10),
+        CWEventMask	    = (1L<<11),
+        CWDontPropagate	= (1L<<12),
+        CWColormap  	= (1L<<13),
+        CWCursor	    = (1L<<14),
+        CWBorderPixmap	= (1L<<2),
+        CWBorderPixel	= (1L<<3),
+        CWBitGravity	= (1L<<4),
+        CWWinGravity	= (1L<<5),
+        CWBackingStore	= (1L<<6),
+        CWBackingPlanes	= (1L<<7),
+        CWBackingPixel 	= (1L<<8),
+        CWOverrideRedirect	= (1L<<9),
 
         /*
         CWY	= (1<<1),
