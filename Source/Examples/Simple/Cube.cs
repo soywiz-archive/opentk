@@ -1,4 +1,10 @@
-﻿using System;
+﻿#region --- License ---
+/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 

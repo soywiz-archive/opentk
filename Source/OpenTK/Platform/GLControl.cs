@@ -1,4 +1,11 @@
-﻿#region --- Using Directives ---
+﻿#region --- License ---
+/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
+
+#region --- Using Directives ---
 
 using System;
 using System.Collections.Generic;

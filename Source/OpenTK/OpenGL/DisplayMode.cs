@@ -1,8 +1,9 @@
 ﻿#region --- License ---
-/* This source file is released under the MIT license. See License.txt for more information.
- * Coded by Stephen Apostolopoulos.
+/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+ * See license.txt for license info
  */
 #endregion
+
 
 using System;
 using System.Drawing;

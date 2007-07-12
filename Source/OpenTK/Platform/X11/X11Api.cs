@@ -1,4 +1,4 @@
-﻿#region License
+﻿#region --- License ---
 /* Copyright (c) 2006, 2007 Stephen Apostolopoulos
  * Contributions from Erik Ylvisaker
  * See license.txt for license info

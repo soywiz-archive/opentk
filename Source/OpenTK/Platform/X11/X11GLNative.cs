@@ -1,5 +1,11 @@
 ﻿#define TRACE
 
+#region --- License ---
+/* Copyright (c) 2007 Stephen Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
 using System;
 using System.Collections.Generic;
 using System.Text;
