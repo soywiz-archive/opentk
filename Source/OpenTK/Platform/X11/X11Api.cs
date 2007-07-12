@@ -95,6 +95,14 @@ namespace OpenTK.Platform.X11
         [DllImport(_dll_name, EntryPoint = "XDefaultVisual")]
         extern public static IntPtr DefaultVisual(IntPtr display, int screen_number);
 
+
+        [DllImport(_dll_name, EntryPoint = "XMapWindow")]
+        extern public static void XMapWindow(IntPtr display, IntPtr window);
+
+        [DllImport(_dll_name, EntryPoint = "XMapRaised")]
+        extern public static void XMapRaised(IntPtr display, IntPtr window);
+
+
         #region XFree
 
         [DllImport(_dll_name, EntryPoint = "XFree")]
@@ -147,14 +155,6 @@ namespace OpenTK.Platform.X11
 
         [DllImport(_dll_name, EntryPoint = "XUngrabKeyboard")]
         extern public static void XUngrabKeyboard(IntPtr display, int time);
-
-        [DllImport(_dll_name, EntryPoint = "XMapWindow")]
-        extern public static void XMapWindow(IntPtr display, IntPtr window);
-
-        [DllImport(_dll_name, EntryPoint = "XMapRaised")]
-        extern public static void XMapRaised(IntPtr display, IntPtr window);
-
-
 
         #endregion
 
