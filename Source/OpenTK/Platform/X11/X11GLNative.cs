@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using OpenTK.OpenGL;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Platform.X11
 {
@@ -55,12 +56,14 @@ namespace OpenTK.Platform.X11
             Console.Out.Flush();
 //#endif
             
-            VisualInfo glxVisualInfo =
+            IntPtr low_level_glxVisualInfo =
                 Glx.ChooseVisual(display, screen, visualAttributes.ToArray());
-            if (glxVisualInfo == null)
+            if (low_level_glxVisualInfo == null)
             {
                 throw new Exception("Requested visual not available");
             }
+            VisualInfo glxVisualInfo =
+                (VisualInfo)Marshal.PtrToStructure(low_level_glxVisualInfo, typeof(VisualInfo));
 
 //#if DEBUG
             Console.WriteLine("GLXVisualInfo: {0}", glxVisualInfo);
@@ -154,7 +157,8 @@ namespace OpenTK.Platform.X11
             Console.WriteLine("Created OpenGL Context (id: {0})", glContext.x11context);
             Console.Out.Flush();
             
-            X11Api.Free(glxVisualInfo);
+            X11Api.Free(low_level_glxVisualInfo);
+            glxVisualInfo = null;
 
             Console.WriteLine("Freed glxVisualInfo");
             Console.Out.Flush();

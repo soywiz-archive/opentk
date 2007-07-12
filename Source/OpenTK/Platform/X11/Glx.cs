@@ -295,27 +295,26 @@ namespace OpenTK.OpenGL
         [DllImport(_dll_name, EntryPoint = "glXGetProcAddress")]
         public static extern IntPtr GetProcAddress([MarshalAs(UnmanagedType.LPTStr)] string procName);
 
+        #region glXChooseVisual
+
         [DllImport(_dll_name, EntryPoint = "glXChooseVisual")]
         internal extern static IntPtr ChooseVisual(IntPtr dpy, int screen, IntPtr attriblist);
 
-        #endregion
-
-        #region Wrappers
-
-        internal static VisualInfo ChooseVisual(IntPtr dpy, int screen, int[] attriblist)
+        internal static IntPtr ChooseVisual(IntPtr dpy, int screen, int[] attriblist)
         {
             GCHandle h0 = GCHandle.Alloc(attriblist, GCHandleType.Pinned);
 
             try
             {
-                IntPtr ret = ChooseVisual(dpy, screen, h0.AddrOfPinnedObject());
-                return (VisualInfo)Marshal.PtrToStructure(ret, typeof(VisualInfo));
+                return ChooseVisual(dpy, screen, h0.AddrOfPinnedObject());
             }
             finally
             {
                 h0.Free();
             }
         }
+
+        #endregion
 
         #endregion
     }

@@ -8,7 +8,7 @@ namespace OpenTK.Platform.X11
 {
     class X11GLContext : IGLContext
     {
-        private VisualInfo glxVisualInfo;
+        private IntPtr glxVisualInfo;
         internal IntPtr handle;
         internal IntPtr x11context;
         internal IntPtr display;
@@ -124,11 +124,10 @@ namespace OpenTK.Platform.X11
 				throw new Exception("Requested visual is not available");
 			}
 
-            //X11Api.VisualInfo xVisualInfo = (X11Api.VisualInfo)
-            //    Marshal.PtrToStructure(glxVisualInfo, typeof(X11Api.VisualInfo));
+            VisualInfo xVisualInfo = 
+                (VisualInfo)Marshal.PtrToStructure(glxVisualInfo, typeof(VisualInfo));
 
-            //visual = xVisualInfo.visual;
-            colormap = X11Api.CreateColormap(display, rootWindow, glxVisualInfo.visual, 0/*AllocNone*/);
+            colormap = X11Api.CreateColormap(display, rootWindow, xVisualInfo.visual, 0/*AllocNone*/);
 
             Console.WriteLine("colormap: {0}", colormap);
             Console.Out.Flush();

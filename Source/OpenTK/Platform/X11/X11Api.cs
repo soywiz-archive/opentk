@@ -105,22 +105,12 @@ namespace OpenTK.Platform.X11
 
         #region XFree
 
+        /// <summary>
+        /// Frees the memory used by an X structure. Only use on unmanaged structures!
+        /// </summary>
+        /// <param name="data">A pointer to the structure that will be freed.</param>
         [DllImport(_dll_name, EntryPoint = "XFree")]
         extern internal static void Free(IntPtr data);
-
-        internal static void Free<T>(T data)
-        {
-            GCHandle h0 = GCHandle.Alloc(data, GCHandleType.Pinned);
-
-            try
-            {
-                Free(data);
-            }
-            finally
-            {
-                h0.Free();
-            }
-        }
 
         #endregion
 
