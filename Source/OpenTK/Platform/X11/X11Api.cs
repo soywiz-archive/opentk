@@ -1,5 +1,5 @@
 ﻿#region License
-/* Copyright (c) 2006 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
  * Contributions from Erik Ylvisaker
  * See license.txt for license info
  */
@@ -568,8 +568,12 @@ XF86VidModeGetGammaRampSize(
         [FieldOffset(0)]internal AnyEvent xany;
         [FieldOffset(0)]internal KeyEvent xkey;
         [FieldOffset(0)]
-        [MarshalAs(UnmanagedType.SysUInt, SizeConst = 24)]
-        byte[] pad;
+        [MarshalAs(UnmanagedType.SysInt)]
+        int
+            pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
+            pad7 , pad8 , pad9 , pad10, pad11, pad12,
+            pad13, pad14, pad15, pad16, pad17, pad18,
+            pad19, pad20, pad21, pad22, pad23, pad24;
     }
 
     #endregion
