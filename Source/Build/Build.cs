@@ -42,6 +42,13 @@ namespace OpenTK.Build
         static BuildMode mode = BuildMode.Default;
         static BuildTarget target = BuildTarget.Default;
 
+        static void PrintUsage()
+        {
+            Console.WriteLine("Usage: Build.exe BuildMode BuildTarget");
+            Console.WriteLine("\tBuildMode: debug/release");
+            Console.WriteLine("\tBuildTarget: mono/net/monodev/sharpdev/vs2005 or clean/distclean/svnclean");
+        }
+
         static void Main(string[] args)
         {
             RootPath = Directory.GetCurrentDirectory();
@@ -58,9 +65,7 @@ namespace OpenTK.Build
 
             if (args.Length == 0)
             {
-                Console.WriteLine("Usage: OpenTK.Build.exe BuildMode BuildTarget");
-                Console.WriteLine("\tBuildMode: debug/release");
-                Console.WriteLine("\tBuildTarget: mono/net/monodev/sharpdev/vs2005 or clean/distclean/svnclean");
+                PrintUsage();
             }
             else
             {
@@ -118,7 +123,8 @@ namespace OpenTK.Build
 
                         default:
                             Console.WriteLine("Unknown command: {0}", s);
-                            break;
+                            PrintUsage();
+                            return;
                     }
                 }
 
@@ -184,8 +190,9 @@ namespace OpenTK.Build
                         break;
 
                     default:
-                        Console.WriteLine("Unknown target.");
-                        break;
+                        Console.WriteLine("Unknown target: {0}", target);
+                        PrintUsage();
+                        return;
                 }
 
                 //Console.WriteLine("Press any key to continue...");
@@ -289,25 +296,35 @@ namespace OpenTK.Build
         
         static void ExecuteProcess(string path, string args)
         {
-            Process p = new Process();
-            if (Environment.OSVersion.Platform == PlatformID.Unix && !path.ToLower().Contains("nant"))
+            using (Process p = new Process())
             {
-                p.StartInfo.FileName = "mono";
-                p.StartInfo.Arguments = path + " " + args;
-            }
-            else
-            {
-                p.StartInfo.FileName = path;
-                p.StartInfo.Arguments = args;
-            }
+                ProcessStartInfo sinfo = new ProcessStartInfo();
+                if (Environment.OSVersion.Platform == PlatformID.Unix && !path.ToLower().Contains("nant"))
+                {
+                    sinfo.FileName = "mono";
+                    sinfo.Arguments = path + " " + args;
+                }
+                else
+                {
+                    sinfo.FileName = path;
+                    sinfo.Arguments = args;
+                }
 
-            p.StartInfo.WorkingDirectory = RootPath;
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.UseShellExecute = false;
-            p.Start();
-            Console.Write(p.StandardOutput.ReadToEnd());
-            p.WaitForExit();
+                sinfo.WorkingDirectory = RootPath;
+                sinfo.CreateNoWindow = true;
+                sinfo.RedirectStandardOutput = true;
+                sinfo.UseShellExecute = false;
+                p.StartInfo = sinfo;
+                p.Start();
+                StreamReader sr = p.StandardOutput;
+                while (!p.HasExited)
+                {
+                    Console.WriteLine(sr.ReadLine());
+                    Console.Out.Flush();
+                }
+
+                p.WaitForExit();
+            }
         }
     }
 }
