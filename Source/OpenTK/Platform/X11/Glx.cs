@@ -268,7 +268,9 @@ namespace OpenTK.OpenGL
 
         [DllImport(_dll_name, EntryPoint = "glXCreateContext")]
         public static extern IntPtr CreateContext(IntPtr dpy, IntPtr vis, IntPtr shareList, bool direct);
-        //public static extern IntPtr CreateContext(IntPtr dpy, Api.VisualInfo vis, IntPtr shareList, bool direct);
+        
+        [DllImport(_dll_name, EntryPoint = "glXCreateContext")]
+        public static extern IntPtr CreateContext(IntPtr dpy, VisualInfo vis, IntPtr shareList, bool direct);
         //public static extern IntPtr CreateContext(IntPtr gc_id, Int32 screen, Int32 visual, IntPtr share_list);
 
         [DllImport(_dll_name, EntryPoint = "glXDestroyContext")]
@@ -290,13 +292,14 @@ namespace OpenTK.OpenGL
 
         #region Wrappers
 
-        public static IntPtr ChooseVisual(IntPtr dpy, int screen, int[] attriblist)
+        public static VisualInfo ChooseVisual(IntPtr dpy, int screen, int[] attriblist)
         {
             GCHandle h0 = GCHandle.Alloc(attriblist, GCHandleType.Pinned);
 
             try
             {
-                return ChooseVisual_(dpy, screen, h0.AddrOfPinnedObject());
+                IntPtr ret = ChooseVisual_(dpy, screen, h0.AddrOfPinnedObject());
+                return (VisualInfo)Marshal.PtrToStructure(ret, typeof(VisualInfo));
             }
             finally
             {

@@ -8,22 +8,28 @@ namespace OpenTK.Platform.X11
 {
     class X11GLContext : IGLContext
     {
-        private IntPtr glxVisualInfo;
-        private IntPtr handle;
-        private IntPtr x11context;
-        private IntPtr display;
-        private IntPtr rootWindow;
-        private int screenNo;
+        private VisualInfo glxVisualInfo;
+        internal IntPtr handle;
+        internal IntPtr x11context;
+        internal IntPtr display;
+        internal IntPtr rootWindow;
+        internal int screenNo;
 
-        private IntPtr desktopResolution = IntPtr.Zero;
+        private DisplayMode mode = new DisplayMode();
 
-        private int depthBits;
-        private int stencilBits;
+        //private IntPtr desktopResolution = IntPtr.Zero;
+
+        //private int depthBits;
+        //private int stencilBits;
 
         // These have to be used by the X11GLControl.
         internal IntPtr visual, colormap;
 
         #region --- Public Constructor ---
+
+        public X11GLContext()
+        {
+        }
 
         public X11GLContext(
             IntPtr handle,
@@ -81,8 +87,8 @@ namespace OpenTK.Platform.X11
             this.display = display;
             this.rootWindow = rootWindow;
             this.screenNo = screenNo;
-            this.depthBits = depthBits;
-            this.stencilBits = stencilBits;
+            //this.depthBits = depthBits;
+            //this.stencilBits = stencilBits;
     
             List<int> attributes = new List<int>();
 			attributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
@@ -112,16 +118,16 @@ namespace OpenTK.Platform.X11
             Console.WriteLine("GLXVisualInfo: {0}", glxVisualInfo);
             Console.Out.Flush();
 
-			if (glxVisualInfo == IntPtr.Zero)
+			if (glxVisualInfo == null)
 			{
 				throw new Exception("Requested visual is not available");
 			}
 
-            X11Api.VisualInfo xVisualInfo = (X11Api.VisualInfo)
-                Marshal.PtrToStructure(glxVisualInfo, typeof(X11Api.VisualInfo));
+            //X11Api.VisualInfo xVisualInfo = (X11Api.VisualInfo)
+            //    Marshal.PtrToStructure(glxVisualInfo, typeof(X11Api.VisualInfo));
 
-            visual = xVisualInfo.visual;
-            colormap = X11Api.CreateColormap(display, rootWindow, visual, 0/*AllocNone*/);
+            //visual = xVisualInfo.visual;
+            colormap = X11Api.CreateColormap(display, rootWindow, glxVisualInfo.visual, 0/*AllocNone*/);
 
             Console.WriteLine("colormap: {0}", colormap);
             Console.Out.Flush();

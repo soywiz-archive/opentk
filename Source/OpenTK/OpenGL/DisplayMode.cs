@@ -50,17 +50,25 @@ namespace OpenTK.OpenGL
         }
 
         /// <summary>
+        /// Constructs a new DisplayMode. All fields are initiliazed to 0.
+        /// </summary>
+        public DisplayMode()
+            : this(0, 0, 0, 0, 0, 0, 0)
+        {
+        }
+
+        /// <summary>
         /// Creates a DisplayMode.
         /// </summary>
         /// <param name="width">The Width of the DisplayMode in pixels.</param>
         /// <param name="height">The Height of the DisplayMode in pixels.</param>
         public DisplayMode(int width, int height)
-            :this(width, height, 0, 0, 0, 0, 0)
+            : this(width, height, 0, 0, 0, 0, 0)
         {
         }
 
         public DisplayMode(int width, int height, int bpp, int frequency)
-            :this(width, height, 0, 0, 0, 0, frequency)
+            : this(width, height, 0, 0, 0, 0, frequency)
         {
             color = new ColorDepth(bpp);
         }

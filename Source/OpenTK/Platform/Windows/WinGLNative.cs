@@ -24,7 +24,7 @@ namespace OpenTK.Platform.Windows
     }
     */
 
-    class WinGLNative : NativeWindow, IGLWindow, IDisposable
+    sealed class WinGLNative : NativeWindow, IGLWindow, IDisposable
     {
         WinGLContext glContext;
 
