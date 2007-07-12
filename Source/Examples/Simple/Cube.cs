@@ -78,6 +78,16 @@ namespace Examples
         float angle = 0.0f;
         protected void Render()
         {
+            window.Context.MakeCurrent();
+
+            GL.Viewport(0, 0, 640, 480);
+
+            double ratio = 640 / (double)480;
+
+            GL.MatrixMode(Enums.MatrixMode.PROJECTION);
+            GL.LoadIdentity();
+            Glu.Perspective(45.0, ratio, 1.0, 64.0);
+
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
