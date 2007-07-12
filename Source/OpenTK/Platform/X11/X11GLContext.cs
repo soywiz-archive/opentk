@@ -12,7 +12,7 @@ namespace OpenTK.Platform.X11
         internal IntPtr handle;
         internal IntPtr x11context;
         internal IntPtr display;
-        internal UIntPtr rootWindow;
+        internal IntPtr rootWindow;
         internal int screenNo;
 
         private DisplayMode mode = new DisplayMode();
@@ -24,7 +24,7 @@ namespace OpenTK.Platform.X11
 
         // These have to be used by the X11GLControl.
         internal IntPtr visual;
-        internal UIntPtr colormap;
+        internal IntPtr colormap;
 
         #region --- Public Constructor ---
 
@@ -35,7 +35,7 @@ namespace OpenTK.Platform.X11
         public X11GLContext(
             IntPtr handle,
             IntPtr display,
-            UIntPtr rootWindow,
+            IntPtr rootWindow,
             int screenNo,
             IntPtr handleToTopLevelControl,
             OpenTK.OpenGL.ColorDepth color,
@@ -72,7 +72,7 @@ namespace OpenTK.Platform.X11
         protected void Setup(
             IntPtr handle,
             IntPtr display,
-            UIntPtr rootWindow,
+            IntPtr rootWindow,
             int screenNo,
             IntPtr handleToTopLevelControl,
             OpenTK.OpenGL.ColorDepth color,

@@ -15,19 +15,19 @@ namespace OpenTK.Platform.X11
     #region Types
 
     // using XID = System.Int32;
-    using Window = System.UIntPtr;
-    using Drawable = System.UIntPtr;
-    using Font = System.UIntPtr;
-    using Pixmap = System.UIntPtr;
-    using Cursor = System.UIntPtr;
-    using Colormap = System.UIntPtr;
-    using GContext = System.UIntPtr;
-    using KeySym = System.UIntPtr;
-    using Mask = System.UIntPtr;
-    using Atom = System.UIntPtr;
-    using VisualID = System.UIntPtr;
-    using Time = System.UIntPtr;
-    using KeyCode = System.UIntPtr;  /* In order to use IME, the Macintosh needs
+    using Window = System.IntPtr;
+    using Drawable = System.IntPtr;
+    using Font = System.IntPtr;
+    using Pixmap = System.IntPtr;
+    using Cursor = System.IntPtr;
+    using Colormap = System.IntPtr;
+    using GContext = System.IntPtr;
+    using KeySym = System.IntPtr;
+    using Mask = System.IntPtr;
+    using Atom = System.IntPtr;
+    using VisualID = System.IntPtr;
+    using Time = System.IntPtr;
+    using KeyCode = System.IntPtr;  /* In order to use IME, the Macintosh needs
                                    * to pack 3 bytes into the keyCode field in
                                    * the XEvent.  In the real X.h, a KeyCode is
                                    * defined as a short, which wouldn't be big
@@ -58,7 +58,7 @@ namespace OpenTK.Platform.X11
         extern internal static int XResizeWindow(IntPtr display, Window window, int width, int height);
 
         [DllImport(_dll_name, EntryPoint = "XCreateColormap")]
-        extern internal static UIntPtr CreateColormap(IntPtr display, Window window, IntPtr visual, int alloc);
+        extern internal static IntPtr CreateColormap(IntPtr display, Window window, IntPtr visual, int alloc);
 
         #region XCreateWindow, XCreateSimpleWindow
 
@@ -97,10 +97,10 @@ namespace OpenTK.Platform.X11
 
 
         [DllImport(_dll_name, EntryPoint = "XMapWindow")]
-        extern internal static void XMapWindow(IntPtr display, IntPtr window);
+        extern internal static void MapWindow(IntPtr display, Window window);
 
         [DllImport(_dll_name, EntryPoint = "XMapRaised")]
-        extern internal static void XMapRaised(IntPtr display, IntPtr window);
+        extern internal static void MapRaised(IntPtr display, Window window);
 
 
         #region XFree

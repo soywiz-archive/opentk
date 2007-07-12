@@ -12,8 +12,8 @@ namespace OpenTK.Platform.X11
         private IntPtr display;
         string displayString;
         int screen;
-        UIntPtr rootWindow;
-        UIntPtr window;
+        IntPtr rootWindow;
+        IntPtr window;
 
         public X11GLNative()
         {
@@ -98,6 +98,11 @@ namespace OpenTK.Platform.X11
                 wnd_attributes
             );
 
+            if (window == IntPtr.Zero)
+            {
+                throw new Exception("Could not create window!");
+            }
+
             // Set the window hints
             /*
             SizeHints hints = new SizeHints();
@@ -118,24 +123,6 @@ namespace OpenTK.Platform.X11
                 hints
             );
             */
-
-            // Create the OpenGL Context
-            /*
-            glContext = new X11GLContext(
-                IntPtr.Zero,
-                display,
-                rootWindow,
-                screen,
-                IntPtr.Zero,
-                new OpenTK.OpenGL.ColorDepth(32),
-                new OpenTK.OpenGL.ColorDepth(0),
-                16,
-                0,
-                0,
-                false,
-                true
-            );
-            
 
             // Create the GLX context with the specified parameters
             glContext = new X11GLContext();
@@ -163,7 +150,8 @@ namespace OpenTK.Platform.X11
             }
             
             X11Api.Free(glxVisualInfo);
-            */
+
+            X11Api.MapRaised(display, window);
         }
 
         #region IGLWindow Members
