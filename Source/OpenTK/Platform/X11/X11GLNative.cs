@@ -103,6 +103,9 @@ namespace OpenTK.Platform.X11
                 throw new Exception("Could not create window!");
             }
 
+            Console.WriteLine("Created window! (Window ID: {0}", window);
+            Console.Out.Flush();
+
             // Set the window hints
             /*
             SizeHints hints = new SizeHints();
@@ -148,10 +151,18 @@ namespace OpenTK.Platform.X11
                 // TODO: Create a specific exception!
                 throw new Exception("Could not create GLX Context");
             }
+            Console.WriteLine("Created OpenGL Context (id: {0})", glContext.x11context);
+            Console.Out.Flush();
             
             X11Api.Free(glxVisualInfo);
 
+            Console.WriteLine("Freed glxVisualInfo");
+            Console.Out.Flush();
+
             X11Api.MapRaised(display, window);
+
+            Console.WriteLine("Mapped window.");
+            Console.Out.Flush();
         }
 
         #region IGLWindow Members
