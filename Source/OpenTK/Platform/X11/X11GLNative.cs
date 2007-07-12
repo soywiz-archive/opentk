@@ -273,7 +273,7 @@ namespace OpenTK.Platform.X11
         private Event e;
         public void DoEvents()
         {
-            while (X11Api.Pending(display) > 0)
+            //while (X11Api.Pending(display) > 0)
             {
                 //X11Api.NextEvent(display, out e);
                 //switch (e.type)
