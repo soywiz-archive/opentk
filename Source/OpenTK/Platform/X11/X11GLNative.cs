@@ -270,19 +270,18 @@ namespace OpenTK.Platform.X11
 
         #region public void DoEvents()
 
+        private Event e;
         public void DoEvents()
         {
             while (X11Api.Pending(display) > 0)
             {
-                Event e;
-                X11Api.NextEvent(display, out e);
-                switch (e.type)
-                {
+                //X11Api.NextEvent(display, out e);
+                //switch (e.type)
+                //{
                     //case EventType.DestroyNotify:
                     //    quit = true;
                     //    return;
-
-                }
+                //}
             }
         }
 
