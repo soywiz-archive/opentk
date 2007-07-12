@@ -60,7 +60,7 @@ namespace OpenTK.Platform.X11
         [DllImport(_dll_name, EntryPoint = "XCreateColormap")]
         extern public static IntPtr CreateColormap(IntPtr display, IntPtr window, IntPtr visual, int alloc);
 
-        #region XCreateWindow
+        #region XCreateWindow, XCreateSimpleWindow
 
         [DllImport(_dll_name, EntryPoint = "XCreateWindow")]
         extern public static Window CreateWindow(
@@ -74,6 +74,17 @@ namespace OpenTK.Platform.X11
             IntPtr visual,
             CreateWindowMask valuemask,
             SetWindowAttributes attributes
+        );
+
+        [DllImport(_dll_name, EntryPoint = "XCreateSimpleWindow")]
+        extern public static Window CreateSimpleWindow(
+            IntPtr display,
+            Window parent,
+            int x, int y,
+            int width, int height,
+            int border_width,
+            long border,
+            long  background
         );
 
         #endregion
@@ -576,7 +587,7 @@ XF86VidModeGetGammaRampSize(
     }
 
     [Flags]
-    public enum EventMask
+    public enum EventMask : long
     {
         NoEventMask	= 0,
         KeyPressMask	= (1<<0),
@@ -606,7 +617,7 @@ XF86VidModeGetGammaRampSize(
     }
 
     [Flags]
-    public enum CreateWindowMask
+    public enum CreateWindowMask : long
     {
         CWBackPixmap	= (1<<0),
         CWBackPixel     = (1<<1),
