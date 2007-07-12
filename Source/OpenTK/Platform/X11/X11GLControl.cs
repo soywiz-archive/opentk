@@ -9,7 +9,7 @@ namespace OpenTK.Platform.X11
     class X11GLControl : IGLWindow
     {
         IntPtr display;
-        IntPtr rootWindow;
+        UIntPtr rootWindow;
         int screenNo;
 
         private Type xplatui;
@@ -36,7 +36,7 @@ namespace OpenTK.Platform.X11
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
-                rootWindow = (IntPtr)xplatui.GetField("RootWindow",
+                rootWindow = (UIntPtr)xplatui.GetField("RootWindow",
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).GetValue(null);
 

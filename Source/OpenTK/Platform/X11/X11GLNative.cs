@@ -13,7 +13,7 @@ namespace OpenTK.Platform.X11
         string displayString;
         int screen;
         UIntPtr rootWindow;
-        int window;
+        UIntPtr window;
 
         public X11GLNative()
         {

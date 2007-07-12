@@ -58,7 +58,7 @@ namespace OpenTK.Platform.X11
         extern internal static int XResizeWindow(IntPtr display, Window window, int width, int height);
 
         [DllImport(_dll_name, EntryPoint = "XCreateColormap")]
-        extern internal static IntPtr CreateColormap(IntPtr display, Window window, IntPtr visual, int alloc);
+        extern internal static UIntPtr CreateColormap(IntPtr display, Window window, IntPtr visual, int alloc);
 
         #region XCreateWindow, XCreateSimpleWindow
 

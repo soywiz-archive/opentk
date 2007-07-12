@@ -23,7 +23,8 @@ namespace OpenTK.Platform.X11
         //private int stencilBits;
 
         // These have to be used by the X11GLControl.
-        internal IntPtr visual, colormap;
+        internal IntPtr visual;
+        internal UIntPtr colormap;
 
         #region --- Public Constructor ---
 
@@ -34,7 +35,7 @@ namespace OpenTK.Platform.X11
         public X11GLContext(
             IntPtr handle,
             IntPtr display,
-            IntPtr rootWindow,
+            UIntPtr rootWindow,
             int screenNo,
             IntPtr handleToTopLevelControl,
             OpenTK.OpenGL.ColorDepth color,
@@ -71,7 +72,7 @@ namespace OpenTK.Platform.X11
         protected void Setup(
             IntPtr handle,
             IntPtr display,
-            IntPtr rootWindow,
+            UIntPtr rootWindow,
             int screenNo,
             IntPtr handleToTopLevelControl,
             OpenTK.OpenGL.ColorDepth color,
