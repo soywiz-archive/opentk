@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Platform.X11
 {
-    sealed class X11GLNative : IGLWindow, IDisposable
+    sealed class X11GLNative : OpenTK.Platform.IGLWindow, IDisposable
     {
         private X11GLContext glContext;
 
@@ -200,24 +200,7 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region IGLWindow Members
-
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(
-            OpenTK.OpenGL.DisplayMode mode,
-            DisplayModeMatchOptions options)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public void SetDisplayMode(OpenTK.OpenGL.DisplayMode mode)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
+        #region --- IGLWindow Members ---
 
         #region public bool Quit
 
@@ -242,10 +225,16 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        #region public bool IsIdle
+
         public bool IsIdle
         {
             get { throw new Exception("The method or operation is not implemented."); }
         }
+
+        #endregion
+
+        #region public bool Fullscreen
 
         public bool Fullscreen
         {
@@ -259,9 +248,11 @@ namespace OpenTK.Platform.X11
             }
         }
 
+        #endregion
+
         #region public IGLContext Context
 
-        public IGLContext Context
+        public OpenTK.Platform.IGLContext Context
         {
             get { return glContext; }
         }
@@ -271,7 +262,7 @@ namespace OpenTK.Platform.X11
         #region public void DoEvents()
 
         private Event e;
-        public void DoEvents()
+        public void ProcessEvents()
         {
             //while (X11Api.Pending(display) > 0)
             {
@@ -289,7 +280,7 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region IDisposable Members
+        #region --- IDisposable Members ---
 
         public void Dispose()
         {
@@ -297,6 +288,53 @@ namespace OpenTK.Platform.X11
             X11Api.DestroyWindow(display, window);
             X11Api.CloseDisplay(display);
         }
+
+        #endregion
+
+        #region --- IResizable Members ---
+
+        #region public int Width
+
+        public int Width
+        {
+            get
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+            set
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+        }
+
+        #endregion
+
+        #region public int Height
+
+        public int Height
+        {
+            get
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+            set
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+        }
+
+        #endregion
+
+        #region public void Resize
+
+        public event ResizeEvent<IGLWindow> ResizeNotify;
+        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+        public void Resize(ResizeEventArgs e)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
 
         #endregion
     }

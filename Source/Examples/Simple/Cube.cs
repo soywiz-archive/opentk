@@ -22,6 +22,11 @@ namespace Examples
         public Cube()
         {
             window = new GameWindow();
+            window.Context.MakeCurrent();
+
+            window.UpdateFrameNotify += new OpenTK.Platform.UpdateFrameEvent(window_UpdateFrameNotify);
+            window.RenderFrameNotify += new OpenTK.Platform.RenderFrameEvent(window_RenderFrameNotify);
+            window.ResizeNotify += new OpenTK.Platform.ResizeEvent<OpenTK.Platform.IGLWindow>(window_ResizeNotify);
             /*
             window.Text =
                 GL.GetString(Enums.StringName.VENDOR) + " " +
@@ -33,61 +38,25 @@ namespace Examples
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
         }
 
-        #region public void Run()
-
-        public void Run()
+        void window_ResizeNotify(OpenTK.Platform.IGLWindow sender, OpenTK.Platform.ResizeEventArgs e)
         {
-            while (!window.Quit)
-            {
-                window.DoEvents();
-
-                Render();
-                System.Threading.Thread.Sleep(10);
-            }
-        }
-
-        #endregion
-
-        #region Resize event handler
-        /*
-        protected override void OnResize(EventArgs e)
-        {
-            base.OnResize(e);
-
-            if (ClientSize.Height == 0)
-                ClientSize = new System.Drawing.Size(ClientSize.Width, 1);
-
-            GL.Viewport(0, 0, ClientSize.Width, ClientSize.Height);
+            GL.Viewport(0, 0, e.Width, e.Height);
 
             double ratio = 0.0;
-            ratio = ClientSize.Width / (double)ClientSize.Height;
-            //if (ClientSize.Width > ClientSize.Height)
-            //    ratio = ClientSize.Width / (double)ClientSize.Height;
-            //else
-            //    ratio = ClientSize.Height / (double)ClientSize.Width;
+            ratio = e.Width / (double)e.Height;
 
             GL.MatrixMode(Enums.MatrixMode.PROJECTION);
             GL.LoadIdentity();
             Glu.Perspective(45.0, ratio, 1.0, 64.0);
         }
-        */
-        #endregion
 
-        #region protected void Render()
-
-        float angle = 0.0f;
-        protected void Render()
+        void window_RenderFrameNotify(EventArgs e)
         {
-            window.Context.MakeCurrent();
+            Render();
+        }
 
-            GL.Viewport(0, 0, 640, 480);
-
-            double ratio = 640 / (double)480;
-
-            GL.MatrixMode(Enums.MatrixMode.PROJECTION);
-            GL.LoadIdentity();
-            Glu.Perspective(45.0, ratio, 1.0, 64.0);
-
+        void window_UpdateFrameNotify(EventArgs e)
+        {
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
@@ -95,9 +64,34 @@ namespace Examples
                 0.0, 0.0, 0.0,
                 0.0, 1.0, 0.0
             );
+
             GL.Rotatef(angle, 0.0f, 1.0f, 0.0f);
             angle += 0.5f;
+        }
 
+        #region public void Run()
+
+        public void Run()
+        {
+            window.Run();
+            /*
+            while (!window.Quit)
+            {
+                window.ProcessEvents();
+
+                Render();
+                System.Threading.Thread.Sleep(10);
+            }
+            */
+        }
+
+        #endregion
+
+        #region protected void Render()
+
+        float angle = 0.0f;
+        protected void Render()
+        {
             GL.Clear(Enums.ClearBufferMask.COLOR_BUFFER_BIT | Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
 
             DrawCube();

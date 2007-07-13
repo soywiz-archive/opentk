@@ -34,7 +34,7 @@ namespace OpenTK.Platform
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
-        public void DoEvents()
+        public void ProcessEvents()
         {
             throw new NotImplementedException();
         }

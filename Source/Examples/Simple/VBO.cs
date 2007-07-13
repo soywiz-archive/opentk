@@ -7,7 +7,7 @@ using OpenTK.OpenGL;
 
 namespace Examples
 {
-    class VBO : GameWindow
+    class VBO : OpenTK.GameWindow
     {
         int vbo, ibo, nbo; // vertex, index and normal buffer objects.
 
@@ -68,24 +68,47 @@ namespace Examples
             LoadCube();
         }
 
-        public void Run()
+        public override void RenderFrame()
         {
-            while (!this.Quit)
-            {
-                this.DoEvents();
-                this.Render();
-                this.Context.SwapBuffers();
+            base.RenderFrame();
 
-                System.Threading.Thread.Sleep(10);
-            }
+            GL.Clear(
+                OpenTK.OpenGL.Enums.ClearBufferMask.COLOR_BUFFER_BIT |
+                OpenTK.OpenGL.Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
+
+            //GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ARRAY_BUFFER, nbo);
+            //GL.NormalPointer(OpenTK.OpenGL.Enums.NormalPointerType.FLOAT, 0, 0);
+
+            GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ARRAY_BUFFER, vbo);
+            GL.VertexPointer(3, OpenTK.OpenGL.Enums.VertexPointerType.FLOAT, 0, 0);
+
+            GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ELEMENT_ARRAY_BUFFER, ibo);
+            //GL.IndexPointer(OpenTK.OpenGL.Enums.IndexPointerType.SHORT, 0, 0);
+
+            GL.Color3f(1.0f, 1.0f, 1.0f);
+            GL.DrawElements(
+                OpenTK.OpenGL.Enums.BeginMode.QUADS,
+                idata.Length,
+                OpenTK.OpenGL.Enums.GLenum.UNSIGNED_SHORT,
+                (IntPtr)0);
         }
 
         float angle = 0.0f;
-        private void Render()
+        public override void UpdateFrame()
         {
-            GL.Viewport(0, 0, 640, 480);
+            base.UpdateFrame();
 
-            double ratio = 640 / (double)480;
+            GL.Rotatef(angle, 0.0f, 1.0f, 0.0f);
+            angle += 0.5f;
+        }
+
+        public override void Resize(OpenTK.Platform.ResizeEventArgs e)
+        {
+            //base.Resize(e);
+
+            GL.Viewport(0, 0, e.Width, e.Height);
+
+            double ratio = e.Width / (double)e.Height;
 
             GL.MatrixMode(OpenTK.OpenGL.Enums.MatrixMode.PROJECTION);
             GL.LoadIdentity();
@@ -98,28 +121,6 @@ namespace Examples
                 0.0, 0.0, 0.0,
                 0.0, 1.0, 0.0
             );
-            GL.Rotatef(angle, 0.0f, 1.0f, 0.0f);
-            angle += 0.5f;
-
-            GL.Clear(
-                OpenTK.OpenGL.Enums.ClearBufferMask.COLOR_BUFFER_BIT |
-                OpenTK.OpenGL.Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
-
-            //GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ARRAY_BUFFER, nbo);
-            //GL.NormalPointer(OpenTK.OpenGL.Enums.NormalPointerType.FLOAT, 0, 0);
-            
-            GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ARRAY_BUFFER, vbo);
-            GL.VertexPointer(3, OpenTK.OpenGL.Enums.VertexPointerType.FLOAT, 0, 0);
-            
-            GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ELEMENT_ARRAY_BUFFER, ibo);
-            //GL.IndexPointer(OpenTK.OpenGL.Enums.IndexPointerType.SHORT, 0, 0);
-            
-            GL.Color3f(1.0f, 1.0f, 1.0f);
-            GL.DrawElements(
-                OpenTK.OpenGL.Enums.BeginMode.QUADS,
-                idata.Length,
-                OpenTK.OpenGL.Enums.GLenum.UNSIGNED_SHORT,
-                (IntPtr)0);
         }
 
         private void LoadCube()

@@ -13,9 +13,9 @@ using System.Runtime.InteropServices;
 using OpenTK.OpenGL;
 
 
-namespace OpenTK.Platform.Windows
+namespace OpenTK.Platform
 {
-    class WinGLContext : IGLContext, IDisposable
+    class WinGLContext : OpenTK.Platform.IGLContext, IDisposable
     {
         IntPtr deviceContext;
         IntPtr renderContext;
@@ -53,7 +53,7 @@ namespace OpenTK.Platform.Windows
             // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
             if (dllHandle == IntPtr.Zero)
             {
-                dllHandle = OpenTK.Platform.Windows.WinApi.LoadLibrary("opengl32.dll");
+                dllHandle = OpenTK.Platform.WinApi.LoadLibrary("opengl32.dll");
                 int errorCode = Marshal.GetLastWin32Error();
 
                 if (errorCode != 0)
@@ -67,7 +67,7 @@ namespace OpenTK.Platform.Windows
                 }
             }
 
-            deviceContext = OpenTK.Platform.Windows.WinApi.GetDC(handle);
+            deviceContext = OpenTK.Platform.WinApi.GetDC(handle);
             WinApi.PixelFormatDescriptor pixelFormat = new WinApi.PixelFormatDescriptor();
 
             pixelFormat.ColorBits = (byte)(color.Red + color.Green + color.Blue);

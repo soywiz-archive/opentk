@@ -15,7 +15,7 @@ using System.Text;
 
 /* TODO: Update the description of TimeBeginPeriod and other native methods. Update Timer. */
 
-namespace OpenTK.Platform.Windows
+namespace OpenTK.Platform
 {
     /// <summary>
     /// For internal use by OpenTK only!
@@ -33,44 +33,47 @@ namespace OpenTK.Platform.Windows
             internal const int WA_CLICKACTIVE = 2;
 
             // Window Messages (found in winuser.h)
-            internal const int WM_NULL                        = 0x0000;
-            internal const int WM_CREATE                      = 0x0001;
-            internal const int WM_DESTROY                     = 0x0002;
-            internal const int WM_MOVE                        = 0x0003;
-            internal const int WM_SIZE                        = 0x0005;
-            internal const int WM_ACTIVATE                    = 0x0006;
-            internal const int WM_SETFOCUS                    = 0x0007;
-            internal const int WM_KILLFOCUS                   = 0x0008;
-            internal const int WM_ENABLE                      = 0x000A;
-            internal const int WM_SETREDRAW                   = 0x000B;
-            internal const int WM_SETTEXT                     = 0x000C;
-            internal const int WM_GETTEXT                     = 0x000D;
-            internal const int WM_GETTEXTLENGTH               = 0x000E;
-            internal const int WM_PAINT                       = 0x000F;
-            internal const int WM_CLOSE                       = 0x0010;
+            internal const int WM_NULL = 0x0000;
+            internal const int WM_CREATE = 0x0001;
+            internal const int WM_DESTROY = 0x0002;
+            internal const int WM_MOVE = 0x0003;
+            internal const int WM_SIZE = 0x0005;
+            internal const int WM_ACTIVATE = 0x0006;
+            internal const int WM_SETFOCUS = 0x0007;
+            internal const int WM_KILLFOCUS = 0x0008;
+            internal const int WM_ENABLE = 0x000A;
+            internal const int WM_SETREDRAW = 0x000B;
+            internal const int WM_SETTEXT = 0x000C;
+            internal const int WM_GETTEXT = 0x000D;
+            internal const int WM_GETTEXTLENGTH = 0x000E;
+            internal const int WM_PAINT = 0x000F;
+            internal const int WM_CLOSE = 0x0010;
             // _WIN32_WCE
-            internal const int WM_QUERYENDSESSION             = 0x0011;
-            internal const int WM_QUERYOPEN                   = 0x0013;
-            internal const int WM_ENDSESSION                  = 0x0016;
-            internal const int WM_QUIT                        = 0x0012;
-            internal const int WM_ERASEBKGND                  = 0x0014;
-            internal const int WM_SYSCOLORCHANGE              = 0x0015;
-            internal const int WM_SHOWWINDOW                  = 0x0018;
-            internal const int WM_WININICHANGE                = 0x001A;
+            internal const int WM_QUERYENDSESSION = 0x0011;
+            internal const int WM_QUERYOPEN = 0x0013;
+            internal const int WM_ENDSESSION = 0x0016;
+            internal const int WM_QUIT = 0x0012;
+            internal const int WM_ERASEBKGND = 0x0014;
+            internal const int WM_SYSCOLORCHANGE = 0x0015;
+            internal const int WM_SHOWWINDOW = 0x0018;
+            internal const int WM_WININICHANGE = 0x001A;
             // WINVER >= 0x400
-            internal const int WM_SETTINGCHANGE               = WM_WININICHANGE;
+            internal const int WM_SETTINGCHANGE = WM_WININICHANGE;
 
-            internal const int WM_DEVMODECHANGE               = 0x001B;
-            internal const int WM_ACTIVATEAPP                 = 0x001C;
-            internal const int WM_FONTCHANGE                  = 0x001D;
-            internal const int WM_TIMECHANGE                  = 0x001E;
-            internal const int WM_CANCELMODE                  = 0x001F;
-            internal const int WM_SETCURSOR                   = 0x0020;
-            internal const int WM_MOUSEACTIVATE               = 0x0021;
-            internal const int WM_CHILDACTIVATE               = 0x0022;
-            internal const int WM_QUEUESYNC                   = 0x0023;
+            internal const int WM_DEVMODECHANGE = 0x001B;
+            internal const int WM_ACTIVATEAPP = 0x001C;
+            internal const int WM_FONTCHANGE = 0x001D;
+            internal const int WM_TIMECHANGE = 0x001E;
+            internal const int WM_CANCELMODE = 0x001F;
+            internal const int WM_SETCURSOR = 0x0020;
+            internal const int WM_MOUSEACTIVATE = 0x0021;
+            internal const int WM_CHILDACTIVATE = 0x0022;
+            internal const int WM_QUEUESYNC = 0x0023;
 
-            internal const int WM_GETMINMAXINFO               = 0x0024;
+            internal const int WM_GETMINMAXINFO = 0x0024;
+
+            internal const int WM_WINDOWPOSCHANGING = 0x0046;
+            internal const int WM_WINDOWPOSCHANGED = 0x0047;
 
             // Keyboard events (found in winuser.h)
             internal const int WM_KEYDOWN = 0x0100;
@@ -835,6 +838,22 @@ namespace OpenTK.Platform.Windows
         }
 
         #endregion DeviceMode class
+
+        #region public struct MinMaxInfo
+
+        /// <summary>
+        /// Struct pointed to by WM_GETMINMAXINFO lParam
+        /// </summary>
+        public struct MINMAXINFO
+        {
+            System.Drawing.Point ptReserved;
+            System.Drawing.Point ptMaxSize;
+            System.Drawing.Point ptMaxPosition;
+            System.Drawing.Point ptMinTrackSize;
+            System.Drawing.Point ptMaxTrackSize;
+        }
+
+        #endregion
 
         #endregion
 

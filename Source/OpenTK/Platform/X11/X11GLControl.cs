@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace OpenTK.Platform.X11
 {
-    class X11GLControl : IGLWindow
+    class X11GLControl// : OpenTK.Platform.IGLWindow
     {
         IntPtr display;
         IntPtr rootWindow;
@@ -22,7 +22,7 @@ namespace OpenTK.Platform.X11
 
         private Size fullScreenSize;
 
-        IGLContext context;
+        OpenTK.Platform.IGLContext context;
 
         public X11GLControl(Control c, int width, int height, bool fullscreen)
         {
@@ -99,19 +99,28 @@ namespace OpenTK.Platform.X11
 
         #region IGLWindow Members
 
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode)
+        public int Width
         {
-            throw new Exception("The method or operation is not implemented.");
+            get
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+            set
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
         }
 
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode, DisplayModeMatchOptions options)
+        public int Height
         {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public void SetDisplayMode(OpenTK.OpenGL.DisplayMode mode)
-        {
-            throw new Exception("The method or operation is not implemented.");
+            get
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+            set
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
         }
 
         #region public bool Quit
@@ -144,7 +153,7 @@ namespace OpenTK.Platform.X11
             }
         }
 
-        public IGLContext Context
+        public OpenTK.Platform.IGLContext Context
         {
             get
             {
@@ -152,10 +161,41 @@ namespace OpenTK.Platform.X11
             }
         }
 
-        public void DoEvents()
+        public void ProcessEvents()
         {
             throw new Exception("The method or operation is not implemented.");
         }
+
+        #endregion
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
+
+        #region IGLWindow Members
+
+
+        public void Run()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public void RenderFrame()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public void UpdateFrame()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public event ResizeEvent<X11GLControl> Resize;
 
         #endregion
     }

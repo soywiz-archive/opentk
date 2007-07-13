@@ -19,7 +19,7 @@ namespace Examples
         static void Main()
         {
             //new Cube().Run();
-            new VBO().Run();
+            new Cube().Run();
         }
     }
 }

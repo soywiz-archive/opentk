@@ -5,21 +5,26 @@
  */
 #endregion
 
+#region --- Using directives ---
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace OpenTK.Platform.Windows
+#endregion
+
+namespace OpenTK.Platform
 {
-    class WinGLControl : IGLWindow
+    sealed class WinGLControl// : OpenTK.Platform.IGLWindow
     {
-        private IGLContext glContext;
-        bool fullscreen = false;
+        private OpenTK.Platform.WinGLContext glContext;
+
+        #region --- Constructors ---
 
         public WinGLControl(Control c, int width, int height, bool fullscreen)
         {
-            glContext = new OpenTK.Platform.Windows.WinGLContext(
+            glContext = new OpenTK.Platform.WinGLContext(
                 c.Handle,
                 new OpenTK.OpenGL.ColorDepth(32),
                 new OpenTK.OpenGL.ColorDepth(0),
@@ -31,28 +36,19 @@ namespace OpenTK.Platform.Windows
             );
         }
 
-        #region IGLWindow Members
+        #endregion
 
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
+        #region --- IGLWindow membmers ---
 
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode, DisplayModeMatchOptions options)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public void SetDisplayMode(OpenTK.OpenGL.DisplayMode mode)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
+        #region public void ProcessEvents()
 
         private WinApi.Message msg;
-        public void DoEvents()
+        public void ProcessEvents()
         {
             throw new Exception("The method or operation is not implemented.");
         }
+
+        #endregion
 
         #region public bool Quit
 
@@ -64,6 +60,8 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        #region public bool IsIdle
+
         public bool IsIdle
         {
             get
@@ -72,11 +70,20 @@ namespace OpenTK.Platform.Windows
             }
         }
 
-        public IGLContext Context
+        #endregion
+
+        #region public OpenTK.Platform.IGLContext Context
+
+        public OpenTK.Platform.IGLContext Context
         {
             get { return glContext; }
         }
 
+        #endregion
+
+        #region public bool Fullscreen
+
+        bool fullscreen = false;
         public bool Fullscreen
         {
             get
@@ -89,8 +96,70 @@ namespace OpenTK.Platform.Windows
             }
         }
 
-
+        #endregion
 
         #endregion
+
+        #region --- IResizable Members ---
+
+        #region public int Width
+
+        public int Width
+        {
+            get
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+            set
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+        }
+
+        #endregion
+
+        #region public int Height
+
+        public int Height
+        {
+            get
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+            set
+            {
+                throw new Exception("The method or operation is not implemented.");
+            }
+        }
+
+        #endregion
+
+        #region public void Resize(int width, int height)
+
+        public event ResizeEvent<WinGLControl> ResizeNotify;
+        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+        public void Resize(int width, int height)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
+
+        #endregion
+
+        #region --- IDisposable Members ---
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Dispose(bool calledManually)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
     }
 }

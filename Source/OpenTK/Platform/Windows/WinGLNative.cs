@@ -4,43 +4,34 @@
  */
 #endregion
 
+#region --- Using directives ---
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace OpenTK.Platform.Windows
+#endregion
+
+namespace OpenTK.Platform
 {
-    /*
-    class WindowHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
-    {
-        protected override bool ReleaseHandle()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public override bool IsInvalid
-        {
-            get
-            {
-                return base.IsInvalid;
-            }
-        }
-    }
-    */
-
-    sealed class WinGLNative : NativeWindow, IGLWindow, IDisposable
+    sealed class WinGLNative : NativeWindow, OpenTK.Platform.IGLWindow, IDisposable
     {
         WinGLContext glContext;
+        OpenTK.OpenGL.DisplayMode mode;
 
-        #region Contructors
+        #region --- Contructors ---
 
         /// <summary>
         /// Constructs a new WinGLNative window, using safe defaults for the DisplayMode.
         /// </summary>
         public WinGLNative()
         {
+            mode = new OpenTK.OpenGL.DisplayMode();
+            mode.Width = 640;
+            mode.Height = 480;
+
             CreateParams cp = new CreateParams();
             cp.ClassStyle =
                 (int)WinApi.WindowClassStyle.OwnDC |
@@ -51,13 +42,12 @@ namespace OpenTK.Platform.Windows
                 (int)WinApi.WindowStyle.ClipChildren |
                 (int)WinApi.WindowStyle.ClipSiblings |
                 (int)WinApi.WindowStyle.OverlappedWindow;
-            cp.Width = 640;
-            cp.Height = 480;
+            cp.Width = mode.Width;
+            cp.Height = mode.Height;
             cp.Caption = "OpenTK Game Window";
             CreateHandle(cp);
 
-
-            glContext = new OpenTK.Platform.Windows.WinGLContext(
+            glContext = new OpenTK.Platform.WinGLContext(
                 this.Handle,
                 new OpenTK.OpenGL.ColorDepth(32),
                 new OpenTK.OpenGL.ColorDepth(0),
@@ -125,6 +115,14 @@ namespace OpenTK.Platform.Windows
         {
             switch (m.Msg)
             {
+                case WinApi.Constants.WM_SIZE:
+                    resizeEventArgs.Width = (int)m.LParam & 0x0000FFFF;
+                    resizeEventArgs.Height = (int)(((long)m.LParam & 0xFFFF0000) >> 16);
+                    this.Resize(resizeEventArgs);
+                    // Must pass WM_WINDOWPOSCHANGED to DefWndProc
+                    m.Msg = WinApi.Constants.WM_WINDOWPOSCHANGED;
+                    break;
+
                 case WinApi.Constants.WM_CLOSE:
                     WinApi.PostQuitMessage(0);
                     return;
@@ -133,25 +131,27 @@ namespace OpenTK.Platform.Windows
                     quit = true;
                     break;
             }
-            
+
  	        base.WndProc(ref m);
         }
 
         #endregion
 
-        #region IGLWindow Members
+        #region --- IGLWindow Members ---
+
+        #region public void ProcessEvents()
 
         private System.Windows.Forms.Message msg;
-        public void DoEvents()
+        public void ProcessEvents()
         {
-            isIdle = false;
             while (WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0))
             {
                 WinApi.GetMessage(out msg, IntPtr.Zero, 0, 0);
                 WndProc(ref msg);
             }
-            isIdle = true;
         }
+
+        #endregion
 
         #region public bool Quit
 
@@ -171,56 +171,47 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public OpenTK.OpenGL.DisplayMode SelectDisplayMode(OpenTK.OpenGL.DisplayMode mode, DisplayModeMatchOptions options)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public void SetDisplayMode(OpenTK.OpenGL.DisplayMode mode)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
+        #region public IGLContext Context
 
         public IGLContext Context
         {
             get { return glContext; }
         }
 
+        #endregion
+
+        #region public bool Fullscreen
+
         bool fullscreen;
         public bool Fullscreen
         {
             get
             {
-                return false;
+                throw new NotImplementedException();
             }
             set
             {
-                fullscreen = fullscreen;
-            }
-        }
-
-        bool isIdle;
-        public bool IsIdle
-        {
-            get
-            {
-                //return !WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
-                return isIdle;
-            }
-            protected set
-            {
-                isIdle = value;
+                throw new NotImplementedException();
             }
         }
 
         #endregion
 
-        #region IDisposable Members
+        #region public bool IsIdle
+
+        public bool IsIdle
+        {
+            get
+            {
+                return !WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region --- IDisposable Members ---
 
         public void Dispose()
         {
@@ -229,5 +220,80 @@ namespace OpenTK.Platform.Windows
         }
 
         #endregion
+
+        #region --- IResizable Members ---
+
+        #region public int Width
+
+        private int width;
+        public int Width
+        {
+            get
+            {
+                return mode.Width;
+            }
+            set
+            {
+                mode.Width = value;
+                // Call to resize window?
+            }
+        }
+
+        #endregion
+
+        #region public int Height
+
+        private int height;
+        public int Height
+        {
+            get
+            {
+                return mode.Height;
+            }
+            set
+            {
+                mode.Height = value;
+                // Call to resize window?
+            }
+        }
+
+        #endregion
+
+        #region public void Resize(int width, int height)
+        public event ResizeEvent<IGLWindow> ResizeNotify;
+        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+        public void Resize(ResizeEventArgs e)
+        {
+            width = e.Width;
+            height = e.Height;
+            if (this.ResizeNotify != null)
+                this.ResizeNotify(this, e);
+        }
+
+        #endregion
+
+        #endregion
     }
+
+    #region class WindowHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
+
+    /*
+    class WindowHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
+    {
+        protected override bool ReleaseHandle()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public override bool IsInvalid
+        {
+            get
+            {
+                return base.IsInvalid;
+            }
+        }
+    }
+    */
+
+    #endregion
 }

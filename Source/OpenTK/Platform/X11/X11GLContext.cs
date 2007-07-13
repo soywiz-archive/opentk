@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Platform.X11
 {
-    class X11GLContext : IGLContext
+    class X11GLContext : OpenTK.Platform.IGLContext
     {
         private IntPtr glxVisualInfo;
         internal IntPtr handle;

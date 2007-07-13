@@ -12,13 +12,9 @@ using OpenTK.OpenGL;
 
 namespace OpenTK.Platform
 {
-    interface IGLWindow
+    public interface IGLWindow : IResizable<IGLWindow>, IDisposable
     {
-        DisplayMode SelectDisplayMode(DisplayMode mode);
-        DisplayMode SelectDisplayMode(DisplayMode mode, DisplayModeMatchOptions options);
-        void SetDisplayMode(DisplayMode mode);
-
-        void DoEvents();
+        void ProcessEvents();
 
         bool IsIdle { get; }
         bool Quit { get; set; }

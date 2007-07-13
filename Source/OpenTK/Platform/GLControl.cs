@@ -4,7 +4,6 @@
  */
 #endregion
 
-
 #region --- Using Directives ---
 
 using System;
@@ -25,7 +24,7 @@ namespace OpenTK.Platform
     /// <summary>
     /// 
     /// </summary>
-    public partial class GLControl : UserControl, IGLWindow, IDisposable
+    public partial class GLControl : UserControl, /*IGLWindow,*/ IDisposable
     {
         #region --- Private Fields ---
 
@@ -66,12 +65,12 @@ namespace OpenTK.Platform
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
-                glWindow = new OpenTK.Platform.Windows.WinGLControl(this, width, height, fullscreen);
+                //glWindow = new OpenTK.Platform.WinGLControl(this, width, height, fullscreen);
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                      Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
+                //glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
             }
             else
             {
@@ -183,6 +182,8 @@ namespace OpenTK.Platform
             get { return glWindow.Context; }
         }
 
+        #region DisplayMode changes
+
         /// <summary>
         /// Selects the fullscreen DisplayMode closest to the DisplayMode requested.
         /// </summary>
@@ -195,7 +196,8 @@ namespace OpenTK.Platform
         /// </remarks>
         public DisplayMode SelectDisplayMode(DisplayMode mode)
         {
-            return glWindow.SelectDisplayMode(mode);
+            throw new NotImplementedException();
+            //return glWindow.SelectDisplayMode(mode);
         }
 
         /// <summary>
@@ -217,7 +219,8 @@ namespace OpenTK.Platform
         /// </remarks>
         public DisplayMode SelectDisplayMode(DisplayMode mode, DisplayModeMatchOptions options)
         {
-            return glWindow.SelectDisplayMode(mode, options);
+            throw new NotImplementedException();
+            //return glWindow.SelectDisplayMode(mode, options);
         }
 
         /// <summary>
@@ -242,8 +245,11 @@ namespace OpenTK.Platform
         /// </remarks>
         public void SetDisplayMode(DisplayMode mode)
         {
-            glWindow.SetDisplayMode(mode);
+            throw new NotImplementedException();
+            //glWindow.SetDisplayMode(mode);
         }
+
+        #endregion
 
         #endregion
 
