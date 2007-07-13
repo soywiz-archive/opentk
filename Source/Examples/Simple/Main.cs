@@ -18,7 +18,8 @@ namespace Examples
         [STAThread]
         static void Main()
         {
-            new Cube().Run();
+            //new Cube().Run();
+            new VBO().Run();
         }
     }
 }
