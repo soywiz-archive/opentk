@@ -9,7 +9,7 @@ using System;
 using System.Drawing;
 using System.Globalization;
 
-namespace OpenTK.OpenGL
+namespace OpenTK.Platform
 {
     public class ColorDepth
     {

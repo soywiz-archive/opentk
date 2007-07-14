@@ -19,7 +19,7 @@ namespace OpenTK.Platform
     sealed class WinGLNative : NativeWindow, OpenTK.Platform.IGLWindow, IDisposable
     {
         WinGLContext glContext;
-        OpenTK.OpenGL.DisplayMode mode;
+        OpenTK.Platform.DisplayMode mode;
 
         #region --- Contructors ---
 
@@ -28,14 +28,24 @@ namespace OpenTK.Platform
         /// </summary>
         public WinGLNative()
         {
-            mode = new OpenTK.OpenGL.DisplayMode();
+            mode = new DisplayMode();
             mode.Width = 640;
             mode.Height = 480;
+
+            this.CreateWindow(mode);
+        }
+
+        #endregion
+
+        #region private void CreateWindow()
+
+        private void CreateWindow(DisplayMode mode)
+        {
 
             CreateParams cp = new CreateParams();
             cp.ClassStyle =
                 (int)WinApi.WindowClassStyle.OwnDC |
-                (int)WinApi.WindowClassStyle.VRedraw | 
+                (int)WinApi.WindowClassStyle.VRedraw |
                 (int)WinApi.WindowClassStyle.HRedraw;
             cp.Style =
                 (int)WinApi.WindowStyle.Visible |
@@ -45,12 +55,12 @@ namespace OpenTK.Platform
             cp.Width = mode.Width;
             cp.Height = mode.Height;
             cp.Caption = "OpenTK Game Window";
-            CreateHandle(cp);
+            base.CreateHandle(cp);
 
             glContext = new OpenTK.Platform.WinGLContext(
                 this.Handle,
-                new OpenTK.OpenGL.ColorDepth(32),
-                new OpenTK.OpenGL.ColorDepth(0),
+                new ColorDepth(32),
+                new ColorDepth(0),
                 24,
                 8,
                 0,
@@ -59,11 +69,8 @@ namespace OpenTK.Platform
             );
         }
 
-        #endregion
-
-        #region protected void CreateWindow()
         /*
-        protected void CreateWindow()
+        private void CreateWindow()
         {
             WinApi.WindowClass wc = new WinApi.WindowClass();
             wc.style =
@@ -111,18 +118,35 @@ namespace OpenTK.Platform
 
         #region protected override void WndProc(ref Message m)
 
+        /// <summary>
+        /// Processes incoming WM_* messages.
+        /// </summary>
+        /// <param name="m">Reference to the incoming Windows Message.</param>
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)
             {
-                case WinApi.Constants.WM_SIZE:
-                    resizeEventArgs.Width = (int)m.LParam & 0x0000FFFF;
-                    resizeEventArgs.Height = (int)(((long)m.LParam & 0xFFFF0000) >> 16);
-                    this.Resize(resizeEventArgs);
-                    // Must pass WM_WINDOWPOSCHANGED to DefWndProc
-                    m.Msg = WinApi.Constants.WM_WINDOWPOSCHANGED;
+                case WinApi.Constants.WM_WINDOWPOSCHANGED:
+                    // Get window size
+                    width = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.WindowPosition), "cx"));
+                    height = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.WindowPosition), "cy"));
+                    if (resizeEventArgs.Width != width || resizeEventArgs.Height != height)
+                    {
+                        // If the size has changed, raise the ResizeEvent.
+                        resizeEventArgs.Width = width;
+                        resizeEventArgs.Height = height;
+                        this.Resize(resizeEventArgs);
+                        // The message was processed.
+                        return;
+                    }
+                    // If the message was not a resize notification, send it to the default WndProc.
                     break;
 
+                case WinApi.Constants.WM_KEYDOWN:
+                case WinApi.Constants.WM_KEYUP:
+                    this.ProcessKey(ref m);
+                    return;
+                
                 case WinApi.Constants.WM_CLOSE:
                     WinApi.PostQuitMessage(0);
                     return;
@@ -133,6 +157,16 @@ namespace OpenTK.Platform
             }
 
  	        base.WndProc(ref m);
+        }
+
+        private void ProcessKey(ref Message m)
+        {
+            switch ((int)m.WParam)
+            {
+                case WinApi.Constants.VK_ESCAPE:
+                    Key.Escape = (m.Msg == WinApi.Constants.WM_KEYDOWN) ? true : false;
+                    break;
+            }
         }
 
         #endregion
@@ -164,7 +198,7 @@ namespace OpenTK.Platform
                 if (value)
                 {
                     WinApi.PostQuitMessage(0);
-                    quit = true;
+                    //quit = true;
                 }
             }
         }

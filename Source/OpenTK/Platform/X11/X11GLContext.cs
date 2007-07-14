@@ -44,8 +44,8 @@ namespace OpenTK.Platform.X11
             IntPtr rootWindow,
             int screenNo,
             IntPtr handleToTopLevelControl,
-            OpenTK.OpenGL.ColorDepth color,
-            OpenTK.OpenGL.ColorDepth accum,
+            ColorDepth color,
+            ColorDepth accum,
             int depthBits,
             int stencilBits,
             int auxBits,
@@ -81,8 +81,8 @@ namespace OpenTK.Platform.X11
             IntPtr rootWindow,
             int screenNo,
             IntPtr handleToTopLevelControl,
-            OpenTK.OpenGL.ColorDepth color,
-            OpenTK.OpenGL.ColorDepth accum,
+            ColorDepth color,
+            ColorDepth accum,
             int depthBits,
             int stencilBits,
             int auxBits,
@@ -181,7 +181,7 @@ namespace OpenTK.Platform.X11
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public OpenTK.OpenGL.DisplayMode[] GetDisplayModes()
+        public OpenTK.Platform.DisplayMode[] GetDisplayModes()
         {
             throw new Exception("The method or operation is not implemented.");
         }

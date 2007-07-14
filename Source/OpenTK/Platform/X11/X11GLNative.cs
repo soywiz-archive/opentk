@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Platform.X11
 {
-    sealed class X11GLNative : OpenTK.Platform.IGLWindow, IDisposable
+    sealed class X11GLNative : /*OpenTK.Platform.IGLWindow,*/ IDisposable
     {
         private X11GLContext glContext;
 

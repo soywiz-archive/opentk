@@ -28,12 +28,15 @@ namespace OpenTK
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
+                // Create a new Windows native window. We want to be notified when it's ready,
+                // in order to do some preparatory work.
                 glWindow = new OpenTK.Platform.WinGLNative();
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                     Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                glWindow = new OpenTK.Platform.X11.X11GLNative();
+                //glWindow = new OpenTK.Platform.X11.X11GLNative();
+                throw new NotImplementedException();
             }
             else
             {
@@ -42,15 +45,21 @@ namespace OpenTK
                 );
             }
 
+            // When the glWindow construction is complete, hook the resize events.
             resizeEventArgs.Width = this.Width;
             resizeEventArgs.Height = this.Height;
             glWindow.ResizeNotify += new ResizeEvent<IGLWindow>(glWindow_ResizeNotify);
-            glWindow.Resize(resizeEventArgs);
+            //this.Resize(resizeEventArgs);
+        }
+
+        void glWindow_CreateNotify(IGLWindow sender, EventArgs e)
+        {
+
         }
 
         #endregion
 
-        #region IGLWindow Members
+        #region --- IGLWindow Members ---
 
         #region public bool IsIdle
 
@@ -209,6 +218,8 @@ namespace OpenTK
 
         #endregion
 
+        #region public event ResizeEvent<IGLWindow> ResizeNotify;
+
         public event ResizeEvent<IGLWindow> ResizeNotify;
 
         void glWindow_ResizeNotify(IGLWindow sender, ResizeEventArgs e)
@@ -216,11 +227,17 @@ namespace OpenTK
             this.Resize(e);
         }
 
+        /// <summary>
+        /// Raises the ResizeNotify event.
+        /// </summary>
+        /// <param name="e">Contains the new Width and Height of the window.</param>
         public virtual void Resize(ResizeEventArgs e)
         {
             if (this.ResizeNotify != null)
                 this.ResizeNotify(this, e);
         }
+
+        #endregion
 
         #endregion
     }

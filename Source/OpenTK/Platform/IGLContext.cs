@@ -42,6 +42,6 @@ namespace OpenTK.Platform
         /// Returns the display modes supported by the current opengl context.
         /// </summary>
         /// <returns>An array containing all supported display modes.</returns>
-        OpenTK.OpenGL.DisplayMode[] GetDisplayModes();
+        OpenTK.Platform.DisplayMode[] GetDisplayModes();
     }
 }

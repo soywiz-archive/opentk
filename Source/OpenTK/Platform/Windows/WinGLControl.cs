@@ -26,8 +26,8 @@ namespace OpenTK.Platform
         {
             glContext = new OpenTK.Platform.WinGLContext(
                 c.Handle,
-                new OpenTK.OpenGL.ColorDepth(32),
-                new OpenTK.OpenGL.ColorDepth(0),
+                new ColorDepth(32),
+                new ColorDepth(0),
                 24,
                 8,
                 0,

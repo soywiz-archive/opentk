@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using OpenTK;
 using OpenTK.OpenGL;
+using OpenTK.Platform;
 using Enums = OpenTK.OpenGL.Enums;
 
 namespace Examples
@@ -17,7 +18,6 @@ namespace Examples
     class Cube
     {
         GameWindow window;
-        bool exit;
 
         public Cube()
         {
@@ -27,15 +27,18 @@ namespace Examples
             window.UpdateFrameNotify += new OpenTK.Platform.UpdateFrameEvent(window_UpdateFrameNotify);
             window.RenderFrameNotify += new OpenTK.Platform.RenderFrameEvent(window_RenderFrameNotify);
             window.ResizeNotify += new OpenTK.Platform.ResizeEvent<OpenTK.Platform.IGLWindow>(window_ResizeNotify);
+
+            window.Context.MakeCurrent();
             /*
             window.Text =
                 GL.GetString(Enums.StringName.VENDOR) + " " +
                 GL.GetString(Enums.StringName.RENDERER) + " " +
                 GL.GetString(Enums.StringName.VERSION);
             */
-
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
+
+            this.window_ResizeNotify(null, new ResizeEventArgs(window.Width, window.Height));
         }
 
         void window_ResizeNotify(OpenTK.Platform.IGLWindow sender, OpenTK.Platform.ResizeEventArgs e)
@@ -57,6 +60,12 @@ namespace Examples
 
         void window_UpdateFrameNotify(EventArgs e)
         {
+            if (Key.Escape)
+            {
+                window.Quit = true;
+                return;
+            }
+
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
@@ -74,15 +83,6 @@ namespace Examples
         public void Run()
         {
             window.Run();
-            /*
-            while (!window.Quit)
-            {
-                window.ProcessEvents();
-
-                Render();
-                System.Threading.Thread.Sleep(10);
-            }
-            */
         }
 
         #endregion
