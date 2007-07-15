@@ -26,6 +26,11 @@ namespace OpenTK.Platform.X11
 
         private DisplayMode mode = new DisplayMode();
 
+        // C# ResizeEventArgs
+        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+        // Low level X11 resize request
+        private X11.Event xresize;
+
         //private int width, height;
 
         #region --- Public Constructors ---
@@ -209,24 +214,24 @@ namespace OpenTK.Platform.X11
 
         #region public void DoEvents()
 
-        private Event e = new Event();
+        private Event e;
         public void ProcessEvents()
         {
             while (API.Pending(display) > 0)
             {
-                /*API.NextEvent(display, ref e);
+                API.NextEvent(display, out e);
                 switch (e.type)
                 {
                     case EventType.CreateNotify:
-                        mode.Width = e.xCreateWindow.width;
-                        mode.Height = e.xCreateWindow.height;
-                        this.OnCreate(EventArgs.Empty);
+                        //mode.Width = e.xCreateWindow.width;
+                        //mode.Height = e.xCreateWindow.height;
+                        //this.OnCreate(EventArgs.Empty);
                         return;
 
                     case EventType.DestroyNotify:
                         quit = true;
                         return;
-
+                    /*
                     case EventType.ResizeRequest:
                         // If the window size changed, raise the Resize event.
                         if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)
@@ -236,7 +241,8 @@ namespace OpenTK.Platform.X11
                             this.OnResize(resizeEventArgs);
                         }
                         return;
-                }*/
+                   */
+                }
             }
         }
 
@@ -315,17 +321,6 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region --- IDisposable Members ---
-
-        public void Dispose()
-        {
-            glContext.Destroy();
-            API.DestroyWindow(display, window);
-            API.CloseDisplay(display);
-        }
-
-        #endregion
-
         #region --- IResizable Members ---
 
         #region public int Width
@@ -339,18 +334,18 @@ namespace OpenTK.Platform.X11
             set
             {
                 // Clear event struct
-                Array.Clear(e.pad, 0, e.pad.Length);
+                Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
-                e.type = EventType.ResizeRequest;
-                e.xResizeRequest.display = this.display;
-                e.xResizeRequest.width = value;
-                e.xResizeRequest.height = mode.Height;
+                xresize.xResizeRequest.type = EventType.ResizeRequest;
+                xresize.xResizeRequest.display = this.display;
+                xresize.xResizeRequest.width = value;
+                xresize.xResizeRequest.height = mode.Width;
                 API.SendEvent(
                     this.display,
                     this.window,
                     false,
                     EventMask.StructureNotifyMask,
-                    ref e
+                    ref xresize
                 );
             }
         }
@@ -368,18 +363,18 @@ namespace OpenTK.Platform.X11
             set
             {
                 // Clear event struct
-                Array.Clear(e.pad, 0, e.pad.Length);
+                Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
-                e.type = EventType.ResizeRequest;
-                e.xResizeRequest.display = this.display;
-                e.xResizeRequest.width = mode.Width;
-                e.xResizeRequest.height = value;
+                xresize.xResizeRequest.type = EventType.ResizeRequest;
+                xresize.xResizeRequest.display = this.display;
+                xresize.xResizeRequest.width = mode.Width;
+                xresize.xResizeRequest.height = value;
                 API.SendEvent(
                     this.display,
                     this.window,
                     false,
                     EventMask.StructureNotifyMask,
-                    ref e
+                    ref xresize
                 );
             }
         }
@@ -389,7 +384,7 @@ namespace OpenTK.Platform.X11
         #region public event ResizeEvent Resize
 
         public event ResizeEvent Resize;
-        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+
         private void OnResize(ResizeEventArgs e)
         {
             mode.Width = e.Width;
@@ -401,6 +396,17 @@ namespace OpenTK.Platform.X11
         }
 
         #endregion
+
+        #endregion
+
+        #region --- IDisposable Members ---
+
+        public void Dispose()
+        {
+            glContext.Destroy();
+            API.DestroyWindow(display, window);
+            API.CloseDisplay(display);
+        }
 
         #endregion
     }

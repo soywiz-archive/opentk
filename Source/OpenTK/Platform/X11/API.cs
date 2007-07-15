@@ -126,7 +126,7 @@ namespace OpenTK.Platform.X11
 
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XNextEvent")]
-        extern internal static void NextEvent(Display display, ref Event e);
+        extern internal static void NextEvent(Display display, out Event e);
 
         [DllImport(_dll_name, EntryPoint = "XSendEvent")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -588,7 +588,7 @@ XF86VidModeGetGammaRampSize(
     [StructLayout(LayoutKind.Sequential)]
     internal struct AnyEvent
     {
-	    internal int type;
+        internal EventType type;
 	    [MarshalAs(UnmanagedType.SysUInt)]
         internal ulong serial;	/* # of last request processed by server */
 	    [MarshalAs(UnmanagedType.Bool)]
@@ -604,7 +604,7 @@ XF86VidModeGetGammaRampSize(
     [StructLayout(LayoutKind.Sequential)]
     internal struct KeyEvent
     {
-	    internal int type;		/* KeyPress or KeyRelease */
+        internal EventType type;		/* KeyPress or KeyRelease */
         [MarshalAs(UnmanagedType.SysUInt)]
 	    internal ulong serial;	/* # of last request processed by server */
         [MarshalAs(UnmanagedType.Bool)]
@@ -630,7 +630,7 @@ XF86VidModeGetGammaRampSize(
     [StructLayout(LayoutKind.Sequential)]
     internal struct DestroyWindowEvent
     {
-        internal int type;		    /* DestroyNotify */
+        internal EventType type;		    /* DestroyNotify */
         internal ulong serial;	    /* # of last request processed by server */
 	    [MarshalAs(UnmanagedType.Bool)]
         internal bool send_event;	/* true if this came from a SendEvent request */
@@ -646,7 +646,7 @@ XF86VidModeGetGammaRampSize(
     [StructLayout(LayoutKind.Sequential)]
     internal struct CreateWindowEvent
     {
-	    internal int type;		/* CreateNotify */
+        internal EventType type;		/* CreateNotify */
         internal ulong serial;	/* # of last request processed by server */
         [MarshalAs(UnmanagedType.Bool)]
         internal bool send_event;	/* true if this came from a SendEvent request */
@@ -667,7 +667,7 @@ XF86VidModeGetGammaRampSize(
     [StructLayout(LayoutKind.Sequential)]
     internal struct ResizeRequestEvent
     {
-	    internal int type;	/* ResizeRequest */
+        internal EventType type;	/* ResizeRequest */
 	    internal ulong serial;	/* # of last request processed by server */
         [MarshalAs(UnmanagedType.Bool)]
 	    internal bool send_event;	/* true if this came from a SendEvent request */
