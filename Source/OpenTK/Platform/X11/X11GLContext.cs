@@ -133,7 +133,7 @@ namespace OpenTK.Platform.X11
             VisualInfo xVisualInfo = 
                 (VisualInfo)Marshal.PtrToStructure(glxVisualInfo, typeof(VisualInfo));
 
-            colormap = X11Api.CreateColormap(display, rootWindow, xVisualInfo.visual, 0/*AllocNone*/);
+            colormap = API.CreateColormap(display, rootWindow, xVisualInfo.visual, 0/*AllocNone*/);
 
             Console.WriteLine("colormap: {0}", colormap);
             Console.Out.Flush();
@@ -149,7 +149,7 @@ namespace OpenTK.Platform.X11
 
             //MakeCurrent();
 
-            X11Api.Free(glxVisualInfo);
+            API.Free(glxVisualInfo);
         }
 
         #region IGLContext Members

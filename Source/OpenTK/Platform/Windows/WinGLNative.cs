@@ -44,14 +44,14 @@ namespace OpenTK.Platform.Windows
 
             CreateParams cp = new CreateParams();
             cp.ClassStyle =
-                (int)WinApi.WindowClassStyle.OwnDC |
-                (int)WinApi.WindowClassStyle.VRedraw |
-                (int)WinApi.WindowClassStyle.HRedraw;
+                (int)API.WindowClassStyle.OwnDC |
+                (int)API.WindowClassStyle.VRedraw |
+                (int)API.WindowClassStyle.HRedraw;
             cp.Style =
-                (int)WinApi.WindowStyle.Visible |
-                (int)WinApi.WindowStyle.ClipChildren |
-                (int)WinApi.WindowStyle.ClipSiblings |
-                (int)WinApi.WindowStyle.OverlappedWindow;
+                (int)API.WindowStyle.Visible |
+                (int)API.WindowStyle.ClipChildren |
+                (int)API.WindowStyle.ClipSiblings |
+                (int)API.WindowStyle.OverlappedWindow;
             cp.Width = mode.Width;
             cp.Height = mode.Height;
             cp.Caption = "OpenTK Game Window";
@@ -131,10 +131,10 @@ namespace OpenTK.Platform.Windows
         {
             switch (m.Msg)
             {
-                case WinApi.Constants.WM_WINDOWPOSCHANGED:
+                case API.Constants.WM_WINDOWPOSCHANGED:
                     // Get window size
-                    width = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.WindowPosition), "cx"));
-                    height = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.WindowPosition), "cy"));
+                    width = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(API.WindowPosition), "cx"));
+                    height = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(API.WindowPosition), "cy"));
                     //if (resizeEventArgs.Width != width || resizeEventArgs.Height != height)
                     if (mode.Width != width || mode.Height != height)
                     {
@@ -148,10 +148,10 @@ namespace OpenTK.Platform.Windows
                     // If the message was not a resize notification, send it to the default WndProc.
                     break;
 
-                case WinApi.Constants.WM_CREATE:
+                case API.Constants.WM_CREATE:
                     // Set the window width and height:
-                    mode.Width = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.CreateStruct), "cx"));
-                    mode.Height = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.CreateStruct), "cy"));
+                    mode.Width = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(API.CreateStruct), "cx"));
+                    mode.Height = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(API.CreateStruct), "cy"));
                     
                     // Raise the Create event
                     this.OnCreate(EventArgs.Empty);
@@ -162,16 +162,16 @@ namespace OpenTK.Platform.Windows
                     //this.OnResize(resizeEventArgs);
                     return;
 
-                case WinApi.Constants.WM_KEYDOWN:
-                case WinApi.Constants.WM_KEYUP:
+                case API.Constants.WM_KEYDOWN:
+                case API.Constants.WM_KEYUP:
                     this.ProcessKey(ref m);
                     return;
                 
-                case WinApi.Constants.WM_CLOSE:
-                    WinApi.PostQuitMessage(0);
+                case API.Constants.WM_CLOSE:
+                    API.PostQuitMessage(0);
                     return;
 
-                case WinApi.Constants.WM_QUIT:
+                case API.Constants.WM_QUIT:
                     quit = true;
                     break;
             }
@@ -183,8 +183,8 @@ namespace OpenTK.Platform.Windows
         {
             switch ((int)m.WParam)
             {
-                case WinApi.Constants.VK_ESCAPE:
-                    Key.Escape = (m.Msg == WinApi.Constants.WM_KEYDOWN) ? true : false;
+                case API.Constants.VK_ESCAPE:
+                    Key.Escape = (m.Msg == API.Constants.WM_KEYDOWN) ? true : false;
                     break;
             }
         }
@@ -198,9 +198,9 @@ namespace OpenTK.Platform.Windows
         private System.Windows.Forms.Message msg;
         public void ProcessEvents()
         {
-            while (WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0))
+            while (API.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0))
             {
-                WinApi.GetMessage(out msg, IntPtr.Zero, 0, 0);
+                API.GetMessage(out msg, IntPtr.Zero, 0, 0);
                 WndProc(ref msg);
             }
         }
@@ -231,7 +231,7 @@ namespace OpenTK.Platform.Windows
             {
                 if (value)
                 {
-                    WinApi.PostQuitMessage(0);
+                    API.PostQuitMessage(0);
                     //quit = true;
                 }
             }
@@ -271,7 +271,7 @@ namespace OpenTK.Platform.Windows
         {
             get
             {
-                return !WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
+                return !API.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
             }
         }
 

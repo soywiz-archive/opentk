@@ -53,7 +53,7 @@ namespace OpenTK.Platform.Windows
             // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
             if (dllHandle == IntPtr.Zero)
             {
-                dllHandle = WinApi.LoadLibrary("opengl32.dll");
+                dllHandle = API.LoadLibrary("opengl32.dll");
                 int errorCode = Marshal.GetLastWin32Error();
 
                 if (errorCode != 0)
@@ -67,8 +67,8 @@ namespace OpenTK.Platform.Windows
                 }
             }
 
-            deviceContext = WinApi.GetDC(handle);
-            WinApi.PixelFormatDescriptor pixelFormat = new WinApi.PixelFormatDescriptor();
+            deviceContext = API.GetDC(handle);
+            API.PixelFormatDescriptor pixelFormat = new API.PixelFormatDescriptor();
 
             pixelFormat.ColorBits = (byte)(color.Red + color.Green + color.Blue);
             pixelFormat.RedBits = (byte)color.Red;
@@ -90,29 +90,29 @@ namespace OpenTK.Platform.Windows
 
             if (depthBits <= 0)
             {
-                pixelFormat.Flags |= WinApi.PixelFormatDescriptorFlags.DEPTH_DONTCARE;
+                pixelFormat.Flags |= API.PixelFormatDescriptorFlags.DEPTH_DONTCARE;
             }
 
             if (stereo)
             {
-                pixelFormat.Flags |= WinApi.PixelFormatDescriptorFlags.STEREO;
+                pixelFormat.Flags |= API.PixelFormatDescriptorFlags.STEREO;
             }
 
             if (doublebuffer)
             {
-                pixelFormat.Flags |= WinApi.PixelFormatDescriptorFlags.DOUBLEBUFFER;
+                pixelFormat.Flags |= API.PixelFormatDescriptorFlags.DOUBLEBUFFER;
             }
 
             // TODO: More elaborate mode setting, using DescribePixelFormat.
 
-            int pixel = WinApi.ChoosePixelFormat(deviceContext, pixelFormat);
+            int pixel = API.ChoosePixelFormat(deviceContext, pixelFormat);
 
             if (pixel == 0)
             {
                 throw new Exception("The requested pixel format is not supported by the hardware configuration.");
             }
 
-            WinApi.SetPixelFormat(deviceContext, pixel, pixelFormat);
+            API.SetPixelFormat(deviceContext, pixel, pixelFormat);
 
             renderContext = Wgl.CreateContext(deviceContext);
 
@@ -151,7 +151,7 @@ namespace OpenTK.Platform.Windows
 
         public void SwapBuffers()
         {
-            WinApi.SwapBuffers(deviceContext);
+            API.SwapBuffers(deviceContext);
         }
 
         #endregion
@@ -184,11 +184,11 @@ namespace OpenTK.Platform.Windows
 
             while (!done)
             {
-                WinApi.DeviceMode currentMode = new WinApi.DeviceMode();
-                IntPtr handle = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(WinApi.DeviceMode)));
+                API.DeviceMode currentMode = new API.DeviceMode();
+                IntPtr handle = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(API.DeviceMode)));
                 Marshal.StructureToPtr(currentMode, handle, true);
 
-                done = (WinApi.EnumDisplaySettings(null, index++, handle) != 0) ? false : true;
+                done = (API.EnumDisplaySettings(null, index++, handle) != 0) ? false : true;
                 int error = Marshal.GetLastWin32Error();
 
                 Marshal.PtrToStructure(handle, currentMode);

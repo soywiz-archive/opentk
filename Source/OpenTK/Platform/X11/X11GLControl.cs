@@ -93,7 +93,7 @@ namespace OpenTK.Platform.X11
 
                 ((X11GLContext)context).CreateContext();
 
-                X11Api.MapRaised(display, handleToTopLevelControl);
+                API.MapRaised(display, handleToTopLevelControl);
             }
         }
 
@@ -137,7 +137,7 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                return (X11Api.Pending(IntPtr.Zero) == 0) ? true : false;
+                return (API.Pending(IntPtr.Zero) == 0) ? true : false;
             }
         }
 

@@ -42,7 +42,7 @@ namespace OpenTK.Platform.Windows
 
         #region public void ProcessEvents()
 
-        private WinApi.Message msg;
+        private API.Message msg;
         public void ProcessEvents()
         {
             throw new Exception("The method or operation is not implemented.");
@@ -66,7 +66,7 @@ namespace OpenTK.Platform.Windows
         {
             get
             {
-                return !WinApi.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
+                return !API.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
             }
         }
 

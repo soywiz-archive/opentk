@@ -36,13 +36,13 @@ namespace OpenTK.Platform.X11
         /// </summary>
         public X11GLNative()
         {
-            display = X11Api.OpenDisplay(null); // null == default display
+            display = API.OpenDisplay(null); // null == default display
             if (display == IntPtr.Zero)
             {
                 throw new Exception("Could not open connection to X");
             }
-            screen = X11Api.DefaultScreen(display);
-            rootWindow = X11Api.RootWindow(display, screen);
+            screen = API.DefaultScreen(display);
+            rootWindow = API.RootWindow(display, screen);
             
             ColorDepth color = new ColorDepth(24);
             int depthBits = 16;
@@ -94,7 +94,7 @@ namespace OpenTK.Platform.X11
             wnd_attributes.background_pixel = 0;
             wnd_attributes.border_pixel = 0;
             wnd_attributes.colormap =
-                X11Api.CreateColormap(display, rootWindow, glxVisualInfo.visual, 0/*AllocNone*/);
+                API.CreateColormap(display, rootWindow, glxVisualInfo.visual, 0/*AllocNone*/);
             wnd_attributes.event_mask =
                 EventMask.StructureNotifyMask |
                 EventMask.ExposureMask |
@@ -110,7 +110,7 @@ namespace OpenTK.Platform.X11
             Console.Write("Creating window... ");
 #endif
 
-            window = X11Api.CreateWindow(
+            window = API.CreateWindow(
                 display,
                 rootWindow,
                 0, 0,
@@ -188,10 +188,10 @@ namespace OpenTK.Platform.X11
             Console.WriteLine("ok! (id: {0})", glContext.x11context);
             Console.Out.Flush();
 #endif            
-            X11Api.Free(low_level_glxVisualInfo);
+            API.Free(low_level_glxVisualInfo);
             glxVisualInfo = null;
 
-            X11Api.MapRaised(display, window);
+            API.MapRaised(display, window);
 #if TRACE
             Console.WriteLine("Mapped window.");
             Console.Out.Flush();
@@ -212,9 +212,9 @@ namespace OpenTK.Platform.X11
         private Event e = new Event();
         public void ProcessEvents()
         {
-            while (X11Api.Pending(display) > 0)
+            while (API.Pending(display) > 0)
             {
-                X11Api.NextEvent(display, ref e);
+                API.NextEvent(display, ref e);
                 switch (e.type)
                 {
                     case EventType.CreateNotify:
@@ -320,8 +320,8 @@ namespace OpenTK.Platform.X11
         public void Dispose()
         {
             glContext.Destroy();
-            X11Api.DestroyWindow(display, window);
-            X11Api.CloseDisplay(display);
+            API.DestroyWindow(display, window);
+            API.CloseDisplay(display);
         }
 
         #endregion
@@ -345,7 +345,7 @@ namespace OpenTK.Platform.X11
                 e.xResizeRequest.display = this.display;
                 e.xResizeRequest.width = value;
                 e.xResizeRequest.height = mode.Height;
-                X11Api.SendEvent(
+                API.SendEvent(
                     this.display,
                     this.window,
                     false,
@@ -374,7 +374,7 @@ namespace OpenTK.Platform.X11
                 e.xResizeRequest.display = this.display;
                 e.xResizeRequest.width = mode.Width;
                 e.xResizeRequest.height = value;
-                X11Api.SendEvent(
+                API.SendEvent(
                     this.display,
                     this.window,
                     false,
