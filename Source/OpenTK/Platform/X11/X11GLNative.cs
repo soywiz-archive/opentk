@@ -33,7 +33,8 @@ namespace OpenTK.Platform.X11
         // Low level X11 resize request
         private X11.Event xresize = new Event();
         // Event used for event loop.
-        private Event e;// = new Event();
+        private Event e; // = new Event();
+        int pending = 0; // Number of pending events.
 
         //private int width, height;
 
@@ -223,7 +224,6 @@ namespace OpenTK.Platform.X11
 
         #region public void ProcessEvents()
 
-        int pending;
         public void ProcessEvents()
         {
             // Process all pending events
