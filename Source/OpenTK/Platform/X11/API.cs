@@ -573,12 +573,13 @@ XF86VidModeGetGammaRampSize(
             pad = new int[24];
         }*/
 
-        [FieldOffset(0)]internal EventType type;
-        [FieldOffset(0)]internal AnyEvent xany;
-        [FieldOffset(0)]internal KeyEvent xkey;
-        [FieldOffset(0)]internal DestroyWindowEvent xDestroyWindow;
-        [FieldOffset(0)]internal CreateWindowEvent xCreateWindow;
-        [FieldOffset(0)]internal ResizeRequestEvent xResizeRequest;
+        [FieldOffset(0)]internal EventType Type;
+        [FieldOffset(0)]internal AnyEvent Any;
+        [FieldOffset(0)]internal KeyEvent Key;
+        [FieldOffset(0)]internal DestroyWindowEvent DestroyWindow;
+        [FieldOffset(0)]internal CreateWindowEvent CreateWindow;
+        [FieldOffset(0)]internal ResizeRequestEvent ResizeRequest;
+        [FieldOffset(0)]internal ResizeRequestEvent ConfigureNotify;
         [FieldOffset(0)][MarshalAs(UnmanagedType.SysInt)]
         int pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
             pad7 , pad8 , pad9 , pad10, pad11, pad12,
@@ -670,18 +671,40 @@ XF86VidModeGetGammaRampSize(
 
     #endregion
 
-    #region XResizeRequestEvent 
+    #region XResizeRequestEvent
 
     [StructLayout(LayoutKind.Sequential)]
     internal struct ResizeRequestEvent
     {
         internal EventType type;	/* ResizeRequest */
-	    internal ulong serial;	/* # of last request processed by server */
+	    internal ulong serial;	    /* # of last request processed by server */
         [MarshalAs(UnmanagedType.Bool)]
 	    internal bool send_event;	/* true if this came from a SendEvent request */
 	    internal Display display;	/* Display the event was read from */
 	    internal Window window;
 	    internal int width, height;
+    }
+
+    #endregion
+
+    #region XConfigureNotifyEvent
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct ConfigureNotifyEvent
+    {
+        internal EventType type;	        /* ConfigureNotify */
+        internal ulong serial;	/* # of last request processed by server */
+        [MarshalAs(UnmanagedType.Bool)]
+	    internal bool send_event;	/* true if this came from a SendEvent request */
+        internal Display display;	/* Display the event was read from */
+        internal Window @event;
+        internal Window window;
+        internal int x, y;
+        internal int width, height;
+        internal int border_width;
+        internal Window above;
+        [MarshalAs(UnmanagedType.Bool)]
+        internal bool override_redirect;
     }
 
     #endregion

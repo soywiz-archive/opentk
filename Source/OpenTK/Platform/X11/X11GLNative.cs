@@ -234,16 +234,16 @@ namespace OpenTK.Platform.X11
                     return;
                 API.NextEvent(display, out e);
                 
-                Console.WriteLine("Event: {0} ({1} pending)", e.type, pending);
+                Console.WriteLine("Event: {0} ({1} pending)", e.Type, pending);
                 Console.Out.Flush();
 
                 // Respond to the event e
-                switch (e.type)
+                switch (e.Type)
                 {
                     case EventType.CreateNotify:
                         // Window creation event
-                        mode.Width = e.xCreateWindow.width;
-                        mode.Height = e.xCreateWindow.height;
+                        mode.Width = e.CreateWindow.width;
+                        mode.Height = e.CreateWindow.height;
                         this.OnCreate(EventArgs.Empty);
                         Console.WriteLine(
                                 "OnCreate fired: {0}x{1}",
@@ -263,7 +263,7 @@ namespace OpenTK.Platform.X11
                     /*
                     case EventType.ResizeRequest:
                         // If the window size changed, raise the C# Resize event.
-                        if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)
+                        if (e.ResizeRequest.width != mode.Width || e.ResizeRequest.height != mode.Height)
                         {
                             Console.WriteLine(
                                 "New res: {0}x{1}",
@@ -272,14 +272,30 @@ namespace OpenTK.Platform.X11
                             );
                             Console.Out.Flush();
 
-                            resizeEventArgs.Width = e.xResizeRequest.width;
-                            resizeEventArgs.Height = e.xResizeRequest.height;
+                            resizeEventArgs.Width = e.ResizeRequest.width;
+                            resizeEventArgs.Height = e.ResizeRequest.height;
                             this.OnResize(resizeEventArgs);
                         }
                         break;
                     */
                     
-                    //case EventType.ConfigureNotify:
+                    case EventType.ConfigureNotify:
+                        // If the window size changed, raise the C# Resize event.
+                        if (e.ConfigureNotify.width != mode.Width ||
+                            e.ConfigureNotify.height != mode.Height)
+                        {
+                            Console.WriteLine(
+                                "New res: {0}x{1}",
+                                e.ConfigureNotify.width,
+                                e.ConfigureNotify.height
+                            );
+                            Console.Out.Flush();
+
+                            resizeEventArgs.Width = e.ConfigureNotify.width;
+                            resizeEventArgs.Height = e.ConfigureNotify.height;
+                            this.OnResize(resizeEventArgs);
+                        }
+                        break;
                         
                 }
             }
@@ -375,10 +391,10 @@ namespace OpenTK.Platform.X11
                 // Clear event struct
                 //Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
-                xresize.xResizeRequest.type = EventType.ResizeRequest;
-                xresize.xResizeRequest.display = this.display;
-                xresize.xResizeRequest.width = value;
-                xresize.xResizeRequest.height = mode.Width;
+                xresize.ResizeRequest.type = EventType.ResizeRequest;
+                xresize.ResizeRequest.display = this.display;
+                xresize.ResizeRequest.width = value;
+                xresize.ResizeRequest.height = mode.Width;
                 API.SendEvent(
                     this.display,
                     this.window,
@@ -404,10 +420,10 @@ namespace OpenTK.Platform.X11
                 // Clear event struct
                 //Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
-                xresize.xResizeRequest.type = EventType.ResizeRequest;
-                xresize.xResizeRequest.display = this.display;
-                xresize.xResizeRequest.width = mode.Width;
-                xresize.xResizeRequest.height = value;
+                xresize.ResizeRequest.type = EventType.ResizeRequest;
+                xresize.ResizeRequest.display = this.display;
+                xresize.ResizeRequest.width = mode.Width;
+                xresize.ResizeRequest.height = value;
                 API.SendEvent(
                     this.display,
                     this.window,
