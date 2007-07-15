@@ -565,17 +565,22 @@ XF86VidModeGetGammaRampSize(
     [StructLayout(LayoutKind.Explicit)]
     internal struct Event
     {
+        internal Event()
+        {
+            pad = new int[24];
+        }
+
         [FieldOffset(0)]internal EventType type;
         [FieldOffset(0)]internal AnyEvent xany;
         [FieldOffset(0)]internal KeyEvent xkey;
         [FieldOffset(0)]internal DestroyWindowEvent xDestroyWindow;
         [FieldOffset(0)]internal CreateWindowEvent xCreateWindow;
         [FieldOffset(0)]internal ResizeRequestEvent xResizeRequest;
-        //[FieldOffset(0)][MarshalAs(UnmanagedType.SysInt)]
-        //int pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
-        //    pad7 , pad8 , pad9 , pad10, pad11, pad12,
-        //    pad13, pad14, pad15, pad16, pad17, pad18,
-        //    pad19, pad20, pad21, pad22, pad23, pad24;
+        /*[FieldOffset(0)][MarshalAs(UnmanagedType.SysInt)]
+        int pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
+            pad7 , pad8 , pad9 , pad10, pad11, pad12,
+            pad13, pad14, pad15, pad16, pad17, pad18,
+            pad19, pad20, pad21, pad22, pad23, pad24;*/
         [FieldOffset(0)]
         [MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.SysInt, SizeConst = 24)]
         internal int[] pad;
