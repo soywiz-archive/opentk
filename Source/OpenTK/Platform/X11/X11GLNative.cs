@@ -29,7 +29,9 @@ namespace OpenTK.Platform.X11
         // C# ResizeEventArgs
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
         // Low level X11 resize request
-        private X11.Event xresize;
+        private X11.Event xresize = new Event();
+        // Event used for event loop.
+        private Event e = new Event();
 
         //private int width, height;
 
@@ -214,12 +216,11 @@ namespace OpenTK.Platform.X11
 
         #region public void DoEvents()
 
-        private Event e;
         public void ProcessEvents()
         {
             while (API.Pending(display) > 0)
             {
-                API.NextEvent(display, out e);
+                API.NextEvent(display, e);
                 switch (e.type)
                 {
                     case EventType.CreateNotify:
