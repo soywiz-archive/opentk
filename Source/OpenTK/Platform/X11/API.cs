@@ -36,9 +36,9 @@ namespace OpenTK.Platform.X11
 
     #endregion
 
-    #region internal static class X11Api
+    #region internal static class API
 
-    internal static class X11Api
+    internal static class API
     {
         private const string _dll_name = "libX11";
         private const string _dll_name_vid = "libXxf86vm";

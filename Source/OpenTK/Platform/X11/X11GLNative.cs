@@ -24,7 +24,7 @@ namespace OpenTK.Platform.X11
         private IntPtr rootWindow;
         private IntPtr window;
 
-        private DisplayMode mode;
+        private DisplayMode mode = new DisplayMode();
 
         //private int width, height;
 

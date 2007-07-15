@@ -19,7 +19,7 @@ namespace OpenTK.Platform.Windows
     sealed class WinGLNative : NativeWindow, OpenTK.Platform.IGLWindow, IDisposable
     {
         private WinGLContext glContext;
-        private OpenTK.Platform.DisplayMode mode;
+        private DisplayMode mode = new DisplayMode();
 
         #region --- Contructors ---
 

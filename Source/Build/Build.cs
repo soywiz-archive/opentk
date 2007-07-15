@@ -149,6 +149,7 @@ namespace OpenTK.Build
                     case BuildTarget.Mono:
                         Console.WriteLine("Building OpenTK using Mono.");
                         ExecuteProcess(PrebuildPath, "/target nant /file " + PrebuildXml);
+                        Console.WriteLine();
                         ExecuteProcess("nant", "-t:mono-2.0");
                         CopyBinaries();
                         break;
@@ -156,6 +157,7 @@ namespace OpenTK.Build
                     case BuildTarget.Net:
                         Console.WriteLine("Building OpenTK using .Net");
                         ExecuteProcess(PrebuildPath, "/target nant /file " + PrebuildXml);
+                        Console.WriteLine();
                         ExecuteProcess("nant", "-t:net-2.0");
                         CopyBinaries();
                         break;
@@ -337,7 +339,12 @@ namespace OpenTK.Build
 
         static void p_OutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            Console.WriteLine(e.Data);
+            if (!String.IsNullOrEmpty(e.Data))
+            {
+                // Eat the last \n, we use WriteLine instead. This way we get the same result
+                // in both windows and linux (linux would interpret both \n and WriteLine).
+                Console.WriteLine(e.Data.TrimEnd('\n'));
+            }
         }
     }
 }

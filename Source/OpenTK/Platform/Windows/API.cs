@@ -37,7 +37,7 @@ namespace OpenTK.Platform.Windows
     /// For internal use by OpenTK only!
     /// Exposes useful native WINAPI methods and structures.
     /// </summary>
-    internal static class WinApi
+    internal static class API
     {
         #region Constants
 
