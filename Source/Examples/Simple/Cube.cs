@@ -26,7 +26,7 @@ namespace Examples
 
             window.UpdateFrameNotify += new OpenTK.Platform.UpdateFrameEvent(window_UpdateFrameNotify);
             window.RenderFrameNotify += new OpenTK.Platform.RenderFrameEvent(window_RenderFrameNotify);
-            window.ResizeNotify += new OpenTK.Platform.ResizeEvent<OpenTK.Platform.IGLWindow>(window_ResizeNotify);
+            window.Resize += new OpenTK.Platform.ResizeEvent(window_Resize);
 
             window.Context.MakeCurrent();
             /*
@@ -38,10 +38,10 @@ namespace Examples
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
 
-            this.window_ResizeNotify(null, new ResizeEventArgs(window.Width, window.Height));
+            this.window_Resize(null, new ResizeEventArgs(window.Width, window.Height));
         }
 
-        void window_ResizeNotify(OpenTK.Platform.IGLWindow sender, OpenTK.Platform.ResizeEventArgs e)
+        void window_Resize(object sender, OpenTK.Platform.ResizeEventArgs e)
         {
             GL.Viewport(0, 0, e.Width, e.Height);
 

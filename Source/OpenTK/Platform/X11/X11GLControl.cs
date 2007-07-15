@@ -195,7 +195,15 @@ namespace OpenTK.Platform.X11
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public event ResizeEvent<X11GLControl> Resize;
+        public event ResizeEvent Resize;
+
+        private void OnResize(ResizeEventArgs e)
+        {
+            if (this.Resize != null)
+                this.Resize(this, e);
+
+            throw new NotImplementedException();
+        }
 
         #endregion
     }

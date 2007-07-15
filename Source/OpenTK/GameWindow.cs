@@ -35,8 +35,7 @@ namespace OpenTK
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                     Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                //glWindow = new OpenTK.Platform.X11.X11GLNative();
-                throw new NotImplementedException();
+                glWindow = new OpenTK.Platform.X11.X11GLNative();
             }
             else
             {
@@ -48,13 +47,18 @@ namespace OpenTK
             // When the glWindow construction is complete, hook the resize events.
             resizeEventArgs.Width = this.Width;
             resizeEventArgs.Height = this.Height;
-            glWindow.ResizeNotify += new ResizeEvent<IGLWindow>(glWindow_ResizeNotify);
-            //this.Resize(resizeEventArgs);
+            glWindow.Resize += new ResizeEvent(glWindow_Resize);
+            glWindow.Create += new CreateEvent(glWindow_Create);
         }
 
-        void glWindow_CreateNotify(IGLWindow sender, EventArgs e)
+        void glWindow_Create(object sender, EventArgs e)
         {
+            this.OnCreate(e);
+        }
 
+        void glWindow_Resize(object sender, ResizeEventArgs e)
+        {
+            this.OnResize(e);
         }
 
         #endregion
@@ -101,7 +105,7 @@ namespace OpenTK
 
         #endregion
 
-        #region IGameWindow Members
+        #region --- IGameWindow Members ---
 
         /// <summary>
         /// Runs a default game loop on the GameWindow.
@@ -133,6 +137,20 @@ namespace OpenTK
             glWindow.ProcessEvents();
         }
 
+        #region public event CreateEvent Create;
+
+        public event CreateEvent Create;
+
+        private void OnCreate(EventArgs e)
+        {
+            if (this.Create != null)
+            {
+                this.Create(this, e);
+            }
+        }
+
+        #endregion
+
         public virtual void RenderFrame()
         {
             if (RenderFrameNotify != null)
@@ -150,17 +168,7 @@ namespace OpenTK
 
         #endregion
 
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            glWindow.Dispose();
-            glWindow = null;
-        }
-
-        #endregion
-
-        #region IResizable Members
+        #region --- IResizable Members ---
 
         #region public int Width, Height
 
@@ -175,9 +183,7 @@ namespace OpenTK
                 }
                 else if (value > 0)
                 {
-                    resizeEventArgs.Width = value;
-                    resizeEventArgs.Height = this.Height;
-                    glWindow.Resize(resizeEventArgs);
+                    glWindow.Width = value;
                 }
                 else
                 {
@@ -201,9 +207,7 @@ namespace OpenTK
                 }
                 else if (value > 0)
                 {
-                    resizeEventArgs.Width = this.Width;
-                    resizeEventArgs.Height = value;
-                    glWindow.Resize(resizeEventArgs);
+                    glWindow.Height = value;
                 }
                 else
                 {
@@ -218,26 +222,31 @@ namespace OpenTK
 
         #endregion
 
-        #region public event ResizeEvent<IGLWindow> ResizeNotify;
+        #region public event ResizeEvent Resize;
 
-        public event ResizeEvent<IGLWindow> ResizeNotify;
-
-        void glWindow_ResizeNotify(IGLWindow sender, ResizeEventArgs e)
-        {
-            this.Resize(e);
-        }
+        public event ResizeEvent Resize;
 
         /// <summary>
-        /// Raises the ResizeNotify event.
+        /// Raises the Resize event.
         /// </summary>
         /// <param name="e">Contains the new Width and Height of the window.</param>
-        public virtual void Resize(ResizeEventArgs e)
+        protected virtual void OnResize(ResizeEventArgs e)
         {
-            if (this.ResizeNotify != null)
-                this.ResizeNotify(this, e);
+            if (this.Resize != null)
+                this.Resize(this, e);
         }
 
         #endregion
+
+        #endregion
+
+        #region --- IDisposable Members ---
+
+        public void Dispose()
+        {
+            glWindow.Dispose();
+            glWindow = null;
+        }
 
         #endregion
     }

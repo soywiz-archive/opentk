@@ -135,12 +135,17 @@ namespace OpenTK.Platform
                         // If the size has changed, raise the ResizeEvent.
                         resizeEventArgs.Width = width;
                         resizeEventArgs.Height = height;
-                        this.Resize(resizeEventArgs);
+                        this.OnResize(resizeEventArgs);
                         // The message was processed.
                         return;
                     }
                     // If the message was not a resize notification, send it to the default WndProc.
                     break;
+
+                case WinApi.Constants.WM_CREATE:
+                    // Raise the Create event
+                    this.OnCreate(EventArgs.Empty);
+                    return;
 
                 case WinApi.Constants.WM_KEYDOWN:
                 case WinApi.Constants.WM_KEYUP:
@@ -182,6 +187,20 @@ namespace OpenTK.Platform
             {
                 WinApi.GetMessage(out msg, IntPtr.Zero, 0, 0);
                 WndProc(ref msg);
+            }
+        }
+
+        #endregion
+
+        #region public event CreateEvent Create;
+
+        public event CreateEvent Create;
+
+        private void OnCreate(EventArgs e)
+        {
+            if (this.Create != null)
+            {
+                this.Create(this, e);
             }
         }
 
@@ -293,15 +312,15 @@ namespace OpenTK.Platform
 
         #endregion
 
-        #region public void Resize(int width, int height)
-        public event ResizeEvent<IGLWindow> ResizeNotify;
+        #region public event ResizeEvent Resize
+        public event ResizeEvent Resize;
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
-        public void Resize(ResizeEventArgs e)
+        public void OnResize(ResizeEventArgs e)
         {
             width = e.Width;
             height = e.Height;
-            if (this.ResizeNotify != null)
-                this.ResizeNotify(this, e);
+            if (this.Resize != null)
+                this.Resize(this, e);
         }
 
         #endregion

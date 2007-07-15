@@ -963,7 +963,12 @@ namespace OpenTK.Platform
 
         internal class WindowProcedureEventArgs : EventArgs
         {
-            internal Message Msg;
+            private Message msg;
+            internal Message Message
+            {
+                get { return msg; }
+                set { msg = value; }
+            }
         }
 
         #endregion

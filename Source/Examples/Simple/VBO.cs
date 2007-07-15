@@ -102,7 +102,7 @@ namespace Examples
             angle += 0.5f;
         }
 
-        public override void Resize(OpenTK.Platform.ResizeEventArgs e)
+        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
             //base.Resize(e);
 

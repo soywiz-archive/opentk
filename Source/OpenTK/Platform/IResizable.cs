@@ -4,16 +4,15 @@ using System.Text;
 
 namespace OpenTK.Platform
 {
-    public interface IResizable<T>
+    public interface IResizable
     {
         int Height { get; set; }
         int Width { get; set; }
 
-        void Resize(ResizeEventArgs e);
-        event ResizeEvent<T> ResizeNotify;
+        event ResizeEvent Resize;
     }
 
-    public delegate void ResizeEvent<T>(T sender, ResizeEventArgs e);
+    public delegate void ResizeEvent(object sender, ResizeEventArgs e);
     
     public class ResizeEventArgs : EventArgs
     {

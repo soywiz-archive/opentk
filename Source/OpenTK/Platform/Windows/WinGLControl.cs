@@ -134,11 +134,11 @@ namespace OpenTK.Platform
 
         #endregion
 
-        #region public void Resize(int width, int height)
+        #region public event ResizeEvent Resize
 
-        public event ResizeEvent<WinGLControl> ResizeNotify;
+        public event ResizeEvent Resize;
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
-        public void Resize(int width, int height)
+        public void OnResize(int width, int height)
         {
             throw new Exception("The method or operation is not implemented.");
         }

@@ -14,14 +14,14 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Platform.X11
 {
-    sealed class X11GLNative : /*OpenTK.Platform.IGLWindow,*/ IDisposable
+    sealed class X11GLNative : OpenTK.Platform.IGLWindow, IDisposable
     {
         private X11GLContext glContext;
 
         private IntPtr display;
-        int screen;
-        IntPtr rootWindow;
-        IntPtr window;
+        private int screen;
+        private IntPtr rootWindow;
+        private IntPtr window;
 
         #region --- Public Constructors ---
 
@@ -202,6 +202,39 @@ namespace OpenTK.Platform.X11
 
         #region --- IGLWindow Members ---
 
+        #region public void DoEvents()
+
+        private Event e;
+        public void ProcessEvents()
+        {
+            while (X11Api.Pending(display) > 0)
+            {
+                X11Api.NextEvent(display, out e);
+                switch (e.type)
+                {
+                case EventType.DestroyNotify:
+                    quit = true;
+                    return;
+                }
+            }
+        }
+
+        #endregion
+
+        #region public event CreateEvent Create;
+
+        public event CreateEvent Create;
+
+        private void OnCreate(EventArgs e)
+        {
+            if (this.Create != null)
+            {
+                this.Create(this, e);
+            }
+        }
+
+        #endregion
+
         #region public bool Quit
 
         private bool quit;
@@ -259,25 +292,6 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region public void DoEvents()
-
-        private Event e;
-        public void ProcessEvents()
-        {
-            //while (X11Api.Pending(display) > 0)
-            {
-                //X11Api.NextEvent(display, out e);
-                //switch (e.type)
-                //{
-                    //case EventType.DestroyNotify:
-                    //    quit = true;
-                    //    return;
-                //}
-            }
-        }
-
-        #endregion
-
         #endregion
 
         #region --- IDisposable Members ---
@@ -325,13 +339,16 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region public void Resize
+        #region public event ResizeEvent Resize
 
-        public event ResizeEvent<IGLWindow> ResizeNotify;
+        public event ResizeEvent Resize;
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
-        public void Resize(ResizeEventArgs e)
+        private void OnResize(ResizeEventArgs e)
         {
-            throw new Exception("The method or operation is not implemented.");
+            if (this.Resize != null)
+            {
+                this.Resize(this, e);
+            }
         }
 
         #endregion
