@@ -129,7 +129,7 @@ namespace OpenTK.Platform.X11
 
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XNextEvent")]
-        extern internal static void NextEvent(Display display, [Out] Event e);
+        extern internal static void NextEvent(Display display, out Event e);
 
         [DllImport(_dll_name, EntryPoint = "XSendEvent")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -566,7 +566,7 @@ XF86VidModeGetGammaRampSize(
     #region XEvent
 
     [StructLayout(LayoutKind.Explicit)]
-    internal class Event
+    internal struct Event
     {
         /*internal Event()
         {

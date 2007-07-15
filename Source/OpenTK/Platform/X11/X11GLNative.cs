@@ -17,6 +17,8 @@ namespace OpenTK.Platform.X11
 {
     sealed class X11GLNative : OpenTK.Platform.IGLWindow, IDisposable
     {
+        #region --- Private Fields ---
+
         private X11GLContext glContext;
 
         private IntPtr display;
@@ -31,9 +33,11 @@ namespace OpenTK.Platform.X11
         // Low level X11 resize request
         private X11.Event xresize = new Event();
         // Event used for event loop.
-        private Event e = new Event();
+        private Event e;// = new Event();
 
         //private int width, height;
+
+        #endregion
 
         #region --- Public Constructors ---
 
@@ -217,16 +221,20 @@ namespace OpenTK.Platform.X11
 
         #region --- IGLWindow Members ---
 
-        #region public void DoEvents()
+        #region public void ProcessEvents()
 
         public void ProcessEvents()
-        {/*
+        {
+            // Process all pending events
             while (API.Pending(display) > 0)
             {
-                API.NextEvent(display, e);
+                API.NextEvent(display, out e);
+
+                // Respond to the event e
                 switch (e.type)
                 {
                     case EventType.CreateNotify:
+                        // Window creation event
                         mode.Width = e.xCreateWindow.width;
                         mode.Height = e.xCreateWindow.height;
                         this.OnCreate(EventArgs.Empty);
@@ -235,15 +243,18 @@ namespace OpenTK.Platform.X11
                                 mode.Width,
                                 mode.Height
                             );
+                        Console.Out.Flush();
                         return;
 
                     case EventType.DestroyNotify:
+                        // Window destruction event
                         quit = true;
+                        Console.WriteLine("Window destroyed");
+                        Console.Out.Flush();
                         return;
 
-
                     case EventType.ResizeRequest:
-                        // If the window size changed, raise the Resize event.
+                        // If the window size changed, raise the C# Resize event.
                         if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)
                         {
                             Console.WriteLine(
@@ -251,13 +262,15 @@ namespace OpenTK.Platform.X11
                                 e.xResizeRequest.width,
                                 e.xResizeRequest.height
                             );
+                            Console.Out.Flush();
+
                             resizeEventArgs.Width = e.xResizeRequest.width;
                             resizeEventArgs.Height = e.xResizeRequest.height;
                             this.OnResize(resizeEventArgs);
                         }
                         return;
                 }
-            }*/
+            }
         }
 
         #endregion
