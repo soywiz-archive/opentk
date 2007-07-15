@@ -198,7 +198,7 @@ namespace OpenTK.Platform.X11
 #endif
             glContext.MakeCurrent();
 #if TRACE
-            Console.WriteLine("Made our shiny new context current! Ready to rock and roll.");
+            Console.WriteLine("Our shiny new context is now current - ready to rock 'n' roll!");
             Console.Out.Flush();
 #endif
         }
@@ -214,7 +214,7 @@ namespace OpenTK.Platform.X11
         {
             while (API.Pending(display) > 0)
             {
-                API.NextEvent(display, ref e);
+                /*API.NextEvent(display, ref e);
                 switch (e.type)
                 {
                     case EventType.CreateNotify:
@@ -236,7 +236,7 @@ namespace OpenTK.Platform.X11
                             this.OnResize(resizeEventArgs);
                         }
                         return;
-                }
+                }*/
             }
         }
 
