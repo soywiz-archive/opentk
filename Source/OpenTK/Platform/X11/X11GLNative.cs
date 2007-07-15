@@ -223,12 +223,19 @@ namespace OpenTK.Platform.X11
 
         #region public void ProcessEvents()
 
+        int pending;
         public void ProcessEvents()
         {
             // Process all pending events
-            while (API.Pending(display) > 0)
+            while (true)
             {
+                pending = API.Pending(display);
+                if (pending == 0)
+                    return;
                 API.NextEvent(display, out e);
+                
+                Console.WriteLine("Event: {0} ({1} pending)", e.type, pending);
+                Console.Out.Flush();
 
                 // Respond to the event e
                 switch (e.type)
@@ -244,15 +251,16 @@ namespace OpenTK.Platform.X11
                                 mode.Height
                             );
                         Console.Out.Flush();
-                        return;
+                        break;
 
                     case EventType.DestroyNotify:
                         // Window destruction event
                         quit = true;
                         Console.WriteLine("Window destroyed");
                         Console.Out.Flush();
-                        return;
-
+                        break;
+                        
+                    /*
                     case EventType.ResizeRequest:
                         // If the window size changed, raise the C# Resize event.
                         if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)
@@ -268,7 +276,11 @@ namespace OpenTK.Platform.X11
                             resizeEventArgs.Height = e.xResizeRequest.height;
                             this.OnResize(resizeEventArgs);
                         }
-                        return;
+                        break;
+                    */
+                    
+                    //case EventType.ConfigureNotify:
+                        
                 }
             }
         }
