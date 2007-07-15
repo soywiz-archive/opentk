@@ -150,7 +150,9 @@ namespace OpenTK.Build
                         Console.WriteLine("Building OpenTK using Mono.");
                         ExecuteProcess(PrebuildPath, "/target nant /file " + PrebuildXml);
                         Console.WriteLine();
-                        ExecuteProcess("nant", "-t:mono-2.0");
+                        ExecuteProcess(
+                            "nant",
+                            "-t:mono-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
                         CopyBinaries();
                         break;
 
@@ -158,7 +160,9 @@ namespace OpenTK.Build
                         Console.WriteLine("Building OpenTK using .Net");
                         ExecuteProcess(PrebuildPath, "/target nant /file " + PrebuildXml);
                         Console.WriteLine();
-                        ExecuteProcess("nant", "-t:net-2.0");
+                        ExecuteProcess(
+                            "nant",
+                            "-t:net-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
                         CopyBinaries();
                         break;
 
