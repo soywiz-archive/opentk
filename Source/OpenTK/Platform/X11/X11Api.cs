@@ -567,6 +567,8 @@ XF86VidModeGetGammaRampSize(
         [FieldOffset(0)]internal EventType type;
         [FieldOffset(0)]internal AnyEvent xany;
         [FieldOffset(0)]internal KeyEvent xkey;
+        [FieldOffset(0)]internal DestroyWindowEvent xDestroyWindow;
+        [FieldOffset(0)]internal CreateWindowEvent xCreateWindow;
         [FieldOffset(0)]
         [MarshalAs(UnmanagedType.SysInt)]
         int
@@ -616,6 +618,43 @@ XF86VidModeGetGammaRampSize(
 	    internal uint keycode;	/* detail */
         [MarshalAs(UnmanagedType.Bool)]
 	    internal bool same_screen;	/* same screen flag */
+    }
+
+    #endregion
+
+    #region XDestroyWindowEvent
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct DestroyWindowEvent
+    {
+        internal int type;		    /* DestroyNotify */
+        internal ulong serial;	    /* # of last request processed by server */
+	    [MarshalAs(UnmanagedType.Bool)]
+        internal bool send_event;	/* true if this came from a SendEvent request */
+        internal Display display;	/* Display the event was read from */
+        internal Window @event;
+        internal Window window;
+    }
+
+    #endregion
+
+    #region XCreateWindowEvent
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct CreateWindowEvent
+    {
+	    internal int type;		/* CreateNotify */
+        internal ulong serial;	/* # of last request processed by server */
+        [MarshalAs(UnmanagedType.Bool)]
+        internal bool send_event;	/* true if this came from a SendEvent request */
+        internal Display display;	/* Display the event was read from */
+        internal Window parent;		/* parent of the window */
+        internal Window window;		/* window id of window created */
+        internal int x, y;		/* window location */
+        internal int width, height;	/* size of window */
+        internal int border_width;	/* border width */
+        [MarshalAs(UnmanagedType.Bool)]
+        internal bool override_redirect;	/* creation should be overridden */
     }
 
     #endregion

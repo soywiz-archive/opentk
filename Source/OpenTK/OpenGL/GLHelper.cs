@@ -146,7 +146,7 @@ namespace OpenTK.OpenGL
                     // WGL?
                     try
                     {
-                        result = Wgl.GetProcAddress(name);
+                        result = OpenTK.Platform.Windows.Wgl.GetProcAddress(name);
                         platform = Platform.Windows;
                         return result;
                     }
@@ -166,7 +166,7 @@ namespace OpenTK.OpenGL
                     // X11?
                     try
                     {
-                        result = Glx.GetProcAddress(name);
+                        result = OpenTK.Platform.X11.Glx.GetProcAddress(name);
                         platform = Platform.X11;
                         return result;
                     }
@@ -190,13 +190,13 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
 ");
 
                 case Platform.Windows:
-                    return Wgl.GetProcAddress(name);
+                    return OpenTK.Platform.Windows.Wgl.GetProcAddress(name);
 
                 case Platform.OSX:
                     return aglGetProcAddress(name);
 
                 case Platform.X11:
-                    return Glx.GetProcAddress(name);
+                    return OpenTK.Platform.X11.Glx.GetProcAddress(name);
 
                 case Platform.X11_ARB:
                     return glxGetProcAddressARB(name);

@@ -14,12 +14,12 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace OpenTK.Platform
+namespace OpenTK.Platform.Windows
 {
     sealed class WinGLNative : NativeWindow, OpenTK.Platform.IGLWindow, IDisposable
     {
-        WinGLContext glContext;
-        OpenTK.Platform.DisplayMode mode;
+        private WinGLContext glContext;
+        private OpenTK.Platform.DisplayMode mode;
 
         #region --- Contructors ---
 
@@ -57,7 +57,7 @@ namespace OpenTK.Platform
             cp.Caption = "OpenTK Game Window";
             base.CreateHandle(cp);
 
-            glContext = new OpenTK.Platform.WinGLContext(
+            glContext = new WinGLContext(
                 this.Handle,
                 new ColorDepth(32),
                 new ColorDepth(0),
@@ -119,6 +119,11 @@ namespace OpenTK.Platform
         #region protected override void WndProc(ref Message m)
 
         /// <summary>
+        /// For use in WndProc only.
+        /// </summary>
+        private int width, height;
+
+        /// <summary>
         /// Processes incoming WM_* messages.
         /// </summary>
         /// <param name="m">Reference to the incoming Windows Message.</param>
@@ -130,7 +135,8 @@ namespace OpenTK.Platform
                     // Get window size
                     width = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.WindowPosition), "cx"));
                     height = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.WindowPosition), "cy"));
-                    if (resizeEventArgs.Width != width || resizeEventArgs.Height != height)
+                    //if (resizeEventArgs.Width != width || resizeEventArgs.Height != height)
+                    if (mode.Width != width || mode.Height != height)
                     {
                         // If the size has changed, raise the ResizeEvent.
                         resizeEventArgs.Width = width;
@@ -143,8 +149,17 @@ namespace OpenTK.Platform
                     break;
 
                 case WinApi.Constants.WM_CREATE:
+                    // Set the window width and height:
+                    mode.Width = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.CreateStruct), "cx"));
+                    mode.Height = Marshal.ReadInt32(m.LParam, (int)Marshal.OffsetOf(typeof(WinApi.CreateStruct), "cy"));
+                    
                     // Raise the Create event
                     this.OnCreate(EventArgs.Empty);
+
+                    // Raise the resize event:
+                    //resizeEventArgs.Width = width;
+                    //resizeEventArgs.Height = height;
+                    //this.OnResize(resizeEventArgs);
                     return;
 
                 case WinApi.Constants.WM_KEYDOWN:
@@ -278,7 +293,6 @@ namespace OpenTK.Platform
 
         #region public int Width
 
-        private int width;
         public int Width
         {
             get
@@ -296,7 +310,6 @@ namespace OpenTK.Platform
 
         #region public int Height
 
-        private int height;
         public int Height
         {
             get
@@ -317,8 +330,8 @@ namespace OpenTK.Platform
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
         public void OnResize(ResizeEventArgs e)
         {
-            width = e.Width;
-            height = e.Height;
+            mode.Width = e.Width;
+            mode.Height = e.Height;
             if (this.Resize != null)
                 this.Resize(this, e);
         }

@@ -9,8 +9,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using OpenTK.OpenGL;
 using System.Runtime.InteropServices;
+
+//using OpenTK.OpenGL;
 
 namespace OpenTK.Platform.X11
 {
@@ -22,6 +23,10 @@ namespace OpenTK.Platform.X11
         private int screen;
         private IntPtr rootWindow;
         private IntPtr window;
+
+        private DisplayMode mode;
+
+        //private int width, height;
 
         #region --- Public Constructors ---
 
@@ -124,7 +129,7 @@ namespace OpenTK.Platform.X11
             }
 
 #if TRACE
-            Console.WriteLine("ok! (id: {0}", window);
+            Console.WriteLine("ok! (id: {0})", window);
             Console.Out.Flush();
 #endif
 
@@ -212,9 +217,19 @@ namespace OpenTK.Platform.X11
                 X11Api.NextEvent(display, out e);
                 switch (e.type)
                 {
-                case EventType.DestroyNotify:
-                    quit = true;
-                    return;
+                    case EventType.CreateNotify:
+                        mode.Width = e.xCreateWindow.width;
+                        mode.Height = e.xCreateWindow.height;
+                        this.OnCreate(EventArgs.Empty);
+                        return;
+
+                    case EventType.DestroyNotify:
+                        quit = true;
+                        return;
+
+                    case EventType.ResizeRequest:
+                        throw new NotImplementedException();
+                        return;
                 }
             }
         }

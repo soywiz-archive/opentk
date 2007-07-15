@@ -14,17 +14,17 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace OpenTK.Platform
+namespace OpenTK.Platform.Windows
 {
     sealed class WinGLControl// : OpenTK.Platform.IGLWindow
     {
-        private OpenTK.Platform.WinGLContext glContext;
+        private WinGLContext glContext;
 
         #region --- Constructors ---
 
         public WinGLControl(Control c, int width, int height, bool fullscreen)
         {
-            glContext = new OpenTK.Platform.WinGLContext(
+            glContext = new WinGLContext(
                 c.Handle,
                 new ColorDepth(32),
                 new ColorDepth(0),

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace OpenTK.OpenGL
+namespace OpenTK.Platform.Windows
 {
     /// <summary>
     /// Provides access to WGL functions.

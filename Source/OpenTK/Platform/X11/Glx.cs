@@ -9,9 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
-using OpenTK.Platform.X11;
 
-namespace OpenTK.OpenGL
+namespace OpenTK.Platform.X11
 {
     #region Types
     using GLsizeiptrARB = System.IntPtr;

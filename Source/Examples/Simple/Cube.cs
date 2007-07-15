@@ -27,6 +27,7 @@ namespace Examples
             window.UpdateFrameNotify += new OpenTK.Platform.UpdateFrameEvent(window_UpdateFrameNotify);
             window.RenderFrameNotify += new OpenTK.Platform.RenderFrameEvent(window_RenderFrameNotify);
             window.Resize += new OpenTK.Platform.ResizeEvent(window_Resize);
+            window.Create += new CreateEvent(window_Create);
 
             window.Context.MakeCurrent();
             /*
@@ -39,6 +40,11 @@ namespace Examples
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
 
             this.window_Resize(null, new ResizeEventArgs(window.Width, window.Height));
+        }
+
+        void window_Create(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         void window_Resize(object sender, OpenTK.Platform.ResizeEventArgs e)

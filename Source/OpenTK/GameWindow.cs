@@ -30,7 +30,7 @@ namespace OpenTK
             {
                 // Create a new Windows native window. We want to be notified when it's ready,
                 // in order to do some preparatory work.
-                glWindow = new OpenTK.Platform.WinGLNative();
+                glWindow = new OpenTK.Platform.Windows.WinGLNative();
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                     Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
