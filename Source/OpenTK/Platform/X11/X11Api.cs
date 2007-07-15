@@ -126,15 +126,16 @@ namespace OpenTK.Platform.X11
 
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XNextEvent")]
-        extern internal static void NextEvent(Display display, out Event e);
+        extern internal static void NextEvent(Display display, ref Event e);
 
         [DllImport(_dll_name, EntryPoint = "XSendEvent")]
-        extern internal static int SendEvent(
+        [return: MarshalAs(UnmanagedType.Bool)]
+        extern internal static bool SendEvent(
             Display display,
             Window window,
             bool propagate,
             [MarshalAs(UnmanagedType.SysInt)]
-            long event_mask,
+            EventMask event_mask,
             ref Event event_send
         );
 
@@ -569,13 +570,15 @@ XF86VidModeGetGammaRampSize(
         [FieldOffset(0)]internal KeyEvent xkey;
         [FieldOffset(0)]internal DestroyWindowEvent xDestroyWindow;
         [FieldOffset(0)]internal CreateWindowEvent xCreateWindow;
+        [FieldOffset(0)]internal ResizeRequestEvent xResizeRequest;
+        //[FieldOffset(0)][MarshalAs(UnmanagedType.SysInt)]
+        //int pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
+        //    pad7 , pad8 , pad9 , pad10, pad11, pad12,
+        //    pad13, pad14, pad15, pad16, pad17, pad18,
+        //    pad19, pad20, pad21, pad22, pad23, pad24;
         [FieldOffset(0)]
-        [MarshalAs(UnmanagedType.SysInt)]
-        int
-            pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
-            pad7 , pad8 , pad9 , pad10, pad11, pad12,
-            pad13, pad14, pad15, pad16, pad17, pad18,
-            pad19, pad20, pad21, pad22, pad23, pad24;
+        [MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.SysInt, SizeConst = 24)]
+        internal int[] pad;
     }
 
     #endregion
@@ -655,6 +658,22 @@ XF86VidModeGetGammaRampSize(
         internal int border_width;	/* border width */
         [MarshalAs(UnmanagedType.Bool)]
         internal bool override_redirect;	/* creation should be overridden */
+    }
+
+    #endregion
+
+    #region XResizeRequestEvent 
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct ResizeRequestEvent
+    {
+	    internal int type;	/* ResizeRequest */
+	    internal ulong serial;	/* # of last request processed by server */
+        [MarshalAs(UnmanagedType.Bool)]
+	    internal bool send_event;	/* true if this came from a SendEvent request */
+	    internal Display display;	/* Display the event was read from */
+	    internal Window window;
+	    internal int width, height;
     }
 
     #endregion

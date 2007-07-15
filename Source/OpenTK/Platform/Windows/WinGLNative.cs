@@ -301,8 +301,12 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
-                mode.Width = value;
-                // Call to resize window?
+                throw new NotImplementedException();
+                //WinApi.PostMessage(
+                //    this.Handle,
+                //    WinApi.Constants.WM_WINDOWPOSCHANGING,
+
+                //mode.Width = value;
             }
         }
 
@@ -318,8 +322,12 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
-                mode.Height = value;
-                // Call to resize window?
+                throw new NotImplementedException();
+                //WinApi.PostMessage(
+                //    this.Handle,
+                //    WinApi.Constants.WM_WINDOWPOSCHANGING,
+
+                //mode.Height = value;
             }
         }
 

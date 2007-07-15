@@ -209,12 +209,12 @@ namespace OpenTK.Platform.X11
 
         #region public void DoEvents()
 
-        private Event e;
+        private Event e = new Event();
         public void ProcessEvents()
         {
             while (X11Api.Pending(display) > 0)
             {
-                X11Api.NextEvent(display, out e);
+                X11Api.NextEvent(display, ref e);
                 switch (e.type)
                 {
                     case EventType.CreateNotify:
@@ -228,7 +228,13 @@ namespace OpenTK.Platform.X11
                         return;
 
                     case EventType.ResizeRequest:
-                        throw new NotImplementedException();
+                        // If the window size changed, raise the Resize event.
+                        if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)
+                        {
+                            resizeEventArgs.Width = e.xResizeRequest.width;
+                            resizeEventArgs.Height = e.xResizeRequest.height;
+                            this.OnResize(resizeEventArgs);
+                        }
                         return;
                 }
             }
@@ -328,11 +334,24 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                throw new Exception("The method or operation is not implemented.");
+                return mode.Width;
             }
             set
             {
-                throw new Exception("The method or operation is not implemented.");
+                // Clear event struct
+                Array.Clear(e.pad, 0, e.pad.Length);
+                // Set requested parameters
+                e.type = EventType.ResizeRequest;
+                e.xResizeRequest.display = this.display;
+                e.xResizeRequest.width = value;
+                e.xResizeRequest.height = mode.Height;
+                X11Api.SendEvent(
+                    this.display,
+                    this.window,
+                    false,
+                    EventMask.StructureNotifyMask,
+                    ref e
+                );
             }
         }
 
@@ -344,11 +363,24 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                throw new Exception("The method or operation is not implemented.");
+                return mode.Height;
             }
             set
             {
-                throw new Exception("The method or operation is not implemented.");
+                // Clear event struct
+                Array.Clear(e.pad, 0, e.pad.Length);
+                // Set requested parameters
+                e.type = EventType.ResizeRequest;
+                e.xResizeRequest.display = this.display;
+                e.xResizeRequest.width = mode.Width;
+                e.xResizeRequest.height = value;
+                X11Api.SendEvent(
+                    this.display,
+                    this.window,
+                    false,
+                    EventMask.StructureNotifyMask,
+                    ref e
+                );
             }
         }
 
@@ -360,6 +392,8 @@ namespace OpenTK.Platform.X11
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
         private void OnResize(ResizeEventArgs e)
         {
+            mode.Width = e.Width;
+            mode.Height = e.Height;
             if (this.Resize != null)
             {
                 this.Resize(this, e);

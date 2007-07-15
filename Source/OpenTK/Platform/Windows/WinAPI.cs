@@ -26,6 +26,10 @@ namespace OpenTK.Platform.Windows
     using LONG = System.Int32;
     using LPCTSTR = System.String;
     using DWORD = System.Int32;
+    using BOOL = System.Boolean;
+    using UINT = System.UInt32;
+    using WPARAM = System.IntPtr;
+    using LPARAM = System.IntPtr;
 
     #endregion
 
@@ -208,11 +212,25 @@ namespace OpenTK.Platform.Windows
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool GetMessage(
+        internal static extern BOOL GetMessage(
             out System.Windows.Forms.Message msg,
             IntPtr windowHandle,
             int messageFilterMin,
             int messageFilterMax
+        );
+
+        #endregion
+
+        #region PostMessage
+
+        [System.Security.SuppressUnmanagedCodeSecurity]
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern BOOL PostMessage(
+            HWND hWnd,
+            UINT Msg,
+            WPARAM wParam,
+            LPARAM lParam
         );
 
         #endregion
