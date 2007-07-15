@@ -40,6 +40,9 @@ namespace OpenTK.Platform.X11
 
     internal static class API
     {
+        // Prevent BeforeFieldInit optimization.
+        static API() { }
+
         private const string _dll_name = "libX11";
         private const string _dll_name_vid = "libXxf86vm";
 

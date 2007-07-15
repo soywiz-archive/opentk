@@ -39,6 +39,9 @@ namespace OpenTK.Platform.Windows
     /// </summary>
     internal static class API
     {
+        // Prevent BeforeFieldInit optimization.
+        static API() { }
+
         #region Constants
 
         internal struct Constants
