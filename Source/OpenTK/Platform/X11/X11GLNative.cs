@@ -43,6 +43,9 @@ namespace OpenTK.Platform.X11
         /// </summary>
         public X11GLNative()
         {
+            mode.Width = 640;
+            mode.Height = 480;
+        
             display = API.OpenDisplay(null); // null == default display
             if (display == IntPtr.Zero)
             {
@@ -217,7 +220,7 @@ namespace OpenTK.Platform.X11
         #region public void DoEvents()
 
         public void ProcessEvents()
-        {
+        {/*
             while (API.Pending(display) > 0)
             {
                 API.NextEvent(display, e);
@@ -227,22 +230,33 @@ namespace OpenTK.Platform.X11
                         mode.Width = e.xCreateWindow.width;
                         mode.Height = e.xCreateWindow.height;
                         this.OnCreate(EventArgs.Empty);
+                        Console.WriteLine(
+                                "OnCreate fired: {0}x{1}",
+                                mode.Width,
+                                mode.Height
+                            );
                         return;
 
                     case EventType.DestroyNotify:
                         quit = true;
                         return;
+
                     case EventType.ResizeRequest:
                         // If the window size changed, raise the Resize event.
                         if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)
                         {
+                            Console.WriteLine(
+                                "New res: {0}x{1}",
+                                e.xResizeRequest.width,
+                                e.xResizeRequest.height
+                            );
                             resizeEventArgs.Width = e.xResizeRequest.width;
                             resizeEventArgs.Height = e.xResizeRequest.height;
                             this.OnResize(resizeEventArgs);
                         }
                         return;
                 }
-            }
+            }*/
         }
 
         #endregion

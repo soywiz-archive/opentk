@@ -15,40 +15,20 @@ using Enums = OpenTK.OpenGL.Enums;
 
 namespace Examples
 {
-    class Cube
+    class Cube : OpenTK.GameWindow
     {
-        GameWindow window;
-
         public Cube()
         {
-            window = new GameWindow();
-            window.Context.MakeCurrent();
-
-            window.UpdateFrameNotify += new OpenTK.Platform.UpdateFrameEvent(window_UpdateFrameNotify);
-            window.RenderFrameNotify += new OpenTK.Platform.RenderFrameEvent(window_RenderFrameNotify);
-            window.Resize += new OpenTK.Platform.ResizeEvent(window_Resize);
-            window.Create += new CreateEvent(window_Create);
-
-            window.Context.MakeCurrent();
-            /*
-            window.Text =
-                GL.GetString(Enums.StringName.VENDOR) + " " +
-                GL.GetString(Enums.StringName.RENDERER) + " " +
-                GL.GetString(Enums.StringName.VERSION);
-            */
+            Context.MakeCurrent();
+        
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
-
-            this.window_Resize(null, new ResizeEventArgs(window.Width, window.Height));
         }
 
-        void window_Create(object sender, EventArgs e)
+        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
-            //throw new NotImplementedException();
-        }
+            base.OnResize(e);
 
-        void window_Resize(object sender, OpenTK.Platform.ResizeEventArgs e)
-        {
             GL.Viewport(0, 0, e.Width, e.Height);
 
             double ratio = 0.0;
@@ -59,16 +39,21 @@ namespace Examples
             Glu.Perspective(45.0, ratio, 1.0, 64.0);
         }
 
-        void window_RenderFrameNotify(EventArgs e)
+        public override void RenderFrame()
         {
-            Render();
+            GL.Clear(Enums.ClearBufferMask.COLOR_BUFFER_BIT | Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
+
+            DrawCube();
+
+            Context.SwapBuffers();
         }
 
-        void window_UpdateFrameNotify(EventArgs e)
+        float angle = 0.0f;
+        public override void UpdateFrame()
         {
             if (Key.Escape)
             {
-                window.Quit = true;
+                Quit = true;
                 return;
             }
 
@@ -83,49 +68,6 @@ namespace Examples
             GL.Rotatef(angle, 0.0f, 1.0f, 0.0f);
             angle += 0.5f;
         }
-
-        #region public void Run()
-
-        public void Run()
-        {
-            window.Run();
-        }
-
-        #endregion
-
-        #region protected void Render()
-
-        float angle = 0.0f;
-        protected void Render()
-        {
-            GL.Clear(Enums.ClearBufferMask.COLOR_BUFFER_BIT | Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
-
-            DrawCube();
-
-            window.Context.SwapBuffers();
-        }
-
-        #endregion
-
-        #region KeyDown event handler
-        /*
-        void Cube_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Alt && e.Shift)
-            {
-                //this.SetResolution(this.Width, this.Height, this.ColorDepth, !this.IsFullscreen);
-                glControl.Fullscreen = !glControl.Fullscreen;
-            }
-
-            switch (e.KeyData)
-            {
-                case Keys.Escape:
-                    Application.Exit();
-                    break;
-            }
-        }
-        */
-        #endregion
 
         #region protected void DrawCube()
 
