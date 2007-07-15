@@ -42,8 +42,11 @@ namespace OpenTK.Platform.X11
     /// <summary>
     /// Provides access to GLX functions.
     /// </summary>
-    public class Glx
+    internal static class Glx
     {
+        // Disable BeforeFieldInit optimization.
+        static Glx() { }
+
         const string _dll_name = "libGL.so.1";
 
         #region Enums

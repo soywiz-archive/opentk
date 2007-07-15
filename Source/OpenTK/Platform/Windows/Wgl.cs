@@ -15,8 +15,11 @@ namespace OpenTK.Platform.Windows
     /// <summary>
     /// Provides access to WGL functions.
     /// </summary>
-    public class Wgl
+    internal static class Wgl
     {
+        // Disable BeforeFieldInit optimization.
+        static Wgl() { }
+
         const string _dll_name = "OPENGL32.DLL";
 
         /// <summary>

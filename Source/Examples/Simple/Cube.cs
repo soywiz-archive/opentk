@@ -44,7 +44,7 @@ namespace Examples
 
         void window_Create(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void window_Resize(object sender, OpenTK.Platform.ResizeEventArgs e)
