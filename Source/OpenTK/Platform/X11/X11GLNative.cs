@@ -1,5 +1,3 @@
-﻿#define TRACE
-
 #region --- License ---
 /* Copyright (c) 2007 Stephen Apostolopoulos
  * See license.txt for license info
@@ -10,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 //using OpenTK.OpenGL;
 
@@ -28,13 +27,20 @@ namespace OpenTK.Platform.X11
 
         private DisplayMode mode = new DisplayMode();
 
+        // Number of pending events.
+        private int pending = 0;
         // C# ResizeEventArgs
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
         // Low level X11 resize request
         private X11.Event xresize = new Event();
+        // This is never written in the code. If at some point it gets != 0,
+        // then memory corruption is taking place from the xresize struct.
+        int memGuard1 = 0;
         // Event used for event loop.
         private Event e; // = new Event();
-        int pending = 0; // Number of pending events.
+        // This is never written in the code. If at some point it gets != 0,
+        // then memory corruption is taking place from the xresize struct.
+        int memGuard2 = 0;
 
         //private int width, height;
 
@@ -48,6 +54,14 @@ namespace OpenTK.Platform.X11
         /// </summary>
         public X11GLNative()
         {
+            System.Diagnostics.Debug.Listeners.Clear();
+            System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            System.Diagnostics.Debug.AutoFlush = true;
+            System.Diagnostics.Trace.Listeners.Clear();
+            System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            System.Diagnostics.Trace.AutoFlush = true;
+            
+        
             mode.Width = 640;
             mode.Height = 480;
         
@@ -78,16 +92,11 @@ namespace OpenTK.Platform.X11
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
 
-#if TRACE
-            Console.Write(
-                "Requesting visual: {0} (RGBA: {1}{2}{3}{4})... ",
-                color.ToString(),
-                color.Red,
-                color.Green,
-                color.Blue,
-                color.Alpha);
-            Console.Out.Flush();
-#endif
+            Trace.Write(
+                "Requesting visual: " + color.ToString() +
+                " (RGBA: " +
+                color.Red.ToString() + color.Green.ToString() + color.Blue.ToString() + color.Alpha.ToString() +
+                "...)");
             
             IntPtr low_level_glxVisualInfo =
                 Glx.ChooseVisual(display, screen, visualAttributes.ToArray());
@@ -98,10 +107,7 @@ namespace OpenTK.Platform.X11
             VisualInfo glxVisualInfo =
                 (VisualInfo)Marshal.PtrToStructure(low_level_glxVisualInfo, typeof(VisualInfo));
 
-#if TRACE
-            Console.WriteLine("ok!");
-            Console.Out.Flush();
-#endif
+            Trace.WriteLine("ok!");
 
             // Create a window on this display using the visual above
             SetWindowAttributes wnd_attributes = new SetWindowAttributes();
@@ -121,9 +127,7 @@ namespace OpenTK.Platform.X11
                 CreateWindowMask.CWColormap |
                 CreateWindowMask.CWEventMask;
 
-#if TRACE
-            Console.Write("Creating window... ");
-#endif
+            Trace.Write("Creating window... ");
 
             window = API.CreateWindow(
                 display,
@@ -143,10 +147,9 @@ namespace OpenTK.Platform.X11
                 throw new Exception("Could not create window.");
             }
 
-#if TRACE
-            Console.WriteLine("ok! (id: {0})", window);
-            Console.Out.Flush();
-#endif
+            Trace.WriteLine("ok! (id: " + window + ")");
+            
+            Trace.Assert(0 != 0);
 
             // Set the window hints
             /*
@@ -169,9 +172,8 @@ namespace OpenTK.Platform.X11
             );
             */
 
-#if TRACE
-            Console.Write("Creating OpenGL context... ");
-#endif
+            Trace.Write("Creating OpenGL context... ");
+
             // Create the GLX context with the specified parameters
             glContext = new X11GLContext();
             glContext.handle = window;
@@ -199,23 +201,18 @@ namespace OpenTK.Platform.X11
                 throw new Exception("Could not create GLX Context");
             }
 
-#if TRACE
-            Console.WriteLine("ok! (id: {0})", glContext.x11context);
-            Console.Out.Flush();
-#endif            
+            Trace.WriteLine("ok! (id: " + glContext.x11context + ")");
+        
             API.Free(low_level_glxVisualInfo);
             glxVisualInfo = null;
 
             API.MapRaised(display, window);
-#if TRACE
-            Console.WriteLine("Mapped window.");
-            Console.Out.Flush();
-#endif
+
+            Trace.WriteLine("Mapped window.");
+
             glContext.MakeCurrent();
-#if TRACE
-            Console.WriteLine("Our shiny new context is now current - ready to rock 'n' roll!");
-            Console.Out.Flush();
-#endif
+
+            Trace.WriteLine("Our shiny new context is now current - ready to rock 'n' roll!");
         }
 
         #endregion
@@ -230,9 +227,14 @@ namespace OpenTK.Platform.X11
             while (true)
             {
                 pending = API.Pending(display);
+                
+                Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
+                
                 if (pending == 0)
                     return;
+                
                 API.NextEvent(display, out e);
+                Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
                 
                 Console.WriteLine("Event: {0} ({1} pending)", e.Type, pending);
                 Console.Out.Flush();
@@ -251,6 +253,7 @@ namespace OpenTK.Platform.X11
                                 mode.Height
                             );
                         Console.Out.Flush();
+                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
                         break;
 
                     case EventType.DestroyNotify:
@@ -295,6 +298,7 @@ namespace OpenTK.Platform.X11
                             resizeEventArgs.Height = e.ConfigureNotify.height;
                             this.OnResize(resizeEventArgs);
                         }
+                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
                         break;
                         
                 }
