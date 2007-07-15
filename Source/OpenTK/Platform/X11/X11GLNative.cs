@@ -224,15 +224,14 @@ namespace OpenTK.Platform.X11
                 switch (e.type)
                 {
                     case EventType.CreateNotify:
-                        //mode.Width = e.xCreateWindow.width;
-                        //mode.Height = e.xCreateWindow.height;
-                        //this.OnCreate(EventArgs.Empty);
+                        mode.Width = e.xCreateWindow.width;
+                        mode.Height = e.xCreateWindow.height;
+                        this.OnCreate(EventArgs.Empty);
                         return;
 
                     case EventType.DestroyNotify:
                         quit = true;
                         return;
-                    /*
                     case EventType.ResizeRequest:
                         // If the window size changed, raise the Resize event.
                         if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)
@@ -242,7 +241,6 @@ namespace OpenTK.Platform.X11
                             this.OnResize(resizeEventArgs);
                         }
                         return;
-                   */
                 }
             }
         }
