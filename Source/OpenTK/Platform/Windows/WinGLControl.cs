@@ -92,7 +92,7 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
-                fullscreen = fullscreen;
+                throw new NotImplementedException();
             }
         }
 

@@ -335,7 +335,7 @@ namespace OpenTK.Platform.X11
             set
             {
                 // Clear event struct
-                Array.Clear(xresize.pad, 0, xresize.pad.Length);
+                //Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
                 xresize.xResizeRequest.type = EventType.ResizeRequest;
                 xresize.xResizeRequest.display = this.display;
@@ -364,7 +364,7 @@ namespace OpenTK.Platform.X11
             set
             {
                 // Clear event struct
-                Array.Clear(xresize.pad, 0, xresize.pad.Length);
+                //Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
                 xresize.xResizeRequest.type = EventType.ResizeRequest;
                 xresize.xResizeRequest.display = this.display;
