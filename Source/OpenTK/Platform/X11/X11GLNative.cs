@@ -241,6 +241,7 @@ namespace OpenTK.Platform.X11
                         quit = true;
                         return;
 
+
                     case EventType.ResizeRequest:
                         // If the window size changed, raise the Resize event.
                         if (e.xResizeRequest.width != mode.Width || e.xResizeRequest.height != mode.Height)

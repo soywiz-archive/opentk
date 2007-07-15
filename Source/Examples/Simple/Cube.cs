@@ -23,6 +23,8 @@ namespace Examples
         
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
+
+            this.OnResize(new ResizeEventArgs(this.Width, this.Height));
         }
 
         protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
