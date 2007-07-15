@@ -1,4 +1,4 @@
-#region --- License ---
+﻿#region --- License ---
 /* Copyright (c) 2007 Stephen Apostolopoulos
  * See license.txt for license info
  */
@@ -60,7 +60,6 @@ namespace OpenTK.Platform.X11
             System.Diagnostics.Trace.Listeners.Clear();
             System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
             System.Diagnostics.Trace.AutoFlush = true;
-            
         
             mode.Width = 640;
             mode.Height = 480;
@@ -227,17 +226,19 @@ namespace OpenTK.Platform.X11
             while (true)
             {
                 pending = API.Pending(display);
-                
-                Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
+
+                // Check whether memory was corrupted by the previous call.
+                Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
                 
                 if (pending == 0)
                     return;
                 
                 API.NextEvent(display, out e);
-                Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
+
+                // Check whether memory was corrupted by the previous call.
+                Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
                 
-                Console.WriteLine("Event: {0} ({1} pending)", e.Type, pending);
-                Console.Out.Flush();
+                Debug.WriteLine(String.Format("Event: {0} ({1} pending)", e.Type, pending));
 
                 // Respond to the event e
                 switch (e.Type)
@@ -247,20 +248,16 @@ namespace OpenTK.Platform.X11
                         mode.Width = e.CreateWindow.width;
                         mode.Height = e.CreateWindow.height;
                         this.OnCreate(EventArgs.Empty);
-                        Console.WriteLine(
-                                "OnCreate fired: {0}x{1}",
-                                mode.Width,
-                                mode.Height
-                            );
-                        Console.Out.Flush();
-                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
+                        Debug.WriteLine(
+                            String.Format("OnCreate fired: {0}x{1}", mode.Width, mode.Height)
+                        );
+                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
                         break;
 
                     case EventType.DestroyNotify:
                         // Window destruction event
                         quit = true;
-                        Console.WriteLine("Window destroyed");
-                        Console.Out.Flush();
+                        Debug.WriteLine("Window destroyed");
                         break;
                         
                     /*
@@ -287,18 +284,19 @@ namespace OpenTK.Platform.X11
                         if (e.ConfigureNotify.width != mode.Width ||
                             e.ConfigureNotify.height != mode.Height)
                         {
-                            Console.WriteLine(
-                                "New res: {0}x{1}",
-                                e.ConfigureNotify.width,
-                                e.ConfigureNotify.height
+                            Debug.WriteLine(
+                                String.Format(
+                                    "New res: {0}x{1}",
+                                    e.ConfigureNotify.width,
+                                    e.ConfigureNotify.height
+                                )
                             );
-                            Console.Out.Flush();
 
                             resizeEventArgs.Width = e.ConfigureNotify.width;
                             resizeEventArgs.Height = e.ConfigureNotify.height;
                             this.OnResize(resizeEventArgs);
                         }
-                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped");
+                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
                         break;
                         
                 }
