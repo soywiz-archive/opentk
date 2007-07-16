@@ -37,8 +37,13 @@ namespace OpenTK.Platform.X11
         // then memory corruption is taking place from the xresize struct.
         int memGuard1 = 0;
         // Event used for event loop.
-        private IntPtr eventPtr = new IntPtr();
-        private Event e;// = new Event();
+        private IntPtr eventPtr;
+        private Event e = new Event();
+        private ConfigureNotifyEvent configure = new ConfigureNotifyEvent();
+        private ReparentNotifyEvent reparent = new ReparentNotifyEvent();
+        private ExposeEvent expose = new ExposeEvent();
+        private CreateWindowEvent createWindow = new CreateWindowEvent();
+        private DestroyWindowEvent destroyWindow = new DestroyWindowEvent();
         // This is never written in the code. If at some point it gets != 0,
         // then memory corruption is taking place from the xresize struct.
         int memGuard2 = 0;
@@ -229,24 +234,32 @@ namespace OpenTK.Platform.X11
                 if (pending == 0)
                     return;
                 
-                API.NextEvent(display, out e);
+                //API.NextEvent(display, e);
+                API.PeekEvent(display, e);
                 //API.NextEvent(display, eventPtr);
-
-                //e = (Event)Marshal.PtrToStructure(eventPtr, typeof(Event));
-                //EVentType type = 
-
-                Debug.WriteLine(String.Format("Event: {0} ({1} pending)", e.Type, pending));
+                                
+                              
+                 Debug.WriteLine(String.Format("Event: {0} ({1} pending)", e.Type, pending));
+                //Debug.WriteLine(String.Format("Event: {0} ({1} pending)", eventPtr, pending));
 
                 // Check whether memory was corrupted by the NextEvent call.
                 Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
+                memGuard2 = 0;
 
                 // Respond to the event e
                 switch (e.Type)
                 {
+                    case EventType.ReparentNotify:
+                        API.NextEvent(display, reparent);
+                        // Do nothing
+                        break;
+
                     case EventType.CreateNotify:
-                        // Window creation event
-                        mode.Width = e.CreateWindow.width;
-                        mode.Height = e.CreateWindow.height;
+                        API.NextEvent(display, createWindow);
+                        
+                        // Set window width/height
+                        mode.Width = createWindow.width;
+                        mode.Height = createWindow.height;
                         this.OnCreate(EventArgs.Empty);
                         Debug.WriteLine(
                             String.Format("OnCreate fired: {0}x{1}", mode.Width, mode.Height)
@@ -254,31 +267,37 @@ namespace OpenTK.Platform.X11
                         break;
 
                     case EventType.DestroyNotify:
-                        // Window destruction event
+                        API.NextEvent(display, destroyWindow);
                         quit = true;
-                        Debug.WriteLine("Window destroyed");
+                        Debug.WriteLine("Window destroyed, shutting down.");
                         break;
                         
                      
                     case EventType.ConfigureNotify:
+                        API.NextEvent(display, configure);
+                        
                         // If the window size changed, raise the C# Resize event.
-                        if (e.ConfigureNotify.width != mode.Width ||
-                            e.ConfigureNotify.height != mode.Height)
+                        if (configure.width != mode.Width ||
+                            configure.height != mode.Height)
                         {
                             Debug.WriteLine(
                                 String.Format(
                                     "New res: {0}x{1}",
-                                    e.ConfigureNotify.width,
-                                    e.ConfigureNotify.height
+                                    configure.width,
+                                    configure.height
                                 )
                             );
 
-                            resizeEventArgs.Width = e.ConfigureNotify.width;
-                            resizeEventArgs.Height = e.ConfigureNotify.height;
+                            resizeEventArgs.Width = configure.width;
+                            resizeEventArgs.Height = configure.height;
                             this.OnResize(resizeEventArgs);
                         }
                         break;
                         
+                    default:
+                        API.NextEvent(display, e);
+                        Debug.WriteLine(String.Format("{0} event was not handled", e.Type));
+                        break;
                 }
             }
         }
@@ -369,7 +388,7 @@ namespace OpenTK.Platform.X11
                 return mode.Width;
             }
             set
-            {
+            {/*
                 // Clear event struct
                 //Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
@@ -383,7 +402,7 @@ namespace OpenTK.Platform.X11
                     false,
                     EventMask.StructureNotifyMask,
                     ref xresize
-                );
+                );*/
             }
         }
 
@@ -398,7 +417,7 @@ namespace OpenTK.Platform.X11
                 return mode.Height;
             }
             set
-            {
+            {/*
                 // Clear event struct
                 //Array.Clear(xresize.pad, 0, xresize.pad.Length);
                 // Set requested parameters
@@ -412,7 +431,7 @@ namespace OpenTK.Platform.X11
                     false,
                     EventMask.StructureNotifyMask,
                     ref xresize
-                );
+                );*/
             }
         }
 

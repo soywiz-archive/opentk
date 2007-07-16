@@ -129,10 +129,16 @@ namespace OpenTK.Platform.X11
 
         //[System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XNextEvent")]
-        extern internal static void NextEvent(Display display, [Out] out Event e);
+        extern internal static void NextEvent(Display display, [MarshalAs(UnmanagedType.AsAny)][In, Out]object e);
         
-                [DllImport(_dll_name, EntryPoint = "XNextEvent")]
+        [DllImport(_dll_name, EntryPoint = "XNextEvent")]
         extern internal static void NextEvent(Display display, [In, Out] IntPtr e);
+        
+        [DllImport(_dll_name, EntryPoint = "XPeekEvent")]
+        extern internal static void PeekEvent(
+            Display display,
+            [MarshalAs(UnmanagedType.AsAny)][In, Out]object event_return
+        );
 
         [DllImport(_dll_name, EntryPoint = "XSendEvent")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -568,33 +574,39 @@ XF86VidModeGetGammaRampSize(
 
     #region XEvent
 
-    [StructLayout(LayoutKind.Explicit)]
-    internal struct Event
+    [StructLayout(LayoutKind.Sequential)]
+    //[StructLayout(LayoutKind.Explicit)]
+    internal class Event
     {
-        /*internal Event()
-        {
-            pad = new int[24];
-        }*/
-
-        [FieldOffset(0)]internal EventType Type;
-        [FieldOffset(0)]internal AnyEvent Any;
-        [FieldOffset(0)]internal KeyEvent Key;
-        [FieldOffset(0)]internal DestroyWindowEvent DestroyWindow;
-        [FieldOffset(0)]internal CreateWindowEvent CreateWindow;
-        [FieldOffset(0)]internal ResizeRequestEvent ResizeRequest;
-        [FieldOffset(0)]internal ConfigureNotifyEvent ConfigureNotify;
-        [FieldOffset(0)]internal ReparentNotifyEvent ReparentNotify;
-        [FieldOffset(0)]internal ExposeEvent Expose;
-                
-        [FieldOffset(0)]
+        internal EventType Type;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
+        /*[FieldOffset(0)]internal EventType Type;*/
+        /*[FieldOffset(0)]
         IntPtr
             pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
             pad7 , pad8 , pad9 , pad10, pad11, pad12,
             pad13, pad14, pad15, pad16, pad17, pad18,
-            pad19, pad20, pad21, pad22, pad23, pad24;
-        //[FieldOffset(0)]
-        //[MarshalAs(UnmanagedType.ByValArray, ArraySubType=UnmanagedType.SysInt, SizeConst = 24)]
-        //internal int[] pad;
+            pad19, pad20, pad21, pad22, pad23, pad24;*/
+            
+        /*private ConfigureNotifyEvent cne = new ConfigureNotifyEvent();
+        internal ConfigureNotifyEvent ConfigureEvent
+        {
+            get
+            {
+                cne.type = this.Type;
+                cne.serial = this.pad1;
+            }
+        }*/
+       
+        //[FieldOffset(0)]internal AnyEvent Any;
+        //[FieldOffset(0)]internal KeyEvent Key;
+        //[FieldOffset(0)]internal DestroyWindowEvent DestroyWindow;
+        //[FieldOffset(0)]internal CreateWindowEvent CreateWindow;
+        //[FieldOffset(0)]internal ResizeRequestEvent ResizeRequest;
+        //[FieldOffset(0)]internal ConfigureNotifyEvent ConfigureNotify;
+        //[FieldOffset(0)]internal ReparentNotifyEvent ReparentNotify;
+        //[FieldOffset(0)]internal ExposeEvent Expose;
     }
 
     #endregion
@@ -605,8 +617,8 @@ XF86VidModeGetGammaRampSize(
     internal struct AnyEvent
     {
         internal EventType type;
-	    [MarshalAs(UnmanagedType.SysUInt)]
-        internal ulong serial;	/* # of last request processed by server */
+	    //[MarshalAs(UnmanagedType.SysUInt)]
+        internal IntPtr serial;	/* # of last request processed by server */
 	    [MarshalAs(UnmanagedType.Bool)]
         internal bool send_event;	/* true if this came from a SendEvent request */
 	    internal Display display;	/* Display the event was read from */
@@ -697,7 +709,7 @@ XF86VidModeGetGammaRampSize(
     #region XConfigureNotifyEvent
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct ConfigureNotifyEvent
+    internal struct ConfigureNotifyEvent// : Event
     {
         internal EventType type;	        /* ConfigureNotify */
         internal ulong serial;	/* # of last request processed by server */
@@ -719,18 +731,19 @@ XF86VidModeGetGammaRampSize(
     #region XReparentNotifyEvent
     
     [StructLayout(LayoutKind.Sequential)]
-    struct ReparentNotifyEvent
+    internal struct ReparentNotifyEvent// : Event
     {
     	internal EventType type;               /* ReparentNotify */
-    	internal ulong serial;	/* # of last request processed by server */
-    	[MarshalAs(UnmanagedType.Bool)]
+        //[MarshalAs(UnmanagedType.SysUInt)]
+    	internal IntPtr serial;	/* # of last request processed by server */
+    	//[MarshalAs(UnmanagedType.Bool)]
     	internal bool send_event;	/* true if this came from a SendEvent request */
     	internal Display display;	/* Display the event was read from */
     	internal Window @event;
     	internal Window window;
     	internal Window parent;
     	internal int x, y;
-    	[MarshalAs(UnmanagedType.Bool)]
+    	//[MarshalAs(UnmanagedType.Bool)]
     	internal bool override_redirect;
     }
     
