@@ -102,17 +102,17 @@
 
     </Project>
 
-    <Project name="Examples" path=".\Source\Examples\Simple" language="C#" type="WinExe">
+    <Project name="Examples" path=".\Source\Examples" language="C#" type="WinExe">
 
       <Configuration name="Debug">
         <Options>
-          <OutputPath>..\..\..\Binaries\Debug\Examples</OutputPath>
+          <OutputPath>..\..\Binaries\Debug\Examples</OutputPath>
         </Options>
       </Configuration>
 
       <Configuration name="Release">
         <Options>
-          <OutputPath>..\..\..\Binaries\Release\Examples</OutputPath>
+          <OutputPath>..\..\Binaries\Release\Examples</OutputPath>
         </Options>
       </Configuration>
 

@@ -15,7 +15,7 @@ using OpenTK.OpenGL;
 
 namespace OpenTK.Platform.Windows
 {
-    class WinGLContext : OpenTK.Platform.IGLContext, IDisposable
+    public class WinGLContext : OpenTK.Platform.IGLContext, IDisposable
     {
         IntPtr deviceContext;
         IntPtr renderContext;

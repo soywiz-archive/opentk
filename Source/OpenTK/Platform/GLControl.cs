@@ -24,7 +24,7 @@ namespace OpenTK.Platform
     /// <summary>
     /// 
     /// </summary>
-    public partial class GLControl : UserControl, /*IGLWindow,*/ IDisposable
+    public partial class GLControl : UserControl, IGLWindow, IDisposable
     {
         #region --- Private Fields ---
 
@@ -259,6 +259,20 @@ namespace OpenTK.Platform
         {
             throw new Exception("The method or operation is not implemented.");
         }
+
+        #endregion
+
+        #region IGLWindow Members
+
+
+        public event CreateEvent Create;
+
+        #endregion
+
+        #region IResizable Members
+
+
+        public new event ResizeEvent Resize;
 
         #endregion
     }
