@@ -293,7 +293,7 @@ namespace OpenTK.Platform.X11
                             this.OnResize(resizeEventArgs);
                         }
                         break;
-                        
+
                     default:
                         API.NextEvent(display, e);
                         Debug.WriteLine(String.Format("{0} event was not handled", e.Type));

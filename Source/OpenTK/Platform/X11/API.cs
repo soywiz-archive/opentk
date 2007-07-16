@@ -129,7 +129,9 @@ namespace OpenTK.Platform.X11
 
         //[System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XNextEvent")]
-        extern internal static void NextEvent(Display display, [MarshalAs(UnmanagedType.AsAny)][In, Out]object e);
+        extern internal static void NextEvent(
+            Display display,
+            [MarshalAs(UnmanagedType.AsAny)][In, Out]object e);
         
         [DllImport(_dll_name, EntryPoint = "XNextEvent")]
         extern internal static void NextEvent(Display display, [In, Out] IntPtr e);
@@ -138,6 +140,12 @@ namespace OpenTK.Platform.X11
         extern internal static void PeekEvent(
             Display display,
             [MarshalAs(UnmanagedType.AsAny)][In, Out]object event_return
+        );
+        
+        [DllImport(_dll_name, EntryPoint = "XPeekEvent")]
+        extern internal static void PeekEvent(
+            Display display,
+            [In, Out]Event event_return
         );
 
         [DllImport(_dll_name, EntryPoint = "XSendEvent")]
@@ -614,7 +622,7 @@ XF86VidModeGetGammaRampSize(
     #region XAnyEvent
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct AnyEvent
+    internal class AnyEvent
     {
         internal EventType type;
 	    //[MarshalAs(UnmanagedType.SysUInt)]
@@ -623,6 +631,9 @@ XF86VidModeGetGammaRampSize(
         internal bool send_event;	/* true if this came from a SendEvent request */
 	    internal Display display;	/* Display the event was read from */
 	    internal Window window;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
+
     }
 
     #endregion
@@ -630,7 +641,7 @@ XF86VidModeGetGammaRampSize(
     #region XKeyEvent
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct KeyEvent
+    internal class KeyEvent
     {
         internal EventType type;		/* KeyPress or KeyRelease */
         [MarshalAs(UnmanagedType.SysUInt)]
@@ -649,6 +660,8 @@ XF86VidModeGetGammaRampSize(
 	    internal uint keycode;	/* detail */
         [MarshalAs(UnmanagedType.Bool)]
 	    internal bool same_screen;	/* same screen flag */
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
     }
 
     #endregion
@@ -656,7 +669,7 @@ XF86VidModeGetGammaRampSize(
     #region XDestroyWindowEvent
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct DestroyWindowEvent
+    internal class DestroyWindowEvent
     {
         internal EventType type;		    /* DestroyNotify */
         internal ulong serial;	    /* # of last request processed by server */
@@ -665,6 +678,8 @@ XF86VidModeGetGammaRampSize(
         internal Display display;	/* Display the event was read from */
         internal Window @event;
         internal Window window;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
     }
 
     #endregion
@@ -672,7 +687,7 @@ XF86VidModeGetGammaRampSize(
     #region XCreateWindowEvent
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct CreateWindowEvent
+    internal class CreateWindowEvent
     {
         internal EventType type;		/* CreateNotify */
         internal ulong serial;	/* # of last request processed by server */
@@ -686,6 +701,8 @@ XF86VidModeGetGammaRampSize(
         internal int border_width;	/* border width */
         [MarshalAs(UnmanagedType.Bool)]
         internal bool override_redirect;	/* creation should be overridden */
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
     }
 
     #endregion
@@ -693,7 +710,7 @@ XF86VidModeGetGammaRampSize(
     #region XResizeRequestEvent
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct ResizeRequestEvent
+    internal class ResizeRequestEvent
     {
         internal EventType type;	/* ResizeRequest */
 	    internal ulong serial;	    /* # of last request processed by server */
@@ -709,7 +726,7 @@ XF86VidModeGetGammaRampSize(
     #region XConfigureNotifyEvent
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct ConfigureNotifyEvent// : Event
+    internal class ConfigureNotifyEvent
     {
         internal EventType type;	        /* ConfigureNotify */
         internal ulong serial;	/* # of last request processed by server */
@@ -724,6 +741,8 @@ XF86VidModeGetGammaRampSize(
         internal Window above;
         [MarshalAs(UnmanagedType.Bool)]
         internal bool override_redirect;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
     }
 
     #endregion
@@ -731,7 +750,7 @@ XF86VidModeGetGammaRampSize(
     #region XReparentNotifyEvent
     
     [StructLayout(LayoutKind.Sequential)]
-    internal struct ReparentNotifyEvent// : Event
+    internal class ReparentNotifyEvent
     {
     	internal EventType type;               /* ReparentNotify */
         //[MarshalAs(UnmanagedType.SysUInt)]
@@ -745,6 +764,8 @@ XF86VidModeGetGammaRampSize(
     	internal int x, y;
     	//[MarshalAs(UnmanagedType.Bool)]
     	internal bool override_redirect;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
     }
     
     #endregion
@@ -752,7 +773,7 @@ XF86VidModeGetGammaRampSize(
     #region XExposeEvent
     
     [StructLayout(LayoutKind.Sequential)]
-    struct ExposeEvent
+    internal class ExposeEvent
     {
     	internal EventType type;		/* Expose */
     	internal ulong serial;	/* # of last request processed by server */
@@ -763,6 +784,8 @@ XF86VidModeGetGammaRampSize(
     	internal int x, y;
     	internal int width, height;
     	internal int count;		/* if nonzero, at least this many more */
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=192)]
+        byte[] pad = new byte[192];
     }
 
     #endregion
