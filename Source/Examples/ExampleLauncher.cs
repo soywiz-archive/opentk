@@ -12,6 +12,21 @@ namespace Examples
 {
     public partial class ExampleLauncher : Form
     {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            /*
+            using (Form exampleLauncher = new ExampleLauncher())
+            {
+                Application.Run(exampleLauncher);
+            }
+            */
+            Application.Run(new ExampleLauncher());
+        }
+
         public ExampleLauncher()
         {
             InitializeComponent();

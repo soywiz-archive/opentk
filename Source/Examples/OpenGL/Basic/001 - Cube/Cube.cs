@@ -26,18 +26,6 @@ namespace Example
     {
         static float angle;
 
-        #region static void Main(string[] args)
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main(string[] args)
-        {
-            Application.Run(new Cube());
-        }
-
-        #endregion
-
         #region public Cube()
 
         public Cube()

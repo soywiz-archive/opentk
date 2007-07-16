@@ -16,12 +16,13 @@ using System.Windows.Forms;
 
 using OpenTK.OpenGL;
 using Enums = OpenTK.OpenGL.Enums;
+using OpenTK;
 
 #endregion --- Using Directives ---
 
-namespace OpenTK.Examples.OpenGL.Basic.DisplayLists
+namespace Examples.Tutorial
 {
-    public partial class DisplayLists : Framework
+    public partial class T03_DisplayLists_Cube : GameWindow
     {
         #region --- Variables ---
 
@@ -29,29 +30,15 @@ namespace OpenTK.Examples.OpenGL.Basic.DisplayLists
 
         #endregion --- Variables ---
 
-        #region --- Methods ---
+        #region --- Constructors ---
 
-        [STAThread]
-        public static void Main()
+        public T03_DisplayLists_Cube()
         {
-            new DisplayLists().Run();
-        }
-
-        #endregion --- Methods ---
-
-        #region --- Event Handlers ---
-
-        #region OnLoad
-
-        protected override void OnLoad(object sender, EventArgs e)
-        {
-            base.OnLoad(sender, e);
-
-            Text =
-                "DisplayLists example (" +
-                GL.GetString(Enums.StringName.RENDERER) + " " +
-                GL.GetString(Enums.StringName.VERSION)
-                + ")";
+            //Text =
+            //    "DisplayLists example (" +
+            //    GL.GetString(Enums.StringName.RENDERER) + " " +
+            //    GL.GetString(Enums.StringName.VERSION)
+            //    + ")";
 
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
@@ -87,24 +74,23 @@ namespace OpenTK.Examples.OpenGL.Basic.DisplayLists
                 c += 1 / (float)numDisplayLists;
             }
 
-            OnResize(this, null);
+            OnResize(new OpenTK.Platform.ResizeEventArgs(this.Width, this.Height));
         }
 
         #endregion
 
+        #region --- Event Handlers ---
+
         #region OnResize
 
-        protected override void OnResize(object sender, EventArgs e)
+        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
-            base.OnResize(sender, e);
+            base.OnResize(e);
 
-            if (ClientSize.Height == 0)
-                ClientSize = new System.Drawing.Size(ClientSize.Width, 1);
-
-            GL.Viewport(0, 0, ClientSize.Width, ClientSize.Height);
+            GL.Viewport(0, 0, this.Width, this.Height);
 
             double ratio = 0.0;
-            ratio = ClientSize.Width / (double)ClientSize.Height;
+            ratio = this.Width / (double)this.Height;
 
             GL.MatrixMode(Enums.MatrixMode.PROJECTION);
             GL.LoadIdentity();
@@ -118,10 +104,12 @@ namespace OpenTK.Examples.OpenGL.Basic.DisplayLists
 
         #endregion
 
-        #region OnPaint
+        #region RenderFrame
 
-        protected override void OnPaint()
+        public override void RenderFrame()
         {
+            base.RenderFrame();
+
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
 
@@ -139,26 +127,20 @@ namespace OpenTK.Examples.OpenGL.Basic.DisplayLists
             }
 
 
-            ActiveContext.SwapBuffers();
+            Context.SwapBuffers();
         }
 
         #endregion
 
-        #region OnKeyDown
+        #region UpdateFrame
 
-        protected override void OnKeyDown(object sender, KeyEventArgs e)
+        public override void UpdateFrame()
         {
-            base.OnKeyDown(sender, e);
+	        base.UpdateFrame();
 
-            switch (e.KeyData)
+            if (Key.Escape)
             {
-                case Keys.Escape:
-                    Application.Exit();
-                    break;
-
-                case Keys.F1:
-                    this.SetResolution(this.Width, this.Height, this.ColorDepth, !this.IsFullscreen);
-                    break;
+                this.Quit = true;
             }
         }
 

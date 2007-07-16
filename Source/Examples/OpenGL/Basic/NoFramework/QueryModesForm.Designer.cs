@@ -1,6 +1,6 @@
-namespace NoFramework
+namespace Examples.Windowing
 {
-    partial class QueryModesForm
+    partial class W02_Multiple_GLControls
     {
         /// <summary>
         /// Required designer variable.

@@ -12,25 +12,13 @@ using Enums = OpenTK.OpenGL.Enums;
 
 #endregion
 
-namespace NoFramework
+namespace Examples.Windowing
 {
-    public partial class QueryModesForm : Form
+    public partial class W02_Multiple_GLControls : Form
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QueryModesForm());
-        }
-
-
-        GLContext context1, context2;
+        OpenTK.Platform.IGLWindow glWindow1, glWindow2;
         
-        public QueryModesForm()
+        public W02_Multiple_GLControls()
         {
             InitializeComponent();
 
@@ -42,11 +30,11 @@ namespace NoFramework
         {
             base.OnClosed(e);
 
-            if (context1 != null)
-                context1.Dispose();
+            if (glWindow1 != null)
+                glWindow1.Dispose();
 
-            if (context2 != null)
-                context2.Dispose();
+            if (glWindow2 != null)
+                glWindow2.Dispose();
         }
         static float angle;
 
@@ -72,13 +60,13 @@ namespace NoFramework
             if (count == 20)
                 create1_Click(null, EventArgs.Empty);
 
-            if (context1 == null)
+            if (glWindow1 == null)
                 return;
 
             //if (count == 60) 
             //    ToggleFullScreen();
 
-            if (context1.IsFullscreen)
+            if (glWindow1.Fullscreen)
             {
                 this.Location = new Point(this.Location.X + (int)(Math.Sin(count / (5 * Math.PI)) * 3),
                     this.Location.Y);
@@ -93,29 +81,26 @@ namespace NoFramework
 
         private void PaintGLScene()
         {
-            RenderToContext(context1, 0);
-            RenderToContext(context2, 45);
+            RenderToContext(glWindow1, 0);
+            RenderToContext(glWindow2, 45);
 
         }
 
-        private void RenderToContext(GLContext context, float angle_add)
+        private void RenderToContext(OpenTK.Platform.IGLWindow glWindow, float angle_add)
         {
-            if (context == null)
-                return;
-
-            context.MakeCurrent();
+            glWindow.Context.MakeCurrent();
 
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(Enums.EnableCap.DEPTH_TEST);
 
-            GL.Viewport(0, 0, context.Width, context.Height);
+            GL.Viewport(0, 0, glWindow.Width, glWindow.Height);
 
             double ratio = 0.0;
-            ratio = context.Width / (double)context.Height;
+            ratio = glWindow.Width / (double)glWindow.Height;
 
             GL.MatrixMode(Enums.MatrixMode.PROJECTION);
             GL.LoadIdentity();
-            Glu.Perspective(45.0, context.AspectRatio, 1.0, 64.0);
+            Glu.Perspective(45.0, ratio, 1.0, 64.0);
 
 
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
@@ -132,12 +117,7 @@ namespace NoFramework
 
             DrawCube();
 
-            if (context == null)
-            {
-                Console.WriteLine("Context is null!  Press any key to crash.");
-                Console.ReadKey();
-            }
-            context.SwapBuffers();
+            glWindow.Context.SwapBuffers();
         }
 
         #region KeyDown event handler
@@ -207,7 +187,7 @@ namespace NoFramework
 
         private void create1_Click(object sender, EventArgs e)
         {
-            context1 = GLContext.Create(panel1, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 8, 0);
+            glWindow1 = new OpenTK.Platform.GLControl();
 
             create1.Enabled = false;
             dispose1.Enabled = true;
@@ -222,7 +202,7 @@ namespace NoFramework
 
         private void create2_Click(object sender, EventArgs e)
         {
-            context2 = GLContext.Create(panel2, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 8, 0);
+            glWindow2 = GLContext.Create(panel2, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 8, 0);
 
             create2.Enabled = false;
             dispose2.Enabled = true;
@@ -230,8 +210,8 @@ namespace NoFramework
 
         private void dispose1_Click(object sender, EventArgs e)
         {
-            context1.Dispose();
-            context1 = null;
+            glWindow1.Dispose();
+            glWindow1 = null;
             panel1.Invalidate();
 
             create1.Enabled = true;
@@ -240,8 +220,8 @@ namespace NoFramework
 
         private void dispose2_Click(object sender, EventArgs e)
         {
-            context2.Dispose();
-            context2 = null;
+            glWindow2.Dispose();
+            glWindow2 = null;
             panel2.Invalidate();
 
             create2.Enabled = true;
@@ -254,7 +234,7 @@ namespace NoFramework
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (context1 == null)
+            if (glWindow1 == null)
                 return;
 
             if (e.KeyCode == Keys.F1)
@@ -265,11 +245,11 @@ namespace NoFramework
 
         private void ToggleFullScreen()
         {
-            if (context1.IsFullscreen)
-                context1.SetWindowed();
+            if (glWindow1.IsFullscreen)
+                glWindow1.SetWindowed();
             else
             {
-                context1.SetFullScreen(640, 480, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8));
+                glWindow1.SetFullScreen(640, 480, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8));
             }
 
         }

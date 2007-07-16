@@ -1,6 +1,6 @@
-namespace QueryDisplayModes
+namespace Examples.Windowing
 {
-    partial class DisplayModesForm
+    partial class W01_DisplayModesForm
     {
         /// <summary>
         /// Required designer variable.

@@ -5,32 +5,22 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-using OpenTK.OpenGL;
+using OpenTK;
+using OpenTK.Platform;
 
-namespace QueryDisplayModes
+namespace Examples.Windowing
 {
-    public partial class DisplayModesForm : Form
+    public partial class W01_DisplayModesForm : Form
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DisplayModesForm());
-        }
+        OpenTK.Platform.IGLWindow glWindow;
 
-        GLContext context;
-
-        public DisplayModesForm()
+        public W01_DisplayModesForm()
         {
             InitializeComponent();
 
-            context = GLContext.Create(this, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 0, 0);
+            glWindow = new OpenTK.Platform.GLControl();
 
-            DisplayMode[] modes = context.EnumDisplayModes();
+            DisplayMode[] modes = glWindow.Context.GetDisplayModes();
 
             for (int i = 0; i < modes.Length; i++)
                 listBox1.Items.Add(modes[i]);
