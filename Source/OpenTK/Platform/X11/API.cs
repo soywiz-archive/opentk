@@ -127,9 +127,12 @@ namespace OpenTK.Platform.X11
         [DllImport(_dll_name, EntryPoint = "XPending")]
         extern internal static int Pending(Display display);
 
-        [System.Security.SuppressUnmanagedCodeSecurity]
+        //[System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport(_dll_name, EntryPoint = "XNextEvent")]
-        extern internal static void NextEvent(Display display, out Event e);
+        extern internal static void NextEvent(Display display, [Out] out Event e);
+        
+                [DllImport(_dll_name, EntryPoint = "XNextEvent")]
+        extern internal static void NextEvent(Display display, [In, Out] IntPtr e);
 
         [DllImport(_dll_name, EntryPoint = "XSendEvent")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -579,9 +582,13 @@ XF86VidModeGetGammaRampSize(
         [FieldOffset(0)]internal DestroyWindowEvent DestroyWindow;
         [FieldOffset(0)]internal CreateWindowEvent CreateWindow;
         [FieldOffset(0)]internal ResizeRequestEvent ResizeRequest;
-        [FieldOffset(0)]internal ResizeRequestEvent ConfigureNotify;
-        [FieldOffset(0)][MarshalAs(UnmanagedType.SysInt)]
-        int pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
+        [FieldOffset(0)]internal ConfigureNotifyEvent ConfigureNotify;
+        [FieldOffset(0)]internal ReparentNotifyEvent ReparentNotify;
+        [FieldOffset(0)]internal ExposeEvent Expose;
+                
+        [FieldOffset(0)]
+        IntPtr
+            pad1 , pad2 , pad3 , pad4 , pad5 , pad6 ,
             pad7 , pad8 , pad9 , pad10, pad11, pad12,
             pad13, pad14, pad15, pad16, pad17, pad18,
             pad19, pad20, pad21, pad22, pad23, pad24;
@@ -705,6 +712,44 @@ XF86VidModeGetGammaRampSize(
         internal Window above;
         [MarshalAs(UnmanagedType.Bool)]
         internal bool override_redirect;
+    }
+
+    #endregion
+    
+    #region XReparentNotifyEvent
+    
+    [StructLayout(LayoutKind.Sequential)]
+    struct ReparentNotifyEvent
+    {
+    	internal EventType type;               /* ReparentNotify */
+    	internal ulong serial;	/* # of last request processed by server */
+    	[MarshalAs(UnmanagedType.Bool)]
+    	internal bool send_event;	/* true if this came from a SendEvent request */
+    	internal Display display;	/* Display the event was read from */
+    	internal Window @event;
+    	internal Window window;
+    	internal Window parent;
+    	internal int x, y;
+    	[MarshalAs(UnmanagedType.Bool)]
+    	internal bool override_redirect;
+    }
+    
+    #endregion
+    
+    #region XExposeEvent
+    
+    [StructLayout(LayoutKind.Sequential)]
+    struct ExposeEvent
+    {
+    	internal EventType type;		/* Expose */
+    	internal ulong serial;	/* # of last request processed by server */
+    	[MarshalAs(UnmanagedType.Bool)]
+    	internal bool send_event;	/* true if this came from a SendEvent request */
+    	internal Display display;	/* Display the event was read from */
+    	internal Window window;
+    	internal int x, y;
+    	internal int width, height;
+    	internal int count;		/* if nonzero, at least this many more */
     }
 
     #endregion

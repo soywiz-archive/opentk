@@ -37,7 +37,8 @@ namespace OpenTK.Platform.X11
         // then memory corruption is taking place from the xresize struct.
         int memGuard1 = 0;
         // Event used for event loop.
-        private Event e; // = new Event();
+        private IntPtr eventPtr = new IntPtr();
+        private Event e;// = new Event();
         // This is never written in the code. If at some point it gets != 0,
         // then memory corruption is taking place from the xresize struct.
         int memGuard2 = 0;
@@ -148,8 +149,6 @@ namespace OpenTK.Platform.X11
 
             Trace.WriteLine("ok! (id: " + window + ")");
             
-            Trace.Assert(0 != 0);
-
             // Set the window hints
             /*
             SizeHints hints = new SizeHints();
@@ -227,18 +226,19 @@ namespace OpenTK.Platform.X11
             {
                 pending = API.Pending(display);
 
-                // Check whether memory was corrupted by the previous call.
-                Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
-                
                 if (pending == 0)
                     return;
                 
                 API.NextEvent(display, out e);
+                //API.NextEvent(display, eventPtr);
 
-                // Check whether memory was corrupted by the previous call.
-                Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
-                
+                //e = (Event)Marshal.PtrToStructure(eventPtr, typeof(Event));
+                //EVentType type = 
+
                 Debug.WriteLine(String.Format("Event: {0} ({1} pending)", e.Type, pending));
+
+                // Check whether memory was corrupted by the NextEvent call.
+                Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
 
                 // Respond to the event e
                 switch (e.Type)
@@ -251,7 +251,6 @@ namespace OpenTK.Platform.X11
                         Debug.WriteLine(
                             String.Format("OnCreate fired: {0}x{1}", mode.Width, mode.Height)
                         );
-                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
                         break;
 
                     case EventType.DestroyNotify:
@@ -260,25 +259,7 @@ namespace OpenTK.Platform.X11
                         Debug.WriteLine("Window destroyed");
                         break;
                         
-                    /*
-                    case EventType.ResizeRequest:
-                        // If the window size changed, raise the C# Resize event.
-                        if (e.ResizeRequest.width != mode.Width || e.ResizeRequest.height != mode.Height)
-                        {
-                            Console.WriteLine(
-                                "New res: {0}x{1}",
-                                e.xResizeRequest.width,
-                                e.xResizeRequest.height
-                            );
-                            Console.Out.Flush();
-
-                            resizeEventArgs.Width = e.ResizeRequest.width;
-                            resizeEventArgs.Height = e.ResizeRequest.height;
-                            this.OnResize(resizeEventArgs);
-                        }
-                        break;
-                    */
-                    
+                     
                     case EventType.ConfigureNotify:
                         // If the window size changed, raise the C# Resize event.
                         if (e.ConfigureNotify.width != mode.Width ||
@@ -296,7 +277,6 @@ namespace OpenTK.Platform.X11
                             resizeEventArgs.Height = e.ConfigureNotify.height;
                             this.OnResize(resizeEventArgs);
                         }
-                        Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
                         break;
                         
                 }
