@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Examples
 {
@@ -18,8 +19,13 @@ namespace Examples
         [STAThread]
         static void Main()
         {
-            //new VBO().Run();
-            new Cube().Run();
+            /*
+            using (Form exampleLauncher = new ExampleLauncher())
+            {
+                Application.Run(exampleLauncher);
+            }
+            */
+            Application.Run(new ExampleLauncher());
         }
     }
 }
