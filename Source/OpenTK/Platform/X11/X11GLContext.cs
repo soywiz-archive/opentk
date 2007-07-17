@@ -147,7 +147,7 @@ namespace OpenTK.Platform.X11
             Console.WriteLine("x11context: {0}", x11context);
             Console.Out.Flush();
 
-            //MakeCurrent();
+            MakeCurrent();
 
             API.Free(glxVisualInfo);
         }
