@@ -1,6 +1,6 @@
 ﻿#region --- License ---
-/* This source file is released under the MIT license. See License.txt for more information.
- * Coded by Stephen Apostolopoulos.
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
  */
 #endregion
 
@@ -17,12 +17,13 @@ using System.Windows.Forms;
 using OpenTK.OpenGL;
 using Enums = OpenTK.OpenGL.Enums;
 using OpenTK;
+using OpenTK.Input;
 
 #endregion --- Using Directives ---
 
 namespace Examples.Tutorial
 {
-    public partial class T03_DisplayLists_Cube : GameWindow
+    public partial class T07_DisplayLists_Cube : GameWindow
     {
         #region --- Variables ---
 
@@ -32,7 +33,7 @@ namespace Examples.Tutorial
 
         #region --- Constructors ---
 
-        public T03_DisplayLists_Cube()
+        public T07_DisplayLists_Cube()
         {
             //Text =
             //    "DisplayLists example (" +

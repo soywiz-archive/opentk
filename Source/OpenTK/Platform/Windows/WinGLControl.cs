@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * Contributions from Erik Ylvisaker
  * See license.txt for license info
  */
@@ -16,9 +16,11 @@ using System.Windows.Forms;
 
 namespace OpenTK.Platform.Windows
 {
-    sealed class WinGLControl// : OpenTK.Platform.IGLWindow
+    sealed class WinGLControl : OpenTK.Platform.IGLControl
     {
         private WinGLContext glContext;
+        private bool fullscreen;
+        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
 
         #region --- Constructors ---
 
@@ -38,7 +40,9 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region --- IGLWindow membmers ---
+        #region --- IGLControl membmers ---
+
+        public event CreateEvent Create;
 
         #region public void ProcessEvents()
 
@@ -49,17 +53,7 @@ namespace OpenTK.Platform.Windows
         }
 
         #endregion
-
-        #region public bool Quit
-
-        public bool Quit
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
-        #endregion
-
+        
         #region public bool IsIdle
 
         public bool IsIdle
@@ -83,64 +77,17 @@ namespace OpenTK.Platform.Windows
 
         #region public bool Fullscreen
 
-        bool fullscreen = false;
         public bool Fullscreen
         {
             get
             {
-                return false;
+                return fullscreen;
             }
             set
             {
                 throw new NotImplementedException();
+                fullscreen = true;
             }
-        }
-
-        #endregion
-
-        #endregion
-
-        #region --- IResizable Members ---
-
-        #region public int Width
-
-        public int Width
-        {
-            get
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-            set
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-        }
-
-        #endregion
-
-        #region public int Height
-
-        public int Height
-        {
-            get
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-            set
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-        }
-
-        #endregion
-
-        #region public event ResizeEvent Resize
-
-        public event ResizeEvent Resize;
-        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
-        public void OnResize(int width, int height)
-        {
-            throw new Exception("The method or operation is not implemented.");
         }
 
         #endregion
@@ -160,6 +107,5 @@ namespace OpenTK.Platform.Windows
         }
 
         #endregion
-
     }
 }

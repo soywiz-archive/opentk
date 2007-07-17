@@ -16,7 +16,7 @@ namespace Examples.Windowing
 {
     public partial class W02_Multiple_GLControls : Form
     {
-        OpenTK.Platform.IGLWindow glWindow1, glWindow2;
+        OpenTK.Platform.GLControl glWindow1, glWindow2;
         
         public W02_Multiple_GLControls()
         {
@@ -24,6 +24,7 @@ namespace Examples.Windowing
 
             timer1.Enabled = true;
 
+            throw new NotImplementedException();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -86,7 +87,7 @@ namespace Examples.Windowing
 
         }
 
-        private void RenderToContext(OpenTK.Platform.IGLWindow glWindow, float angle_add)
+        private void RenderToContext(OpenTK.Platform.GLControl glWindow, float angle_add)
         {
             glWindow.Context.MakeCurrent();
 
@@ -202,7 +203,8 @@ namespace Examples.Windowing
 
         private void create2_Click(object sender, EventArgs e)
         {
-            glWindow2 = GLContext.Create(panel2, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 8, 0);
+            //glWindow2 = GLContext.Create(panel2, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 8, 0);
+            glWindow2 = new OpenTK.Platform.GLControl();
 
             create2.Enabled = false;
             dispose2.Enabled = true;
@@ -245,15 +247,15 @@ namespace Examples.Windowing
 
         private void ToggleFullScreen()
         {
-            if (glWindow1.IsFullscreen)
+            glWindow1.Fullscreen = !glWindow1.Fullscreen;
+            /*
+            if (glWindow1.Fullscreen)
                 glWindow1.SetWindowed();
             else
             {
                 glWindow1.SetFullScreen(640, 480, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8));
             }
-
+            */
         }
-
-
     }
 }

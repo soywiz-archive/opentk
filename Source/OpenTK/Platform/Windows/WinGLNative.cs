@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2007 Stephen Apostolopoulos
+/* Copyright (c) 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
@@ -11,12 +11,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using OpenTK.Input;
 
 #endregion
 
 namespace OpenTK.Platform.Windows
 {
-    sealed class WinGLNative : NativeWindow, OpenTK.Platform.IGLWindow, IDisposable
+    sealed class WinGLNative : NativeWindow, OpenTK.Platform.INativeWindow, IDisposable
     {
         private WinGLContext glContext;
         private DisplayMode mode = new DisplayMode();
@@ -283,8 +284,25 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
-            this.Context.Destroy();
-            this.DestroyHandle();
+            Dispose(true);
+        }
+
+        private void Dispose(bool manuallyCalled)
+        {
+            if (manuallyCalled)
+            {
+                this.Context.Dispose();
+                this.DestroyHandle();
+                GC.SuppressFinalize(this);
+            }
+            else
+            {
+            }
+        }
+
+        ~WinGLNative()
+        {
+            Dispose(false);
         }
 
         #endregion

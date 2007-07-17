@@ -1,14 +1,18 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
+
+#region --- Using Directives ---
 
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
+
+#endregion
 
 namespace OpenTK.Build
 {

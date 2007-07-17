@@ -1,13 +1,24 @@
-﻿using System;
+﻿#region --- License ---
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
+#region --- Using directives ---
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 using OpenTK;
 using OpenTK.OpenGL;
+using OpenTK.Input;
+
+#endregion
 
 namespace Examples.Tutorial
 {
-    public class T02_VBO : OpenTK.GameWindow
+    public class T08_VBO : OpenTK.GameWindow
     {
         int vbo, ibo, nbo; // vertex, index and normal buffer objects.
         float angle;
@@ -57,7 +68,7 @@ namespace Examples.Tutorial
 
         #endregion
 
-        public T02_VBO()
+        public T08_VBO()
         {
             this.Context.MakeCurrent();
 
@@ -108,7 +119,7 @@ namespace Examples.Tutorial
         /// </remarks>
         static public void Launch()
         {
-            using (T02_VBO ex = new T02_VBO())
+            using (T08_VBO ex = new T08_VBO())
             {
                 ex.Run();
             }

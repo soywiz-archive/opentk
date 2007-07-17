@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
@@ -32,11 +32,6 @@ namespace OpenTK.Platform
         /// </returns>
         /// <see cref="Marshal.GetDelegateForFunctionPointer"/>
         IntPtr GetAddress(string function);
-
-        /// <summary>
-        /// Destroys the OpenGL Context.
-        /// </summary>
-        void Destroy();
 
         /// <summary>
         /// Returns the display modes supported by the current opengl context.

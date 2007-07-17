@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
@@ -12,14 +12,14 @@ using OpenTK.OpenGL;
 
 namespace OpenTK.Platform
 {
-    public interface IGLWindow : IResizable, IDisposable
+    public interface IGLControl : IDisposable
     {
         void ProcessEvents();
 
         event CreateEvent Create;
 
         bool IsIdle { get; }
-        bool Quit { get; set; }
+        //bool Quit { get; set; }
         bool Fullscreen { get; set; }
         IGLContext Context { get; }
     }

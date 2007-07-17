@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * Contributions from Erik Ylvisaker
  * See license.txt for license info
  */
@@ -17,9 +17,10 @@ namespace OpenTK.Platform.Windows
 {
     public class WinGLContext : OpenTK.Platform.IGLContext, IDisposable
     {
-        IntPtr deviceContext;
-        IntPtr renderContext;
-        IntPtr dllHandle;
+        private IntPtr deviceContext;
+        private IntPtr renderContext;
+        private IntPtr opengl32Handle;
+        private string opengl32Name = "OPENGL32.DLL";
 
         #region --- Contructors ---
 
@@ -51,15 +52,19 @@ namespace OpenTK.Platform.Windows
             // TODO: Better error handling.
 
             // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
-            if (dllHandle == IntPtr.Zero)
+            if (opengl32Handle == IntPtr.Zero)
             {
-                dllHandle = API.LoadLibrary("opengl32.dll");
-                int errorCode = Marshal.GetLastWin32Error();
-
-                if (errorCode != 0)
+                opengl32Handle = API.LoadLibrary(opengl32Name);
+                if (opengl32Handle == IntPtr.Zero)
                 {
                     //System.Diagnostics.Debug.WriteLine("LoadLibrary({0}) set error code: {1}. Will not load extensions.", _dll_name, error_code);
-                    throw new Exception("LoadLibrary(\"OPENGL32.DLL\") call failed with code: " + errorCode);
+                    throw new ApplicationException(
+                        String.Format(
+                            "LoadLibrary(\"{0}\") call failed with code {1}",
+                            opengl32Name,
+                            Marshal.GetLastWin32Error()
+                        )
+                    );
                 }
                 else
                 {
@@ -128,24 +133,6 @@ namespace OpenTK.Platform.Windows
         #endregion
 
         #region --- IGLContext Members ---
-
-        #region public void Destroy()
-
-        public void Destroy()
-        {
-            if (renderContext != IntPtr.Zero)
-            {
-                if (!Wgl.DeleteContext(renderContext))
-                {
-                    throw new ApplicationException(
-                        "Could not destroy the OpenGL render context. Error: " + Marshal.GetLastWin32Error()
-                    );
-                }
-                renderContext = IntPtr.Zero;
-            }
-        }
-
-        #endregion
 
         #region public void SwapBuffers()
 
@@ -220,12 +207,55 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region IDisposable Members
+        #region --- IDisposable Members ---
 
         public void Dispose()
         {
-            this.Destroy();
+            this.Dispose(true);
         }
+
+        private void Dispose(bool calledManually)
+        {
+            if (calledManually)
+            {
+                this.ReleaseResources();
+                GC.SuppressFinalize(this);
+            }
+            else
+            {
+                this.ReleaseResources();
+            }
+        }
+
+        ~WinGLContext()
+        {
+            Dispose(false);
+        }
+
+        #region public void ReleaseResources()
+
+        private void ReleaseResources()
+        {
+            if (renderContext != IntPtr.Zero)
+            {
+                if (!Wgl.DeleteContext(renderContext))
+                {
+                    throw new ApplicationException(
+                        "Could not destroy the OpenGL render context. Error: " + Marshal.GetLastWin32Error()
+                    );
+                }
+                renderContext = IntPtr.Zero;
+            }
+
+            if (!API.FreeLibrary(this.opengl32Handle))
+            {
+                throw new ApplicationException(
+                    "FreeLibray call failed ('opengl32.dll'), Error: " + Marshal.GetLastWin32Error()
+                );
+            }
+        }
+
+        #endregion
 
         #endregion
     }

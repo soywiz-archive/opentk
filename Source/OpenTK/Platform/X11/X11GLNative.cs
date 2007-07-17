@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2007 Stephen Apostolopoulos
+/* Copyright (c) 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace OpenTK.Platform.X11
 {
-    sealed class X11GLNative : OpenTK.Platform.IGLWindow, IDisposable
+    sealed class X11GLNative : OpenTK.Platform.INativeWindow, IDisposable
     {
         #region --- Private Fields ---
 
@@ -35,9 +35,7 @@ namespace OpenTK.Platform.X11
         private X11.Event xresize = new Event();
         // This is never written in the code. If at some point it gets != 0,
         // then memory corruption is taking place from the xresize struct.
-        int memGuard1 = 0;
         // Event used for event loop.
-        private IntPtr eventPtr;
         private Event e = new Event();
         private ConfigureNotifyEvent configure = new ConfigureNotifyEvent();
         private ReparentNotifyEvent reparent = new ReparentNotifyEvent();
@@ -46,7 +44,7 @@ namespace OpenTK.Platform.X11
         private DestroyWindowEvent destroyWindow = new DestroyWindowEvent();
         // This is never written in the code. If at some point it gets != 0,
         // then memory corruption is taking place from the xresize struct.
-        int memGuard2 = 0;
+        int memGuard = 0;
 
         //private int width, height;
 
@@ -243,8 +241,8 @@ namespace OpenTK.Platform.X11
                 //Debug.WriteLine(String.Format("Event: {0} ({1} pending)", eventPtr, pending));
 
                 // Check whether memory was corrupted by the NextEvent call.
-                Debug.Assert(memGuard2 == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard2));
-                memGuard2 = 0;
+                Debug.Assert(memGuard == 0, "memGuard2 tripped", String.Format("Guard: {0}", memGuard));
+                memGuard = 0;
 
                 // Respond to the event e
                 switch (e.Type)

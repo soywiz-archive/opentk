@@ -40,7 +40,7 @@ namespace Examples
             {
                 Type example =
                     Assembly.GetExecutingAssembly().GetType(
-                        "Examples." + listBox1.SelectedItem.ToString().Replace(": ", "."),
+                        "Examples." + listBox1.SelectedItem.ToString().Replace(": ", ".").Replace(' ', '_'),
                         true,
                         true
                     );
@@ -61,6 +61,8 @@ namespace Examples
 
         public void ExampleLauncher_Load(object sender, EventArgs e)
         {
+            SortedList<string, string> sl = new SortedList<string, string>();
+
             // Get all examples
             Type[] types = Assembly.GetExecutingAssembly().GetTypes();
             foreach (Type type in types)
@@ -70,13 +72,21 @@ namespace Examples
                     MemberInfo[] runMethods = type.GetMember("Launch");
                     foreach (MemberInfo run in runMethods)
                     {
-                        // Trim the 'Examples.' namespace.
-                        listBox1.Items.Add(
-                            type.Namespace.Replace("Examples.", String.Empty) + ": " + type.Name
+                        // Trim the 'Examples.' namespace, and add the item into a sorted list.
+                        // This is an ugly hack to keep the listBox items sorted.
+                        sl.Add(
+                            (type.Namespace.Replace("Examples.", String.Empty) + ": " + type.Name).Replace('_', ' '),
+                            null
                         );
+                        //listBox1.Items.Add(
+                        //    type.Namespace.Replace("Examples.", String.Empty) + ": " + type.Name
+                        //);
                     }
                 }
             }
+
+            foreach (string s in sl.Keys)
+                listBox1.Items.Add(s);
 
             // Select first item
             if (listBox1.Items.Count > 0)

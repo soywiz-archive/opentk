@@ -1,5 +1,5 @@
 #region License
-//Copyright (c) 2006 Stephen Apostolopoulos
+//Copyright (c) 2006 Stefanos Apostolopoulos
 //See license.txt for license info
 #endregion
 

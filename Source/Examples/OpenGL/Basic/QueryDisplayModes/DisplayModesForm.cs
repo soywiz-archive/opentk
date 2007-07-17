@@ -12,7 +12,7 @@ namespace Examples.Windowing
 {
     public partial class W01_DisplayModesForm : Form
     {
-        OpenTK.Platform.IGLWindow glWindow;
+        OpenTK.Platform.IGLControl glWindow;
 
         public W01_DisplayModesForm()
         {

@@ -1,6 +1,6 @@
 ﻿#region --- License ---
-/* This source file is released under the MIT license. See License.txt for more information.
- * Coded by Stephen Apostolopoulos.
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
  */
 #endregion
 
@@ -17,14 +17,15 @@ using System.Threading;
 using OpenTK.OpenGL;
 using Enums = OpenTK.OpenGL.Enums;
 using OpenTK;
+using OpenTK.Input;
 
 #endregion --- Using Directives ---
 
 namespace Examples.Tutorial
 {
-    public class T03_GLSL_Cube : GameWindow
+    public class T10_GLSL_Cube : GameWindow
     {
-        #region --- Variables ---
+        #region --- Fields ---
 
         #region Shaders
 
@@ -45,12 +46,14 @@ namespace Examples.Tutorial
 
         static float angle;
 
-        #endregion --- Variables ---
+        #endregion
 
         #region --- Constructors ---
 
-        public T03_GLSL_Cube()
+        public T10_GLSL_Cube()
         {
+            Context.MakeCurrent();
+
             //Text =
             //    GL.GetString(Enums.StringName.VENDOR) + " " +
             //    GL.GetString(Enums.StringName.RENDERER) + " " +
@@ -100,16 +103,23 @@ namespace Examples.Tutorial
 
         #endregion
 
-        #region Launch point
+        #region static public void Launch()
 
+        /// <summary>
+        /// Launches this example.
+        /// </summary>
+        /// <remarks>
+        /// Provides a simple way for the example launcher to launch the examples.
+        /// </remarks>
         static public void Launch()
         {
-            new T03_GLSL_Cube().Run();
+            using (T10_GLSL_Cube ex = new T10_GLSL_Cube())
+            {
+                ex.Run();
+            }
         }
 
         #endregion
-
-        #region --- Event Handlers ---
 
         #region OnResize
 
@@ -129,26 +139,11 @@ namespace Examples.Tutorial
 
         #endregion
 
-        #region RenderFrame
-
-        public override void RenderFrame()
-        {
- 	        base.RenderFrame();
-
-            GL.Clear(Enums.ClearBufferMask.COLOR_BUFFER_BIT | Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
-
-            DrawCube();
-
-            Context.SwapBuffers();
-        }
-
-        #endregion
-
-        #region OnKeyDown
+        #region UpdateFrame
 
         public override void UpdateFrame()
         {
- 	        base.UpdateFrame();
+            base.UpdateFrame();
 
             if (Key.Escape)
             {
@@ -168,7 +163,20 @@ namespace Examples.Tutorial
 
         #endregion
 
-        #endregion --- Event Handlers ---
+        #region RenderFrame
+
+        public override void RenderFrame()
+        {
+ 	        base.RenderFrame();
+
+            GL.Clear(Enums.ClearBufferMask.COLOR_BUFFER_BIT | Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
+
+            DrawCube();
+
+            Context.SwapBuffers();
+        }
+
+        #endregion
 
         #region DrawCube
 
@@ -216,6 +224,5 @@ namespace Examples.Tutorial
         }
 
         #endregion
-
     }
 }

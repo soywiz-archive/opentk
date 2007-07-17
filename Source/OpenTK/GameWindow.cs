@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
@@ -12,9 +12,9 @@ using OpenTK.Platform;
 
 namespace OpenTK
 {
-    public class GameWindow : OpenTK.Platform.IGLWindow, OpenTK.Platform.IGameWindow
+    public class GameWindow : OpenTK.Platform.IGLControl, OpenTK.Platform.IGameWindow
     {
-        OpenTK.Platform.IGLWindow glWindow;
+        INativeWindow glWindow;
 
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
 

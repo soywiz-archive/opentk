@@ -1,8 +1,10 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
+
+#region --- Using Directives ---
 
 using System;
 using System.Collections.Generic;
@@ -12,19 +14,26 @@ using OpenTK;
 using OpenTK.OpenGL;
 using OpenTK.Platform;
 using Enums = OpenTK.OpenGL.Enums;
+using OpenTK.Input;
+
+#endregion
 
 namespace Examples.Tutorial
 {
-    public class T01_Cube : OpenTK.GameWindow
+    public class T03_RotatingCube : OpenTK.GameWindow
     {
+        #region --- Fields ---
+
         /// <summary>
         /// Denotes the cube rotation.
         /// </summary>
         float angle = 0.0f;
 
-        #region public Cube() constructor
+        #endregion
 
-        public T01_Cube()
+        #region --- Constructors ---
+
+        public T03_RotatingCube()
         {
             Context.MakeCurrent();
         
@@ -46,7 +55,7 @@ namespace Examples.Tutorial
         /// </remarks>
         static public void Launch()
         {
-            using (T01_Cube ex = new T01_Cube())
+            using (T03_RotatingCube ex = new T03_RotatingCube())
             {
                 ex.Run();
             }

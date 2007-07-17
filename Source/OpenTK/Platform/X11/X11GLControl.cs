@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2007 Stephen Apostolopoulos
+/* Copyright (c) 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
@@ -12,17 +12,18 @@ using System.Drawing;
 
 namespace OpenTK.Platform.X11
 {
-    class X11GLControl// : OpenTK.Platform.IGLWindow
+    class X11GLControl : IGLControl
     {
         IntPtr display;
         IntPtr rootWindow;
         int screenNo;
-
         private Type xplatui;
-
-        private Size fullScreenSize;
-
+        //private Size fullScreenSize;
         OpenTK.Platform.IGLContext context;
+
+        private bool quit;
+
+        #region --- Contructors ---
 
         public X11GLControl(Control c, int width, int height, bool fullscreen)
         {
@@ -97,7 +98,17 @@ namespace OpenTK.Platform.X11
             }
         }
 
-        #region IGLWindow Members
+        #endregion
+
+        #region --- IGLWindow Members ---
+
+        public event CreateEvent Create;
+
+        protected void OnCreate(object sender, EventArgs e)
+        {
+            if (this.Create != null)
+                this.Create(sender, e);
+        }
 
         public int Width
         {
@@ -127,8 +138,12 @@ namespace OpenTK.Platform.X11
 
         public bool Quit
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return quit; }
+            set
+            {
+                throw new NotImplementedException();
+                quit = value;
+            }
         }
 
         #endregion
@@ -168,41 +183,11 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region IDisposable Members
+        #region --- IDisposable Members ---
 
         public void Dispose()
         {
             throw new Exception("The method or operation is not implemented.");
-        }
-
-        #endregion
-
-        #region IGLWindow Members
-
-
-        public void Run()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public void RenderFrame()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public void UpdateFrame()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public event ResizeEvent Resize;
-
-        private void OnResize(ResizeEventArgs e)
-        {
-            if (this.Resize != null)
-                this.Resize(this, e);
-
-            throw new NotImplementedException();
         }
 
         #endregion

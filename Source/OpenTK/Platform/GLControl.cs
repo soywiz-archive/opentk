@@ -1,5 +1,5 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stephen Apostolopoulos
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
 #endregion
@@ -24,12 +24,12 @@ namespace OpenTK.Platform
     /// <summary>
     /// 
     /// </summary>
-    public partial class GLControl : UserControl, IGLWindow, IDisposable
+    public partial class GLControl : UserControl, IGLControl, IDisposable
     {
         #region --- Private Fields ---
 
         private bool fullscreen;
-        private IGLWindow glWindow;
+        private IGLControl glWindow;
 
         #endregion
 
@@ -39,7 +39,8 @@ namespace OpenTK.Platform
         {
             InitializeComponent();
 
-            this.Setup(640, 480, false);
+            //this.Setup(640, 480, false);
+            this.Setup(this.Width, this.Height, false);
         }
 
         protected override void OnHandleCreated(EventArgs e)
@@ -65,11 +66,12 @@ namespace OpenTK.Platform
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
-                //glWindow = new OpenTK.Platform.WinGLControl(this, width, height, fullscreen);
+                glWindow = new OpenTK.Platform.Windows.WinGLControl(this, width, height, fullscreen);
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                      Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
+                throw new NotImplementedException();
                 //glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
             }
             else
@@ -79,6 +81,7 @@ namespace OpenTK.Platform
                 );
             }
 
+            /*
             Context.MakeCurrent();
 
             //GL.ReloadFunctions();
@@ -87,9 +90,10 @@ namespace OpenTK.Platform
                 this.Width = width;
             if (height > 0)
                 this.Height = height;
+            */
             if (fullscreen)
                 this.Fullscreen = true;
-
+            
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
@@ -156,15 +160,7 @@ namespace OpenTK.Platform
 
         #region --- IGLWindow Members ---
 
-        #region public bool Quit
-
-        public bool Quit
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
-        #endregion
+        public event CreateEvent Create;
 
         /// <summary>
         /// Gets the idle status of the control.
@@ -253,7 +249,13 @@ namespace OpenTK.Platform
 
         #endregion
 
-        #region IDisposable Members
+        #region --- IResizable Members ---
+
+        public new event ResizeEvent Resize;
+
+        #endregion
+
+        #region --- IDisposable Members ---
 
         void IDisposable.Dispose()
         {
@@ -261,21 +263,5 @@ namespace OpenTK.Platform
         }
 
         #endregion
-
-        #region IGLWindow Members
-
-
-        public event CreateEvent Create;
-
-        #endregion
-
-        #region IResizable Members
-
-
-        public new event ResizeEvent Resize;
-
-        #endregion
     }
-
-    public class DisplayModeMatchOptions { }
 }
