@@ -71,8 +71,8 @@ namespace OpenTK.Platform
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                      Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                throw new NotImplementedException();
-                //glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
+                //throw new NotImplementedException();
+                glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
             }
             else
             {
