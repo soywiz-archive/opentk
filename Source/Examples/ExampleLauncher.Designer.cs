@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.exampleLauncherBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.exampleLauncherBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.exampleLauncherBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exampleLauncherBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -46,14 +42,6 @@
             this.listBox1.TabIndex = 0;
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
-            // exampleLauncherBindingSource
-            // 
-            this.exampleLauncherBindingSource.DataSource = typeof(Examples.ExampleLauncher);
-            // 
-            // exampleLauncherBindingSource1
-            // 
-            this.exampleLauncherBindingSource1.DataSource = typeof(Examples.ExampleLauncher);
-            // 
             // ExampleLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -63,8 +51,6 @@
             this.Name = "ExampleLauncher";
             this.Text = "OpenTK Example Launcher";
             this.Load += new System.EventHandler(this.ExampleLauncher_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.exampleLauncherBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exampleLauncherBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -72,7 +58,5 @@
         #endregion
 
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.BindingSource exampleLauncherBindingSource;
-        private System.Windows.Forms.BindingSource exampleLauncherBindingSource1;
     }
 }

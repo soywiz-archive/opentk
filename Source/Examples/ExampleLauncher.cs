@@ -18,13 +18,10 @@ namespace Examples
         [STAThread]
         static void Main()
         {
-            /*
             using (Form exampleLauncher = new ExampleLauncher())
             {
                 Application.Run(exampleLauncher);
             }
-            */
-            Application.Run(new ExampleLauncher());
         }
 
         public ExampleLauncher()

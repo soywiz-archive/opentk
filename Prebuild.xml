@@ -22,10 +22,10 @@
     </Configuration>
 
     <Files>
-      <File>Todo.txt</File>
-      <File>Release.txt</File>
-      <File>Changelog.txt</File>
-      <File>License.txt</File>
+      <File>Documentation\Todo.txt</File>
+      <File>Documentation\Release.txt</File>
+      <File>Documentation\Changelog.txt</File>
+      <File>Documentation\License.txt</File>
       <File>Instructions.txt</File>
       <File>Prebuild.xml</File>
     </Files>
