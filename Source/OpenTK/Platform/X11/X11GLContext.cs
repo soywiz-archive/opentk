@@ -90,7 +90,8 @@ namespace OpenTK.Platform.X11
             bool doublebuffer
         )
         {
-            Trace.WriteLine("Creating opengl context (X11)");
+            Trace.WriteLine("Setting up opengl context (X11)");
+            Trace.Indent();
 
             this.handle = handle;
             this.display = display;
@@ -141,6 +142,8 @@ namespace OpenTK.Platform.X11
             //colormap = API.CreateColormap(display, rootWindow, xVisualInfo.visual, 0/*AllocNone*/);
 
             //Trace.WriteLine(String.Format("colormap: {0}", colormap));
+
+            Trace.Unindent();
         }
 
         #endregion
@@ -148,8 +151,7 @@ namespace OpenTK.Platform.X11
         internal void CreateContext()
         {
             x11context = Glx.CreateContext(display, visual, IntPtr.Zero, true);
-            Console.WriteLine("x11context: {0}", x11context);
-            Console.Out.Flush();
+            Trace.WriteLine(String.Format("Created x11context: {0}", x11context));
 
             MakeCurrent();
         }
