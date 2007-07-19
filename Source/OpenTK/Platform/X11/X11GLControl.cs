@@ -19,7 +19,7 @@ namespace OpenTK.Platform.X11
         int screenNo;
         private Type xplatui;
         //private Size fullScreenSize;
-        OpenTK.Platform.IGLContext context;
+        X11GLContext context;
 
         private bool quit;
 
@@ -81,7 +81,7 @@ namespace OpenTK.Platform.X11
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).SetValue(
                         null,
-                        ((X11GLContext)context).visual
+                        context.visual
                     );
 
                 xplatui.GetField(
@@ -89,10 +89,10 @@ namespace OpenTK.Platform.X11
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).SetValue(
                         null,
-                        ((X11GLContext)context).colormap
+                        context.colormap
                     );
 
-                ((X11GLContext)context).CreateContext();
+                context.CreateContext();
 
                 API.MapRaised(display, handleToTopLevelControl);
             }

@@ -457,9 +457,24 @@ namespace OpenTK.Platform.X11
 
         public void Dispose()
         {
-            glContext.Destroy();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool manuallyCalled)
+        {
             API.DestroyWindow(display, window);
             API.CloseDisplay(display);
+
+            if (manuallyCalled)
+            {
+                glContext.Dispose();
+            }
+        }
+
+        ~X11GLNative()
+        {
+            this.Dispose(false);
         }
 
         #endregion
