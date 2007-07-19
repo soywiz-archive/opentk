@@ -39,13 +39,22 @@ namespace Examples
                         true,
                         true
                     );
+                // We want to do this on a thread, so that the launcher doesn't block:
                 //example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
 
-                new Thread(delegate()
-                {
-                    example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
-                }).Start();
+                // Mono 1.2.4 does not support this specific anonymous delegate
+                //new Thread(delegate()
+                //{
+                //    example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
+                //}).Start();
+
+                new Thread(Launch).Start(example);
             }
+        }
+
+        void Launch(object example)
+        {
+            (example as Type).InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
         }
 
         public void ExampleLauncher_Load(object sender, EventArgs e)
