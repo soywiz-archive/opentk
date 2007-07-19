@@ -53,9 +53,6 @@ namespace OpenTK.Platform.X11
             bool doublebuffer
         )
         {
-            Console.WriteLine("Creating X11Context.");
-            Console.Out.Flush();
-
             this.Setup(
                 handle,
                 display,

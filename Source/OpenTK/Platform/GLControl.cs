@@ -14,6 +14,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using OpenTK.OpenGL;
+using System.Diagnostics;
 
 #endregion
 
@@ -58,6 +59,8 @@ namespace OpenTK.Platform
 
         protected void Setup(int width, int height, bool fullscreen)
         {
+            Trace.AutoFlush = true;
+
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
