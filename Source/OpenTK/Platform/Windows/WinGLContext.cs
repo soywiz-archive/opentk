@@ -163,7 +163,7 @@ namespace OpenTK.Platform.Windows
 
         #region public DisplayMode[] GetDisplayModes()
 
-        public DisplayMode[] GetDisplayModes()
+        public IEnumerable<DisplayMode> GetDisplayModes()
         {
             List<DisplayMode> modes = new List<DisplayMode>();
             bool done = false;
@@ -193,7 +193,14 @@ namespace OpenTK.Platform.Windows
                 DisplayMode mode = new DisplayMode(
                     currentMode.PelsWidth,
                     currentMode.PelsHeight,
-                    currentMode.BitsPerPel,
+                    new ColorDepth(currentMode.BitsPerPel),
+                    0,
+                    0,
+                    0,
+                    0,
+                    false,
+                    false,
+                    false,
                     currentMode.DisplayFrequency
                 );
 

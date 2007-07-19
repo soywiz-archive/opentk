@@ -176,7 +176,7 @@ namespace OpenTK.Platform.X11
             return Glx.GetProcAddress(function);
         }
 
-        public OpenTK.Platform.DisplayMode[] GetDisplayModes()
+        public IEnumerable<DisplayMode> GetDisplayModes()
         {
             throw new Exception("The method or operation is not implemented.");
         }

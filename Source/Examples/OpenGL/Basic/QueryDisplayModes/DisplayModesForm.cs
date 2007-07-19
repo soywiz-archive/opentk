@@ -20,10 +20,12 @@ namespace Examples.Windowing
 
             glWindow = new OpenTK.Platform.GLControl();
 
-            DisplayMode[] modes = glWindow.Context.GetDisplayModes();
+            IEnumerable<DisplayMode> modes = glWindow.Context.GetDisplayModes();
 
-            for (int i = 0; i < modes.Length; i++)
-                listBox1.Items.Add(modes[i]);
+            foreach (DisplayMode m in modes)
+            {
+                listBox1.Items.Add(m);
+            }
         }
     }
 }
