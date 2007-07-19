@@ -99,7 +99,7 @@ namespace OpenTK.Platform.X11
                 "Requesting visual: " + color.ToString() +
                 " (RGBA: " +
                 color.Red.ToString() + color.Green.ToString() + color.Blue.ToString() + color.Alpha.ToString() +
-                "...)");
+                ")... ");
             
             IntPtr low_level_glxVisualInfo =
                 Glx.ChooseVisual(display, screen, visualAttributes.ToArray());

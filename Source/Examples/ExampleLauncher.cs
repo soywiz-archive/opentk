@@ -29,8 +29,6 @@ namespace Examples
             InitializeComponent();
         }
 
-        Dictionary<string, Thread> executingExamples = new Dictionary<string, Thread>();
-
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
@@ -41,18 +39,12 @@ namespace Examples
                         true,
                         true
                     );
-                example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
-                /*
-                if (!executingExamples.ContainsKey(listBox1.SelectedItem.ToString()))
+                //example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
+
+                new Thread(delegate()
                 {
-                    Thread newExample = new Thread(
-                        new ParameterizedThreadStart(
-                            this.Invoke
-                        )
-                    );
-                    executingExamples.Add(listBox1.SelectedItem.ToString(), newExample);
-                    newExample.Start();
-                }*/
+                    example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
+                }).Start();
             }
         }
 

@@ -65,7 +65,8 @@ namespace Examples.WinForms
             {
                 // We need to use ShowDialog, because a message loop already exists
                 // in the current thread (the one from the ExampleLauncher).
-                ex.ShowDialog();
+                //ex.ShowDialog();
+                Application.Run(ex);
             }
         }
 
