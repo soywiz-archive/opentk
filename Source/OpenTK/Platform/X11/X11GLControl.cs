@@ -117,38 +117,14 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region --- IGLWindow Members ---
+        #region --- IGLControl Members ---
 
         public event CreateEvent Create;
 
-        protected void OnCreate(object sender, EventArgs e)
+        private void OnCreate(object sender, EventArgs e)
         {
             if (this.Create != null)
                 this.Create(sender, e);
-        }
-
-        public int Width
-        {
-            get
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-            set
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-        }
-
-        public int Height
-        {
-            get
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-            set
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
         }
 
         #region public bool Quit
@@ -169,7 +145,7 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                return (API.Pending(IntPtr.Zero) == 0) ? true : false;
+                return (API.Pending(this.display) == 0) ? true : false;
             }
         }
 

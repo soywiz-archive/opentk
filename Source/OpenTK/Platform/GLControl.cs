@@ -43,11 +43,6 @@ namespace OpenTK.Platform
             this.Setup(this.Width, this.Height, false);
         }
 
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
-        }
-
         /// <summary>
         /// Constructs a new GLControl with the specified width, height and fullscreen modes.
         /// </summary>
@@ -71,7 +66,6 @@ namespace OpenTK.Platform
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                      Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                //throw new NotImplementedException();
                 glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
             }
             else
