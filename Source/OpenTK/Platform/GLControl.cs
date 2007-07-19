@@ -25,7 +25,7 @@ namespace OpenTK.Platform
     /// <summary>
     /// 
     /// </summary>
-    public partial class GLControl : UserControl, IGLControl, IDisposable
+    public partial class GLControl : UserControl, IGLControl
     {
         #region --- Private Fields ---
 
@@ -159,6 +159,8 @@ namespace OpenTK.Platform
 
         public event CreateEvent Create;
 
+        #region public bool IsIdle
+
         /// <summary>
         /// Gets the idle status of the control.
         /// </summary>
@@ -167,6 +169,10 @@ namespace OpenTK.Platform
             get { return glWindow.IsIdle; }
         }
 
+        #endregion
+
+        #region public IGLContext Context
+
         /// <summary>
         /// Gets the opengl context associated with this control.
         /// </summary>
@@ -174,6 +180,8 @@ namespace OpenTK.Platform
         {
             get { return glWindow.Context; }
         }
+
+        #endregion
 
         #region DisplayMode changes
 
@@ -253,12 +261,26 @@ namespace OpenTK.Platform
         #endregion
 
         #region --- IDisposable Members ---
-
-        void IDisposable.Dispose()
+        /*
+        public void Dispose()
         {
-            throw new Exception("The method or operation is not implemented.");
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
+        private void Dispose(bool manuallyCalled)
+        {
+            if (manuallyCalled)
+            {
+                glWindow.Dispose();
+            }
+        }
+
+        ~GLControl()
+        {
+            this.Dispose(false);
+        }
+        */
         #endregion
     }
 }

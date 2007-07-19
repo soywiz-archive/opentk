@@ -112,7 +112,6 @@ namespace OpenTK.Platform.X11
             attributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
             attributes.Add((int)Glx.Enums.GLXAttribute.NONE);
 
-			Trace.Indent();
             Trace.WriteLine(
                 String.Format(
                     "Requesting visual: {0} ({1}{2}{3}{4})",
