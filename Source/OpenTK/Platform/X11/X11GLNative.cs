@@ -153,7 +153,7 @@ namespace OpenTK.Platform.X11
             );
             */
 
-            glContext.ContainingWindow = this.windowInfo.Handle;
+            glContext.ContainingWindow = window;
             glContext.CreateContext(null, true);
 
             // Create the GLX context with the specified parameters
