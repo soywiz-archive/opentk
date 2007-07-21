@@ -39,11 +39,14 @@ namespace OpenTK.Platform.X11
 
         private X11GLContext()
         {
+            this.windowInfo = new X11WindowInfo();
+            this.mode = new DisplayMode();
         }
 
         public X11GLContext(IWindowInfo info, DisplayMode mode)
         {
-            windowInfo = info as X11WindowInfo;
+            this.windowInfo = info as X11WindowInfo;
+            this.mode = mode;
         }
 
         public X11GLContext(
