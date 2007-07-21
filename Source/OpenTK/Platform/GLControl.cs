@@ -40,35 +40,14 @@ namespace OpenTK.Platform
         /// Constructs a new GLControl.
         /// </summary>
         public GLControl()
+            :this(new DisplayMode())
+        {
+        }
+
+        public GLControl(DisplayMode mode)
         {
             InitializeComponent();
 
-            OnCreateControl();
-        }
-
-        /// <summary>
-        /// Constructs a new GLControl with the specified width, height and fullscreen modes.
-        /// </summary>
-        /// <param name="width">The width of the control. Only used if the control is not bound to a parent.</param>
-        /// <param name="height">The height of the control. Only used if the control is not bound to a parent.</param>
-        /// <param name="fullscreen">Set to true if you wish the control to occupy the whole screen.</param>
-        private GLControl(int width, int height, bool fullscreen)
-        {
-            InitializeComponent();
-
-            OnCreateControl();
-        }
-
-        protected override void OnCreateControl()
-        {
-            base.OnCreateControl();
-            this.CreateControl();
-
-            Setup();
-        }
-
-        protected void Setup()
-        {
             System.Diagnostics.Debug.Listeners.Clear();
             System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
             System.Diagnostics.Debug.AutoFlush = true;

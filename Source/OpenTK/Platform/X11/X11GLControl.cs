@@ -23,10 +23,14 @@ namespace OpenTK.Platform.X11
 
         #region --- Contructors ---
 
-        public X11GLControl(Control c, int width, int height, bool fullscreen)
+        public X11GLControl(UserControl c, int width, int height, bool fullscreen)
         {
             Trace.WriteLine("Creating opengl control (X11GLControl driver)");
             Trace.Indent();
+
+            c.ParentChanged += new EventHandler(c_ParentChanged);
+            if (c.ParentForm != null)
+                throw new Exception("I was stupid!");
 
             if (c == null/* || c.TopLevelControl == null*/)
             {
@@ -40,18 +44,6 @@ namespace OpenTK.Platform.X11
                     String.IsNullOrEmpty(c.Name) ? c.Text : c.Name
                 )
             );
-
-            Trace.WriteLine(
-                String.Format(
-                    "TopLevel control is {0}",
-                    c.TopLevelControl != null ? c.TopLevelControl.ToString() : "not available"
-                )
-            );
-
-            if (c.TopLevelControl == null)
-                info.TopLevelWindow = c.Handle;
-            else
-                info.TopLevelWindow = c.TopLevelControl.Handle;
 
             xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
             Trace.WriteLine("Acquired System.Windows.Forms.XplatUIX11 type.");
@@ -102,11 +94,32 @@ namespace OpenTK.Platform.X11
                     );
 
                 glContext.CreateContext(null, true);
-
-                Trace.WriteLine(String.Format("Mapping window to top level: {0}", info.TopLevelWindow));
-                API.MapRaised(info.Display, info.TopLevelWindow);
-                Trace.Unindent();
             }
+        }
+
+        void c_ParentChanged(object sender, EventArgs e)
+        {
+            UserControl c = sender as UserControl;
+            Trace.WriteLine(
+                String.Format(
+                    "TopLevel control is {0}",
+                    c.TopLevelControl != null ? c.TopLevelControl.ToString() : "not available"
+                )
+            );
+
+            if (c.TopLevelControl == null)
+            {
+                info.TopLevelWindow = c.Handle;
+                throw new Exception("GLControl does not have a parent.");
+            }
+            else
+            {
+                info.TopLevelWindow = c.TopLevelControl.Handle;
+            }
+
+            Trace.WriteLine(String.Format("Mapping window to top level: {0}", info.TopLevelWindow));
+            API.MapRaised(info.Display, info.TopLevelWindow);
+            Trace.Unindent();
         }
 
         #endregion

@@ -75,7 +75,7 @@ namespace Examples.WinForms
         #region private void Render()
 
         private void Render()
-        {
+        { 
             glControl.MakeCurrent();
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();

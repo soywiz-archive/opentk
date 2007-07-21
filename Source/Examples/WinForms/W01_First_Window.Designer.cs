@@ -40,7 +40,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.glControl1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.glControl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            //this.glControl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.glControl1.Fullscreen = false;
             this.glControl1.Location = new System.Drawing.Point(1, 0);
             this.glControl1.Name = "glControl1";
