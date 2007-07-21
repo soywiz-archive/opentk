@@ -89,8 +89,6 @@ namespace OpenTK.Platform.X11
 
             glContext = new X11GLContext(windowInfo, mode);
             glContext.CreateVisual();
-            windowInfo = null;
-
 
             // Create a window on this display using the visual above
             Trace.Write("Creating output window... ");
@@ -121,7 +119,7 @@ namespace OpenTK.Platform.X11
                 mode.DepthBits,
                 Constants.InputOutput,
                 //glxVisualInfo.visual,
-                glContext.XVisual,
+                glContext.XVisualInfo.visual,
                 cw_mask,
                 wnd_attributes
             );
