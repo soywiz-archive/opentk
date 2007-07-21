@@ -118,14 +118,16 @@ namespace OpenTK.Platform.X11
 
         public void MakeCurrent()
         {
+            Debug.Write(String.Format("Making context {0} current... ", x11context));
             bool result = Glx.MakeCurrent(display, windowInfo.Handle, x11context);
 
             if (!result)
             {
-                Trace.WriteLine(String.Format("Failed to make context {0} current.", x11context));
+                Debug.WriteLine(String.Format("Failed to make context {0} current.", x11context));
                 // probably need to recreate context here.
-                //throw new Exception("Failed to make context {0} current.", x11context);
+                throw new Exception(String.Format("Failed to make context {0} current.", x11context));
             }
+            Debug.WriteLine("done!");
         }
 
         public IntPtr GetAddress(string function)
@@ -169,45 +171,58 @@ namespace OpenTK.Platform.X11
 
         public void CreateContext(X11GLContext shareContext, bool direct)
         {
+            Trace.WriteLine("Creating opengl context.");
+            Trace.Indent();
+
             IntPtr handle = shareContext != null ? shareContext.Handle : IntPtr.Zero;
+            Trace.WriteLine(
+                handle == IntPtr.Zero ?
+                "Context not shared." :
+                String.Format("Context shared with: {0}", handle)
+            );
+            Trace.WriteLine(
+                direct ?
+                "Context is direct." :
+                "Context is indirect."
+            );
             x11context = Glx.CreateContext(
                 windowInfo.Display,
                 visual,
                 handle,
                 direct
             );
-            Trace.WriteLine(String.Format("Created opengl context (X11). ID: {0}", x11context));
+            Trace.WriteLine(String.Format("Opengl context created. (id: {0})", x11context));
 
             MakeCurrent();
         }
 
         public void CreateVisual()
         {
-            Trace.WriteLine("--- Creating opengl context (X11) ---");
+            Trace.WriteLine("Creating visual.");
             Trace.Indent();
 
-            ColorDepth color = new ColorDepth(24);
-            int depthBits = 16;
+            //ColorDepth color = new ColorDepth(24);
+            //int depthBits = 16;
 
             // Create the Visual
             List<int> visualAttributes = new List<int>();
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
-            visualAttributes.Add((int)color.Red);
+            visualAttributes.Add((int)mode.Color.Red);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
-            visualAttributes.Add((int)color.Green);
+            visualAttributes.Add((int)mode.Color.Green);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
-            visualAttributes.Add((int)color.Blue);
+            visualAttributes.Add((int)mode.Color.Blue);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            visualAttributes.Add((int)color.Alpha);
+            visualAttributes.Add((int)mode.Color.Alpha);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            visualAttributes.Add((int)depthBits);
+            visualAttributes.Add((int)mode.DepthBits);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
 
             Trace.Write(
                 String.Format(
-                    "Requesting visual: {0} ({1}{2}{3}{4})",
+                    "Requesting visual: {0} ({1}{2}{3}{4})... ",
                     mode.ToString(),
                     mode.Color.Red,
                     mode.Color.Green,
@@ -223,7 +238,7 @@ namespace OpenTK.Platform.X11
             }
             visualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
 
-            Trace.WriteLine("ok!");
+            Trace.WriteLine(String.Format("done! (id: {0})", x11context));
 
             /*
             List<int> attributes = new List<int>();

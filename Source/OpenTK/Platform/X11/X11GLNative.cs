@@ -58,12 +58,17 @@ namespace OpenTK.Platform.X11
         /// </summary>
         public X11GLNative()
         {
+            Trace.WriteLine("Creating GameWindow (X11GLNative driver)");
+            Trace.Indent();
+
             // Set default (safe) DisplayMode.
             mode.Width = 640;
             mode.Height = 480;
             mode.Color = new ColorDepth(24);
             mode.DepthBits = 16;
             mode.Buffers = 2;
+
+            Trace.WriteLine(String.Format("Display mode: {0}", mode));
         
             windowInfo.Display = display = API.OpenDisplay(null); // null == default display
             if (display == IntPtr.Zero)
@@ -73,50 +78,23 @@ namespace OpenTK.Platform.X11
             windowInfo.Screen = screen = API.DefaultScreen(display);
             windowInfo.RootWindow = rootWindow = API.RootWindow(display, screen);
 
+            Trace.WriteLine(
+                String.Format(
+                    "Display: {0}, Screen {1}, Root window: {2}",
+                    windowInfo.Display,
+                    windowInfo.Screen,
+                    windowInfo.RootWindow
+                )
+            );
+
             glContext = new X11GLContext(windowInfo, mode);
             glContext.CreateVisual();
 
-            /*
-            ColorDepth color = new ColorDepth(24);
-            int depthBits = 16;
-
-            // Create the Visual
-            List<int> visualAttributes = new List<int>();
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
-            visualAttributes.Add((int)color.Red);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
-            visualAttributes.Add((int)color.Green);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
-            visualAttributes.Add((int)color.Blue);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            visualAttributes.Add((int)color.Alpha);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            visualAttributes.Add((int)depthBits);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
-
-            Trace.Write(
-                "Requesting visual: " + color.ToString() +
-                " (RGBA: " +
-                color.Red.ToString() + color.Green.ToString() + color.Blue.ToString() + color.Alpha.ToString() +
-                ")... ");
-            
-            IntPtr low_level_glxVisualInfo =
-                Glx.ChooseVisual(display, screen, visualAttributes.ToArray());
-            if (low_level_glxVisualInfo == IntPtr.Zero)
-            {
-                throw new Exception("Requested visual not available.");
-            }
-            VisualInfo glxVisualInfo =
-                (VisualInfo)Marshal.PtrToStructure(low_level_glxVisualInfo, typeof(VisualInfo));
-            
-            Trace.WriteLine("ok!");
-            */
 
             // Create a window on this display using the visual above
-            SetWindowAttributes wnd_attributes = new SetWindowAttributes();
+            Trace.Write("Creating output window... ");
 
+            SetWindowAttributes wnd_attributes = new SetWindowAttributes();
             wnd_attributes.background_pixel = 0;
             wnd_attributes.border_pixel = 0;
             wnd_attributes.colormap = glContext.XColormap;
@@ -132,9 +110,7 @@ namespace OpenTK.Platform.X11
                 CreateWindowMask.CWColormap |
                 CreateWindowMask.CWEventMask;
 
-            Trace.Write("Creating window... ");
-
-            window = API.CreateWindow(
+            windowInfo.Handle = window = API.CreateWindow(
                 display,
                 rootWindow,
                 0, 0,
@@ -154,7 +130,7 @@ namespace OpenTK.Platform.X11
                 throw new Exception("Could not create window.");
             }
 
-            Trace.WriteLine("ok! (id: " + window + ")");
+            Trace.WriteLine("done! (id: " + window + ")");
             
             // Set the window hints
             /*
@@ -177,7 +153,7 @@ namespace OpenTK.Platform.X11
             );
             */
 
-            Trace.Write("Creating OpenGL context... ");
+            glContext.ContainingWindow = this.windowInfo.Handle;
             glContext.CreateContext(null, true);
 
             // Create the GLX context with the specified parameters
@@ -208,7 +184,7 @@ namespace OpenTK.Platform.X11
             //    throw new Exception("Could not create GLX Context");
             //}
 
-            Trace.WriteLine("ok! (id: " + glContext.Handle + ")");
+            Trace.WriteLine("done! (id: " + glContext.Handle + ")");
         
             //API.Free(low_level_glxVisualInfo);
             //glxVisualInfo = null;
