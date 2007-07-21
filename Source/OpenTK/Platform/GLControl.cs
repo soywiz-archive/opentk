@@ -36,11 +36,14 @@ namespace OpenTK.Platform
 
         #region --- Contructors ---
 
+        /// <summary>
+        /// Constructs a new GLControl.
+        /// </summary>
         public GLControl()
         {
             InitializeComponent();
 
-            this.Setup(this.Width, this.Height, false);
+            OnCreateControl();
         }
 
         /// <summary>
@@ -49,14 +52,21 @@ namespace OpenTK.Platform
         /// <param name="width">The width of the control. Only used if the control is not bound to a parent.</param>
         /// <param name="height">The height of the control. Only used if the control is not bound to a parent.</param>
         /// <param name="fullscreen">Set to true if you wish the control to occupy the whole screen.</param>
-        public GLControl(int width, int height, bool fullscreen)
+        private GLControl(int width, int height, bool fullscreen)
         {
             InitializeComponent();
 
-            this.Setup(width, height, fullscreen);
+            OnCreateControl();
         }
 
-        protected void Setup(int width, int height, bool fullscreen)
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+
+            Setup();
+        }
+
+        protected void Setup()
         {
             System.Diagnostics.Debug.Listeners.Clear();
             System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
@@ -69,12 +79,12 @@ namespace OpenTK.Platform
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
-                glControl = new OpenTK.Platform.Windows.WinGLControl(this, width, height, fullscreen);
+                glControl = new OpenTK.Platform.Windows.WinGLControl(this, Width, Height, false);
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                      Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                glControl =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
+                glControl =  new OpenTK.Platform.X11.X11GLControl(this, Width, Height, false);
             }
             else
             {
@@ -161,7 +171,7 @@ namespace OpenTK.Platform
 
         #endregion
 
-        #region --- IGLWindow Members ---
+        #region --- IGLControl Members ---
 
         public event CreateEvent Create;
 
@@ -257,6 +267,11 @@ namespace OpenTK.Platform
         }
 
         #endregion
+
+        public void ProcessEvents()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
 
         #endregion
 
