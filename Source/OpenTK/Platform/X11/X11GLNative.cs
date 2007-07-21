@@ -110,13 +110,13 @@ namespace OpenTK.Platform.X11
                 CreateWindowMask.CWEventMask;
 
             window = API.CreateWindow(
-                display,
-                rootWindow,
+                windowInfo.Display,
+                windowInfo.RootWindow,
                 0, 0,
                 640, 480,
                 0,
                 //glxVisualInfo.depth,
-                mode.DepthBits,
+                glContext.XVisualInfo.depth,
                 Constants.InputOutput,
                 //glxVisualInfo.visual,
                 glContext.XVisualInfo.visual,
