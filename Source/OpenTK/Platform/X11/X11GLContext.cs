@@ -181,6 +181,49 @@ namespace OpenTK.Platform.X11
 
         public void CreateVisual()
         {
+            Trace.Indent();
+            Trace.WriteLine("Creating opengl context (X11).");
+
+            ColorDepth color = new ColorDepth(24);
+            int depthBits = 16;
+
+            // Create the Visual
+            List<int> visualAttributes = new List<int>();
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
+            visualAttributes.Add((int)color.Red);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
+            visualAttributes.Add((int)color.Green);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
+            visualAttributes.Add((int)color.Blue);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
+            visualAttributes.Add((int)color.Alpha);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
+            visualAttributes.Add((int)depthBits);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
+
+            Trace.Write(
+                String.Format(
+                    "Requesting visual: {0} ({1}{2}{3}{4})",
+                    mode.ToString(),
+                    mode.Color.Red,
+                    mode.Color.Green,
+                    mode.Color.Blue,
+                    mode.Color.Alpha
+                )
+            );
+
+            visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, visualAttributes.ToArray());
+            if (visual == IntPtr.Zero)
+            {
+                throw new Exception("Requested visual not available.");
+            }
+            visualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
+
+            Trace.WriteLine("ok!");
+
+            /*
             List<int> attributes = new List<int>();
             attributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
             attributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
@@ -219,8 +262,9 @@ namespace OpenTK.Platform.X11
             Trace.WriteLine(String.Format("Visual id: {0}", visual));
 
             // Create a colormap (is this needed)?
-            colormap = API.CreateColormap(display, rootWindow, visualInfo.visual, 0/*AllocNone*/);
+            colormap = API.CreateColormap(display, rootWindow, visualInfo.visual, 0); // 0 == AllocNone
             Trace.WriteLine(String.Format("colormap: {0}", colormap));
+            */
 
             Trace.Unindent();
         }
