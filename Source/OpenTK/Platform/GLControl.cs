@@ -30,7 +30,7 @@ namespace OpenTK.Platform
         #region --- Private Fields ---
 
         private bool fullscreen;
-        private IGLControl glWindow;
+        private IGLControl glControl;
 
         #endregion
 
@@ -40,7 +40,6 @@ namespace OpenTK.Platform
         {
             InitializeComponent();
 
-            //this.Setup(640, 480, false);
             this.Setup(this.Width, this.Height, false);
         }
 
@@ -70,12 +69,12 @@ namespace OpenTK.Platform
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
-                glWindow = new OpenTK.Platform.Windows.WinGLControl(this, width, height, fullscreen);
+                glControl = new OpenTK.Platform.Windows.WinGLControl(this, width, height, fullscreen);
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
                      Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-                glWindow =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
+                glControl =  new OpenTK.Platform.X11.X11GLControl(this, width, height, fullscreen);
             }
             else
             {
@@ -84,7 +83,7 @@ namespace OpenTK.Platform
                 );
             }
 
-            glWindow.Context.MakeCurrent();
+            glControl.Context.MakeCurrent();
             /*
             Context.MakeCurrent();
 
@@ -173,7 +172,7 @@ namespace OpenTK.Platform
         /// </summary>
         public bool IsIdle
         {
-            get { return glWindow.IsIdle; }
+            get { return glControl.IsIdle; }
         }
 
         #endregion
@@ -185,7 +184,7 @@ namespace OpenTK.Platform
         /// </summary>
         public IGLContext Context
         {
-            get { return glWindow.Context; }
+            get { return glControl.Context; }
         }
 
         #endregion

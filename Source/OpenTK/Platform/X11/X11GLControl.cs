@@ -15,11 +15,9 @@ namespace OpenTK.Platform.X11
 {
     sealed class X11GLControl : IGLControl
     {
-        IntPtr display;
-        IntPtr rootWindow;
-        int screenNo;
+        X11WindowInfo info;
         private Type xplatui;
-        X11GLContext context;
+        X11GLContext glContext;
 
         private bool quit;
 
@@ -35,77 +33,60 @@ namespace OpenTK.Platform.X11
                 throw new Exception("Attempted to bind to non-existent control.");
             }
 
-            Trace.WriteLine(String.Format("Binding to control: {0}", c.ToString()));
+            info.Window = c.Handle;
+            Trace.WriteLine(String.Format("Binding to control: {0}", c.Name));
+
             Trace.WriteLine(
                 String.Format(
-                    "TopLevel control is: {0}",
+                    "TopLevel control is {0}",
                     c.TopLevelControl != null ? c.TopLevelControl.ToString() : "not available"
                 )
             );
 
-            xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
+            IntPtr handleToTopLevelControl;
+            if (c.TopLevelControl == null)
+                info.TopLevelWindow = IntPtr.Zero;//c.Handle;
+            else
+                info.TopLevelWindow = c.TopLevelControl.Handle;
 
+            xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
             Trace.WriteLine("Acquired System.Windows.Forms.XplatUIX11 type.");
 
             if (xplatui != null)
             {
-                display = (IntPtr)xplatui.GetField("DisplayHandle",
+                info.Display = (IntPtr)xplatui.GetField("DisplayHandle",
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
-                rootWindow = (IntPtr)xplatui.GetField("RootWindow",
+                info.RootWindow = (IntPtr)xplatui.GetField("RootWindow",
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
-                screenNo = (int)xplatui.GetField("ScreenNo",
+                info.Screen = (int)xplatui.GetField("ScreenNo",
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
                 Trace.WriteLine(
                     String.Format(
-                        "DisplayHandle: {0}  RootWindow: {1}   ScreenNo: {2}",
-                        display,
-                        rootWindow,
-                        screenNo
+                        "Screen: {0}, Display: {1}, Root Window: {2}, Control: {3}",
+                        info.Screen,
+                        info.Display,
+                        info.RootWindow,
+                        info.Window
                     )
                 );
 
-				IntPtr handleToTopLevelControl;
-				if (c.TopLevelControl == null)
-					handleToTopLevelControl = c.Handle;
-				else
-					handleToTopLevelControl = c.TopLevelControl.Handle;
-
-                /*
-                context = new X11GLContext(
-                    c.Handle,
-                    display,
-                    rootWindow,
-                    screenNo,
-                    handleToTopLevelControl,
-                    new ColorDepth(24),
-                    new ColorDepth(0),
-                    16,
-                    0,
-                    0,
-                    false,
-                    true
+                glContext = new X11GLContext(info, new DisplayMode(
+                    width, height, new ColorDepth(24), 16, 0, 0, 2, false, false, false, 0.0f)
                 );
-                */
-                X11WindowInfo info = new X11WindowInfo();
-                info.Screen = screenNo;
-                info.Display = display;
-                info.RootWindow = rootWindow;
-                info.Window = c.Handle;
-                context = new X11GLContext(info, new DisplayMode());
-                context.CreateVisual();
+                glContext.CreateVisual();
 
                 xplatui.GetField(
                     "CustomVisual",
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).SetValue(
                         null,
-                        context.XVisual
+                        glContext.XVisual
                     );
 
                 xplatui.GetField(
@@ -113,13 +94,13 @@ namespace OpenTK.Platform.X11
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).SetValue(
                         null,
-                        context.XColormap
+                        glContext.XColormap
                     );
 
-                context.CreateContext(null, true);
+                glContext.CreateContext(null, true);
 
-                Trace.WriteLine("Mapping window");
-                API.MapRaised(display, handleToTopLevelControl);
+                Trace.WriteLine(String.Format("Mapping window to top level: {0}", info.TopLevelWindow));
+                API.MapRaised(info.Display, info.TopLevelWindow);
                 Trace.Unindent();
             }
         }
@@ -154,7 +135,7 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                return (API.Pending(this.display) == 0) ? true : false;
+                return API.Pending(info.Display) == 0;
             }
         }
 
@@ -174,7 +155,7 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                return context;
+                return glContext;
             }
         }
 
