@@ -15,7 +15,7 @@ namespace OpenTK.Platform.X11
 {
     sealed class X11GLControl : IGLControl
     {
-        X11WindowInfo info;
+        X11WindowInfo info = new X11WindowInfo();
         private Type xplatui;
         X11GLContext glContext;
 
