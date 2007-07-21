@@ -62,6 +62,7 @@ namespace OpenTK.Platform
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
+            this.CreateControl();
 
             Setup();
         }
@@ -82,7 +83,8 @@ namespace OpenTK.Platform
                 glControl = new OpenTK.Platform.Windows.WinGLControl(this, Width, Height, false);
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
-                     Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
+                     Environment.OSVersion.Platform == (PlatformID)128)
+                    // some older versions of Mono reported 128.
             {
                 glControl =  new OpenTK.Platform.X11.X11GLControl(this, Width, Height, false);
             }

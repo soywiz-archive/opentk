@@ -34,7 +34,12 @@ namespace OpenTK.Platform.X11
             }
 
             info.Window = c.Handle;
-            Trace.WriteLine(String.Format("Binding to control: {0}", c.Name));
+            Trace.WriteLine(
+                String.Format(
+                    "Binding to control: {0}",
+                    String.IsNullOrEmpty(c.Name) ? c.Text : c.Name
+                )
+            );
 
             Trace.WriteLine(
                 String.Format(
@@ -44,7 +49,7 @@ namespace OpenTK.Platform.X11
             );
 
             if (c.TopLevelControl == null)
-                info.TopLevelWindow = IntPtr.Zero;//c.Handle;
+                info.TopLevelWindow = c.Handle;
             else
                 info.TopLevelWindow = c.TopLevelControl.Handle;
 
