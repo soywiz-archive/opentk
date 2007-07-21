@@ -98,15 +98,16 @@ namespace Examples.Tutorial
             GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ARRAY_BUFFER, vbo);
             GL.VertexPointer(3, OpenTK.OpenGL.Enums.VertexPointerType.FLOAT, 0, 0);
 
-            GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ELEMENT_ARRAY_BUFFER, ibo);
+            //GL.BindBuffer(OpenTK.OpenGL.Enums.VERSION_1_5.ELEMENT_ARRAY_BUFFER, ibo);
             //GL.IndexPointer(OpenTK.OpenGL.Enums.IndexPointerType.SHORT, 0, 0);
 
             GL.Color3f(1.0f, 1.0f, 1.0f);
-            GL.DrawElements(
-                OpenTK.OpenGL.Enums.BeginMode.QUADS,
-                idata.Length,
-                OpenTK.OpenGL.Enums.GLenum.UNSIGNED_SHORT,
-                (IntPtr)0);
+            //GL.DrawElements(
+            //    OpenTK.OpenGL.Enums.BeginMode.QUADS,
+            //    idata.Length,
+            //    OpenTK.OpenGL.Enums.GLenum.UNSIGNED_SHORT,
+            //    (IntPtr)0);
+            GL.DrawArrays(OpenTK.OpenGL.Enums.BeginMode.POINTS, 0, 8);
         }
 
         #region static public void Launch()

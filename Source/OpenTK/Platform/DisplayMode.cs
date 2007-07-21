@@ -4,15 +4,33 @@
  */
 #endregion
 
+#region --- Using directives ---
 
 using System;
 using System.Drawing;
 using System.Globalization;
 
+#endregion
+
 namespace OpenTK.Platform
 {
     public sealed class DisplayMode
     {
+        #region --- Private Variables ---
+
+        private int width, height;
+        private ColorDepth color;
+
+        private int depthBits, stencilBits, auxBits;
+
+        private float refreshRate;
+        private bool vsync;
+        private bool fullscreen;
+        private int buffers;
+        private bool stereo;
+
+        #endregion
+
         #region --- Constructors ---
 
         /// <summary>
@@ -90,22 +108,6 @@ namespace OpenTK.Platform
         */
         #endregion
 
-        #region --- Private Variables ---
-
-        private int width, height;
-        private ColorDepth color;
-
-        private int depthBits;
-        private int alphaBits;
-
-        private float displayFrequency;
-        private bool vsync;
-        private bool fullscreen;
-        private int buffers;
-        private bool stereo;
-
-        #endregion
-
         #region --- Public Properties ---
 
         #region public int Height
@@ -146,58 +148,62 @@ namespace OpenTK.Platform
 
         #endregion
 
+        #region public ColorDepth Color
+
         public ColorDepth Color
         {
             get { return this.color; }
-            set { throw new NotImplementedException(); }
+            set { this.color = value; }
         }
+
+        #endregion
 
         public int DepthBits
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.depthBits; }
+            set { this.depthBits = value; }
         }
 
         public int StencilBits
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.stencilBits; }
+            set { this.stencilBits = value; }
         }
 
         public int AuxBits
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.auxBits; }
+            set { this.auxBits = value; }
         }
 
         public bool Stereo
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.stereo; }
+            set { this.stereo = value; }
         }
 
         public bool Fullscreen
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.fullscreen; }
+            set { this.fullscreen = value; }
         }
 
         public bool Vsync
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.vsync; }
+            set { this.vsync = value; }
         }
 
         public int Buffers
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.buffers; }
+            set { this.buffers = value; }
         }
 
         public float RefreshRate
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return this.refreshRate; }
+            set { this.refreshRate = value; }
         }
 
 
