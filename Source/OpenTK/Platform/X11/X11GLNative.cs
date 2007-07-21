@@ -178,8 +178,10 @@ namespace OpenTK.Platform.X11
             */
 
             Trace.Write("Creating OpenGL context... ");
+            glContext.CreateContext(null, true);
 
             // Create the GLX context with the specified parameters
+
             //glContext = new X11GLContext();
             //glContext.handle = window;
             //glContext.display = display;
@@ -206,7 +208,7 @@ namespace OpenTK.Platform.X11
             //    throw new Exception("Could not create GLX Context");
             //}
 
-            //Trace.WriteLine("ok! (id: " + glContext.x11context + ")");
+            Trace.WriteLine("ok! (id: " + glContext.Handle + ")");
         
             //API.Free(low_level_glxVisualInfo);
             //glxVisualInfo = null;

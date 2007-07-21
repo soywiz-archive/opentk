@@ -107,7 +107,7 @@ namespace OpenTK.Platform.X11
                         context.colormap
                     );
 
-                context.CreateContext();
+                context.CreateContext(null, true);
 
                 Trace.WriteLine("Mapping window");
                 API.MapRaised(display, handleToTopLevelControl);

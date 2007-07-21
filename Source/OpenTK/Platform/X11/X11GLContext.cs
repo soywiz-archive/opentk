@@ -16,10 +16,8 @@ namespace OpenTK.Platform.X11
 {
     public class X11GLContext : OpenTK.Platform.IGLContext
     {
-        private IntPtr handle;
         private IntPtr x11context;
         private IntPtr display;
-        private IntPtr rootWindow;
         private int screenNo;
 
         private DisplayMode mode;// = new DisplayMode();
@@ -101,9 +99,7 @@ namespace OpenTK.Platform.X11
             Trace.WriteLine("Setting up opengl context (X11)");
             Trace.Indent();
 
-            this.handle = handle;
             this.display = display;
-            this.rootWindow = rootWindow;
             this.screenNo = screenNo;
             //this.depthBits = depthBits;
             //this.stencilBits = stencilBits;
@@ -117,12 +113,12 @@ namespace OpenTK.Platform.X11
 
         public void SwapBuffers()
         {
-            Glx.SwapBuffers(display, handle);
+            Glx.SwapBuffers(display, windowInfo.Handle);
         }
 
         public void MakeCurrent()
         {
-            bool result = Glx.MakeCurrent(display, handle, x11context);
+            bool result = Glx.MakeCurrent(display, windowInfo.Handle, x11context);
 
             if (!result)
             {
@@ -171,18 +167,24 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        public void CreateContext()
+        public void CreateContext(X11GLContext shareContext, bool direct)
         {
-            x11context = Glx.CreateContext(display, visual, IntPtr.Zero, true);
-            Trace.WriteLine(String.Format("Created x11context: {0}", x11context));
+            IntPtr handle = shareContext != null ? shareContext.Handle : IntPtr.Zero;
+            x11context = Glx.CreateContext(
+                windowInfo.Display,
+                visual,
+                handle,
+                direct
+            );
+            Trace.WriteLine(String.Format("Created opengl context (X11). ID: {0}", x11context));
 
             MakeCurrent();
         }
 
         public void CreateVisual()
         {
+            Trace.WriteLine("--- Creating opengl context (X11) ---");
             Trace.Indent();
-            Trace.WriteLine("Creating opengl context (X11).");
 
             ColorDepth color = new ColorDepth(24);
             int depthBits = 16;
@@ -282,6 +284,17 @@ namespace OpenTK.Platform.X11
         public IntPtr XColormap
         {
             get { return colormap; }
+        }
+
+        public IntPtr Handle
+        {
+            get { return this.x11context; }
+        }
+
+        public IntPtr ContainingWindow
+        {
+            get { return windowInfo.Handle; }
+            internal set { ContainingWindow = value; }
         }
     }
 }
