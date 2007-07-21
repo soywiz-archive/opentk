@@ -25,7 +25,7 @@ namespace OpenTK.Platform.X11
 
         public X11GLControl(Control c, int width, int height, bool fullscreen)
         {
-            Trace.WriteLine("Creating GLControl (X11)");
+            Trace.WriteLine("Creating opengl control (X11GLControl driver)");
             Trace.Indent();
 
             if (c == null/* || c.TopLevelControl == null*/)
@@ -43,7 +43,6 @@ namespace OpenTK.Platform.X11
                 )
             );
 
-            IntPtr handleToTopLevelControl;
             if (c.TopLevelControl == null)
                 info.TopLevelWindow = IntPtr.Zero;//c.Handle;
             else
