@@ -76,6 +76,7 @@ namespace Examples.WinForms
 
         private void Render()
         {
+            glControl.MakeCurrent();
             GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
