@@ -76,6 +76,7 @@ namespace OpenTK.Platform.X11
 				else
 					handleToTopLevelControl = c.TopLevelControl.Handle;
 
+                /*
                 context = new X11GLContext(
                     c.Handle,
                     display,
@@ -90,13 +91,21 @@ namespace OpenTK.Platform.X11
                     false,
                     true
                 );
+                */
+                X11WindowInfo info = new X11WindowInfo();
+                info.Screen = screenNo;
+                info.Display = display;
+                info.RootWindow = rootWindow;
+                info.Window = c.Handle;
+                context = new X11GLContext(info, new DisplayMode());
+                context.CreateVisual();
 
                 xplatui.GetField(
                     "CustomVisual",
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).SetValue(
                         null,
-                        context.visual
+                        context.XVisual
                     );
 
                 xplatui.GetField(
@@ -104,7 +113,7 @@ namespace OpenTK.Platform.X11
                     System.Reflection.BindingFlags.Static |
                     System.Reflection.BindingFlags.NonPublic).SetValue(
                         null,
-                        context.colormap
+                        context.XColormap
                     );
 
                 context.CreateContext(null, true);

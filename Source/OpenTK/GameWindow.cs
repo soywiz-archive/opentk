@@ -52,6 +52,8 @@ namespace OpenTK
                 );
             }
 
+            glWindow.Context.MakeCurrent();
+
             // When the glWindow construction is complete, hook the resize events.
             resizeEventArgs.Width = this.Width;
             resizeEventArgs.Height = this.Height;

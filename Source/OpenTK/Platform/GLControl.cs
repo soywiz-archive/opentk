@@ -84,6 +84,7 @@ namespace OpenTK.Platform
                 );
             }
 
+            glWindow.Context.MakeCurrent();
             /*
             Context.MakeCurrent();
 

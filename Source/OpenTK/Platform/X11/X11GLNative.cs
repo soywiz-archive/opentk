@@ -89,6 +89,7 @@ namespace OpenTK.Platform.X11
 
             glContext = new X11GLContext(windowInfo, mode);
             glContext.CreateVisual();
+            windowInfo = null;
 
 
             // Create a window on this display using the visual above
@@ -110,7 +111,7 @@ namespace OpenTK.Platform.X11
                 CreateWindowMask.CWColormap |
                 CreateWindowMask.CWEventMask;
 
-            windowInfo.Handle = window = API.CreateWindow(
+            window = API.CreateWindow(
                 display,
                 rootWindow,
                 0, 0,
@@ -153,49 +154,18 @@ namespace OpenTK.Platform.X11
             );
             */
 
-            glContext.ContainingWindow = window;
+            //glContext.ContainingWindow = windowInfo.Window;
+            glContext.windowInfo.Window = window;
             glContext.CreateContext(null, true);
-
-            // Create the GLX context with the specified parameters
-
-            //glContext = new X11GLContext();
-            //glContext.handle = window;
-            //glContext.display = display;
-            //glContext.x11context = Glx.CreateContext(
-            //    display,
-            //    glxVisualInfo,
-            //    IntPtr.Zero,
-            //    true
-            //);
-            //if (glContext.x11context == IntPtr.Zero)
-            //{
-                // If we couldn't get a context, retry with indirect rendering.
-            //    glContext.x11context = Glx.CreateContext(
-            //        display,
-            //        glxVisualInfo,
-            //        IntPtr.Zero,
-            //        false
-            //    );
-            //}
-            //if (glContext.x11context == IntPtr.Zero)
-            //{
-                // If we failed again, stop trying.
-                // TODO: Create a specific exception!
-            //    throw new Exception("Could not create GLX Context");
-            //}
-
-            Trace.WriteLine("done! (id: " + glContext.Handle + ")");
-        
-            //API.Free(low_level_glxVisualInfo);
-            //glxVisualInfo = null;
 
             API.MapRaised(display, window);
 
             Trace.WriteLine("Mapped window.");
 
-            glContext.MakeCurrent();
+            //glContext.MakeCurrent();
 
             Trace.WriteLine("Our shiny new context is now current - ready to rock 'n' roll!");
+            Trace.Unindent();
         }
 
         #endregion

@@ -21,7 +21,7 @@ namespace OpenTK.Platform.X11
         private int screenNo;
 
         private DisplayMode mode;// = new DisplayMode();
-        private X11WindowInfo windowInfo;
+        internal X11WindowInfo windowInfo = new X11WindowInfo();
         private VisualInfo visualInfo;
 
         //private IntPtr desktopResolution = IntPtr.Zero;
@@ -37,13 +37,18 @@ namespace OpenTK.Platform.X11
 
         private X11GLContext()
         {
-            this.windowInfo = new X11WindowInfo();
             this.mode = new DisplayMode();
         }
 
         public X11GLContext(IWindowInfo info, DisplayMode mode)
         {
-            this.windowInfo = info as X11WindowInfo;
+            X11WindowInfo xInfo = info as X11WindowInfo;            
+            this.windowInfo.Window = xInfo.Window;
+            this.windowInfo.RootWindow = xInfo.RootWindow;
+            this.windowInfo.TopLevelWindow = xInfo.TopLevelWindow;
+            this.windowInfo.Display = xInfo.Display;
+            this.windowInfo.Screen = xInfo.Screen;
+            
             this.mode = mode;
         }
 
@@ -113,13 +118,20 @@ namespace OpenTK.Platform.X11
 
         public void SwapBuffers()
         {
-            Glx.SwapBuffers(display, windowInfo.Handle);
+            Glx.SwapBuffers(windowInfo.Display, windowInfo.Window);
         }
 
         public void MakeCurrent()
         {
-            Debug.Write(String.Format("Making context {0} current... ", x11context));
-            bool result = Glx.MakeCurrent(display, windowInfo.Handle, x11context);
+            Debug.Write(
+                String.Format(
+                    "Making context {0} current (display: {1}, window: {2})... ",
+                    x11context,
+                    windowInfo.Display,
+                    windowInfo.Window
+                )
+            );
+            bool result = Glx.MakeCurrent(windowInfo.Display, windowInfo.Window, x11context);
 
             if (!result)
             {
@@ -153,7 +165,7 @@ namespace OpenTK.Platform.X11
         private void Dispose(bool manuallyCalled)
         {
             // Clean unmanaged resources:
-            Glx.DestroyContext(display, x11context);
+            Glx.DestroyContext(windowInfo.Display, x11context);
             API.Free(visual);
 
             if (manuallyCalled)
@@ -174,11 +186,11 @@ namespace OpenTK.Platform.X11
             Trace.WriteLine("Creating opengl context.");
             Trace.Indent();
 
-            IntPtr handle = shareContext != null ? shareContext.Handle : IntPtr.Zero;
+            IntPtr shareHandle = shareContext != null ? shareContext.Handle : IntPtr.Zero;
             Trace.WriteLine(
-                handle == IntPtr.Zero ?
-                "Context not shared." :
-                String.Format("Context shared with: {0}", handle)
+                shareHandle == IntPtr.Zero ?
+                "Context is not shared." :
+                String.Format("Context is shared with context: {0}", shareHandle)
             );
             Trace.WriteLine(
                 direct ?
@@ -188,12 +200,13 @@ namespace OpenTK.Platform.X11
             x11context = Glx.CreateContext(
                 windowInfo.Display,
                 visual,
-                handle,
+                shareHandle,
                 direct
             );
-            Trace.WriteLine(String.Format("Opengl context created. (id: {0})", x11context));
+            Trace.WriteLine(String.Format("New opengl context created. (id: {0})", x11context));
+            Trace.Unindent();
 
-            MakeCurrent();
+            //MakeCurrent();
         }
 
         public void CreateVisual()
@@ -201,10 +214,26 @@ namespace OpenTK.Platform.X11
             Trace.WriteLine("Creating visual.");
             Trace.Indent();
 
-            //ColorDepth color = new ColorDepth(24);
-            //int depthBits = 16;
+            ColorDepth color = new ColorDepth(24);
+            int depthBits = 16;
 
             // Create the Visual
+            List<int> visualAttributes = new List<int>();
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
+            visualAttributes.Add((int)color.Red);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
+            visualAttributes.Add((int)color.Green);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
+            visualAttributes.Add((int)color.Blue);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
+            visualAttributes.Add((int)color.Alpha);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
+            visualAttributes.Add((int)depthBits);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
+            
+            /*
             List<int> visualAttributes = new List<int>();
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
@@ -216,10 +245,10 @@ namespace OpenTK.Platform.X11
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
             visualAttributes.Add((int)mode.Color.Alpha);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            visualAttributes.Add((int)mode.DepthBits);
+            visualAttributes.Add((int)depthBits);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
-
+            */
             Trace.Write(
                 String.Format(
                     "Requesting visual: {0} ({1}{2}{3}{4})... ",
@@ -239,50 +268,6 @@ namespace OpenTK.Platform.X11
             visualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
 
             Trace.WriteLine(String.Format("done! (id: {0})", x11context));
-
-            /*
-            List<int> attributes = new List<int>();
-            attributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
-            attributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
-            attributes.Add((int)mode.Color.Red);
-            attributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
-            attributes.Add((int)mode.Color.Green);
-            attributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
-            attributes.Add((int)mode.Color.Blue);
-            attributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            attributes.Add((int)mode.Color.Alpha);
-            attributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            attributes.Add((int)mode.DepthBits);
-            attributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
-            attributes.Add((int)Glx.Enums.GLXAttribute.NONE);
-
-            Trace.WriteLine(
-                String.Format(
-                    "Requesting visual: {0} ({1}{2}{3}{4})",
-                    mode.ToString(),
-                    mode.Color.Red,
-                    mode.Color.Green,
-                    mode.Color.Blue,
-                    mode.Color.Alpha
-                )
-            );
-
-            // Create the requested visual
-            visual = Glx.ChooseVisual(display, screenNo, attributes.ToArray());
-
-            if (visual == IntPtr.Zero)
-            {
-                throw new Exception("Requested visual is not available");
-            }
-
-            visualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
-            Trace.WriteLine(String.Format("Visual id: {0}", visual));
-
-            // Create a colormap (is this needed)?
-            colormap = API.CreateColormap(display, rootWindow, visualInfo.visual, 0); // 0 == AllocNone
-            Trace.WriteLine(String.Format("colormap: {0}", colormap));
-            */
-
             Trace.Unindent();
         }
 
@@ -305,11 +290,12 @@ namespace OpenTK.Platform.X11
         {
             get { return this.x11context; }
         }
-
+/*
         public IntPtr ContainingWindow
         {
-            get { return windowInfo.Handle; }
-            internal set { ContainingWindow = value; }
+            get { return windowInfo.Window; }
+            internal set { windowInfo.Window = value; }
         }
+*/
     }
 }
