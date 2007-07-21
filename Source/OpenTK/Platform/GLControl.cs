@@ -59,6 +59,12 @@ namespace OpenTK.Platform
 
         protected void Setup(int width, int height, bool fullscreen)
         {
+            System.Diagnostics.Debug.Listeners.Clear();
+            System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            System.Diagnostics.Debug.AutoFlush = true;
+            System.Diagnostics.Trace.Listeners.Clear();
+            System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            System.Diagnostics.Trace.AutoFlush = true;
             Trace.AutoFlush = true;
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||

@@ -19,7 +19,7 @@ namespace OpenTK.Platform.X11
         #region --- Private Fields ---
 
         private X11GLContext glContext;
-
+        private X11WindowInfo windowInfo = new X11WindowInfo();
         private IntPtr display;
         private int screen;
         private IntPtr rootWindow;
@@ -58,24 +58,25 @@ namespace OpenTK.Platform.X11
         /// </summary>
         public X11GLNative()
         {
-            System.Diagnostics.Debug.Listeners.Clear();
-            System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
-            System.Diagnostics.Debug.AutoFlush = true;
-            System.Diagnostics.Trace.Listeners.Clear();
-            System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-            System.Diagnostics.Trace.AutoFlush = true;
-        
+            // Set default (safe) DisplayMode.
             mode.Width = 640;
             mode.Height = 480;
+            mode.Color = new ColorDepth(24);
+            mode.DepthBits = 16;
+            mode.Buffers = 2;
         
-            display = API.OpenDisplay(null); // null == default display
+            windowInfo.Display = display = API.OpenDisplay(null); // null == default display
             if (display == IntPtr.Zero)
             {
                 throw new Exception("Could not open connection to X");
             }
-            screen = API.DefaultScreen(display);
-            rootWindow = API.RootWindow(display, screen);
-            
+            windowInfo.Screen = screen = API.DefaultScreen(display);
+            windowInfo.RootWindow = rootWindow = API.RootWindow(display, screen);
+
+            glContext = new X11GLContext(windowInfo, mode);
+            glContext.CreateVisual();
+
+            /*
             ColorDepth color = new ColorDepth(24);
             int depthBits = 16;
 
@@ -109,16 +110,17 @@ namespace OpenTK.Platform.X11
             }
             VisualInfo glxVisualInfo =
                 (VisualInfo)Marshal.PtrToStructure(low_level_glxVisualInfo, typeof(VisualInfo));
-
+            
             Trace.WriteLine("ok!");
+            */
 
             // Create a window on this display using the visual above
             SetWindowAttributes wnd_attributes = new SetWindowAttributes();
 
             wnd_attributes.background_pixel = 0;
             wnd_attributes.border_pixel = 0;
-            wnd_attributes.colormap =
-                API.CreateColormap(display, rootWindow, glxVisualInfo.visual, 0/*AllocNone*/);
+            wnd_attributes.colormap = glContext.XColormap;
+                //API.CreateColormap(display, rootWindow, glxVisualInfo.visual, 0/*AllocNone*/);
             wnd_attributes.event_mask =
                 EventMask.StructureNotifyMask |
                 EventMask.ExposureMask |
@@ -138,9 +140,11 @@ namespace OpenTK.Platform.X11
                 0, 0,
                 640, 480,
                 0,
-                glxVisualInfo.depth,
+                //glxVisualInfo.depth,
+                mode.DepthBits,
                 Constants.InputOutput,
-                glxVisualInfo.visual,
+                //glxVisualInfo.visual,
+                glContext.XVisual,
                 cw_mask,
                 wnd_attributes
             );
@@ -176,36 +180,36 @@ namespace OpenTK.Platform.X11
             Trace.Write("Creating OpenGL context... ");
 
             // Create the GLX context with the specified parameters
-            glContext = new X11GLContext();
-            glContext.handle = window;
-            glContext.display = display;
-            glContext.x11context = Glx.CreateContext(
-                display,
-                glxVisualInfo,
-                IntPtr.Zero,
-                true
-            );
-            if (glContext.x11context == IntPtr.Zero)
-            {
+            //glContext = new X11GLContext();
+            //glContext.handle = window;
+            //glContext.display = display;
+            //glContext.x11context = Glx.CreateContext(
+            //    display,
+            //    glxVisualInfo,
+            //    IntPtr.Zero,
+            //    true
+            //);
+            //if (glContext.x11context == IntPtr.Zero)
+            //{
                 // If we couldn't get a context, retry with indirect rendering.
-                glContext.x11context = Glx.CreateContext(
-                    display,
-                    glxVisualInfo,
-                    IntPtr.Zero,
-                    false
-                );
-            }
-            if (glContext.x11context == IntPtr.Zero)
-            {
+            //    glContext.x11context = Glx.CreateContext(
+            //        display,
+            //        glxVisualInfo,
+            //        IntPtr.Zero,
+            //        false
+            //    );
+            //}
+            //if (glContext.x11context == IntPtr.Zero)
+            //{
                 // If we failed again, stop trying.
                 // TODO: Create a specific exception!
-                throw new Exception("Could not create GLX Context");
-            }
+            //    throw new Exception("Could not create GLX Context");
+            //}
 
-            Trace.WriteLine("ok! (id: " + glContext.x11context + ")");
+            //Trace.WriteLine("ok! (id: " + glContext.x11context + ")");
         
-            API.Free(low_level_glxVisualInfo);
-            glxVisualInfo = null;
+            //API.Free(low_level_glxVisualInfo);
+            //glxVisualInfo = null;
 
             API.MapRaised(display, window);
 

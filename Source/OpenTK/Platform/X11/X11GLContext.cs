@@ -7,21 +7,24 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using OpenTK.OpenGL;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+
+using OpenTK.OpenGL;
 
 namespace OpenTK.Platform.X11
 {
     public class X11GLContext : OpenTK.Platform.IGLContext
     {
-        internal IntPtr handle;
-        internal IntPtr x11context;
-        internal IntPtr display;
-        internal IntPtr rootWindow;
-        internal int screenNo;
+        private IntPtr handle;
+        private IntPtr x11context;
+        private IntPtr display;
+        private IntPtr rootWindow;
+        private int screenNo;
 
-        private DisplayMode mode = new DisplayMode();
+        private DisplayMode mode;// = new DisplayMode();
+        private X11WindowInfo windowInfo;
+        private VisualInfo visualInfo;
 
         //private IntPtr desktopResolution = IntPtr.Zero;
 
@@ -34,8 +37,13 @@ namespace OpenTK.Platform.X11
 
         #region --- Public Constructor ---
 
-        public X11GLContext()
+        private X11GLContext()
         {
+        }
+
+        public X11GLContext(IWindowInfo info, DisplayMode mode)
+        {
+            windowInfo = info as X11WindowInfo;
         }
 
         public X11GLContext(
@@ -72,7 +80,7 @@ namespace OpenTK.Platform.X11
 
         #region protected void Setup()
 
-        protected void Setup(
+        private void Setup(
             IntPtr handle,
             IntPtr display,
             IntPtr rootWindow,
@@ -96,61 +104,11 @@ namespace OpenTK.Platform.X11
             this.screenNo = screenNo;
             //this.depthBits = depthBits;
             //this.stencilBits = stencilBits;
-    
-            List<int> attributes = new List<int>();
-			attributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
-            attributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
-            attributes.Add((int)color.Red);
-            attributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
-            attributes.Add((int)color.Green);
-            attributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
-            attributes.Add((int)color.Blue);
-            attributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            attributes.Add((int)color.Alpha);
-            attributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            attributes.Add((int)depthBits);
-            attributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
-            attributes.Add((int)Glx.Enums.GLXAttribute.NONE);
 
-            Trace.WriteLine(
-                String.Format(
-                    "Requesting visual: {0} ({1}{2}{3}{4})",
-                    color.ToString(),
-                    color.Red,
-                    color.Green,
-                    color.Blue,
-                    color.Alpha
-                )
-            );
-
-            visual = Glx.ChooseVisual(display, screenNo, attributes.ToArray());
-
-            if (visual == IntPtr.Zero)
-			{
-				throw new Exception("Requested visual is not available");
-			}
-
-            Trace.WriteLine(String.Format("Visual id: {0}", visual));
-
-            VisualInfo xVisualInfo =
-                (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
-
-            //colormap = API.CreateColormap(display, rootWindow, xVisualInfo.visual, 0/*AllocNone*/);
-
-            //Trace.WriteLine(String.Format("colormap: {0}", colormap));
-
-            Trace.Unindent();
+            this.CreateVisual();
         }
 
         #endregion
-
-        internal void CreateContext()
-        {
-            x11context = Glx.CreateContext(display, visual, IntPtr.Zero, true);
-            Trace.WriteLine(String.Format("Created x11context: {0}", x11context));
-
-            MakeCurrent();
-        }
 
         #region IGLContext Members
 
@@ -209,5 +167,74 @@ namespace OpenTK.Platform.X11
         }
 
         #endregion
+
+        public void CreateContext()
+        {
+            x11context = Glx.CreateContext(display, visual, IntPtr.Zero, true);
+            Trace.WriteLine(String.Format("Created x11context: {0}", x11context));
+
+            MakeCurrent();
+        }
+
+        public void CreateVisual()
+        {
+            List<int> attributes = new List<int>();
+            attributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
+            attributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
+            attributes.Add((int)mode.Color.Red);
+            attributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
+            attributes.Add((int)mode.Color.Green);
+            attributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
+            attributes.Add((int)mode.Color.Blue);
+            attributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
+            attributes.Add((int)mode.Color.Alpha);
+            attributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
+            attributes.Add((int)mode.DepthBits);
+            attributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
+            attributes.Add((int)Glx.Enums.GLXAttribute.NONE);
+
+            Trace.WriteLine(
+                String.Format(
+                    "Requesting visual: {0} ({1}{2}{3}{4})",
+                    mode.ToString(),
+                    mode.Color.Red,
+                    mode.Color.Green,
+                    mode.Color.Blue,
+                    mode.Color.Alpha
+                )
+            );
+
+            // Create the requested visual
+            visual = Glx.ChooseVisual(display, screenNo, attributes.ToArray());
+
+            if (visual == IntPtr.Zero)
+            {
+                throw new Exception("Requested visual is not available");
+            }
+
+            visualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
+            Trace.WriteLine(String.Format("Visual id: {0}", visual));
+
+            // Create a colormap (is this needed)?
+            colormap = API.CreateColormap(display, rootWindow, visualInfo.visual, 0/*AllocNone*/);
+            Trace.WriteLine(String.Format("colormap: {0}", colormap));
+
+            Trace.Unindent();
+        }
+
+        public IntPtr XVisual
+        {
+            get { return this.visual; }
+        }
+
+        public VisualInfo XVisualInfo
+        {
+            get { return this.visualInfo; }
+        }
+
+        public IntPtr XColormap
+        {
+            get { return colormap; }
+        }
     }
 }

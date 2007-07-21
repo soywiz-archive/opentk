@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using OpenTK.Platform;
+using System.Diagnostics;
 
 namespace OpenTK
 {
@@ -25,6 +26,13 @@ namespace OpenTK
         /// </summary>
         public GameWindow()
         {
+            System.Diagnostics.Debug.Listeners.Clear();
+            System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            System.Diagnostics.Debug.AutoFlush = true;
+            System.Diagnostics.Trace.Listeners.Clear();
+            System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            System.Diagnostics.Trace.AutoFlush = true;
+
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
