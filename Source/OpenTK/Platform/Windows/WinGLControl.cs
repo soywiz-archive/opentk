@@ -22,6 +22,8 @@ namespace OpenTK.Platform.Windows
         private bool fullscreen;
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
 
+        private bool disposed;
+
         #region --- Constructors ---
 
         public WinGLControl(Control c, int width, int height, bool fullscreen)
@@ -100,12 +102,29 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+
         }
 
         private void Dispose(bool calledManually)
         {
-            throw new NotImplementedException();
+            if (!disposed)
+            {
+                // Clean unmanaged resources here:
+
+                if (calledManually)
+                {
+                    // Safe to clean managed resources
+                    glContext.Dispose();
+                }
+                disposed = true;
+            }
+        }
+
+        ~WinGLControl()
+        {
+            Dispose(false);
         }
 
         #endregion

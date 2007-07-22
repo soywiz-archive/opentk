@@ -48,6 +48,8 @@ namespace OpenTK.Platform.X11
 
         //private int width, height;
 
+        private bool disposed;
+
         #endregion
 
         #region --- Public Constructors ---
@@ -413,12 +415,16 @@ namespace OpenTK.Platform.X11
 
         private void Dispose(bool manuallyCalled)
         {
-            API.DestroyWindow(display, window);
-            API.CloseDisplay(display);
-
-            if (manuallyCalled)
+            if (!disposed)
             {
-                glContext.Dispose();
+                API.DestroyWindow(display, window);
+                API.CloseDisplay(display);
+
+                if (manuallyCalled)
+                {
+                    glContext.Dispose();
+                }
+                disposed = true;
             }
         }
 

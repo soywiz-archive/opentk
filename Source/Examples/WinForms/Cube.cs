@@ -35,7 +35,7 @@ namespace Examples.WinForms
             this.TopMost = true;
 
             Application.Idle += Application_Idle;
-            this.Show();
+            this.ShowDialog();
         }
 
         protected override void OnClosing(CancelEventArgs e)

@@ -21,6 +21,8 @@ namespace OpenTK.Platform.Windows
     {
         private WinGLContext glContext;
         private DisplayMode mode = new DisplayMode();
+        
+        private bool disposed;
 
         #region --- Contructors ---
 
@@ -286,19 +288,24 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+
         }
 
-        private void Dispose(bool manuallyCalled)
+        private void Dispose(bool calledManually)
         {
-            if (manuallyCalled)
+            if (!disposed)
             {
-                this.Context.Dispose();
-                this.DestroyHandle();
-                GC.SuppressFinalize(this);
-            }
-            else
-            {
+                // Clean unmanaged resources here:
+
+                if (calledManually)
+                {
+                    // Safe to clean managed resources
+                    glContext.Dispose();
+                    base.DestroyHandle();
+                }
+                disposed = true;
             }
         }
 

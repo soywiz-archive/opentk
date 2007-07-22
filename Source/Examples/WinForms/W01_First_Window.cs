@@ -30,7 +30,7 @@ namespace Examples.WinForms
             this.TopMost = true;
 
             Application.Idle += Application_Idle;
-            this.Show();
+            this.ShowDialog();
         }
 
         void Application_Idle(object sender, EventArgs e)

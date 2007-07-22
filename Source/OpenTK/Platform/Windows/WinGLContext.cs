@@ -24,6 +24,8 @@ namespace OpenTK.Platform.Windows
         static private readonly string opengl32Name = "OPENGL32.DLL";
         private IntPtr windowHandle;
 
+        private bool disposed;
+
         #region --- Contructors ---
 
         public WinGLContext(IntPtr windowHandle)
@@ -215,18 +217,23 @@ namespace OpenTK.Platform.Windows
         public void Dispose()
         {
             this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         private void Dispose(bool calledManually)
         {
-            if (calledManually)
+            if (!disposed)
             {
-                this.ReleaseResources();
-                GC.SuppressFinalize(this);
-            }
-            else
-            {
-                this.ReleaseResources();
+                // Clean unmanaged resources here:
+                Wgl.DeleteContext(renderContext);
+                API.ReleaseDC(windowHandle, deviceContext);
+                API.FreeLibrary(opengl32Handle);
+
+                if (calledManually)
+                {
+                    // Safe to clean managed resources
+                }
+                disposed = true;
             }
         }
 
