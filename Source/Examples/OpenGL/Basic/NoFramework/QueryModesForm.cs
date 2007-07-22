@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 using OpenTK.OpenGL;
 using Enums = OpenTK.OpenGL.Enums;
+using OpenTK;
+using OpenTK.Platform;
 
 #endregion
 
@@ -16,7 +18,7 @@ namespace Examples.Windowing
 {
     public partial class W02_Multiple_GLControls : Form
     {
-        OpenTK.Platform.GLControl glWindow1, glWindow2;
+        OpenTK.GLControl glWindow1, glWindow2;
         
         public W02_Multiple_GLControls()
         {
@@ -87,7 +89,7 @@ namespace Examples.Windowing
 
         }
 
-        private void RenderToContext(OpenTK.Platform.GLControl glWindow, float angle_add)
+        private void RenderToContext(OpenTK.GLControl glWindow, float angle_add)
         {
             glWindow.Context.MakeCurrent();
 
@@ -188,7 +190,7 @@ namespace Examples.Windowing
 
         private void create1_Click(object sender, EventArgs e)
         {
-            glWindow1 = new OpenTK.Platform.GLControl();
+            glWindow1 = new OpenTK.GLControl();
 
             create1.Enabled = false;
             dispose1.Enabled = true;
@@ -204,7 +206,8 @@ namespace Examples.Windowing
         private void create2_Click(object sender, EventArgs e)
         {
             //glWindow2 = GLContext.Create(panel2, new OpenTK.OpenGL.ColorDepth(8, 8, 8, 8), 8, 0);
-            glWindow2 = new OpenTK.Platform.GLControl();
+            glWindow2 = new GLControl(
+                new DisplayMode(0, 0, new OpenTK.Platform.ColorDepth(32), 16, 0, 0, 2, false, false, false, 0.0f));
 
             create2.Enabled = false;
             dispose2.Enabled = true;

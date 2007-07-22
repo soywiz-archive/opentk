@@ -26,8 +26,8 @@ namespace OpenTK.Build
         static string ExePath = Path.Combine(BinPath, "Exe");
         static string LibPath = Path.Combine(BinPath, "Libraries");
         static string ExamplePath = Path.Combine(BinPath, "Examples");
- 
-        static string PrebuildXml = "Prebuild.xml";
+
+        static string PrebuildXml = Path.Combine(ToolPath, "Prebuild.xml");
 
         enum BuildMode
         {
@@ -156,7 +156,7 @@ namespace OpenTK.Build
                         Console.WriteLine();
                         ExecuteProcess(
                             "nant",
-                            "-t:mono-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
+                            "-buildfile:Build/OpenTK.build -t:mono-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
                         CopyBinaries();
                         break;
 
@@ -166,7 +166,7 @@ namespace OpenTK.Build
                         Console.WriteLine();
                         ExecuteProcess(
                             "nant",
-                            "-t:net-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
+                            "-buildfile:Build/OpenTK.build -t:net-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
                         CopyBinaries();
                         break;
 

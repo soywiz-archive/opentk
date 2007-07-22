@@ -18,7 +18,7 @@ namespace Examples.Windowing
         {
             InitializeComponent();
 
-            glWindow = new OpenTK.Platform.GLControl();
+            glWindow = new GLControl();
 
             IEnumerable<DisplayMode> modes = glWindow.Context.GetDisplayModes();
 

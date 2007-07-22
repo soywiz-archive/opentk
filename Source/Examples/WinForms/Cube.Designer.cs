@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glControl = new OpenTK.Platform.GLControl();
+            this.glControl = new OpenTK.GLControl();
             this.SuspendLayout();
             // 
             // glControl
@@ -55,6 +55,6 @@
 
         #endregion
 
-        private OpenTK.Platform.GLControl glControl;
+        private OpenTK.GLControl glControl;
     }
 }

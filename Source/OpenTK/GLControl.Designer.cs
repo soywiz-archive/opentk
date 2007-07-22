@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenTK.Platform
+namespace OpenTK
 {
     partial class GLControl
     {

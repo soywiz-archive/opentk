@@ -12,13 +12,13 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
-using OpenTK.OpenGL;
 using System.Diagnostics;
+
+using OpenTK.Platform;
 
 #endregion
 
-namespace OpenTK.Platform
+namespace OpenTK
 {
     // TODO: Document the GLControl class.
 

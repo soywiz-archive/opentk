@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glControl1 = new OpenTK.Platform.GLControl();
+            this.glControl1 = new OpenTK.GLControl();
             this.redButton = new System.Windows.Forms.Button();
             this.greenButton = new System.Windows.Forms.Button();
             this.blueButton = new System.Windows.Forms.Button();
@@ -99,7 +99,7 @@
 
         #endregion
 
-        private OpenTK.Platform.GLControl glControl1;
+        private OpenTK.GLControl glControl1;
         private System.Windows.Forms.Button redButton;
         private System.Windows.Forms.Button greenButton;
         private System.Windows.Forms.Button blueButton;

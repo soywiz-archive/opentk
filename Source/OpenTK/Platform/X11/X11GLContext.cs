@@ -69,41 +69,7 @@ namespace OpenTK.Platform.X11
             bool doublebuffer
         )
         {
-            this.Setup(
-                handle,
-                display,
-                rootWindow,
-                screenNo,
-                handleToTopLevelControl,
-                color,
-                accum,
-                depthBits,
-                stencilBits,
-                auxBits,
-                stereo,
-                doublebuffer);
-        }
-
-        #endregion
-
-        #region protected void Setup()
-
-        private void Setup(
-            IntPtr handle,
-            IntPtr display,
-            IntPtr rootWindow,
-            int screenNo,
-            IntPtr handleToTopLevelControl,
-            ColorDepth color,
-            ColorDepth accum,
-            int depthBits,
-            int stencilBits,
-            int auxBits,
-            bool stereo,
-            bool doublebuffer
-        )
-        {
-            Trace.WriteLine("Setting up opengl context (X11)");
+            Trace.WriteLine("Creating opengl context (X11GLContext driver)");
             Trace.Indent();
 
             this.display = display;
@@ -116,7 +82,7 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region IGLContext Members
+        #region --- IGLContext Members ---
 
         #region public void SwapBuffers()
 
@@ -133,8 +99,9 @@ namespace OpenTK.Platform.X11
         {
             Debug.Write(
                 String.Format(
-                    "Making context {0} current (display: {1}, window: {2})... ",
+                    "Making context {0} current on thread {1} (display: {2}, window: {3})... ",
                     x11context,
+                    System.Threading.Thread.CurrentThread.ManagedThreadId,
                     windowInfo.Display,
                     windowInfo.Window
                 )
@@ -147,7 +114,10 @@ namespace OpenTK.Platform.X11
                 // probably need to recreate context here.
                 throw new Exception(String.Format("Failed to make context {0} current.", x11context));
             }
-            Debug.WriteLine("done!");
+            else
+            {
+                Debug.WriteLine("done!");
+            }
         }
 
         #endregion
