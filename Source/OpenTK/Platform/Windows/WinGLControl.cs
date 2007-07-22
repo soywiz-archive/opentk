@@ -28,13 +28,15 @@ namespace OpenTK.Platform.Windows
         {
             glContext = new WinGLContext(
                 c.Handle,
-                new ColorDepth(32),
-                new ColorDepth(0),
-                24,
-                8,
-                0,
-                false,
-                true
+                new DisplayMode(
+                    width, height,
+                    new ColorDepth(32),
+                    16, 0, 0, 2,
+                    fullscreen,
+                    false,
+                    false,
+                    0.0f
+                )
             );
         }
 

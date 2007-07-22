@@ -54,7 +54,23 @@ namespace Examples
 
         void Launch(object example)
         {
-            (example as Type).InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
+            try
+            {
+                (example as Type).InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(
+                    String.Format(
+                        "Stacktrace:{0}{1}{0}{0}Inner exception:{0}{2}",
+                        System.Environment.NewLine,
+                        e.StackTrace,
+                        e.InnerException
+                    ),
+                    e.Message
+                );
+            }
         }
 
         public void ExampleLauncher_Load(object sender, EventArgs e)

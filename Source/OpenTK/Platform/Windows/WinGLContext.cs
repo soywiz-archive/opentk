@@ -11,46 +11,52 @@ using System.Text;
 using System.Runtime.InteropServices;
 
 using OpenTK.OpenGL;
+using System.Diagnostics;
 
 
 namespace OpenTK.Platform.Windows
 {
-    public class WinGLContext : OpenTK.Platform.IGLContext, IDisposable
+    public sealed class WinGLContext : OpenTK.Platform.IGLContext, IDisposable
     {
         private IntPtr deviceContext;
         private IntPtr renderContext;
-        private IntPtr opengl32Handle;
-        private string opengl32Name = "OPENGL32.DLL";
+        static private IntPtr opengl32Handle;
+        static private readonly string opengl32Name = "OPENGL32.DLL";
+        private IntPtr windowHandle;
 
         #region --- Contructors ---
 
-        public WinGLContext(
-            IntPtr handle,
-            ColorDepth color,
-            ColorDepth accum,
-            int depthBits,
-            int stencilBits,
-            int auxBits,
-            bool stereo,
-            bool doublebuffer
-        )
+        public WinGLContext(IntPtr windowHandle)
+            : this(windowHandle, new DisplayMode(640, 480, new ColorDepth(32), 16, 0, 0, 2, false, false, false, 0.0f))
         {
-            this.Setup(handle, color, accum, depthBits, stencilBits, auxBits, stereo, doublebuffer);
         }
 
-        protected void Setup(
-            IntPtr handle,
-            ColorDepth color,
-            ColorDepth accum,
-            int depthBits,
-            int stencilBits,
-            int auxBits,
-            bool stereo,
-            bool doublebuffer
-        )
+        public WinGLContext(IntPtr windowHandle, DisplayMode mode)
         {
-            // TODO: Better error handling.
+            Trace.WriteLine(String.Format("Creating opengl context (driver: {0})", this.ToString()));
+            Trace.Indent();
 
+            this.windowHandle = windowHandle;
+            Trace.WriteLine(String.Format("Window handle: {0}", windowHandle));
+
+            PrepareContext(mode);
+
+            CreateContext();
+
+            Trace.Unindent();
+        }
+
+        #endregion
+
+        public void CreateContext()
+        {
+            Trace.Write("Creating render context... ");
+            renderContext = Wgl.CreateContext(deviceContext);
+            Trace.WriteLine(String.Format("done! (id: {0})", renderContext));
+        }
+
+        public void PrepareContext(DisplayMode mode)
+        {
             // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
             if (opengl32Handle == IntPtr.Zero)
             {
@@ -66,21 +72,21 @@ namespace OpenTK.Platform.Windows
                         )
                     );
                 }
-                else
-                {
-                    //System.Diagnostics.Debug.WriteLine("Loaded dll: {0}", _dll_name);
-                }
+                Trace.WriteLine(String.Format("Loaded opengl32.dll: {0}", opengl32Handle));
             }
 
-            deviceContext = API.GetDC(handle);
+            deviceContext = API.GetDC(windowHandle);
+            Trace.WriteLine(String.Format("Device context: {0}", deviceContext));
+
+            Trace.Write("Setting pixel format... ");
             API.PixelFormatDescriptor pixelFormat = new API.PixelFormatDescriptor();
 
-            pixelFormat.ColorBits = (byte)(color.Red + color.Green + color.Blue);
-            pixelFormat.RedBits = (byte)color.Red;
-            pixelFormat.GreenBits = (byte)color.Green;
-            pixelFormat.BlueBits = (byte)color.Blue;
-            pixelFormat.AlphaBits = (byte)color.Alpha;
-
+            pixelFormat.ColorBits = (byte)(mode.Color.Red + mode.Color.Green + mode.Color.Blue);
+            pixelFormat.RedBits = (byte)mode.Color.Red;
+            pixelFormat.GreenBits = (byte)mode.Color.Green;
+            pixelFormat.BlueBits = (byte)mode.Color.Blue;
+            pixelFormat.AlphaBits = (byte)mode.Color.Alpha;
+            /*
             if (accum != null)
             {
                 pixelFormat.AccumBits = (byte)(accum.Red + accum.Green + accum.Blue);
@@ -89,21 +95,21 @@ namespace OpenTK.Platform.Windows
                 pixelFormat.AccumBlueBits = (byte)accum.Blue;
                 pixelFormat.AccumAlphaBits = (byte)accum.Alpha;
             }
+            */
+            pixelFormat.DepthBits = (byte)mode.DepthBits;
+            pixelFormat.StencilBits = (byte)mode.StencilBits;
 
-            pixelFormat.DepthBits = (byte)depthBits;
-            pixelFormat.StencilBits = (byte)stencilBits;
-
-            if (depthBits <= 0)
+            if (mode.DepthBits <= 0)
             {
                 pixelFormat.Flags |= API.PixelFormatDescriptorFlags.DEPTH_DONTCARE;
             }
 
-            if (stereo)
+            if (mode.Stereo)
             {
                 pixelFormat.Flags |= API.PixelFormatDescriptorFlags.STEREO;
             }
 
-            if (doublebuffer)
+            if (mode.Buffers > 1)
             {
                 pixelFormat.Flags |= API.PixelFormatDescriptorFlags.DOUBLEBUFFER;
             }
@@ -114,23 +120,13 @@ namespace OpenTK.Platform.Windows
 
             if (pixel == 0)
             {
-                throw new Exception("The requested pixel format is not supported by the hardware configuration.");
+                throw new ApplicationException("The requested pixel format is not supported by the hardware configuration.");
             }
 
             API.SetPixelFormat(deviceContext, pixel, pixelFormat);
 
-            renderContext = Wgl.CreateContext(deviceContext);
-
-            MakeCurrent();
-
-            //c.TopLevelControl.Move += new EventHandler(c_Move);
-            //c.Move += new EventHandler(c_Move);
-            //c.Resize += new EventHandler(c_Resize);
-
-            //GL.ReloadFunctions();
+            Trace.WriteLine(String.Format("done! (format: {0})", pixel));
         }
-
-        #endregion
 
         #region --- IGLContext Members ---
 
@@ -254,11 +250,15 @@ namespace OpenTK.Platform.Windows
                 renderContext = IntPtr.Zero;
             }
 
-            if (!API.FreeLibrary(this.opengl32Handle))
+            if (opengl32Handle != IntPtr.Zero)
             {
-                throw new ApplicationException(
-                    "FreeLibray call failed ('opengl32.dll'), Error: " + Marshal.GetLastWin32Error()
-                );
+                if (!API.FreeLibrary(opengl32Handle))
+                {
+                    throw new ApplicationException(
+                        "FreeLibray call failed ('opengl32.dll'), Error: " + Marshal.GetLastWin32Error()
+                    );
+                }
+                opengl32Handle = IntPtr.Zero;
             }
         }
 
