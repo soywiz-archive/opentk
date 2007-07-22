@@ -23,7 +23,7 @@ using OpenTK.Input;
 
 namespace Examples.Tutorial
 {
-    public partial class T07_DisplayLists_Cube : GameWindow
+    public partial class T07_DisplayLists_Cube : GameWindow, IExample
     {
         #region --- Variables ---
 
@@ -76,6 +76,24 @@ namespace Examples.Tutorial
             }
 
             OnResize(new OpenTK.Platform.ResizeEventArgs(this.Width, this.Height));
+        }
+
+        #endregion
+
+        #region static public void Launch()
+
+        /// <summary>
+        /// Launches this example.
+        /// </summary>
+        /// <remarks>
+        /// Provides a simple way for the example launcher to launch the examples.
+        /// </remarks>
+        static public void Launch()
+        {
+            using (T03_RotatingCube ex = new T03_RotatingCube())
+            {
+                ex.Run();
+            }
         }
 
         #endregion

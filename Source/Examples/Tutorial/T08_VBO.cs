@@ -18,7 +18,7 @@ using OpenTK.Input;
 
 namespace Examples.Tutorial
 {
-    public class T08_VBO : OpenTK.GameWindow
+    public class T08_VBO : OpenTK.GameWindow, IExample
     {
         int vbo, ibo, nbo; // vertex, index and normal buffer objects.
         float angle;

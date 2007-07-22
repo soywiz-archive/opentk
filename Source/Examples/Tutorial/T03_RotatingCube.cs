@@ -20,7 +20,7 @@ using OpenTK.Input;
 
 namespace Examples.Tutorial
 {
-    public class T03_RotatingCube : OpenTK.GameWindow
+    public class T03_RotatingCube : OpenTK.GameWindow, IExample
     {
         #region --- Fields ---
 

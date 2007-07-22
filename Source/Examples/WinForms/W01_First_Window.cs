@@ -21,28 +21,22 @@ using OpenTK.OpenGL;
 
 namespace Examples.WinForms
 {
-    public partial class W01_First_Window : Form
+    public partial class W01_First_Window : Form, IExample
     {
-        /// <summary>
-        /// Launches this example.
-        /// </summary>
-        /// <remarks>
-        /// Provides a simple way for the example launcher to launch the examples.
-        /// </remarks>
-        public static void Launch()
-        {
-            using (W01_First_Window ex = new W01_First_Window())
-            {
-                // We need to use ShowDialog, because a message loop already exists
-                // in the current thread (the one from the ExampleLauncher).
-                //ex.ShowDialog();
-                Application.Run(ex);
-            }
-        }
-
         public W01_First_Window()
         {
             InitializeComponent();
+
+            this.TopMost = true;
+
+            Application.Idle += Application_Idle;
+            this.Show();
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            GL.Clear(OpenTK.OpenGL.Enums.ClearBufferMask.COLOR_BUFFER_BIT);
+            glControl1.SwapBuffers();
         }
 
         private void redButton_Click(object sender, EventArgs e)
@@ -76,17 +70,6 @@ namespace Examples.WinForms
                 glControl1.ClientSize = new System.Drawing.Size(glControl1.ClientSize.Width, 1);
 
             GL.Viewport(0, 0, glControl1.ClientSize.Width, glControl1.ClientSize.Height);
-
-            double ratio = 0.0;
-            ratio = glControl1.ClientSize.Width / (double)glControl1.ClientSize.Height;
-            //if (ClientSize.Width > ClientSize.Height)
-            //    ratio = ClientSize.Width / (double)ClientSize.Height;
-            //else
-            //    ratio = ClientSize.Height / (double)ClientSize.Width;
-
-            GL.MatrixMode(OpenTK.OpenGL.Enums.MatrixMode.PROJECTION);
-            GL.LoadIdentity();
-            Glu.Perspective(45.0, ratio, 1.0, 64.0);
         }
     }
 }

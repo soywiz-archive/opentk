@@ -23,7 +23,7 @@ using OpenTK.Input;
 
 namespace Examples.Tutorial
 {
-    public class T10_GLSL_Cube : GameWindow
+    public class T10_GLSL_Cube : GameWindow, IExample
     {
         #region --- Fields ---
 

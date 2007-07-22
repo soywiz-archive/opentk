@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Threading;
+using OpenTK;
 
 namespace Examples
 {
@@ -20,6 +21,7 @@ namespace Examples
         {
             using (Form exampleLauncher = new ExampleLauncher())
             {
+                Application.EnableVisualStyles();
                 Application.Run(exampleLauncher);
             }
         }
@@ -39,38 +41,25 @@ namespace Examples
                         true,
                         true
                     );
-                // We want to do this on a thread, so that the launcher doesn't block:
-                //example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
 
-                // Mono 1.2.4 does not support this specific anonymous delegate
-                //new Thread(delegate()
-                //{
-                //    example.InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
-                //}).Start();
-
-                new Thread(Launch).Start(example);
+                if (example.BaseType == typeof(GameWindow))
+                {
+                    // Start the GameWindow in a new thread - it runs its own message loop, and it would
+                    // interfere with the message loop of the ExampleLauncher.
+                    new Thread(Launch).Start(example);
+                }
+                else if (example.BaseType == typeof(Form))
+                {
+                    // In this we do not want a different thread: these examples rely on the Application.Idle
+                    // event, which would then be raised by both the ExampleLauncher thread *and* the new one!
+                    this.AddOwnedForm((Form)example.GetConstructor(Type.EmptyTypes).Invoke(null));
+                }
             }
         }
 
         void Launch(object example)
         {
-            try
-            {
-                (example as Type).InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
-            }
-            catch (Exception e)
-            {
-
-                MessageBox.Show(
-                    String.Format(
-                        "Stacktrace:{0}{1}{0}{0}Inner exception:{0}{2}",
-                        System.Environment.NewLine,
-                        e.StackTrace,
-                        e.InnerException
-                    ),
-                    e.Message
-                );
-            }
+            (example as Type).InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
         }
 
         public void ExampleLauncher_Load(object sender, EventArgs e)
@@ -81,21 +70,12 @@ namespace Examples
             Type[] types = Assembly.GetExecutingAssembly().GetTypes();
             foreach (Type type in types)
             {
-                if (type.IsPublic)
+                if (type.GetInterface("IExample") != null)
                 {
-                    MemberInfo[] runMethods = type.GetMember("Launch");
-                    foreach (MemberInfo run in runMethods)
-                    {
-                        // Trim the 'Examples.' namespace, and add the item into a sorted list.
-                        // This is an ugly hack to keep the listBox items sorted.
-                        sl.Add(
-                            (type.Namespace.Replace("Examples.", String.Empty) + ": " + type.Name).Replace('_', ' '),
-                            null
-                        );
-                        //listBox1.Items.Add(
-                        //    type.Namespace.Replace("Examples.", String.Empty) + ": " + type.Name
-                        //);
-                    }
+                    sl.Add(
+                        (type.Namespace.Replace("Examples.", String.Empty) + ": " + type.Name).Replace('_', ' '),
+                        null
+                    );
                 }
             }
 

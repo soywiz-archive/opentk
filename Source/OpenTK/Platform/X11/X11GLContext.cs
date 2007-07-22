@@ -116,10 +116,16 @@ namespace OpenTK.Platform.X11
 
         #region IGLContext Members
 
+        #region public void SwapBuffers()
+
         public void SwapBuffers()
         {
             Glx.SwapBuffers(windowInfo.Display, windowInfo.Window);
         }
+
+        #endregion
+
+        #region public void MakeCurrent()
 
         public void MakeCurrent()
         {
@@ -142,10 +148,21 @@ namespace OpenTK.Platform.X11
             Debug.WriteLine("done!");
         }
 
+        #endregion
+
+        public bool IsCurrent()
+        {
+            throw new NotImplementedException();
+        }
+
+        #region public IntPtr GetAddress(string function)
+
         public IntPtr GetAddress(string function)
         {
             return Glx.GetProcAddress(function);
         }
+
+        #endregion
 
         public IEnumerable<DisplayMode> GetDisplayModes()
         {
@@ -181,6 +198,8 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        #region public void CreateContext(X11GLContext shareContext, bool direct)
+
         public void CreateContext(X11GLContext shareContext, bool direct)
         {
             Trace.WriteLine("Creating opengl context.");
@@ -208,6 +227,10 @@ namespace OpenTK.Platform.X11
 
             //MakeCurrent();
         }
+
+        #endregion
+
+        #region public void CreateVisual()
 
         public void CreateVisual()
         {
@@ -270,6 +293,8 @@ namespace OpenTK.Platform.X11
             Trace.WriteLine(String.Format("done! (id: {0})", x11context));
             Trace.Unindent();
         }
+
+        #endregion
 
         public IntPtr XVisual
         {

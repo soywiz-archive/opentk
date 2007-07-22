@@ -22,7 +22,7 @@ using OpenTK.Platform;
 
 namespace Examples.WinForms
 {
-    public partial class Cube : Form
+    public partial class Cube : Form, IExample
     {
         static float angle;
 
@@ -32,7 +32,15 @@ namespace Examples.WinForms
         {
             InitializeComponent();
 
-            Application.Idle += new EventHandler(Application_Idle);
+            this.TopMost = true;
+
+            Application.Idle += Application_Idle;
+            this.Show();
+        }
+
+        ~Cube()
+        {
+            Application.Idle -= Application_Idle;
         }
 
         #endregion
@@ -44,29 +52,6 @@ namespace Examples.WinForms
             while (glControl.IsIdle)
             {
                 Render();
-
-                System.Threading.Thread.Sleep(10);
-            }
-        }
-
-        #endregion
-
-        #region static public void Launch()
-
-        /// <summary>
-        /// Launches this example.
-        /// </summary>
-        /// <remarks>
-        /// Provides a simple way for the example launcher to launch the examples.
-        /// </remarks>
-        static public void Launch()
-        {
-            using (Cube ex = new Cube())
-            {
-                // We need to use ShowDialog, because a message loop already exists
-                // in the current thread (the one from the ExampleLauncher).
-                //ex.ShowDialog();
-                Application.Run(ex);
             }
         }
 
