@@ -169,8 +169,10 @@ namespace OpenTK.Platform.Windows
 
                 case API.Constants.WM_KEYDOWN:
                 case API.Constants.WM_KEYUP:
-                    this.ProcessKey(ref m);
-                    return;
+                    if (this.ProcessKey(ref m))
+                        return;
+                    else
+                        break;
                 
                 case API.Constants.WM_CLOSE:
                     API.PostQuitMessage(0);
@@ -184,14 +186,16 @@ namespace OpenTK.Platform.Windows
  	        base.WndProc(ref m);
         }
 
-        private void ProcessKey(ref Message m)
+        private bool ProcessKey(ref Message m)
         {
             switch ((int)m.WParam)
             {
                 case API.Constants.VK_ESCAPE:
                     Key.Escape = (m.Msg == API.Constants.WM_KEYDOWN) ? true : false;
-                    break;
+                    return true;
             }
+
+            return false;
         }
 
         #endregion

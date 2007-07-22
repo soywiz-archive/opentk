@@ -27,16 +27,7 @@ namespace Examples.WinForms
         {
             InitializeComponent();
 
-            this.TopMost = true;
-
-            Application.Idle += Application_Idle;
             this.ShowDialog();
-        }
-
-        void Application_Idle(object sender, EventArgs e)
-        {
-            GL.Clear(OpenTK.OpenGL.Enums.ClearBufferMask.COLOR_BUFFER_BIT);
-            glControl1.SwapBuffers();
         }
 
         private void redButton_Click(object sender, EventArgs e)
@@ -60,7 +51,6 @@ namespace Examples.WinForms
         private void glControl1_Paint(object sender, PaintEventArgs e)
         {
             GL.Clear(OpenTK.OpenGL.Enums.ClearBufferMask.COLOR_BUFFER_BIT);
-
             glControl1.Context.SwapBuffers();
         }
 
@@ -70,6 +60,16 @@ namespace Examples.WinForms
                 glControl1.ClientSize = new System.Drawing.Size(glControl1.ClientSize.Width, 1);
 
             GL.Viewport(0, 0, glControl1.ClientSize.Width, glControl1.ClientSize.Height);
+        }
+
+        private void glControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Escape:
+                    this.Close();
+                    break;
+            }
         }
     }
 }

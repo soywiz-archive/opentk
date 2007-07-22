@@ -50,16 +50,46 @@ namespace Examples
                 }
                 else if (example.BaseType == typeof(Form))
                 {
-                    // In this we do not want a different thread: these examples rely on the Application.Idle
-                    // event, which would then be raised by both the ExampleLauncher thread *and* the new one!
-                    this.AddOwnedForm((Form)example.GetConstructor(Type.EmptyTypes).Invoke(null));
+                    try
+                    {
+                        // In this we do not want a different thread: these examples rely on the Application.Idle
+                        // event, which would then be raised by both the ExampleLauncher thread *and* the new one!
+                        this.AddOwnedForm((Form)example.GetConstructor(Type.EmptyTypes).Invoke(null));
+                    }
+                    catch (Exception expt)
+                    {
+                        MessageBox.Show(
+                            String.Format(
+                                "Stacktrace:{0}{1}{0}{0}Inner exception:{0}{2}",
+                                System.Environment.NewLine,
+                                expt.StackTrace,
+                                expt.InnerException
+                            ),
+                            expt.Message
+                        );
+                    }
                 }
             }
         }
 
         void Launch(object example)
         {
-            (example as Type).InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
+            try
+            {
+                (example as Type).InvokeMember("Launch", BindingFlags.InvokeMethod, null, null, null);
+            }
+            catch (Exception expt)
+            {
+                MessageBox.Show(
+                    String.Format(
+                        "Stacktrace:{0}{1}{0}{0}Inner exception:{0}{2}",
+                        System.Environment.NewLine,
+                        expt.StackTrace,
+                        expt.InnerException
+                    ),
+                    expt.Message
+                );
+            }
         }
 
         public void ExampleLauncher_Load(object sender, EventArgs e)

@@ -26,17 +26,20 @@ namespace Examples.WinForms
     {
         static float angle;
 
-        #region public Cube()
+        #region --- Constructor ---
 
         public Cube()
         {
             InitializeComponent();
 
-            this.TopMost = true;
-
             Application.Idle += Application_Idle;
+
             this.ShowDialog();
         }
+
+        #endregion
+
+        #region Closing event
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -152,7 +155,7 @@ namespace Examples.WinForms
             switch (e.KeyData)
             {
                 case Keys.Escape:
-                    Application.Exit();
+                    this.Close();
                     break;
             }
         }

@@ -44,25 +44,7 @@ namespace Examples.Tutorial
         }
 
         #endregion
-
-        #region static public void Launch()
-
-        /// <summary>
-        /// Launches this example.
-        /// </summary>
-        /// <remarks>
-        /// Provides a simple way for the example launcher to launch the examples.
-        /// </remarks>
-        static public void Launch()
-        {
-            using (T03_RotatingCube ex = new T03_RotatingCube())
-            {
-                ex.Run();
-            }
-        }
-
-        #endregion
-
+        
         #region Resize event handler
 
         /// <summary>
@@ -78,8 +60,7 @@ namespace Examples.Tutorial
 
             GL.Viewport(0, 0, e.Width, e.Height);
 
-            double ratio = 0.0;
-            ratio = e.Width / (double)e.Height;
+            double ratio = e.Width / (double)e.Height;
 
             GL.MatrixMode(Enums.MatrixMode.PROJECTION);
             GL.LoadIdentity();
@@ -181,6 +162,24 @@ namespace Examples.Tutorial
             GL.Vertex3f(1.0f, -1.0f, 1.0f);
 
             GL.End();
+        }
+
+        #endregion
+
+        #region static public void Launch()
+
+        /// <summary>
+        /// Launches this example.
+        /// </summary>
+        /// <remarks>
+        /// Provides a simple way for the example launcher to launch the examples.
+        /// </remarks>
+        static public void Launch()
+        {
+            using (T03_RotatingCube ex = new T03_RotatingCube())
+            {
+                ex.Run();
+            }
         }
 
         #endregion
