@@ -156,7 +156,7 @@ namespace OpenTK.Build
                         Console.WriteLine();
                         ExecuteProcess(
                             "nant",
-                            "-buildfile:Build/OpenTK.build -t:mono-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
+                            "-buildfile:./Build/OpenTK.build -t:mono-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
                         CopyBinaries();
                         break;
 
@@ -166,7 +166,7 @@ namespace OpenTK.Build
                         Console.WriteLine();
                         ExecuteProcess(
                             "nant",
-                            "-buildfile:Build/OpenTK.build -t:net-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
+                            "-buildfile:./Build/OpenTK.build -t:net-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
                         CopyBinaries();
                         break;
 
