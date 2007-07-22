@@ -21,6 +21,8 @@ namespace OpenTK.Platform.X11
 
         private bool quit;
 
+        private bool disposed;
+
         #region --- Contructors ---
 
         public X11GLControl(UserControl c, int width, int height, bool fullscreen)
@@ -187,7 +189,29 @@ namespace OpenTK.Platform.X11
 
         public void Dispose()
         {
-            throw new Exception("The method or operation is not implemented.");
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool manuallyCalled)
+        {
+            if (!disposed)
+            {
+                // Clean unmanaged resources:
+
+
+                if (manuallyCalled)
+                {
+                    // Clean managed resources, too
+                    glContext.Dispose();
+                }
+            }
+            disposed = true;
+        }
+
+        ~X11GLControl()
+        {
+            this.Dispose(false);
         }
 
         #endregion

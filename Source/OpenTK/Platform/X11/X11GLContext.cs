@@ -33,6 +33,8 @@ namespace OpenTK.Platform.X11
         internal IntPtr visual;
         internal IntPtr colormap;
 
+        private bool disposed;
+
         #region --- Public Constructor ---
 
         private X11GLContext()
@@ -171,7 +173,7 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region IDisposable Members
+        #region --- IDisposable Members ---
 
         public void Dispose()
         {
@@ -181,14 +183,18 @@ namespace OpenTK.Platform.X11
 
         private void Dispose(bool manuallyCalled)
         {
-            // Clean unmanaged resources:
-            Glx.DestroyContext(windowInfo.Display, x11context);
-            API.Free(visual);
-
-            if (manuallyCalled)
+            if (!disposed)
             {
-                // Safe to clean managed resources, too
+                // Clean unmanaged resources:
+                Glx.DestroyContext(windowInfo.Display, x11context);
+                API.Free(visual);
+
+                if (manuallyCalled)
+                {
+                    // Safe to clean managed resources, too
+                }
             }
+            disposed = true;
         }
 
         ~X11GLContext()

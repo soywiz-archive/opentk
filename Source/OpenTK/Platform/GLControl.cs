@@ -263,6 +263,14 @@ namespace OpenTK.Platform
         #endregion
 
         #region --- IDisposable Members ---
+
+        protected override void DestroyHandle()
+        {
+            base.DestroyHandle();
+
+            glControl.Dispose();
+        }
+
         /*
         public void Dispose()
         {

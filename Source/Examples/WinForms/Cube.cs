@@ -38,8 +38,10 @@ namespace Examples.WinForms
             this.Show();
         }
 
-        ~Cube()
+        protected override void OnClosing(CancelEventArgs e)
         {
+            base.OnClosing(e);
+
             Application.Idle -= Application_Idle;
         }
 
