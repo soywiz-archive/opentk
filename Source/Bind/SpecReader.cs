@@ -38,7 +38,7 @@ using System.CodeDom;
 
 #endregion
 
-namespace OpenTK.OpenGL.Bind
+namespace Bind
 {
     static class SpecReader
     {

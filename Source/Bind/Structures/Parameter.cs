@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace OpenTK.OpenGL.Bind
+namespace Bind.Structures
 {
     #region Parameter class
 

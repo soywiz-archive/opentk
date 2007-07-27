@@ -34,10 +34,21 @@ using System.Threading;
 using System.Collections.Generic;
 using System.CodeDom;
 
-namespace OpenTK.OpenGL.Bind
+namespace Bind
 {
+    enum GeneratorMode
+    {
+        GL2,
+        GL3,
+        Wgl,
+        Glx,
+        Glu
+    }
+
     static class MainClass
     {
+        static GeneratorMode mode;
+
         static void Main(string[] arguments)
         {
             Console.WriteLine("OpenGL binding generator {0} for OpenTK.",
@@ -45,6 +56,8 @@ namespace OpenTK.OpenGL.Bind
             Console.WriteLine("For comments, bugs and suggestions visit http://opentk.sourceforge.net");
             //Console.WriteLine(" - the OpenTK team ;-)");
             Console.WriteLine();
+
+            IBind bind;
 
             #region Handle Arguments
 
@@ -66,14 +79,21 @@ namespace OpenTK.OpenGL.Bind
                                 Settings.InputPath = b[1];
                                 break;
                             case "out":
-                            case "Properties.Bind.Default.OutputPath":
+                            case "output":
                                 Settings.OutputPath = b[1];
+                                break;
+                            case "gl2":
+                            case "GL2":
+                            case "Gl2":
+                                mode = GeneratorMode.GL2;
                                 break;
                             case "class":
                                 Settings.GLClass = b[1];
                                 break;
                             default:
-                                throw new ArgumentException("Argument " + a + " not recognized. Use the '/?' switch for help.");
+                                throw new ArgumentException(
+                                    String.Format("Argument {0} not recognized. Use the '/?' switch for help.", a)
+                                );
                         }
                     }
                 }
@@ -95,21 +115,33 @@ namespace OpenTK.OpenGL.Bind
             {
                 long ticks = System.DateTime.Now.Ticks;
 
-                List<CodeMemberMethod> functions;
-                List<CodeTypeDelegate> delegates;
-                CodeTypeDeclarationCollection enums;
-                CodeTypeDeclarationCollection enums2;
+                switch (mode)
+                {
+                    case GeneratorMode.GL2:
+                        bind = new Bind.GL2.Generator(Settings.InputPath);
+                        break;
 
-                delegates = SpecReader.ReadFunctionSpecs("gl.spec");
-                SpecReader.ReadEnumSpecs("enum.spec", out enums);
-                SpecReader.ReadEnumSpecs("enumext.spec", out enums2);
-                enums = SpecTranslator.Merge(enums, enums2);
-                enums = SpecTranslator.TranslateEnums(enums);
+                    default:
+                        throw new NotImplementedException();
+                }
 
-                functions = SpecTranslator.TranslateDelegates(delegates, enums);
+                bind.Process();
+
+                //List<CodeMemberMethod> functions;
+                //List<CodeTypeDelegate> delegates;
+                //CodeTypeDeclarationCollection enums;
+                //CodeTypeDeclarationCollection enums2;
+
+                //delegates = SpecReader.ReadFunctionSpecs("gl.spec");
+                //SpecReader.ReadEnumSpecs("enum.spec", out enums);
+                //SpecReader.ReadEnumSpecs("enumext.spec", out enums2);
+                //enums = SpecTranslator.Merge(enums, enums2);
+                //enums = SpecTranslator.TranslateEnums(enums);
+
+                //functions = SpecTranslator.TranslateDelegates(delegates, enums);
 
                 // Generate the code
-                SpecWriter.Generate(delegates, functions, enums);
+                //SpecWriter.Generate(delegates, functions, enums);
 
                 ticks = System.DateTime.Now.Ticks - ticks;
 

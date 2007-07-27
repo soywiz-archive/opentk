@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OpenTK.OpenGL.Bind
+namespace Bind.Structures
 {
     #region class Enum
 
