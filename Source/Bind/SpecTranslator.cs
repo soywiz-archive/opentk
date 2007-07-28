@@ -40,53 +40,6 @@ using System.CodeDom;
 
 namespace Bind
 {
-    #region WrapperTypes enum
-
-    public enum WrapperTypes
-    {
-        /// <summary>
-        /// No wrapper needed.
-        /// </summary>
-        None,
-        /// <summary>
-        /// Function takes bool parameter - C uses Int for bools, so we have to marshal.
-        /// </summary>
-        BoolParameter,
-        /// <summary>
-        /// Function takes generic parameters - add ref/out generic and generic overloads.
-        /// </summary>
-        GenericParameter,
-        /// <summary>
-        /// Function takes arrays as parameters - add ref/out and ([Out]) array overloads.
-        /// </summary>
-        ArrayParameter,
-        /// <summary>
-        /// Function with bitmask parameters. Bitmask parameters map to UInt, but since we can only use signed
-        /// types (for CLS compliance), we must add the unchecked keyword.
-        /// Usually found in bitmasks
-        /// </summary>
-        UncheckedParameter,
-        /// <summary>
-        /// Function that takes (in/ref/out) a naked pointer as a parameter - we pass an IntPtr.
-        /// </summary>
-        PointerParameter,
-        /// <summary>
-        /// Function returns string - needs manual marshalling through IntPtr to prevent the managed GC
-        /// from freeing memory allocated on the unmanaged side (e.g. glGetString).
-        /// </summary>
-        StringReturnValue,
-        /// <summary>
-        /// Function returns a void pointer - maps to IntPtr, and the user has to manually marshal the type.
-        /// </summary>
-        GenericReturnValue,
-        /// <summary>
-        /// Function returns a typed pointer - we have to copy the data to an array to protect it from the GC.
-        /// </summary>
-        ArrayReturnValue
-    }
-
-    #endregion
-
     static class SpecTranslator
     {
         #region static SpecTranslator()

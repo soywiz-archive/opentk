@@ -36,17 +36,6 @@ namespace Bind.Structures
 
         #endregion
 
-        #region IsDelegate
-
-        bool _delegate;
-        public bool IsDelegate
-        {
-            get { return _delegate; }
-            set { _delegate = value; }
-        }
-
-        #endregion
-
         #region Category property
 
         private string _category;
@@ -161,6 +150,20 @@ namespace Bind.Structures
 
         #endregion
 
+        #region public bool Unsafe
+
+        private bool _unsafe;
+        /// <summary>
+        /// True if the delegate must be declared as 'unsafe'.
+        /// </summary>
+        public bool Unsafe
+        {
+            get { return _unsafe; }
+            set { _unsafe = value; }
+        }
+
+        #endregion
+
         #region public string CallString()
 
         public string CallString()
@@ -202,7 +205,7 @@ namespace Bind.Structures
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(indentation + ReturnType + " " + Name + Parameters.ToString());
+            sb.Append(indentation + "delegate " + ReturnType + " " + Name + Parameters.ToString());
 
             return sb.ToString();
         }

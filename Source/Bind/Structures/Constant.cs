@@ -9,8 +9,6 @@ using System.Text;
 
 namespace Bind.Structures
 {
-    #region Constant class
-
     /// <summary>
     /// Represents an opengl constant in C# format. Both the constant name and value
     /// can be retrieved or set. The value can be either a number, another constant
@@ -92,6 +90,4 @@ namespace Bind.Structures
 
         #endregion
     }
-
-    #endregion
 }

@@ -147,8 +147,8 @@ namespace Bind
 
                 Console.WriteLine("Bindings generated in {0} seconds.", ticks / (double)10000000.0);
                 Console.WriteLine();
-                Console.WriteLine("Press enter to continue...");
-                Console.ReadLine();
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey(true);
             }
             catch (SecurityException e)
             {

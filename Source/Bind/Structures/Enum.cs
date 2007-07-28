@@ -31,15 +31,20 @@ namespace Bind.Structures
 
         public override string ToString()
         {
+            return this.ToString("");
+        }
+
+        public string ToString(string indentation)
+        {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("        public enum " + Name + " : uint");
-            sb.AppendLine("        {");
+            sb.AppendLine(indentation + "public enum " + Name + " : uint");
+            sb.AppendLine(indentation + "{");
             foreach (Constant c in ConstantCollection.Values)
             {
-                sb.AppendLine("            " + c.Name + " = " + c.Value + ",");
+                sb.AppendLine(indentation + "    " + c.Name + " = " + c.Value + ",");
             }
-            sb.AppendLine("        }");
+            sb.AppendLine(indentation + "}");
 
             return sb.ToString();
         }

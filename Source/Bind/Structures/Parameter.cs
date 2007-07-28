@@ -183,28 +183,30 @@ namespace Bind.Structures
         #endregion
 
         #region ToString function
+
         override public string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
-            if (UnmanagedType == UnmanagedType.AsAny && Flow == FlowDirection.In)
-                sb.Append("[MarshalAs(UnmanagedType.AsAny)] ");
+            //if (UnmanagedType == UnmanagedType.AsAny && Flow == FlowDirection.In)
+            //    sb.Append("[MarshalAs(UnmanagedType.AsAny)] ");
 
-            if (UnmanagedType == UnmanagedType.LPArray)
-                sb.Append("[MarshalAs(UnmanagedType.LPArray)] ");
+            //if (UnmanagedType == UnmanagedType.LPArray)
+            //    sb.Append("[MarshalAs(UnmanagedType.LPArray)] ");
 
             //if (Flow == FlowDirection.Out && !Array && !(Type == "IntPtr"))
             //    sb.Append("out ");
 
             sb.Append(Type);
             if (Array)
-                sb.Append("[]");
+                sb.Append("*");
 
             sb.Append(" ");
-            sb.Append(Name);
+            sb.Append(Utilities.Keywords.Contains(Name) ? "@" + Name : Name);
 
             return sb.ToString();
         }
+
         #endregion
     }
 
