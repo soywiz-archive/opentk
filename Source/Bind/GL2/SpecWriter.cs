@@ -65,7 +65,7 @@ namespace Bind.GL2
             List<Bind.Structures.Delegate> delegates)
         {
             sw.WriteLine();
-            sw.WriteLine("internal static class {0}", Settings.DelegatesClass);
+            sw.WriteLine("internal static class {0}", Settings.ImportsClass);
             sw.WriteLine("{");
 
             sw.Indent();

@@ -16,6 +16,7 @@ namespace Bind
         public static string OutputNamespace = "OpenTK.OpenGL";
         public static string GLClass = "GL";
         public static string DelegatesClass = "Delegates";
+        public static string ImportsClass = "Imports";
         public static string WglClass = "Wgl";
         public static string GlxClass = "Glx";
         public static string GluClass = "Glu";

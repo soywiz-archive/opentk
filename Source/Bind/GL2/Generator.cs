@@ -109,7 +109,7 @@ namespace Bind.GL2
 
                 sw.Indent();
                 specWriter.WriteTypes(sw, CSTypes);
-                specWriter.WriteDelegates(sw, delegates);
+                specWriter.WriteImports(sw, delegates);
                 sw.Unindent();
 
                 sw.WriteLine("}");

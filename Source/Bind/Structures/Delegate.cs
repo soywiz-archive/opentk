@@ -275,8 +275,9 @@ namespace Bind.Structures
                 }
 
                 // Then, create wrappers for each parameter:
-                //WrapParameters(new Function(this), wrappers);
-                WrapParameters(wrappers);
+                WrapParameters(new Function(this), wrappers);
+                //WrapParameters(wrappers);
+
             }
 
             return wrappers;
@@ -298,7 +299,7 @@ namespace Bind.Structures
         /// "void f(object p, IntPtr q)"
         /// "void f(object p, object q)"
         /// </summary>
-        private void WrapParameters(List<Function> wrappers)
+        private void WrapParameters(Function function, List<Function> wrappers)
         {
             if (index == 0)
             {
@@ -333,23 +334,23 @@ namespace Bind.Structures
 
                         // Recurse to the last parameter
                         ++index;
-                        WrapParameters(wrappers);
+                        WrapParameters(function, wrappers);
                         --index;
 
                         // On stack rewind, create array wrappers
-                        f = ArrayWrapper(new Function(this), index);
+                        f = ArrayWrapper(new Function(function), index);
                         wrappers.Add(f);
 
                         // Do it again, with array parameters wrapper this type
                         ++index;
-                        WrapParameters(wrappers);
+                        WrapParameters(f, wrappers);
                         --index;
 
-                        f = ReferenceWrapper(new Function(this), index);
+                        f = ReferenceWrapper(new Function(function), index);
                         wrappers.Add(f);
 
                         ++index;
-                        WrapParameters(wrappers);
+                        WrapParameters(f, wrappers);
                         --index;
                         break;
 
@@ -471,11 +472,11 @@ namespace Bind.Structures
             
             function.Body.Add("{");
             // Add delegate call:
-            function.Body.Add(
-                f.ReturnType.Type.ToLower().Contains("void") ?
-                String.Format("    {0};", f.CallString()) :
-                String.Format("    {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString())
-            );
+            if (f.ReturnType.Type.ToLower().Contains("void"))
+                function.Body.Add(String.Format("    {0};", f.CallString()));
+            else
+                function.Body.Add(String.Format("    {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString()));
+
             /*
             // Assign out parameters:
             foreach (Parameter p in function.Parameters)
@@ -494,7 +495,7 @@ namespace Bind.Structures
             */
             function.Body.Add("}");
             // Return:
-            if (f.ReturnType.Type.ToLower().Contains("void"))
+            if (!f.ReturnType.Type.ToLower().Contains("void"))
             {
                 function.Body.Add("return retval;");
             }

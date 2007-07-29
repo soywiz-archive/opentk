@@ -27,7 +27,8 @@ namespace OpenTK.OpenGL
     using GLuint64EXT = System.Int64;
     using GLint64 = System.Int64;
     using GLuint64 = System.Int64;
-    internal static class Delegates
+
+    internal static class Imports
     {
         delegate void NewList(GLuint list, GL.Enums.ListMode mode);
         delegate void EndList();

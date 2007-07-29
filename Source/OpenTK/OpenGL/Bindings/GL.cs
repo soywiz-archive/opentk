@@ -90,7 +90,6 @@ namespace OpenTK.OpenGL
             {
                 Color3bv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3bv(ref GLbyte v)
@@ -99,7 +98,6 @@ namespace OpenTK.OpenGL
             {
                 Color3bv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3d(GLdouble red, GLdouble green, GLdouble blue)
@@ -118,7 +116,6 @@ namespace OpenTK.OpenGL
             {
                 Color3dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3dv(ref GLdouble v)
@@ -127,7 +124,6 @@ namespace OpenTK.OpenGL
             {
                 Color3dv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3f(GLfloat red, GLfloat green, GLfloat blue)
@@ -146,7 +142,6 @@ namespace OpenTK.OpenGL
             {
                 Color3fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3fv(ref GLfloat v)
@@ -155,7 +150,6 @@ namespace OpenTK.OpenGL
             {
                 Color3fv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3i(GLint red, GLint green, GLint blue)
@@ -174,7 +168,6 @@ namespace OpenTK.OpenGL
             {
                 Color3iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3iv(ref GLint v)
@@ -183,7 +176,6 @@ namespace OpenTK.OpenGL
             {
                 Color3iv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3s(GLshort red, GLshort green, GLshort blue)
@@ -202,7 +194,6 @@ namespace OpenTK.OpenGL
             {
                 Color3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3sv(ref GLshort v)
@@ -211,7 +202,6 @@ namespace OpenTK.OpenGL
             {
                 Color3sv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3ub(GLubyte red, GLubyte green, GLubyte blue)
@@ -230,7 +220,6 @@ namespace OpenTK.OpenGL
             {
                 Color3ubv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3ubv(ref GLubyte v)
@@ -239,7 +228,6 @@ namespace OpenTK.OpenGL
             {
                 Color3ubv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3ui(GLuint red, GLuint green, GLuint blue)
@@ -258,7 +246,6 @@ namespace OpenTK.OpenGL
             {
                 Color3uiv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3uiv(ref GLuint v)
@@ -267,7 +254,6 @@ namespace OpenTK.OpenGL
             {
                 Color3uiv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3us(GLushort red, GLushort green, GLushort blue)
@@ -286,7 +272,6 @@ namespace OpenTK.OpenGL
             {
                 Color3usv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3usv(ref GLushort v)
@@ -295,7 +280,6 @@ namespace OpenTK.OpenGL
             {
                 Color3usv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4b(GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha)
@@ -314,7 +298,6 @@ namespace OpenTK.OpenGL
             {
                 Color4bv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4bv(ref GLbyte v)
@@ -323,7 +306,6 @@ namespace OpenTK.OpenGL
             {
                 Color4bv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4d(GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha)
@@ -342,7 +324,6 @@ namespace OpenTK.OpenGL
             {
                 Color4dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4dv(ref GLdouble v)
@@ -351,7 +332,6 @@ namespace OpenTK.OpenGL
             {
                 Color4dv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4f(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
@@ -370,7 +350,6 @@ namespace OpenTK.OpenGL
             {
                 Color4fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4fv(ref GLfloat v)
@@ -379,7 +358,6 @@ namespace OpenTK.OpenGL
             {
                 Color4fv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4i(GLint red, GLint green, GLint blue, GLint alpha)
@@ -398,7 +376,6 @@ namespace OpenTK.OpenGL
             {
                 Color4iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4iv(ref GLint v)
@@ -407,7 +384,6 @@ namespace OpenTK.OpenGL
             {
                 Color4iv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4s(GLshort red, GLshort green, GLshort blue, GLshort alpha)
@@ -426,7 +402,6 @@ namespace OpenTK.OpenGL
             {
                 Color4sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4sv(ref GLshort v)
@@ -435,7 +410,6 @@ namespace OpenTK.OpenGL
             {
                 Color4sv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4ub(GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha)
@@ -454,7 +428,6 @@ namespace OpenTK.OpenGL
             {
                 Color4ubv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4ubv(ref GLubyte v)
@@ -463,7 +436,6 @@ namespace OpenTK.OpenGL
             {
                 Color4ubv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4ui(GLuint red, GLuint green, GLuint blue, GLuint alpha)
@@ -482,7 +454,6 @@ namespace OpenTK.OpenGL
             {
                 Color4uiv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4uiv(ref GLuint v)
@@ -491,7 +462,6 @@ namespace OpenTK.OpenGL
             {
                 Color4uiv(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4us(GLushort red, GLushort green, GLushort blue, GLushort alpha)
@@ -510,7 +480,6 @@ namespace OpenTK.OpenGL
             {
                 Color4usv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4usv(ref GLushort v)
@@ -519,7 +488,6 @@ namespace OpenTK.OpenGL
             {
                 Color4usv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void EdgeFlagv(GL.Enums.Boolean* flag)
@@ -548,7 +516,6 @@ namespace OpenTK.OpenGL
             {
                 Indexdv(c_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Indexdv(ref GLdouble c)
@@ -557,7 +524,6 @@ namespace OpenTK.OpenGL
             {
                 Indexdv(c_ptr);
             }
-            return retval;
         }
         
         public static void Indexf(GLfloat c)
@@ -576,7 +542,6 @@ namespace OpenTK.OpenGL
             {
                 Indexfv(c_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Indexfv(ref GLfloat c)
@@ -585,7 +550,6 @@ namespace OpenTK.OpenGL
             {
                 Indexfv(c_ptr);
             }
-            return retval;
         }
         
         public static void Indexi(GLint c)
@@ -604,7 +568,6 @@ namespace OpenTK.OpenGL
             {
                 Indexiv(c_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Indexiv(ref GLint c)
@@ -613,7 +576,6 @@ namespace OpenTK.OpenGL
             {
                 Indexiv(c_ptr);
             }
-            return retval;
         }
         
         public static void Indexs(GLshort c)
@@ -632,7 +594,6 @@ namespace OpenTK.OpenGL
             {
                 Indexsv(c_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Indexsv(ref GLshort c)
@@ -641,7 +602,6 @@ namespace OpenTK.OpenGL
             {
                 Indexsv(c_ptr);
             }
-            return retval;
         }
         
         public static void Normal3b(GLbyte nx, GLbyte ny, GLbyte nz)
@@ -660,7 +620,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3bv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3bv(ref GLbyte v)
@@ -669,7 +628,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3bv(v_ptr);
             }
-            return retval;
         }
         
         public static void Normal3d(GLdouble nx, GLdouble ny, GLdouble nz)
@@ -688,7 +646,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3dv(ref GLdouble v)
@@ -697,7 +654,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3dv(v_ptr);
             }
-            return retval;
         }
         
         public static void Normal3f(GLfloat nx, GLfloat ny, GLfloat nz)
@@ -716,7 +672,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3fv(ref GLfloat v)
@@ -725,7 +680,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3fv(v_ptr);
             }
-            return retval;
         }
         
         public static void Normal3i(GLint nx, GLint ny, GLint nz)
@@ -744,7 +698,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3iv(ref GLint v)
@@ -753,7 +706,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3iv(v_ptr);
             }
-            return retval;
         }
         
         public static void Normal3s(GLshort nx, GLshort ny, GLshort nz)
@@ -772,7 +724,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3sv(ref GLshort v)
@@ -781,7 +732,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3sv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos2d(GLdouble x, GLdouble y)
@@ -800,7 +750,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos2dv(ref GLdouble v)
@@ -809,7 +758,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2dv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos2f(GLfloat x, GLfloat y)
@@ -828,7 +776,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos2fv(ref GLfloat v)
@@ -837,7 +784,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2fv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos2i(GLint x, GLint y)
@@ -856,7 +802,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos2iv(ref GLint v)
@@ -865,7 +810,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2iv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos2s(GLshort x, GLshort y)
@@ -884,7 +828,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos2sv(ref GLshort v)
@@ -893,7 +836,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos2sv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos3d(GLdouble x, GLdouble y, GLdouble z)
@@ -912,7 +854,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos3dv(ref GLdouble v)
@@ -921,7 +862,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3dv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos3f(GLfloat x, GLfloat y, GLfloat z)
@@ -940,7 +880,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos3fv(ref GLfloat v)
@@ -949,7 +888,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3fv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos3i(GLint x, GLint y, GLint z)
@@ -968,7 +906,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos3iv(ref GLint v)
@@ -977,7 +914,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3iv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos3s(GLshort x, GLshort y, GLshort z)
@@ -996,7 +932,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos3sv(ref GLshort v)
@@ -1005,7 +940,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos3sv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w)
@@ -1024,7 +958,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos4dv(ref GLdouble v)
@@ -1033,7 +966,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4dv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
@@ -1052,7 +984,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos4fv(ref GLfloat v)
@@ -1061,7 +992,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4fv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos4i(GLint x, GLint y, GLint z, GLint w)
@@ -1080,7 +1010,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos4iv(ref GLint v)
@@ -1089,7 +1018,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4iv(v_ptr);
             }
-            return retval;
         }
         
         public static void RasterPos4s(GLshort x, GLshort y, GLshort z, GLshort w)
@@ -1108,7 +1036,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void RasterPos4sv(ref GLshort v)
@@ -1117,7 +1044,6 @@ namespace OpenTK.OpenGL
             {
                 RasterPos4sv(v_ptr);
             }
-            return retval;
         }
         
         public static void Rectd(GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2)
@@ -1136,7 +1062,6 @@ namespace OpenTK.OpenGL
             {
                 Rectdv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectdv(GLdouble* v1, ref GLdouble v2)
@@ -1145,7 +1070,6 @@ namespace OpenTK.OpenGL
             {
                 Rectdv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectdv(GLdouble[] v1, GLdouble* v2)
@@ -1154,25 +1078,32 @@ namespace OpenTK.OpenGL
             {
                 Rectdv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectdv(GLdouble* v1, GLdouble[] v2)
+        public static unsafe void Rectdv(GLdouble[] v1, GLdouble[] v2)
         {
+            fixed (GLdouble v1_ptr = v1)
+            {
+                Rectdv(v1_ptr, v2);
+            }
+            fixed (GLdouble v1_ptr = v1)
             fixed (GLdouble v2_ptr = v2)
             {
-                Rectdv(v1, v2_ptr);
+                Rectdv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectdv(GLdouble* v1, ref GLdouble v2)
+        public static unsafe void Rectdv(GLdouble[] v1, ref GLdouble v2)
         {
+            fixed (GLdouble v1_ptr = v1)
+            {
+                Rectdv(v1_ptr, v2);
+            }
+            fixed (GLdouble v1_ptr = v1)
             fixed (GLdouble v2_ptr = &v2)
             {
-                Rectdv(v1, v2_ptr);
+                Rectdv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectdv(ref GLdouble v1, GLdouble* v2)
@@ -1181,25 +1112,32 @@ namespace OpenTK.OpenGL
             {
                 Rectdv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectdv(GLdouble* v1, GLdouble[] v2)
+        public static unsafe void Rectdv(ref GLdouble v1, GLdouble[] v2)
         {
+            fixed (GLdouble v1_ptr = &v1)
+            {
+                Rectdv(v1_ptr, v2);
+            }
+            fixed (GLdouble v1_ptr = &v1)
             fixed (GLdouble v2_ptr = v2)
             {
-                Rectdv(v1, v2_ptr);
+                Rectdv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectdv(GLdouble* v1, ref GLdouble v2)
+        public static unsafe void Rectdv(ref GLdouble v1, ref GLdouble v2)
         {
+            fixed (GLdouble v1_ptr = &v1)
+            {
+                Rectdv(v1_ptr, v2);
+            }
+            fixed (GLdouble v1_ptr = &v1)
             fixed (GLdouble v2_ptr = &v2)
             {
-                Rectdv(v1, v2_ptr);
+                Rectdv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static void Rectf(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
@@ -1218,7 +1156,6 @@ namespace OpenTK.OpenGL
             {
                 Rectfv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectfv(GLfloat* v1, ref GLfloat v2)
@@ -1227,7 +1164,6 @@ namespace OpenTK.OpenGL
             {
                 Rectfv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectfv(GLfloat[] v1, GLfloat* v2)
@@ -1236,25 +1172,32 @@ namespace OpenTK.OpenGL
             {
                 Rectfv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectfv(GLfloat* v1, GLfloat[] v2)
+        public static unsafe void Rectfv(GLfloat[] v1, GLfloat[] v2)
         {
+            fixed (GLfloat v1_ptr = v1)
+            {
+                Rectfv(v1_ptr, v2);
+            }
+            fixed (GLfloat v1_ptr = v1)
             fixed (GLfloat v2_ptr = v2)
             {
-                Rectfv(v1, v2_ptr);
+                Rectfv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectfv(GLfloat* v1, ref GLfloat v2)
+        public static unsafe void Rectfv(GLfloat[] v1, ref GLfloat v2)
         {
+            fixed (GLfloat v1_ptr = v1)
+            {
+                Rectfv(v1_ptr, v2);
+            }
+            fixed (GLfloat v1_ptr = v1)
             fixed (GLfloat v2_ptr = &v2)
             {
-                Rectfv(v1, v2_ptr);
+                Rectfv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectfv(ref GLfloat v1, GLfloat* v2)
@@ -1263,25 +1206,32 @@ namespace OpenTK.OpenGL
             {
                 Rectfv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectfv(GLfloat* v1, GLfloat[] v2)
+        public static unsafe void Rectfv(ref GLfloat v1, GLfloat[] v2)
         {
+            fixed (GLfloat v1_ptr = &v1)
+            {
+                Rectfv(v1_ptr, v2);
+            }
+            fixed (GLfloat v1_ptr = &v1)
             fixed (GLfloat v2_ptr = v2)
             {
-                Rectfv(v1, v2_ptr);
+                Rectfv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectfv(GLfloat* v1, ref GLfloat v2)
+        public static unsafe void Rectfv(ref GLfloat v1, ref GLfloat v2)
         {
+            fixed (GLfloat v1_ptr = &v1)
+            {
+                Rectfv(v1_ptr, v2);
+            }
+            fixed (GLfloat v1_ptr = &v1)
             fixed (GLfloat v2_ptr = &v2)
             {
-                Rectfv(v1, v2_ptr);
+                Rectfv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static void Recti(GLint x1, GLint y1, GLint x2, GLint y2)
@@ -1300,7 +1250,6 @@ namespace OpenTK.OpenGL
             {
                 Rectiv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectiv(GLint* v1, ref GLint v2)
@@ -1309,7 +1258,6 @@ namespace OpenTK.OpenGL
             {
                 Rectiv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectiv(GLint[] v1, GLint* v2)
@@ -1318,25 +1266,32 @@ namespace OpenTK.OpenGL
             {
                 Rectiv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectiv(GLint* v1, GLint[] v2)
+        public static unsafe void Rectiv(GLint[] v1, GLint[] v2)
         {
+            fixed (GLint v1_ptr = v1)
+            {
+                Rectiv(v1_ptr, v2);
+            }
+            fixed (GLint v1_ptr = v1)
             fixed (GLint v2_ptr = v2)
             {
-                Rectiv(v1, v2_ptr);
+                Rectiv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectiv(GLint* v1, ref GLint v2)
+        public static unsafe void Rectiv(GLint[] v1, ref GLint v2)
         {
+            fixed (GLint v1_ptr = v1)
+            {
+                Rectiv(v1_ptr, v2);
+            }
+            fixed (GLint v1_ptr = v1)
             fixed (GLint v2_ptr = &v2)
             {
-                Rectiv(v1, v2_ptr);
+                Rectiv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectiv(ref GLint v1, GLint* v2)
@@ -1345,25 +1300,32 @@ namespace OpenTK.OpenGL
             {
                 Rectiv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectiv(GLint* v1, GLint[] v2)
+        public static unsafe void Rectiv(ref GLint v1, GLint[] v2)
         {
+            fixed (GLint v1_ptr = &v1)
+            {
+                Rectiv(v1_ptr, v2);
+            }
+            fixed (GLint v1_ptr = &v1)
             fixed (GLint v2_ptr = v2)
             {
-                Rectiv(v1, v2_ptr);
+                Rectiv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectiv(GLint* v1, ref GLint v2)
+        public static unsafe void Rectiv(ref GLint v1, ref GLint v2)
         {
+            fixed (GLint v1_ptr = &v1)
+            {
+                Rectiv(v1_ptr, v2);
+            }
+            fixed (GLint v1_ptr = &v1)
             fixed (GLint v2_ptr = &v2)
             {
-                Rectiv(v1, v2_ptr);
+                Rectiv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static void Rects(GLshort x1, GLshort y1, GLshort x2, GLshort y2)
@@ -1382,7 +1344,6 @@ namespace OpenTK.OpenGL
             {
                 Rectsv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectsv(GLshort* v1, ref GLshort v2)
@@ -1391,7 +1352,6 @@ namespace OpenTK.OpenGL
             {
                 Rectsv(v1, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectsv(GLshort[] v1, GLshort* v2)
@@ -1400,25 +1360,32 @@ namespace OpenTK.OpenGL
             {
                 Rectsv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectsv(GLshort* v1, GLshort[] v2)
+        public static unsafe void Rectsv(GLshort[] v1, GLshort[] v2)
         {
+            fixed (GLshort v1_ptr = v1)
+            {
+                Rectsv(v1_ptr, v2);
+            }
+            fixed (GLshort v1_ptr = v1)
             fixed (GLshort v2_ptr = v2)
             {
-                Rectsv(v1, v2_ptr);
+                Rectsv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectsv(GLshort* v1, ref GLshort v2)
+        public static unsafe void Rectsv(GLshort[] v1, ref GLshort v2)
         {
+            fixed (GLshort v1_ptr = v1)
+            {
+                Rectsv(v1_ptr, v2);
+            }
+            fixed (GLshort v1_ptr = v1)
             fixed (GLshort v2_ptr = &v2)
             {
-                Rectsv(v1, v2_ptr);
+                Rectsv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Rectsv(ref GLshort v1, GLshort* v2)
@@ -1427,25 +1394,32 @@ namespace OpenTK.OpenGL
             {
                 Rectsv(v1_ptr, v2);
             }
-            return retval;
         }
         
-        public static unsafe void Rectsv(GLshort* v1, GLshort[] v2)
+        public static unsafe void Rectsv(ref GLshort v1, GLshort[] v2)
         {
+            fixed (GLshort v1_ptr = &v1)
+            {
+                Rectsv(v1_ptr, v2);
+            }
+            fixed (GLshort v1_ptr = &v1)
             fixed (GLshort v2_ptr = v2)
             {
-                Rectsv(v1, v2_ptr);
+                Rectsv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Rectsv(GLshort* v1, ref GLshort v2)
+        public static unsafe void Rectsv(ref GLshort v1, ref GLshort v2)
         {
+            fixed (GLshort v1_ptr = &v1)
+            {
+                Rectsv(v1_ptr, v2);
+            }
+            fixed (GLshort v1_ptr = &v1)
             fixed (GLshort v2_ptr = &v2)
             {
-                Rectsv(v1, v2_ptr);
+                Rectsv(v1_ptr, v2_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord1d(GLdouble s)
@@ -1464,7 +1438,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord1dv(ref GLdouble v)
@@ -1473,7 +1446,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1dv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord1f(GLfloat s)
@@ -1492,7 +1464,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord1fv(ref GLfloat v)
@@ -1501,7 +1472,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1fv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord1i(GLint s)
@@ -1520,7 +1490,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord1iv(ref GLint v)
@@ -1529,7 +1498,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1iv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord1s(GLshort s)
@@ -1548,7 +1516,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord1sv(ref GLshort v)
@@ -1557,7 +1524,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1sv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2d(GLdouble s, GLdouble t)
@@ -1576,7 +1542,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2dv(ref GLdouble v)
@@ -1585,7 +1550,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2dv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2f(GLfloat s, GLfloat t)
@@ -1604,7 +1568,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fv(ref GLfloat v)
@@ -1613,7 +1576,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2i(GLint s, GLint t)
@@ -1632,7 +1594,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2iv(ref GLint v)
@@ -1641,7 +1602,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2iv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2s(GLshort s, GLshort t)
@@ -1660,7 +1620,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2sv(ref GLshort v)
@@ -1669,7 +1628,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2sv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord3d(GLdouble s, GLdouble t, GLdouble r)
@@ -1688,7 +1646,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord3dv(ref GLdouble v)
@@ -1697,7 +1654,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3dv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord3f(GLfloat s, GLfloat t, GLfloat r)
@@ -1716,7 +1672,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord3fv(ref GLfloat v)
@@ -1725,7 +1680,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3fv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord3i(GLint s, GLint t, GLint r)
@@ -1744,7 +1698,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord3iv(ref GLint v)
@@ -1753,7 +1706,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3iv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord3s(GLshort s, GLshort t, GLshort r)
@@ -1772,7 +1724,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord3sv(ref GLshort v)
@@ -1781,7 +1732,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3sv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord4d(GLdouble s, GLdouble t, GLdouble r, GLdouble q)
@@ -1800,7 +1750,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4dv(ref GLdouble v)
@@ -1809,7 +1758,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4dv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord4f(GLfloat s, GLfloat t, GLfloat r, GLfloat q)
@@ -1828,7 +1776,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fv(ref GLfloat v)
@@ -1837,7 +1784,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord4i(GLint s, GLint t, GLint r, GLint q)
@@ -1856,7 +1802,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4iv(ref GLint v)
@@ -1865,7 +1810,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4iv(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord4s(GLshort s, GLshort t, GLshort r, GLshort q)
@@ -1884,7 +1828,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4sv(ref GLshort v)
@@ -1893,7 +1836,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4sv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex2d(GLdouble x, GLdouble y)
@@ -1912,7 +1854,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex2dv(ref GLdouble v)
@@ -1921,7 +1862,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2dv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex2f(GLfloat x, GLfloat y)
@@ -1940,7 +1880,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex2fv(ref GLfloat v)
@@ -1949,7 +1888,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2fv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex2i(GLint x, GLint y)
@@ -1968,7 +1906,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex2iv(ref GLint v)
@@ -1977,7 +1914,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2iv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex2s(GLshort x, GLshort y)
@@ -1996,7 +1932,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex2sv(ref GLshort v)
@@ -2005,7 +1940,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2sv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex3d(GLdouble x, GLdouble y, GLdouble z)
@@ -2024,7 +1958,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex3dv(ref GLdouble v)
@@ -2033,7 +1966,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3dv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex3f(GLfloat x, GLfloat y, GLfloat z)
@@ -2052,7 +1984,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex3fv(ref GLfloat v)
@@ -2061,7 +1992,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3fv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex3i(GLint x, GLint y, GLint z)
@@ -2080,7 +2010,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex3iv(ref GLint v)
@@ -2089,7 +2018,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3iv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex3s(GLshort x, GLshort y, GLshort z)
@@ -2108,7 +2036,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex3sv(ref GLshort v)
@@ -2117,7 +2044,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3sv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w)
@@ -2136,7 +2062,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex4dv(ref GLdouble v)
@@ -2145,7 +2070,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4dv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
@@ -2164,7 +2088,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex4fv(ref GLfloat v)
@@ -2173,7 +2096,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4fv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex4i(GLint x, GLint y, GLint z, GLint w)
@@ -2192,7 +2114,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex4iv(ref GLint v)
@@ -2201,7 +2122,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4iv(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex4s(GLshort x, GLshort y, GLshort z, GLshort w)
@@ -2220,7 +2140,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex4sv(ref GLshort v)
@@ -2229,7 +2148,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ClipPlane(GL.Enums.ClipPlaneName plane, GLdouble* equation)
@@ -2363,7 +2281,6 @@ namespace OpenTK.OpenGL
             {
                 PolygonStipple(mask_ptr);
             }
-            return retval;
         }
         
         public static unsafe void PolygonStipple(ref GLubyte mask)
@@ -2372,7 +2289,6 @@ namespace OpenTK.OpenGL
             {
                 PolygonStipple(mask_ptr);
             }
-            return retval;
         }
         
         public static void Scissor(GLint x, GLint y, GLsizei width, GLsizei height)
@@ -2641,7 +2557,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord1dv(u_ptr);
             }
-            return retval;
         }
         
         public static unsafe void EvalCoord1dv(ref GLdouble u)
@@ -2650,7 +2565,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord1dv(u_ptr);
             }
-            return retval;
         }
         
         public static void EvalCoord1f(GLfloat u)
@@ -2669,7 +2583,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord1fv(u_ptr);
             }
-            return retval;
         }
         
         public static unsafe void EvalCoord1fv(ref GLfloat u)
@@ -2678,7 +2591,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord1fv(u_ptr);
             }
-            return retval;
         }
         
         public static void EvalCoord2d(GLdouble u, GLdouble v)
@@ -2697,7 +2609,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord2dv(u_ptr);
             }
-            return retval;
         }
         
         public static unsafe void EvalCoord2dv(ref GLdouble u)
@@ -2706,7 +2617,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord2dv(u_ptr);
             }
-            return retval;
         }
         
         public static void EvalCoord2f(GLfloat u, GLfloat v)
@@ -2725,7 +2635,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord2fv(u_ptr);
             }
-            return retval;
         }
         
         public static unsafe void EvalCoord2fv(ref GLfloat u)
@@ -2734,7 +2643,6 @@ namespace OpenTK.OpenGL
             {
                 EvalCoord2fv(u_ptr);
             }
-            return retval;
         }
         
         public static void EvalMesh1(GL.Enums.MeshMode1 mode, GLint i1, GLint i2)
@@ -2939,7 +2847,6 @@ namespace OpenTK.OpenGL
             {
                 GetPolygonStipple(mask_ptr);
             }
-            return retval;
         }
         
         public static unsafe void GetPolygonStipple(out GLubyte mask)
@@ -2949,7 +2856,6 @@ namespace OpenTK.OpenGL
             {
                 GetPolygonStipple(mask_ptr);
             }
-            return retval;
         }
         
         public static System.String GetString(GL.Enums.StringName name)
@@ -3043,7 +2949,6 @@ namespace OpenTK.OpenGL
             {
                 LoadMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadMatrixf(ref GLfloat m)
@@ -3052,7 +2957,6 @@ namespace OpenTK.OpenGL
             {
                 LoadMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadMatrixd(GLdouble* m)
@@ -3066,7 +2970,6 @@ namespace OpenTK.OpenGL
             {
                 LoadMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadMatrixd(ref GLdouble m)
@@ -3075,7 +2978,6 @@ namespace OpenTK.OpenGL
             {
                 LoadMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static void MatrixMode(GL.Enums.MatrixMode mode)
@@ -3094,7 +2996,6 @@ namespace OpenTK.OpenGL
             {
                 MultMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultMatrixf(ref GLfloat m)
@@ -3103,7 +3004,6 @@ namespace OpenTK.OpenGL
             {
                 MultMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultMatrixd(GLdouble* m)
@@ -3117,7 +3017,6 @@ namespace OpenTK.OpenGL
             {
                 MultMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultMatrixd(ref GLdouble m)
@@ -3126,7 +3025,6 @@ namespace OpenTK.OpenGL
             {
                 MultMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static void Ortho(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar)
@@ -3325,7 +3223,6 @@ namespace OpenTK.OpenGL
             {
                 Indexubv(c_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Indexubv(ref GLubyte c)
@@ -3334,7 +3231,6 @@ namespace OpenTK.OpenGL
             {
                 Indexubv(c_ptr);
             }
-            return retval;
         }
         
         public static void PopClientAttrib()
@@ -3708,7 +3604,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadTransposeMatrixf(ref GLfloat m)
@@ -3717,7 +3612,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadTransposeMatrixd(GLdouble* m)
@@ -3731,7 +3625,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadTransposeMatrixd(ref GLdouble m)
@@ -3740,7 +3633,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixf(GLfloat* m)
@@ -3754,7 +3646,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixf(ref GLfloat m)
@@ -3763,7 +3654,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixf(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixd(GLdouble* m)
@@ -3777,7 +3667,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixd(ref GLdouble m)
@@ -3786,7 +3675,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixd(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void CompressedTexImage3D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, void* data)
@@ -3845,7 +3733,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoordfv(coord_ptr);
             }
-            return retval;
         }
         
         public static unsafe void FogCoordfv(ref GLfloat coord)
@@ -3854,7 +3741,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoordfv(coord_ptr);
             }
-            return retval;
         }
         
         public static void FogCoordd(GLdouble coord)
@@ -3873,7 +3759,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoorddv(coord_ptr);
             }
-            return retval;
         }
         
         public static unsafe void FogCoorddv(ref GLdouble coord)
@@ -3882,7 +3767,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoorddv(coord_ptr);
             }
-            return retval;
         }
         
         public static unsafe void FogCoordPointer(GL.Enums.VERSION_1_4 type, GLsizei stride, void* pointer)
@@ -3936,7 +3820,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3bv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3bv(ref GLbyte v)
@@ -3945,7 +3828,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3bv(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3d(GLdouble red, GLdouble green, GLdouble blue)
@@ -3964,7 +3846,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3dv(ref GLdouble v)
@@ -3973,7 +3854,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3dv(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3f(GLfloat red, GLfloat green, GLfloat blue)
@@ -3992,7 +3872,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3fv(ref GLfloat v)
@@ -4001,7 +3880,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3fv(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3i(GLint red, GLint green, GLint blue)
@@ -4020,7 +3898,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3iv(ref GLint v)
@@ -4029,7 +3906,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3iv(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3s(GLshort red, GLshort green, GLshort blue)
@@ -4048,7 +3924,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3sv(ref GLshort v)
@@ -4057,7 +3932,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3sv(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3ub(GLubyte red, GLubyte green, GLubyte blue)
@@ -4076,7 +3950,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3ubv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3ubv(ref GLubyte v)
@@ -4085,7 +3958,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3ubv(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3ui(GLuint red, GLuint green, GLuint blue)
@@ -4104,7 +3976,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3uiv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3uiv(ref GLuint v)
@@ -4113,7 +3984,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3uiv(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3us(GLushort red, GLushort green, GLushort blue)
@@ -4132,7 +4002,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3usv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3usv(ref GLushort v)
@@ -4141,7 +4010,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3usv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColorPointer(GLint size, GL.Enums.ColorPointerType type, GLsizei stride, void* pointer)
@@ -4165,7 +4033,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2dv(ref GLdouble v)
@@ -4174,7 +4041,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2dv(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2f(GLfloat x, GLfloat y)
@@ -4193,7 +4059,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2fv(ref GLfloat v)
@@ -4202,7 +4067,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2fv(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2i(GLint x, GLint y)
@@ -4221,7 +4085,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2iv(ref GLint v)
@@ -4230,7 +4093,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2iv(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2s(GLshort x, GLshort y)
@@ -4249,7 +4111,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2sv(ref GLshort v)
@@ -4258,7 +4119,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2sv(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3d(GLdouble x, GLdouble y, GLdouble z)
@@ -4277,7 +4137,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3dv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3dv(ref GLdouble v)
@@ -4286,7 +4145,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3dv(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3f(GLfloat x, GLfloat y, GLfloat z)
@@ -4305,7 +4163,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3fv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3fv(ref GLfloat v)
@@ -4314,7 +4171,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3fv(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3i(GLint x, GLint y, GLint z)
@@ -4333,7 +4189,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3iv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3iv(ref GLint v)
@@ -4342,7 +4197,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3iv(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3s(GLshort x, GLshort y, GLshort z)
@@ -4361,7 +4215,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3sv(ref GLshort v)
@@ -4370,7 +4223,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3sv(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void GenQueries(GLsizei n, GLuint* ids)
@@ -5129,7 +4981,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixfARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadTransposeMatrixfARB(ref GLfloat m)
@@ -5138,7 +4989,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixfARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadTransposeMatrixdARB(GLdouble* m)
@@ -5152,7 +5002,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixdARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void LoadTransposeMatrixdARB(ref GLdouble m)
@@ -5161,7 +5010,6 @@ namespace OpenTK.OpenGL
             {
                 LoadTransposeMatrixdARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixfARB(GLfloat* m)
@@ -5175,7 +5023,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixfARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixfARB(ref GLfloat m)
@@ -5184,7 +5031,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixfARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixdARB(GLdouble* m)
@@ -5198,7 +5044,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixdARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultTransposeMatrixdARB(ref GLdouble m)
@@ -5207,7 +5052,6 @@ namespace OpenTK.OpenGL
             {
                 MultTransposeMatrixdARB(m_ptr);
             }
-            return retval;
         }
         
         public static unsafe void CompressedTexImage3DARB(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, void* data)
@@ -5346,7 +5190,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2dvARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2dvARB(ref GLdouble v)
@@ -5355,7 +5198,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2dvARB(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2fARB(GLfloat x, GLfloat y)
@@ -5374,7 +5216,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2fvARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2fvARB(ref GLfloat v)
@@ -5383,7 +5224,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2fvARB(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2iARB(GLint x, GLint y)
@@ -5402,7 +5242,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2ivARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2ivARB(ref GLint v)
@@ -5411,7 +5250,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2ivARB(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2sARB(GLshort x, GLshort y)
@@ -5430,7 +5268,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2svARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2svARB(ref GLshort v)
@@ -5439,7 +5276,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2svARB(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3dARB(GLdouble x, GLdouble y, GLdouble z)
@@ -5458,7 +5294,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3dvARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3dvARB(ref GLdouble v)
@@ -5467,7 +5302,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3dvARB(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3fARB(GLfloat x, GLfloat y, GLfloat z)
@@ -5486,7 +5320,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3fvARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3fvARB(ref GLfloat v)
@@ -5495,7 +5328,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3fvARB(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3iARB(GLint x, GLint y, GLint z)
@@ -5514,7 +5346,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3ivARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3ivARB(ref GLint v)
@@ -5523,7 +5354,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3ivARB(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3sARB(GLshort x, GLshort y, GLshort z)
@@ -5542,7 +5372,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3svARB(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3svARB(ref GLshort v)
@@ -5551,7 +5380,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3svARB(v_ptr);
             }
-            return retval;
         }
         
         public static void VertexAttrib1dARB(GLuint index, GLdouble x)
@@ -6581,6 +6409,7 @@ namespace OpenTK.OpenGL
             {
                 GLint retval = PollInstrumentsSGIX(marker_p_ptr);
             }
+            return retval;
         }
         
         public static unsafe GLint PollInstrumentsSGIX(out GLint marker_p)
@@ -6590,6 +6419,7 @@ namespace OpenTK.OpenGL
             {
                 GLint retval = PollInstrumentsSGIX(marker_p_ptr);
             }
+            return retval;
         }
         
         public static void ReadInstrumentsSGIX(GLint marker)
@@ -6648,7 +6478,6 @@ namespace OpenTK.OpenGL
             {
                 ReferencePlaneSGIX(equation_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReferencePlaneSGIX(ref GLdouble equation)
@@ -6657,7 +6486,6 @@ namespace OpenTK.OpenGL
             {
                 ReferencePlaneSGIX(equation_ptr);
             }
-            return retval;
         }
         
         public static void FlushRasterSGIX()
@@ -6682,7 +6510,6 @@ namespace OpenTK.OpenGL
             {
                 GetFogFuncSGIS(points_ptr);
             }
-            return retval;
         }
         
         public static unsafe void GetFogFuncSGIS(out GLfloat points)
@@ -6692,7 +6519,6 @@ namespace OpenTK.OpenGL
             {
                 GetFogFuncSGIS(points_ptr);
             }
-            return retval;
         }
         
         public static void ImageTransformParameteriHP(GL.Enums.HP_image_transform target, GL.Enums.HP_image_transform pname, GLint param)
@@ -6947,6 +6773,7 @@ namespace OpenTK.OpenGL
             {
                 GLint retval = FinishAsyncSGIX(markerp_ptr);
             }
+            return retval;
         }
         
         public static unsafe GLint FinishAsyncSGIX(out GLuint markerp)
@@ -6956,6 +6783,7 @@ namespace OpenTK.OpenGL
             {
                 GLint retval = FinishAsyncSGIX(markerp_ptr);
             }
+            return retval;
         }
         
         public static unsafe GLint PollAsyncSGIX(GLuint* markerp)
@@ -6970,6 +6798,7 @@ namespace OpenTK.OpenGL
             {
                 GLint retval = PollAsyncSGIX(markerp_ptr);
             }
+            return retval;
         }
         
         public static unsafe GLint PollAsyncSGIX(out GLuint markerp)
@@ -6979,6 +6808,7 @@ namespace OpenTK.OpenGL
             {
                 GLint retval = PollAsyncSGIX(markerp_ptr);
             }
+            return retval;
         }
         
         public static GLuint GenAsyncMarkersSGIX(GLsizei range)
@@ -7052,7 +6882,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3bvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3bvEXT(ref GLbyte v)
@@ -7061,7 +6890,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3bvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3dEXT(GLdouble red, GLdouble green, GLdouble blue)
@@ -7080,7 +6908,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3dvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3dvEXT(ref GLdouble v)
@@ -7089,7 +6916,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3dvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3fEXT(GLfloat red, GLfloat green, GLfloat blue)
@@ -7108,7 +6934,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3fvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3fvEXT(ref GLfloat v)
@@ -7117,7 +6942,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3fvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3iEXT(GLint red, GLint green, GLint blue)
@@ -7136,7 +6960,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3ivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3ivEXT(ref GLint v)
@@ -7145,7 +6968,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3ivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3sEXT(GLshort red, GLshort green, GLshort blue)
@@ -7164,7 +6986,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3svEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3svEXT(ref GLshort v)
@@ -7173,7 +6994,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3svEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3ubEXT(GLubyte red, GLubyte green, GLubyte blue)
@@ -7192,7 +7012,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3ubvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3ubvEXT(ref GLubyte v)
@@ -7201,7 +7020,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3ubvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3uiEXT(GLuint red, GLuint green, GLuint blue)
@@ -7220,7 +7038,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3uivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3uivEXT(ref GLuint v)
@@ -7229,7 +7046,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3uivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3usEXT(GLushort red, GLushort green, GLushort blue)
@@ -7248,7 +7064,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3usvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3usvEXT(ref GLushort v)
@@ -7257,7 +7072,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3usvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColorPointerEXT(GLint size, GL.Enums.ColorPointerType type, GLsizei stride, void* pointer)
@@ -7296,7 +7110,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoordfvEXT(coord_ptr);
             }
-            return retval;
         }
         
         public static unsafe void FogCoordfvEXT(ref GLfloat coord)
@@ -7305,7 +7118,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoordfvEXT(coord_ptr);
             }
-            return retval;
         }
         
         public static void FogCoorddEXT(GLdouble coord)
@@ -7324,7 +7136,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoorddvEXT(coord_ptr);
             }
-            return retval;
         }
         
         public static unsafe void FogCoorddvEXT(ref GLdouble coord)
@@ -7333,7 +7144,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoorddvEXT(coord_ptr);
             }
-            return retval;
         }
         
         public static unsafe void FogCoordPointerEXT(GL.Enums.EXT_fog_coord type, GLsizei stride, void* pointer)
@@ -7357,7 +7167,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3bvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Tangent3bvEXT(ref GLbyte v)
@@ -7366,7 +7175,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3bvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Tangent3dEXT(GLdouble tx, GLdouble ty, GLdouble tz)
@@ -7385,7 +7193,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3dvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Tangent3dvEXT(ref GLdouble v)
@@ -7394,7 +7201,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3dvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Tangent3fEXT(GLfloat tx, GLfloat ty, GLfloat tz)
@@ -7413,7 +7219,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3fvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Tangent3fvEXT(ref GLfloat v)
@@ -7422,7 +7227,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3fvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Tangent3iEXT(GLint tx, GLint ty, GLint tz)
@@ -7441,7 +7245,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3ivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Tangent3ivEXT(ref GLint v)
@@ -7450,7 +7253,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3ivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Tangent3sEXT(GLshort tx, GLshort ty, GLshort tz)
@@ -7469,7 +7271,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3svEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Tangent3svEXT(ref GLshort v)
@@ -7478,7 +7279,6 @@ namespace OpenTK.OpenGL
             {
                 Tangent3svEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Binormal3bEXT(GLbyte bx, GLbyte by, GLbyte bz)
@@ -7497,7 +7297,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3bvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Binormal3bvEXT(ref GLbyte v)
@@ -7506,7 +7305,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3bvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Binormal3dEXT(GLdouble bx, GLdouble by, GLdouble bz)
@@ -7525,7 +7323,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3dvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Binormal3dvEXT(ref GLdouble v)
@@ -7534,7 +7331,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3dvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Binormal3fEXT(GLfloat bx, GLfloat by, GLfloat bz)
@@ -7553,7 +7349,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3fvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Binormal3fvEXT(ref GLfloat v)
@@ -7562,7 +7357,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3fvEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Binormal3iEXT(GLint bx, GLint by, GLint bz)
@@ -7581,7 +7375,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3ivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Binormal3ivEXT(ref GLint v)
@@ -7590,7 +7383,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3ivEXT(v_ptr);
             }
-            return retval;
         }
         
         public static void Binormal3sEXT(GLshort bx, GLshort by, GLshort bz)
@@ -7609,7 +7401,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3svEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Binormal3svEXT(ref GLshort v)
@@ -7618,7 +7409,6 @@ namespace OpenTK.OpenGL
             {
                 Binormal3svEXT(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TangentPointerEXT(GL.Enums.EXT_coordinate_frame type, GLsizei stride, void* pointer)
@@ -7702,7 +7492,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuivSUN(code_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuivSUN(ref GLuint code)
@@ -7711,7 +7500,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuivSUN(code_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeusvSUN(GLushort* code)
@@ -7725,7 +7513,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeusvSUN(code_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeusvSUN(ref GLushort code)
@@ -7734,7 +7521,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeusvSUN(code_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeubvSUN(GLubyte* code)
@@ -7748,7 +7534,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeubvSUN(code_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeubvSUN(ref GLubyte code)
@@ -7757,7 +7542,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeubvSUN(code_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodePointerSUN(GL.Enums.SUN_triangle_list type, GLsizei stride, void* pointer)
@@ -7781,7 +7565,6 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex2fvSUN(c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4ubVertex2fvSUN(GLubyte* c, ref GLfloat v)
@@ -7790,7 +7573,6 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex2fvSUN(c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4ubVertex2fvSUN(GLubyte[] c, GLfloat* v)
@@ -7799,25 +7581,32 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex2fvSUN(c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex2fvSUN(GLubyte* c, GLfloat[] v)
+        public static unsafe void Color4ubVertex2fvSUN(GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                Color4ubVertex2fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                Color4ubVertex2fvSUN(c, v_ptr);
+                Color4ubVertex2fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex2fvSUN(GLubyte* c, ref GLfloat v)
+        public static unsafe void Color4ubVertex2fvSUN(GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                Color4ubVertex2fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4ubVertex2fvSUN(c, v_ptr);
+                Color4ubVertex2fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4ubVertex2fvSUN(ref GLubyte c, GLfloat* v)
@@ -7826,25 +7615,32 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex2fvSUN(c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex2fvSUN(GLubyte* c, GLfloat[] v)
+        public static unsafe void Color4ubVertex2fvSUN(ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                Color4ubVertex2fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                Color4ubVertex2fvSUN(c, v_ptr);
+                Color4ubVertex2fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex2fvSUN(GLubyte* c, ref GLfloat v)
+        public static unsafe void Color4ubVertex2fvSUN(ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                Color4ubVertex2fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4ubVertex2fvSUN(c, v_ptr);
+                Color4ubVertex2fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void Color4ubVertex3fSUN(GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y, GLfloat z)
@@ -7863,7 +7659,6 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex3fvSUN(c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4ubVertex3fvSUN(GLubyte* c, ref GLfloat v)
@@ -7872,7 +7667,6 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex3fvSUN(c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4ubVertex3fvSUN(GLubyte[] c, GLfloat* v)
@@ -7881,25 +7675,32 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex3fvSUN(c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex3fvSUN(GLubyte* c, GLfloat[] v)
+        public static unsafe void Color4ubVertex3fvSUN(GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                Color4ubVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                Color4ubVertex3fvSUN(c, v_ptr);
+                Color4ubVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex3fvSUN(GLubyte* c, ref GLfloat v)
+        public static unsafe void Color4ubVertex3fvSUN(GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                Color4ubVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4ubVertex3fvSUN(c, v_ptr);
+                Color4ubVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4ubVertex3fvSUN(ref GLubyte c, GLfloat* v)
@@ -7908,25 +7709,32 @@ namespace OpenTK.OpenGL
             {
                 Color4ubVertex3fvSUN(c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex3fvSUN(GLubyte* c, GLfloat[] v)
+        public static unsafe void Color4ubVertex3fvSUN(ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                Color4ubVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                Color4ubVertex3fvSUN(c, v_ptr);
+                Color4ubVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4ubVertex3fvSUN(GLubyte* c, ref GLfloat v)
+        public static unsafe void Color4ubVertex3fvSUN(ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                Color4ubVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4ubVertex3fvSUN(c, v_ptr);
+                Color4ubVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void Color3fVertex3fSUN(GLfloat r, GLfloat g, GLfloat b, GLfloat x, GLfloat y, GLfloat z)
@@ -7945,7 +7753,6 @@ namespace OpenTK.OpenGL
             {
                 Color3fVertex3fvSUN(c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3fVertex3fvSUN(GLfloat* c, ref GLfloat v)
@@ -7954,7 +7761,6 @@ namespace OpenTK.OpenGL
             {
                 Color3fVertex3fvSUN(c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3fVertex3fvSUN(GLfloat[] c, GLfloat* v)
@@ -7963,25 +7769,32 @@ namespace OpenTK.OpenGL
             {
                 Color3fVertex3fvSUN(c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color3fVertex3fvSUN(GLfloat* c, GLfloat[] v)
+        public static unsafe void Color3fVertex3fvSUN(GLfloat[] c, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color3fVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                Color3fVertex3fvSUN(c, v_ptr);
+                Color3fVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color3fVertex3fvSUN(GLfloat* c, ref GLfloat v)
+        public static unsafe void Color3fVertex3fvSUN(GLfloat[] c, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color3fVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color3fVertex3fvSUN(c, v_ptr);
+                Color3fVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3fVertex3fvSUN(ref GLfloat c, GLfloat* v)
@@ -7990,25 +7803,32 @@ namespace OpenTK.OpenGL
             {
                 Color3fVertex3fvSUN(c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color3fVertex3fvSUN(GLfloat* c, GLfloat[] v)
+        public static unsafe void Color3fVertex3fvSUN(ref GLfloat c, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color3fVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                Color3fVertex3fvSUN(c, v_ptr);
+                Color3fVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color3fVertex3fvSUN(GLfloat* c, ref GLfloat v)
+        public static unsafe void Color3fVertex3fvSUN(ref GLfloat c, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color3fVertex3fvSUN(c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color3fVertex3fvSUN(c, v_ptr);
+                Color3fVertex3fvSUN(c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void Normal3fVertex3fSUN(GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -8027,7 +7847,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3fVertex3fvSUN(n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3fVertex3fvSUN(GLfloat* n, ref GLfloat v)
@@ -8036,7 +7855,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3fVertex3fvSUN(n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3fVertex3fvSUN(GLfloat[] n, GLfloat* v)
@@ -8045,25 +7863,32 @@ namespace OpenTK.OpenGL
             {
                 Normal3fVertex3fvSUN(n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Normal3fVertex3fvSUN(GLfloat* n, GLfloat[] v)
+        public static unsafe void Normal3fVertex3fvSUN(GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                Normal3fVertex3fvSUN(n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                Normal3fVertex3fvSUN(n, v_ptr);
+                Normal3fVertex3fvSUN(n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Normal3fVertex3fvSUN(GLfloat* n, ref GLfloat v)
+        public static unsafe void Normal3fVertex3fvSUN(GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                Normal3fVertex3fvSUN(n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                Normal3fVertex3fvSUN(n, v_ptr);
+                Normal3fVertex3fvSUN(n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3fVertex3fvSUN(ref GLfloat n, GLfloat* v)
@@ -8072,25 +7897,32 @@ namespace OpenTK.OpenGL
             {
                 Normal3fVertex3fvSUN(n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Normal3fVertex3fvSUN(GLfloat* n, GLfloat[] v)
+        public static unsafe void Normal3fVertex3fvSUN(ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                Normal3fVertex3fvSUN(n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                Normal3fVertex3fvSUN(n, v_ptr);
+                Normal3fVertex3fvSUN(n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Normal3fVertex3fvSUN(GLfloat* n, ref GLfloat v)
+        public static unsafe void Normal3fVertex3fvSUN(ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                Normal3fVertex3fvSUN(n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                Normal3fVertex3fvSUN(n, v_ptr);
+                Normal3fVertex3fvSUN(n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void Color4fNormal3fVertex3fSUN(GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -8109,7 +7941,6 @@ namespace OpenTK.OpenGL
             {
                 Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
@@ -8118,7 +7949,6 @@ namespace OpenTK.OpenGL
             {
                 Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat[] n, GLfloat* v)
@@ -8127,25 +7957,32 @@ namespace OpenTK.OpenGL
             {
                 Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, ref GLfloat n, GLfloat* v)
@@ -8154,25 +7991,32 @@ namespace OpenTK.OpenGL
             {
                 Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, GLfloat* n, GLfloat* v)
@@ -8181,79 +8025,134 @@ namespace OpenTK.OpenGL
             {
                 Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, GLfloat* n, GLfloat* v)
@@ -8262,79 +8161,134 @@ namespace OpenTK.OpenGL
             {
                 Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                Color4fNormal3fVertex3fvSUN(c, n_ptr, v);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void Color4fNormal3fVertex3fvSUN(GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void Color4fNormal3fVertex3fvSUN(ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                Color4fNormal3fVertex3fvSUN(c, n, v_ptr);
+                Color4fNormal3fVertex3fvSUN(c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2fVertex3fSUN(GLfloat s, GLfloat t, GLfloat x, GLfloat y, GLfloat z)
@@ -8353,7 +8307,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fVertex3fvSUN(tc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fVertex3fvSUN(GLfloat* tc, ref GLfloat v)
@@ -8362,7 +8315,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fVertex3fvSUN(tc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fVertex3fvSUN(GLfloat[] tc, GLfloat* v)
@@ -8371,25 +8323,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fVertex3fvSUN(tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fVertex3fvSUN(GLfloat* tc, GLfloat[] v)
+        public static unsafe void TexCoord2fVertex3fvSUN(GLfloat[] tc, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fVertex3fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fVertex3fvSUN(tc, v_ptr);
+                TexCoord2fVertex3fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fVertex3fvSUN(GLfloat* tc, ref GLfloat v)
+        public static unsafe void TexCoord2fVertex3fvSUN(GLfloat[] tc, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fVertex3fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fVertex3fvSUN(tc, v_ptr);
+                TexCoord2fVertex3fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fVertex3fvSUN(ref GLfloat tc, GLfloat* v)
@@ -8398,25 +8357,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fVertex3fvSUN(tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fVertex3fvSUN(GLfloat* tc, GLfloat[] v)
+        public static unsafe void TexCoord2fVertex3fvSUN(ref GLfloat tc, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fVertex3fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fVertex3fvSUN(tc, v_ptr);
+                TexCoord2fVertex3fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fVertex3fvSUN(GLfloat* tc, ref GLfloat v)
+        public static unsafe void TexCoord2fVertex3fvSUN(ref GLfloat tc, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fVertex3fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fVertex3fvSUN(tc, v_ptr);
+                TexCoord2fVertex3fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord4fVertex4fSUN(GLfloat s, GLfloat t, GLfloat p, GLfloat q, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
@@ -8435,7 +8401,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fVertex4fvSUN(tc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fVertex4fvSUN(GLfloat* tc, ref GLfloat v)
@@ -8444,7 +8409,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fVertex4fvSUN(tc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fVertex4fvSUN(GLfloat[] tc, GLfloat* v)
@@ -8453,25 +8417,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fVertex4fvSUN(tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fVertex4fvSUN(GLfloat* tc, GLfloat[] v)
+        public static unsafe void TexCoord4fVertex4fvSUN(GLfloat[] tc, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fVertex4fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fVertex4fvSUN(tc, v_ptr);
+                TexCoord4fVertex4fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fVertex4fvSUN(GLfloat* tc, ref GLfloat v)
+        public static unsafe void TexCoord4fVertex4fvSUN(GLfloat[] tc, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fVertex4fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fVertex4fvSUN(tc, v_ptr);
+                TexCoord4fVertex4fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fVertex4fvSUN(ref GLfloat tc, GLfloat* v)
@@ -8480,25 +8451,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fVertex4fvSUN(tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fVertex4fvSUN(GLfloat* tc, GLfloat[] v)
+        public static unsafe void TexCoord4fVertex4fvSUN(ref GLfloat tc, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fVertex4fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fVertex4fvSUN(tc, v_ptr);
+                TexCoord4fVertex4fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fVertex4fvSUN(GLfloat* tc, ref GLfloat v)
+        public static unsafe void TexCoord4fVertex4fvSUN(ref GLfloat tc, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fVertex4fvSUN(tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fVertex4fvSUN(tc, v_ptr);
+                TexCoord4fVertex4fvSUN(tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2fColor4ubVertex3fSUN(GLfloat s, GLfloat t, GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y, GLfloat z)
@@ -8517,7 +8495,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
@@ -8526,7 +8503,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte[] c, GLfloat* v)
@@ -8535,25 +8511,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, ref GLubyte c, GLfloat* v)
@@ -8562,25 +8545,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, GLubyte* c, GLfloat* v)
@@ -8589,79 +8579,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, GLubyte* c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, GLubyte* c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte[] c, GLfloat* v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, GLubyte[] c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLubyte c_ptr = c)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, ref GLubyte c, GLfloat* v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, ref GLubyte c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLubyte c_ptr = &c)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat[] tc, ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, GLubyte* c, GLfloat* v)
@@ -8670,79 +8715,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, GLubyte* c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, GLubyte* c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte[] c, GLfloat* v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, GLubyte[] c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLubyte c_ptr = c)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, ref GLubyte c, GLfloat* v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, ref GLubyte c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLubyte c_ptr = &c)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(GLfloat* tc, GLubyte* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4ubVertex3fvSUN(ref GLfloat tc, ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4ubVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor4ubVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2fColor3fVertex3fSUN(GLfloat s, GLfloat t, GLfloat r, GLfloat g, GLfloat b, GLfloat x, GLfloat y, GLfloat z)
@@ -8761,7 +8861,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
@@ -8770,7 +8869,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* v)
@@ -8779,25 +8877,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* v)
@@ -8806,25 +8911,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat* v)
@@ -8833,79 +8945,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = c)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = &c)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat* v)
@@ -8914,79 +9081,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = c)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = &c)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c_ptr, v);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat v)
+        public static unsafe void TexCoord2fColor3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor3fVertex3fvSUN(tc, c, v_ptr);
+                TexCoord2fColor3fVertex3fvSUN(tc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2fNormal3fVertex3fSUN(GLfloat s, GLfloat t, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -9005,7 +9227,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
@@ -9014,7 +9235,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] n, GLfloat* v)
@@ -9023,25 +9243,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat n, GLfloat* v)
@@ -9050,25 +9277,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* n, GLfloat* v)
@@ -9077,79 +9311,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* n, GLfloat* v)
@@ -9158,79 +9447,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n_ptr, v);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fNormal3fVertex3fvSUN(tc, n, v_ptr);
+                TexCoord2fNormal3fVertex3fvSUN(tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2fColor4fNormal3fVertex3fSUN(GLfloat s, GLfloat t, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -9249,7 +9593,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
@@ -9258,7 +9601,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
@@ -9267,25 +9609,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
@@ -9294,25 +9643,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
@@ -9321,79 +9677,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
@@ -9402,79 +9813,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -9483,241 +9949,520 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = c)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = &c)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat[] tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -9726,241 +10471,520 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = c)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = &c)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c_ptr, n, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n_ptr, v);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord2fColor4fNormal3fVertex3fvSUN(ref GLfloat tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord2fColor4fNormal3fVertex3fvSUN(tc, c, n, v_ptr);
+                TexCoord2fColor4fNormal3fVertex3fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord4fColor4fNormal3fVertex4fSUN(GLfloat s, GLfloat t, GLfloat p, GLfloat q, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
@@ -9979,7 +11003,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
@@ -9988,7 +11011,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
@@ -9997,25 +11019,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
@@ -10024,25 +11053,32 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
@@ -10051,79 +11087,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
@@ -10132,79 +11223,134 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -10213,241 +11359,520 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = c)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = &c)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat[] tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -10456,241 +11881,520 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = c)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = &c)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c_ptr, n, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n_ptr, v);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void TexCoord4fColor4fNormal3fVertex4fvSUN(ref GLfloat tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                TexCoord4fColor4fNormal3fVertex4fvSUN(tc, c, n, v_ptr);
+                TexCoord4fColor4fNormal3fVertex4fvSUN(tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiVertex3fSUN(GLuint rc, GLfloat x, GLfloat y, GLfloat z)
@@ -10709,7 +12413,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiVertex3fvSUN(rc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint* rc, ref GLfloat v)
@@ -10718,7 +12421,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiVertex3fvSUN(rc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint[] rc, GLfloat* v)
@@ -10727,25 +12429,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiVertex3fvSUN(rc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint* rc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint[] rc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiVertex3fvSUN(rc, v_ptr);
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint* rc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint[] rc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiVertex3fvSUN(rc, v_ptr);
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiVertex3fvSUN(ref GLuint rc, GLfloat* v)
@@ -10754,25 +12463,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiVertex3fvSUN(rc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint* rc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiVertex3fvSUN(ref GLuint rc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiVertex3fvSUN(rc, v_ptr);
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiVertex3fvSUN(GLuint* rc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiVertex3fvSUN(ref GLuint rc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiVertex3fvSUN(rc, v_ptr);
+                ReplacementCodeuiVertex3fvSUN(rc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiColor4ubVertex3fSUN(GLuint rc, GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y, GLfloat z)
@@ -10791,7 +12507,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
@@ -10800,7 +12515,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte[] c, GLfloat* v)
@@ -10809,25 +12523,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, ref GLubyte c, GLfloat* v)
@@ -10836,25 +12557,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLubyte c_ptr = &c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, GLubyte* c, GLfloat* v)
@@ -10863,79 +12591,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, GLubyte* c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, GLubyte* c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte[] c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, GLubyte[] c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLubyte c_ptr = c)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, ref GLubyte c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, ref GLubyte c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLubyte c_ptr = &c)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint[] rc, ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, GLubyte* c, GLfloat* v)
@@ -10944,79 +12727,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, GLubyte* c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, GLubyte* c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte[] c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, GLubyte[] c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLubyte c_ptr = c)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, GLubyte[] c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, GLubyte[] c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, ref GLubyte c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, ref GLubyte c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLubyte c_ptr = &c)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, ref GLubyte c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(GLuint* rc, GLubyte* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4ubVertex3fvSUN(ref GLuint rc, ref GLubyte c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = &c)
+            {
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLubyte c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4ubVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor4ubVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiColor3fVertex3fSUN(GLuint rc, GLfloat r, GLfloat g, GLfloat b, GLfloat x, GLfloat y, GLfloat z)
@@ -11035,7 +12873,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
@@ -11044,7 +12881,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* v)
@@ -11053,25 +12889,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat[] c, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* v)
@@ -11080,25 +12923,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, ref GLfloat c, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat* v)
@@ -11107,79 +12957,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, GLfloat* c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat* v)
@@ -11188,79 +13093,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, GLfloat* c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c_ptr, v);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor3fVertex3fvSUN(rc, c, v_ptr);
+                ReplacementCodeuiColor3fVertex3fvSUN(rc_ptr, c_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiNormal3fVertex3fSUN(GLuint rc, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -11279,7 +13239,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
@@ -11288,7 +13247,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] n, GLfloat* v)
@@ -11297,25 +13255,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat n, GLfloat* v)
@@ -11324,25 +13289,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* n, GLfloat* v)
@@ -11351,79 +13323,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* n, GLfloat* v)
@@ -11432,79 +13459,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n_ptr, v);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(GLuint* rc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiNormal3fVertex3fvSUN(rc, n, v_ptr);
+                ReplacementCodeuiNormal3fVertex3fvSUN(rc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiColor4fNormal3fVertex3fSUN(GLuint rc, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -11523,7 +13605,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
@@ -11532,7 +13613,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
@@ -11541,25 +13621,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
@@ -11568,25 +13655,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* n, GLfloat* v)
@@ -11595,79 +13689,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* n, GLfloat* v)
@@ -11676,79 +13825,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -11757,241 +13961,520 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -12000,241 +14483,520 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c_ptr, n, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n_ptr, v);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc, c, n, v_ptr);
+                ReplacementCodeuiColor4fNormal3fVertex3fvSUN(rc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiTexCoord2fVertex3fSUN(GLuint rc, GLfloat s, GLfloat t, GLfloat x, GLfloat y, GLfloat z)
@@ -12253,7 +15015,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
@@ -12262,7 +15023,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* v)
@@ -12271,25 +15031,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* v)
@@ -12298,25 +15065,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* v)
@@ -12325,79 +15099,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat tc_ptr = tc)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat tc_ptr = &tc)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* v)
@@ -12406,79 +15235,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat tc_ptr = tc)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat tc_ptr = &tc)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc_ptr, v);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc, tc, v_ptr);
+                ReplacementCodeuiTexCoord2fVertex3fvSUN(rc_ptr, tc_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiTexCoord2fNormal3fVertex3fSUN(GLuint rc, GLfloat s, GLfloat t, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -12497,7 +15381,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
@@ -12506,7 +15389,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
@@ -12515,25 +15397,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
@@ -12542,25 +15431,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* n, GLfloat* v)
@@ -12569,79 +15465,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* n, GLfloat* v)
@@ -12650,79 +15601,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* n, GLfloat* v)
@@ -12731,241 +15737,520 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat tc_ptr = tc)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat tc_ptr = &tc)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* n, GLfloat* v)
@@ -12974,241 +16259,520 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat tc_ptr = tc)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat tc_ptr = &tc)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc_ptr, n, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n_ptr, v);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc, tc, n, v_ptr);
+                ReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN(GLuint rc, GLfloat s, GLfloat t, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z)
@@ -13227,7 +16791,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
@@ -13236,7 +16799,6 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
@@ -13245,25 +16807,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
@@ -13272,25 +16841,32 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+            }
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
@@ -13299,79 +16875,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
@@ -13380,79 +17011,134 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -13461,241 +17147,520 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -13704,241 +17669,520 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -13947,727 +18191,1942 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat tc_ptr = tc)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
             fixed (GLfloat tc_ptr = &tc)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint[] rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat* v)
@@ -14676,727 +20135,1942 @@ namespace OpenTK.OpenGL
             {
                 ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat* tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat tc_ptr = tc)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, GLfloat[] tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
             fixed (GLfloat tc_ptr = &tc)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc_ptr, c, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat* c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat[] c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, GLfloat[] c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, ref GLfloat c, GLfloat* n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
             fixed (GLfloat c_ptr = &c)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c_ptr, n, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, GLfloat* n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat[] n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, GLfloat[] n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, ref GLfloat n, GLfloat* v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat* v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
             fixed (GLfloat n_ptr = &n)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n_ptr, v);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat[] v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, GLfloat[] v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
-        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, ref GLfloat v)
+        public static unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(ref GLuint rc, ref GLfloat tc, ref GLfloat c, ref GLfloat n, ref GLfloat v)
         {
+            fixed (GLuint rc_ptr = &rc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
+            {
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v);
+            }
+            fixed (GLuint rc_ptr = &rc)
+            fixed (GLfloat tc_ptr = &tc)
+            fixed (GLfloat c_ptr = &c)
+            fixed (GLfloat n_ptr = &n)
             fixed (GLfloat v_ptr = &v)
             {
-                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc, tc, c, n, v_ptr);
+                ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN(rc_ptr, tc_ptr, c_ptr, n_ptr, v_ptr);
             }
-            return retval;
         }
         
         public static void BlendFuncSeparateEXT(GL.Enums.EXT_blend_func_separate sfactorRGB, GL.Enums.EXT_blend_func_separate dfactorRGB, GL.Enums.EXT_blend_func_separate sfactorAlpha, GL.Enums.EXT_blend_func_separate dfactorAlpha)
@@ -15425,7 +22099,6 @@ namespace OpenTK.OpenGL
             {
                 VertexWeightfvEXT(weight_ptr);
             }
-            return retval;
         }
         
         public static unsafe void VertexWeightfvEXT(ref GLfloat weight)
@@ -15434,7 +22107,6 @@ namespace OpenTK.OpenGL
             {
                 VertexWeightfvEXT(weight_ptr);
             }
-            return retval;
         }
         
         public static unsafe void VertexWeightPointerEXT(GLsizei size, GL.Enums.EXT_vertex_weighting type, GLsizei stride, void* pointer)
@@ -15533,7 +22205,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2dvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2dvMESA(ref GLdouble v)
@@ -15542,7 +22213,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2dvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2fMESA(GLfloat x, GLfloat y)
@@ -15561,7 +22231,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2fvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2fvMESA(ref GLfloat v)
@@ -15570,7 +22239,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2fvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2iMESA(GLint x, GLint y)
@@ -15589,7 +22257,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2ivMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2ivMESA(ref GLint v)
@@ -15598,7 +22265,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2ivMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos2sMESA(GLshort x, GLshort y)
@@ -15617,7 +22283,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2svMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos2svMESA(ref GLshort v)
@@ -15626,7 +22291,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos2svMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3dMESA(GLdouble x, GLdouble y, GLdouble z)
@@ -15645,7 +22309,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3dvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3dvMESA(ref GLdouble v)
@@ -15654,7 +22317,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3dvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3fMESA(GLfloat x, GLfloat y, GLfloat z)
@@ -15673,7 +22335,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3fvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3fvMESA(ref GLfloat v)
@@ -15682,7 +22343,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3fvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3iMESA(GLint x, GLint y, GLint z)
@@ -15701,7 +22361,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3ivMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3ivMESA(ref GLint v)
@@ -15710,7 +22369,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3ivMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos3sMESA(GLshort x, GLshort y, GLshort z)
@@ -15729,7 +22387,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3svMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos3svMESA(ref GLshort v)
@@ -15738,7 +22395,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos3svMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos4dMESA(GLdouble x, GLdouble y, GLdouble z, GLdouble w)
@@ -15757,7 +22413,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4dvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos4dvMESA(ref GLdouble v)
@@ -15766,7 +22421,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4dvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos4fMESA(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
@@ -15785,7 +22439,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4fvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos4fvMESA(ref GLfloat v)
@@ -15794,7 +22447,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4fvMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos4iMESA(GLint x, GLint y, GLint z, GLint w)
@@ -15813,7 +22465,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4ivMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos4ivMESA(ref GLint v)
@@ -15822,7 +22473,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4ivMESA(v_ptr);
             }
-            return retval;
         }
         
         public static void WindowPos4sMESA(GLshort x, GLshort y, GLshort z, GLshort w)
@@ -15841,7 +22491,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4svMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void WindowPos4svMESA(ref GLshort v)
@@ -15850,7 +22499,6 @@ namespace OpenTK.OpenGL
             {
                 WindowPos4svMESA(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei* count, GLsizei primcount, GLint modestride)
@@ -15864,7 +22512,6 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
@@ -15873,7 +22520,6 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint[] first, GLsizei* count, GLsizei primcount, GLint modestride)
@@ -15882,25 +22528,32 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint[] first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GLint first_ptr = first)
+            {
+                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+            }
+            fixed (GLint first_ptr = first)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint[] first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GLint first_ptr = first)
+            {
+                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+            }
+            fixed (GLint first_ptr = first)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, ref GLint first, GLsizei* count, GLsizei primcount, GLint modestride)
@@ -15909,25 +22562,32 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, ref GLint first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GLint first_ptr = &first)
+            {
+                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+            }
+            fixed (GLint first_ptr = &first)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, ref GLint first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GLint first_ptr = &first)
+            {
+                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+            }
+            fixed (GLint first_ptr = &first)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, GLint* first, GLsizei* count, GLsizei primcount, GLint modestride)
@@ -15936,79 +22596,134 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint[] first, GLsizei* count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, GLint[] first, GLsizei* count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
             fixed (GLint first_ptr = first)
             {
-                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, GLint[] first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = first)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, GLint[] first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = first)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, ref GLint first, GLsizei* count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, ref GLint first, GLsizei* count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
             fixed (GLint first_ptr = &first)
             {
-                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, ref GLint first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = &first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = &first)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode[] mode, ref GLint first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = &first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            fixed (GLint first_ptr = &first)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, GLint* first, GLsizei* count, GLsizei primcount, GLint modestride)
@@ -16017,79 +22732,134 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint[] first, GLsizei* count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, GLint[] first, GLsizei* count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
             fixed (GLint first_ptr = first)
             {
-                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, GLint[] first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = first)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, GLint[] first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = first)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, ref GLint first, GLsizei* count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, ref GLint first, GLsizei* count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
             fixed (GLint first_ptr = &first)
             {
-                MultiModeDrawArraysIBM(mode, first_ptr, count, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, GLsizei[] count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, ref GLint first, GLsizei[] count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = &first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = &first)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawArraysIBM(GL.Enums.BeginMode* mode, GLint* first, ref GLsizei count, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawArraysIBM(ref GL.Enums.BeginMode mode, ref GLint first, ref GLsizei count, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = &first)
+            {
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            fixed (GLint first_ptr = &first)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawArraysIBM(mode, first, count_ptr, primcount, modestride);
+                MultiModeDrawArraysIBM(mode_ptr, first_ptr, count_ptr, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode* mode, GLsizei* count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
@@ -16103,7 +22873,6 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawElementsIBM(mode, count_ptr, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode* mode, ref GLsizei count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
@@ -16112,7 +22881,6 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawElementsIBM(mode, count_ptr, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode[] mode, GLsizei* count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
@@ -16121,25 +22889,32 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawElementsIBM(mode_ptr, count, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode* mode, GLsizei[] count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode[] mode, GLsizei[] count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawElementsIBM(mode_ptr, count, type, indices, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawElementsIBM(mode, count_ptr, type, indices, primcount, modestride);
+                MultiModeDrawElementsIBM(mode_ptr, count_ptr, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode* mode, ref GLsizei count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode[] mode, ref GLsizei count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
+            {
+                MultiModeDrawElementsIBM(mode_ptr, count, type, indices, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = mode)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawElementsIBM(mode, count_ptr, type, indices, primcount, modestride);
+                MultiModeDrawElementsIBM(mode_ptr, count_ptr, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void MultiModeDrawElementsIBM(ref GL.Enums.BeginMode mode, GLsizei* count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
@@ -16148,25 +22923,32 @@ namespace OpenTK.OpenGL
             {
                 MultiModeDrawElementsIBM(mode_ptr, count, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode* mode, GLsizei[] count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawElementsIBM(ref GL.Enums.BeginMode mode, GLsizei[] count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawElementsIBM(mode_ptr, count, type, indices, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
             fixed (GLsizei count_ptr = count)
             {
-                MultiModeDrawElementsIBM(mode, count_ptr, type, indices, primcount, modestride);
+                MultiModeDrawElementsIBM(mode_ptr, count_ptr, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
-        public static unsafe void MultiModeDrawElementsIBM(GL.Enums.BeginMode* mode, ref GLsizei count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
+        public static unsafe void MultiModeDrawElementsIBM(ref GL.Enums.BeginMode mode, ref GLsizei count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
         {
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
+            {
+                MultiModeDrawElementsIBM(mode_ptr, count, type, indices, primcount, modestride);
+            }
+            fixed (GL.Enums.BeginMode mode_ptr = &mode)
             fixed (GLsizei count_ptr = &count)
             {
-                MultiModeDrawElementsIBM(mode, count_ptr, type, indices, primcount, modestride);
+                MultiModeDrawElementsIBM(mode_ptr, count_ptr, type, indices, primcount, modestride);
             }
-            return retval;
         }
         
         public static unsafe void ColorPointerListIBM(GLint size, GL.Enums.ColorPointerType type, GLint stride, void* pointer, GLint ptrstride)
@@ -17450,7 +24232,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex2hvNV(ref GLhalfNV v)
@@ -17459,7 +24240,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex2hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex3hNV(GLhalfNV x, GLhalfNV y, GLhalfNV z)
@@ -17478,7 +24258,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex3hvNV(ref GLhalfNV v)
@@ -17487,7 +24266,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void Vertex4hNV(GLhalfNV x, GLhalfNV y, GLhalfNV z, GLhalfNV w)
@@ -17506,7 +24284,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Vertex4hvNV(ref GLhalfNV v)
@@ -17515,7 +24292,6 @@ namespace OpenTK.OpenGL
             {
                 Vertex4hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void Normal3hNV(GLhalfNV nx, GLhalfNV ny, GLhalfNV nz)
@@ -17534,7 +24310,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Normal3hvNV(ref GLhalfNV v)
@@ -17543,7 +24318,6 @@ namespace OpenTK.OpenGL
             {
                 Normal3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void Color3hNV(GLhalfNV red, GLhalfNV green, GLhalfNV blue)
@@ -17562,7 +24336,6 @@ namespace OpenTK.OpenGL
             {
                 Color3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color3hvNV(ref GLhalfNV v)
@@ -17571,7 +24344,6 @@ namespace OpenTK.OpenGL
             {
                 Color3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void Color4hNV(GLhalfNV red, GLhalfNV green, GLhalfNV blue, GLhalfNV alpha)
@@ -17590,7 +24362,6 @@ namespace OpenTK.OpenGL
             {
                 Color4hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void Color4hvNV(ref GLhalfNV v)
@@ -17599,7 +24370,6 @@ namespace OpenTK.OpenGL
             {
                 Color4hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord1hNV(GLhalfNV s)
@@ -17618,7 +24388,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord1hvNV(ref GLhalfNV v)
@@ -17627,7 +24396,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord1hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord2hNV(GLhalfNV s, GLhalfNV t)
@@ -17646,7 +24414,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord2hvNV(ref GLhalfNV v)
@@ -17655,7 +24422,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord2hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord3hNV(GLhalfNV s, GLhalfNV t, GLhalfNV r)
@@ -17674,7 +24440,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord3hvNV(ref GLhalfNV v)
@@ -17683,7 +24448,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void TexCoord4hNV(GLhalfNV s, GLhalfNV t, GLhalfNV r, GLhalfNV q)
@@ -17702,7 +24466,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void TexCoord4hvNV(ref GLhalfNV v)
@@ -17711,7 +24474,6 @@ namespace OpenTK.OpenGL
             {
                 TexCoord4hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void MultiTexCoord1hNV(GL.Enums.NV_half_float target, GLhalfNV s)
@@ -17770,7 +24532,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoordhvNV(fog_ptr);
             }
-            return retval;
         }
         
         public static unsafe void FogCoordhvNV(ref GLhalfNV fog)
@@ -17779,7 +24540,6 @@ namespace OpenTK.OpenGL
             {
                 FogCoordhvNV(fog_ptr);
             }
-            return retval;
         }
         
         public static void SecondaryColor3hNV(GLhalfNV red, GLhalfNV green, GLhalfNV blue)
@@ -17798,7 +24558,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static unsafe void SecondaryColor3hvNV(ref GLhalfNV v)
@@ -17807,7 +24566,6 @@ namespace OpenTK.OpenGL
             {
                 SecondaryColor3hvNV(v_ptr);
             }
-            return retval;
         }
         
         public static void VertexWeighthNV(GLhalfNV weight)
@@ -17826,7 +24584,6 @@ namespace OpenTK.OpenGL
             {
                 VertexWeighthvNV(weight_ptr);
             }
-            return retval;
         }
         
         public static unsafe void VertexWeighthvNV(ref GLhalfNV weight)
@@ -17835,7 +24592,6 @@ namespace OpenTK.OpenGL
             {
                 VertexWeighthvNV(weight_ptr);
             }
-            return retval;
         }
         
         public static void VertexAttrib1hNV(GLuint index, GLhalfNV x)
