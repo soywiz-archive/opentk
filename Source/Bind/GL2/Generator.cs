@@ -213,12 +213,7 @@ namespace Bind.GL2
 
         private void TranslateParameters(Bind.Structures.Delegate d)
         {
-            //wrapper = WrapperTypes.None;
-            //type = "";
             string s;
-
-            if (d.Name == "DrawElements")
-                Console.Write(0);
 
             foreach (Parameter p in d.Parameters)
             {
@@ -257,6 +252,8 @@ namespace Bind.GL2
                 // Translate pointer parameters
                 if (p.IsPointer)
                 {
+                    p.WrapperType = WrapperTypes.ArrayParameter;
+
                     if (p.Type.ToLower().Contains("char"))
                     {
                         // char* -> [In] String or [Out] StringBuilder
@@ -281,8 +278,6 @@ namespace Bind.GL2
                     {
                         p.WrapperType = WrapperTypes.GenericParameter;
                     }
-
-                    p.WrapperType = WrapperTypes.ArrayParameter;
                 }
 
                 // Check for LineStipple (should be unchecked)

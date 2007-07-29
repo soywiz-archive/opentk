@@ -188,7 +188,7 @@ namespace Bind.Structures
 
         public bool NeedsPin
         {
-            get { return Array > 0 || Reference; }
+            get { return Array > 0 || Reference || Type == "object"; }
         }
 
         #endregion

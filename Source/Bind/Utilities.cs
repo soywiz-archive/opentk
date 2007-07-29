@@ -56,7 +56,9 @@ namespace Bind
 
     public static class Utilities
     {
-        #region private StreamReader OpenSpecFile(string file)
+        public static char[] Separators = { ' ', '\n', ',', '(', ')', ';', '#' };
+
+        #region internal StreamReader OpenSpecFile(string file)
 
         internal static StreamReader OpenSpecFile(string folder, string file)
         {
@@ -96,6 +98,8 @@ namespace Bind
 
         #endregion
 
+        #region internal static void Merge(EnumCollection enums, Bind.Structures.Enum t)
+
         /// <summary>
         /// Merges the given enum into the enum list. If an enum of the same name exists,
         /// it merges their respective constants.
@@ -117,6 +121,10 @@ namespace Bind
                 }
             }
         }
+
+        #endregion
+
+        #region internal static Bind.Structures.Enum Merge(Bind.Structures.Enum s, Bind.Structures.Constant t)
 
         /// <summary>
         /// Places a new constant in the specified enum, if it doesn't already exist.
@@ -146,5 +154,7 @@ namespace Bind
 
             return s;
         }
+
+        #endregion
     }
 }

@@ -15,7 +15,7 @@ namespace Bind.Structures
     /// </summary>
     public class Delegate
     {
-        #region Constructors
+        #region --- Constructors ---
 
         public Delegate()
         {
@@ -35,6 +35,8 @@ namespace Bind.Structures
         }
 
         #endregion
+
+        #region --- Properties ---
 
         #region Category property
 
@@ -151,6 +153,10 @@ namespace Bind.Structures
 
         #endregion
 
+        #endregion
+
+        #region --- Strings ---
+
         #region public string CallString()
 
         public string CallString()
@@ -188,6 +194,8 @@ namespace Bind.Structures
 
         #endregion
 
+        #region public string DeclarationString()
+
         public string DeclarationString()
         {
             StringBuilder sb = new StringBuilder();
@@ -201,7 +209,9 @@ namespace Bind.Structures
             return sb.ToString();
         }
 
-        #region ToString function
+        #endregion
+
+        #region override public string ToString()
 
         /// <summary>
         /// Gets the string representing the full function declaration without decorations
@@ -223,7 +233,11 @@ namespace Bind.Structures
 
         #endregion
 
-        #region List<Function> CreateWrappers()
+        #endregion
+
+        #region --- Wrapper Creation ---
+
+        #region public List<Function> CreateWrappers()
 
         public List<Function> CreateWrappers()
         {
@@ -292,8 +306,6 @@ namespace Bind.Structures
 
                 // Then, create wrappers for each parameter:
                 WrapParameters(new Function(this), wrappers);
-                //WrapParameters(wrappers);
-
             }
 
             return wrappers;
@@ -301,7 +313,7 @@ namespace Bind.Structures
 
         #endregion
 
-        #region private void WrapParameters(Function f, List<Function> wrappers)
+        #region private void WrapParameters(Function function, List<Function> wrappers)
 
         private static int index = 0;
 
@@ -317,6 +329,10 @@ namespace Bind.Structures
         /// </summary>
         private static void WrapParameters(Function function, List<Function> wrappers)
         {
+            if (function.Name == "CallLists")
+            {
+            }
+
             if (index == 0)
             {
                 bool containsPointerParameters = false;
@@ -343,76 +359,89 @@ namespace Bind.Structures
 
             if (index >= 0 && index < function.Parameters.Count)
             {
-                switch (function.Parameters[index].WrapperType)
+                Function f;
+
+                if (!function.Parameters[index].NeedsWrapper)
                 {
-                    case WrapperTypes.ArrayParameter:
-                        Function f;
-
-                        // Recurse to the last parameter
-                        ++index;
-                        WrapParameters(function, wrappers);
-                        --index;
-
-                        // On stack rewind, create array wrappers
-                        f = ArrayWrapper(new Function(function), index);
-                        wrappers.Add(f);
-
-                        // Do it again, with array parameters wrapper this type
-                        ++index;
-                        WrapParameters(f, wrappers);
-                        --index;
-
-                        f = ReferenceWrapper(new Function(function), index);
-                        wrappers.Add(f);
-
-                        ++index;
-                        WrapParameters(f, wrappers);
-                        --index;
-                        break;
-
-                    case WrapperTypes.GenericParameter:
-                        break;
-
-                    default:
-                        break;
-                }
-                /*
-                if (Parameters[index].WrapperType != WrapperTypes.None)
-                {
-                    //++count;
-                    //WrapPointersMonsterFunctionMK2(d, wrappers);
-                    //--count;
-
-                    if (Parameters[index].WrapperType == WrapperTypes.ArrayParameter)
-                    {
-
-                 
-                    }
-                    else if ((WrapperTypes)f.Parameters[count].UserData["Wrapper"] == WrapperTypes.GenericParameter)
-                    {
-                        ++count;
-                        WrapPointersMonsterFunctionMK2(f, wrappers);
-                        --count;
-
-                        CodeMemberMethod w = IntPtrToObject(f, count);
-                        wrappers.Add(w);
-
-                        ++count;
-                        WrapPointersMonsterFunctionMK2(w, wrappers);
-                        --count;
-                    }
+                    // No wrapper needed, visit the next parameter
+                    ++index;
+                    WrapParameters(function, wrappers);
+                    --index;
                 }
                 else
                 {
-                    
-                    ++count;
-                    WrapPointersMonsterFunctionMK2(f, wrappers);
-                    --count;
-                    
+                    switch (function.Parameters[index].WrapperType)
+                    {
+                        case WrapperTypes.ArrayParameter:
+                            // Recurse to the last parameter
+                            ++index;
+                            WrapParameters(function, wrappers);
+                            --index;
+
+                            // On stack rewind, create array wrappers
+                            f = ArrayWrapper(new Function(function), index);
+                            wrappers.Add(f);
+
+                            // Recurse to the last parameter again, keeping the Array wrappers
+                            ++index;
+                            WrapParameters(f, wrappers);
+                            --index;
+
+                            // On stack rewind, create Ref wrappers.
+                            f = ReferenceWrapper(new Function(function), index);
+                            wrappers.Add(f);
+
+                            // Keeping the current Ref wrapper, visit all other parameters once more
+                            ++index;
+                            WrapParameters(f, wrappers);
+                            --index;
+
+                            break;
+
+                        case WrapperTypes.GenericParameter:
+                            // Recurse to the last parameter
+                            ++index;
+                            WrapParameters(function, wrappers);
+                            --index;
+
+                            // On stack rewind, create array wrappers
+                            f = GenericWrapper(new Function(function), index);
+                            wrappers.Add(f);
+
+                            // Keeping the current Object wrapper, visit all other parameters once more
+                            ++index;
+                            WrapParameters(f, wrappers);
+                            --index;
+
+                            break;
+                    }
                 }
-                */
             }
         }
+
+        #endregion
+
+        #region private static Function GenericWrapper(Function function, int index)
+
+        private static Function GenericWrapper(Function function, int index)
+        {
+            // Search and replace IntPtr parameters with the known parameter types:
+            function.Parameters[index].Reference = false;
+            function.Parameters[index].Array = 0;
+            function.Parameters[index].IsPointer = false;
+            function.Parameters[index].Type = "object";
+
+            // In the function body we should pin all objects in memory before calling the
+            // low-level function.
+            function.Body.Clear();
+            function.Body.AddRange(AddCallWithPins(function));
+
+            return function;
+        }
+
+        #endregion
+
+        #region private static Function ReferenceWrapper(Function function, int index)
 
         private static Function ReferenceWrapper(Function function, int index)
         {
@@ -429,6 +458,10 @@ namespace Bind.Structures
             return function;
         }
 
+        #endregion
+
+        #region private static Function ArrayWrapper(Function function, int index)
+
         private static Function ArrayWrapper(Function function, int index)
         {
             // Search and replace IntPtr parameters with the known parameter types:
@@ -442,6 +475,24 @@ namespace Bind.Structures
 
             return function;
         }
+
+        #endregion
+
+        #region private static Function DefaultWrapper(Function f)
+
+        private static Function DefaultWrapper(Function f)
+        {
+            if (f.ReturnType.Type.ToLower().Contains("void"))
+                f.Body.Add(String.Format("{0};", f.CallString()));
+            else
+                f.Body.Add(String.Format("return {0};", f.CallString()));
+
+            return f;
+        }
+
+        #endregion
+
+        #region private static FunctionBody AddCallWithPins(Function function)
 
         /// <summary>
         /// Generates a body which calls the specified function, pinning all needed parameters.
@@ -468,7 +519,7 @@ namespace Bind.Structures
                 }
             }
 
-            // Obtain pointers using 'fixed'
+            // Obtain pointers using 'fixed' notation
             foreach (Parameter p in f.Parameters)
             {
                 if (p.NeedsPin)
@@ -522,14 +573,6 @@ namespace Bind.Structures
 
         #endregion
 
-        private static Function DefaultWrapper(Function f)
-        {
-            if (f.ReturnType.Type.ToLower().Contains("void"))
-                f.Body.Add(String.Format("{0};", f.CallString()));
-            else
-                f.Body.Add(String.Format("return {0};", f.CallString()));
-
-            return f;
-        }
+        #endregion
     }
 }

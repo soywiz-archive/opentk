@@ -30,6 +30,8 @@ namespace OpenTK.OpenGL
 
     internal static class Imports
     {
+        static Imports() { }
+
         [System.Security.SuppressUnmanagedCodeSecurity()]
         [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glGL", ExactSpelling = true)]
         internal extern static void NewList(GLuint list, GL.Enums.ListMode mode);

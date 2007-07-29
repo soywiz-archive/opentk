@@ -9,6 +9,8 @@ namespace Bind.GL2
     {
         #region ISpecWriter Members
 
+        #region void WriteDelegates
+
         public void WriteDelegates(
             BindStreamWriter sw,
             List<Bind.Structures.Delegate> delegates)
@@ -18,6 +20,14 @@ namespace Bind.GL2
             sw.WriteLine("{");
 
             sw.Indent();
+            // Disable BeforeFieldInit and load delegates
+            sw.WriteLine("static {0}()", Settings.DelegatesClass);
+            sw.WriteLine("{");
+            sw.Indent();
+            sw.WriteLine("{0}.ReloadFunctions();", Settings.GLClass);
+            sw.Unindent();
+            sw.WriteLine("}");
+            sw.WriteLine();
             foreach (Bind.Structures.Delegate d in delegates)
             {
                 sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
@@ -29,14 +39,51 @@ namespace Bind.GL2
             sw.WriteLine("}");
         }
 
+        #endregion
+
+        #region void WriteImports
+
+        public void WriteImports(
+            BindStreamWriter sw,
+            List<Bind.Structures.Delegate> delegates)
+        {
+            sw.WriteLine();
+            sw.WriteLine("internal static class {0}", Settings.ImportsClass);
+            sw.WriteLine("{");
+
+            sw.Indent();
+            sw.WriteLine("static {0}() {1} {2}", Settings.ImportsClass, "{", "}");    // Disable BeforeFieldInit
+            sw.WriteLine();
+            foreach (Bind.Structures.Delegate d in delegates)
+            {
+                sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
+                sw.WriteLine(
+                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"gl{0}\", ExactSpelling = true)]",
+                    Settings.GLClass,
+                    d.Name
+                );
+                sw.WriteLine("internal extern static {0};", d.DeclarationString());
+            }
+            sw.Unindent();
+
+            sw.WriteLine("}");
+        }
+
+        #endregion
+
+        #region void WriteWrappers
+
         public void WriteWrappers(
             BindStreamWriter sw,
             List<Bind.Structures.Function> wrappers)
         {
+            sw.WriteLine();
             sw.WriteLine("public static partial class {0}", Settings.GLClass);
             sw.WriteLine("{");
 
             sw.Indent();
+            sw.WriteLine("static {0}() {1} {2}", Settings.GLClass, "{", "}");    // Disable BeforeFieldInit
+            sw.WriteLine();
             foreach (Bind.Structures.Function f in wrappers)
             {
                 sw.WriteLine("public static ");
@@ -47,6 +94,22 @@ namespace Bind.GL2
             
             sw.WriteLine("}");
         }
+
+        #endregion
+
+        #region void WriteTypes
+
+        public void WriteTypes(BindStreamWriter sw, Dictionary<string, string> CSTypes)
+        {
+            foreach (string s in CSTypes.Keys)
+            {
+                sw.WriteLine("using {0} = System.{1};", s, CSTypes[s]);
+            }
+        }
+
+        #endregion
+
+        #region void WriteEnums
 
         public void WriteEnums(BindStreamWriter sw, EnumCollection enums)
         {
@@ -64,37 +127,7 @@ namespace Bind.GL2
             sw.WriteLine("}");
         }
 
-        public void WriteImports(
-            BindStreamWriter sw,
-            List<Bind.Structures.Delegate> delegates)
-        {
-            sw.WriteLine();
-            sw.WriteLine("internal static class {0}", Settings.ImportsClass);
-            sw.WriteLine("{");
-
-            sw.Indent();
-            foreach (Bind.Structures.Delegate d in delegates)
-            {
-                sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
-                sw.WriteLine(
-                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"gl{0}\", ExactSpelling = true)]",
-                    Settings.GLClass,
-                    d.Name
-                );
-                sw.WriteLine("internal extern static {0};", d.DeclarationString());
-            }
-            sw.Unindent();
-
-            sw.WriteLine("}");
-        }
-
-        public void WriteTypes(BindStreamWriter sw, Dictionary<string, string> CSTypes)
-        {
-            foreach (string s in CSTypes.Keys)
-            {
-                sw.WriteLine("using {0} = System.{1};", s, CSTypes[s]);
-            }
-        }
+        #endregion
 
         #endregion
     }

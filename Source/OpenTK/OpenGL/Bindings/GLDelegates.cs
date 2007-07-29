@@ -30,6 +30,11 @@ namespace OpenTK.OpenGL
 
     internal static class Delegates
     {
+        static Delegates()
+        {
+            GL.ReloadFunctions();
+        }
+
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void NewList(GLuint list, GL.Enums.ListMode mode);
         internal static NewList glNewList;

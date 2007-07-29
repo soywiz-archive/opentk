@@ -101,7 +101,7 @@ namespace Bind.GL2
                     Bind.Structures.Delegate d = new Bind.Structures.Delegate();
 
                     // Get function name:
-                    d.Name = line.Split(SpecTranslator.Separators, StringSplitOptions.RemoveEmptyEntries)[0];
+                    d.Name = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries)[0];
                     d.Extension = IsExtension(d.Name);
 
                     do
@@ -110,7 +110,7 @@ namespace Bind.GL2
 
                         line = specFile.ReadLine();
                         List<string> words = new List<string>(
-                            line.Replace('\t', ' ').Split(SpecTranslator.Separators, StringSplitOptions.RemoveEmptyEntries)
+                            line.Replace('\t', ' ').Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries)
                         );
 
                         if (words.Count == 0)
@@ -182,16 +182,13 @@ namespace Bind.GL2
                 // We just encountered the start of a new enumerant:
                 while (!String.IsNullOrEmpty(line) && line.Contains("enum"))
                 {
-                    string[] words = line.Split(SpecTranslator.Separators, StringSplitOptions.RemoveEmptyEntries);
+                    string[] words = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries);
                     if (words.Length == 0)
                         continue;
 
                     // Declare a new enumerant
                     Bind.Structures.Enum e = new Bind.Structures.Enum();
                     e.Name = Char.IsDigit(words[0][0]) ? "GL_" + words[0] : words[0];
-
-                    if (e.Name == "3DFX_texture_compression_FXT1")
-                        Console.Write(0);
 
                     // And fill in the values for this enumerant
                     do
@@ -205,7 +202,7 @@ namespace Bind.GL2
                             break;
 
                         line = line.Replace('\t', ' ');
-                        words = line.Split(SpecTranslator.Separators, StringSplitOptions.RemoveEmptyEntries);
+                        words = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries);
 
                         if (words.Length == 0)
                             continue;
