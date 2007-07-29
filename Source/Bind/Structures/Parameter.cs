@@ -35,15 +35,19 @@ namespace Bind.Structures
             if (p == null)
                 return;
 
-            this.Array = p.Array;
-            this.Flow = p.Flow;
-            this.Name = new string(p.Name.ToCharArray());
+            this.Name = !String.IsNullOrEmpty(p.Name) ? new string(p.Name.ToCharArray()) : "";
             this.NeedsWrapper = p.NeedsWrapper;
             this.PreviousType = new string(p.PreviousType.ToCharArray());
-            this.Type = new string(p.Type.ToCharArray());
             this.Unchecked = p.Unchecked;
             this.UnmanagedType = p.UnmanagedType;
             this.WrapperType = p.WrapperType;
+
+            this.Type = new string(p.Type.ToCharArray());
+            this.Flow = p.Flow;
+            this.Array = p.Array;
+            this.IsPointer = p.IsPointer;
+            this.Reference = p.Reference;
+            
         }
 
         #endregion
@@ -89,7 +93,8 @@ namespace Bind.Structures
             {
                 if (_type != null)
                     PreviousType = _type;
-                _type = value;
+                if (!String.IsNullOrEmpty(value))
+                    _type = value.Trim();
             }
         }
 
@@ -134,19 +139,52 @@ namespace Bind.Structures
 
         #endregion
 
-        #region Array property
+        #region public bool Reference
 
-        bool _array = false;
+        bool reference;
 
-        public bool Array
+        public bool Reference
         {
-            get { return _array; }
-            set { _array = value; }
+            get { return reference; }
+            set { reference = value; }
         }
 
         #endregion
 
-        #region Unchecked property
+        #region public bool Array
+
+        int array;
+
+        public int Array
+        {
+            get { return array; }
+            set { array = value > 0 ? value : 0; }
+        }
+
+        #endregion
+
+        #region public bool IsPointer
+
+        bool isPointer = false;
+
+        public bool IsPointer
+        {
+            get { return isPointer; }
+            set { isPointer = value; }
+        }
+
+        #endregion
+
+        #region public bool NeedsPin
+
+        public bool NeedsPin
+        {
+            get { return Array > 0 || Reference; }
+        }
+
+        #endregion
+
+        #region public bool Unchecked
 
         private bool _unchecked;
 
@@ -196,14 +234,24 @@ namespace Bind.Structures
 
             //if (Flow == FlowDirection.Out && !Array && !(Type == "IntPtr"))
             //    sb.Append("out ");
-
+            if (Reference)
+            {
+                if (Flow == FlowDirection.Out)
+                    sb.Append("out ");
+                else
+                    sb.Append("ref ");
+            }
             sb.Append(Type);
-            if (Array)
+            if (IsPointer)
                 sb.Append("*");
+            if (Array > 0)
+                sb.Append("[]");
 
-            sb.Append(" ");
-            sb.Append(Utilities.Keywords.Contains(Name) ? "@" + Name : Name);
-
+            if (!String.IsNullOrEmpty(Name))
+            {
+                sb.Append(" ");
+                sb.Append(Utilities.Keywords.Contains(Name) ? "@" + Name : Name);
+            }
             return sb.ToString();
         }
 
@@ -288,14 +336,14 @@ namespace Bind.Structures
 
             foreach (Parameter p in pc)
             {
-                if (p.Array == old_param.Array &&
+                if (p.IsPointer == old_param.IsPointer &&
                     p.Flow == old_param.Flow &&
                     p.Name == old_param.Name &&
                     //p.PreviousType == old_param.PreviousType &&
                     p.Type == old_param.Type &&
                     p.UnmanagedType == old_param.UnmanagedType)
                 {
-                    p.Array = new_param.Array;
+                    p.IsPointer = new_param.IsPointer;
                     p.Flow = new_param.Flow;
                     p.Name = new_param.Name;
                     p.PreviousType = p.Type;
@@ -327,14 +375,14 @@ namespace Bind.Structures
 
             foreach (Parameter p in pc)
             {
-                if (p.Array == old_param.Array &&
+                if (p.IsPointer == old_param.IsPointer &&
                     p.Flow == old_param.Flow &&
                     p.Name == old_param.Name &&
                     //p.PreviousType == old_param.PreviousType &&
                     p.Type == old_param.Type &&
                     p.UnmanagedType == old_param.UnmanagedType)
                 {
-                    p.Array = new_param.Array;
+                    p.IsPointer = new_param.IsPointer;
                     p.Flow = new_param.Flow;
                     p.Name = new_param.Name;
                     p.PreviousType = p.Type;

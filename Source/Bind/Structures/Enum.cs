@@ -13,6 +13,14 @@ namespace Bind.Structures
 
     public class Enum
     {
+        public Enum()
+        { }
+
+        public Enum(string name)
+        {
+            Name = name;
+        }
+
         string _name;
 
         public string Name
@@ -31,23 +39,41 @@ namespace Bind.Structures
 
         public override string ToString()
         {
-            return this.ToString("");
-        }
-
-        public string ToString(string indentation)
-        {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine(indentation + "public enum " + Name + " : uint");
-            sb.AppendLine(indentation + "{");
+            sb.AppendLine("public enum " + Name);
+            sb.AppendLine("{");
             foreach (Constant c in ConstantCollection.Values)
             {
-                sb.AppendLine(indentation + "    " + c.Name + " = " + c.Value + ",");
+                sb.Append("    ");
+                sb.Append(c.ToString());
+                sb.AppendLine(",");
             }
-            sb.AppendLine(indentation + "}");
+            sb.AppendLine("}");
 
             return sb.ToString();
         }
+    }
+
+    #endregion
+
+    #region class EnumCollection
+
+    class EnumCollection : Dictionary<string, Enum>
+    {
+        /*
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Bind.Structures.Enum e in this.Values)
+            {
+                sb.AppendLine(e.ToString());
+            }
+
+            return sb.ToString();
+        }
+        */
     }
 
     #endregion

@@ -8,6 +8,6 @@ namespace Bind
     interface ISpecReader
     {
         List<Bind.Structures.Delegate> ReadFunctions(StreamReader specFile);
-        List<Bind.Structures.Enum> ReadEnums(StreamReader specFile);
+        Bind.Structures.EnumCollection ReadEnums(StreamReader specFile);
     }
 }

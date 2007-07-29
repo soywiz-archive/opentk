@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Bind.Structures;
 
 namespace Bind.GL2
 {
@@ -8,49 +9,81 @@ namespace Bind.GL2
     {
         #region ISpecWriter Members
 
-        public void WriteDelegates(System.IO.StreamWriter sw,
-            List<Bind.Structures.Delegate> delegates,
-            Dictionary<string, string> CSTypes)
+        public void WriteDelegates(
+            BindStreamWriter sw,
+            List<Bind.Structures.Delegate> delegates)
         {
-            foreach (string s in CSTypes.Keys)
-            {
-                sw.WriteLine("    using {0} = System.{1};", s, CSTypes[s]);
-            }
-            sw.WriteLine();
-            sw.WriteLine("    internal static class {0}", Settings.DelegatesClass);
-            sw.WriteLine("    {");
+            sw.WriteLine("internal static class {0}", Settings.DelegatesClass);
+            sw.WriteLine("{");
+
+            sw.Indent();
             foreach (Bind.Structures.Delegate d in delegates)
             {
-                sw.WriteLine("{0};", d.ToString("        "));
+                sw.WriteLine("{0};", d.ToString());
             }
-            sw.WriteLine("    }");
+            sw.Unindent();
+
+            sw.WriteLine("}");
         }
 
         public void WriteWrappers(
-            System.IO.StreamWriter sw,
-            List<Bind.Structures.Function> functions,
-            Dictionary<string, string> CSTypes)
+            BindStreamWriter sw,
+            List<Bind.Structures.Function> wrappers)
+        {
+            sw.WriteLine("public static partial class {0}", Settings.GLClass);
+            sw.WriteLine("{");
+
+            sw.Indent();
+            foreach (Bind.Structures.Function f in wrappers)
+            {
+                sw.Write(f);
+                sw.WriteLine();
+            }
+            sw.Unindent();
+            
+            sw.WriteLine("}");
+        }
+
+        public void WriteEnums(BindStreamWriter sw, EnumCollection enums)
+        {
+            sw.WriteLine("public class Enums");
+            sw.WriteLine("{");
+
+            sw.Indent();
+            foreach (Bind.Structures.Enum @enum in enums.Values)
+            {
+                sw.Write(@enum);
+                sw.WriteLine();
+            }
+            sw.Unindent();
+
+            sw.WriteLine("}");
+        }
+
+        public void WriteImports(
+            BindStreamWriter sw,
+            List<Bind.Structures.Delegate> delegates)
+        {
+            sw.WriteLine();
+            sw.WriteLine("internal static class {0}", Settings.DelegatesClass);
+            sw.WriteLine("{");
+
+            sw.Indent();
+            foreach (Bind.Structures.Delegate d in delegates)
+            {
+                sw.WriteLine("{0};", d.ToString());
+            }
+            sw.Unindent();
+
+            sw.WriteLine("}");
+        }
+
+        public void WriteTypes(BindStreamWriter sw, Dictionary<string, string> CSTypes)
         {
             foreach (string s in CSTypes.Keys)
             {
-                sw.WriteLine("    using {0} = System.{1};", s, CSTypes[s]);
+                sw.WriteLine("using {0} = System.{1};", s, CSTypes[s]);
             }
-            sw.WriteLine();
-            sw.WriteLine("    public static partial class {0}", Settings.GLClass);
-            sw.WriteLine("    {");
-
-            sw.WriteLine("    }");
-        }
-
-        public void WriteEnums(System.IO.StreamWriter sw, List<Bind.Structures.Enum> enums)
-        {
-            sw.WriteLine("        public class Enums");
-            sw.WriteLine("        {");
-            foreach (Bind.Structures.Enum e in enums)
-            {
-                sw.WriteLine("{0};", e.ToString("            "));
-            }
-            sw.WriteLine("        }");
         }
 
         #endregion

@@ -8,14 +8,9 @@ namespace Bind
 {
     interface ISpecWriter
     {
-        void WriteDelegates(
-            StreamWriter sw,
-            List<Bind.Structures.Delegate> delegates,
-            Dictionary<string, string> CSTypes);
-        void WriteWrappers(
-            StreamWriter sw,
-            List<Function> functions,
-            Dictionary<string, string> CSTypes);
-        void WriteEnums(StreamWriter sw, List<Bind.Structures.Enum> enums);
+        void WriteDelegates(BindStreamWriter sw, List<Bind.Structures.Delegate> delegates);
+        void WriteWrappers(BindStreamWriter sw, List<Function> functions);
+        void WriteEnums(BindStreamWriter sw, EnumCollection enums);
+        void WriteTypes(BindStreamWriter sw, Dictionary<string, string> CSTypes);
     }
 }

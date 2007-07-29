@@ -33,6 +33,7 @@ using System.Security.Permissions;
 using System.Threading;
 using System.Collections.Generic;
 using System.CodeDom;
+using System.Diagnostics;
 
 namespace Bind
 {
@@ -51,6 +52,13 @@ namespace Bind
 
         static void Main(string[] arguments)
         {
+            Debug.Listeners.Clear();
+            Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            Debug.AutoFlush = true;
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            Trace.AutoFlush = true;
+
             Console.WriteLine("OpenGL binding generator {0} for OpenTK.",
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
             Console.WriteLine("For comments, bugs and suggestions visit http://opentk.sourceforge.net");

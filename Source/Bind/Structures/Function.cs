@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Bind.Structures
 {
-    class Function : Delegate
+    public class Function : Delegate
     {
         public Function()
             : base()
@@ -16,6 +16,12 @@ namespace Bind.Structures
             : base(f)
         {
             this.Body = new FunctionBody(f.Body);
+        }
+
+        public Function(Delegate d)
+            : base(d)
+        {
+            this.Body = new FunctionBody();
         }
 
         #region Function body
@@ -30,17 +36,21 @@ namespace Bind.Structures
 
         #endregion
 
-        #region public override string ToString(string indentation)
+        #region public override string ToString()
 
-        public override string ToString(string indentation)
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-
-            sb.Append(indentation + ReturnType + " " + Name + Parameters.ToString());
+            sb.Append("public static ");
+            sb.Append(Unsafe ? "unsafe " : "");
+            sb.Append(ReturnType);
+            sb.Append(" ");
+            sb.Append(Name);
+            sb.Append(Parameters.ToString());
             if (Body.Count > 0)
             {
                 sb.AppendLine();
-                sb.Append(Body.ToString(indentation));
+                sb.Append(Body.ToString());
             }
 
             return sb.ToString();
@@ -67,22 +77,17 @@ namespace Bind.Structures
 
         public override string ToString()
         {
-            return ToString("");
-        }
-
-        public string ToString(string indentation)
-        {
             if (this.Count == 0)
                 return String.Empty;
 
             StringBuilder sb = new StringBuilder(this.Count);
 
-            sb.AppendLine(indentation + "{");
+            sb.AppendLine("{");
             foreach (string s in this)
             {
-                sb.AppendLine(indentation + "    " + s);
+                sb.AppendLine("    " + s);
             }
-            sb.AppendLine(indentation + "}");
+            sb.AppendLine("}");
 
             return sb.ToString();
         }

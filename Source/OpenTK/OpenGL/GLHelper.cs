@@ -67,6 +67,12 @@ namespace OpenTK.OpenGL
     /// </remarks>
     public static partial class GL
     {
+        #region internal string GL_NATIVE_LIBRARY
+
+        internal const string GL_NATIVE_LIBRARY = "opengl32.dll";
+        
+        #endregion
+
         #region private enum Platform
 
         /// <summary>

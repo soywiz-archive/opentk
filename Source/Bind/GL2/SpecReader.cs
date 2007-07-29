@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Bind.Structures;
+using System.Diagnostics;
 
 namespace Bind.GL2
 {
     class SpecReader : ISpecReader
     {
-        private Dictionary<string, string> GLTypes = new Dictionary<string, string>();
-        
-
         #region private string NextValidLine(StreamReader sr)
 
         private string NextValidLine(System.IO.StreamReader sr)
@@ -122,7 +120,7 @@ namespace Bind.GL2
                         switch (words[0])
                         {
                             case "return":  // Line denotes return value
-                                d.ReturnType = words[1];
+                                d.ReturnType.Type = words[1];
                                 break;
 
                             case "param":   // Line denotes parameter
@@ -132,7 +130,7 @@ namespace Bind.GL2
 
                                 p.Name = words[1];
                                 p.Type = words[2];
-                                p.Array = words[4] == "array" ? true : false;
+                                p.IsPointer = words[4] == "array" ? true : false;
                                 p.Flow = words[3] == "in" ? Parameter.FlowDirection.In : Parameter.FlowDirection.Out;
 
                                 d.Parameters.Add(p);
@@ -158,21 +156,20 @@ namespace Bind.GL2
             return delegates;
         }
 
-        
-
         #endregion
 
-        #region public List<Enum> ReadEnums(System.IO.StreamReader specFile)
+        #region public EnumCollection ReadEnums(System.IO.StreamReader specFile)
 
-        public List<Bind.Structures.Enum> ReadEnums(System.IO.StreamReader specfile)
+        public EnumCollection ReadEnums(System.IO.StreamReader specfile)
         {
-            List<Bind.Structures.Enum> enums = new List<Bind.Structures.Enum>();
+            EnumCollection enums = new EnumCollection();
 
             // complete_enum contains all opengl enumerants.
             Bind.Structures.Enum complete_enum = new Bind.Structures.Enum();
             complete_enum.Name = "GLenum";
 
-            Console.WriteLine("Reading opengl enumerant specs");
+            Trace.WriteLine(String.Format("Reading opengl enumerant specs"));
+            Trace.Indent();
 
             do
             {
@@ -191,9 +188,10 @@ namespace Bind.GL2
 
                     // Declare a new enumerant
                     Bind.Structures.Enum e = new Bind.Structures.Enum();
-                    e.Name = words[0];
-                    //e.Name = SpecTranslator.GetTranslatedEnum(words[0]);
-                    //d.Attributes = MemberAttributes.Const | MemberAttributes.Public;
+                    e.Name = Char.IsDigit(words[0][0]) ? "GL_" + words[0] : words[0];
+
+                    if (e.Name == "3DFX_texture_compression_FXT1")
+                        Console.Write(0);
 
                     // And fill in the values for this enumerant
                     do
@@ -216,53 +214,83 @@ namespace Bind.GL2
                         Constant c = new Constant();
                         if (line.Contains("="))
                         {
-                            //c.Name = SpecTranslator.GetTranslatedEnum(words[0]);
+                            // Trim the "GL_" from the start of the string.
+                            if (words[0].StartsWith("GL_"))
+                                words[0] = words[0].Substring(3);
+
                             if (Char.IsDigit(words[0][0]))
                                 words[0] = "GL_" + words[0];
-                            
+
                             c.Name = words[0];
 
                             uint number;
                             if (UInt32.TryParse(words[2].Replace("0x", String.Empty), System.Globalization.NumberStyles.AllowHexSpecifier, null, out number))
                             {
+                                // The value is a number, check if it should be unchecked.
                                 if (number > 0x7FFFFFFF)
                                 {
-                                    words[2] = "unchecked((Int32)" + words[2] + ")";
+                                    c.Unchecked = true;
                                 }
                             }
-                            else if (words[2].StartsWith("GL_") && !Char.IsDigit(words[2][4]))
+                            else
                             {
-                                words[2] = words[2].Substring(3);
-                            }
-                            else if (Char.IsDigit(words[2][0]))
-                            {
-                                words[2] = "GL_" + words[2];
+                                // The value is not a number.
+                                // Strip the "GL_" from the start of the string.
+                                if (words[2].StartsWith("GL_"))
+                                    words[2] = words[2].Substring(3);
+
+                                // If the name now starts with a digit (doesn't matter whether we
+                                // stripped "GL_" above), add a "GL_" prefix.
+                                // (e.g. GL_4_BYTES).
+                                if (Char.IsDigit(words[2][0]))
+                                    words[2] = "GL_" + words[2];
                             }
 
-                            //c.InitExpression = new CodeFieldReferenceExpression(null, words[2]);
-                            //c.UserData.Add("InitExpression", " = " + words[2]);
-                            //c.UserData.Add("ObjectReference", null);
-                            //c.UserData.Add("FieldReference", words[2]);
                             c.Value = words[2];
                         }
                         else if (words[0] == "use")
                         {
-                            //c.Name = SpecTranslator.GetTranslatedEnum(words[2]);
+                            // Trim the "GL_" from the start of the string.
+                            if (words[2].StartsWith("GL_"))
+                                words[2] = words[2].Substring(3);
+
+                            // If the remaining string starts with a digit, we were wrong above.
+                            // Re-add the "GL_"
                             if (Char.IsDigit(words[2][0]))
                                 words[2] = "GL_" + words[2];
 
                             c.Name = words[2];
 
-                            //c.InitExpression = new CodeFieldReferenceExpression(new CodeSnippetExpression(words[1]), SpecTranslator.GetTranslatedEnum(words[2]));
-                            //c.UserData.Add("InitExpression", " = " + words[1] + "." + SpecTranslator.GetTranslatedEnum(words[2]));
-                            //c.UserData.Add("ObjectReference", words[1]);
-                            //c.UserData.Add("FieldReference", words[2]);
-                            c.Value = String.Format("{0}.{1}", words[1], words[2]);
+                            if (words[1] == "LightProperty")
+                            {
+                                Trace.WriteLine(
+                                    String.Format(
+                                        "Spec error: Enum LightProperty.{0} does no exist, changing to LightParameter.{0}",
+                                        words[2]
+                                    )
+                                );
+                                words[1] = "LightParameter";
+                            }
+                            c.Reference = words[1];
+                            c.Value = words[2];
                         }
 
                         //if (!String.IsNullOrEmpty(c.Name) && !e.Members.Contains.Contains(c))
                         //SpecTranslator.Merge(e.Members, c);
-                        e.ConstantCollection.Add(c.Name, c);
+                        if (!e.ConstantCollection.ContainsKey(c.Name))
+                        {
+                            e.ConstantCollection.Add(c.Name, c);
+                        }
+                        else
+                        {
+                            Trace.WriteLine(
+                                String.Format(
+                                    "Spec error: Constant {0} defined twice in enum {1}, discarding last definition.",
+                                    c.Name,
+                                    e.Name
+                                )
+                            );
+                        }
 
                         // Insert the current constant in the list of all constants.
                         //SpecTranslator.Merge(complete_enum.Members, c);
@@ -277,14 +305,31 @@ namespace Bind.GL2
 
                     // (disabled) Hack - discard Boolean enum, it fsucks up the fragile translation code ahead.
                     //if (!e.Name.Contains("Bool"))
-                    Utilities.Merge(enums, e);
+                    //Utilities.Merge(enums, e);
+
+                    if (!enums.ContainsKey(e.Name))
+                    {
+                        enums.Add(e.Name, e);
+                    }
+                    else
+                    {
+                        // The enum already exists, merge constants.
+                        Trace.WriteLine(String.Format("Conflict: Enum {0} already exists, merging constants.", e.Name));
+                        foreach (Constant t in e.ConstantCollection.Values)
+                        {
+                            Utilities.Merge(enums[e.Name], t);
+                        }
+                    }
+
                     //enums.Add(e);
                 }
                 //SpecTranslator.Merge(enums, complete_enum);
             }
             while (!specfile.EndOfStream);
 
-            enums.Add(complete_enum);
+            enums.Add(complete_enum.Name, complete_enum);
+
+            Trace.Unindent();
 
             return enums;
         }
@@ -295,9 +340,10 @@ namespace Bind.GL2
 
         #region internal void ReadGLTypeMap(System.IO.StreamReader sr)
 
-        internal void ReadGLTypeMap(System.IO.StreamReader sr)
+        internal Dictionary<string, string> ReadGLTypeMap(System.IO.StreamReader sr)
         {
             Console.WriteLine("Reading opengl types.");
+            Dictionary<string, string> GLTypes = new Dictionary<string, string>();
 
             do
             {
@@ -308,41 +354,41 @@ namespace Bind.GL2
 
                 string[] words = line.Split(new char[] { ' ', ',', '*', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (words[0] == "void")
+                if (words[0].ToLower() == "void")
                 {
-                    // Special case for "void" -> ""
-                    GLTypes.Add(words[0], String.Empty);
+                    // Special case for "void" -> "". We make it "void" -> "void"
+                    GLTypes.Add(words[0], "void");
                 }
-                else if (words[0] == "VoidPointer")
+                else if (words[0] == "VoidPointer" || words[0] == "ConstVoidPointer")
                 { 
-                    // Special case for "VoidPointer" -> "GLvoid*"
-                    GLTypes.Add(words[0], "System.Object");
+                    // "(Const)VoidPointer" -> "void*"
+                    GLTypes.Add(words[0], "void");
                 }
-                else if (words[0] == "CharPointer" || words[0] == "charPointerARB")
+                /*else if (words[0] == "CharPointer" || words[0] == "charPointerARB")
                 {
                     GLTypes.Add(words[0], "System.String");
                 }
                 else if (words[0].Contains("Pointer"))
                 {
                     GLTypes.Add(words[0], words[1].Replace("Pointer", "*"));
+                }*/
+                else if (words[1].Contains("GLvoid"))
+                {
+                    GLTypes.Add(words[0], "void");
                 }
-                //else if (words[1].Contains("Boolean"))
-                //{
-                //    // Do not add this to the typemap!
-                //}
-                //else if (words[1] == "GLenum")
-                //{
-                //    // Do not throw away the type to generic GLenum. We want type checking!
-                //}
                 else
                 {
                     GLTypes.Add(words[0], words[1]);
                 }
             }
             while (!sr.EndOfStream);
+
+            return GLTypes;
         }
 
         #endregion
+
+        #region internal Dictionary<string, string> ReadCSTypeMap(System.IO.StreamReader sr)
 
         internal Dictionary<string, string> ReadCSTypeMap(System.IO.StreamReader sr)
         {
@@ -364,5 +410,7 @@ namespace Bind.GL2
 
             return CSTypes;
         }
+
+        #endregion
     }
 }

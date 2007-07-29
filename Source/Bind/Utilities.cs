@@ -8,12 +8,13 @@ namespace Bind
 {
     #region WrapperTypes enum
 
+    [Flags]
     public enum WrapperTypes
     {
         /// <summary>
         /// No wrapper needed.
         /// </summary>
-        None,
+        None = 0,
         /// <summary>
         /// Function takes bool parameter - C uses Int for bools, so we have to marshal.
         /// </summary>
@@ -99,33 +100,22 @@ namespace Bind
         /// Merges the given enum into the enum list. If an enum of the same name exists,
         /// it merges their respective constants.
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="enums"></param>
         /// <param name="t"></param>
-        /// <returns></returns>
-        public static List<Bind.Structures.Enum> Merge(List<Bind.Structures.Enum> s, Bind.Structures.Enum t)
+        internal static void Merge(EnumCollection enums, Bind.Structures.Enum t)
         {
-            bool already_exists = false;
-            foreach (Bind.Structures.Enum e in s)
+            if (!enums.ContainsKey(t.Name))
             {
-                if (e.Name == t.Name)
+                enums.Add(t.Name, t);
+            }
+            else
+            {
+                Bind.Structures.Enum e = enums[t.Name];
+                foreach (Bind.Structures.Constant c in t.ConstantCollection.Values)
                 {
-                    already_exists = true;
-
-                    foreach (Bind.Structures.Constant c in t.ConstantCollection.Values)
-                    {
-                        Merge(e, c);
-                    }
-
-                    break;
+                    Merge(e, c);
                 }
             }
-
-            if (!already_exists)
-            {
-                s.Add(t);
-            }
-
-            return s;
         }
 
         /// <summary>
@@ -136,7 +126,7 @@ namespace Bind
         /// <param name="s"></param>
         /// <param name="t"></param>
         /// <returns></returns>
-        public static Bind.Structures.Enum Merge(Bind.Structures.Enum s, Bind.Structures.Constant t)
+        internal static Bind.Structures.Enum Merge(Bind.Structures.Enum s, Bind.Structures.Constant t)
         {
             if (!s.ConstantCollection.ContainsKey(t.Name))
             {

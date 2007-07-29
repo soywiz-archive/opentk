@@ -61,7 +61,7 @@ namespace OpenTK.OpenGL
         /// Starts recording elements into the display list.
         /// </summary>
         /// <param name="listMode">Sets if the list is to be compiled or compiled and executed immediately.</param>
-        public void Begin(Enums.ListMode listMode)
+        public void Begin(GL.Enums.ListMode listMode)
         {
             GL.NewList(Id, listMode);
         }

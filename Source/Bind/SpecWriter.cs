@@ -133,7 +133,7 @@ namespace Bind
 
         #endregion
 
-        #region private static CodeTypeDeclaration GenerateGLClass(List<CodeMemberMethod> functions, List<CodeMemberField> enums)
+        #region private static CodeTypeDeclaration GenerateGLClass(List<CodeMemberMethod> functions)
         private static CodeTypeDeclaration GenerateGLClass(List<CodeMemberMethod> functions)
         {
             CodeTypeDeclaration gl_class = new CodeTypeDeclaration(Settings.GLClass);
