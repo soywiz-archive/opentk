@@ -15,7 +15,7 @@ using System.Windows.Forms;
 using System.Threading;
 
 using OpenTK.OpenGL;
-using Enums = OpenTK.OpenGL.Enums;
+using Enums = OpenTK.OpenGL.GL.Enums;
 using OpenTK;
 using OpenTK.Input;
 
