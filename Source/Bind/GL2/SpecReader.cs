@@ -128,7 +128,7 @@ namespace Bind.GL2
                                 WrapperTypes wrapper;
                                 string type;
 
-                                p.Name = words[1];
+                                p.Name = Utilities.Keywords.Contains(words[1]) ? "@" + words[1] : words[1];
                                 p.Type = words[2];
                                 p.IsPointer = words[4] == "array" ? true : false;
                                 p.Flow = words[3] == "in" ? Parameter.FlowDirection.In : Parameter.FlowDirection.Out;

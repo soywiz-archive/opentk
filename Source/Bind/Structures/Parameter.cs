@@ -36,7 +36,7 @@ namespace Bind.Structures
                 return;
 
             this.Name = !String.IsNullOrEmpty(p.Name) ? new string(p.Name.ToCharArray()) : "";
-            this.NeedsWrapper = p.NeedsWrapper;
+            //this.NeedsWrapper = p.NeedsWrapper;
             this.PreviousType = new string(p.PreviousType.ToCharArray());
             this.Unchecked = p.Unchecked;
             this.UnmanagedType = p.UnmanagedType;
@@ -91,7 +91,7 @@ namespace Bind.Structures
             get { return _type; }
             set
             {
-                if (_type != null)
+                if (!String.IsNullOrEmpty(_type))
                     PreviousType = _type;
                 if (!String.IsNullOrEmpty(value))
                     _type = value.Trim();
@@ -211,8 +211,14 @@ namespace Bind.Structures
 
         public bool NeedsWrapper
         {
-            get { return _needs_wrapper; }
-            set { _needs_wrapper = value; }
+            //get { return _needs_wrapper; }
+            //set { _needs_wrapper = value; }
+            get
+            {
+                return
+                    WrapperType == WrapperTypes.ArrayParameter ||
+                    WrapperType == WrapperTypes.GenericParameter;
+            }
         }
         
         #endregion

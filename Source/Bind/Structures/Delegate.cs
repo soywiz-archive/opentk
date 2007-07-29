@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Bind.Structures
 {
@@ -434,7 +435,8 @@ namespace Bind.Structures
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
             function.Body.Clear();
-            function.Body.AddRange(AddCallWithPins(function));
+            //function.Body.AddRange(GetBodyWithFixedPins(function));
+            function.Body.AddRange(GetBodyWithGCHandlePins(function));
 
             return function;
         }
@@ -453,7 +455,7 @@ namespace Bind.Structures
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
             function.Body.Clear();
-            function.Body.AddRange(AddCallWithPins(function));
+            function.Body.AddRange(GetBodyWithFixedPins(function));
 
             return function;
         }
@@ -471,7 +473,7 @@ namespace Bind.Structures
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
             function.Body.Clear();
-            function.Body.AddRange(AddCallWithPins(function));
+            function.Body.AddRange(GetBodyWithFixedPins(function));
 
             return function;
         }
@@ -492,13 +494,13 @@ namespace Bind.Structures
 
         #endregion
 
-        #region private static FunctionBody AddCallWithPins(Function function)
+        #region private static FunctionBody GetBodyWithFixedPins(Function function)
 
         /// <summary>
         /// Generates a body which calls the specified function, pinning all needed parameters.
         /// </summary>
         /// <param name="function"></param>
-        private static FunctionBody AddCallWithPins(Function function)
+        private static FunctionBody GetBodyWithFixedPins(Function function)
         {
             // We'll make changes, but we want the original intact.
             Function f = new Function(function);
@@ -524,15 +526,7 @@ namespace Bind.Structures
             {
                 if (p.NeedsPin)
                 {
-                    f.Body.Add(
-                        String.Format(
-                            "fixed ({0}* {1} = {2})",
-                            p.Type,
-                            p.Name + "_ptr",
-                            p.Array > 0 ? p.Name : "&" + p.Name
-                        )
-                    );
-                    p.Name = p.Name + "_ptr";
+
                 }
             }
 
@@ -567,6 +561,137 @@ namespace Bind.Structures
             }
 
             f.Body.Add("}");
+
+            return f.Body;
+        }
+
+        #endregion
+
+        #region private static FunctionBody GetBodyWithGCHandlePins(Function function)
+
+        /// <summary>
+        /// Generates a body which calls the specified function, pinning all needed parameters.
+        /// </summary>
+        /// <param name="function"></param>
+        private static FunctionBody GetBodyWithGCHandlePins(Function function)
+        {
+            // We'll make changes, but we want the original intact.
+            Function f = new Function(function);
+            f.Body.Clear();
+
+            // Add default initliazers for out parameters:
+            foreach (Parameter p in function.Parameters)
+            {
+                if (p.Flow == Parameter.FlowDirection.Out)
+                {
+                    f.Body.Add(
+                        String.Format(
+                            "{0} = default({1});",
+                            p.Name,
+                            p.GetFullType()
+                        )
+                    );
+                }
+            }
+
+            // True if at least on GCHandle is allocated. Used to remove the try { } finally { }
+            // block if no handle has been allocated.
+            bool handleAllocated = false;
+            // Obtain pointers by pinning the parameters
+            foreach (Parameter p in f.Parameters)
+            {
+                if (p.NeedsPin)
+                {
+                    // Use GCHandle to obtain pointer to generic parameters and 'fixed' for arrays.
+                    // This is because fixed can only take the address of fields, not managed objects.
+                    if (p.WrapperType == WrapperTypes.GenericParameter)
+                    {
+                        f.Body.Add(
+                            String.Format(
+                                "{0} {1} = {0}.Alloc({2}, System.Runtime.InteropServices.GCHandleType.Pinned);",
+                                "System.Runtime.InteropServices.GCHandle",
+                                p.Name + "_ptr",
+                                p.Name
+                            )
+                        );
+                        // Note! The following line modifies f.Parameters, *not* function.Parameters
+                        p.Name = "(void*)" + p.Name + "_ptr.AddrOfPinnedObject()";
+
+                        handleAllocated = true;
+                    }
+                    else
+                    {
+                        f.Body.Add(
+                            String.Format(
+                                "fixed ({0}* {1} = {2})",
+                                p.Type,
+                                p.Name + "_ptr",
+                                p.Array > 0 ? p.Name : "&" + p.Name
+                            )
+                        );
+                        f.Body.Add("{");
+                        p.Name = p.Name + "_ptr";
+                    }
+                }
+            }
+
+            if (handleAllocated)
+            {
+                f.Body.Add("try");
+            }
+
+            f.Body.Add("{");
+            // Add delegate call:
+            if (f.ReturnType.Type.ToLower().Contains("void"))
+                f.Body.Add(String.Format("    {0};", f.CallString()));
+            else
+                f.Body.Add(String.Format("    {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString()));
+
+            // Assign out parameters:
+            foreach (Parameter p in function.Parameters)
+            {
+                if (p.Flow == Parameter.FlowDirection.Out)
+                {
+                    // Check each out parameter. If it has been pinned, get the Target of the GCHandle.
+                    // Otherwise, nothing needs be done.
+                    if (p.NeedsPin)
+                    {
+                        f.Body.Add(
+                           String.Format(
+                               "{0} = ({1}){2}.Target;",
+                               p.Name,
+                               p.Type,
+                               p.Name + "_ptr"
+                           )
+                       );
+                    }
+                }
+            }
+
+            // Return:
+            if (!f.ReturnType.Type.ToLower().Contains("void"))
+            {
+                f.Body.Add("return retval;");
+            }
+
+            if (handleAllocated)
+            {
+                f.Body.Add("}");
+                f.Body.Add("finally");
+                f.Body.Add("{");
+                foreach (Parameter p in function.Parameters)
+                {
+                    // Free all allocated GCHandles
+                    if (p.NeedsPin)
+                    {
+                        if (p.WrapperType == WrapperTypes.GenericParameter)
+                            f.Body.Add(String.Format("    {0}_ptr.Free();", p.Name));
+                        else
+                            f.Body.Add("}");
+                    }
+                }
+                f.Body.Add("}");
+            }
 
             return f.Body;
         }
