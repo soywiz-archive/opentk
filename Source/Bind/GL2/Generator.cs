@@ -214,10 +214,11 @@ namespace Bind.GL2
         private void TranslateParameters(Bind.Structures.Delegate d)
         {
             string s;
+            Bind.Structures.Enum @enum;
 
             foreach (Parameter p in d.Parameters)
             {
-                if (enums.ContainsKey(p.Type))
+                if (enums.TryGetValue(p.Type, out @enum) && @enum.Name != "GLenum")
                 {
                     // First, check if the type is an enum:
                     p.Type = p.Type.Insert(0, Settings.GLClass + ".Enums.");
@@ -254,25 +255,23 @@ namespace Bind.GL2
                 {
                     p.WrapperType = WrapperTypes.ArrayParameter;
 
-                    if (p.Type.ToLower().Contains("char"))
+                    if (p.Type.ToLower().Contains("char") || p.Type.ToLower().Contains("string"))
                     {
-                        // char* -> [In] String or [Out] StringBuilder
+                        // char* or string -> [In] String or [Out] StringBuilder
                         p.Type =
                             p.Flow == Parameter.FlowDirection.Out ?
                             "System.Text.StringBuilder" :
                             "System.String";
+
+                        if (d.Name.Contains("ShaderSource"))
+                        {
+                            // Special case: these functions take a string[]
+                            //p.IsPointer = true;
+                            p.Array = 1;
+                        }
 
                         p.IsPointer = false;
-                    }
-                    else if (p.Type.ToLower().Contains("string"))
-                    {
-                        // string* -> [In] string[] or [Out] StringBuilder[]
-                        p.Type =
-                            p.Flow == Parameter.FlowDirection.Out ?
-                            "System.Text.StringBuilder" :
-                            "System.String";
-
-                        p.IsPointer = true;
+                        p.WrapperType = WrapperTypes.None;
                     }
                     else if (p.Type.ToLower().Contains("void"))
                     {

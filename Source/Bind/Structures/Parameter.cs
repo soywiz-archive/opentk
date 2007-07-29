@@ -188,7 +188,9 @@ namespace Bind.Structures
 
         public bool NeedsPin
         {
-            get { return Array > 0 || Reference || Type == "object"; }
+            get { return
+                (Array > 0 || Reference || Type == "object") &&
+                !Type.ToLower().Contains("string"); }
         }
 
         #endregion

@@ -1440,19 +1440,19 @@ namespace OpenTK.OpenGL
         internal delegate GLboolean IsQuery(GLuint id);
         internal static IsQuery glIsQuery;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BeginQuery(GL.Enums.GLenum target, GLuint id);
+        internal delegate void BeginQuery(GL.Enums.VERSION_1_5 target, GLuint id);
         internal static BeginQuery glBeginQuery;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void EndQuery(GL.Enums.GLenum target);
+        internal delegate void EndQuery(GL.Enums.VERSION_1_5 target);
         internal static EndQuery glEndQuery;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryiv(GL.Enums.GLenum target, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetQueryiv(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 pname, GLint* @params);
         internal static GetQueryiv glGetQueryiv;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryObjectiv(GLuint id, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetQueryObjectiv(GLuint id, GL.Enums.VERSION_1_5 pname, GLint* @params);
         internal static GetQueryObjectiv glGetQueryObjectiv;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryObjectuiv(GLuint id, GL.Enums.GLenum pname, GLuint* @params);
+        internal unsafe delegate void GetQueryObjectuiv(GLuint id, GL.Enums.VERSION_1_5 pname, GLuint* @params);
         internal static GetQueryObjectuiv glGetQueryObjectuiv;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void BindBuffer(GL.Enums.VERSION_1_5 target, GLuint buffer);
@@ -1515,7 +1515,7 @@ namespace OpenTK.OpenGL
         internal delegate GLuint CreateProgram();
         internal static CreateProgram glCreateProgram;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate GLuint CreateShader(GL.Enums.GLenum type);
+        internal delegate GLuint CreateShader(GL.Enums.VERSION_2_0 type);
         internal static CreateShader glCreateShader;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void DeleteProgram(GLuint program);
@@ -1533,10 +1533,10 @@ namespace OpenTK.OpenGL
         internal delegate void EnableVertexAttribArray(GLuint index);
         internal static EnableVertexAttribArray glEnableVertexAttribArray;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetActiveAttrib(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GL.Enums.GLenum* type, System.Text.StringBuilder name);
+        internal unsafe delegate void GetActiveAttrib(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GL.Enums.VERSION_2_0* type, System.Text.StringBuilder name);
         internal static GetActiveAttrib glGetActiveAttrib;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetActiveUniform(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GL.Enums.GLenum* type, System.Text.StringBuilder name);
+        internal unsafe delegate void GetActiveUniform(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GL.Enums.VERSION_2_0* type, System.Text.StringBuilder name);
         internal static GetActiveUniform glGetActiveUniform;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void GetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei* count, GLuint* obj);
@@ -1545,19 +1545,19 @@ namespace OpenTK.OpenGL
         internal unsafe delegate GLint GetAttribLocation(GLuint program, System.String name);
         internal static GetAttribLocation glGetAttribLocation;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetProgramiv(GLuint program, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetProgramiv(GLuint program, GL.Enums.VERSION_2_0 pname, GLint* @params);
         internal static GetProgramiv glGetProgramiv;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void GetProgramInfoLog(GLuint program, GLsizei bufSize, GLsizei* length, System.Text.StringBuilder infoLog);
         internal static GetProgramInfoLog glGetProgramInfoLog;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetShaderiv(GLuint shader, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetShaderiv(GLuint shader, GL.Enums.VERSION_2_0 pname, GLint* @params);
         internal static GetShaderiv glGetShaderiv;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void GetShaderInfoLog(GLuint shader, GLsizei bufSize, GLsizei* length, System.Text.StringBuilder infoLog);
         internal static GetShaderInfoLog glGetShaderInfoLog;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetShaderSource(GLuint shader, GLsizei bufSize, GLsizei* length, System.Text.StringBuilder source);
+        internal unsafe delegate void GetShaderSource(GLuint shader, GLsizei bufSize, GLsizei* length, System.Text.StringBuilder[] source);
         internal static GetShaderSource glGetShaderSource;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate GLint GetUniformLocation(GLuint program, System.String name);
@@ -1590,7 +1590,7 @@ namespace OpenTK.OpenGL
         internal delegate void LinkProgram(GLuint program);
         internal static LinkProgram glLinkProgram;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void ShaderSource(GLuint shader, GLsizei count, System.String @string, GLint* length);
+        internal unsafe delegate void ShaderSource(GLuint shader, GLsizei count, System.String[] @string, GLint* length);
         internal static ShaderSource glShaderSource;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void UseProgram(GLuint program);
@@ -2250,34 +2250,34 @@ namespace OpenTK.OpenGL
         internal delegate GLboolean IsQueryARB(GLuint id);
         internal static IsQueryARB glIsQueryARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BeginQueryARB(GL.Enums.GLenum target, GLuint id);
+        internal delegate void BeginQueryARB(GL.Enums.ARB_occlusion_query target, GLuint id);
         internal static BeginQueryARB glBeginQueryARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void EndQueryARB(GL.Enums.GLenum target);
+        internal delegate void EndQueryARB(GL.Enums.ARB_occlusion_query target);
         internal static EndQueryARB glEndQueryARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryivARB(GL.Enums.GLenum target, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetQueryivARB(GL.Enums.ARB_occlusion_query target, GL.Enums.ARB_occlusion_query pname, GLint* @params);
         internal static GetQueryivARB glGetQueryivARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryObjectivARB(GLuint id, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetQueryObjectivARB(GLuint id, GL.Enums.ARB_occlusion_query pname, GLint* @params);
         internal static GetQueryObjectivARB glGetQueryObjectivARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryObjectuivARB(GLuint id, GL.Enums.GLenum pname, GLuint* @params);
+        internal unsafe delegate void GetQueryObjectuivARB(GLuint id, GL.Enums.ARB_occlusion_query pname, GLuint* @params);
         internal static GetQueryObjectuivARB glGetQueryObjectuivARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void DeleteObjectARB(GLhandleARB obj);
         internal static DeleteObjectARB glDeleteObjectARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate GLhandleARB GetHandleARB(GL.Enums.GLenum pname);
+        internal delegate GLhandleARB GetHandleARB(GL.Enums.ARB_shader_objects pname);
         internal static GetHandleARB glGetHandleARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void DetachObjectARB(GLhandleARB containerObj, GLhandleARB attachedObj);
         internal static DetachObjectARB glDetachObjectARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate GLhandleARB CreateShaderObjectARB(GL.Enums.GLenum shaderType);
+        internal delegate GLhandleARB CreateShaderObjectARB(GL.Enums.ARB_shader_objects shaderType);
         internal static CreateShaderObjectARB glCreateShaderObjectARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void ShaderSourceARB(GLhandleARB shaderObj, GLsizei count, System.String @string, GLint* length);
+        internal unsafe delegate void ShaderSourceARB(GLhandleARB shaderObj, GLsizei count, System.String[] @string, GLint* length);
         internal static ShaderSourceARB glShaderSourceARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void CompileShaderARB(GLhandleARB shaderObj);
@@ -2355,10 +2355,10 @@ namespace OpenTK.OpenGL
         internal unsafe delegate void UniformMatrix4fvARB(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value);
         internal static UniformMatrix4fvARB glUniformMatrix4fvARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetObjectParameterfvARB(GLhandleARB obj, GL.Enums.GLenum pname, GLfloat* @params);
+        internal unsafe delegate void GetObjectParameterfvARB(GLhandleARB obj, GL.Enums.ARB_shader_objects pname, GLfloat* @params);
         internal static GetObjectParameterfvARB glGetObjectParameterfvARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetObjectParameterivARB(GLhandleARB obj, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetObjectParameterivARB(GLhandleARB obj, GL.Enums.ARB_shader_objects pname, GLint* @params);
         internal static GetObjectParameterivARB glGetObjectParameterivARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void GetInfoLogARB(GLhandleARB obj, GLsizei maxLength, GLsizei* length, System.Text.StringBuilder infoLog);
@@ -2370,7 +2370,7 @@ namespace OpenTK.OpenGL
         internal unsafe delegate GLint GetUniformLocationARB(GLhandleARB programObj, System.String name);
         internal static GetUniformLocationARB glGetUniformLocationARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetActiveUniformARB(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length, GLint* size, GL.Enums.GLenum* type, System.Text.StringBuilder name);
+        internal unsafe delegate void GetActiveUniformARB(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length, GLint* size, GL.Enums.ARB_shader_objects* type, System.Text.StringBuilder name);
         internal static GetActiveUniformARB glGetActiveUniformARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void GetUniformfvARB(GLhandleARB programObj, GLint location, GLfloat* @params);
@@ -2379,13 +2379,13 @@ namespace OpenTK.OpenGL
         internal unsafe delegate void GetUniformivARB(GLhandleARB programObj, GLint location, GLint* @params);
         internal static GetUniformivARB glGetUniformivARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetShaderSourceARB(GLhandleARB obj, GLsizei maxLength, GLsizei* length, System.Text.StringBuilder source);
+        internal unsafe delegate void GetShaderSourceARB(GLhandleARB obj, GLsizei maxLength, GLsizei* length, System.Text.StringBuilder[] source);
         internal static GetShaderSourceARB glGetShaderSourceARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void BindAttribLocationARB(GLhandleARB programObj, GLuint index, System.String name);
         internal static BindAttribLocationARB glBindAttribLocationARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetActiveAttribARB(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length, GLint* size, GL.Enums.GLenum* type, System.Text.StringBuilder name);
+        internal unsafe delegate void GetActiveAttribARB(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length, GLint* size, GL.Enums.ARB_vertex_shader* type, System.Text.StringBuilder name);
         internal static GetActiveAttribARB glGetActiveAttribARB;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate GLint GetAttribLocationARB(GLhandleARB programObj, System.String name);
@@ -4278,10 +4278,10 @@ namespace OpenTK.OpenGL
         internal unsafe delegate void GenRenderbuffersEXT(GLsizei n, GLuint* renderbuffers);
         internal static GenRenderbuffersEXT glGenRenderbuffersEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void RenderbufferStorageEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.GLenum internalformat, GLsizei width, GLsizei height);
+        internal delegate void RenderbufferStorageEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object internalformat, GLsizei width, GLsizei height);
         internal static RenderbufferStorageEXT glRenderbufferStorageEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetRenderbufferParameterivEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetRenderbufferParameterivEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object pname, GLint* @params);
         internal static GetRenderbufferParameterivEXT glGetRenderbufferParameterivEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate GLboolean IsFramebufferEXT(GLuint framebuffer);
@@ -4299,22 +4299,22 @@ namespace OpenTK.OpenGL
         internal delegate GL.Enums.GLenum CheckFramebufferStatusEXT(GL.Enums.EXT_framebuffer_object target);
         internal static CheckFramebufferStatusEXT glCheckFramebufferStatusEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void FramebufferTexture1DEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.GLenum textarget, GLuint texture, GLint level);
+        internal delegate void FramebufferTexture1DEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.EXT_framebuffer_object textarget, GLuint texture, GLint level);
         internal static FramebufferTexture1DEXT glFramebufferTexture1DEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void FramebufferTexture2DEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.GLenum textarget, GLuint texture, GLint level);
+        internal delegate void FramebufferTexture2DEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.EXT_framebuffer_object textarget, GLuint texture, GLint level);
         internal static FramebufferTexture2DEXT glFramebufferTexture2DEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void FramebufferTexture3DEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.GLenum textarget, GLuint texture, GLint level, GLint zoffset);
+        internal delegate void FramebufferTexture3DEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.EXT_framebuffer_object textarget, GLuint texture, GLint level, GLint zoffset);
         internal static FramebufferTexture3DEXT glFramebufferTexture3DEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void FramebufferRenderbufferEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.EXT_framebuffer_object renderbuffertarget, GLuint renderbuffer);
         internal static FramebufferRenderbufferEXT glFramebufferRenderbufferEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetFramebufferAttachmentParameterivEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.GLenum pname, GLint* @params);
+        internal unsafe delegate void GetFramebufferAttachmentParameterivEXT(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.EXT_framebuffer_object pname, GLint* @params);
         internal static GetFramebufferAttachmentParameterivEXT glGetFramebufferAttachmentParameterivEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void GenerateMipmapEXT(GL.Enums.GLenum target);
+        internal delegate void GenerateMipmapEXT(GL.Enums.EXT_framebuffer_object target);
         internal static GenerateMipmapEXT glGenerateMipmapEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void StringMarkerGREMEDY(GLsizei len, void* @string);
@@ -4323,16 +4323,16 @@ namespace OpenTK.OpenGL
         internal delegate void StencilClearTagEXT(GLsizei stencilTagBits, GLuint stencilClearTag);
         internal static StencilClearTagEXT glStencilClearTagEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BlitFramebufferEXT(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GL.Enums.ClearBufferMask mask, GL.Enums.GLenum filter);
+        internal delegate void BlitFramebufferEXT(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GL.Enums.ClearBufferMask mask, GL.Enums.EXT_framebuffer_blit filter);
         internal static BlitFramebufferEXT glBlitFramebufferEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void RenderbufferStorageMultisampleEXT(GL.Enums.GLenum target, GLsizei samples, GL.Enums.GLenum internalformat, GLsizei width, GLsizei height);
+        internal delegate void RenderbufferStorageMultisampleEXT(GL.Enums.EXT_framebuffer_multisample target, GLsizei samples, GL.Enums.EXT_framebuffer_multisample internalformat, GLsizei width, GLsizei height);
         internal static RenderbufferStorageMultisampleEXT glRenderbufferStorageMultisampleEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryObjecti64vEXT(GLuint id, GL.Enums.GLenum pname, GLint64EXT* @params);
+        internal unsafe delegate void GetQueryObjecti64vEXT(GLuint id, GL.Enums.EXT_timer_query pname, GLint64EXT* @params);
         internal static GetQueryObjecti64vEXT glGetQueryObjecti64vEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetQueryObjectui64vEXT(GLuint id, GL.Enums.GLenum pname, GLuint64EXT* @params);
+        internal unsafe delegate void GetQueryObjectui64vEXT(GLuint id, GL.Enums.EXT_timer_query pname, GLuint64EXT* @params);
         internal static GetQueryObjectui64vEXT glGetQueryObjectui64vEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void ProgramEnvParameters4fvEXT(GL.Enums.EXT_gpu_program_parameters target, GLuint index, GLsizei count, GLfloat* @params);
@@ -4341,10 +4341,10 @@ namespace OpenTK.OpenGL
         internal unsafe delegate void ProgramLocalParameters4fvEXT(GL.Enums.EXT_gpu_program_parameters target, GLuint index, GLsizei count, GLfloat* @params);
         internal static ProgramLocalParameters4fvEXT glProgramLocalParameters4fvEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BufferParameteriAPPLE(GL.Enums.GLenum target, GL.Enums.GLenum pname, GLint param);
+        internal delegate void BufferParameteriAPPLE(GL.Enums.APPLE_flush_buffer_range target, GL.Enums.APPLE_flush_buffer_range pname, GLint param);
         internal static BufferParameteriAPPLE glBufferParameteriAPPLE;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void FlushMappedBufferRangeAPPLE(GL.Enums.GLenum target, GLintptr offset, GLsizeiptr size);
+        internal delegate void FlushMappedBufferRangeAPPLE(GL.Enums.APPLE_flush_buffer_range target, GLintptr offset, GLsizeiptr size);
         internal static FlushMappedBufferRangeAPPLE glFlushMappedBufferRangeAPPLE;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void ProgramLocalParameterI4iNV(GL.Enums.NV_gpu_program4 target, GLuint index, GLint x, GLint y, GLint z, GLint w);
@@ -4518,7 +4518,7 @@ namespace OpenTK.OpenGL
         internal unsafe delegate void DrawElementsInstancedEXT(GL.Enums.BeginMode mode, GLsizei count, GL.Enums.EXT_draw_instanced type, void* indices, GLsizei primcount);
         internal static DrawElementsInstancedEXT glDrawElementsInstancedEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void TexBufferEXT(GL.Enums.TextureTarget target, GL.Enums.GLenum internalformat, GLuint buffer);
+        internal delegate void TexBufferEXT(GL.Enums.TextureTarget target, GL.Enums.EXT_texture_buffer_object internalformat, GLuint buffer);
         internal static TexBufferEXT glTexBufferEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void DepthRangedNV(GLdouble zNear, GLdouble zFar);
@@ -4545,40 +4545,40 @@ namespace OpenTK.OpenGL
         internal delegate void ColorMaskIndexedEXT(GLuint index, GL.Enums.Boolean r, GL.Enums.Boolean g, GL.Enums.Boolean b, GL.Enums.Boolean a);
         internal static ColorMaskIndexedEXT glColorMaskIndexedEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetBooleanIndexedvEXT(GL.Enums.GLenum target, GLuint index, GL.Enums.Boolean* data);
+        internal unsafe delegate void GetBooleanIndexedvEXT(GL.Enums.EXT_draw_buffers2 target, GLuint index, GL.Enums.Boolean* data);
         internal static GetBooleanIndexedvEXT glGetBooleanIndexedvEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetIntegerIndexedvEXT(GL.Enums.GLenum target, GLuint index, GLint* data);
+        internal unsafe delegate void GetIntegerIndexedvEXT(GL.Enums.EXT_draw_buffers2 target, GLuint index, GLint* data);
         internal static GetIntegerIndexedvEXT glGetIntegerIndexedvEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void EnableIndexedEXT(GL.Enums.GLenum target, GLuint index);
+        internal delegate void EnableIndexedEXT(GL.Enums.EXT_draw_buffers2 target, GLuint index);
         internal static EnableIndexedEXT glEnableIndexedEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void DisableIndexedEXT(GL.Enums.GLenum target, GLuint index);
+        internal delegate void DisableIndexedEXT(GL.Enums.EXT_draw_buffers2 target, GLuint index);
         internal static DisableIndexedEXT glDisableIndexedEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate GLboolean IsEnabledIndexedEXT(GL.Enums.GLenum target, GLuint index);
+        internal delegate GLboolean IsEnabledIndexedEXT(GL.Enums.EXT_draw_buffers2 target, GLuint index);
         internal static IsEnabledIndexedEXT glIsEnabledIndexedEXT;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BeginTransformFeedbackNV(GL.Enums.GLenum primitiveMode);
+        internal delegate void BeginTransformFeedbackNV(GL.Enums.NV_transform_feedback primitiveMode);
         internal static BeginTransformFeedbackNV glBeginTransformFeedbackNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void EndTransformFeedbackNV();
         internal static EndTransformFeedbackNV glEndTransformFeedbackNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void TransformFeedbackAttribsNV(GLuint count, GLint* attribs, GL.Enums.GLenum bufferMode);
+        internal unsafe delegate void TransformFeedbackAttribsNV(GLuint count, GLint* attribs, GL.Enums.NV_transform_feedback bufferMode);
         internal static TransformFeedbackAttribsNV glTransformFeedbackAttribsNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BindBufferRangeNV(GL.Enums.GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
+        internal delegate void BindBufferRangeNV(GL.Enums.NV_transform_feedback target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
         internal static BindBufferRangeNV glBindBufferRangeNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BindBufferOffsetNV(GL.Enums.GLenum target, GLuint index, GLuint buffer, GLintptr offset);
+        internal delegate void BindBufferOffsetNV(GL.Enums.NV_transform_feedback target, GLuint index, GLuint buffer, GLintptr offset);
         internal static BindBufferOffsetNV glBindBufferOffsetNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void BindBufferBaseNV(GL.Enums.GLenum target, GLuint index, GLuint buffer);
+        internal delegate void BindBufferBaseNV(GL.Enums.NV_transform_feedback target, GLuint index, GLuint buffer);
         internal static BindBufferBaseNV glBindBufferBaseNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void TransformFeedbackVaryingsNV(GLuint program, GLsizei count, GLint* locations, GL.Enums.GLenum bufferMode);
+        internal unsafe delegate void TransformFeedbackVaryingsNV(GLuint program, GLsizei count, GLint* locations, GL.Enums.NV_transform_feedback bufferMode);
         internal static TransformFeedbackVaryingsNV glTransformFeedbackVaryingsNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void ActiveVaryingNV(GLuint program, System.String name);
@@ -4587,7 +4587,7 @@ namespace OpenTK.OpenGL
         internal unsafe delegate GLint GetVaryingLocationNV(GLuint program, System.String name);
         internal static GetVaryingLocationNV glGetVaryingLocationNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal unsafe delegate void GetActiveVaryingNV(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLsizei* size, GL.Enums.GLenum* type, System.Text.StringBuilder name);
+        internal unsafe delegate void GetActiveVaryingNV(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLsizei* size, GL.Enums.NV_transform_feedback* type, System.Text.StringBuilder name);
         internal static GetActiveVaryingNV glGetActiveVaryingNV;
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal unsafe delegate void GetTransformFeedbackVaryingNV(GLuint program, GLuint index, GLint* location);

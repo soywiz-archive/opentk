@@ -431,12 +431,13 @@ namespace Bind.Structures
             function.Parameters[index].Array = 0;
             function.Parameters[index].IsPointer = false;
             function.Parameters[index].Type = "object";
+            function.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
 
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
             function.Body.Clear();
             //function.Body.AddRange(GetBodyWithFixedPins(function));
-            function.Body.AddRange(GetBodyWithGCHandlePins(function));
+            function.Body.AddRange(GetBodyWithPins(function));
 
             return function;
         }
@@ -455,7 +456,7 @@ namespace Bind.Structures
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
             function.Body.Clear();
-            function.Body.AddRange(GetBodyWithFixedPins(function));
+            function.Body.AddRange(GetBodyWithPins(function));
 
             return function;
         }
@@ -469,11 +470,12 @@ namespace Bind.Structures
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Array = 1;
             function.Parameters[index].IsPointer = false;
+            function.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
 
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
             function.Body.Clear();
-            function.Body.AddRange(GetBodyWithFixedPins(function));
+            function.Body.AddRange(GetBodyWithPins(function));
 
             return function;
         }
@@ -494,17 +496,19 @@ namespace Bind.Structures
 
         #endregion
 
-        #region private static FunctionBody GetBodyWithFixedPins(Function function)
+        #region private static FunctionBody GetBodyWithPins(Function function)
 
         /// <summary>
         /// Generates a body which calls the specified function, pinning all needed parameters.
         /// </summary>
         /// <param name="function"></param>
-        private static FunctionBody GetBodyWithFixedPins(Function function)
+        private static FunctionBody GetBodyWithPins(Function function)
         {
             // We'll make changes, but we want the original intact.
             Function f = new Function(function);
             f.Body.Clear();
+            // Unsafe only if 
+            function.Unsafe = false;
 
             // Add default initliazers for out parameters:
             foreach (Parameter p in function.Parameters)
@@ -520,93 +524,39 @@ namespace Bind.Structures
                     );
                 }
             }
+            // All GCHandles statements will go here. This will allow to place only one opening '{'
+            // on fixed statements.
+            int handleStart = f.Body.Count;
 
-            // Obtain pointers using 'fixed' notation
-            foreach (Parameter p in f.Parameters)
-            {
-                if (p.NeedsPin)
-                {
-
-                }
-            }
-
-            f.Body.Add("{");
-            // Add delegate call:
-            if (f.ReturnType.Type.ToLower().Contains("void"))
-                f.Body.Add(String.Format("    {0};", f.CallString()));
-            else
-                f.Body.Add(String.Format("    {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString()));
-
-            /*
-            // Assign out parameters:
-            foreach (Parameter p in function.Parameters)
-            {
-                if (p.Flow == Parameter.FlowDirection.Out)
-                {
-                    function.Body.Add(
-                        String.Format(
-                            "{0} = {1};",
-                            p.Name,
-                            p.Type
-                        )
-                    );
-                }
-            }
-            */
-
-            // Return:
-            if (!f.ReturnType.Type.ToLower().Contains("void"))
-            {
-                f.Body.Add("return retval;");
-            }
-
-            f.Body.Add("}");
-
-            return f.Body;
-        }
-
-        #endregion
-
-        #region private static FunctionBody GetBodyWithGCHandlePins(Function function)
-
-        /// <summary>
-        /// Generates a body which calls the specified function, pinning all needed parameters.
-        /// </summary>
-        /// <param name="function"></param>
-        private static FunctionBody GetBodyWithGCHandlePins(Function function)
-        {
-            // We'll make changes, but we want the original intact.
-            Function f = new Function(function);
-            f.Body.Clear();
-
-            // Add default initliazers for out parameters:
-            foreach (Parameter p in function.Parameters)
-            {
-                if (p.Flow == Parameter.FlowDirection.Out)
-                {
-                    f.Body.Add(
-                        String.Format(
-                            "{0} = default({1});",
-                            p.Name,
-                            p.GetFullType()
-                        )
-                    );
-                }
-            }
+            // Indicates the index where the last GCHandle statement is. Used to add an unsafe stamement
+            // (if needed) at exactl that spot, i.e. after the GCHandles but before the fixed statements.
+            int handleEnd = f.Body.Count;
 
             // True if at least on GCHandle is allocated. Used to remove the try { } finally { }
             // block if no handle has been allocated.
             bool handleAllocated = false;
+
+            // True if function body contains at least one fixed statement. Add a statement-level
+            // unsafe block if true (and the function is not unsafe at the function-level).
+            bool fixedAllocated = false;
+
             // Obtain pointers by pinning the parameters
             foreach (Parameter p in f.Parameters)
             {
+                // Enable function-level unsafe status only if function has unsafe parameters
+                if (p.IsPointer)
+                {
+                    function.Unsafe = true;
+                }
+
                 if (p.NeedsPin)
                 {
                     // Use GCHandle to obtain pointer to generic parameters and 'fixed' for arrays.
                     // This is because fixed can only take the address of fields, not managed objects.
                     if (p.WrapperType == WrapperTypes.GenericParameter)
                     {
-                        f.Body.Add(
+                        f.Body.Insert(
+                            handleStart,
                             String.Format(
                                 "{0} {1} = {0}.Alloc({2}, System.Runtime.InteropServices.GCHandleType.Pinned);",
                                 "System.Runtime.InteropServices.GCHandle",
@@ -618,34 +568,43 @@ namespace Bind.Structures
                         p.Name = "(void*)" + p.Name + "_ptr.AddrOfPinnedObject()";
 
                         handleAllocated = true;
+
+                        handleEnd++;
                     }
                     else
                     {
                         f.Body.Add(
                             String.Format(
-                                "fixed ({0}* {1} = {2})",
+                                "    fixed ({0}* {1} = {2})",
                                 p.Type,
                                 p.Name + "_ptr",
                                 p.Array > 0 ? p.Name : "&" + p.Name
                             )
                         );
-                        f.Body.Add("{");
                         p.Name = p.Name + "_ptr";
+
+                        fixedAllocated = true;
                     }
                 }
             }
 
-            if (handleAllocated)
+            if (!function.Unsafe)
             {
-                f.Body.Add("try");
+                f.Body.Insert(handleEnd, "unsafe");
+                f.Body.Insert(handleEnd + 1, "{");
             }
 
-            f.Body.Add("{");
+            if (handleAllocated)
+            {
+                f.Body.Add("    try");
+            }
+
+            f.Body.Add("    {");
             // Add delegate call:
             if (f.ReturnType.Type.ToLower().Contains("void"))
-                f.Body.Add(String.Format("    {0};", f.CallString()));
+                f.Body.Add(String.Format("        {0};", f.CallString()));
             else
-                f.Body.Add(String.Format("    {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString()));
+                f.Body.Add(String.Format("        {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString()));
 
             // Assign out parameters:
             foreach (Parameter p in function.Parameters)
@@ -656,14 +615,26 @@ namespace Bind.Structures
                     // Otherwise, nothing needs be done.
                     if (p.NeedsPin)
                     {
-                        f.Body.Add(
-                           String.Format(
-                               "{0} = ({1}){2}.Target;",
-                               p.Name,
-                               p.Type,
-                               p.Name + "_ptr"
-                           )
-                       );
+                        if (p.WrapperType == WrapperTypes.GenericParameter)
+                        {
+                            f.Body.Add(
+                                String.Format(
+                                    "        {0} = ({1}){2}.Target;",
+                                    p.Name,
+                                    p.Type,
+                                    p.Name + "_ptr"
+                                )
+                            );
+                        }
+                        else
+                        {
+                            f.Body.Add(
+                                String.Format(
+                                    "        {0} = *{0}_ptr;",
+                                    p.Name
+                                )
+                            );
+                        }
                     }
                 }
             }
@@ -671,25 +642,30 @@ namespace Bind.Structures
             // Return:
             if (!f.ReturnType.Type.ToLower().Contains("void"))
             {
-                f.Body.Add("return retval;");
+                f.Body.Add("        return retval;");
             }
 
             if (handleAllocated)
             {
-                f.Body.Add("}");
-                f.Body.Add("finally");
-                f.Body.Add("{");
+                f.Body.Add("    }");
+                f.Body.Add("    finally");
+                f.Body.Add("    {");
                 foreach (Parameter p in function.Parameters)
                 {
                     // Free all allocated GCHandles
                     if (p.NeedsPin)
                     {
                         if (p.WrapperType == WrapperTypes.GenericParameter)
-                            f.Body.Add(String.Format("    {0}_ptr.Free();", p.Name));
-                        else
-                            f.Body.Add("}");
+                            f.Body.Add(String.Format("        {0}_ptr.Free();", p.Name));
+                        //else
+                        //    f.Body.Add("}");
                     }
                 }
+            }
+            f.Body.Add("    }");
+
+            if (!function.Unsafe)
+            {
                 f.Body.Add("}");
             }
 

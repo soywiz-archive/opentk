@@ -135,7 +135,7 @@ namespace Examples.Tutorial
                 return;
             }
 
-            GL.MatrixMode(OpenTK.OpenGL.Enums.MatrixMode.MODELVIEW);
+            GL.MatrixMode(GL.Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
                 0.0, 5.0, 5.0,
@@ -159,7 +159,7 @@ namespace Examples.Tutorial
 
             double ratio = e.Width / (double)e.Height;
 
-            GL.MatrixMode(OpenTK.OpenGL.Enums.MatrixMode.PROJECTION);
+            GL.MatrixMode(GL.Enums.MatrixMode.PROJECTION);
             GL.LoadIdentity();
             Glu.Perspective(45.0, ratio, 1.0, 64.0);
         }

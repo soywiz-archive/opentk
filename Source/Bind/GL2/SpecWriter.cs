@@ -58,7 +58,7 @@ namespace Bind.GL2
             {
                 sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
                 sw.WriteLine(
-                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"gl{0}\", ExactSpelling = true)]",
+                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"gl{1}\", ExactSpelling = true)]",
                     Settings.GLClass,
                     d.Name
                 );

@@ -253,7 +253,9 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
         {
             Delegate d;
 
-            if (Assembly.Load("OpenTK.OpenGL").GetType("OpenTK.OpenGL.Imports").GetMethod(name.Substring(2)) != null)
+            if (Assembly.GetExecutingAssembly()
+                .GetType("OpenTK.OpenGL.Imports")
+                .GetMethod(name.Substring(2), BindingFlags.NonPublic | BindingFlags.Static) != null)
             {
                 d = GetDelegateForExtensionMethod(name, signature) ??
                     Delegate.CreateDelegate(signature, typeof(Imports), name.Substring(2));
@@ -416,11 +418,11 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
         /// </remarks>
         public static void ReloadFunctions()
         {
-            Assembly asm = Assembly.Load("OpenTK.OpenGL");
+            Assembly asm = Assembly.GetExecutingAssembly();//Assembly.Load("OpenTK.OpenGL");
             Type delegates_class = asm.GetType("OpenTK.OpenGL.Delegates");
             Type imports_class = asm.GetType("OpenTK.OpenGL.Imports");
 
-            FieldInfo[] v = delegates_class.GetFields();
+            FieldInfo[] v = delegates_class.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
             foreach (FieldInfo f in v)
             {
                 f.SetValue(null, GetDelegateForMethod(f.Name, f.FieldType));
