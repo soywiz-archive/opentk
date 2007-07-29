@@ -20,6 +20,7 @@ namespace Bind.GL2
             sw.Indent();
             foreach (Bind.Structures.Delegate d in delegates)
             {
+                sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
                 sw.WriteLine("internal {0};", d.ToString());
                 sw.WriteLine("internal static {0} gl{0};", d.Name);
             }
@@ -74,8 +75,13 @@ namespace Bind.GL2
             sw.Indent();
             foreach (Bind.Structures.Delegate d in delegates)
             {
-                //sw.WriteLine("internal {0};", d.ToString());
-                //sw.WriteLine("internal static {0} gl{0};", d.Name);
+                sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
+                sw.WriteLine(
+                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"gl{0}\", ExactSpelling = true)]",
+                    Settings.GLClass,
+                    d.Name
+                );
+                sw.WriteLine("internal extern static {0};", d.DeclarationString());
             }
             sw.Unindent();
 

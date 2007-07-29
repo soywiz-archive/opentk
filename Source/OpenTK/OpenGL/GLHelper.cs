@@ -67,9 +67,9 @@ namespace OpenTK.OpenGL
     /// </remarks>
     public static partial class GL
     {
-        #region internal string GL_NATIVE_LIBRARY
+        #region internal string Library
 
-        internal const string GL_NATIVE_LIBRARY = "opengl32.dll";
+        internal const string Library = "opengl32.dll";
         
         #endregion
 
@@ -94,7 +94,7 @@ namespace OpenTK.OpenGL
 
         #region internal static extern IntPtr glxGetProcAddressARB(string s);
         // also linux, for our ARB-y friends
-        [DllImport(GL_NATIVE_LIBRARY, EntryPoint = "glXGetProcAddressARB")]
+        [DllImport(Library, EntryPoint = "glXGetProcAddressARB")]
         internal static extern IntPtr glxGetProcAddressARB(string s);
         #endregion
 

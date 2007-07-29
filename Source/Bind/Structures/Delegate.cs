@@ -188,6 +188,19 @@ namespace Bind.Structures
 
         #endregion
 
+        public string DeclarationString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(@unsafe ? "unsafe " : "");
+            sb.Append(ReturnType);
+            sb.Append(" ");
+            sb.Append(Name);
+            sb.Append(Parameters.ToString());
+
+            return sb.ToString();
+        }
+
         #region ToString function
 
         /// <summary>
