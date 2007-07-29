@@ -41,7 +41,6 @@ namespace Bind.Structures
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("public static ");
             sb.Append(Unsafe ? "unsafe " : "");
             sb.Append(ReturnType);
             sb.Append(" ");

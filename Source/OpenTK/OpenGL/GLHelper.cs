@@ -308,14 +308,14 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
             }
 
             // Do not use cached results
-            string extension_string = GL.GetString(Enums.StringName.EXTENSIONS);
+            string extension_string = GL.GetString(GL.Enums.StringName.EXTENSIONS);
             if (String.IsNullOrEmpty(extension_string))
                 return false;               // no extensions are available
 
             // Check if the user searches for GL_VERSION_X_X and search glGetString(GL_VERSION) instead.
             if (name.Contains("GL_VERSION_"))
             {
-                return GL.GetString(OpenTK.OpenGL.Enums.StringName.VERSION).Trim().StartsWith(name.Replace("GL_VERSION_", String.Empty).Replace('_', '.'));
+                return GL.GetString(OpenTK.OpenGL.GL.Enums.StringName.VERSION).Trim().StartsWith(name.Replace("GL_VERSION_", String.Empty).Replace('_', '.'));
             }
 
             // Search for the string given.
@@ -340,7 +340,7 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
 
             AvailableExtensions = new Dictionary<string, bool>();
 
-            string version_string = GL.GetString(OpenTK.OpenGL.Enums.StringName.VERSION);
+            string version_string = GL.GetString(OpenTK.OpenGL.GL.Enums.StringName.VERSION);
             if (String.IsNullOrEmpty(version_string))
                 return;               // this shoudn't happen
 
@@ -386,7 +386,7 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
                 AvailableExtensions.Add("GL_VERSION_2_1", true);
             }
 
-            string extension_string = GL.GetString(OpenTK.OpenGL.Enums.StringName.EXTENSIONS);
+            string extension_string = GL.GetString(OpenTK.OpenGL.GL.Enums.StringName.EXTENSIONS);
             if (String.IsNullOrEmpty(extension_string))
                 return;               // no extensions are available
 

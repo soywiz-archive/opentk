@@ -100,6 +100,15 @@ namespace Bind.Structures
 
         #endregion
 
+        public string GetFullType()
+        {
+            return
+                Type +
+                (IsPointer ? "*" : "") +
+                (Array > 0 ? "[]" : "");
+
+        }
+
         #region Previous type property
 
         private string _previous_type;

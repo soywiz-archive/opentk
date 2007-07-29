@@ -4,7 +4,6 @@
  */
 #endregion
 
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -54,7 +53,7 @@ namespace OpenTK.OpenGL
         /// </summary>
         public void Begin()
         {
-            GL.NewList(Id, Enums.ListMode.COMPILE);
+            GL.NewList(Id, GL.Enums.ListMode.COMPILE);
         }
 
         /// <summary>

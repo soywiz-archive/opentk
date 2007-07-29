@@ -13,13 +13,14 @@ namespace Bind.GL2
             BindStreamWriter sw,
             List<Bind.Structures.Delegate> delegates)
         {
+            sw.WriteLine();
             sw.WriteLine("internal static class {0}", Settings.DelegatesClass);
             sw.WriteLine("{");
 
             sw.Indent();
             foreach (Bind.Structures.Delegate d in delegates)
             {
-                sw.WriteLine("{0};", d.ToString());
+                sw.WriteLine("internal {0};", d.ToString());
             }
             sw.Unindent();
 
@@ -36,6 +37,7 @@ namespace Bind.GL2
             sw.Indent();
             foreach (Bind.Structures.Function f in wrappers)
             {
+                sw.WriteLine("public static ");
                 sw.Write(f);
                 sw.WriteLine();
             }
@@ -72,6 +74,7 @@ namespace Bind.GL2
             foreach (Bind.Structures.Delegate d in delegates)
             {
                 sw.WriteLine("{0};", d.ToString());
+                sw.WriteLine("internal static {0} gl{0};", d.Name);
             }
             sw.Unindent();
 

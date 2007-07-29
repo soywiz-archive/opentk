@@ -156,6 +156,8 @@ namespace Bind.Structures
         public string CallString()
         {
             StringBuilder sb = new StringBuilder();
+            sb.Append(Settings.DelegatesClass);
+            sb.Append(".gl");
             sb.Append(Name);
             sb.Append("(");
             if (Parameters.Count > 0)
@@ -212,17 +214,21 @@ namespace Bind.Structures
 
         public List<Function> CreateWrappers()
         {
-            if (this.Name == "GetString")
-                Console.Write("Mother!");
+            if (this.Name == "Color3bv")
+            {
+            }
 
             List<Function> wrappers = new List<Function>();
             if (!NeedsWrapper)
             {
                 // No special wrapper needed - just call this delegate:
                 Function f = new Function(this);
-                f.Body.Add(
-                    this.ReturnType.Type.Contains("void") ? this.CallString() + ";" : "return " + this.CallString() + ";"
-                );
+
+                if (f.ReturnType.Type.ToLower().Contains("void"))
+                    f.Body.Add(String.Format("{0};", f.CallString()));
+                else
+                    f.Body.Add(String.Format("return {0};", f.CallString()));
+
                 wrappers.Add(f);
             }
             else
@@ -243,7 +249,7 @@ namespace Bind.Structures
 
                         f.Body.Add(
                             String.Format(
-                                "return System.Runtime.InteropServices.Marhsal.PtrToStringAnsi({0});",
+                                "return System.Runtime.InteropServices.Marshal.PtrToStringAnsi({0});",
                                 this.CallString()
                             )
                         );
@@ -254,16 +260,13 @@ namespace Bind.Structures
                     // If the function returns a void* (GenericReturnValue), we'll have to return an IntPtr.
                     // The user will unfortunately need to marshal this IntPtr to a data type manually.
                     case WrapperTypes.GenericReturnValue:
+                        throw new NotImplementedException();
                         f = new Function(this);
 
-                        if (!f.ReturnType.Type.ToLower().Contains("void"))
-                        {
-                            f.Body.Add(String.Format("return {0};", this.CallString()));
-                        }
+                        if (f.ReturnType.Type.ToLower().Contains("void"))
+                            f.Body.Add(String.Format("{0};", f.CallString()));
                         else
-                        {
-                            f.Body.Add(this.CallString());
-                        }
+                            f.Body.Add(String.Format("return {0};", f.CallString()));
 
                         wrappers.Add(f);
                         break;
@@ -287,7 +290,7 @@ namespace Bind.Structures
 
         #region private void WrapParameters(Function f, List<Function> wrappers)
 
-        private int index = 0;
+        private static int index = 0;
 
         /// <summary>
         /// This function needs some heavy refactoring. I'm ashamed I ever wrote it, but it works...
@@ -299,14 +302,14 @@ namespace Bind.Structures
         /// "void f(object p, IntPtr q)"
         /// "void f(object p, object q)"
         /// </summary>
-        private void WrapParameters(Function function, List<Function> wrappers)
+        private static void WrapParameters(Function function, List<Function> wrappers)
         {
             if (index == 0)
             {
                 bool containsPointerParameters = false;
                 // Check if there are any IntPtr parameters (we may have come here from a ReturnType wrapper
                 // such as glGetString, which contains no IntPtr parameters)
-                foreach (Parameter p in this.Parameters)
+                foreach (Parameter p in function.Parameters)
                 {
                     if (p.IsPointer)
                     {
@@ -317,7 +320,7 @@ namespace Bind.Structures
 
                 if (containsPointerParameters)
                 {
-                    wrappers.Add(DefaultWrapper(new Function(this)));
+                    wrappers.Add(DefaultWrapper(function));
                 }
                 else
                 {
@@ -325,9 +328,9 @@ namespace Bind.Structures
                 }
             }
 
-            if (index >= 0 && index < Parameters.Count)
+            if (index >= 0 && index < function.Parameters.Count)
             {
-                switch (Parameters[index].WrapperType)
+                switch (function.Parameters[index].WrapperType)
                 {
                     case WrapperTypes.ArrayParameter:
                         Function f;
@@ -398,7 +401,7 @@ namespace Bind.Structures
             }
         }
 
-        private Function ReferenceWrapper(Function function, int index)
+        private static Function ReferenceWrapper(Function function, int index)
         {
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Reference = true;
@@ -407,12 +410,13 @@ namespace Bind.Structures
 
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
-            AddCallWithPins(function);
+            function.Body.Clear();
+            function.Body.AddRange(AddCallWithPins(function));
 
             return function;
         }
 
-        private Function ArrayWrapper(Function function, int index)
+        private static Function ArrayWrapper(Function function, int index)
         {
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Array = 1;
@@ -420,7 +424,8 @@ namespace Bind.Structures
 
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
-            AddCallWithPins(function);
+            function.Body.Clear();
+            function.Body.AddRange(AddCallWithPins(function));
 
             return function;
         }
@@ -429,25 +434,22 @@ namespace Bind.Structures
         /// Generates a body which calls the specified function, pinning all needed parameters.
         /// </summary>
         /// <param name="function"></param>
-        private void AddCallWithPins(Function function)
+        private static FunctionBody AddCallWithPins(Function function)
         {
             // We'll make changes, but we want the original intact.
             Function f = new Function(function);
-
-            if (f.Name == "Color3bv")
-                goto next;
-            next:
+            f.Body.Clear();
 
             // Add default initliazers for out parameters:
             foreach (Parameter p in function.Parameters)
             {
                 if (p.Flow == Parameter.FlowDirection.Out)
                 {
-                    function.Body.Add(
+                    f.Body.Add(
                         String.Format(
                             "{0} = default({1});",
                             p.Name,
-                            p.Type
+                            p.GetFullType()
                         )
                     );
                 }
@@ -458,9 +460,9 @@ namespace Bind.Structures
             {
                 if (p.NeedsPin)
                 {
-                    function.Body.Add(
+                    f.Body.Add(
                         String.Format(
-                            "fixed ({0} {1} = {2})",
+                            "fixed ({0}* {1} = {2})",
                             p.Type,
                             p.Name + "_ptr",
                             p.Array > 0 ? p.Name : "&" + p.Name
@@ -469,13 +471,13 @@ namespace Bind.Structures
                     p.Name = p.Name + "_ptr";
                 }
             }
-            
-            function.Body.Add("{");
+
+            f.Body.Add("{");
             // Add delegate call:
             if (f.ReturnType.Type.ToLower().Contains("void"))
-                function.Body.Add(String.Format("    {0};", f.CallString()));
+                f.Body.Add(String.Format("    {0};", f.CallString()));
             else
-                function.Body.Add(String.Format("    {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString()));
+                f.Body.Add(String.Format("    {0} {1} = {2};", f.ReturnType.Type, "retval", f.CallString()));
 
             /*
             // Assign out parameters:
@@ -493,23 +495,26 @@ namespace Bind.Structures
                 }
             }
             */
-            function.Body.Add("}");
+
             // Return:
             if (!f.ReturnType.Type.ToLower().Contains("void"))
             {
-                function.Body.Add("return retval;");
+                f.Body.Add("return retval;");
             }
+
+            f.Body.Add("}");
+
+            return f.Body;
         }
 
         #endregion
 
-        Function DefaultWrapper(Function f)
+        private static Function DefaultWrapper(Function f)
         {
-            f.Body.Add(
-                f.ReturnType.Type.Contains("void") ?
-                "return " + this.CallString() + ";" :
-                this.CallString() + ";"
-            );
+            if (f.ReturnType.Type.ToLower().Contains("void"))
+                f.Body.Add(String.Format("{0};", f.CallString()));
+            else
+                f.Body.Add(String.Format("return {0};", f.CallString()));
 
             return f;
         }
