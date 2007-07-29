@@ -21,6 +21,7 @@ namespace Bind.GL2
             foreach (Bind.Structures.Delegate d in delegates)
             {
                 sw.WriteLine("internal {0};", d.ToString());
+                sw.WriteLine("internal static {0} gl{0};", d.Name);
             }
             sw.Unindent();
 
@@ -73,8 +74,8 @@ namespace Bind.GL2
             sw.Indent();
             foreach (Bind.Structures.Delegate d in delegates)
             {
-                sw.WriteLine("internal {0};", d.ToString());
-                sw.WriteLine("internal static {0} gl{0};", d.Name);
+                //sw.WriteLine("internal {0};", d.ToString());
+                //sw.WriteLine("internal static {0} gl{0};", d.Name);
             }
             sw.Unindent();
 
