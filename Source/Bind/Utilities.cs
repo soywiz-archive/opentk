@@ -156,5 +156,62 @@ namespace Bind
         }
 
         #endregion
+
+        #region internal static string StripGL2Extension(Function f)
+
+        internal static string StripGL2Extension(Function f)
+        {
+            if (f.Name.EndsWith("ARB")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "ARB"; }
+            if (f.Name.EndsWith("EXT")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "EXT"; }
+            if (f.Name.EndsWith("ATI")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "ATI"; }
+            if (f.Name.EndsWith("ATIX")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "ATIX"; }
+            if (f.Name.EndsWith("NV")) { f.Name = f.Name.Remove(f.Name.Length - 2); return "NV"; }
+            if (f.Name.EndsWith("SUN")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "SUN"; }
+            if (f.Name.EndsWith("SUNX")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "SUNX"; }
+            if (f.Name.EndsWith("SGI")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "SGI"; }
+            if (f.Name.EndsWith("SGIS")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "SGIS"; }
+            if (f.Name.EndsWith("SGIX")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "SGIX"; }
+            if (f.Name.EndsWith("MESA")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "MESA"; }
+            if (f.Name.EndsWith("G3DFX")) { f.Name = f.Name.Remove(f.Name.Length - 5); return "G3DFX"; }
+            if (f.Name.EndsWith("IBM")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "IBM"; }
+            if (f.Name.EndsWith("GREMEDY")) { f.Name = f.Name.Remove(f.Name.Length - 7); return "GREMEDY"; }
+            if (f.Name.EndsWith("HP")) { f.Name = f.Name.Remove(f.Name.Length - 2); return "HP"; }
+            if (f.Name.EndsWith("PGI")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "PGI"; }
+            if (f.Name.EndsWith("INGR")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "INGR"; }
+            if (f.Name.EndsWith("APPLE")) { f.Name = f.Name.Remove(f.Name.Length - 5); return "APPLE"; }
+            if (f.Name.EndsWith("OML")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "OML"; }
+            if (f.Name.EndsWith("I3D")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "I3D"; }
+            return null;
+        }
+
+        #endregion
+
+        #region private static bool IsGL2Extension(string function)
+
+        private static bool IsGL2Extension(string function)
+        {
+            return (function.EndsWith("ARB") ||
+                    function.EndsWith("EXT") ||
+                    function.EndsWith("ATI") ||
+                    function.EndsWith("NV") ||
+                    function.EndsWith("SUN") ||
+                    function.EndsWith("SUNX") ||
+                    function.EndsWith("SGI") ||
+                    function.EndsWith("SGIS") ||
+                    function.EndsWith("SGIX") ||
+                    function.EndsWith("MESA") ||
+                    function.EndsWith("3DFX") ||
+                    function.EndsWith("IBM") ||
+                    function.EndsWith("GREMEDY") ||
+                    function.EndsWith("HP") ||
+                    function.EndsWith("INTEL") ||
+                    function.EndsWith("PGI") ||
+                    function.EndsWith("INGR") ||
+                    function.EndsWith("APPLE") ||
+                    function.EndsWith("OML") ||
+                    function.EndsWith("I3D"));
+        }
+
+        #endregion
     }
 }

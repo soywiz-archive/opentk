@@ -86,9 +86,24 @@ namespace Bind.GL2
             sw.WriteLine();
             foreach (Bind.Structures.Function f in wrappers)
             {
+                if (Settings.Compat == Settings.Legacy.None)
+                {
+                    f.Extension = Utilities.StripGL2Extension(f);
+                }
+                if (!String.IsNullOrEmpty(f.Extension))
+                {
+                    sw.WriteLine("public static partial class {0}", f.Extension);
+                    sw.WriteLine("{");
+                    sw.Indent();
+                }
                 sw.WriteLine("public static ");
                 sw.Write(f);
                 sw.WriteLine();
+                if (!String.IsNullOrEmpty(f.Extension))
+                {
+                    sw.Unindent();
+                    sw.WriteLine("}");
+                }
             }
             sw.Unindent();
             

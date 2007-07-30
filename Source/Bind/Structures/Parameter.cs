@@ -45,7 +45,7 @@ namespace Bind.Structures
             this.Type = new string(p.Type.ToCharArray());
             this.Flow = p.Flow;
             this.Array = p.Array;
-            this.IsPointer = p.IsPointer;
+            this.Pointer = p.Pointer;
             this.Reference = p.Reference;
             
         }
@@ -104,7 +104,7 @@ namespace Bind.Structures
         {
             return
                 Type +
-                (IsPointer ? "*" : "") +
+                (Pointer ? "*" : "") +
                 (Array > 0 ? "[]" : "");
 
         }
@@ -172,14 +172,14 @@ namespace Bind.Structures
 
         #endregion
 
-        #region public bool IsPointer
+        #region public bool Pointer
 
-        bool isPointer = false;
+        bool pointer = false;
 
-        public bool IsPointer
+        public bool Pointer
         {
-            get { return isPointer; }
-            set { isPointer = value; }
+            get { return pointer; }
+            set { pointer = value; }
         }
 
         #endregion
@@ -259,7 +259,7 @@ namespace Bind.Structures
                     sb.Append("ref ");
             }
             sb.Append(Type);
-            if (IsPointer)
+            if (Pointer)
                 sb.Append("*");
             if (Array > 0)
                 sb.Append("[]");
@@ -353,14 +353,14 @@ namespace Bind.Structures
 
             foreach (Parameter p in pc)
             {
-                if (p.IsPointer == old_param.IsPointer &&
+                if (p.Pointer == old_param.Pointer &&
                     p.Flow == old_param.Flow &&
                     p.Name == old_param.Name &&
                     //p.PreviousType == old_param.PreviousType &&
                     p.Type == old_param.Type &&
                     p.UnmanagedType == old_param.UnmanagedType)
                 {
-                    p.IsPointer = new_param.IsPointer;
+                    p.Pointer = new_param.Pointer;
                     p.Flow = new_param.Flow;
                     p.Name = new_param.Name;
                     p.PreviousType = p.Type;
@@ -392,14 +392,14 @@ namespace Bind.Structures
 
             foreach (Parameter p in pc)
             {
-                if (p.IsPointer == old_param.IsPointer &&
+                if (p.Pointer == old_param.Pointer &&
                     p.Flow == old_param.Flow &&
                     p.Name == old_param.Name &&
                     //p.PreviousType == old_param.PreviousType &&
                     p.Type == old_param.Type &&
                     p.UnmanagedType == old_param.UnmanagedType)
                 {
-                    p.IsPointer = new_param.IsPointer;
+                    p.Pointer = new_param.Pointer;
                     p.Flow = new_param.Flow;
                     p.Name = new_param.Name;
                     p.PreviousType = p.Type;

@@ -26,7 +26,7 @@ namespace Bind.Structures
         public Delegate(Delegate d)
         {
             this.Category = new string(d.Category.ToCharArray());
-            this.Extension = d.Extension;
+            this.Extension = !String.IsNullOrEmpty(d.Extension) ? new string(d.Extension.ToCharArray()) : "";
             this.Name = new string(d.Name.ToCharArray());
             this.NeedsWrapper = d.NeedsWrapper;
             this.Parameters = new ParameterCollection(d.Parameters);
@@ -39,7 +39,7 @@ namespace Bind.Structures
 
         #region --- Properties ---
 
-        #region Category property
+        #region public string Category
 
         private string _category;
 
@@ -51,7 +51,7 @@ namespace Bind.Structures
 
         #endregion
 
-        #region Needs wrapper property
+        #region public bool NeedsWrapper
 
         bool _needs_wrapper;
 
@@ -144,9 +144,9 @@ namespace Bind.Structures
 
         #region public bool Extension
 
-        bool _extension = false;
+        string _extension;
 
-        public bool Extension
+        public string Extension
         {
             get { return _extension; }
             set { _extension = value; }
@@ -341,7 +341,7 @@ namespace Bind.Structures
                 // such as glGetString, which contains no IntPtr parameters)
                 foreach (Parameter p in function.Parameters)
                 {
-                    if (p.IsPointer)
+                    if (p.Pointer)
                     {
                         containsPointerParameters = true;
                         break;
@@ -429,7 +429,7 @@ namespace Bind.Structures
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Reference = false;
             function.Parameters[index].Array = 0;
-            function.Parameters[index].IsPointer = false;
+            function.Parameters[index].Pointer = false;
             function.Parameters[index].Type = "object";
             function.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
 
@@ -451,7 +451,7 @@ namespace Bind.Structures
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Reference = true;
             function.Parameters[index].Array = 0;
-            function.Parameters[index].IsPointer = false;
+            function.Parameters[index].Pointer = false;
 
             // In the function body we should pin all objects in memory before calling the
             // low-level function.
@@ -469,7 +469,7 @@ namespace Bind.Structures
         {
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Array = 1;
-            function.Parameters[index].IsPointer = false;
+            function.Parameters[index].Pointer = false;
             function.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
 
             // In the function body we should pin all objects in memory before calling the
@@ -544,7 +544,7 @@ namespace Bind.Structures
             foreach (Parameter p in f.Parameters)
             {
                 // Enable function-level unsafe status only if function has unsafe parameters
-                if (p.IsPointer)
+                if (p.Pointer)
                 {
                     function.Unsafe = true;
                 }

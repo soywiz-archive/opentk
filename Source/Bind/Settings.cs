@@ -20,7 +20,12 @@ namespace Bind
         public static string WglClass = "Wgl";
         public static string GlxClass = "Glx";
         public static string GluClass = "Glu";
+        public static Legacy Compat = Legacy.None;
 
-        public static string GLFunctionPrepend = String.Empty;
+        public enum Legacy
+        {
+            None,
+            Tao,
+        }
     }
 }

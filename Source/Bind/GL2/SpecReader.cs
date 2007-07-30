@@ -50,33 +50,7 @@ namespace Bind.GL2
 
         #endregion
 
-        #region private static bool IsExtension(string function)
 
-        private static bool IsExtension(string function)
-        {
-            return (function.EndsWith("ARB") ||
-                    function.EndsWith("EXT") ||
-                    function.EndsWith("ATI") ||
-                    function.EndsWith("NV") ||
-                    function.EndsWith("SUN") ||
-                    function.EndsWith("SUNX") ||
-                    function.EndsWith("SGI") ||
-                    function.EndsWith("SGIS") ||
-                    function.EndsWith("SGIX") ||
-                    function.EndsWith("MESA") ||
-                    function.EndsWith("3DFX") ||
-                    function.EndsWith("IBM") ||
-                    function.EndsWith("GREMEDY") ||
-                    function.EndsWith("HP") ||
-                    function.EndsWith("INTEL") ||
-                    function.EndsWith("PGI") ||
-                    function.EndsWith("INGR") ||
-                    function.EndsWith("APPLE") ||
-                    function.EndsWith("OML") ||
-                    function.EndsWith("I3D"));
-        }
-
-        #endregion
 
         #region --- ISpecReader Members ---
 
@@ -102,7 +76,7 @@ namespace Bind.GL2
 
                     // Get function name:
                     d.Name = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries)[0];
-                    d.Extension = IsExtension(d.Name);
+                    //d.Extension = Utilities.StripGL2Extension(d.Name);
 
                     do
                     {
@@ -130,7 +104,7 @@ namespace Bind.GL2
 
                                 p.Name = Utilities.Keywords.Contains(words[1]) ? "@" + words[1] : words[1];
                                 p.Type = words[2];
-                                p.IsPointer = words[4] == "array" ? true : false;
+                                p.Pointer = words[4] == "array" ? true : false;
                                 p.Flow = words[3] == "in" ? Parameter.FlowDirection.In : Parameter.FlowDirection.Out;
 
                                 d.Parameters.Add(p);

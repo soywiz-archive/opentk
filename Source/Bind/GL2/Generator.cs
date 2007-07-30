@@ -247,11 +247,11 @@ namespace Bind.GL2
                     }
                 }
 
-                if (p.IsPointer)
+                if (p.Pointer)
                     d.Unsafe = true;
 
                 // Translate pointer parameters
-                if (p.IsPointer)
+                if (p.Pointer)
                 {
                     p.WrapperType = WrapperTypes.ArrayParameter;
 
@@ -270,7 +270,7 @@ namespace Bind.GL2
                             p.Array = 1;
                         }
 
-                        p.IsPointer = false;
+                        p.Pointer = false;
                         p.WrapperType = WrapperTypes.None;
                     }
                     else if (p.Type.ToLower().Contains("void"))
