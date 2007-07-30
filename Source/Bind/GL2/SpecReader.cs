@@ -8,59 +8,16 @@ namespace Bind.GL2
 {
     class SpecReader : ISpecReader
     {
-        #region private string NextValidLine(StreamReader sr)
-
-        private string NextValidLine(System.IO.StreamReader sr)
-        {
-            string line;
-
-            do
-            {
-                if (sr.EndOfStream)
-                    return null;
-
-                line = sr.ReadLine().Trim();
-
-                if (String.IsNullOrEmpty(line) ||
-                    line.StartsWith("#") ||                 // Disregard comments.
-                    line.StartsWith("passthru") ||          // Disregard passthru statements.
-                    line.StartsWith("required-props:") ||
-                    line.StartsWith("param:") ||
-                    line.StartsWith("dlflags:") ||
-                    line.StartsWith("glxflags:") ||
-                    line.StartsWith("vectorequiv:") ||
-                    //line.StartsWith("category:") ||
-                    line.StartsWith("version:") ||
-                    line.StartsWith("glxsingle:") ||
-                    line.StartsWith("glxropcode:") ||
-                    line.StartsWith("glxvendorpriv:") ||
-                    line.StartsWith("glsflags:") ||
-                    line.StartsWith("glsopcode:") ||
-                    line.StartsWith("glsalias:") ||
-                    line.StartsWith("wglflags:") ||
-                    line.StartsWith("extension:") ||
-                    line.StartsWith("alias:") ||
-                    line.StartsWith("offset:"))
-                    continue;
-
-                return line;
-            }
-            while (true);
-        }
-
-        #endregion
-
-
-
         #region --- ISpecReader Members ---
 
-        #region public List<Function> ReadFunctions(System.IO.StreamReader specFile)
+        #region public virtual DelegateCollection ReadDelegates(System.IO.StreamReader specFile)
 
-        public List<Bind.Structures.Delegate> ReadFunctions(System.IO.StreamReader specFile)
+        public virtual DelegateCollection ReadDelegates(System.IO.StreamReader specFile)
         {
             Console.WriteLine("Reading function specs.");
 
-            List<Bind.Structures.Delegate> delegates = new List<Bind.Structures.Delegate>();
+            //List<Bind.Structures.Delegate> delegates = new List<Bind.Structures.Delegate>();
+            DelegateCollection delegates = new DelegateCollection();
 
             do
             {
@@ -132,9 +89,9 @@ namespace Bind.GL2
 
         #endregion
 
-        #region public EnumCollection ReadEnums(System.IO.StreamReader specFile)
+        #region public virtual EnumCollection ReadEnums(System.IO.StreamReader specFile)
 
-        public EnumCollection ReadEnums(System.IO.StreamReader specfile)
+        public virtual EnumCollection ReadEnums(System.IO.StreamReader specfile)
         {
             EnumCollection enums = new EnumCollection();
 
@@ -307,11 +264,9 @@ namespace Bind.GL2
 
         #endregion
 
-        #endregion
+        #region public virtual void ReadTypeMap(System.IO.StreamReader sr)
 
-        #region internal void ReadGLTypeMap(System.IO.StreamReader sr)
-
-        internal Dictionary<string, string> ReadGLTypeMap(System.IO.StreamReader sr)
+        public virtual Dictionary<string, string> ReadTypeMap(System.IO.StreamReader sr)
         {
             Console.WriteLine("Reading opengl types.");
             Dictionary<string, string> GLTypes = new Dictionary<string, string>();
@@ -331,7 +286,7 @@ namespace Bind.GL2
                     GLTypes.Add(words[0], "void");
                 }
                 else if (words[0] == "VoidPointer" || words[0] == "ConstVoidPointer")
-                { 
+                {
                     // "(Const)VoidPointer" -> "void*"
                     GLTypes.Add(words[0], "void");
                 }
@@ -359,9 +314,9 @@ namespace Bind.GL2
 
         #endregion
 
-        #region internal Dictionary<string, string> ReadCSTypeMap(System.IO.StreamReader sr)
+        #region public virtual Dictionary<string, string> ReadCSTypeMap(System.IO.StreamReader sr)
 
-        internal Dictionary<string, string> ReadCSTypeMap(System.IO.StreamReader sr)
+        public virtual Dictionary<string, string> ReadCSTypeMap(System.IO.StreamReader sr)
         {
             Dictionary<string, string> CSTypes = new Dictionary<string, string>();
             Console.WriteLine("Reading C# types.");
@@ -380,6 +335,50 @@ namespace Bind.GL2
             }
 
             return CSTypes;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region protected virtual string NextValidLine(StreamReader sr)
+
+        protected virtual string NextValidLine(System.IO.StreamReader sr)
+        {
+            string line;
+
+            do
+            {
+                if (sr.EndOfStream)
+                    return null;
+
+                line = sr.ReadLine().Trim();
+
+                if (String.IsNullOrEmpty(line) ||
+                    line.StartsWith("#") ||                 // Disregard comments.
+                    line.StartsWith("passthru") ||          // Disregard passthru statements.
+                    line.StartsWith("required-props:") ||
+                    line.StartsWith("param:") ||
+                    line.StartsWith("dlflags:") ||
+                    line.StartsWith("glxflags:") ||
+                    line.StartsWith("vectorequiv:") ||
+                    //line.StartsWith("category:") ||
+                    line.StartsWith("version:") ||
+                    line.StartsWith("glxsingle:") ||
+                    line.StartsWith("glxropcode:") ||
+                    line.StartsWith("glxvendorpriv:") ||
+                    line.StartsWith("glsflags:") ||
+                    line.StartsWith("glsopcode:") ||
+                    line.StartsWith("glsalias:") ||
+                    line.StartsWith("wglflags:") ||
+                    line.StartsWith("extension:") ||
+                    line.StartsWith("alias:") ||
+                    line.StartsWith("offset:"))
+                    continue;
+
+                return line;
+            }
+            while (true);
         }
 
         #endregion

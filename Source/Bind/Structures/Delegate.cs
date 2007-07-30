@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Bind.Structures
 {
@@ -26,7 +27,7 @@ namespace Bind.Structures
         public Delegate(Delegate d)
         {
             this.Category = new string(d.Category.ToCharArray());
-            this.Extension = !String.IsNullOrEmpty(d.Extension) ? new string(d.Extension.ToCharArray()) : "";
+            //this.Extension = !String.IsNullOrEmpty(d.Extension) ? new string(d.Extension.ToCharArray()) : "";
             this.Name = new string(d.Name.ToCharArray());
             this.NeedsWrapper = d.NeedsWrapper;
             this.Parameters = new ParameterCollection(d.Parameters);
@@ -148,8 +149,20 @@ namespace Bind.Structures
 
         public string Extension
         {
-            get { return _extension; }
-            set { _extension = value; }
+            //get { return _extension; }
+            //set { _extension = value; }
+            get
+            {
+                if (!String.IsNullOrEmpty(Name))
+                {
+                    _extension = Utilities.GetGL2Extension(Name);
+                    return String.IsNullOrEmpty(_extension) ? "Core" : _extension;
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
         #endregion
@@ -675,5 +688,22 @@ namespace Bind.Structures
         #endregion
 
         #endregion
+    }
+
+    class DelegateCollection : Dictionary<string, Delegate>
+    {
+        public void Add(Delegate d)
+        {
+            if (!this.ContainsKey(d.Name))
+            {
+                this.Add(d.Name, d);
+            }
+            else
+            {
+                Trace.WriteLine(String.Format(
+                    "Spec error: function {0} redefined, ignoring second definition.",
+                    d.Name));
+            }
+        }
     }
 }

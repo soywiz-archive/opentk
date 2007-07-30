@@ -10,8 +10,8 @@ namespace Bind.GL2
     {
         private SpecReader specReader = new SpecReader();
         private SpecWriter specWriter = new SpecWriter();
-        List<Bind.Structures.Delegate> delegates = new List<Bind.Structures.Delegate>();
-        List<Bind.Structures.Function> wrappers = new List<Bind.Structures.Function>();
+        DelegateCollection delegates = new DelegateCollection();
+        FunctionCollection wrappers = new FunctionCollection();
         //List<Bind.Structures.Enum> enums = new List<Bind.Structures.Enum>();
         EnumCollection enums = new EnumCollection();
         EnumCollection extEnums = new EnumCollection();
@@ -41,7 +41,7 @@ namespace Bind.GL2
             // Read
             using (StreamReader sr = Utilities.OpenSpecFile(Settings.InputPath, "gl2\\gl.tm"))
             {
-                GLTypes = specReader.ReadGLTypeMap(sr);
+                GLTypes = specReader.ReadTypeMap(sr);
             }
             using (StreamReader sr = Utilities.OpenSpecFile(Settings.InputPath, "gl2\\csharp.tm"))
             {
@@ -49,7 +49,7 @@ namespace Bind.GL2
             }
             using (StreamReader sr = Utilities.OpenSpecFile(Settings.InputPath, "gl2\\gl.spec"))
             {
-                delegates = specReader.ReadFunctions(sr);
+                delegates = specReader.ReadDelegates(sr);
             }
             using (StreamReader sr = Utilities.OpenSpecFile(Settings.InputPath, "gl2\\enum.spec"))
             {
@@ -160,7 +160,7 @@ namespace Bind.GL2
                 TranslateEnum(e);
             }
 
-            foreach (Bind.Structures.Delegate d in delegates)
+            foreach (Bind.Structures.Delegate d in delegates.Values)
             {
                 TranslateReturnType(d);
                 TranslateParameters(d);

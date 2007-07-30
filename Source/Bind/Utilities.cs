@@ -161,26 +161,40 @@ namespace Bind
 
         internal static string StripGL2Extension(Function f)
         {
-            if (f.Name.EndsWith("ARB")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "ARB"; }
-            if (f.Name.EndsWith("EXT")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "EXT"; }
-            if (f.Name.EndsWith("ATI")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "ATI"; }
-            if (f.Name.EndsWith("ATIX")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "ATIX"; }
-            if (f.Name.EndsWith("NV")) { f.Name = f.Name.Remove(f.Name.Length - 2); return "NV"; }
-            if (f.Name.EndsWith("SUN")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "SUN"; }
-            if (f.Name.EndsWith("SUNX")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "SUNX"; }
-            if (f.Name.EndsWith("SGI")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "SGI"; }
-            if (f.Name.EndsWith("SGIS")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "SGIS"; }
-            if (f.Name.EndsWith("SGIX")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "SGIX"; }
-            if (f.Name.EndsWith("MESA")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "MESA"; }
-            if (f.Name.EndsWith("G3DFX")) { f.Name = f.Name.Remove(f.Name.Length - 5); return "G3DFX"; }
-            if (f.Name.EndsWith("IBM")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "IBM"; }
-            if (f.Name.EndsWith("GREMEDY")) { f.Name = f.Name.Remove(f.Name.Length - 7); return "GREMEDY"; }
-            if (f.Name.EndsWith("HP")) { f.Name = f.Name.Remove(f.Name.Length - 2); return "HP"; }
-            if (f.Name.EndsWith("PGI")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "PGI"; }
-            if (f.Name.EndsWith("INGR")) { f.Name = f.Name.Remove(f.Name.Length - 4); return "INGR"; }
-            if (f.Name.EndsWith("APPLE")) { f.Name = f.Name.Remove(f.Name.Length - 5); return "APPLE"; }
-            if (f.Name.EndsWith("OML")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "OML"; }
-            if (f.Name.EndsWith("I3D")) { f.Name = f.Name.Remove(f.Name.Length - 3); return "I3D"; }
+            string ext = GetGL2Extension(f.Name);
+            if (String.IsNullOrEmpty(ext))
+                return null;
+
+            f.Name = f.Name.Substring(0, f.Name.Length - ext.Length);
+            return ext;
+        }
+
+        #endregion
+
+        #region internal static string GetGL2Extension(string name)
+
+        internal static string GetGL2Extension(string name)
+        {
+            if (name.EndsWith("ARB")) { return "ARB"; }
+            if (name.EndsWith("EXT")) { return "EXT"; }
+            if (name.EndsWith("ATI")) { return "ATI"; }
+            if (name.EndsWith("ATIX")) { return "ATIX"; }
+            if (name.EndsWith("NV")) { return "NV"; }
+            if (name.EndsWith("SUN")) { return "SUN"; }
+            if (name.EndsWith("SUNX")) { return "SUNX"; }
+            if (name.EndsWith("SGI")) { return "SGI"; }
+            if (name.EndsWith("SGIS")) { return "SGIS"; }
+            if (name.EndsWith("SGIX")) { return "SGIX"; }
+            if (name.EndsWith("MESA")) { return "MESA"; }
+            if (name.EndsWith("G3DFX")) { return "G3DFX"; }
+            if (name.EndsWith("IBM")) { return "IBM"; }
+            if (name.EndsWith("GREMEDY")) { return "GREMEDY"; }
+            if (name.EndsWith("HP")) { return "HP"; }
+            if (name.EndsWith("PGI")) { return "PGI"; }
+            if (name.EndsWith("INGR")) { return "INGR"; }
+            if (name.EndsWith("APPLE")) { return "APPLE"; }
+            if (name.EndsWith("OML")) { return "OML"; }
+            if (name.EndsWith("I3D")) { return "I3D"; }
             return null;
         }
 

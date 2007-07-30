@@ -7,7 +7,9 @@ namespace Bind
 {
     interface ISpecReader
     {
-        List<Bind.Structures.Delegate> ReadFunctions(StreamReader specFile);
+        Bind.Structures.DelegateCollection ReadDelegates(StreamReader specFile);
         Bind.Structures.EnumCollection ReadEnums(StreamReader specFile);
+        Dictionary<string, string> ReadTypeMap(StreamReader specFile);
+        Dictionary<string, string> ReadCSTypeMap(StreamReader specFile);
     }
 }

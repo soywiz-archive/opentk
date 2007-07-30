@@ -11,9 +11,7 @@ namespace Bind.GL2
 
         #region void WriteDelegates
 
-        public void WriteDelegates(
-            BindStreamWriter sw,
-            List<Bind.Structures.Delegate> delegates)
+        public void WriteDelegates(BindStreamWriter sw, DelegateCollection delegates)
         {
             sw.WriteLine();
             sw.WriteLine("internal static class {0}", Settings.DelegatesClass);
@@ -28,7 +26,7 @@ namespace Bind.GL2
             sw.Unindent();
             sw.WriteLine("}");
             sw.WriteLine();
-            foreach (Bind.Structures.Delegate d in delegates)
+            foreach (Bind.Structures.Delegate d in delegates.Values)
             {
                 sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
                 sw.WriteLine("internal {0};", d.ToString());
@@ -43,9 +41,7 @@ namespace Bind.GL2
 
         #region void WriteImports
 
-        public void WriteImports(
-            BindStreamWriter sw,
-            List<Bind.Structures.Delegate> delegates)
+        public void WriteImports(BindStreamWriter sw, DelegateCollection delegates)
         {
             sw.WriteLine();
             sw.WriteLine("internal static class {0}", Settings.ImportsClass);
@@ -54,7 +50,7 @@ namespace Bind.GL2
             sw.Indent();
             sw.WriteLine("static {0}() {1} {2}", Settings.ImportsClass, "{", "}");    // Disable BeforeFieldInit
             sw.WriteLine();
-            foreach (Bind.Structures.Delegate d in delegates)
+            foreach (Bind.Structures.Delegate d in delegates.Values)
             {
                 sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
                 sw.WriteLine(
@@ -73,9 +69,7 @@ namespace Bind.GL2
 
         #region void WriteWrappers
 
-        public void WriteWrappers(
-            BindStreamWriter sw,
-            List<Bind.Structures.Function> wrappers)
+        public void WriteWrappers(BindStreamWriter sw, FunctionCollection wrappers)
         {
             sw.WriteLine();
             sw.WriteLine("public static partial class {0}", Settings.GLClass);
@@ -84,29 +78,36 @@ namespace Bind.GL2
             sw.Indent();
             sw.WriteLine("static {0}() {1} {2}", Settings.GLClass, "{", "}");    // Disable BeforeFieldInit
             sw.WriteLine();
-            foreach (Bind.Structures.Function f in wrappers)
+            foreach (string key in wrappers.Keys)
             {
-                if (Settings.Compat == Settings.Legacy.None)
+                if (Settings.Compat == Settings.Legacy.None && key != "Core")
                 {
-                    f.Extension = Utilities.StripGL2Extension(f);
-                }
-                if (!String.IsNullOrEmpty(f.Extension))
-                {
-                    sw.WriteLine("public static partial class {0}", f.Extension);
+                    sw.WriteLine("public static class {0}", key);
                     sw.WriteLine("{");
                     sw.Indent();
-                }
-                sw.WriteLine("public static ");
-                sw.Write(f);
-                sw.WriteLine();
-                if (!String.IsNullOrEmpty(f.Extension))
-                {
+
+                    foreach (Function f in wrappers[key])
+                    {
+                        sw.WriteLine("public static ");
+                        sw.Write(f);
+                        sw.WriteLine();
+                    }
+
                     sw.Unindent();
                     sw.WriteLine("}");
+                    sw.WriteLine();
+                }
+                else
+                {
+                    foreach (Function f in wrappers[key])
+                    {
+                        sw.WriteLine("public static ");
+                        sw.Write(f);
+                        sw.WriteLine();
+                    }
                 }
             }
             sw.Unindent();
-            
             sw.WriteLine("}");
         }
 

@@ -6,6 +6,8 @@ namespace Bind.Structures
 {
     public class Function : Delegate
     {
+        #region --- Constructors ---
+
         public Function()
             : base()
         {
@@ -23,6 +25,8 @@ namespace Bind.Structures
         {
             this.Body = new FunctionBody();
         }
+
+        #endregion
 
         #region Function body
 
@@ -93,4 +97,28 @@ namespace Bind.Structures
     }
 
     #endregion
+
+    class FunctionCollection : Dictionary<string, List<Function>>
+    {
+        public void Add(Function f)
+        {
+            if (!this.ContainsKey(f.Extension))
+            {
+                this.Add(f.Extension, new List<Function>());
+                this[f.Extension].Add(f);
+            }
+            else
+            {
+                this[f.Extension].Add(f);
+            }
+        }
+
+        public void AddRange(IEnumerable<Function> functions)
+        {
+            foreach (Function f in functions)
+            {
+                this.Add(f);
+            }
+        }
+    }
 }
