@@ -364,7 +364,7 @@ namespace Bind.Structures
                     // using Marshal.PtrToStringXXX. Otherwise, the GC will try to free the memory
                     // used by the string, resulting in corruption (the memory belongs to the
                     // unmanaged boundary).
-                    case WrapperTypes.StringReturnValue:
+                    case WrapperTypes.StringReturnType:
                         f = new Function(this);
                         f.ReturnType.Type = "System.String";
 
@@ -380,7 +380,7 @@ namespace Bind.Structures
 
                     // If the function returns a void* (GenericReturnValue), we'll have to return an IntPtr.
                     // The user will unfortunately need to marshal this IntPtr to a data type manually.
-                    case WrapperTypes.GenericReturnValue:
+                    case WrapperTypes.GenericReturnType:
                         throw new NotImplementedException();
                         f = new Function(this);
 

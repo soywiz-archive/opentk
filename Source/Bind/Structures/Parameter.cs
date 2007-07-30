@@ -37,7 +37,7 @@ namespace Bind.Structures
 
             this.Name = !String.IsNullOrEmpty(p.Name) ? new string(p.Name.ToCharArray()) : "";
             //this.NeedsWrapper = p.NeedsWrapper;
-            this.PreviousType = new string(p.PreviousType.ToCharArray());
+            this.PreviousType = !String.IsNullOrEmpty(p.PreviousType) ? new string(p.PreviousType.ToCharArray()) : "";
             this.Unchecked = p.Unchecked;
             this.UnmanagedType = p.UnmanagedType;
             this.WrapperType = p.WrapperType;
@@ -88,7 +88,14 @@ namespace Bind.Structures
         /// </summary>
         public string Type
         {
-            get { return _type; }
+            //get { return _type; }
+            get
+            {
+                //if (Pointer && Settings.Compatibility == Settings.Legacy.Tao)
+                //    return "IntPtr";
+                
+                return _type;
+            }
             set
             {
                 if (!String.IsNullOrEmpty(_type))
@@ -256,6 +263,9 @@ namespace Bind.Structures
 
         public string GetFullType(Dictionary<string, string> CSTypes, bool compliant)
         {
+            if (Pointer && Settings.Compatibility == Settings.Legacy.Tao)
+                return "IntPtr";
+
             if (!compliant)
             {
                 return
@@ -263,6 +273,7 @@ namespace Bind.Structures
                     (Pointer ? "*" : "") +
                     (Array > 0 ? "[]" : "");
             }
+
             return 
                 GetCLSCompliantType(CSTypes) +
                 (Pointer ? "*" : "") +
@@ -276,6 +287,9 @@ namespace Bind.Structures
         {
             if (!CLSCompliant)
             {
+                if (Pointer && Settings.Compatibility == Settings.Legacy.Tao)
+                    return "IntPtr";
+                    
                 if (CSTypes.ContainsKey(Type))
                 {
                     switch (CSTypes[Type])
@@ -299,6 +313,13 @@ namespace Bind.Structures
 
         override public string ToString()
         {
+            return ToString(false);
+        }
+
+        #endregion
+
+        public string ToString(bool taoCompatible)
+        {
             StringBuilder sb = new StringBuilder();
 
             //if (UnmanagedType == UnmanagedType.AsAny && Flow == FlowDirection.In)
@@ -309,6 +330,7 @@ namespace Bind.Structures
 
             //if (Flow == FlowDirection.Out && !Array && !(Type == "IntPtr"))
             //    sb.Append("out ");
+
             if (Reference)
             {
                 if (Flow == FlowDirection.Out)
@@ -316,11 +338,28 @@ namespace Bind.Structures
                 else
                     sb.Append("ref ");
             }
-            sb.Append(Type);
-            if (Pointer)
-                sb.Append("*");
-            if (Array > 0)
-                sb.Append("[]");
+
+            if (taoCompatible && Settings.Compatibility == Settings.Legacy.Tao)
+            {
+                if (Pointer)
+                {
+                    sb.Append("IntPtr");
+                }
+                else
+                {
+                    sb.Append(Type);
+                    if (Array > 0)
+                        sb.Append("[]");
+                }
+            }
+            else
+            {
+                sb.Append(Type);
+                if (Pointer)
+                    sb.Append("*");
+                if (Array > 0)
+                    sb.Append("[]");
+            }
 
             if (!String.IsNullOrEmpty(Name))
             {
@@ -329,8 +368,6 @@ namespace Bind.Structures
             }
             return sb.ToString();
         }
-
-        #endregion
     }
 
     #endregion
@@ -371,7 +408,12 @@ namespace Bind.Structures
 
         #endregion
 
-        #region public string ToString(bool cslCompliant)
+        public string ToString(bool taoCompatible)
+        {
+            return ToString(true, null);
+        }
+
+        #region public string ToString(bool taoCompatible, Dictionary<string, string> CSTypes)
 
         /// <summary>
         /// Gets the parameter declaration string.
@@ -379,7 +421,7 @@ namespace Bind.Structures
         /// <param name="getCLSCompliant">If true, all types will be replaced by their CLSCompliant C# equivalents</param>
         /// <param name="CSTypes">The list of C# types equivalent to the OpenGL types.</param>
         /// <returns>The parameter list of an opengl function in the form ( [parameters] )</returns>
-        public string ToString(bool getCLSCompliant, Dictionary<string, string> CSTypes)
+        public string ToString(bool taoCompatible, Dictionary<string, string> CSTypes)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("(");
@@ -387,10 +429,9 @@ namespace Bind.Structures
             {
                 foreach (Parameter p in this)
                 {
-                    if (getCLSCompliant)
+                    if (taoCompatible)
                     {
-                        //sb.Append(p.GetCLSCompliantType(CSTypes));
-                        throw new NotImplementedException();
+                        sb.Append(p.ToString(true));
                     }
                     else
                     {

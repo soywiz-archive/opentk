@@ -41,15 +41,15 @@ namespace Bind
         /// Function returns string - needs manual marshalling through IntPtr to prevent the managed GC
         /// from freeing memory allocated on the unmanaged side (e.g. glGetString).
         /// </summary>
-        StringReturnValue,
+        StringReturnType,
         /// <summary>
         /// Function returns a void pointer - maps to IntPtr, and the user has to manually marshal the type.
         /// </summary>
-        GenericReturnValue,
+        GenericReturnType,
         /// <summary>
         /// Function returns a typed pointer - we have to copy the data to an array to protect it from the GC.
         /// </summary>
-        ArrayReturnValue
+        ArrayReturnType
     }
 
     #endregion

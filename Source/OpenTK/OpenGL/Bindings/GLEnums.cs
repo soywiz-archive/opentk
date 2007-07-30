@@ -5571,6 +5571,22 @@ namespace OpenTK.OpenGL
                 FEEDBACK = ((int)0x1C01),
             }
             
+            public enum SGIX_icc_texture
+            {
+                R5_G6_B5_A8_ICC_SGIX = ((int)0x8467),
+                INTENSITY_ICC_SGIX = ((int)0x8464),
+                RGB_ICC_SGIX = ((int)0x8460),
+                LUMINANCE_ICC_SGIX = ((int)0x8463),
+                LUMINANCE_ALPHA_ICC_SGIX = ((int)0x8465),
+                ALPHA_ICC_SGIX = ((int)0x8462),
+                RGBA_ICC_SGIX = ((int)0x8461),
+                R5_G6_B5_ICC_SGIX = ((int)0x8466),
+                INTENSITY16_ICC_SGIX = ((int)0x846A),
+                LUMINANCE16_ALPHA8_ICC_SGIX = ((int)0x846B),
+                LUMINANCE16_ICC_SGIX = ((int)0x8469),
+                ALPHA16_ICC_SGIX = ((int)0x8468),
+            }
+            
             public enum ARB_imaging
             {
                 CONVOLUTION_FILTER_SCALE = ((int)0x8014),
@@ -8443,22 +8459,6 @@ namespace OpenTK.OpenGL
                 RGB32UI_EXT = ((int)0x8D71),
                 RGB16UI_EXT = ((int)0x8D77),
                 ALPHA8I_EXT = ((int)0x8D90),
-            }
-            
-            public enum SGIX_icc_texture
-            {
-                R5_G6_B5_A8_ICC_SGIX = ((int)0x8467),
-                INTENSITY_ICC_SGIX = ((int)0x8464),
-                RGB_ICC_SGIX = ((int)0x8460),
-                LUMINANCE_ICC_SGIX = ((int)0x8463),
-                LUMINANCE_ALPHA_ICC_SGIX = ((int)0x8465),
-                ALPHA_ICC_SGIX = ((int)0x8462),
-                RGBA_ICC_SGIX = ((int)0x8461),
-                R5_G6_B5_ICC_SGIX = ((int)0x8466),
-                INTENSITY16_ICC_SGIX = ((int)0x846A),
-                LUMINANCE16_ALPHA8_ICC_SGIX = ((int)0x846B),
-                LUMINANCE16_ICC_SGIX = ((int)0x8469),
-                ALPHA16_ICC_SGIX = ((int)0x8468),
             }
             
         }

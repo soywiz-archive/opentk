@@ -164,6 +164,19 @@ namespace Bind.GL2
 
         #region private void TranslateReturnType(Bind.Structures.Delegate d)
 
+        /// <summary>
+        /// Translates the opengl return type to the equivalent C# type.
+        /// </summary>
+        /// <param name="d">The opengl function to translate.</param>
+        /// <remarks>
+        /// First, we use the official typemap (gl.tm) to get the correct type.
+        /// Then we override this, when it is:
+        /// 1) A string (we have to use Marshal.PtrToStringAnsi, to avoid heap corruption)
+        /// 2) An array (translates to IntPtr)
+        /// 3) A generic object or void* (translates to IntPtr)
+        /// 4) A GLenum (translates to int on Legacy.Tao or GL.Enums.GLenum otherwise).
+        /// Return types must always be CLS-compliant, because .Net does not support overloading on return types.
+        /// </remarks>
         private void TranslateReturnType(Bind.Structures.Delegate d)
         {
             if (GLTypes.ContainsKey(d.ReturnType.Type))
@@ -174,23 +187,26 @@ namespace Bind.GL2
             if (d.ReturnType.Type == "GLstring")
             {
                 d.ReturnType.Type = "System.IntPtr";
-                d.ReturnType.WrapperType = WrapperTypes.StringReturnValue;
+                d.ReturnType.WrapperType = WrapperTypes.StringReturnType;
             }
 
             if (d.ReturnType.Type.ToLower().Contains("object"))
             {
                 d.ReturnType.Type = "System.IntPtr";
-                d.ReturnType.WrapperType |= WrapperTypes.GenericReturnValue;
+                d.ReturnType.WrapperType |= WrapperTypes.GenericReturnType;
             }
 
             if (d.ReturnType.Type == "GLenum")
             {
-                d.ReturnType.Type = Settings.GLClass + ".Enums.GLenum";
+                if (Settings.Compatibility == Settings.Legacy.None)
+                    d.ReturnType.Type = Settings.GLClass + ".Enums.GLenum";
+                else
+                    d.ReturnType.Type = "int";
             }
 
-            if (d.ReturnType.Type.Contains("*"))
+            if (d.ReturnType.Type.ToLower().Contains("bool") && Settings.Compatibility == Settings.Legacy.Tao)
             {
-                //d.Unsafe = true;
+                d.ReturnType.Type = "int";
             }
 
             if (d.ReturnType.WrapperType != WrapperTypes.None)
@@ -212,10 +228,13 @@ namespace Bind.GL2
 
             foreach (Parameter p in d.Parameters)
             {
+                // Translate enum parameters
                 if (enums.TryGetValue(p.Type, out @enum) && @enum.Name != "GLenum")
                 {
-                    // First, check if the type is an enum:
-                    p.Type = p.Type.Insert(0, Settings.GLClass + ".Enums.");
+                    if (Settings.Compatibility == Settings.Legacy.None)
+                        p.Type = p.Type.Insert(0, Settings.GLClass + ".Enums.");
+                    else
+                        p.Type = "int";
                 }
                 else if (GLTypes.TryGetValue(p.Type, out s))
                 {
@@ -223,15 +242,21 @@ namespace Bind.GL2
                     // check if a better match exists:
                     if (s.Contains("GLenum") && !String.IsNullOrEmpty(d.Category))
                     {
-                        // Check if an enum with Name equal to the category exists
-                        // (e.g. GL_VERSION_1_1 etc)
-                        if (enums.ContainsKey(d.Category))
+                        if (Settings.Compatibility == Settings.Legacy.None)
                         {
-                            p.Type = Settings.GLClass + ".Enums." + d.Category;
+                            // Better match: enum.Name == function.Category (e.g. GL_VERSION_1_1 etc)
+                            if (enums.ContainsKey(d.Category))
+                            {
+                                p.Type = Settings.GLClass + ".Enums." + d.Category;
+                            }
+                            else
+                            {
+                                p.Type = Settings.GLClass + ".Enums.GLenum";
+                            }
                         }
                         else
                         {
-                            p.Type = Settings.GLClass + ".Enums.GLenum";
+                            p.Type = "int";
                         }
                     }
                     else
@@ -239,13 +264,6 @@ namespace Bind.GL2
                         // This is not enum, default translation:
                         p.Type = s;
                     }
-                }
-
-                //if (p.Pointer)
-                    //d.Unsafe = true;
-
-                if (d.Name == "CallLists")
-                {
                 }
 
                 // Translate pointer parameters

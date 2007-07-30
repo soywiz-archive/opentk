@@ -8,7 +8,7 @@ namespace Bind.GL2
 {
     class SpecWriter : ISpecWriter
     {
-        #region ISpecWriter Members
+        #region --- ISpecWriter Members ---
 
         #region void WriteDelegates
 
@@ -105,7 +105,7 @@ namespace Bind.GL2
             sw.WriteLine();
             foreach (string key in wrappers.Keys)
             {
-                if (Settings.Compat == Settings.Legacy.None && key != "Core")
+                if (Settings.Compatibility == Settings.Legacy.None && key != "Core")
                 {
                     sw.WriteLine("public static class {0}", key);
                     sw.WriteLine("{");
@@ -114,7 +114,7 @@ namespace Bind.GL2
 
                 foreach (Function f in wrappers[key])
                 {
-                    if (Settings.Compat == Settings.Legacy.None)
+                    if (Settings.Compatibility == Settings.Legacy.None)
                         Utilities.StripGL2Extension(f);
 
                     if (f.Name == "ActiveTexture")
@@ -130,7 +130,7 @@ namespace Bind.GL2
                     sw.WriteLine();
                 }
 
-                if (Settings.Compat == Settings.Legacy.None && key != "Core")
+                if (Settings.Compatibility == Settings.Legacy.None && key != "Core")
                 {
                     sw.Unindent();
                     sw.WriteLine("}");
@@ -163,18 +163,40 @@ namespace Bind.GL2
         {
             Trace.WriteLine(String.Format("Writing enums to {0}.{1}", Settings.OutputNamespace, Settings.GLClass));
 
-            sw.WriteLine("public class Enums");
-            sw.WriteLine("{");
-
-            sw.Indent();
-            foreach (Bind.Structures.Enum @enum in enums.Values)
+            if (Settings.Compatibility == Settings.Legacy.None)
             {
-                sw.Write(@enum);
-                sw.WriteLine();
-            }
-            sw.Unindent();
+                sw.WriteLine("public class Enums");
+                sw.WriteLine("{");
 
-            sw.WriteLine("}");
+                sw.Indent();
+                foreach (Bind.Structures.Enum @enum in enums.Values)
+                {
+                    sw.Write(@enum);
+                    sw.WriteLine();
+                }
+                sw.Unindent();
+
+                sw.WriteLine("}");
+            }
+            else if (Settings.Compatibility == Settings.Legacy.Tao)
+            {
+                // Tao legacy mode: dump all enums as constants in GLClass.
+                foreach (Bind.Structures.Constant c in enums["GLenum"].ConstantCollection.Values)
+                {
+                    // Print constants avoiding circular definitions
+                    if (c.Name != c.Value)
+                    {
+                        sw.WriteLine(String.Format(
+                            "public const int {0} = {2}((int){1});",
+                            c.Name.StartsWith("GL_") ? c.Name : "GL_" + c.Name,
+                            Char.IsDigit(c.Value[0]) ? c.Value : c.Value.StartsWith("GL_") ? c.Value : "GL_" + c.Value,
+                            c.Unchecked ? "unchecked" : ""));
+                    }
+                    else
+                    {
+                    }
+                }
+            }
         }
 
         #endregion

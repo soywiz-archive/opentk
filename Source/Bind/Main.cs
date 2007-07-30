@@ -90,14 +90,23 @@ namespace Bind
                             case "output":
                                 Settings.OutputPath = b[1];
                                 break;
-                            case "gl2":
-                            case "GL2":
-                            case "Gl2":
-                                mode = GeneratorMode.GL2;
+                            case "mode":
+                                mode = b[1].ToLower() == "gl2" ? GeneratorMode.GL2 : GeneratorMode.GL2;
+                                break;
+                            case "namespace":
+                            case "ns":
+                                Settings.OutputNamespace = b[1];
+                                break;
+                            case "gl":
+                                Settings.GLClass = b[1];
+                                break;
+                            case "glu":
+                                Settings.GluClass = b[1];
                                 break;
                             case "legacy":
-                                Settings.Compat = b[1].ToLower() == "tao" ? Settings.Legacy.Tao : Settings.Legacy.None;
-                                Settings.OutputNamespace = "Tao.OpenGL";
+                                Settings.Compatibility = b[1].ToLower() == "tao" ? Settings.Legacy.Tao : Settings.Legacy.None;
+                                Settings.OutputNamespace = "Tao.OpenGl";
+                                Settings.GLClass = "Gl";
                                 break;
                             case "class":
                                 Settings.GLClass = b[1];
@@ -140,7 +149,8 @@ namespace Bind
                 bind.Process();
 
                 ticks = System.DateTime.Now.Ticks - ticks;
-
+                
+                Console.WriteLine();
                 Console.WriteLine("Bindings generated in {0} seconds.", ticks / (double)10000000.0);
                 Console.WriteLine();
                 Console.WriteLine("Press any key to continue...");

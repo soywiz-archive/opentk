@@ -49,8 +49,12 @@ namespace Bind.Structures
             sb.Append(Unsafe ? "unsafe " : "");
             sb.Append(ReturnType);
             sb.Append(" ");
+            if (Settings.Compatibility == Settings.Legacy.Tao)
+            {
+                sb.Append("gl");
+            }
             sb.Append(Name);
-            sb.Append(Parameters.ToString());
+            sb.Append(Parameters.ToString(true));
             if (Body.Count > 0)
             {
                 sb.AppendLine();
