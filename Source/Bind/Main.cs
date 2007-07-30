@@ -95,6 +95,10 @@ namespace Bind
                             case "Gl2":
                                 mode = GeneratorMode.GL2;
                                 break;
+                            case "legacy":
+                                Settings.Compat = b[1].ToLower() == "tao" ? Settings.Legacy.Tao : Settings.Legacy.None;
+                                Settings.OutputNamespace = "Tao.OpenGL";
+                                break;
                             case "class":
                                 Settings.GLClass = b[1];
                                 break;
@@ -134,22 +138,6 @@ namespace Bind
                 }
 
                 bind.Process();
-
-                //List<CodeMemberMethod> functions;
-                //List<CodeTypeDelegate> delegates;
-                //CodeTypeDeclarationCollection enums;
-                //CodeTypeDeclarationCollection enums2;
-
-                //delegates = SpecReader.ReadFunctionSpecs("gl.spec");
-                //SpecReader.ReadEnumSpecs("enum.spec", out enums);
-                //SpecReader.ReadEnumSpecs("enumext.spec", out enums2);
-                //enums = SpecTranslator.Merge(enums, enums2);
-                //enums = SpecTranslator.TranslateEnums(enums);
-
-                //functions = SpecTranslator.TranslateDelegates(delegates, enums);
-
-                // Generate the code
-                //SpecWriter.Generate(delegates, functions, enums);
 
                 ticks = System.DateTime.Now.Ticks - ticks;
 

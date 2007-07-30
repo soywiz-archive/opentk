@@ -137,26 +137,6 @@ namespace Bind.GL2
 
         private void Translate()
         {
-            // Add missing enum
-            {
-                Trace.WriteLine("Spec error: SGIX_icc_texture enum missing, adding by hand.");
-                Bind.Structures.Enum e = new Bind.Structures.Enum("SGIX_icc_texture");
-                e.ConstantCollection.Add("RGB_ICC_SGIX", new Constant("RGB_ICC_SGIX", "0x8460"));
-                e.ConstantCollection.Add("RGBA_ICC_SGIX", new Constant("RGBA_ICC_SGIX", "0x8461"));
-                e.ConstantCollection.Add("ALPHA_ICC_SGIX", new Constant("ALPHA_ICC_SGIX", "0x8462"));
-                e.ConstantCollection.Add("LUMINANCE_ICC_SGIX", new Constant("LUMINANCE_ICC_SGIX", "0x8463"));
-                e.ConstantCollection.Add("INTENSITY_ICC_SGIX", new Constant("INTENSITY_ICC_SGIX", "0x8464"));
-                e.ConstantCollection.Add("LUMINANCE_ALPHA_ICC_SGIX", new Constant("LUMINANCE_ALPHA_ICC_SGIX", "0x8465"));
-                e.ConstantCollection.Add("R5_G6_B5_ICC_SGIX", new Constant("R5_G6_B5_ICC_SGIX", "0x8466"));
-                e.ConstantCollection.Add("R5_G6_B5_A8_ICC_SGIX", new Constant("R5_G6_B5_A8_ICC_SGIX", "0x8467"));
-                e.ConstantCollection.Add("ALPHA16_ICC_SGIX", new Constant("ALPHA16_ICC_SGIX", "0x8468"));
-                e.ConstantCollection.Add("LUMINANCE16_ICC_SGIX", new Constant("LUMINANCE16_ICC_SGIX", "0x8469"));
-                e.ConstantCollection.Add("INTENSITY16_ICC_SGIX", new Constant("INTENSITY16_ICC_SGIX", "0x846A"));
-                e.ConstantCollection.Add("LUMINANCE16_ALPHA8_ICC_SGIX", new Constant("LUMINANCE16_ALPHA8_ICC_SGIX", "0x846B"));
-
-                enums.Add(e.Name, e);
-            }
-
             foreach (Bind.Structures.Enum e in enums.Values)
             {
                 TranslateEnum(e);

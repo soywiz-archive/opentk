@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Bind.Structures;
+using System.Diagnostics;
 
 namespace Bind.GL2
 {
@@ -13,6 +14,8 @@ namespace Bind.GL2
 
         public void WriteDelegates(BindStreamWriter sw, DelegateCollection delegates)
         {
+            Trace.WriteLine(String.Format("Writing delegates to {0}.{1}", Settings.OutputNamespace, Settings.DelegatesClass));
+
             sw.WriteLine();
             sw.WriteLine("internal static class {0}", Settings.DelegatesClass);
             sw.WriteLine("{");
@@ -61,6 +64,8 @@ namespace Bind.GL2
 
         public void WriteImports(BindStreamWriter sw, DelegateCollection delegates)
         {
+            Trace.WriteLine(String.Format("Writing imports to {0}.{1}", Settings.OutputNamespace, Settings.ImportsClass));
+
             sw.WriteLine();
             sw.WriteLine("internal static class {0}", Settings.ImportsClass);
             sw.WriteLine("{");
@@ -89,6 +94,8 @@ namespace Bind.GL2
 
         public void WriteWrappers(BindStreamWriter sw, FunctionCollection wrappers, Dictionary<string, string> CSTypes)
         {
+            Trace.WriteLine(String.Format("Writing wrappers to {0}.{1}", Settings.OutputNamespace, Settings.GLClass));
+
             sw.WriteLine();
             sw.WriteLine("public static partial class {0}", Settings.GLClass);
             sw.WriteLine("{");
@@ -154,6 +161,8 @@ namespace Bind.GL2
 
         public void WriteEnums(BindStreamWriter sw, EnumCollection enums)
         {
+            Trace.WriteLine(String.Format("Writing enums to {0}.{1}", Settings.OutputNamespace, Settings.GLClass));
+
             sw.WriteLine("public class Enums");
             sw.WriteLine("{");
 
