@@ -152,7 +152,7 @@ namespace Bind.GL2
                     if (!f.CLSCompliant)
                     {
                         Function clsFunction = f.GetCLSCompliantFunction(CSTypes);
-                        if (clsFunction.Parameters.ToString() != f.Parameters.ToString())
+                        if (clsFunction.Parameters.ToString(true) != f.Parameters.ToString(true))
                             wrappers.Add(clsFunction);
                     }
                     wrappers.Add(f);

@@ -91,7 +91,9 @@ namespace Bind
                                 Settings.OutputPath = b[1];
                                 break;
                             case "mode":
-                                mode = b[1].ToLower() == "gl2" ? GeneratorMode.GL2 : GeneratorMode.GL2;
+                                mode = 
+                                    b[1].ToLower() == "gl2" ? GeneratorMode.GL2 : 
+                                    b[1].ToLower() == "gl3" ? GeneratorMode.GL3 : GeneratorMode.GL2;
                                 break;
                             case "namespace":
                             case "ns":
@@ -143,13 +145,13 @@ namespace Bind
                         break;
 
                     default:
-                        throw new NotImplementedException();
+                        throw new NotImplementedException(String.Format("Mode {0} not implemented.", mode));
                 }
 
                 bind.Process();
 
                 ticks = System.DateTime.Now.Ticks - ticks;
-                
+
                 Console.WriteLine();
                 Console.WriteLine("Bindings generated in {0} seconds.", ticks / (double)10000000.0);
                 Console.WriteLine();
@@ -160,6 +162,11 @@ namespace Bind
             {
                 Console.WriteLine("Security violation \"{0}\" in method \"{1}\".", e.Message, e.Method);
                 Console.WriteLine("This application does not have permission to take the requested actions.");
+            }
+            catch (NotImplementedException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("The requested functionality is not implemented yet.");
             }
         }
     }

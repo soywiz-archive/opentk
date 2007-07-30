@@ -70,7 +70,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void CallLists(GLsizei n, GL.Enums.ListNameType type, void* lists)
         {
-            Delegates.glCallLists((GLsizei)n, (GL.Enums.ListNameType)type, (void*)lists);
+            unsafe { Delegates.glCallLists((GLsizei)n, (GL.Enums.ListNameType)type, (void*)lists); }
         }
         
         public static 
@@ -132,7 +132,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Bitmap(GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, GLubyte* bitmap)
         {
-            Delegates.glBitmap((GLsizei)width, (GLsizei)height, (GLfloat)xorig, (GLfloat)yorig, (GLfloat)xmove, (GLfloat)ymove, (GLubyte*)bitmap);
+            unsafe { Delegates.glBitmap((GLsizei)width, (GLsizei)height, (GLfloat)xorig, (GLfloat)yorig, (GLfloat)xmove, (GLfloat)ymove, (GLubyte*)bitmap); }
         }
         
         public static 
@@ -185,7 +185,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3bv(GLbyte* v)
         {
-            Delegates.glColor3bv((GLbyte*)v);
+            unsafe { Delegates.glColor3bv((GLbyte*)v); }
         }
         
         public static 
@@ -248,7 +248,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3dv(GLdouble* v)
         {
-            Delegates.glColor3dv((GLdouble*)v);
+            unsafe { Delegates.glColor3dv((GLdouble*)v); }
         }
         
         public static 
@@ -285,7 +285,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3fv(GLfloat* v)
         {
-            Delegates.glColor3fv((GLfloat*)v);
+            unsafe { Delegates.glColor3fv((GLfloat*)v); }
         }
         
         public static 
@@ -322,7 +322,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3iv(GLint* v)
         {
-            Delegates.glColor3iv((GLint*)v);
+            unsafe { Delegates.glColor3iv((GLint*)v); }
         }
         
         public static 
@@ -359,7 +359,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3sv(GLshort* v)
         {
-            Delegates.glColor3sv((GLshort*)v);
+            unsafe { Delegates.glColor3sv((GLshort*)v); }
         }
         
         public static 
@@ -396,7 +396,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3ubv(GLubyte* v)
         {
-            Delegates.glColor3ubv((GLubyte*)v);
+            unsafe { Delegates.glColor3ubv((GLubyte*)v); }
         }
         
         public static 
@@ -449,7 +449,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3uiv(GLuint* v)
         {
-            Delegates.glColor3uiv((GLuint*)v);
+            unsafe { Delegates.glColor3uiv((GLuint*)v); }
         }
         
         public static 
@@ -528,7 +528,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color3usv(GLushort* v)
         {
-            Delegates.glColor3usv((GLushort*)v);
+            unsafe { Delegates.glColor3usv((GLushort*)v); }
         }
         
         public static 
@@ -607,7 +607,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4bv(GLbyte* v)
         {
-            Delegates.glColor4bv((GLbyte*)v);
+            unsafe { Delegates.glColor4bv((GLbyte*)v); }
         }
         
         public static 
@@ -670,7 +670,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4dv(GLdouble* v)
         {
-            Delegates.glColor4dv((GLdouble*)v);
+            unsafe { Delegates.glColor4dv((GLdouble*)v); }
         }
         
         public static 
@@ -707,7 +707,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4fv(GLfloat* v)
         {
-            Delegates.glColor4fv((GLfloat*)v);
+            unsafe { Delegates.glColor4fv((GLfloat*)v); }
         }
         
         public static 
@@ -744,7 +744,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4iv(GLint* v)
         {
-            Delegates.glColor4iv((GLint*)v);
+            unsafe { Delegates.glColor4iv((GLint*)v); }
         }
         
         public static 
@@ -781,7 +781,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4sv(GLshort* v)
         {
-            Delegates.glColor4sv((GLshort*)v);
+            unsafe { Delegates.glColor4sv((GLshort*)v); }
         }
         
         public static 
@@ -818,7 +818,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4ubv(GLubyte* v)
         {
-            Delegates.glColor4ubv((GLubyte*)v);
+            unsafe { Delegates.glColor4ubv((GLubyte*)v); }
         }
         
         public static 
@@ -871,7 +871,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4uiv(GLuint* v)
         {
-            Delegates.glColor4uiv((GLuint*)v);
+            unsafe { Delegates.glColor4uiv((GLuint*)v); }
         }
         
         public static 
@@ -950,7 +950,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Color4usv(GLushort* v)
         {
-            Delegates.glColor4usv((GLushort*)v);
+            unsafe { Delegates.glColor4usv((GLushort*)v); }
         }
         
         public static 
@@ -1003,11 +1003,17 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void EdgeFlag(GL.Enums.Boolean flag)
+        {
+             Delegates.glEdgeFlag((GL.Enums.Boolean)flag); 
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         unsafe void EdgeFlagv(GL.Enums.Boolean* flag)
         {
-            Delegates.glEdgeFlagv((GL.Enums.Boolean*)flag);
+            unsafe { Delegates.glEdgeFlagv((GL.Enums.Boolean*)flag); }
         }
         
         public static 
@@ -1026,7 +1032,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Indexdv(GLdouble* c)
         {
-            Delegates.glIndexdv((GLdouble*)c);
+            unsafe { Delegates.glIndexdv((GLdouble*)c); }
         }
         
         public static 
@@ -1063,7 +1069,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Indexfv(GLfloat* c)
         {
-            Delegates.glIndexfv((GLfloat*)c);
+            unsafe { Delegates.glIndexfv((GLfloat*)c); }
         }
         
         public static 
@@ -1100,7 +1106,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Indexiv(GLint* c)
         {
-            Delegates.glIndexiv((GLint*)c);
+            unsafe { Delegates.glIndexiv((GLint*)c); }
         }
         
         public static 
@@ -1137,7 +1143,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Indexsv(GLshort* c)
         {
-            Delegates.glIndexsv((GLshort*)c);
+            unsafe { Delegates.glIndexsv((GLshort*)c); }
         }
         
         public static 
@@ -1190,7 +1196,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Normal3bv(GLbyte* v)
         {
-            Delegates.glNormal3bv((GLbyte*)v);
+            unsafe { Delegates.glNormal3bv((GLbyte*)v); }
         }
         
         public static 
@@ -1253,7 +1259,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Normal3dv(GLdouble* v)
         {
-            Delegates.glNormal3dv((GLdouble*)v);
+            unsafe { Delegates.glNormal3dv((GLdouble*)v); }
         }
         
         public static 
@@ -1290,7 +1296,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Normal3fv(GLfloat* v)
         {
-            Delegates.glNormal3fv((GLfloat*)v);
+            unsafe { Delegates.glNormal3fv((GLfloat*)v); }
         }
         
         public static 
@@ -1327,7 +1333,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Normal3iv(GLint* v)
         {
-            Delegates.glNormal3iv((GLint*)v);
+            unsafe { Delegates.glNormal3iv((GLint*)v); }
         }
         
         public static 
@@ -1364,7 +1370,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Normal3sv(GLshort* v)
         {
-            Delegates.glNormal3sv((GLshort*)v);
+            unsafe { Delegates.glNormal3sv((GLshort*)v); }
         }
         
         public static 
@@ -1401,7 +1407,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos2dv(GLdouble* v)
         {
-            Delegates.glRasterPos2dv((GLdouble*)v);
+            unsafe { Delegates.glRasterPos2dv((GLdouble*)v); }
         }
         
         public static 
@@ -1438,7 +1444,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos2fv(GLfloat* v)
         {
-            Delegates.glRasterPos2fv((GLfloat*)v);
+            unsafe { Delegates.glRasterPos2fv((GLfloat*)v); }
         }
         
         public static 
@@ -1475,7 +1481,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos2iv(GLint* v)
         {
-            Delegates.glRasterPos2iv((GLint*)v);
+            unsafe { Delegates.glRasterPos2iv((GLint*)v); }
         }
         
         public static 
@@ -1512,7 +1518,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos2sv(GLshort* v)
         {
-            Delegates.glRasterPos2sv((GLshort*)v);
+            unsafe { Delegates.glRasterPos2sv((GLshort*)v); }
         }
         
         public static 
@@ -1549,7 +1555,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos3dv(GLdouble* v)
         {
-            Delegates.glRasterPos3dv((GLdouble*)v);
+            unsafe { Delegates.glRasterPos3dv((GLdouble*)v); }
         }
         
         public static 
@@ -1586,7 +1592,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos3fv(GLfloat* v)
         {
-            Delegates.glRasterPos3fv((GLfloat*)v);
+            unsafe { Delegates.glRasterPos3fv((GLfloat*)v); }
         }
         
         public static 
@@ -1623,7 +1629,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos3iv(GLint* v)
         {
-            Delegates.glRasterPos3iv((GLint*)v);
+            unsafe { Delegates.glRasterPos3iv((GLint*)v); }
         }
         
         public static 
@@ -1660,7 +1666,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos3sv(GLshort* v)
         {
-            Delegates.glRasterPos3sv((GLshort*)v);
+            unsafe { Delegates.glRasterPos3sv((GLshort*)v); }
         }
         
         public static 
@@ -1697,7 +1703,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos4dv(GLdouble* v)
         {
-            Delegates.glRasterPos4dv((GLdouble*)v);
+            unsafe { Delegates.glRasterPos4dv((GLdouble*)v); }
         }
         
         public static 
@@ -1734,7 +1740,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos4fv(GLfloat* v)
         {
-            Delegates.glRasterPos4fv((GLfloat*)v);
+            unsafe { Delegates.glRasterPos4fv((GLfloat*)v); }
         }
         
         public static 
@@ -1771,7 +1777,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos4iv(GLint* v)
         {
-            Delegates.glRasterPos4iv((GLint*)v);
+            unsafe { Delegates.glRasterPos4iv((GLint*)v); }
         }
         
         public static 
@@ -1808,7 +1814,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void RasterPos4sv(GLshort* v)
         {
-            Delegates.glRasterPos4sv((GLshort*)v);
+            unsafe { Delegates.glRasterPos4sv((GLshort*)v); }
         }
         
         public static 
@@ -1845,7 +1851,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Rectdv(GLdouble* v1, GLdouble* v2)
         {
-            Delegates.glRectdv((GLdouble*)v1, (GLdouble*)v2);
+            unsafe { Delegates.glRectdv((GLdouble*)v1, (GLdouble*)v2); }
         }
         
         [System.CLSCompliant(false)]
@@ -1950,7 +1956,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Rectfv(GLfloat* v1, GLfloat* v2)
         {
-            Delegates.glRectfv((GLfloat*)v1, (GLfloat*)v2);
+            unsafe { Delegates.glRectfv((GLfloat*)v1, (GLfloat*)v2); }
         }
         
         [System.CLSCompliant(false)]
@@ -2055,7 +2061,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Rectiv(GLint* v1, GLint* v2)
         {
-            Delegates.glRectiv((GLint*)v1, (GLint*)v2);
+            unsafe { Delegates.glRectiv((GLint*)v1, (GLint*)v2); }
         }
         
         [System.CLSCompliant(false)]
@@ -2160,7 +2166,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Rectsv(GLshort* v1, GLshort* v2)
         {
-            Delegates.glRectsv((GLshort*)v1, (GLshort*)v2);
+            unsafe { Delegates.glRectsv((GLshort*)v1, (GLshort*)v2); }
         }
         
         [System.CLSCompliant(false)]
@@ -2265,7 +2271,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord1dv(GLdouble* v)
         {
-            Delegates.glTexCoord1dv((GLdouble*)v);
+            unsafe { Delegates.glTexCoord1dv((GLdouble*)v); }
         }
         
         public static 
@@ -2302,7 +2308,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord1fv(GLfloat* v)
         {
-            Delegates.glTexCoord1fv((GLfloat*)v);
+            unsafe { Delegates.glTexCoord1fv((GLfloat*)v); }
         }
         
         public static 
@@ -2339,7 +2345,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord1iv(GLint* v)
         {
-            Delegates.glTexCoord1iv((GLint*)v);
+            unsafe { Delegates.glTexCoord1iv((GLint*)v); }
         }
         
         public static 
@@ -2376,7 +2382,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord1sv(GLshort* v)
         {
-            Delegates.glTexCoord1sv((GLshort*)v);
+            unsafe { Delegates.glTexCoord1sv((GLshort*)v); }
         }
         
         public static 
@@ -2413,7 +2419,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord2dv(GLdouble* v)
         {
-            Delegates.glTexCoord2dv((GLdouble*)v);
+            unsafe { Delegates.glTexCoord2dv((GLdouble*)v); }
         }
         
         public static 
@@ -2450,7 +2456,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord2fv(GLfloat* v)
         {
-            Delegates.glTexCoord2fv((GLfloat*)v);
+            unsafe { Delegates.glTexCoord2fv((GLfloat*)v); }
         }
         
         public static 
@@ -2487,7 +2493,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord2iv(GLint* v)
         {
-            Delegates.glTexCoord2iv((GLint*)v);
+            unsafe { Delegates.glTexCoord2iv((GLint*)v); }
         }
         
         public static 
@@ -2524,7 +2530,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord2sv(GLshort* v)
         {
-            Delegates.glTexCoord2sv((GLshort*)v);
+            unsafe { Delegates.glTexCoord2sv((GLshort*)v); }
         }
         
         public static 
@@ -2561,7 +2567,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord3dv(GLdouble* v)
         {
-            Delegates.glTexCoord3dv((GLdouble*)v);
+            unsafe { Delegates.glTexCoord3dv((GLdouble*)v); }
         }
         
         public static 
@@ -2598,7 +2604,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord3fv(GLfloat* v)
         {
-            Delegates.glTexCoord3fv((GLfloat*)v);
+            unsafe { Delegates.glTexCoord3fv((GLfloat*)v); }
         }
         
         public static 
@@ -2635,7 +2641,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord3iv(GLint* v)
         {
-            Delegates.glTexCoord3iv((GLint*)v);
+            unsafe { Delegates.glTexCoord3iv((GLint*)v); }
         }
         
         public static 
@@ -2672,7 +2678,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord3sv(GLshort* v)
         {
-            Delegates.glTexCoord3sv((GLshort*)v);
+            unsafe { Delegates.glTexCoord3sv((GLshort*)v); }
         }
         
         public static 
@@ -2709,7 +2715,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord4dv(GLdouble* v)
         {
-            Delegates.glTexCoord4dv((GLdouble*)v);
+            unsafe { Delegates.glTexCoord4dv((GLdouble*)v); }
         }
         
         public static 
@@ -2746,7 +2752,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord4fv(GLfloat* v)
         {
-            Delegates.glTexCoord4fv((GLfloat*)v);
+            unsafe { Delegates.glTexCoord4fv((GLfloat*)v); }
         }
         
         public static 
@@ -2783,7 +2789,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord4iv(GLint* v)
         {
-            Delegates.glTexCoord4iv((GLint*)v);
+            unsafe { Delegates.glTexCoord4iv((GLint*)v); }
         }
         
         public static 
@@ -2820,7 +2826,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoord4sv(GLshort* v)
         {
-            Delegates.glTexCoord4sv((GLshort*)v);
+            unsafe { Delegates.glTexCoord4sv((GLshort*)v); }
         }
         
         public static 
@@ -2857,7 +2863,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex2dv(GLdouble* v)
         {
-            Delegates.glVertex2dv((GLdouble*)v);
+            unsafe { Delegates.glVertex2dv((GLdouble*)v); }
         }
         
         public static 
@@ -2894,7 +2900,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex2fv(GLfloat* v)
         {
-            Delegates.glVertex2fv((GLfloat*)v);
+            unsafe { Delegates.glVertex2fv((GLfloat*)v); }
         }
         
         public static 
@@ -2931,7 +2937,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex2iv(GLint* v)
         {
-            Delegates.glVertex2iv((GLint*)v);
+            unsafe { Delegates.glVertex2iv((GLint*)v); }
         }
         
         public static 
@@ -2968,7 +2974,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex2sv(GLshort* v)
         {
-            Delegates.glVertex2sv((GLshort*)v);
+            unsafe { Delegates.glVertex2sv((GLshort*)v); }
         }
         
         public static 
@@ -3005,7 +3011,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex3dv(GLdouble* v)
         {
-            Delegates.glVertex3dv((GLdouble*)v);
+            unsafe { Delegates.glVertex3dv((GLdouble*)v); }
         }
         
         public static 
@@ -3042,7 +3048,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex3fv(GLfloat* v)
         {
-            Delegates.glVertex3fv((GLfloat*)v);
+            unsafe { Delegates.glVertex3fv((GLfloat*)v); }
         }
         
         public static 
@@ -3079,7 +3085,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex3iv(GLint* v)
         {
-            Delegates.glVertex3iv((GLint*)v);
+            unsafe { Delegates.glVertex3iv((GLint*)v); }
         }
         
         public static 
@@ -3116,7 +3122,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex3sv(GLshort* v)
         {
-            Delegates.glVertex3sv((GLshort*)v);
+            unsafe { Delegates.glVertex3sv((GLshort*)v); }
         }
         
         public static 
@@ -3153,7 +3159,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex4dv(GLdouble* v)
         {
-            Delegates.glVertex4dv((GLdouble*)v);
+            unsafe { Delegates.glVertex4dv((GLdouble*)v); }
         }
         
         public static 
@@ -3190,7 +3196,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex4fv(GLfloat* v)
         {
-            Delegates.glVertex4fv((GLfloat*)v);
+            unsafe { Delegates.glVertex4fv((GLfloat*)v); }
         }
         
         public static 
@@ -3227,7 +3233,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex4iv(GLint* v)
         {
-            Delegates.glVertex4iv((GLint*)v);
+            unsafe { Delegates.glVertex4iv((GLint*)v); }
         }
         
         public static 
@@ -3264,7 +3270,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Vertex4sv(GLshort* v)
         {
-            Delegates.glVertex4sv((GLshort*)v);
+            unsafe { Delegates.glVertex4sv((GLshort*)v); }
         }
         
         public static 
@@ -3295,7 +3301,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ClipPlane(GL.Enums.ClipPlaneName plane, GLdouble* equation)
         {
-            Delegates.glClipPlane((GL.Enums.ClipPlaneName)plane, (GLdouble*)equation);
+            unsafe { Delegates.glClipPlane((GL.Enums.ClipPlaneName)plane, (GLdouble*)equation); }
         }
         
         public static 
@@ -3344,7 +3350,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Fogfv(GL.Enums.FogParameter pname, GLfloat* @params)
         {
-            Delegates.glFogfv((GL.Enums.FogParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glFogfv((GL.Enums.FogParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -3381,7 +3387,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Fogiv(GL.Enums.FogParameter pname, GLint* @params)
         {
-            Delegates.glFogiv((GL.Enums.FogParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glFogiv((GL.Enums.FogParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -3430,7 +3436,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Lightfv(GL.Enums.LightName light, GL.Enums.LightParameter pname, GLfloat* @params)
         {
-            Delegates.glLightfv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glLightfv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -3467,7 +3473,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Lightiv(GL.Enums.LightName light, GL.Enums.LightParameter pname, GLint* @params)
         {
-            Delegates.glLightiv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glLightiv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -3504,7 +3510,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void LightModelfv(GL.Enums.LightModelParameter pname, GLfloat* @params)
         {
-            Delegates.glLightModelfv((GL.Enums.LightModelParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glLightModelfv((GL.Enums.LightModelParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -3541,7 +3547,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void LightModeliv(GL.Enums.LightModelParameter pname, GLint* @params)
         {
-            Delegates.glLightModeliv((GL.Enums.LightModelParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glLightModeliv((GL.Enums.LightModelParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -3569,6 +3575,24 @@ namespace OpenTK.OpenGL
         }
         
         public static 
+        void LineStipple(GLint factor, Int16 pattern)
+        {
+            unsafe
+            {
+                {
+                    Delegates.glLineStipple((GLint)factor, (GLushort)pattern);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        void LineStipple(GLint factor, GLushort pattern)
+        {
+             Delegates.glLineStipple((GLint)factor, (GLushort)pattern); 
+        }
+        
+        public static 
         void LineWidth(GLfloat width)
         {
             Delegates.glLineWidth((GLfloat)width);
@@ -3584,7 +3608,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Materialfv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLfloat* @params)
         {
-            Delegates.glMaterialfv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glMaterialfv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -3621,7 +3645,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Materialiv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLint* @params)
         {
-            Delegates.glMaterialiv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glMaterialiv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -3664,7 +3688,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void PolygonStipple(GLubyte* mask)
         {
-            Delegates.glPolygonStipple((GLubyte*)mask);
+            unsafe { Delegates.glPolygonStipple((GLubyte*)mask); }
         }
         
         public static 
@@ -3713,7 +3737,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexParameterfv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, GLfloat* @params)
         {
-            Delegates.glTexParameterfv((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLfloat*)@params);
+            unsafe { Delegates.glTexParameterfv((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -3750,7 +3774,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexParameteriv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, GLint* @params)
         {
-            Delegates.glTexParameteriv((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLint*)@params);
+            unsafe { Delegates.glTexParameteriv((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLint*)@params); }
         }
         
         public static 
@@ -3781,7 +3805,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexImage1D(GL.Enums.TextureTarget target, GLint level, GLint internalformat, GLsizei width, GLint border, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glTexImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)internalformat, (GLsizei)width, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glTexImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)internalformat, (GLsizei)width, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -3805,7 +3829,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexImage2D(GL.Enums.TextureTarget target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glTexImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)internalformat, (GLsizei)width, (GLsizei)height, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glTexImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)internalformat, (GLsizei)width, (GLsizei)height, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -3835,7 +3859,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexEnvfv(GL.Enums.TextureEnvTarget target, GL.Enums.TextureEnvParameter pname, GLfloat* @params)
         {
-            Delegates.glTexEnvfv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glTexEnvfv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -3872,7 +3896,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexEnviv(GL.Enums.TextureEnvTarget target, GL.Enums.TextureEnvParameter pname, GLint* @params)
         {
-            Delegates.glTexEnviv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glTexEnviv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -3909,7 +3933,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexGendv(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, GLdouble* @params)
         {
-            Delegates.glTexGendv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLdouble*)@params);
+            unsafe { Delegates.glTexGendv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLdouble*)@params); }
         }
         
         public static 
@@ -3946,7 +3970,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexGenfv(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, GLfloat* @params)
         {
-            Delegates.glTexGenfv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glTexGenfv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -3983,7 +4007,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexGeniv(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, GLint* @params)
         {
-            Delegates.glTexGeniv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glTexGeniv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -4014,7 +4038,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void FeedbackBuffer(GLsizei size, GL.Enums.FeedbackType type, GLfloat* buffer)
         {
-            Delegates.glFeedbackBuffer((GLsizei)size, (GL.Enums.FeedbackType)type, (GLfloat*)buffer);
+            unsafe { Delegates.glFeedbackBuffer((GLsizei)size, (GL.Enums.FeedbackType)type, (GLfloat*)buffer); }
         }
         
         public static 
@@ -4057,7 +4081,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SelectBuffer(GLsizei size, GLuint* buffer)
         {
-            Delegates.glSelectBuffer((GLsizei)size, (GLuint*)buffer);
+            unsafe { Delegates.glSelectBuffer((GLsizei)size, (GLuint*)buffer); }
         }
         
         public static 
@@ -4220,6 +4244,18 @@ namespace OpenTK.OpenGL
         }
         
         public static 
+        void ColorMask(GL.Enums.Boolean red, GL.Enums.Boolean green, GL.Enums.Boolean blue, GL.Enums.Boolean alpha)
+        {
+             Delegates.glColorMask((GL.Enums.Boolean)red, (GL.Enums.Boolean)green, (GL.Enums.Boolean)blue, (GL.Enums.Boolean)alpha); 
+        }
+        
+        public static 
+        void DepthMask(GL.Enums.Boolean flag)
+        {
+             Delegates.glDepthMask((GL.Enums.Boolean)flag); 
+        }
+        
+        public static 
         void IndexMask(Int32 mask)
         {
             Delegates.glIndexMask((GLuint)mask);
@@ -4278,7 +4314,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Map1d(GL.Enums.MapTarget target, GLdouble u1, GLdouble u2, GLint stride, GLint order, GLdouble* points)
         {
-            Delegates.glMap1d((GL.Enums.MapTarget)target, (GLdouble)u1, (GLdouble)u2, (GLint)stride, (GLint)order, (GLdouble*)points);
+            unsafe { Delegates.glMap1d((GL.Enums.MapTarget)target, (GLdouble)u1, (GLdouble)u2, (GLint)stride, (GLint)order, (GLdouble*)points); }
         }
         
         public static 
@@ -4309,7 +4345,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Map1f(GL.Enums.MapTarget target, GLfloat u1, GLfloat u2, GLint stride, GLint order, GLfloat* points)
         {
-            Delegates.glMap1f((GL.Enums.MapTarget)target, (GLfloat)u1, (GLfloat)u2, (GLint)stride, (GLint)order, (GLfloat*)points);
+            unsafe { Delegates.glMap1f((GL.Enums.MapTarget)target, (GLfloat)u1, (GLfloat)u2, (GLint)stride, (GLint)order, (GLfloat*)points); }
         }
         
         public static 
@@ -4340,7 +4376,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Map2d(GL.Enums.MapTarget target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, GLdouble* points)
         {
-            Delegates.glMap2d((GL.Enums.MapTarget)target, (GLdouble)u1, (GLdouble)u2, (GLint)ustride, (GLint)uorder, (GLdouble)v1, (GLdouble)v2, (GLint)vstride, (GLint)vorder, (GLdouble*)points);
+            unsafe { Delegates.glMap2d((GL.Enums.MapTarget)target, (GLdouble)u1, (GLdouble)u2, (GLint)ustride, (GLint)uorder, (GLdouble)v1, (GLdouble)v2, (GLint)vstride, (GLint)vorder, (GLdouble*)points); }
         }
         
         public static 
@@ -4371,7 +4407,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Map2f(GL.Enums.MapTarget target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, GLfloat* points)
         {
-            Delegates.glMap2f((GL.Enums.MapTarget)target, (GLfloat)u1, (GLfloat)u2, (GLint)ustride, (GLint)uorder, (GLfloat)v1, (GLfloat)v2, (GLint)vstride, (GLint)vorder, (GLfloat*)points);
+            unsafe { Delegates.glMap2f((GL.Enums.MapTarget)target, (GLfloat)u1, (GLfloat)u2, (GLint)ustride, (GLint)uorder, (GLfloat)v1, (GLfloat)v2, (GLint)vstride, (GLint)vorder, (GLfloat*)points); }
         }
         
         public static 
@@ -4432,7 +4468,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void EvalCoord1dv(GLdouble* u)
         {
-            Delegates.glEvalCoord1dv((GLdouble*)u);
+            unsafe { Delegates.glEvalCoord1dv((GLdouble*)u); }
         }
         
         public static 
@@ -4469,7 +4505,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void EvalCoord1fv(GLfloat* u)
         {
-            Delegates.glEvalCoord1fv((GLfloat*)u);
+            unsafe { Delegates.glEvalCoord1fv((GLfloat*)u); }
         }
         
         public static 
@@ -4506,7 +4542,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void EvalCoord2dv(GLdouble* u)
         {
-            Delegates.glEvalCoord2dv((GLdouble*)u);
+            unsafe { Delegates.glEvalCoord2dv((GLdouble*)u); }
         }
         
         public static 
@@ -4543,7 +4579,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void EvalCoord2fv(GLfloat* u)
         {
-            Delegates.glEvalCoord2fv((GLfloat*)u);
+            unsafe { Delegates.glEvalCoord2fv((GLfloat*)u); }
         }
         
         public static 
@@ -4671,7 +4707,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void PixelMapfv(GL.Enums.PixelMap map, GLint mapsize, GLfloat* values)
         {
-            Delegates.glPixelMapfv((GL.Enums.PixelMap)map, (GLint)mapsize, (GLfloat*)values);
+            unsafe { Delegates.glPixelMapfv((GL.Enums.PixelMap)map, (GLint)mapsize, (GLfloat*)values); }
         }
         
         public static 
@@ -4711,7 +4747,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void PixelMapuiv(GL.Enums.PixelMap map, GLint mapsize, GLuint* values)
         {
-            Delegates.glPixelMapuiv((GL.Enums.PixelMap)map, (GLint)mapsize, (GLuint*)values);
+            unsafe { Delegates.glPixelMapuiv((GL.Enums.PixelMap)map, (GLint)mapsize, (GLuint*)values); }
         }
         
         public static 
@@ -4777,7 +4813,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void PixelMapusv(GL.Enums.PixelMap map, GLint mapsize, GLushort* values)
         {
-            Delegates.glPixelMapusv((GL.Enums.PixelMap)map, (GLint)mapsize, (GLushort*)values);
+            unsafe { Delegates.glPixelMapusv((GL.Enums.PixelMap)map, (GLint)mapsize, (GLushort*)values); }
         }
         
         public static 
@@ -4846,7 +4882,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glReadPixels((GLint)x, (GLint)y, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glReadPixels((GLint)x, (GLint)y, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -4870,7 +4906,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void DrawPixels(GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glDrawPixels((GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glDrawPixels((GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -4894,14 +4930,14 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetBooleanv(GL.Enums.GetPName pname, GL.Enums.Boolean* @params)
         {
-            Delegates.glGetBooleanv((GL.Enums.GetPName)pname, (GL.Enums.Boolean*)@params);
+            unsafe { Delegates.glGetBooleanv((GL.Enums.GetPName)pname, (GL.Enums.Boolean*)@params); }
         }
         
         [System.CLSCompliant(false)]
         public static 
         unsafe void GetClipPlane(GL.Enums.ClipPlaneName plane, GLdouble* equation)
         {
-            Delegates.glGetClipPlane((GL.Enums.ClipPlaneName)plane, (GLdouble*)equation);
+            unsafe { Delegates.glGetClipPlane((GL.Enums.ClipPlaneName)plane, (GLdouble*)equation); }
         }
         
         public static 
@@ -4934,7 +4970,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetDoublev(GL.Enums.GetPName pname, GLdouble* @params)
         {
-            Delegates.glGetDoublev((GL.Enums.GetPName)pname, (GLdouble*)@params);
+            unsafe { Delegates.glGetDoublev((GL.Enums.GetPName)pname, (GLdouble*)@params); }
         }
         
         public static 
@@ -4973,7 +5009,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetFloatv(GL.Enums.GetPName pname, GLfloat* @params)
         {
-            Delegates.glGetFloatv((GL.Enums.GetPName)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetFloatv((GL.Enums.GetPName)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -5006,7 +5042,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetIntegerv(GL.Enums.GetPName pname, GLint* @params)
         {
-            Delegates.glGetIntegerv((GL.Enums.GetPName)pname, (GLint*)@params);
+            unsafe { Delegates.glGetIntegerv((GL.Enums.GetPName)pname, (GLint*)@params); }
         }
         
         public static 
@@ -5039,7 +5075,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetLightfv(GL.Enums.LightName light, GL.Enums.LightParameter pname, GLfloat* @params)
         {
-            Delegates.glGetLightfv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetLightfv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -5072,7 +5108,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetLightiv(GL.Enums.LightName light, GL.Enums.LightParameter pname, GLint* @params)
         {
-            Delegates.glGetLightiv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glGetLightiv((GL.Enums.LightName)light, (GL.Enums.LightParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -5105,7 +5141,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMapdv(GL.Enums.MapTarget target, GL.Enums.GetMapQuery query, GLdouble* v)
         {
-            Delegates.glGetMapdv((GL.Enums.MapTarget)target, (GL.Enums.GetMapQuery)query, (GLdouble*)v);
+            unsafe { Delegates.glGetMapdv((GL.Enums.MapTarget)target, (GL.Enums.GetMapQuery)query, (GLdouble*)v); }
         }
         
         public static 
@@ -5138,7 +5174,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMapfv(GL.Enums.MapTarget target, GL.Enums.GetMapQuery query, GLfloat* v)
         {
-            Delegates.glGetMapfv((GL.Enums.MapTarget)target, (GL.Enums.GetMapQuery)query, (GLfloat*)v);
+            unsafe { Delegates.glGetMapfv((GL.Enums.MapTarget)target, (GL.Enums.GetMapQuery)query, (GLfloat*)v); }
         }
         
         public static 
@@ -5171,7 +5207,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMapiv(GL.Enums.MapTarget target, GL.Enums.GetMapQuery query, GLint* v)
         {
-            Delegates.glGetMapiv((GL.Enums.MapTarget)target, (GL.Enums.GetMapQuery)query, (GLint*)v);
+            unsafe { Delegates.glGetMapiv((GL.Enums.MapTarget)target, (GL.Enums.GetMapQuery)query, (GLint*)v); }
         }
         
         public static 
@@ -5204,7 +5240,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMaterialfv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLfloat* @params)
         {
-            Delegates.glGetMaterialfv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetMaterialfv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -5237,7 +5273,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMaterialiv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLint* @params)
         {
-            Delegates.glGetMaterialiv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glGetMaterialiv((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -5270,7 +5306,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetPixelMapfv(GL.Enums.PixelMap map, GLfloat* values)
         {
-            Delegates.glGetPixelMapfv((GL.Enums.PixelMap)map, (GLfloat*)values);
+            unsafe { Delegates.glGetPixelMapfv((GL.Enums.PixelMap)map, (GLfloat*)values); }
         }
         
         public static 
@@ -5313,7 +5349,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetPixelMapuiv(GL.Enums.PixelMap map, GLuint* values)
         {
-            Delegates.glGetPixelMapuiv((GL.Enums.PixelMap)map, (GLuint*)values);
+            unsafe { Delegates.glGetPixelMapuiv((GL.Enums.PixelMap)map, (GLuint*)values); }
         }
         
         public static 
@@ -5384,7 +5420,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetPixelMapusv(GL.Enums.PixelMap map, GLushort* values)
         {
-            Delegates.glGetPixelMapusv((GL.Enums.PixelMap)map, (GLushort*)values);
+            unsafe { Delegates.glGetPixelMapusv((GL.Enums.PixelMap)map, (GLushort*)values); }
         }
         
         public static 
@@ -5445,7 +5481,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetPolygonStipple(GLubyte* mask)
         {
-            Delegates.glGetPolygonStipple((GLubyte*)mask);
+            unsafe { Delegates.glGetPolygonStipple((GLubyte*)mask); }
         }
         
         public static 
@@ -5484,7 +5520,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexEnvfv(GL.Enums.TextureEnvTarget target, GL.Enums.TextureEnvParameter pname, GLfloat* @params)
         {
-            Delegates.glGetTexEnvfv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetTexEnvfv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -5517,7 +5553,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexEnviv(GL.Enums.TextureEnvTarget target, GL.Enums.TextureEnvParameter pname, GLint* @params)
         {
-            Delegates.glGetTexEnviv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glGetTexEnviv((GL.Enums.TextureEnvTarget)target, (GL.Enums.TextureEnvParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -5550,7 +5586,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexGendv(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, GLdouble* @params)
         {
-            Delegates.glGetTexGendv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLdouble*)@params);
+            unsafe { Delegates.glGetTexGendv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLdouble*)@params); }
         }
         
         public static 
@@ -5583,7 +5619,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexGenfv(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, GLfloat* @params)
         {
-            Delegates.glGetTexGenfv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetTexGenfv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -5616,7 +5652,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexGeniv(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, GLint* @params)
         {
-            Delegates.glGetTexGeniv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glGetTexGeniv((GL.Enums.TextureCoordName)coord, (GL.Enums.TextureGenParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -5649,7 +5685,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexImage(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glGetTexImage((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glGetTexImage((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -5673,7 +5709,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexParameterfv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, GLfloat* @params)
         {
-            Delegates.glGetTexParameterfv((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetTexParameterfv((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -5706,7 +5742,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexParameteriv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, GLint* @params)
         {
-            Delegates.glGetTexParameteriv((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glGetTexParameteriv((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -5739,7 +5775,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexLevelParameterfv(GL.Enums.TextureTarget target, GLint level, GL.Enums.GetTextureParameter pname, GLfloat* @params)
         {
-            Delegates.glGetTexLevelParameterfv((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.GetTextureParameter)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetTexLevelParameterfv((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.GetTextureParameter)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -5772,7 +5808,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetTexLevelParameteriv(GL.Enums.TextureTarget target, GLint level, GL.Enums.GetTextureParameter pname, GLint* @params)
         {
-            Delegates.glGetTexLevelParameteriv((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.GetTextureParameter)pname, (GLint*)@params);
+            unsafe { Delegates.glGetTexLevelParameteriv((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.GetTextureParameter)pname, (GLint*)@params); }
         }
         
         public static 
@@ -5842,7 +5878,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void LoadMatrixf(GLfloat* m)
         {
-            Delegates.glLoadMatrixf((GLfloat*)m);
+            unsafe { Delegates.glLoadMatrixf((GLfloat*)m); }
         }
         
         public static 
@@ -5873,7 +5909,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void LoadMatrixd(GLdouble* m)
         {
-            Delegates.glLoadMatrixd((GLdouble*)m);
+            unsafe { Delegates.glLoadMatrixd((GLdouble*)m); }
         }
         
         public static 
@@ -5910,7 +5946,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultMatrixf(GLfloat* m)
         {
-            Delegates.glMultMatrixf((GLfloat*)m);
+            unsafe { Delegates.glMultMatrixf((GLfloat*)m); }
         }
         
         public static 
@@ -5941,7 +5977,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultMatrixd(GLdouble* m)
         {
-            Delegates.glMultMatrixd((GLdouble*)m);
+            unsafe { Delegates.glMultMatrixd((GLdouble*)m); }
         }
         
         public static 
@@ -6038,7 +6074,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ColorPointer(GLint size, GL.Enums.ColorPointerType type, GLsizei stride, void* pointer)
         {
-            Delegates.glColorPointer((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glColorPointer((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -6074,7 +6110,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void DrawElements(GL.Enums.BeginMode mode, GLsizei count, GL.Enums.GLenum type, void* indices)
         {
-            Delegates.glDrawElements((GL.Enums.BeginMode)mode, (GLsizei)count, (GL.Enums.GLenum)type, (void*)indices);
+            unsafe { Delegates.glDrawElements((GL.Enums.BeginMode)mode, (GLsizei)count, (GL.Enums.GLenum)type, (void*)indices); }
         }
         
         public static 
@@ -6098,7 +6134,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void EdgeFlagPointer(GLsizei stride, void* pointer)
         {
-            Delegates.glEdgeFlagPointer((GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glEdgeFlagPointer((GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -6128,7 +6164,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetPointerv(GL.Enums.GetPointervPName pname, void* @params)
         {
-            Delegates.glGetPointerv((GL.Enums.GetPointervPName)pname, (void*)@params);
+            unsafe { Delegates.glGetPointerv((GL.Enums.GetPointervPName)pname, (void*)@params); }
         }
         
         public static 
@@ -6152,7 +6188,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void IndexPointer(GL.Enums.IndexPointerType type, GLsizei stride, void* pointer)
         {
-            Delegates.glIndexPointer((GL.Enums.IndexPointerType)type, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glIndexPointer((GL.Enums.IndexPointerType)type, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -6176,7 +6212,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void InterleavedArrays(GL.Enums.InterleavedArrayFormat format, GLsizei stride, void* pointer)
         {
-            Delegates.glInterleavedArrays((GL.Enums.InterleavedArrayFormat)format, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glInterleavedArrays((GL.Enums.InterleavedArrayFormat)format, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -6200,7 +6236,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void NormalPointer(GL.Enums.NormalPointerType type, GLsizei stride, void* pointer)
         {
-            Delegates.glNormalPointer((GL.Enums.NormalPointerType)type, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glNormalPointer((GL.Enums.NormalPointerType)type, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -6224,7 +6260,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoordPointer(GLint size, GL.Enums.TexCoordPointerType type, GLsizei stride, void* pointer)
         {
-            Delegates.glTexCoordPointer((GLint)size, (GL.Enums.TexCoordPointerType)type, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glTexCoordPointer((GLint)size, (GL.Enums.TexCoordPointerType)type, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -6248,7 +6284,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexPointer(GLint size, GL.Enums.VertexPointerType type, GLsizei stride, void* pointer)
         {
-            Delegates.glVertexPointer((GLint)size, (GL.Enums.VertexPointerType)type, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glVertexPointer((GLint)size, (GL.Enums.VertexPointerType)type, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -6302,7 +6338,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexSubImage1D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLsizei width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glTexSubImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glTexSubImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -6326,7 +6362,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexSubImage2D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glTexSubImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glTexSubImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -6361,7 +6397,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe GLboolean AreTexturesResident(GLsizei n, GLuint* textures, GL.Enums.Boolean* residences)
         {
-            return Delegates.glAreTexturesResident((GLsizei)n, (GLuint*)textures, (GL.Enums.Boolean*)residences);
+            unsafe { return Delegates.glAreTexturesResident((GLsizei)n, (GLuint*)textures, (GL.Enums.Boolean*)residences); }
         }
         
         [System.CLSCompliant(false)]
@@ -6438,7 +6474,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void DeleteTextures(GLsizei n, GLuint* textures)
         {
-            Delegates.glDeleteTextures((GLsizei)n, (GLuint*)textures);
+            unsafe { Delegates.glDeleteTextures((GLsizei)n, (GLuint*)textures); }
         }
         
         public static 
@@ -6505,7 +6541,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GenTextures(GLsizei n, GLuint* textures)
         {
-            Delegates.glGenTextures((GLsizei)n, (GLuint*)textures);
+            unsafe { Delegates.glGenTextures((GLsizei)n, (GLuint*)textures); }
         }
         
         public static 
@@ -6588,7 +6624,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void PrioritizeTextures(GLsizei n, GLuint* textures, GLclampf* priorities)
         {
-            Delegates.glPrioritizeTextures((GLsizei)n, (GLuint*)textures, (GLclampf*)priorities);
+            unsafe { Delegates.glPrioritizeTextures((GLsizei)n, (GLuint*)textures, (GLclampf*)priorities); }
         }
         
         [System.CLSCompliant(false)]
@@ -6789,7 +6825,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Indexubv(GLubyte* c)
         {
-            Delegates.glIndexubv((GLubyte*)c);
+            unsafe { Delegates.glIndexubv((GLubyte*)c); }
         }
         
         public static 
@@ -6853,7 +6889,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void DrawRangeElements(GL.Enums.BeginMode mode, GLuint start, GLuint end, GLsizei count, GL.Enums.VERSION_1_2 type, void* indices)
         {
-            Delegates.glDrawRangeElements((GL.Enums.BeginMode)mode, (GLuint)start, (GLuint)end, (GLsizei)count, (GL.Enums.VERSION_1_2)type, (void*)indices);
+            unsafe { Delegates.glDrawRangeElements((GL.Enums.BeginMode)mode, (GLuint)start, (GLuint)end, (GLsizei)count, (GL.Enums.VERSION_1_2)type, (void*)indices); }
         }
         
         public static 
@@ -6895,7 +6931,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ColorTable(GL.Enums.VERSION_1_2 target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* table)
         {
-            Delegates.glColorTable((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table);
+            unsafe { Delegates.glColorTable((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table); }
         }
         
         public static 
@@ -6919,7 +6955,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ColorTableParameterfv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLfloat* @params)
         {
-            Delegates.glColorTableParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params);
+            unsafe { Delegates.glColorTableParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -6950,7 +6986,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ColorTableParameteriv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLint* @params)
         {
-            Delegates.glColorTableParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params);
+            unsafe { Delegates.glColorTableParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params); }
         }
         
         public static 
@@ -6987,7 +7023,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetColorTable(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* table)
         {
-            Delegates.glGetColorTable((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table);
+            unsafe { Delegates.glGetColorTable((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table); }
         }
         
         public static 
@@ -7011,7 +7047,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetColorTableParameterfv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLfloat* @params)
         {
-            Delegates.glGetColorTableParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetColorTableParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -7044,7 +7080,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetColorTableParameteriv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLint* @params)
         {
-            Delegates.glGetColorTableParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params);
+            unsafe { Delegates.glGetColorTableParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params); }
         }
         
         public static 
@@ -7077,7 +7113,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ColorSubTable(GL.Enums.VERSION_1_2 target, GLsizei start, GLsizei count, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* data)
         {
-            Delegates.glColorSubTable((GL.Enums.VERSION_1_2)target, (GLsizei)start, (GLsizei)count, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data);
+            unsafe { Delegates.glColorSubTable((GL.Enums.VERSION_1_2)target, (GLsizei)start, (GLsizei)count, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data); }
         }
         
         public static 
@@ -7107,7 +7143,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ConvolutionFilter1D(GL.Enums.VERSION_1_2 target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* image)
         {
-            Delegates.glConvolutionFilter1D((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image);
+            unsafe { Delegates.glConvolutionFilter1D((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image); }
         }
         
         public static 
@@ -7131,7 +7167,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ConvolutionFilter2D(GL.Enums.VERSION_1_2 target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* image)
         {
-            Delegates.glConvolutionFilter2D((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image);
+            unsafe { Delegates.glConvolutionFilter2D((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image); }
         }
         
         public static 
@@ -7161,7 +7197,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ConvolutionParameterfv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLfloat* @params)
         {
-            Delegates.glConvolutionParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params);
+            unsafe { Delegates.glConvolutionParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -7198,7 +7234,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ConvolutionParameteriv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLint* @params)
         {
-            Delegates.glConvolutionParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params);
+            unsafe { Delegates.glConvolutionParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params); }
         }
         
         public static 
@@ -7241,7 +7277,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetConvolutionFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* image)
         {
-            Delegates.glGetConvolutionFilter((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image);
+            unsafe { Delegates.glGetConvolutionFilter((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image); }
         }
         
         public static 
@@ -7265,7 +7301,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetConvolutionParameterfv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLfloat* @params)
         {
-            Delegates.glGetConvolutionParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetConvolutionParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -7298,7 +7334,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetConvolutionParameteriv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLint* @params)
         {
-            Delegates.glGetConvolutionParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params);
+            unsafe { Delegates.glGetConvolutionParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params); }
         }
         
         public static 
@@ -7331,7 +7367,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetSeparableFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* row, void* column, void* span)
         {
-            Delegates.glGetSeparableFilter((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column, (void*)span);
+            unsafe { Delegates.glGetSeparableFilter((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column, (void*)span); }
         }
         
         [System.CLSCompliant(false)]
@@ -7464,7 +7500,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SeparableFilter2D(GL.Enums.VERSION_1_2 target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* row, void* column)
         {
-            Delegates.glSeparableFilter2D((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column);
+            unsafe { Delegates.glSeparableFilter2D((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column); }
         }
         
         [System.CLSCompliant(false)]
@@ -7520,7 +7556,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetHistogram(GL.Enums.VERSION_1_2 target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* values)
         {
-            Delegates.glGetHistogram((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values);
+            unsafe { Delegates.glGetHistogram((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
         }
         
         public static 
@@ -7544,7 +7580,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetHistogramParameterfv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLfloat* @params)
         {
-            Delegates.glGetHistogramParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetHistogramParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -7577,7 +7613,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetHistogramParameteriv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLint* @params)
         {
-            Delegates.glGetHistogramParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params);
+            unsafe { Delegates.glGetHistogramParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params); }
         }
         
         public static 
@@ -7610,7 +7646,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMinmax(GL.Enums.VERSION_1_2 target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* values)
         {
-            Delegates.glGetMinmax((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values);
+            unsafe { Delegates.glGetMinmax((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
         }
         
         public static 
@@ -7634,7 +7670,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMinmaxParameterfv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLfloat* @params)
         {
-            Delegates.glGetMinmaxParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetMinmaxParameterfv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -7667,7 +7703,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetMinmaxParameteriv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLint* @params)
         {
-            Delegates.glGetMinmaxParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params);
+            unsafe { Delegates.glGetMinmaxParameteriv((GL.Enums.VERSION_1_2)target, (GL.Enums.VERSION_1_2)pname, (GLint*)@params); }
         }
         
         public static 
@@ -7697,6 +7733,18 @@ namespace OpenTK.OpenGL
         }
         
         public static 
+        void Histogram(GL.Enums.VERSION_1_2 target, GLsizei width, GL.Enums.PixelInternalFormat internalformat, GL.Enums.Boolean sink)
+        {
+             Delegates.glHistogram((GL.Enums.VERSION_1_2)target, (GLsizei)width, (GL.Enums.PixelInternalFormat)internalformat, (GL.Enums.Boolean)sink); 
+        }
+        
+        public static 
+        void Minmax(GL.Enums.VERSION_1_2 target, GL.Enums.PixelInternalFormat internalformat, GL.Enums.Boolean sink)
+        {
+             Delegates.glMinmax((GL.Enums.VERSION_1_2)target, (GL.Enums.PixelInternalFormat)internalformat, (GL.Enums.Boolean)sink); 
+        }
+        
+        public static 
         void ResetHistogram(GL.Enums.VERSION_1_2 target)
         {
             Delegates.glResetHistogram((GL.Enums.VERSION_1_2)target);
@@ -7712,7 +7760,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexImage3D(GL.Enums.TextureTarget target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glTexImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glTexImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -7736,7 +7784,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexSubImage3D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
         {
-            Delegates.glTexSubImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+            unsafe { Delegates.glTexSubImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
         }
         
         public static 
@@ -7784,7 +7832,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord1dv(GL.Enums.VERSION_1_3 target, GLdouble* v)
         {
-            Delegates.glMultiTexCoord1dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v);
+            unsafe { Delegates.glMultiTexCoord1dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v); }
         }
         
         public static 
@@ -7821,7 +7869,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord1fv(GL.Enums.VERSION_1_3 target, GLfloat* v)
         {
-            Delegates.glMultiTexCoord1fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v);
+            unsafe { Delegates.glMultiTexCoord1fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v); }
         }
         
         public static 
@@ -7858,7 +7906,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord1iv(GL.Enums.VERSION_1_3 target, GLint* v)
         {
-            Delegates.glMultiTexCoord1iv((GL.Enums.VERSION_1_3)target, (GLint*)v);
+            unsafe { Delegates.glMultiTexCoord1iv((GL.Enums.VERSION_1_3)target, (GLint*)v); }
         }
         
         public static 
@@ -7895,7 +7943,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord1sv(GL.Enums.VERSION_1_3 target, GLshort* v)
         {
-            Delegates.glMultiTexCoord1sv((GL.Enums.VERSION_1_3)target, (GLshort*)v);
+            unsafe { Delegates.glMultiTexCoord1sv((GL.Enums.VERSION_1_3)target, (GLshort*)v); }
         }
         
         public static 
@@ -7932,7 +7980,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord2dv(GL.Enums.VERSION_1_3 target, GLdouble* v)
         {
-            Delegates.glMultiTexCoord2dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v);
+            unsafe { Delegates.glMultiTexCoord2dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v); }
         }
         
         public static 
@@ -7969,7 +8017,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord2fv(GL.Enums.VERSION_1_3 target, GLfloat* v)
         {
-            Delegates.glMultiTexCoord2fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v);
+            unsafe { Delegates.glMultiTexCoord2fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v); }
         }
         
         public static 
@@ -8006,7 +8054,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord2iv(GL.Enums.VERSION_1_3 target, GLint* v)
         {
-            Delegates.glMultiTexCoord2iv((GL.Enums.VERSION_1_3)target, (GLint*)v);
+            unsafe { Delegates.glMultiTexCoord2iv((GL.Enums.VERSION_1_3)target, (GLint*)v); }
         }
         
         public static 
@@ -8043,7 +8091,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord2sv(GL.Enums.VERSION_1_3 target, GLshort* v)
         {
-            Delegates.glMultiTexCoord2sv((GL.Enums.VERSION_1_3)target, (GLshort*)v);
+            unsafe { Delegates.glMultiTexCoord2sv((GL.Enums.VERSION_1_3)target, (GLshort*)v); }
         }
         
         public static 
@@ -8080,7 +8128,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord3dv(GL.Enums.VERSION_1_3 target, GLdouble* v)
         {
-            Delegates.glMultiTexCoord3dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v);
+            unsafe { Delegates.glMultiTexCoord3dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v); }
         }
         
         public static 
@@ -8117,7 +8165,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord3fv(GL.Enums.VERSION_1_3 target, GLfloat* v)
         {
-            Delegates.glMultiTexCoord3fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v);
+            unsafe { Delegates.glMultiTexCoord3fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v); }
         }
         
         public static 
@@ -8154,7 +8202,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord3iv(GL.Enums.VERSION_1_3 target, GLint* v)
         {
-            Delegates.glMultiTexCoord3iv((GL.Enums.VERSION_1_3)target, (GLint*)v);
+            unsafe { Delegates.glMultiTexCoord3iv((GL.Enums.VERSION_1_3)target, (GLint*)v); }
         }
         
         public static 
@@ -8191,7 +8239,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord3sv(GL.Enums.VERSION_1_3 target, GLshort* v)
         {
-            Delegates.glMultiTexCoord3sv((GL.Enums.VERSION_1_3)target, (GLshort*)v);
+            unsafe { Delegates.glMultiTexCoord3sv((GL.Enums.VERSION_1_3)target, (GLshort*)v); }
         }
         
         public static 
@@ -8228,7 +8276,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord4dv(GL.Enums.VERSION_1_3 target, GLdouble* v)
         {
-            Delegates.glMultiTexCoord4dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v);
+            unsafe { Delegates.glMultiTexCoord4dv((GL.Enums.VERSION_1_3)target, (GLdouble*)v); }
         }
         
         public static 
@@ -8265,7 +8313,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord4fv(GL.Enums.VERSION_1_3 target, GLfloat* v)
         {
-            Delegates.glMultiTexCoord4fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v);
+            unsafe { Delegates.glMultiTexCoord4fv((GL.Enums.VERSION_1_3)target, (GLfloat*)v); }
         }
         
         public static 
@@ -8302,7 +8350,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord4iv(GL.Enums.VERSION_1_3 target, GLint* v)
         {
-            Delegates.glMultiTexCoord4iv((GL.Enums.VERSION_1_3)target, (GLint*)v);
+            unsafe { Delegates.glMultiTexCoord4iv((GL.Enums.VERSION_1_3)target, (GLint*)v); }
         }
         
         public static 
@@ -8339,7 +8387,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiTexCoord4sv(GL.Enums.VERSION_1_3 target, GLshort* v)
         {
-            Delegates.glMultiTexCoord4sv((GL.Enums.VERSION_1_3)target, (GLshort*)v);
+            unsafe { Delegates.glMultiTexCoord4sv((GL.Enums.VERSION_1_3)target, (GLshort*)v); }
         }
         
         public static 
@@ -8370,7 +8418,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void LoadTransposeMatrixf(GLfloat* m)
         {
-            Delegates.glLoadTransposeMatrixf((GLfloat*)m);
+            unsafe { Delegates.glLoadTransposeMatrixf((GLfloat*)m); }
         }
         
         public static 
@@ -8401,7 +8449,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void LoadTransposeMatrixd(GLdouble* m)
         {
-            Delegates.glLoadTransposeMatrixd((GLdouble*)m);
+            unsafe { Delegates.glLoadTransposeMatrixd((GLdouble*)m); }
         }
         
         public static 
@@ -8432,7 +8480,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultTransposeMatrixf(GLfloat* m)
         {
-            Delegates.glMultTransposeMatrixf((GLfloat*)m);
+            unsafe { Delegates.glMultTransposeMatrixf((GLfloat*)m); }
         }
         
         public static 
@@ -8463,7 +8511,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultTransposeMatrixd(GLdouble* m)
         {
-            Delegates.glMultTransposeMatrixd((GLdouble*)m);
+            unsafe { Delegates.glMultTransposeMatrixd((GLdouble*)m); }
         }
         
         public static 
@@ -8490,11 +8538,17 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void SampleCoverage(GLclampf value, GL.Enums.Boolean invert)
+        {
+             Delegates.glSampleCoverage((GLclampf)value, (GL.Enums.Boolean)invert); 
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         unsafe void CompressedTexImage3D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, void* data)
         {
-            Delegates.glCompressedTexImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GLsizei)imageSize, (void*)data);
+            unsafe { Delegates.glCompressedTexImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GLsizei)imageSize, (void*)data); }
         }
         
         public static 
@@ -8518,7 +8572,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void CompressedTexImage2D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, void* data)
         {
-            Delegates.glCompressedTexImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLint)border, (GLsizei)imageSize, (void*)data);
+            unsafe { Delegates.glCompressedTexImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLint)border, (GLsizei)imageSize, (void*)data); }
         }
         
         public static 
@@ -8542,7 +8596,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void CompressedTexImage1D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLint border, GLsizei imageSize, void* data)
         {
-            Delegates.glCompressedTexImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLint)border, (GLsizei)imageSize, (void*)data);
+            unsafe { Delegates.glCompressedTexImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLint)border, (GLsizei)imageSize, (void*)data); }
         }
         
         public static 
@@ -8566,7 +8620,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void CompressedTexSubImage3D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GL.Enums.PixelFormat format, GLsizei imageSize, void* data)
         {
-            Delegates.glCompressedTexSubImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data);
+            unsafe { Delegates.glCompressedTexSubImage3D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data); }
         }
         
         public static 
@@ -8590,7 +8644,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void CompressedTexSubImage2D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GLsizei imageSize, void* data)
         {
-            Delegates.glCompressedTexSubImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data);
+            unsafe { Delegates.glCompressedTexSubImage2D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data); }
         }
         
         public static 
@@ -8614,7 +8668,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void CompressedTexSubImage1D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLsizei width, GL.Enums.PixelFormat format, GLsizei imageSize, void* data)
         {
-            Delegates.glCompressedTexSubImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data);
+            unsafe { Delegates.glCompressedTexSubImage1D((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data); }
         }
         
         public static 
@@ -8638,7 +8692,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetCompressedTexImage(GL.Enums.TextureTarget target, GLint level, void* img)
         {
-            Delegates.glGetCompressedTexImage((GL.Enums.TextureTarget)target, (GLint)level, (void*)img);
+            unsafe { Delegates.glGetCompressedTexImage((GL.Enums.TextureTarget)target, (GLint)level, (void*)img); }
         }
         
         public static 
@@ -8674,7 +8728,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void FogCoordfv(GLfloat* coord)
         {
-            Delegates.glFogCoordfv((GLfloat*)coord);
+            unsafe { Delegates.glFogCoordfv((GLfloat*)coord); }
         }
         
         public static 
@@ -8711,7 +8765,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void FogCoorddv(GLdouble* coord)
         {
-            Delegates.glFogCoorddv((GLdouble*)coord);
+            unsafe { Delegates.glFogCoorddv((GLdouble*)coord); }
         }
         
         public static 
@@ -8742,7 +8796,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void FogCoordPointer(GL.Enums.VERSION_1_4 type, GLsizei stride, void* pointer)
         {
-            Delegates.glFogCoordPointer((GL.Enums.VERSION_1_4)type, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glFogCoordPointer((GL.Enums.VERSION_1_4)type, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -8766,7 +8820,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiDrawArrays(GL.Enums.BeginMode mode, GLint* first, GLsizei* count, GLsizei primcount)
         {
-            Delegates.glMultiDrawArrays((GL.Enums.BeginMode)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount);
+            unsafe { Delegates.glMultiDrawArrays((GL.Enums.BeginMode)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount); }
         }
         
         [System.CLSCompliant(false)]
@@ -8881,7 +8935,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiDrawElements(GL.Enums.BeginMode mode, GLsizei* count, GL.Enums.VERSION_1_4 type, void* indices, GLsizei primcount)
         {
-            Delegates.glMultiDrawElements((GL.Enums.BeginMode)mode, (GLsizei*)count, (GL.Enums.VERSION_1_4)type, (void*)indices, (GLsizei)primcount);
+            unsafe { Delegates.glMultiDrawElements((GL.Enums.BeginMode)mode, (GLsizei*)count, (GL.Enums.VERSION_1_4)type, (void*)indices, (GLsizei)primcount); }
         }
         
         [System.CLSCompliant(false)]
@@ -8965,7 +9019,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void PointParameterfv(GL.Enums.VERSION_1_4 pname, GLfloat* @params)
         {
-            Delegates.glPointParameterfv((GL.Enums.VERSION_1_4)pname, (GLfloat*)@params);
+            unsafe { Delegates.glPointParameterfv((GL.Enums.VERSION_1_4)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -9002,7 +9056,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void PointParameteriv(GL.Enums.VERSION_1_4 pname, GLint* @params)
         {
-            Delegates.glPointParameteriv((GL.Enums.VERSION_1_4)pname, (GLint*)@params);
+            unsafe { Delegates.glPointParameteriv((GL.Enums.VERSION_1_4)pname, (GLint*)@params); }
         }
         
         public static 
@@ -9055,7 +9109,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3bv(GLbyte* v)
         {
-            Delegates.glSecondaryColor3bv((GLbyte*)v);
+            unsafe { Delegates.glSecondaryColor3bv((GLbyte*)v); }
         }
         
         public static 
@@ -9118,7 +9172,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3dv(GLdouble* v)
         {
-            Delegates.glSecondaryColor3dv((GLdouble*)v);
+            unsafe { Delegates.glSecondaryColor3dv((GLdouble*)v); }
         }
         
         public static 
@@ -9155,7 +9209,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3fv(GLfloat* v)
         {
-            Delegates.glSecondaryColor3fv((GLfloat*)v);
+            unsafe { Delegates.glSecondaryColor3fv((GLfloat*)v); }
         }
         
         public static 
@@ -9192,7 +9246,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3iv(GLint* v)
         {
-            Delegates.glSecondaryColor3iv((GLint*)v);
+            unsafe { Delegates.glSecondaryColor3iv((GLint*)v); }
         }
         
         public static 
@@ -9229,7 +9283,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3sv(GLshort* v)
         {
-            Delegates.glSecondaryColor3sv((GLshort*)v);
+            unsafe { Delegates.glSecondaryColor3sv((GLshort*)v); }
         }
         
         public static 
@@ -9266,7 +9320,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3ubv(GLubyte* v)
         {
-            Delegates.glSecondaryColor3ubv((GLubyte*)v);
+            unsafe { Delegates.glSecondaryColor3ubv((GLubyte*)v); }
         }
         
         public static 
@@ -9319,7 +9373,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3uiv(GLuint* v)
         {
-            Delegates.glSecondaryColor3uiv((GLuint*)v);
+            unsafe { Delegates.glSecondaryColor3uiv((GLuint*)v); }
         }
         
         public static 
@@ -9398,7 +9452,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColor3usv(GLushort* v)
         {
-            Delegates.glSecondaryColor3usv((GLushort*)v);
+            unsafe { Delegates.glSecondaryColor3usv((GLushort*)v); }
         }
         
         public static 
@@ -9455,7 +9509,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SecondaryColorPointer(GLint size, GL.Enums.ColorPointerType type, GLsizei stride, void* pointer)
         {
-            Delegates.glSecondaryColorPointer((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glSecondaryColorPointer((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -9485,7 +9539,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos2dv(GLdouble* v)
         {
-            Delegates.glWindowPos2dv((GLdouble*)v);
+            unsafe { Delegates.glWindowPos2dv((GLdouble*)v); }
         }
         
         public static 
@@ -9522,7 +9576,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos2fv(GLfloat* v)
         {
-            Delegates.glWindowPos2fv((GLfloat*)v);
+            unsafe { Delegates.glWindowPos2fv((GLfloat*)v); }
         }
         
         public static 
@@ -9559,7 +9613,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos2iv(GLint* v)
         {
-            Delegates.glWindowPos2iv((GLint*)v);
+            unsafe { Delegates.glWindowPos2iv((GLint*)v); }
         }
         
         public static 
@@ -9596,7 +9650,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos2sv(GLshort* v)
         {
-            Delegates.glWindowPos2sv((GLshort*)v);
+            unsafe { Delegates.glWindowPos2sv((GLshort*)v); }
         }
         
         public static 
@@ -9633,7 +9687,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos3dv(GLdouble* v)
         {
-            Delegates.glWindowPos3dv((GLdouble*)v);
+            unsafe { Delegates.glWindowPos3dv((GLdouble*)v); }
         }
         
         public static 
@@ -9670,7 +9724,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos3fv(GLfloat* v)
         {
-            Delegates.glWindowPos3fv((GLfloat*)v);
+            unsafe { Delegates.glWindowPos3fv((GLfloat*)v); }
         }
         
         public static 
@@ -9707,7 +9761,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos3iv(GLint* v)
         {
-            Delegates.glWindowPos3iv((GLint*)v);
+            unsafe { Delegates.glWindowPos3iv((GLint*)v); }
         }
         
         public static 
@@ -9744,7 +9798,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void WindowPos3sv(GLshort* v)
         {
-            Delegates.glWindowPos3sv((GLshort*)v);
+            unsafe { Delegates.glWindowPos3sv((GLshort*)v); }
         }
         
         public static 
@@ -9785,7 +9839,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GenQueries(GLsizei n, GLuint* ids)
         {
-            Delegates.glGenQueries((GLsizei)n, (GLuint*)ids);
+            unsafe { Delegates.glGenQueries((GLsizei)n, (GLuint*)ids); }
         }
         
         public static 
@@ -9855,7 +9909,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void DeleteQueries(GLsizei n, GLuint* ids)
         {
-            Delegates.glDeleteQueries((GLsizei)n, (GLuint*)ids);
+            unsafe { Delegates.glDeleteQueries((GLsizei)n, (GLuint*)ids); }
         }
         
         public static 
@@ -9944,7 +9998,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetQueryiv(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 pname, GLint* @params)
         {
-            Delegates.glGetQueryiv((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)pname, (GLint*)@params);
+            unsafe { Delegates.glGetQueryiv((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)pname, (GLint*)@params); }
         }
         
         public static 
@@ -9987,7 +10041,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetQueryObjectiv(GLuint id, GL.Enums.VERSION_1_5 pname, GLint* @params)
         {
-            Delegates.glGetQueryObjectiv((GLuint)id, (GL.Enums.VERSION_1_5)pname, (GLint*)@params);
+            unsafe { Delegates.glGetQueryObjectiv((GLuint)id, (GL.Enums.VERSION_1_5)pname, (GLint*)@params); }
         }
         
         public static 
@@ -10058,7 +10112,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetQueryObjectuiv(GLuint id, GL.Enums.VERSION_1_5 pname, GLuint* @params)
         {
-            Delegates.glGetQueryObjectuiv((GLuint)id, (GL.Enums.VERSION_1_5)pname, (GLuint*)@params);
+            unsafe { Delegates.glGetQueryObjectuiv((GLuint)id, (GL.Enums.VERSION_1_5)pname, (GLuint*)@params); }
         }
         
         public static 
@@ -10141,7 +10195,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void DeleteBuffers(GLsizei n, GLuint* buffers)
         {
-            Delegates.glDeleteBuffers((GLsizei)n, (GLuint*)buffers);
+            unsafe { Delegates.glDeleteBuffers((GLsizei)n, (GLuint*)buffers); }
         }
         
         public static 
@@ -10208,7 +10262,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GenBuffers(GLsizei n, GLuint* buffers)
         {
-            Delegates.glGenBuffers((GLsizei)n, (GLuint*)buffers);
+            unsafe { Delegates.glGenBuffers((GLsizei)n, (GLuint*)buffers); }
         }
         
         public static 
@@ -10282,7 +10336,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void BufferData(GL.Enums.VERSION_1_5 target, GLsizeiptr size, void* data, GL.Enums.VERSION_1_5 usage)
         {
-            Delegates.glBufferData((GL.Enums.VERSION_1_5)target, (GLsizeiptr)size, (void*)data, (GL.Enums.VERSION_1_5)usage);
+            unsafe { Delegates.glBufferData((GL.Enums.VERSION_1_5)target, (GLsizeiptr)size, (void*)data, (GL.Enums.VERSION_1_5)usage); }
         }
         
         public static 
@@ -10306,7 +10360,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void BufferSubData(GL.Enums.VERSION_1_5 target, GLintptr offset, GLsizeiptr size, void* data)
         {
-            Delegates.glBufferSubData((GL.Enums.VERSION_1_5)target, (GLintptr)offset, (GLsizeiptr)size, (void*)data);
+            unsafe { Delegates.glBufferSubData((GL.Enums.VERSION_1_5)target, (GLintptr)offset, (GLsizeiptr)size, (void*)data); }
         }
         
         public static 
@@ -10330,7 +10384,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetBufferSubData(GL.Enums.VERSION_1_5 target, GLintptr offset, GLsizeiptr size, void* data)
         {
-            Delegates.glGetBufferSubData((GL.Enums.VERSION_1_5)target, (GLintptr)offset, (GLsizeiptr)size, (void*)data);
+            unsafe { Delegates.glGetBufferSubData((GL.Enums.VERSION_1_5)target, (GLintptr)offset, (GLsizeiptr)size, (void*)data); }
         }
         
         public static 
@@ -10366,7 +10420,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetBufferParameteriv(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 pname, GLint* @params)
         {
-            Delegates.glGetBufferParameteriv((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)pname, (GLint*)@params);
+            unsafe { Delegates.glGetBufferParameteriv((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)pname, (GLint*)@params); }
         }
         
         public static 
@@ -10399,7 +10453,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetBufferPointerv(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 pname, void* @params)
         {
-            Delegates.glGetBufferPointerv((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)pname, (void*)@params);
+            unsafe { Delegates.glGetBufferPointerv((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)pname, (void*)@params); }
         }
         
         public static 
@@ -10429,7 +10483,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void DrawBuffers(GLsizei n, GL.Enums.VERSION_2_0* bufs)
         {
-            Delegates.glDrawBuffers((GLsizei)n, (GL.Enums.VERSION_2_0*)bufs);
+            unsafe { Delegates.glDrawBuffers((GLsizei)n, (GL.Enums.VERSION_2_0*)bufs); }
         }
         
         public static 
@@ -10621,7 +10675,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GL.Enums.VERSION_2_0* type, System.Text.StringBuilder name)
         {
-            Delegates.glGetActiveAttrib((GLuint)program, (GLuint)index, (GLsizei)bufSize, (GLsizei*)length, (GLint*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
+            unsafe { Delegates.glGetActiveAttrib((GLuint)program, (GLuint)index, (GLsizei)bufSize, (GLsizei*)length, (GLint*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name); }
         }
         
         [System.CLSCompliant(false)]
@@ -11465,7 +11519,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GL.Enums.VERSION_2_0* type, System.Text.StringBuilder name)
         {
-            Delegates.glGetActiveUniform((GLuint)program, (GLuint)index, (GLsizei)bufSize, (GLsizei*)length, (GLint*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
+            unsafe { Delegates.glGetActiveUniform((GLuint)program, (GLuint)index, (GLsizei)bufSize, (GLsizei*)length, (GLint*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name); }
         }
         
         [System.CLSCompliant(false)]
@@ -12307,7 +12361,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei* count, GLuint* obj)
         {
-            Delegates.glGetAttachedShaders((GLuint)program, (GLsizei)maxCount, (GLsizei*)count, (GLuint*)obj);
+            unsafe { Delegates.glGetAttachedShaders((GLuint)program, (GLsizei)maxCount, (GLsizei*)count, (GLuint*)obj); }
         }
         
         [System.CLSCompliant(false)]
@@ -12557,7 +12611,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetProgramiv(GLuint program, GL.Enums.VERSION_2_0 pname, GLint* @params)
         {
-            Delegates.glGetProgramiv((GLuint)program, (GL.Enums.VERSION_2_0)pname, (GLint*)@params);
+            unsafe { Delegates.glGetProgramiv((GLuint)program, (GL.Enums.VERSION_2_0)pname, (GLint*)@params); }
         }
         
         public static 
@@ -12629,7 +12683,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetProgramInfoLog(GLuint program, GLsizei bufSize, GLsizei* length, System.Text.StringBuilder infoLog)
         {
-            Delegates.glGetProgramInfoLog((GLuint)program, (GLsizei)bufSize, (GLsizei*)length, (System.Text.StringBuilder)infoLog);
+            unsafe { Delegates.glGetProgramInfoLog((GLuint)program, (GLsizei)bufSize, (GLsizei*)length, (System.Text.StringBuilder)infoLog); }
         }
         
         public static 
@@ -12704,7 +12758,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetShaderiv(GLuint shader, GL.Enums.VERSION_2_0 pname, GLint* @params)
         {
-            Delegates.glGetShaderiv((GLuint)shader, (GL.Enums.VERSION_2_0)pname, (GLint*)@params);
+            unsafe { Delegates.glGetShaderiv((GLuint)shader, (GL.Enums.VERSION_2_0)pname, (GLint*)@params); }
         }
         
         public static 
@@ -12776,7 +12830,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetShaderInfoLog(GLuint shader, GLsizei bufSize, GLsizei* length, System.Text.StringBuilder infoLog)
         {
-            Delegates.glGetShaderInfoLog((GLuint)shader, (GLsizei)bufSize, (GLsizei*)length, (System.Text.StringBuilder)infoLog);
+            unsafe { Delegates.glGetShaderInfoLog((GLuint)shader, (GLsizei)bufSize, (GLsizei*)length, (System.Text.StringBuilder)infoLog); }
         }
         
         public static 
@@ -12852,7 +12906,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetShaderSource(GLuint shader, GLsizei bufSize, GLsizei* length, System.Text.StringBuilder[] source)
         {
-            Delegates.glGetShaderSource((GLuint)shader, (GLsizei)bufSize, (GLsizei*)length, (System.Text.StringBuilder[])source);
+            unsafe { Delegates.glGetShaderSource((GLuint)shader, (GLsizei)bufSize, (GLsizei*)length, (System.Text.StringBuilder[])source); }
         }
         
         public static 
@@ -12940,7 +12994,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetUniformfv(GLuint program, GLint location, GLfloat* @params)
         {
-            Delegates.glGetUniformfv((GLuint)program, (GLint)location, (GLfloat*)@params);
+            unsafe { Delegates.glGetUniformfv((GLuint)program, (GLint)location, (GLfloat*)@params); }
         }
         
         public static 
@@ -13011,7 +13065,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetUniformiv(GLuint program, GLint location, GLint* @params)
         {
-            Delegates.glGetUniformiv((GLuint)program, (GLint)location, (GLint*)@params);
+            unsafe { Delegates.glGetUniformiv((GLuint)program, (GLint)location, (GLint*)@params); }
         }
         
         public static 
@@ -13082,7 +13136,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttribdv(GLuint index, GL.Enums.VERSION_2_0 pname, GLdouble* @params)
         {
-            Delegates.glGetVertexAttribdv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (GLdouble*)@params);
+            unsafe { Delegates.glGetVertexAttribdv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (GLdouble*)@params); }
         }
         
         public static 
@@ -13153,7 +13207,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttribfv(GLuint index, GL.Enums.VERSION_2_0 pname, GLfloat* @params)
         {
-            Delegates.glGetVertexAttribfv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (GLfloat*)@params);
+            unsafe { Delegates.glGetVertexAttribfv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (GLfloat*)@params); }
         }
         
         public static 
@@ -13224,7 +13278,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttribiv(GLuint index, GL.Enums.VERSION_2_0 pname, GLint* @params)
         {
-            Delegates.glGetVertexAttribiv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (GLint*)@params);
+            unsafe { Delegates.glGetVertexAttribiv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (GLint*)@params); }
         }
         
         public static 
@@ -13295,7 +13349,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttribPointerv(GLuint index, GL.Enums.VERSION_2_0 pname, void* pointer)
         {
-            Delegates.glGetVertexAttribPointerv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (void*)pointer);
+            unsafe { Delegates.glGetVertexAttribPointerv((GLuint)index, (GL.Enums.VERSION_2_0)pname, (void*)pointer); }
         }
         
         public static 
@@ -13385,7 +13439,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ShaderSource(GLuint shader, GLsizei count, System.String[] @string, GLint* length)
         {
-            Delegates.glShaderSource((GLuint)shader, (GLsizei)count, (System.String[])@string, (GLint*)length);
+            unsafe { Delegates.glShaderSource((GLuint)shader, (GLsizei)count, (System.String[])@string, (GLint*)length); }
         }
         
         public static 
@@ -13503,7 +13557,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform1fv(GLint location, GLsizei count, GLfloat* value)
         {
-            Delegates.glUniform1fv((GLint)location, (GLsizei)count, (GLfloat*)value);
+            unsafe { Delegates.glUniform1fv((GLint)location, (GLsizei)count, (GLfloat*)value); }
         }
         
         public static 
@@ -13534,7 +13588,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform2fv(GLint location, GLsizei count, GLfloat* value)
         {
-            Delegates.glUniform2fv((GLint)location, (GLsizei)count, (GLfloat*)value);
+            unsafe { Delegates.glUniform2fv((GLint)location, (GLsizei)count, (GLfloat*)value); }
         }
         
         public static 
@@ -13565,7 +13619,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform3fv(GLint location, GLsizei count, GLfloat* value)
         {
-            Delegates.glUniform3fv((GLint)location, (GLsizei)count, (GLfloat*)value);
+            unsafe { Delegates.glUniform3fv((GLint)location, (GLsizei)count, (GLfloat*)value); }
         }
         
         public static 
@@ -13596,7 +13650,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform4fv(GLint location, GLsizei count, GLfloat* value)
         {
-            Delegates.glUniform4fv((GLint)location, (GLsizei)count, (GLfloat*)value);
+            unsafe { Delegates.glUniform4fv((GLint)location, (GLsizei)count, (GLfloat*)value); }
         }
         
         public static 
@@ -13627,7 +13681,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform1iv(GLint location, GLsizei count, GLint* value)
         {
-            Delegates.glUniform1iv((GLint)location, (GLsizei)count, (GLint*)value);
+            unsafe { Delegates.glUniform1iv((GLint)location, (GLsizei)count, (GLint*)value); }
         }
         
         public static 
@@ -13658,7 +13712,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform2iv(GLint location, GLsizei count, GLint* value)
         {
-            Delegates.glUniform2iv((GLint)location, (GLsizei)count, (GLint*)value);
+            unsafe { Delegates.glUniform2iv((GLint)location, (GLsizei)count, (GLint*)value); }
         }
         
         public static 
@@ -13689,7 +13743,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform3iv(GLint location, GLsizei count, GLint* value)
         {
-            Delegates.glUniform3iv((GLint)location, (GLsizei)count, (GLint*)value);
+            unsafe { Delegates.glUniform3iv((GLint)location, (GLsizei)count, (GLint*)value); }
         }
         
         public static 
@@ -13720,7 +13774,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void Uniform4iv(GLint location, GLsizei count, GLint* value)
         {
-            Delegates.glUniform4iv((GLint)location, (GLsizei)count, (GLint*)value);
+            unsafe { Delegates.glUniform4iv((GLint)location, (GLsizei)count, (GLint*)value); }
         }
         
         public static 
@@ -13751,7 +13805,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -13782,7 +13836,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -13813,7 +13867,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -13879,7 +13933,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib1dv(GLuint index, GLdouble* v)
         {
-            Delegates.glVertexAttrib1dv((GLuint)index, (GLdouble*)v);
+            unsafe { Delegates.glVertexAttrib1dv((GLuint)index, (GLdouble*)v); }
         }
         
         public static 
@@ -13958,7 +14012,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib1fv(GLuint index, GLfloat* v)
         {
-            Delegates.glVertexAttrib1fv((GLuint)index, (GLfloat*)v);
+            unsafe { Delegates.glVertexAttrib1fv((GLuint)index, (GLfloat*)v); }
         }
         
         public static 
@@ -14037,7 +14091,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib1sv(GLuint index, GLshort* v)
         {
-            Delegates.glVertexAttrib1sv((GLuint)index, (GLshort*)v);
+            unsafe { Delegates.glVertexAttrib1sv((GLuint)index, (GLshort*)v); }
         }
         
         public static 
@@ -14116,7 +14170,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib2dv(GLuint index, GLdouble* v)
         {
-            Delegates.glVertexAttrib2dv((GLuint)index, (GLdouble*)v);
+            unsafe { Delegates.glVertexAttrib2dv((GLuint)index, (GLdouble*)v); }
         }
         
         public static 
@@ -14195,7 +14249,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib2fv(GLuint index, GLfloat* v)
         {
-            Delegates.glVertexAttrib2fv((GLuint)index, (GLfloat*)v);
+            unsafe { Delegates.glVertexAttrib2fv((GLuint)index, (GLfloat*)v); }
         }
         
         public static 
@@ -14274,7 +14328,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib2sv(GLuint index, GLshort* v)
         {
-            Delegates.glVertexAttrib2sv((GLuint)index, (GLshort*)v);
+            unsafe { Delegates.glVertexAttrib2sv((GLuint)index, (GLshort*)v); }
         }
         
         public static 
@@ -14353,7 +14407,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib3dv(GLuint index, GLdouble* v)
         {
-            Delegates.glVertexAttrib3dv((GLuint)index, (GLdouble*)v);
+            unsafe { Delegates.glVertexAttrib3dv((GLuint)index, (GLdouble*)v); }
         }
         
         public static 
@@ -14432,7 +14486,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib3fv(GLuint index, GLfloat* v)
         {
-            Delegates.glVertexAttrib3fv((GLuint)index, (GLfloat*)v);
+            unsafe { Delegates.glVertexAttrib3fv((GLuint)index, (GLfloat*)v); }
         }
         
         public static 
@@ -14511,7 +14565,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib3sv(GLuint index, GLshort* v)
         {
-            Delegates.glVertexAttrib3sv((GLuint)index, (GLshort*)v);
+            unsafe { Delegates.glVertexAttrib3sv((GLuint)index, (GLshort*)v); }
         }
         
         public static 
@@ -14577,7 +14631,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4Nbv(GLuint index, GLbyte* v)
         {
-            Delegates.glVertexAttrib4Nbv((GLuint)index, (GLbyte*)v);
+            unsafe { Delegates.glVertexAttrib4Nbv((GLuint)index, (GLbyte*)v); }
         }
         
         public static 
@@ -14643,7 +14697,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4Niv(GLuint index, GLint* v)
         {
-            Delegates.glVertexAttrib4Niv((GLuint)index, (GLint*)v);
+            unsafe { Delegates.glVertexAttrib4Niv((GLuint)index, (GLint*)v); }
         }
         
         public static 
@@ -14709,7 +14763,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4Nsv(GLuint index, GLshort* v)
         {
-            Delegates.glVertexAttrib4Nsv((GLuint)index, (GLshort*)v);
+            unsafe { Delegates.glVertexAttrib4Nsv((GLuint)index, (GLshort*)v); }
         }
         
         public static 
@@ -14788,7 +14842,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4Nubv(GLuint index, GLubyte* v)
         {
-            Delegates.glVertexAttrib4Nubv((GLuint)index, (GLubyte*)v);
+            unsafe { Delegates.glVertexAttrib4Nubv((GLuint)index, (GLubyte*)v); }
         }
         
         public static 
@@ -14854,7 +14908,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4Nuiv(GLuint index, GLuint* v)
         {
-            Delegates.glVertexAttrib4Nuiv((GLuint)index, (GLuint*)v);
+            unsafe { Delegates.glVertexAttrib4Nuiv((GLuint)index, (GLuint*)v); }
         }
         
         public static 
@@ -14920,7 +14974,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4Nusv(GLuint index, GLushort* v)
         {
-            Delegates.glVertexAttrib4Nusv((GLuint)index, (GLushort*)v);
+            unsafe { Delegates.glVertexAttrib4Nusv((GLuint)index, (GLushort*)v); }
         }
         
         public static 
@@ -14986,7 +15040,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4bv(GLuint index, GLbyte* v)
         {
-            Delegates.glVertexAttrib4bv((GLuint)index, (GLbyte*)v);
+            unsafe { Delegates.glVertexAttrib4bv((GLuint)index, (GLbyte*)v); }
         }
         
         public static 
@@ -15065,7 +15119,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4dv(GLuint index, GLdouble* v)
         {
-            Delegates.glVertexAttrib4dv((GLuint)index, (GLdouble*)v);
+            unsafe { Delegates.glVertexAttrib4dv((GLuint)index, (GLdouble*)v); }
         }
         
         public static 
@@ -15144,7 +15198,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4fv(GLuint index, GLfloat* v)
         {
-            Delegates.glVertexAttrib4fv((GLuint)index, (GLfloat*)v);
+            unsafe { Delegates.glVertexAttrib4fv((GLuint)index, (GLfloat*)v); }
         }
         
         public static 
@@ -15210,7 +15264,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4iv(GLuint index, GLint* v)
         {
-            Delegates.glVertexAttrib4iv((GLuint)index, (GLint*)v);
+            unsafe { Delegates.glVertexAttrib4iv((GLuint)index, (GLint*)v); }
         }
         
         public static 
@@ -15289,7 +15343,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4sv(GLuint index, GLshort* v)
         {
-            Delegates.glVertexAttrib4sv((GLuint)index, (GLshort*)v);
+            unsafe { Delegates.glVertexAttrib4sv((GLuint)index, (GLshort*)v); }
         }
         
         public static 
@@ -15355,7 +15409,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4ubv(GLuint index, GLubyte* v)
         {
-            Delegates.glVertexAttrib4ubv((GLuint)index, (GLubyte*)v);
+            unsafe { Delegates.glVertexAttrib4ubv((GLuint)index, (GLubyte*)v); }
         }
         
         public static 
@@ -15421,7 +15475,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4uiv(GLuint index, GLuint* v)
         {
-            Delegates.glVertexAttrib4uiv((GLuint)index, (GLuint*)v);
+            unsafe { Delegates.glVertexAttrib4uiv((GLuint)index, (GLuint*)v); }
         }
         
         public static 
@@ -15487,7 +15541,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttrib4usv(GLuint index, GLushort* v)
         {
-            Delegates.glVertexAttrib4usv((GLuint)index, (GLushort*)v);
+            unsafe { Delegates.glVertexAttrib4usv((GLuint)index, (GLushort*)v); }
         }
         
         public static 
@@ -15553,7 +15607,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexAttribPointer(GLuint index, GLint size, GL.Enums.VERSION_2_0 type, GL.Enums.Boolean normalized, GLsizei stride, void* pointer)
         {
-            Delegates.glVertexAttribPointer((GLuint)index, (GLint)size, (GL.Enums.VERSION_2_0)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer);
+            unsafe { Delegates.glVertexAttribPointer((GLuint)index, (GLint)size, (GL.Enums.VERSION_2_0)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer); }
         }
         
         public static 
@@ -15595,7 +15649,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix2x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix2x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix2x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -15626,7 +15680,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix3x2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix3x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix3x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -15657,7 +15711,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix2x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix2x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix2x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -15688,7 +15742,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix4x2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix4x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix4x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -15719,7 +15773,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix3x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix3x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix3x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -15750,7 +15804,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void UniformMatrix4x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
-            Delegates.glUniformMatrix4x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+            unsafe { Delegates.glUniformMatrix4x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
         public static 
@@ -15781,7 +15835,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void VertexPointervINTEL(GLint size, GL.Enums.VertexPointerType type, void* pointer)
         {
-            Delegates.glVertexPointervINTEL((GLint)size, (GL.Enums.VertexPointerType)type, (void*)pointer);
+            unsafe { Delegates.glVertexPointervINTEL((GLint)size, (GL.Enums.VertexPointerType)type, (void*)pointer); }
         }
         
         public static 
@@ -15805,7 +15859,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void NormalPointervINTEL(GL.Enums.NormalPointerType type, void* pointer)
         {
-            Delegates.glNormalPointervINTEL((GL.Enums.NormalPointerType)type, (void*)pointer);
+            unsafe { Delegates.glNormalPointervINTEL((GL.Enums.NormalPointerType)type, (void*)pointer); }
         }
         
         public static 
@@ -15829,7 +15883,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void ColorPointervINTEL(GLint size, GL.Enums.VertexPointerType type, void* pointer)
         {
-            Delegates.glColorPointervINTEL((GLint)size, (GL.Enums.VertexPointerType)type, (void*)pointer);
+            unsafe { Delegates.glColorPointervINTEL((GLint)size, (GL.Enums.VertexPointerType)type, (void*)pointer); }
         }
         
         public static 
@@ -15853,7 +15907,7 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void TexCoordPointervINTEL(GLint size, GL.Enums.VertexPointerType type, void* pointer)
         {
-            Delegates.glTexCoordPointervINTEL((GLint)size, (GL.Enums.VertexPointerType)type, (void*)pointer);
+            unsafe { Delegates.glTexCoordPointervINTEL((GLint)size, (GL.Enums.VertexPointerType)type, (void*)pointer); }
         }
         
         public static 
@@ -15910,7 +15964,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord1dv(GL.Enums.ARB_multitexture target, GLdouble* v)
             {
-                Delegates.glMultiTexCoord1dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v);
+                unsafe { Delegates.glMultiTexCoord1dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v); }
             }
             
             public static 
@@ -15947,7 +16001,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord1fv(GL.Enums.ARB_multitexture target, GLfloat* v)
             {
-                Delegates.glMultiTexCoord1fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v);
+                unsafe { Delegates.glMultiTexCoord1fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v); }
             }
             
             public static 
@@ -15984,7 +16038,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord1iv(GL.Enums.ARB_multitexture target, GLint* v)
             {
-                Delegates.glMultiTexCoord1ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v);
+                unsafe { Delegates.glMultiTexCoord1ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v); }
             }
             
             public static 
@@ -16021,7 +16075,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord1sv(GL.Enums.ARB_multitexture target, GLshort* v)
             {
-                Delegates.glMultiTexCoord1svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v);
+                unsafe { Delegates.glMultiTexCoord1svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v); }
             }
             
             public static 
@@ -16058,7 +16112,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord2dv(GL.Enums.ARB_multitexture target, GLdouble* v)
             {
-                Delegates.glMultiTexCoord2dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v);
+                unsafe { Delegates.glMultiTexCoord2dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v); }
             }
             
             public static 
@@ -16095,7 +16149,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord2fv(GL.Enums.ARB_multitexture target, GLfloat* v)
             {
-                Delegates.glMultiTexCoord2fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v);
+                unsafe { Delegates.glMultiTexCoord2fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v); }
             }
             
             public static 
@@ -16132,7 +16186,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord2iv(GL.Enums.ARB_multitexture target, GLint* v)
             {
-                Delegates.glMultiTexCoord2ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v);
+                unsafe { Delegates.glMultiTexCoord2ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v); }
             }
             
             public static 
@@ -16169,7 +16223,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord2sv(GL.Enums.ARB_multitexture target, GLshort* v)
             {
-                Delegates.glMultiTexCoord2svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v);
+                unsafe { Delegates.glMultiTexCoord2svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v); }
             }
             
             public static 
@@ -16206,7 +16260,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord3dv(GL.Enums.ARB_multitexture target, GLdouble* v)
             {
-                Delegates.glMultiTexCoord3dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v);
+                unsafe { Delegates.glMultiTexCoord3dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v); }
             }
             
             public static 
@@ -16243,7 +16297,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord3fv(GL.Enums.ARB_multitexture target, GLfloat* v)
             {
-                Delegates.glMultiTexCoord3fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v);
+                unsafe { Delegates.glMultiTexCoord3fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v); }
             }
             
             public static 
@@ -16280,7 +16334,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord3iv(GL.Enums.ARB_multitexture target, GLint* v)
             {
-                Delegates.glMultiTexCoord3ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v);
+                unsafe { Delegates.glMultiTexCoord3ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v); }
             }
             
             public static 
@@ -16317,7 +16371,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord3sv(GL.Enums.ARB_multitexture target, GLshort* v)
             {
-                Delegates.glMultiTexCoord3svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v);
+                unsafe { Delegates.glMultiTexCoord3svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v); }
             }
             
             public static 
@@ -16354,7 +16408,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord4dv(GL.Enums.ARB_multitexture target, GLdouble* v)
             {
-                Delegates.glMultiTexCoord4dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v);
+                unsafe { Delegates.glMultiTexCoord4dvARB((GL.Enums.ARB_multitexture)target, (GLdouble*)v); }
             }
             
             public static 
@@ -16391,7 +16445,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord4fv(GL.Enums.ARB_multitexture target, GLfloat* v)
             {
-                Delegates.glMultiTexCoord4fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v);
+                unsafe { Delegates.glMultiTexCoord4fvARB((GL.Enums.ARB_multitexture)target, (GLfloat*)v); }
             }
             
             public static 
@@ -16428,7 +16482,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord4iv(GL.Enums.ARB_multitexture target, GLint* v)
             {
-                Delegates.glMultiTexCoord4ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v);
+                unsafe { Delegates.glMultiTexCoord4ivARB((GL.Enums.ARB_multitexture)target, (GLint*)v); }
             }
             
             public static 
@@ -16465,7 +16519,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord4sv(GL.Enums.ARB_multitexture target, GLshort* v)
             {
-                Delegates.glMultiTexCoord4svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v);
+                unsafe { Delegates.glMultiTexCoord4svARB((GL.Enums.ARB_multitexture)target, (GLshort*)v); }
             }
             
             public static 
@@ -16496,7 +16550,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void LoadTransposeMatrixf(GLfloat* m)
             {
-                Delegates.glLoadTransposeMatrixfARB((GLfloat*)m);
+                unsafe { Delegates.glLoadTransposeMatrixfARB((GLfloat*)m); }
             }
             
             public static 
@@ -16527,7 +16581,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void LoadTransposeMatrixd(GLdouble* m)
             {
-                Delegates.glLoadTransposeMatrixdARB((GLdouble*)m);
+                unsafe { Delegates.glLoadTransposeMatrixdARB((GLdouble*)m); }
             }
             
             public static 
@@ -16558,7 +16612,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultTransposeMatrixf(GLfloat* m)
             {
-                Delegates.glMultTransposeMatrixfARB((GLfloat*)m);
+                unsafe { Delegates.glMultTransposeMatrixfARB((GLfloat*)m); }
             }
             
             public static 
@@ -16589,7 +16643,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultTransposeMatrixd(GLdouble* m)
             {
-                Delegates.glMultTransposeMatrixdARB((GLdouble*)m);
+                unsafe { Delegates.glMultTransposeMatrixdARB((GLdouble*)m); }
             }
             
             public static 
@@ -16616,11 +16670,17 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void SampleCoverage(GLclampf value, GL.Enums.Boolean invert)
+            {
+                 Delegates.glSampleCoverageARB((GLclampf)value, (GL.Enums.Boolean)invert); 
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void CompressedTexImage3D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, void* data)
             {
-                Delegates.glCompressedTexImage3DARB((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GLsizei)imageSize, (void*)data);
+                unsafe { Delegates.glCompressedTexImage3DARB((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GLsizei)imageSize, (void*)data); }
             }
             
             public static 
@@ -16644,7 +16704,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CompressedTexImage2D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, void* data)
             {
-                Delegates.glCompressedTexImage2DARB((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLint)border, (GLsizei)imageSize, (void*)data);
+                unsafe { Delegates.glCompressedTexImage2DARB((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLint)border, (GLsizei)imageSize, (void*)data); }
             }
             
             public static 
@@ -16668,7 +16728,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CompressedTexImage1D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLint border, GLsizei imageSize, void* data)
             {
-                Delegates.glCompressedTexImage1DARB((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLint)border, (GLsizei)imageSize, (void*)data);
+                unsafe { Delegates.glCompressedTexImage1DARB((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLint)border, (GLsizei)imageSize, (void*)data); }
             }
             
             public static 
@@ -16692,7 +16752,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CompressedTexSubImage3D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GL.Enums.PixelFormat format, GLsizei imageSize, void* data)
             {
-                Delegates.glCompressedTexSubImage3DARB((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data);
+                unsafe { Delegates.glCompressedTexSubImage3DARB((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data); }
             }
             
             public static 
@@ -16716,7 +16776,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CompressedTexSubImage2D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GLsizei imageSize, void* data)
             {
-                Delegates.glCompressedTexSubImage2DARB((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data);
+                unsafe { Delegates.glCompressedTexSubImage2DARB((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data); }
             }
             
             public static 
@@ -16740,7 +16800,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CompressedTexSubImage1D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLsizei width, GL.Enums.PixelFormat format, GLsizei imageSize, void* data)
             {
-                Delegates.glCompressedTexSubImage1DARB((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data);
+                unsafe { Delegates.glCompressedTexSubImage1DARB((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GLsizei)imageSize, (void*)data); }
             }
             
             public static 
@@ -16764,7 +16824,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetCompressedTexImage(GL.Enums.TextureTarget target, GLint level, void* img)
             {
-                Delegates.glGetCompressedTexImageARB((GL.Enums.TextureTarget)target, (GLint)level, (void*)img);
+                unsafe { Delegates.glGetCompressedTexImageARB((GL.Enums.TextureTarget)target, (GLint)level, (void*)img); }
             }
             
             public static 
@@ -16794,7 +16854,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PointParameterfv(GL.Enums.ARB_point_parameters pname, GLfloat* @params)
             {
-                Delegates.glPointParameterfvARB((GL.Enums.ARB_point_parameters)pname, (GLfloat*)@params);
+                unsafe { Delegates.glPointParameterfvARB((GL.Enums.ARB_point_parameters)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -16834,7 +16894,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightbv(GLint size, GLbyte* weights)
             {
-                Delegates.glWeightbvARB((GLint)size, (GLbyte*)weights);
+                unsafe { Delegates.glWeightbvARB((GLint)size, (GLbyte*)weights); }
             }
             
             public static 
@@ -16891,7 +16951,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightsv(GLint size, GLshort* weights)
             {
-                Delegates.glWeightsvARB((GLint)size, (GLshort*)weights);
+                unsafe { Delegates.glWeightsvARB((GLint)size, (GLshort*)weights); }
             }
             
             public static 
@@ -16922,7 +16982,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightiv(GLint size, GLint* weights)
             {
-                Delegates.glWeightivARB((GLint)size, (GLint*)weights);
+                unsafe { Delegates.glWeightivARB((GLint)size, (GLint*)weights); }
             }
             
             public static 
@@ -16953,7 +17013,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightfv(GLint size, GLfloat* weights)
             {
-                Delegates.glWeightfvARB((GLint)size, (GLfloat*)weights);
+                unsafe { Delegates.glWeightfvARB((GLint)size, (GLfloat*)weights); }
             }
             
             public static 
@@ -16984,7 +17044,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightdv(GLint size, GLdouble* weights)
             {
-                Delegates.glWeightdvARB((GLint)size, (GLdouble*)weights);
+                unsafe { Delegates.glWeightdvARB((GLint)size, (GLdouble*)weights); }
             }
             
             public static 
@@ -17015,7 +17075,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightubv(GLint size, GLubyte* weights)
             {
-                Delegates.glWeightubvARB((GLint)size, (GLubyte*)weights);
+                unsafe { Delegates.glWeightubvARB((GLint)size, (GLubyte*)weights); }
             }
             
             public static 
@@ -17055,7 +17115,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightusv(GLint size, GLushort* weights)
             {
-                Delegates.glWeightusvARB((GLint)size, (GLushort*)weights);
+                unsafe { Delegates.glWeightusvARB((GLint)size, (GLushort*)weights); }
             }
             
             public static 
@@ -17121,7 +17181,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Weightuiv(GLint size, GLuint* weights)
             {
-                Delegates.glWeightuivARB((GLint)size, (GLuint*)weights);
+                unsafe { Delegates.glWeightuivARB((GLint)size, (GLuint*)weights); }
             }
             
             public static 
@@ -17178,7 +17238,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WeightPointer(GLint size, GL.Enums.ARB_vertex_blend type, GLsizei stride, void* pointer)
             {
-                Delegates.glWeightPointerARB((GLint)size, (GL.Enums.ARB_vertex_blend)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glWeightPointerARB((GLint)size, (GL.Enums.ARB_vertex_blend)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -17214,7 +17274,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MatrixIndexubv(GLint size, GLubyte* indices)
             {
-                Delegates.glMatrixIndexubvARB((GLint)size, (GLubyte*)indices);
+                unsafe { Delegates.glMatrixIndexubvARB((GLint)size, (GLubyte*)indices); }
             }
             
             public static 
@@ -17254,7 +17314,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MatrixIndexusv(GLint size, GLushort* indices)
             {
-                Delegates.glMatrixIndexusvARB((GLint)size, (GLushort*)indices);
+                unsafe { Delegates.glMatrixIndexusvARB((GLint)size, (GLushort*)indices); }
             }
             
             public static 
@@ -17320,7 +17380,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MatrixIndexuiv(GLint size, GLuint* indices)
             {
-                Delegates.glMatrixIndexuivARB((GLint)size, (GLuint*)indices);
+                unsafe { Delegates.glMatrixIndexuivARB((GLint)size, (GLuint*)indices); }
             }
             
             public static 
@@ -17377,7 +17437,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MatrixIndexPointer(GLint size, GL.Enums.ARB_matrix_palette type, GLsizei stride, void* pointer)
             {
-                Delegates.glMatrixIndexPointerARB((GLint)size, (GL.Enums.ARB_matrix_palette)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glMatrixIndexPointerARB((GLint)size, (GL.Enums.ARB_matrix_palette)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -17407,7 +17467,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2dv(GLdouble* v)
             {
-                Delegates.glWindowPos2dvARB((GLdouble*)v);
+                unsafe { Delegates.glWindowPos2dvARB((GLdouble*)v); }
             }
             
             public static 
@@ -17444,7 +17504,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2fv(GLfloat* v)
             {
-                Delegates.glWindowPos2fvARB((GLfloat*)v);
+                unsafe { Delegates.glWindowPos2fvARB((GLfloat*)v); }
             }
             
             public static 
@@ -17481,7 +17541,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2iv(GLint* v)
             {
-                Delegates.glWindowPos2ivARB((GLint*)v);
+                unsafe { Delegates.glWindowPos2ivARB((GLint*)v); }
             }
             
             public static 
@@ -17518,7 +17578,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2sv(GLshort* v)
             {
-                Delegates.glWindowPos2svARB((GLshort*)v);
+                unsafe { Delegates.glWindowPos2svARB((GLshort*)v); }
             }
             
             public static 
@@ -17555,7 +17615,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3dv(GLdouble* v)
             {
-                Delegates.glWindowPos3dvARB((GLdouble*)v);
+                unsafe { Delegates.glWindowPos3dvARB((GLdouble*)v); }
             }
             
             public static 
@@ -17592,7 +17652,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3fv(GLfloat* v)
             {
-                Delegates.glWindowPos3fvARB((GLfloat*)v);
+                unsafe { Delegates.glWindowPos3fvARB((GLfloat*)v); }
             }
             
             public static 
@@ -17629,7 +17689,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3iv(GLint* v)
             {
-                Delegates.glWindowPos3ivARB((GLint*)v);
+                unsafe { Delegates.glWindowPos3ivARB((GLint*)v); }
             }
             
             public static 
@@ -17666,7 +17726,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3sv(GLshort* v)
             {
-                Delegates.glWindowPos3svARB((GLshort*)v);
+                unsafe { Delegates.glWindowPos3svARB((GLshort*)v); }
             }
             
             public static 
@@ -17719,7 +17779,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib1dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib1dvARB((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib1dvARB((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -17798,7 +17858,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib1fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib1fvARB((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib1fvARB((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -17877,7 +17937,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib1sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib1svARB((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib1svARB((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -17956,7 +18016,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib2dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib2dvARB((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib2dvARB((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -18035,7 +18095,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib2fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib2fvARB((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib2fvARB((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -18114,7 +18174,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib2sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib2svARB((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib2svARB((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -18193,7 +18253,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib3dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib3dvARB((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib3dvARB((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -18272,7 +18332,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib3fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib3fvARB((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib3fvARB((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -18351,7 +18411,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib3sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib3svARB((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib3svARB((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -18417,7 +18477,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4Nbv(GLuint index, GLbyte* v)
             {
-                Delegates.glVertexAttrib4NbvARB((GLuint)index, (GLbyte*)v);
+                unsafe { Delegates.glVertexAttrib4NbvARB((GLuint)index, (GLbyte*)v); }
             }
             
             public static 
@@ -18483,7 +18543,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4Niv(GLuint index, GLint* v)
             {
-                Delegates.glVertexAttrib4NivARB((GLuint)index, (GLint*)v);
+                unsafe { Delegates.glVertexAttrib4NivARB((GLuint)index, (GLint*)v); }
             }
             
             public static 
@@ -18549,7 +18609,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4Nsv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib4NsvARB((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib4NsvARB((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -18628,7 +18688,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4Nubv(GLuint index, GLubyte* v)
             {
-                Delegates.glVertexAttrib4NubvARB((GLuint)index, (GLubyte*)v);
+                unsafe { Delegates.glVertexAttrib4NubvARB((GLuint)index, (GLubyte*)v); }
             }
             
             public static 
@@ -18694,7 +18754,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4Nuiv(GLuint index, GLuint* v)
             {
-                Delegates.glVertexAttrib4NuivARB((GLuint)index, (GLuint*)v);
+                unsafe { Delegates.glVertexAttrib4NuivARB((GLuint)index, (GLuint*)v); }
             }
             
             public static 
@@ -18760,7 +18820,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4Nusv(GLuint index, GLushort* v)
             {
-                Delegates.glVertexAttrib4NusvARB((GLuint)index, (GLushort*)v);
+                unsafe { Delegates.glVertexAttrib4NusvARB((GLuint)index, (GLushort*)v); }
             }
             
             public static 
@@ -18826,7 +18886,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4bv(GLuint index, GLbyte* v)
             {
-                Delegates.glVertexAttrib4bvARB((GLuint)index, (GLbyte*)v);
+                unsafe { Delegates.glVertexAttrib4bvARB((GLuint)index, (GLbyte*)v); }
             }
             
             public static 
@@ -18905,7 +18965,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib4dvARB((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib4dvARB((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -18984,7 +19044,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib4fvARB((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib4fvARB((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -19050,7 +19110,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4iv(GLuint index, GLint* v)
             {
-                Delegates.glVertexAttrib4ivARB((GLuint)index, (GLint*)v);
+                unsafe { Delegates.glVertexAttrib4ivARB((GLuint)index, (GLint*)v); }
             }
             
             public static 
@@ -19129,7 +19189,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib4svARB((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib4svARB((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -19195,7 +19255,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4ubv(GLuint index, GLubyte* v)
             {
-                Delegates.glVertexAttrib4ubvARB((GLuint)index, (GLubyte*)v);
+                unsafe { Delegates.glVertexAttrib4ubvARB((GLuint)index, (GLubyte*)v); }
             }
             
             public static 
@@ -19261,7 +19321,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4uiv(GLuint index, GLuint* v)
             {
-                Delegates.glVertexAttrib4uivARB((GLuint)index, (GLuint*)v);
+                unsafe { Delegates.glVertexAttrib4uivARB((GLuint)index, (GLuint*)v); }
             }
             
             public static 
@@ -19327,7 +19387,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4usv(GLuint index, GLushort* v)
             {
-                Delegates.glVertexAttrib4usvARB((GLuint)index, (GLushort*)v);
+                unsafe { Delegates.glVertexAttrib4usvARB((GLuint)index, (GLushort*)v); }
             }
             
             public static 
@@ -19393,7 +19453,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribPointer(GLuint index, GLint size, GL.Enums.ARB_vertex_program type, GL.Enums.Boolean normalized, GLsizei stride, void* pointer)
             {
-                Delegates.glVertexAttribPointerARB((GLuint)index, (GLint)size, (GL.Enums.ARB_vertex_program)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glVertexAttribPointerARB((GLuint)index, (GLint)size, (GL.Enums.ARB_vertex_program)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -19461,7 +19521,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramString(GL.Enums.ARB_vertex_program target, GL.Enums.ARB_vertex_program format, GLsizei len, void* @string)
             {
-                Delegates.glProgramStringARB((GL.Enums.ARB_vertex_program)target, (GL.Enums.ARB_vertex_program)format, (GLsizei)len, (void*)@string);
+                unsafe { Delegates.glProgramStringARB((GL.Enums.ARB_vertex_program)target, (GL.Enums.ARB_vertex_program)format, (GLsizei)len, (void*)@string); }
             }
             
             public static 
@@ -19507,7 +19567,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeletePrograms(GLsizei n, GLuint* programs)
             {
-                Delegates.glDeleteProgramsARB((GLsizei)n, (GLuint*)programs);
+                unsafe { Delegates.glDeleteProgramsARB((GLsizei)n, (GLuint*)programs); }
             }
             
             public static 
@@ -19574,7 +19634,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenPrograms(GLsizei n, GLuint* programs)
             {
-                Delegates.glGenProgramsARB((GLsizei)n, (GLuint*)programs);
+                unsafe { Delegates.glGenProgramsARB((GLsizei)n, (GLuint*)programs); }
             }
             
             public static 
@@ -19657,7 +19717,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramEnvParameter4dv(GL.Enums.ARB_vertex_program target, GLuint index, GLdouble* @params)
             {
-                Delegates.glProgramEnvParameter4dvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params);
+                unsafe { Delegates.glProgramEnvParameter4dvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params); }
             }
             
             public static 
@@ -19736,7 +19796,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramEnvParameter4fv(GL.Enums.ARB_vertex_program target, GLuint index, GLfloat* @params)
             {
-                Delegates.glProgramEnvParameter4fvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params);
+                unsafe { Delegates.glProgramEnvParameter4fvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params); }
             }
             
             public static 
@@ -19815,7 +19875,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramLocalParameter4dv(GL.Enums.ARB_vertex_program target, GLuint index, GLdouble* @params)
             {
-                Delegates.glProgramLocalParameter4dvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params);
+                unsafe { Delegates.glProgramLocalParameter4dvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params); }
             }
             
             public static 
@@ -19894,7 +19954,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramLocalParameter4fv(GL.Enums.ARB_vertex_program target, GLuint index, GLfloat* @params)
             {
-                Delegates.glProgramLocalParameter4fvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params);
+                unsafe { Delegates.glProgramLocalParameter4fvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params); }
             }
             
             public static 
@@ -19961,7 +20021,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramEnvParameterdv(GL.Enums.ARB_vertex_program target, GLuint index, GLdouble* @params)
             {
-                Delegates.glGetProgramEnvParameterdvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params);
+                unsafe { Delegates.glGetProgramEnvParameterdvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params); }
             }
             
             public static 
@@ -20032,7 +20092,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramEnvParameterfv(GL.Enums.ARB_vertex_program target, GLuint index, GLfloat* @params)
             {
-                Delegates.glGetProgramEnvParameterfvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params);
+                unsafe { Delegates.glGetProgramEnvParameterfvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params); }
             }
             
             public static 
@@ -20103,7 +20163,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramLocalParameterdv(GL.Enums.ARB_vertex_program target, GLuint index, GLdouble* @params)
             {
-                Delegates.glGetProgramLocalParameterdvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params);
+                unsafe { Delegates.glGetProgramLocalParameterdvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLdouble*)@params); }
             }
             
             public static 
@@ -20174,7 +20234,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramLocalParameterfv(GL.Enums.ARB_vertex_program target, GLuint index, GLfloat* @params)
             {
-                Delegates.glGetProgramLocalParameterfvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params);
+                unsafe { Delegates.glGetProgramLocalParameterfvARB((GL.Enums.ARB_vertex_program)target, (GLuint)index, (GLfloat*)@params); }
             }
             
             public static 
@@ -20235,7 +20295,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramiv(GL.Enums.ARB_vertex_program target, GL.Enums.ARB_vertex_program pname, GLint* @params)
             {
-                Delegates.glGetProgramivARB((GL.Enums.ARB_vertex_program)target, (GL.Enums.ARB_vertex_program)pname, (GLint*)@params);
+                unsafe { Delegates.glGetProgramivARB((GL.Enums.ARB_vertex_program)target, (GL.Enums.ARB_vertex_program)pname, (GLint*)@params); }
             }
             
             public static 
@@ -20268,7 +20328,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramString(GL.Enums.ARB_vertex_program target, GL.Enums.ARB_vertex_program pname, void* @string)
             {
-                Delegates.glGetProgramStringARB((GL.Enums.ARB_vertex_program)target, (GL.Enums.ARB_vertex_program)pname, (void*)@string);
+                unsafe { Delegates.glGetProgramStringARB((GL.Enums.ARB_vertex_program)target, (GL.Enums.ARB_vertex_program)pname, (void*)@string); }
             }
             
             public static 
@@ -20302,7 +20362,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribdv(GLuint index, GL.Enums.ARB_vertex_program pname, GLdouble* @params)
             {
-                Delegates.glGetVertexAttribdvARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (GLdouble*)@params);
+                unsafe { Delegates.glGetVertexAttribdvARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (GLdouble*)@params); }
             }
             
             public static 
@@ -20373,7 +20433,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribfv(GLuint index, GL.Enums.ARB_vertex_program pname, GLfloat* @params)
             {
-                Delegates.glGetVertexAttribfvARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetVertexAttribfvARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -20444,7 +20504,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribiv(GLuint index, GL.Enums.ARB_vertex_program pname, GLint* @params)
             {
-                Delegates.glGetVertexAttribivARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (GLint*)@params);
+                unsafe { Delegates.glGetVertexAttribivARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (GLint*)@params); }
             }
             
             public static 
@@ -20515,7 +20575,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribPointerv(GLuint index, GL.Enums.ARB_vertex_program pname, void* pointer)
             {
-                Delegates.glGetVertexAttribPointervARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (void*)pointer);
+                unsafe { Delegates.glGetVertexAttribPointervARB((GLuint)index, (GL.Enums.ARB_vertex_program)pname, (void*)pointer); }
             }
             
             public static 
@@ -20592,7 +20652,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteBuffers(GLsizei n, GLuint* buffers)
             {
-                Delegates.glDeleteBuffersARB((GLsizei)n, (GLuint*)buffers);
+                unsafe { Delegates.glDeleteBuffersARB((GLsizei)n, (GLuint*)buffers); }
             }
             
             public static 
@@ -20659,7 +20719,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenBuffers(GLsizei n, GLuint* buffers)
             {
-                Delegates.glGenBuffersARB((GLsizei)n, (GLuint*)buffers);
+                unsafe { Delegates.glGenBuffersARB((GLsizei)n, (GLuint*)buffers); }
             }
             
             public static 
@@ -20733,7 +20793,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void BufferData(GL.Enums.ARB_vertex_buffer_object target, GLsizeiptrARB size, void* data, GL.Enums.ARB_vertex_buffer_object usage)
             {
-                Delegates.glBufferDataARB((GL.Enums.ARB_vertex_buffer_object)target, (GLsizeiptrARB)size, (void*)data, (GL.Enums.ARB_vertex_buffer_object)usage);
+                unsafe { Delegates.glBufferDataARB((GL.Enums.ARB_vertex_buffer_object)target, (GLsizeiptrARB)size, (void*)data, (GL.Enums.ARB_vertex_buffer_object)usage); }
             }
             
             public static 
@@ -20757,7 +20817,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void BufferSubData(GL.Enums.ARB_vertex_buffer_object target, GLintptrARB offset, GLsizeiptrARB size, void* data)
             {
-                Delegates.glBufferSubDataARB((GL.Enums.ARB_vertex_buffer_object)target, (GLintptrARB)offset, (GLsizeiptrARB)size, (void*)data);
+                unsafe { Delegates.glBufferSubDataARB((GL.Enums.ARB_vertex_buffer_object)target, (GLintptrARB)offset, (GLsizeiptrARB)size, (void*)data); }
             }
             
             public static 
@@ -20781,7 +20841,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetBufferSubData(GL.Enums.ARB_vertex_buffer_object target, GLintptrARB offset, GLsizeiptrARB size, void* data)
             {
-                Delegates.glGetBufferSubDataARB((GL.Enums.ARB_vertex_buffer_object)target, (GLintptrARB)offset, (GLsizeiptrARB)size, (void*)data);
+                unsafe { Delegates.glGetBufferSubDataARB((GL.Enums.ARB_vertex_buffer_object)target, (GLintptrARB)offset, (GLsizeiptrARB)size, (void*)data); }
             }
             
             public static 
@@ -20817,7 +20877,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetBufferParameteriv(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object pname, GLint* @params)
             {
-                Delegates.glGetBufferParameterivARB((GL.Enums.ARB_vertex_buffer_object)target, (GL.Enums.ARB_vertex_buffer_object)pname, (GLint*)@params);
+                unsafe { Delegates.glGetBufferParameterivARB((GL.Enums.ARB_vertex_buffer_object)target, (GL.Enums.ARB_vertex_buffer_object)pname, (GLint*)@params); }
             }
             
             public static 
@@ -20850,7 +20910,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetBufferPointerv(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object pname, void* @params)
             {
-                Delegates.glGetBufferPointervARB((GL.Enums.ARB_vertex_buffer_object)target, (GL.Enums.ARB_vertex_buffer_object)pname, (void*)@params);
+                unsafe { Delegates.glGetBufferPointervARB((GL.Enums.ARB_vertex_buffer_object)target, (GL.Enums.ARB_vertex_buffer_object)pname, (void*)@params); }
             }
             
             public static 
@@ -20884,7 +20944,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenQueries(GLsizei n, GLuint* ids)
             {
-                Delegates.glGenQueriesARB((GLsizei)n, (GLuint*)ids);
+                unsafe { Delegates.glGenQueriesARB((GLsizei)n, (GLuint*)ids); }
             }
             
             public static 
@@ -20954,7 +21014,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteQueries(GLsizei n, GLuint* ids)
             {
-                Delegates.glDeleteQueriesARB((GLsizei)n, (GLuint*)ids);
+                unsafe { Delegates.glDeleteQueriesARB((GLsizei)n, (GLuint*)ids); }
             }
             
             public static 
@@ -21043,7 +21103,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryiv(GL.Enums.ARB_occlusion_query target, GL.Enums.ARB_occlusion_query pname, GLint* @params)
             {
-                Delegates.glGetQueryivARB((GL.Enums.ARB_occlusion_query)target, (GL.Enums.ARB_occlusion_query)pname, (GLint*)@params);
+                unsafe { Delegates.glGetQueryivARB((GL.Enums.ARB_occlusion_query)target, (GL.Enums.ARB_occlusion_query)pname, (GLint*)@params); }
             }
             
             public static 
@@ -21086,7 +21146,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryObjectiv(GLuint id, GL.Enums.ARB_occlusion_query pname, GLint* @params)
             {
-                Delegates.glGetQueryObjectivARB((GLuint)id, (GL.Enums.ARB_occlusion_query)pname, (GLint*)@params);
+                unsafe { Delegates.glGetQueryObjectivARB((GLuint)id, (GL.Enums.ARB_occlusion_query)pname, (GLint*)@params); }
             }
             
             public static 
@@ -21157,7 +21217,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryObjectuiv(GLuint id, GL.Enums.ARB_occlusion_query pname, GLuint* @params)
             {
-                Delegates.glGetQueryObjectuivARB((GLuint)id, (GL.Enums.ARB_occlusion_query)pname, (GLuint*)@params);
+                unsafe { Delegates.glGetQueryObjectuivARB((GLuint)id, (GL.Enums.ARB_occlusion_query)pname, (GLuint*)@params); }
             }
             
             public static 
@@ -21265,7 +21325,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ShaderSource(GLhandleARB shaderObj, GLsizei count, System.String[] @string, GLint* length)
             {
-                Delegates.glShaderSourceARB((GLhandleARB)shaderObj, (GLsizei)count, (System.String[])@string, (GLint*)length);
+                unsafe { Delegates.glShaderSourceARB((GLhandleARB)shaderObj, (GLsizei)count, (System.String[])@string, (GLint*)length); }
             }
             
             public static 
@@ -21441,7 +21501,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform1fv(GLint location, GLsizei count, GLfloat* value)
             {
-                Delegates.glUniform1fvARB((GLint)location, (GLsizei)count, (GLfloat*)value);
+                unsafe { Delegates.glUniform1fvARB((GLint)location, (GLsizei)count, (GLfloat*)value); }
             }
             
             public static 
@@ -21472,7 +21532,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform2fv(GLint location, GLsizei count, GLfloat* value)
             {
-                Delegates.glUniform2fvARB((GLint)location, (GLsizei)count, (GLfloat*)value);
+                unsafe { Delegates.glUniform2fvARB((GLint)location, (GLsizei)count, (GLfloat*)value); }
             }
             
             public static 
@@ -21503,7 +21563,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform3fv(GLint location, GLsizei count, GLfloat* value)
             {
-                Delegates.glUniform3fvARB((GLint)location, (GLsizei)count, (GLfloat*)value);
+                unsafe { Delegates.glUniform3fvARB((GLint)location, (GLsizei)count, (GLfloat*)value); }
             }
             
             public static 
@@ -21534,7 +21594,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform4fv(GLint location, GLsizei count, GLfloat* value)
             {
-                Delegates.glUniform4fvARB((GLint)location, (GLsizei)count, (GLfloat*)value);
+                unsafe { Delegates.glUniform4fvARB((GLint)location, (GLsizei)count, (GLfloat*)value); }
             }
             
             public static 
@@ -21565,7 +21625,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform1iv(GLint location, GLsizei count, GLint* value)
             {
-                Delegates.glUniform1ivARB((GLint)location, (GLsizei)count, (GLint*)value);
+                unsafe { Delegates.glUniform1ivARB((GLint)location, (GLsizei)count, (GLint*)value); }
             }
             
             public static 
@@ -21596,7 +21656,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform2iv(GLint location, GLsizei count, GLint* value)
             {
-                Delegates.glUniform2ivARB((GLint)location, (GLsizei)count, (GLint*)value);
+                unsafe { Delegates.glUniform2ivARB((GLint)location, (GLsizei)count, (GLint*)value); }
             }
             
             public static 
@@ -21627,7 +21687,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform3iv(GLint location, GLsizei count, GLint* value)
             {
-                Delegates.glUniform3ivARB((GLint)location, (GLsizei)count, (GLint*)value);
+                unsafe { Delegates.glUniform3ivARB((GLint)location, (GLsizei)count, (GLint*)value); }
             }
             
             public static 
@@ -21658,7 +21718,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform4iv(GLint location, GLsizei count, GLint* value)
             {
-                Delegates.glUniform4ivARB((GLint)location, (GLsizei)count, (GLint*)value);
+                unsafe { Delegates.glUniform4ivARB((GLint)location, (GLsizei)count, (GLint*)value); }
             }
             
             public static 
@@ -21689,7 +21749,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void UniformMatrix2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
             {
-                Delegates.glUniformMatrix2fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+                unsafe { Delegates.glUniformMatrix2fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
             }
             
             public static 
@@ -21720,7 +21780,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
             {
-                Delegates.glUniformMatrix3fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+                unsafe { Delegates.glUniformMatrix3fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
             }
             
             public static 
@@ -21751,7 +21811,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
             {
-                Delegates.glUniformMatrix4fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value);
+                unsafe { Delegates.glUniformMatrix4fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
             }
             
             public static 
@@ -21792,7 +21852,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectParameterfv(GLhandleARB obj, GL.Enums.ARB_shader_objects pname, GLfloat* @params)
             {
-                Delegates.glGetObjectParameterfvARB((GLhandleARB)obj, (GL.Enums.ARB_shader_objects)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetObjectParameterfvARB((GLhandleARB)obj, (GL.Enums.ARB_shader_objects)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -21863,7 +21923,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectParameteriv(GLhandleARB obj, GL.Enums.ARB_shader_objects pname, GLint* @params)
             {
-                Delegates.glGetObjectParameterivARB((GLhandleARB)obj, (GL.Enums.ARB_shader_objects)pname, (GLint*)@params);
+                unsafe { Delegates.glGetObjectParameterivARB((GLhandleARB)obj, (GL.Enums.ARB_shader_objects)pname, (GLint*)@params); }
             }
             
             public static 
@@ -21935,7 +21995,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInfoLog(GLhandleARB obj, GLsizei maxLength, GLsizei* length, System.Text.StringBuilder infoLog)
             {
-                Delegates.glGetInfoLogARB((GLhandleARB)obj, (GLsizei)maxLength, (GLsizei*)length, (System.Text.StringBuilder)infoLog);
+                unsafe { Delegates.glGetInfoLogARB((GLhandleARB)obj, (GLsizei)maxLength, (GLsizei*)length, (System.Text.StringBuilder)infoLog); }
             }
             
             public static 
@@ -22011,7 +22071,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjects(GLhandleARB containerObj, GLsizei maxCount, GLsizei* count, GLhandleARB* obj)
             {
-                Delegates.glGetAttachedObjectsARB((GLhandleARB)containerObj, (GLsizei)maxCount, (GLsizei*)count, (GLhandleARB*)obj);
+                unsafe { Delegates.glGetAttachedObjectsARB((GLhandleARB)containerObj, (GLsizei)maxCount, (GLsizei*)count, (GLhandleARB*)obj); }
             }
             
             [System.CLSCompliant(false)]
@@ -22264,7 +22324,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniform(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length, GLint* size, GL.Enums.ARB_shader_objects* type, System.Text.StringBuilder name)
             {
-                Delegates.glGetActiveUniformARB((GLhandleARB)programObj, (GLuint)index, (GLsizei)maxLength, (GLsizei*)length, (GLint*)size, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
+                unsafe { Delegates.glGetActiveUniformARB((GLhandleARB)programObj, (GLuint)index, (GLsizei)maxLength, (GLsizei*)length, (GLint*)size, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name); }
             }
             
             [System.CLSCompliant(false)]
@@ -23105,7 +23165,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetUniformfv(GLhandleARB programObj, GLint location, GLfloat* @params)
             {
-                Delegates.glGetUniformfvARB((GLhandleARB)programObj, (GLint)location, (GLfloat*)@params);
+                unsafe { Delegates.glGetUniformfvARB((GLhandleARB)programObj, (GLint)location, (GLfloat*)@params); }
             }
             
             public static 
@@ -23176,7 +23236,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetUniformiv(GLhandleARB programObj, GLint location, GLint* @params)
             {
-                Delegates.glGetUniformivARB((GLhandleARB)programObj, (GLint)location, (GLint*)@params);
+                unsafe { Delegates.glGetUniformivARB((GLhandleARB)programObj, (GLint)location, (GLint*)@params); }
             }
             
             public static 
@@ -23248,7 +23308,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetShaderSource(GLhandleARB obj, GLsizei maxLength, GLsizei* length, System.Text.StringBuilder[] source)
             {
-                Delegates.glGetShaderSourceARB((GLhandleARB)obj, (GLsizei)maxLength, (GLsizei*)length, (System.Text.StringBuilder[])source);
+                unsafe { Delegates.glGetShaderSourceARB((GLhandleARB)obj, (GLsizei)maxLength, (GLsizei*)length, (System.Text.StringBuilder[])source); }
             }
             
             public static 
@@ -23339,7 +23399,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttrib(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length, GLint* size, GL.Enums.ARB_vertex_shader* type, System.Text.StringBuilder name)
             {
-                Delegates.glGetActiveAttribARB((GLhandleARB)programObj, (GLuint)index, (GLsizei)maxLength, (GLsizei*)length, (GLint*)size, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
+                unsafe { Delegates.glGetActiveAttribARB((GLhandleARB)programObj, (GLuint)index, (GLsizei)maxLength, (GLsizei*)length, (GLint*)size, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name); }
             }
             
             [System.CLSCompliant(false)]
@@ -24183,7 +24243,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DrawBuffers(GLsizei n, GL.Enums.ARB_draw_buffers* bufs)
             {
-                Delegates.glDrawBuffersARB((GLsizei)n, (GL.Enums.ARB_draw_buffers*)bufs);
+                unsafe { Delegates.glDrawBuffersARB((GLsizei)n, (GL.Enums.ARB_draw_buffers*)bufs); }
             }
             
             public static 
@@ -24236,7 +24296,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexImage3D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
             {
-                Delegates.glTexImage3DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+                unsafe { Delegates.glTexImage3DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
             }
             
             public static 
@@ -24260,7 +24320,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexSubImage3D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
             {
-                Delegates.glTexSubImage3DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+                unsafe { Delegates.glTexSubImage3DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
             }
             
             public static 
@@ -24284,7 +24344,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexSubImage1D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLsizei width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
             {
-                Delegates.glTexSubImage1DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+                unsafe { Delegates.glTexSubImage1DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
             }
             
             public static 
@@ -24308,7 +24368,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexSubImage2D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
             {
-                Delegates.glTexSubImage2DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+                unsafe { Delegates.glTexSubImage2DEXT((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
             }
             
             public static 
@@ -24362,7 +24422,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetHistogram(GL.Enums.HistogramTargetEXT target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* values)
             {
-                Delegates.glGetHistogramEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values);
+                unsafe { Delegates.glGetHistogramEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
             }
             
             public static 
@@ -24386,7 +24446,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetHistogramParameterfv(GL.Enums.HistogramTargetEXT target, GL.Enums.GetHistogramParameterPNameEXT pname, GLfloat* @params)
             {
-                Delegates.glGetHistogramParameterfvEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.GetHistogramParameterPNameEXT)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetHistogramParameterfvEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.GetHistogramParameterPNameEXT)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -24419,7 +24479,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetHistogramParameteriv(GL.Enums.HistogramTargetEXT target, GL.Enums.GetHistogramParameterPNameEXT pname, GLint* @params)
             {
-                Delegates.glGetHistogramParameterivEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.GetHistogramParameterPNameEXT)pname, (GLint*)@params);
+                unsafe { Delegates.glGetHistogramParameterivEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.GetHistogramParameterPNameEXT)pname, (GLint*)@params); }
             }
             
             public static 
@@ -24452,7 +24512,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMinmax(GL.Enums.MinmaxTargetEXT target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* values)
             {
-                Delegates.glGetMinmaxEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values);
+                unsafe { Delegates.glGetMinmaxEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
             }
             
             public static 
@@ -24476,7 +24536,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMinmaxParameterfv(GL.Enums.MinmaxTargetEXT target, GL.Enums.GetMinmaxParameterPNameEXT pname, GLfloat* @params)
             {
-                Delegates.glGetMinmaxParameterfvEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.GetMinmaxParameterPNameEXT)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetMinmaxParameterfvEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.GetMinmaxParameterPNameEXT)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -24509,7 +24569,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMinmaxParameteriv(GL.Enums.MinmaxTargetEXT target, GL.Enums.GetMinmaxParameterPNameEXT pname, GLint* @params)
             {
-                Delegates.glGetMinmaxParameterivEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.GetMinmaxParameterPNameEXT)pname, (GLint*)@params);
+                unsafe { Delegates.glGetMinmaxParameterivEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.GetMinmaxParameterPNameEXT)pname, (GLint*)@params); }
             }
             
             public static 
@@ -24539,6 +24599,18 @@ namespace OpenTK.OpenGL
             }
             
             public static 
+            void Histogram(GL.Enums.HistogramTargetEXT target, GLsizei width, GL.Enums.PixelInternalFormat internalformat, GL.Enums.Boolean sink)
+            {
+                 Delegates.glHistogramEXT((GL.Enums.HistogramTargetEXT)target, (GLsizei)width, (GL.Enums.PixelInternalFormat)internalformat, (GL.Enums.Boolean)sink); 
+            }
+            
+            public static 
+            void Minmax(GL.Enums.MinmaxTargetEXT target, GL.Enums.PixelInternalFormat internalformat, GL.Enums.Boolean sink)
+            {
+                 Delegates.glMinmaxEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.PixelInternalFormat)internalformat, (GL.Enums.Boolean)sink); 
+            }
+            
+            public static 
             void ResetHistogram(GL.Enums.HistogramTargetEXT target)
             {
                 Delegates.glResetHistogramEXT((GL.Enums.HistogramTargetEXT)target);
@@ -24554,7 +24626,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ConvolutionFilter1D(GL.Enums.ConvolutionTargetEXT target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* image)
             {
-                Delegates.glConvolutionFilter1DEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image);
+                unsafe { Delegates.glConvolutionFilter1DEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image); }
             }
             
             public static 
@@ -24578,7 +24650,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ConvolutionFilter2D(GL.Enums.ConvolutionTargetEXT target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* image)
             {
-                Delegates.glConvolutionFilter2DEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image);
+                unsafe { Delegates.glConvolutionFilter2DEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image); }
             }
             
             public static 
@@ -24608,7 +24680,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ConvolutionParameterfv(GL.Enums.ConvolutionTargetEXT target, GL.Enums.ConvolutionParameterEXT pname, GLfloat* @params)
             {
-                Delegates.glConvolutionParameterfvEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLfloat*)@params);
+                unsafe { Delegates.glConvolutionParameterfvEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -24645,7 +24717,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ConvolutionParameteriv(GL.Enums.ConvolutionTargetEXT target, GL.Enums.ConvolutionParameterEXT pname, GLint* @params)
             {
-                Delegates.glConvolutionParameterivEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLint*)@params);
+                unsafe { Delegates.glConvolutionParameterivEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLint*)@params); }
             }
             
             public static 
@@ -24688,7 +24760,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetConvolutionFilter(GL.Enums.ConvolutionTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* image)
             {
-                Delegates.glGetConvolutionFilterEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image);
+                unsafe { Delegates.glGetConvolutionFilterEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)image); }
             }
             
             public static 
@@ -24712,7 +24784,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetConvolutionParameterfv(GL.Enums.ConvolutionTargetEXT target, GL.Enums.ConvolutionParameterEXT pname, GLfloat* @params)
             {
-                Delegates.glGetConvolutionParameterfvEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetConvolutionParameterfvEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -24745,7 +24817,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetConvolutionParameteriv(GL.Enums.ConvolutionTargetEXT target, GL.Enums.ConvolutionParameterEXT pname, GLint* @params)
             {
-                Delegates.glGetConvolutionParameterivEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLint*)@params);
+                unsafe { Delegates.glGetConvolutionParameterivEXT((GL.Enums.ConvolutionTargetEXT)target, (GL.Enums.ConvolutionParameterEXT)pname, (GLint*)@params); }
             }
             
             public static 
@@ -24778,7 +24850,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSeparableFilter(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* row, void* column, void* span)
             {
-                Delegates.glGetSeparableFilterEXT((GL.Enums.SeparableTargetEXT)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column, (void*)span);
+                unsafe { Delegates.glGetSeparableFilterEXT((GL.Enums.SeparableTargetEXT)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column, (void*)span); }
             }
             
             [System.CLSCompliant(false)]
@@ -24911,7 +24983,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SeparableFilter2D(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* row, void* column)
             {
-                Delegates.glSeparableFilter2DEXT((GL.Enums.SeparableTargetEXT)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column);
+                unsafe { Delegates.glSeparableFilter2DEXT((GL.Enums.SeparableTargetEXT)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)row, (void*)column); }
             }
             
             [System.CLSCompliant(false)]
@@ -24978,7 +25050,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe GLboolean AreTexturesResident(GLsizei n, GLuint* textures, GL.Enums.Boolean* residences)
             {
-                return Delegates.glAreTexturesResidentEXT((GLsizei)n, (GLuint*)textures, (GL.Enums.Boolean*)residences);
+                unsafe { return Delegates.glAreTexturesResidentEXT((GLsizei)n, (GLuint*)textures, (GL.Enums.Boolean*)residences); }
             }
             
             [System.CLSCompliant(false)]
@@ -25055,7 +25127,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteTextures(GLsizei n, GLuint* textures)
             {
-                Delegates.glDeleteTexturesEXT((GLsizei)n, (GLuint*)textures);
+                unsafe { Delegates.glDeleteTexturesEXT((GLsizei)n, (GLuint*)textures); }
             }
             
             public static 
@@ -25122,7 +25194,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenTextures(GLsizei n, GLuint* textures)
             {
-                Delegates.glGenTexturesEXT((GLsizei)n, (GLuint*)textures);
+                unsafe { Delegates.glGenTexturesEXT((GLsizei)n, (GLuint*)textures); }
             }
             
             public static 
@@ -25205,7 +25277,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PrioritizeTextures(GLsizei n, GLuint* textures, GLclampf* priorities)
             {
-                Delegates.glPrioritizeTexturesEXT((GLsizei)n, (GLuint*)textures, (GLclampf*)priorities);
+                unsafe { Delegates.glPrioritizeTexturesEXT((GLsizei)n, (GLuint*)textures, (GLclampf*)priorities); }
             }
             
             [System.CLSCompliant(false)]
@@ -25406,7 +25478,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ColorPointer(GLint size, GL.Enums.ColorPointerType type, GLsizei stride, GLsizei count, void* pointer)
             {
-                Delegates.glColorPointerEXT((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer);
+                unsafe { Delegates.glColorPointerEXT((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer); }
             }
             
             public static 
@@ -25436,14 +25508,14 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void EdgeFlagPointer(GLsizei stride, GLsizei count, GL.Enums.Boolean* pointer)
             {
-                Delegates.glEdgeFlagPointerEXT((GLsizei)stride, (GLsizei)count, (GL.Enums.Boolean*)pointer);
+                unsafe { Delegates.glEdgeFlagPointerEXT((GLsizei)stride, (GLsizei)count, (GL.Enums.Boolean*)pointer); }
             }
             
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetPointerv(GL.Enums.GetPointervPName pname, void* @params)
             {
-                Delegates.glGetPointervEXT((GL.Enums.GetPointervPName)pname, (void*)@params);
+                unsafe { Delegates.glGetPointervEXT((GL.Enums.GetPointervPName)pname, (void*)@params); }
             }
             
             public static 
@@ -25467,7 +25539,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void IndexPointer(GL.Enums.IndexPointerType type, GLsizei stride, GLsizei count, void* pointer)
             {
-                Delegates.glIndexPointerEXT((GL.Enums.IndexPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer);
+                unsafe { Delegates.glIndexPointerEXT((GL.Enums.IndexPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer); }
             }
             
             public static 
@@ -25491,7 +25563,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void NormalPointer(GL.Enums.NormalPointerType type, GLsizei stride, GLsizei count, void* pointer)
             {
-                Delegates.glNormalPointerEXT((GL.Enums.NormalPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer);
+                unsafe { Delegates.glNormalPointerEXT((GL.Enums.NormalPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer); }
             }
             
             public static 
@@ -25515,7 +25587,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoordPointer(GLint size, GL.Enums.TexCoordPointerType type, GLsizei stride, GLsizei count, void* pointer)
             {
-                Delegates.glTexCoordPointerEXT((GLint)size, (GL.Enums.TexCoordPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer);
+                unsafe { Delegates.glTexCoordPointerEXT((GLint)size, (GL.Enums.TexCoordPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer); }
             }
             
             public static 
@@ -25539,7 +25611,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexPointer(GLint size, GL.Enums.VertexPointerType type, GLsizei stride, GLsizei count, void* pointer)
             {
-                Delegates.glVertexPointerEXT((GLint)size, (GL.Enums.VertexPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer);
+                unsafe { Delegates.glVertexPointerEXT((GLint)size, (GL.Enums.VertexPointerType)type, (GLsizei)stride, (GLsizei)count, (void*)pointer); }
             }
             
             public static 
@@ -25575,7 +25647,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PointParameterfv(GL.Enums.EXT_point_parameters pname, GLfloat* @params)
             {
-                Delegates.glPointParameterfvEXT((GL.Enums.EXT_point_parameters)pname, (GLfloat*)@params);
+                unsafe { Delegates.glPointParameterfvEXT((GL.Enums.EXT_point_parameters)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -25606,7 +25678,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ColorSubTable(GL.Enums.EXT_color_subtable target, GLsizei start, GLsizei count, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* data)
             {
-                Delegates.glColorSubTableEXT((GL.Enums.EXT_color_subtable)target, (GLsizei)start, (GLsizei)count, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data);
+                unsafe { Delegates.glColorSubTableEXT((GL.Enums.EXT_color_subtable)target, (GLsizei)start, (GLsizei)count, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data); }
             }
             
             public static 
@@ -25636,7 +25708,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ColorTable(GL.Enums.EXT_paletted_texture target, GL.Enums.PixelInternalFormat internalFormat, GLsizei width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* table)
             {
-                Delegates.glColorTableEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.PixelInternalFormat)internalFormat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table);
+                unsafe { Delegates.glColorTableEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.PixelInternalFormat)internalFormat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table); }
             }
             
             public static 
@@ -25660,7 +25732,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetColorTable(GL.Enums.EXT_paletted_texture target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* data)
             {
-                Delegates.glGetColorTableEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data);
+                unsafe { Delegates.glGetColorTableEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data); }
             }
             
             public static 
@@ -25684,7 +25756,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetColorTableParameteriv(GL.Enums.EXT_paletted_texture target, GL.Enums.EXT_paletted_texture pname, GLint* @params)
             {
-                Delegates.glGetColorTableParameterivEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.EXT_paletted_texture)pname, (GLint*)@params);
+                unsafe { Delegates.glGetColorTableParameterivEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.EXT_paletted_texture)pname, (GLint*)@params); }
             }
             
             public static 
@@ -25717,7 +25789,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetColorTableParameterfv(GL.Enums.EXT_paletted_texture target, GL.Enums.EXT_paletted_texture pname, GLfloat* @params)
             {
-                Delegates.glGetColorTableParameterfvEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.EXT_paletted_texture)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetColorTableParameterfvEXT((GL.Enums.EXT_paletted_texture)target, (GL.Enums.EXT_paletted_texture)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -25774,7 +25846,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CullParameterdv(GL.Enums.EXT_cull_vertex pname, GLdouble* @params)
             {
-                Delegates.glCullParameterdvEXT((GL.Enums.EXT_cull_vertex)pname, (GLdouble*)@params);
+                unsafe { Delegates.glCullParameterdvEXT((GL.Enums.EXT_cull_vertex)pname, (GLdouble*)@params); }
             }
             
             public static 
@@ -25807,7 +25879,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CullParameterfv(GL.Enums.EXT_cull_vertex pname, GLfloat* @params)
             {
-                Delegates.glCullParameterfvEXT((GL.Enums.EXT_cull_vertex)pname, (GLfloat*)@params);
+                unsafe { Delegates.glCullParameterfvEXT((GL.Enums.EXT_cull_vertex)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -25849,7 +25921,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DrawRangeElements(GL.Enums.BeginMode mode, GLuint start, GLuint end, GLsizei count, GL.Enums.EXT_draw_range_elements type, void* indices)
             {
-                Delegates.glDrawRangeElementsEXT((GL.Enums.BeginMode)mode, (GLuint)start, (GLuint)end, (GLsizei)count, (GL.Enums.EXT_draw_range_elements)type, (void*)indices);
+                unsafe { Delegates.glDrawRangeElementsEXT((GL.Enums.BeginMode)mode, (GLuint)start, (GLuint)end, (GLsizei)count, (GL.Enums.EXT_draw_range_elements)type, (void*)indices); }
             }
             
             public static 
@@ -25921,7 +25993,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PixelTransformParameteriv(GL.Enums.EXT_pixel_transform target, GL.Enums.EXT_pixel_transform pname, GLint* @params)
             {
-                Delegates.glPixelTransformParameterivEXT((GL.Enums.EXT_pixel_transform)target, (GL.Enums.EXT_pixel_transform)pname, (GLint*)@params);
+                unsafe { Delegates.glPixelTransformParameterivEXT((GL.Enums.EXT_pixel_transform)target, (GL.Enums.EXT_pixel_transform)pname, (GLint*)@params); }
             }
             
             public static 
@@ -25952,7 +26024,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PixelTransformParameterfv(GL.Enums.EXT_pixel_transform target, GL.Enums.EXT_pixel_transform pname, GLfloat* @params)
             {
-                Delegates.glPixelTransformParameterfvEXT((GL.Enums.EXT_pixel_transform)target, (GL.Enums.EXT_pixel_transform)pname, (GLfloat*)@params);
+                unsafe { Delegates.glPixelTransformParameterfvEXT((GL.Enums.EXT_pixel_transform)target, (GL.Enums.EXT_pixel_transform)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -26005,7 +26077,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3bv(GLbyte* v)
             {
-                Delegates.glSecondaryColor3bvEXT((GLbyte*)v);
+                unsafe { Delegates.glSecondaryColor3bvEXT((GLbyte*)v); }
             }
             
             public static 
@@ -26068,7 +26140,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3dv(GLdouble* v)
             {
-                Delegates.glSecondaryColor3dvEXT((GLdouble*)v);
+                unsafe { Delegates.glSecondaryColor3dvEXT((GLdouble*)v); }
             }
             
             public static 
@@ -26105,7 +26177,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3fv(GLfloat* v)
             {
-                Delegates.glSecondaryColor3fvEXT((GLfloat*)v);
+                unsafe { Delegates.glSecondaryColor3fvEXT((GLfloat*)v); }
             }
             
             public static 
@@ -26142,7 +26214,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3iv(GLint* v)
             {
-                Delegates.glSecondaryColor3ivEXT((GLint*)v);
+                unsafe { Delegates.glSecondaryColor3ivEXT((GLint*)v); }
             }
             
             public static 
@@ -26179,7 +26251,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3sv(GLshort* v)
             {
-                Delegates.glSecondaryColor3svEXT((GLshort*)v);
+                unsafe { Delegates.glSecondaryColor3svEXT((GLshort*)v); }
             }
             
             public static 
@@ -26216,7 +26288,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3ubv(GLubyte* v)
             {
-                Delegates.glSecondaryColor3ubvEXT((GLubyte*)v);
+                unsafe { Delegates.glSecondaryColor3ubvEXT((GLubyte*)v); }
             }
             
             public static 
@@ -26269,7 +26341,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3uiv(GLuint* v)
             {
-                Delegates.glSecondaryColor3uivEXT((GLuint*)v);
+                unsafe { Delegates.glSecondaryColor3uivEXT((GLuint*)v); }
             }
             
             public static 
@@ -26348,7 +26420,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3usv(GLushort* v)
             {
-                Delegates.glSecondaryColor3usvEXT((GLushort*)v);
+                unsafe { Delegates.glSecondaryColor3usvEXT((GLushort*)v); }
             }
             
             public static 
@@ -26405,7 +26477,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColorPointer(GLint size, GL.Enums.ColorPointerType type, GLsizei stride, void* pointer)
             {
-                Delegates.glSecondaryColorPointerEXT((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glSecondaryColorPointerEXT((GLint)size, (GL.Enums.ColorPointerType)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -26435,7 +26507,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawArrays(GL.Enums.BeginMode mode, GLint* first, GLsizei* count, GLsizei primcount)
             {
-                Delegates.glMultiDrawArraysEXT((GL.Enums.BeginMode)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount);
+                unsafe { Delegates.glMultiDrawArraysEXT((GL.Enums.BeginMode)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount); }
             }
             
             [System.CLSCompliant(false)]
@@ -26550,7 +26622,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawElements(GL.Enums.BeginMode mode, GLsizei* count, GL.Enums.EXT_multi_draw_arrays type, void* indices, GLsizei primcount)
             {
-                Delegates.glMultiDrawElementsEXT((GL.Enums.BeginMode)mode, (GLsizei*)count, (GL.Enums.EXT_multi_draw_arrays)type, (void*)indices, (GLsizei)primcount);
+                unsafe { Delegates.glMultiDrawElementsEXT((GL.Enums.BeginMode)mode, (GLsizei*)count, (GL.Enums.EXT_multi_draw_arrays)type, (void*)indices, (GLsizei)primcount); }
             }
             
             [System.CLSCompliant(false)]
@@ -26634,7 +26706,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FogCoordfv(GLfloat* coord)
             {
-                Delegates.glFogCoordfvEXT((GLfloat*)coord);
+                unsafe { Delegates.glFogCoordfvEXT((GLfloat*)coord); }
             }
             
             public static 
@@ -26671,7 +26743,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FogCoorddv(GLdouble* coord)
             {
-                Delegates.glFogCoorddvEXT((GLdouble*)coord);
+                unsafe { Delegates.glFogCoorddvEXT((GLdouble*)coord); }
             }
             
             public static 
@@ -26702,7 +26774,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FogCoordPointer(GL.Enums.EXT_fog_coord type, GLsizei stride, void* pointer)
             {
-                Delegates.glFogCoordPointerEXT((GL.Enums.EXT_fog_coord)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glFogCoordPointerEXT((GL.Enums.EXT_fog_coord)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -26748,7 +26820,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Tangent3bv(GLbyte* v)
             {
-                Delegates.glTangent3bvEXT((GLbyte*)v);
+                unsafe { Delegates.glTangent3bvEXT((GLbyte*)v); }
             }
             
             public static 
@@ -26811,7 +26883,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Tangent3dv(GLdouble* v)
             {
-                Delegates.glTangent3dvEXT((GLdouble*)v);
+                unsafe { Delegates.glTangent3dvEXT((GLdouble*)v); }
             }
             
             public static 
@@ -26848,7 +26920,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Tangent3fv(GLfloat* v)
             {
-                Delegates.glTangent3fvEXT((GLfloat*)v);
+                unsafe { Delegates.glTangent3fvEXT((GLfloat*)v); }
             }
             
             public static 
@@ -26885,7 +26957,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Tangent3iv(GLint* v)
             {
-                Delegates.glTangent3ivEXT((GLint*)v);
+                unsafe { Delegates.glTangent3ivEXT((GLint*)v); }
             }
             
             public static 
@@ -26922,7 +26994,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Tangent3sv(GLshort* v)
             {
-                Delegates.glTangent3svEXT((GLshort*)v);
+                unsafe { Delegates.glTangent3svEXT((GLshort*)v); }
             }
             
             public static 
@@ -26975,7 +27047,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Binormal3bv(GLbyte* v)
             {
-                Delegates.glBinormal3bvEXT((GLbyte*)v);
+                unsafe { Delegates.glBinormal3bvEXT((GLbyte*)v); }
             }
             
             public static 
@@ -27038,7 +27110,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Binormal3dv(GLdouble* v)
             {
-                Delegates.glBinormal3dvEXT((GLdouble*)v);
+                unsafe { Delegates.glBinormal3dvEXT((GLdouble*)v); }
             }
             
             public static 
@@ -27075,7 +27147,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Binormal3fv(GLfloat* v)
             {
-                Delegates.glBinormal3fvEXT((GLfloat*)v);
+                unsafe { Delegates.glBinormal3fvEXT((GLfloat*)v); }
             }
             
             public static 
@@ -27112,7 +27184,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Binormal3iv(GLint* v)
             {
-                Delegates.glBinormal3ivEXT((GLint*)v);
+                unsafe { Delegates.glBinormal3ivEXT((GLint*)v); }
             }
             
             public static 
@@ -27149,7 +27221,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Binormal3sv(GLshort* v)
             {
-                Delegates.glBinormal3svEXT((GLshort*)v);
+                unsafe { Delegates.glBinormal3svEXT((GLshort*)v); }
             }
             
             public static 
@@ -27180,7 +27252,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TangentPointer(GL.Enums.EXT_coordinate_frame type, GLsizei stride, void* pointer)
             {
-                Delegates.glTangentPointerEXT((GL.Enums.EXT_coordinate_frame)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glTangentPointerEXT((GL.Enums.EXT_coordinate_frame)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -27204,7 +27276,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void BinormalPointer(GL.Enums.EXT_coordinate_frame type, GLsizei stride, void* pointer)
             {
-                Delegates.glBinormalPointerEXT((GL.Enums.EXT_coordinate_frame)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glBinormalPointerEXT((GL.Enums.EXT_coordinate_frame)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -27240,7 +27312,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexWeightfv(GLfloat* weight)
             {
-                Delegates.glVertexWeightfvEXT((GLfloat*)weight);
+                unsafe { Delegates.glVertexWeightfvEXT((GLfloat*)weight); }
             }
             
             public static 
@@ -27271,7 +27343,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexWeightPointer(GLsizei size, GL.Enums.EXT_vertex_weighting type, GLsizei stride, void* pointer)
             {
-                Delegates.glVertexWeightPointerEXT((GLsizei)size, (GL.Enums.EXT_vertex_weighting)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glVertexWeightPointerEXT((GLsizei)size, (GL.Enums.EXT_vertex_weighting)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -27289,6 +27361,12 @@ namespace OpenTK.OpenGL
                         pointer_ptr.Free();
                     }
                 }
+            }
+            
+            public static 
+            void SampleMask(GLclampf value, GL.Enums.Boolean invert)
+            {
+                 Delegates.glSampleMaskEXT((GLclampf)value, (GL.Enums.Boolean)invert); 
             }
             
             public static 
@@ -27465,7 +27543,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SetInvariant(GLuint id, GL.Enums.EXT_vertex_shader type, void* addr)
             {
-                Delegates.glSetInvariantEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)type, (void*)addr);
+                unsafe { Delegates.glSetInvariantEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)type, (void*)addr); }
             }
             
             public static 
@@ -27516,7 +27594,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SetLocalConstant(GLuint id, GL.Enums.EXT_vertex_shader type, void* addr)
             {
-                Delegates.glSetLocalConstantEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)type, (void*)addr);
+                unsafe { Delegates.glSetLocalConstantEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)type, (void*)addr); }
             }
             
             public static 
@@ -27567,7 +27645,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantbv(GLuint id, GLbyte* addr)
             {
-                Delegates.glVariantbvEXT((GLuint)id, (GLbyte*)addr);
+                unsafe { Delegates.glVariantbvEXT((GLuint)id, (GLbyte*)addr); }
             }
             
             public static 
@@ -27633,7 +27711,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantsv(GLuint id, GLshort* addr)
             {
-                Delegates.glVariantsvEXT((GLuint)id, (GLshort*)addr);
+                unsafe { Delegates.glVariantsvEXT((GLuint)id, (GLshort*)addr); }
             }
             
             public static 
@@ -27699,7 +27777,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantiv(GLuint id, GLint* addr)
             {
-                Delegates.glVariantivEXT((GLuint)id, (GLint*)addr);
+                unsafe { Delegates.glVariantivEXT((GLuint)id, (GLint*)addr); }
             }
             
             public static 
@@ -27765,7 +27843,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantfv(GLuint id, GLfloat* addr)
             {
-                Delegates.glVariantfvEXT((GLuint)id, (GLfloat*)addr);
+                unsafe { Delegates.glVariantfvEXT((GLuint)id, (GLfloat*)addr); }
             }
             
             public static 
@@ -27831,7 +27909,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantdv(GLuint id, GLdouble* addr)
             {
-                Delegates.glVariantdvEXT((GLuint)id, (GLdouble*)addr);
+                unsafe { Delegates.glVariantdvEXT((GLuint)id, (GLdouble*)addr); }
             }
             
             public static 
@@ -27897,7 +27975,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantubv(GLuint id, GLubyte* addr)
             {
-                Delegates.glVariantubvEXT((GLuint)id, (GLubyte*)addr);
+                unsafe { Delegates.glVariantubvEXT((GLuint)id, (GLubyte*)addr); }
             }
             
             public static 
@@ -27963,7 +28041,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantusv(GLuint id, GLushort* addr)
             {
-                Delegates.glVariantusvEXT((GLuint)id, (GLushort*)addr);
+                unsafe { Delegates.glVariantusvEXT((GLuint)id, (GLushort*)addr); }
             }
             
             public static 
@@ -28029,7 +28107,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Variantuiv(GLuint id, GLuint* addr)
             {
-                Delegates.glVariantuivEXT((GLuint)id, (GLuint*)addr);
+                unsafe { Delegates.glVariantuivEXT((GLuint)id, (GLuint*)addr); }
             }
             
             public static 
@@ -28095,7 +28173,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VariantPointer(GLuint id, GL.Enums.EXT_vertex_shader type, GLuint stride, void* addr)
             {
-                Delegates.glVariantPointerEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)type, (GLuint)stride, (void*)addr);
+                unsafe { Delegates.glVariantPointerEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)type, (GLuint)stride, (void*)addr); }
             }
             
             public static 
@@ -28216,7 +28294,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantBooleanv(GLuint id, GL.Enums.EXT_vertex_shader value, GL.Enums.Boolean* data)
             {
-                Delegates.glGetVariantBooleanvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data);
+                unsafe { Delegates.glGetVariantBooleanvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data); }
             }
             
             [System.CLSCompliant(false)]
@@ -28233,7 +28311,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantIntegerv(GLuint id, GL.Enums.EXT_vertex_shader value, GLint* data)
             {
-                Delegates.glGetVariantIntegervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLint*)data);
+                unsafe { Delegates.glGetVariantIntegervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLint*)data); }
             }
             
             public static 
@@ -28304,7 +28382,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantFloatv(GLuint id, GL.Enums.EXT_vertex_shader value, GLfloat* data)
             {
-                Delegates.glGetVariantFloatvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLfloat*)data);
+                unsafe { Delegates.glGetVariantFloatvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLfloat*)data); }
             }
             
             public static 
@@ -28375,7 +28453,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantPointerv(GLuint id, GL.Enums.EXT_vertex_shader value, void* data)
             {
-                Delegates.glGetVariantPointervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (void*)data);
+                unsafe { Delegates.glGetVariantPointervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (void*)data); }
             }
             
             public static 
@@ -28427,7 +28505,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInvariantBooleanv(GLuint id, GL.Enums.EXT_vertex_shader value, GL.Enums.Boolean* data)
             {
-                Delegates.glGetInvariantBooleanvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data);
+                unsafe { Delegates.glGetInvariantBooleanvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data); }
             }
             
             [System.CLSCompliant(false)]
@@ -28444,7 +28522,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInvariantIntegerv(GLuint id, GL.Enums.EXT_vertex_shader value, GLint* data)
             {
-                Delegates.glGetInvariantIntegervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLint*)data);
+                unsafe { Delegates.glGetInvariantIntegervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLint*)data); }
             }
             
             public static 
@@ -28515,7 +28593,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInvariantFloatv(GLuint id, GL.Enums.EXT_vertex_shader value, GLfloat* data)
             {
-                Delegates.glGetInvariantFloatvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLfloat*)data);
+                unsafe { Delegates.glGetInvariantFloatvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLfloat*)data); }
             }
             
             public static 
@@ -28586,7 +28664,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetLocalConstantBooleanv(GLuint id, GL.Enums.EXT_vertex_shader value, GL.Enums.Boolean* data)
             {
-                Delegates.glGetLocalConstantBooleanvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data);
+                unsafe { Delegates.glGetLocalConstantBooleanvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data); }
             }
             
             [System.CLSCompliant(false)]
@@ -28603,7 +28681,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetLocalConstantIntegerv(GLuint id, GL.Enums.EXT_vertex_shader value, GLint* data)
             {
-                Delegates.glGetLocalConstantIntegervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLint*)data);
+                unsafe { Delegates.glGetLocalConstantIntegervEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLint*)data); }
             }
             
             public static 
@@ -28674,7 +28752,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetLocalConstantFloatv(GLuint id, GL.Enums.EXT_vertex_shader value, GLfloat* data)
             {
-                Delegates.glGetLocalConstantFloatvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLfloat*)data);
+                unsafe { Delegates.glGetLocalConstantFloatvEXT((GLuint)id, (GL.Enums.EXT_vertex_shader)value, (GLfloat*)data); }
             }
             
             public static 
@@ -28788,7 +28866,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteRenderbuffers(GLsizei n, GLuint* renderbuffers)
             {
-                Delegates.glDeleteRenderbuffersEXT((GLsizei)n, (GLuint*)renderbuffers);
+                unsafe { Delegates.glDeleteRenderbuffersEXT((GLsizei)n, (GLuint*)renderbuffers); }
             }
             
             public static 
@@ -28855,7 +28933,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenRenderbuffers(GLsizei n, GLuint* renderbuffers)
             {
-                Delegates.glGenRenderbuffersEXT((GLsizei)n, (GLuint*)renderbuffers);
+                unsafe { Delegates.glGenRenderbuffersEXT((GLsizei)n, (GLuint*)renderbuffers); }
             }
             
             public static 
@@ -28922,7 +29000,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetRenderbufferParameteriv(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object pname, GLint* @params)
             {
-                Delegates.glGetRenderbufferParameterivEXT((GL.Enums.EXT_framebuffer_object)target, (GL.Enums.EXT_framebuffer_object)pname, (GLint*)@params);
+                unsafe { Delegates.glGetRenderbufferParameterivEXT((GL.Enums.EXT_framebuffer_object)target, (GL.Enums.EXT_framebuffer_object)pname, (GLint*)@params); }
             }
             
             public static 
@@ -28990,7 +29068,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteFramebuffers(GLsizei n, GLuint* framebuffers)
             {
-                Delegates.glDeleteFramebuffersEXT((GLsizei)n, (GLuint*)framebuffers);
+                unsafe { Delegates.glDeleteFramebuffersEXT((GLsizei)n, (GLuint*)framebuffers); }
             }
             
             public static 
@@ -29057,7 +29135,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenFramebuffers(GLsizei n, GLuint* framebuffers)
             {
-                Delegates.glGenFramebuffersEXT((GLsizei)n, (GLuint*)framebuffers);
+                unsafe { Delegates.glGenFramebuffersEXT((GLsizei)n, (GLuint*)framebuffers); }
             }
             
             public static 
@@ -29176,7 +29254,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFramebufferAttachmentParameteriv(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.EXT_framebuffer_object pname, GLint* @params)
             {
-                Delegates.glGetFramebufferAttachmentParameterivEXT((GL.Enums.EXT_framebuffer_object)target, (GL.Enums.EXT_framebuffer_object)attachment, (GL.Enums.EXT_framebuffer_object)pname, (GLint*)@params);
+                unsafe { Delegates.glGetFramebufferAttachmentParameterivEXT((GL.Enums.EXT_framebuffer_object)target, (GL.Enums.EXT_framebuffer_object)attachment, (GL.Enums.EXT_framebuffer_object)pname, (GLint*)@params); }
             }
             
             public static 
@@ -29250,7 +29328,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryObjecti64v(GLuint id, GL.Enums.EXT_timer_query pname, GLint64EXT* @params)
             {
-                Delegates.glGetQueryObjecti64vEXT((GLuint)id, (GL.Enums.EXT_timer_query)pname, (GLint64EXT*)@params);
+                unsafe { Delegates.glGetQueryObjecti64vEXT((GLuint)id, (GL.Enums.EXT_timer_query)pname, (GLint64EXT*)@params); }
             }
             
             public static 
@@ -29321,7 +29399,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryObjectui64v(GLuint id, GL.Enums.EXT_timer_query pname, GLuint64EXT* @params)
             {
-                Delegates.glGetQueryObjectui64vEXT((GLuint)id, (GL.Enums.EXT_timer_query)pname, (GLuint64EXT*)@params);
+                unsafe { Delegates.glGetQueryObjectui64vEXT((GLuint)id, (GL.Enums.EXT_timer_query)pname, (GLuint64EXT*)@params); }
             }
             
             public static 
@@ -29391,7 +29469,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramEnvParameters4fv(GL.Enums.EXT_gpu_program_parameters target, GLuint index, GLsizei count, GLfloat* @params)
             {
-                Delegates.glProgramEnvParameters4fvEXT((GL.Enums.EXT_gpu_program_parameters)target, (GLuint)index, (GLsizei)count, (GLfloat*)@params);
+                unsafe { Delegates.glProgramEnvParameters4fvEXT((GL.Enums.EXT_gpu_program_parameters)target, (GLuint)index, (GLsizei)count, (GLfloat*)@params); }
             }
             
             public static 
@@ -29457,7 +29535,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramLocalParameters4fv(GL.Enums.EXT_gpu_program_parameters target, GLuint index, GLsizei count, GLfloat* @params)
             {
-                Delegates.glProgramLocalParameters4fvEXT((GL.Enums.EXT_gpu_program_parameters)target, (GLuint)index, (GLsizei)count, (GLfloat*)@params);
+                unsafe { Delegates.glProgramLocalParameters4fvEXT((GL.Enums.EXT_gpu_program_parameters)target, (GLuint)index, (GLsizei)count, (GLfloat*)@params); }
             }
             
             public static 
@@ -29679,7 +29757,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI1iv(GLuint index, GLint* v)
             {
-                Delegates.glVertexAttribI1ivEXT((GLuint)index, (GLint*)v);
+                unsafe { Delegates.glVertexAttribI1ivEXT((GLuint)index, (GLint*)v); }
             }
             
             public static 
@@ -29745,7 +29823,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI2iv(GLuint index, GLint* v)
             {
-                Delegates.glVertexAttribI2ivEXT((GLuint)index, (GLint*)v);
+                unsafe { Delegates.glVertexAttribI2ivEXT((GLuint)index, (GLint*)v); }
             }
             
             public static 
@@ -29811,7 +29889,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI3iv(GLuint index, GLint* v)
             {
-                Delegates.glVertexAttribI3ivEXT((GLuint)index, (GLint*)v);
+                unsafe { Delegates.glVertexAttribI3ivEXT((GLuint)index, (GLint*)v); }
             }
             
             public static 
@@ -29877,7 +29955,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI4iv(GLuint index, GLint* v)
             {
-                Delegates.glVertexAttribI4ivEXT((GLuint)index, (GLint*)v);
+                unsafe { Delegates.glVertexAttribI4ivEXT((GLuint)index, (GLint*)v); }
             }
             
             public static 
@@ -29943,7 +30021,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI1uiv(GLuint index, GLuint* v)
             {
-                Delegates.glVertexAttribI1uivEXT((GLuint)index, (GLuint*)v);
+                unsafe { Delegates.glVertexAttribI1uivEXT((GLuint)index, (GLuint*)v); }
             }
             
             public static 
@@ -30009,7 +30087,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI2uiv(GLuint index, GLuint* v)
             {
-                Delegates.glVertexAttribI2uivEXT((GLuint)index, (GLuint*)v);
+                unsafe { Delegates.glVertexAttribI2uivEXT((GLuint)index, (GLuint*)v); }
             }
             
             public static 
@@ -30075,7 +30153,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI3uiv(GLuint index, GLuint* v)
             {
-                Delegates.glVertexAttribI3uivEXT((GLuint)index, (GLuint*)v);
+                unsafe { Delegates.glVertexAttribI3uivEXT((GLuint)index, (GLuint*)v); }
             }
             
             public static 
@@ -30141,7 +30219,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI4uiv(GLuint index, GLuint* v)
             {
-                Delegates.glVertexAttribI4uivEXT((GLuint)index, (GLuint*)v);
+                unsafe { Delegates.glVertexAttribI4uivEXT((GLuint)index, (GLuint*)v); }
             }
             
             public static 
@@ -30207,7 +30285,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI4bv(GLuint index, GLbyte* v)
             {
-                Delegates.glVertexAttribI4bvEXT((GLuint)index, (GLbyte*)v);
+                unsafe { Delegates.glVertexAttribI4bvEXT((GLuint)index, (GLbyte*)v); }
             }
             
             public static 
@@ -30273,7 +30351,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI4sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttribI4svEXT((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttribI4svEXT((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -30339,7 +30417,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI4ubv(GLuint index, GLubyte* v)
             {
-                Delegates.glVertexAttribI4ubvEXT((GLuint)index, (GLubyte*)v);
+                unsafe { Delegates.glVertexAttribI4ubvEXT((GLuint)index, (GLubyte*)v); }
             }
             
             public static 
@@ -30405,7 +30483,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribI4usv(GLuint index, GLushort* v)
             {
-                Delegates.glVertexAttribI4usvEXT((GLuint)index, (GLushort*)v);
+                unsafe { Delegates.glVertexAttribI4usvEXT((GLuint)index, (GLushort*)v); }
             }
             
             public static 
@@ -30471,7 +30549,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribIPointer(GLuint index, GLint size, GL.Enums.NV_vertex_program4 type, GLsizei stride, void* pointer)
             {
-                Delegates.glVertexAttribIPointerEXT((GLuint)index, (GLint)size, (GL.Enums.NV_vertex_program4)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glVertexAttribIPointerEXT((GLuint)index, (GLint)size, (GL.Enums.NV_vertex_program4)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -30523,7 +30601,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribIiv(GLuint index, GL.Enums.NV_vertex_program4 pname, GLint* @params)
             {
-                Delegates.glGetVertexAttribIivEXT((GLuint)index, (GL.Enums.NV_vertex_program4)pname, (GLint*)@params);
+                unsafe { Delegates.glGetVertexAttribIivEXT((GLuint)index, (GL.Enums.NV_vertex_program4)pname, (GLint*)@params); }
             }
             
             public static 
@@ -30594,7 +30672,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribIuiv(GLuint index, GL.Enums.NV_vertex_program4 pname, GLuint* @params)
             {
-                Delegates.glGetVertexAttribIuivEXT((GLuint)index, (GL.Enums.NV_vertex_program4)pname, (GLuint*)@params);
+                unsafe { Delegates.glGetVertexAttribIuivEXT((GLuint)index, (GL.Enums.NV_vertex_program4)pname, (GLuint*)@params); }
             }
             
             public static 
@@ -30665,7 +30743,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetUniformuiv(GLuint program, GLint location, GLuint* @params)
             {
-                Delegates.glGetUniformuivEXT((GLuint)program, (GLint)location, (GLuint*)@params);
+                unsafe { Delegates.glGetUniformuivEXT((GLuint)program, (GLint)location, (GLuint*)@params); }
             }
             
             public static 
@@ -30813,7 +30891,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform1uiv(GLint location, GLsizei count, GLuint* value)
             {
-                Delegates.glUniform1uivEXT((GLint)location, (GLsizei)count, (GLuint*)value);
+                unsafe { Delegates.glUniform1uivEXT((GLint)location, (GLsizei)count, (GLuint*)value); }
             }
             
             public static 
@@ -30879,7 +30957,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform2uiv(GLint location, GLsizei count, GLuint* value)
             {
-                Delegates.glUniform2uivEXT((GLint)location, (GLsizei)count, (GLuint*)value);
+                unsafe { Delegates.glUniform2uivEXT((GLint)location, (GLsizei)count, (GLuint*)value); }
             }
             
             public static 
@@ -30945,7 +31023,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform3uiv(GLint location, GLsizei count, GLuint* value)
             {
-                Delegates.glUniform3uivEXT((GLint)location, (GLsizei)count, (GLuint*)value);
+                unsafe { Delegates.glUniform3uivEXT((GLint)location, (GLsizei)count, (GLuint*)value); }
             }
             
             public static 
@@ -31011,7 +31089,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Uniform4uiv(GLint location, GLsizei count, GLuint* value)
             {
-                Delegates.glUniform4uivEXT((GLint)location, (GLsizei)count, (GLuint*)value);
+                unsafe { Delegates.glUniform4uivEXT((GLint)location, (GLsizei)count, (GLuint*)value); }
             }
             
             public static 
@@ -31074,7 +31152,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DrawElementsInstanced(GL.Enums.BeginMode mode, GLsizei count, GL.Enums.EXT_draw_instanced type, void* indices, GLsizei primcount)
             {
-                Delegates.glDrawElementsInstancedEXT((GL.Enums.BeginMode)mode, (GLsizei)count, (GL.Enums.EXT_draw_instanced)type, (void*)indices, (GLsizei)primcount);
+                unsafe { Delegates.glDrawElementsInstancedEXT((GL.Enums.BeginMode)mode, (GLsizei)count, (GL.Enums.EXT_draw_instanced)type, (void*)indices, (GLsizei)primcount); }
             }
             
             public static 
@@ -31107,6 +31185,24 @@ namespace OpenTK.OpenGL
                 Delegates.glTexBufferEXT((GL.Enums.TextureTarget)target, (GL.Enums.EXT_texture_buffer_object)internalformat, (GLuint)buffer);
             }
             
+            public static 
+            void ColorMaskIndexed(Int32 index, GL.Enums.Boolean r, GL.Enums.Boolean g, GL.Enums.Boolean b, GL.Enums.Boolean a)
+            {
+                unsafe
+                {
+                    {
+                        Delegates.glColorMaskIndexedEXT((GLuint)index, (GL.Enums.Boolean)r, (GL.Enums.Boolean)g, (GL.Enums.Boolean)b, (GL.Enums.Boolean)a);
+                    }
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            void ColorMaskIndexed(GLuint index, GL.Enums.Boolean r, GL.Enums.Boolean g, GL.Enums.Boolean b, GL.Enums.Boolean a)
+            {
+                 Delegates.glColorMaskIndexedEXT((GLuint)index, (GL.Enums.Boolean)r, (GL.Enums.Boolean)g, (GL.Enums.Boolean)b, (GL.Enums.Boolean)a); 
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetBooleanIndexedv(GL.Enums.EXT_draw_buffers2 target, Int32 index, GL.Enums.Boolean* data)
@@ -31121,7 +31217,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetBooleanIndexedv(GL.Enums.EXT_draw_buffers2 target, GLuint index, GL.Enums.Boolean* data)
             {
-                Delegates.glGetBooleanIndexedvEXT((GL.Enums.EXT_draw_buffers2)target, (GLuint)index, (GL.Enums.Boolean*)data);
+                unsafe { Delegates.glGetBooleanIndexedvEXT((GL.Enums.EXT_draw_buffers2)target, (GLuint)index, (GL.Enums.Boolean*)data); }
             }
             
             [System.CLSCompliant(false)]
@@ -31138,7 +31234,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetIntegerIndexedv(GL.Enums.EXT_draw_buffers2 target, GLuint index, GLint* data)
             {
-                Delegates.glGetIntegerIndexedvEXT((GL.Enums.EXT_draw_buffers2)target, (GLuint)index, (GLint*)data);
+                unsafe { Delegates.glGetIntegerIndexedvEXT((GL.Enums.EXT_draw_buffers2)target, (GLuint)index, (GLint*)data); }
             }
             
             public static 
@@ -31277,7 +31373,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexParameterIiv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, GLint* @params)
             {
-                Delegates.glTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLint*)@params);
+                unsafe { Delegates.glTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLint*)@params); }
             }
             
             public static 
@@ -31317,7 +31413,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexParameterIuiv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, GLuint* @params)
             {
-                Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLuint*)@params);
+                unsafe { Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (GLuint*)@params); }
             }
             
             public static 
@@ -31374,7 +31470,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTexParameterIiv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, GLint* @params)
             {
-                Delegates.glGetTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLint*)@params);
+                unsafe { Delegates.glGetTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLint*)@params); }
             }
             
             public static 
@@ -31417,7 +31513,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTexParameterIuiv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, GLuint* @params)
             {
-                Delegates.glGetTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLuint*)@params);
+                unsafe { Delegates.glGetTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (GLuint*)@params); }
             }
             
             public static 
@@ -31501,7 +31597,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTexFilterFunc(GL.Enums.TextureTarget target, GL.Enums.SGIS_texture_filter4 filter, GLfloat* weights)
             {
-                Delegates.glGetTexFilterFuncSGIS((GL.Enums.TextureTarget)target, (GL.Enums.SGIS_texture_filter4)filter, (GLfloat*)weights);
+                unsafe { Delegates.glGetTexFilterFuncSGIS((GL.Enums.TextureTarget)target, (GL.Enums.SGIS_texture_filter4)filter, (GLfloat*)weights); }
             }
             
             public static 
@@ -31534,7 +31630,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexFilterFunc(GL.Enums.TextureTarget target, GL.Enums.SGIS_texture_filter4 filter, GLsizei n, GLfloat* weights)
             {
-                Delegates.glTexFilterFuncSGIS((GL.Enums.TextureTarget)target, (GL.Enums.SGIS_texture_filter4)filter, (GLsizei)n, (GLfloat*)weights);
+                unsafe { Delegates.glTexFilterFuncSGIS((GL.Enums.TextureTarget)target, (GL.Enums.SGIS_texture_filter4)filter, (GLsizei)n, (GLfloat*)weights); }
             }
             
             public static 
@@ -31571,7 +31667,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PixelTexGenParameteriv(GL.Enums.PixelTexGenParameterNameSGIS pname, GLint* @params)
             {
-                Delegates.glPixelTexGenParameterivSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLint*)@params);
+                unsafe { Delegates.glPixelTexGenParameterivSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLint*)@params); }
             }
             
             public static 
@@ -31608,7 +31704,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PixelTexGenParameterfv(GL.Enums.PixelTexGenParameterNameSGIS pname, GLfloat* @params)
             {
-                Delegates.glPixelTexGenParameterfvSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLfloat*)@params);
+                unsafe { Delegates.glPixelTexGenParameterfvSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -31639,7 +31735,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetPixelTexGenParameteriv(GL.Enums.PixelTexGenParameterNameSGIS pname, GLint* @params)
             {
-                Delegates.glGetPixelTexGenParameterivSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLint*)@params);
+                unsafe { Delegates.glGetPixelTexGenParameterivSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLint*)@params); }
             }
             
             public static 
@@ -31672,7 +31768,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetPixelTexGenParameterfv(GL.Enums.PixelTexGenParameterNameSGIS pname, GLfloat* @params)
             {
-                Delegates.glGetPixelTexGenParameterfvSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetPixelTexGenParameterfvSGIS((GL.Enums.PixelTexGenParameterNameSGIS)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -31705,7 +31801,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexImage4D(GL.Enums.TextureTarget target, GLint level, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GLsizei height, GLsizei depth, GLsizei size4d, GLint border, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
             {
-                Delegates.glTexImage4DSGIS((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLsizei)size4d, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+                unsafe { Delegates.glTexImage4DSGIS((GL.Enums.TextureTarget)target, (GLint)level, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLsizei)size4d, (GLint)border, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
             }
             
             public static 
@@ -31729,7 +31825,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexSubImage4D(GL.Enums.TextureTarget target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint woffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei size4d, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* pixels)
             {
-                Delegates.glTexSubImage4DSGIS((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLint)woffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLsizei)size4d, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels);
+                unsafe { Delegates.glTexSubImage4DSGIS((GL.Enums.TextureTarget)target, (GLint)level, (GLint)xoffset, (GLint)yoffset, (GLint)zoffset, (GLint)woffset, (GLsizei)width, (GLsizei)height, (GLsizei)depth, (GLsizei)size4d, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)pixels); }
             }
             
             public static 
@@ -31753,7 +31849,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DetailTexFunc(GL.Enums.TextureTarget target, GLsizei n, GLfloat* points)
             {
-                Delegates.glDetailTexFuncSGIS((GL.Enums.TextureTarget)target, (GLsizei)n, (GLfloat*)points);
+                unsafe { Delegates.glDetailTexFuncSGIS((GL.Enums.TextureTarget)target, (GLsizei)n, (GLfloat*)points); }
             }
             
             public static 
@@ -31784,7 +31880,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetDetailTexFunc(GL.Enums.TextureTarget target, GLfloat* points)
             {
-                Delegates.glGetDetailTexFuncSGIS((GL.Enums.TextureTarget)target, (GLfloat*)points);
+                unsafe { Delegates.glGetDetailTexFuncSGIS((GL.Enums.TextureTarget)target, (GLfloat*)points); }
             }
             
             public static 
@@ -31817,7 +31913,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SharpenTexFunc(GL.Enums.TextureTarget target, GLsizei n, GLfloat* points)
             {
-                Delegates.glSharpenTexFuncSGIS((GL.Enums.TextureTarget)target, (GLsizei)n, (GLfloat*)points);
+                unsafe { Delegates.glSharpenTexFuncSGIS((GL.Enums.TextureTarget)target, (GLsizei)n, (GLfloat*)points); }
             }
             
             public static 
@@ -31848,7 +31944,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSharpenTexFunc(GL.Enums.TextureTarget target, GLfloat* points)
             {
-                Delegates.glGetSharpenTexFuncSGIS((GL.Enums.TextureTarget)target, (GLfloat*)points);
+                unsafe { Delegates.glGetSharpenTexFuncSGIS((GL.Enums.TextureTarget)target, (GLfloat*)points); }
             }
             
             public static 
@@ -31878,6 +31974,12 @@ namespace OpenTK.OpenGL
             }
             
             public static 
+            void SampleMask(GLclampf value, GL.Enums.Boolean invert)
+            {
+                 Delegates.glSampleMaskSGIS((GLclampf)value, (GL.Enums.Boolean)invert); 
+            }
+            
+            public static 
             void SamplePattern(GL.Enums.SamplePatternSGIS pattern)
             {
                 Delegates.glSamplePatternSGIS((GL.Enums.SamplePatternSGIS)pattern);
@@ -31893,7 +31995,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PointParameterfv(GL.Enums.SGIS_point_parameters pname, GLfloat* @params)
             {
-                Delegates.glPointParameterfvSGIS((GL.Enums.SGIS_point_parameters)pname, (GLfloat*)@params);
+                unsafe { Delegates.glPointParameterfvSGIS((GL.Enums.SGIS_point_parameters)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -31924,7 +32026,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FogFunc(GLsizei n, GLfloat* points)
             {
-                Delegates.glFogFuncSGIS((GLsizei)n, (GLfloat*)points);
+                unsafe { Delegates.glFogFuncSGIS((GLsizei)n, (GLfloat*)points); }
             }
             
             public static 
@@ -31955,7 +32057,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFogFunc(GLfloat* points)
             {
-                Delegates.glGetFogFuncSGIS((GLfloat*)points);
+                unsafe { Delegates.glGetFogFuncSGIS((GLfloat*)points); }
             }
             
             public static 
@@ -31984,6 +32086,12 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void TextureColorMask(GL.Enums.Boolean red, GL.Enums.Boolean green, GL.Enums.Boolean blue, GL.Enums.Boolean alpha)
+            {
+                 Delegates.glTextureColorMaskSGIS((GL.Enums.Boolean)red, (GL.Enums.Boolean)green, (GL.Enums.Boolean)blue, (GL.Enums.Boolean)alpha); 
+            }
+            
         }
 
         public static class SGI
@@ -31992,7 +32100,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ColorTable(GL.Enums.ColorTableTargetSGI target, GL.Enums.PixelInternalFormat internalformat, GLsizei width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* table)
             {
-                Delegates.glColorTableSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table);
+                unsafe { Delegates.glColorTableSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.PixelInternalFormat)internalformat, (GLsizei)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table); }
             }
             
             public static 
@@ -32016,7 +32124,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ColorTableParameterfv(GL.Enums.ColorTableTargetSGI target, GL.Enums.ColorTableParameterPNameSGI pname, GLfloat* @params)
             {
-                Delegates.glColorTableParameterfvSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.ColorTableParameterPNameSGI)pname, (GLfloat*)@params);
+                unsafe { Delegates.glColorTableParameterfvSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.ColorTableParameterPNameSGI)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32047,7 +32155,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ColorTableParameteriv(GL.Enums.ColorTableTargetSGI target, GL.Enums.ColorTableParameterPNameSGI pname, GLint* @params)
             {
-                Delegates.glColorTableParameterivSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.ColorTableParameterPNameSGI)pname, (GLint*)@params);
+                unsafe { Delegates.glColorTableParameterivSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.ColorTableParameterPNameSGI)pname, (GLint*)@params); }
             }
             
             public static 
@@ -32084,7 +32192,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetColorTable(GL.Enums.ColorTableTargetSGI target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* table)
             {
-                Delegates.glGetColorTableSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table);
+                unsafe { Delegates.glGetColorTableSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)table); }
             }
             
             public static 
@@ -32108,7 +32216,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetColorTableParameterfv(GL.Enums.ColorTableTargetSGI target, GL.Enums.GetColorTableParameterPNameSGI pname, GLfloat* @params)
             {
-                Delegates.glGetColorTableParameterfvSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.GetColorTableParameterPNameSGI)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetColorTableParameterfvSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.GetColorTableParameterPNameSGI)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32141,7 +32249,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetColorTableParameteriv(GL.Enums.ColorTableTargetSGI target, GL.Enums.GetColorTableParameterPNameSGI pname, GLint* @params)
             {
-                Delegates.glGetColorTableParameterivSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.GetColorTableParameterPNameSGI)pname, (GLint*)@params);
+                unsafe { Delegates.glGetColorTableParameterivSGI((GL.Enums.ColorTableTargetSGI)target, (GL.Enums.GetColorTableParameterPNameSGI)pname, (GLint*)@params); }
             }
             
             public static 
@@ -32190,7 +32298,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SpriteParameterfv(GL.Enums.SGIX_sprite pname, GLfloat* @params)
             {
-                Delegates.glSpriteParameterfvSGIX((GL.Enums.SGIX_sprite)pname, (GLfloat*)@params);
+                unsafe { Delegates.glSpriteParameterfvSGIX((GL.Enums.SGIX_sprite)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32227,7 +32335,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SpriteParameteriv(GL.Enums.SGIX_sprite pname, GLint* @params)
             {
-                Delegates.glSpriteParameterivSGIX((GL.Enums.SGIX_sprite)pname, (GLint*)@params);
+                unsafe { Delegates.glSpriteParameterivSGIX((GL.Enums.SGIX_sprite)pname, (GLint*)@params); }
             }
             
             public static 
@@ -32264,7 +32372,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void InstrumentsBuffer(GLsizei size, GLint* buffer)
             {
-                Delegates.glInstrumentsBufferSGIX((GLsizei)size, (GLint*)buffer);
+                unsafe { Delegates.glInstrumentsBufferSGIX((GLsizei)size, (GLint*)buffer); }
             }
             
             public static 
@@ -32297,7 +32405,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe GLint PollInstruments(GLint* marker_p)
             {
-                return Delegates.glPollInstrumentsSGIX((GLint*)marker_p);
+                unsafe { return Delegates.glPollInstrumentsSGIX((GLint*)marker_p); }
             }
             
             public static 
@@ -32362,7 +32470,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeformationMap3d(GL.Enums.FfdTargetSGIX target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, GLdouble w1, GLdouble w2, GLint wstride, GLint worder, GLdouble* points)
             {
-                Delegates.glDeformationMap3dSGIX((GL.Enums.FfdTargetSGIX)target, (GLdouble)u1, (GLdouble)u2, (GLint)ustride, (GLint)uorder, (GLdouble)v1, (GLdouble)v2, (GLint)vstride, (GLint)vorder, (GLdouble)w1, (GLdouble)w2, (GLint)wstride, (GLint)worder, (GLdouble*)points);
+                unsafe { Delegates.glDeformationMap3dSGIX((GL.Enums.FfdTargetSGIX)target, (GLdouble)u1, (GLdouble)u2, (GLint)ustride, (GLint)uorder, (GLdouble)v1, (GLdouble)v2, (GLint)vstride, (GLint)vorder, (GLdouble)w1, (GLdouble)w2, (GLint)wstride, (GLint)worder, (GLdouble*)points); }
             }
             
             public static 
@@ -32393,7 +32501,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeformationMap3f(GL.Enums.FfdTargetSGIX target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, GLfloat w1, GLfloat w2, GLint wstride, GLint worder, GLfloat* points)
             {
-                Delegates.glDeformationMap3fSGIX((GL.Enums.FfdTargetSGIX)target, (GLfloat)u1, (GLfloat)u2, (GLint)ustride, (GLint)uorder, (GLfloat)v1, (GLfloat)v2, (GLint)vstride, (GLint)vorder, (GLfloat)w1, (GLfloat)w2, (GLint)wstride, (GLint)worder, (GLfloat*)points);
+                unsafe { Delegates.glDeformationMap3fSGIX((GL.Enums.FfdTargetSGIX)target, (GLfloat)u1, (GLfloat)u2, (GLint)ustride, (GLint)uorder, (GLfloat)v1, (GLfloat)v2, (GLint)vstride, (GLint)vorder, (GLfloat)w1, (GLfloat)w2, (GLint)wstride, (GLint)worder, (GLfloat*)points); }
             }
             
             public static 
@@ -32436,7 +32544,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReferencePlane(GLdouble* equation)
             {
-                Delegates.glReferencePlaneSGIX((GLdouble*)equation);
+                unsafe { Delegates.glReferencePlaneSGIX((GLdouble*)equation); }
             }
             
             public static 
@@ -32483,7 +32591,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetListParameterfv(GLuint list, GL.Enums.ListParameterName pname, GLfloat* @params)
             {
-                Delegates.glGetListParameterfvSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetListParameterfvSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32554,7 +32662,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetListParameteriv(GLuint list, GL.Enums.ListParameterName pname, GLint* @params)
             {
-                Delegates.glGetListParameterivSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLint*)@params);
+                unsafe { Delegates.glGetListParameterivSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLint*)@params); }
             }
             
             public static 
@@ -32637,7 +32745,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ListParameterfv(GLuint list, GL.Enums.ListParameterName pname, GLfloat* @params)
             {
-                Delegates.glListParameterfvSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLfloat*)@params);
+                unsafe { Delegates.glListParameterfvSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32716,7 +32824,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ListParameteriv(GLuint list, GL.Enums.ListParameterName pname, GLint* @params)
             {
-                Delegates.glListParameterivSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLint*)@params);
+                unsafe { Delegates.glListParameterivSGIX((GLuint)list, (GL.Enums.ListParameterName)pname, (GLint*)@params); }
             }
             
             public static 
@@ -32785,7 +32893,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FragmentLightfv(GL.Enums.SGIX_fragment_lighting light, GL.Enums.SGIX_fragment_lighting pname, GLfloat* @params)
             {
-                Delegates.glFragmentLightfvSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLfloat*)@params);
+                unsafe { Delegates.glFragmentLightfvSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32822,7 +32930,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FragmentLightiv(GL.Enums.SGIX_fragment_lighting light, GL.Enums.SGIX_fragment_lighting pname, GLint* @params)
             {
-                Delegates.glFragmentLightivSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLint*)@params);
+                unsafe { Delegates.glFragmentLightivSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLint*)@params); }
             }
             
             public static 
@@ -32859,7 +32967,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FragmentLightModelfv(GL.Enums.FragmentLightModelParameterSGIX pname, GLfloat* @params)
             {
-                Delegates.glFragmentLightModelfvSGIX((GL.Enums.FragmentLightModelParameterSGIX)pname, (GLfloat*)@params);
+                unsafe { Delegates.glFragmentLightModelfvSGIX((GL.Enums.FragmentLightModelParameterSGIX)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32896,7 +33004,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FragmentLightModeliv(GL.Enums.FragmentLightModelParameterSGIX pname, GLint* @params)
             {
-                Delegates.glFragmentLightModelivSGIX((GL.Enums.FragmentLightModelParameterSGIX)pname, (GLint*)@params);
+                unsafe { Delegates.glFragmentLightModelivSGIX((GL.Enums.FragmentLightModelParameterSGIX)pname, (GLint*)@params); }
             }
             
             public static 
@@ -32933,7 +33041,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FragmentMaterialfv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLfloat* @params)
             {
-                Delegates.glFragmentMaterialfvSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params);
+                unsafe { Delegates.glFragmentMaterialfvSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -32970,7 +33078,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FragmentMaterialiv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLint* @params)
             {
-                Delegates.glFragmentMaterialivSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params);
+                unsafe { Delegates.glFragmentMaterialivSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params); }
             }
             
             public static 
@@ -33001,7 +33109,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFragmentLightfv(GL.Enums.SGIX_fragment_lighting light, GL.Enums.SGIX_fragment_lighting pname, GLfloat* @params)
             {
-                Delegates.glGetFragmentLightfvSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetFragmentLightfvSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -33034,7 +33142,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFragmentLightiv(GL.Enums.SGIX_fragment_lighting light, GL.Enums.SGIX_fragment_lighting pname, GLint* @params)
             {
-                Delegates.glGetFragmentLightivSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLint*)@params);
+                unsafe { Delegates.glGetFragmentLightivSGIX((GL.Enums.SGIX_fragment_lighting)light, (GL.Enums.SGIX_fragment_lighting)pname, (GLint*)@params); }
             }
             
             public static 
@@ -33067,7 +33175,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFragmentMaterialfv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLfloat* @params)
             {
-                Delegates.glGetFragmentMaterialfvSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetFragmentMaterialfvSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -33100,7 +33208,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFragmentMaterialiv(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, GLint* @params)
             {
-                Delegates.glGetFragmentMaterialivSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params);
+                unsafe { Delegates.glGetFragmentMaterialivSGIX((GL.Enums.MaterialFace)face, (GL.Enums.MaterialParameter)pname, (GLint*)@params); }
             }
             
             public static 
@@ -33163,7 +33271,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe GLint FinishAsync(GLuint* markerp)
             {
-                return Delegates.glFinishAsyncSGIX((GLuint*)markerp);
+                unsafe { return Delegates.glFinishAsyncSGIX((GLuint*)markerp); }
             }
             
             public static 
@@ -33239,7 +33347,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe GLint PollAsync(GLuint* markerp)
             {
-                return Delegates.glPollAsyncSGIX((GLuint*)markerp);
+                unsafe { return Delegates.glPollAsyncSGIX((GLuint*)markerp); }
             }
             
             public static 
@@ -33336,7 +33444,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void IglooInterface(GL.Enums.GLenum pname, void* @params)
             {
-                Delegates.glIglooInterfaceSGIX((GL.Enums.GLenum)pname, (void*)@params);
+                unsafe { Delegates.glIglooInterfaceSGIX((GL.Enums.GLenum)pname, (void*)@params); }
             }
             
             public static 
@@ -33376,7 +33484,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ImageTransformParameteriv(GL.Enums.HP_image_transform target, GL.Enums.HP_image_transform pname, GLint* @params)
             {
-                Delegates.glImageTransformParameterivHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLint*)@params);
+                unsafe { Delegates.glImageTransformParameterivHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLint*)@params); }
             }
             
             public static 
@@ -33407,7 +33515,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ImageTransformParameterfv(GL.Enums.HP_image_transform target, GL.Enums.HP_image_transform pname, GLfloat* @params)
             {
-                Delegates.glImageTransformParameterfvHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLfloat*)@params);
+                unsafe { Delegates.glImageTransformParameterfvHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -33438,7 +33546,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetImageTransformParameteriv(GL.Enums.HP_image_transform target, GL.Enums.HP_image_transform pname, GLint* @params)
             {
-                Delegates.glGetImageTransformParameterivHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLint*)@params);
+                unsafe { Delegates.glGetImageTransformParameterivHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLint*)@params); }
             }
             
             public static 
@@ -33471,7 +33579,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetImageTransformParameterfv(GL.Enums.HP_image_transform target, GL.Enums.HP_image_transform pname, GLfloat* @params)
             {
-                Delegates.glGetImageTransformParameterfvHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetImageTransformParameterfvHP((GL.Enums.HP_image_transform)target, (GL.Enums.HP_image_transform)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -33638,7 +33746,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiv(GLuint* code)
             {
-                Delegates.glReplacementCodeuivSUN((GLuint*)code);
+                unsafe { Delegates.glReplacementCodeuivSUN((GLuint*)code); }
             }
             
             public static 
@@ -33704,7 +33812,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeusv(GLushort* code)
             {
-                Delegates.glReplacementCodeusvSUN((GLushort*)code);
+                unsafe { Delegates.glReplacementCodeusvSUN((GLushort*)code); }
             }
             
             public static 
@@ -33761,7 +33869,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeubv(GLubyte* code)
             {
-                Delegates.glReplacementCodeubvSUN((GLubyte*)code);
+                unsafe { Delegates.glReplacementCodeubvSUN((GLubyte*)code); }
             }
             
             public static 
@@ -33792,7 +33900,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodePointer(GL.Enums.SUN_triangle_list type, GLsizei stride, void* pointer)
             {
-                Delegates.glReplacementCodePointerSUN((GL.Enums.SUN_triangle_list)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glReplacementCodePointerSUN((GL.Enums.SUN_triangle_list)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -33822,7 +33930,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Color4ubVertex2fv(GLubyte* c, GLfloat* v)
             {
-                Delegates.glColor4ubVertex2fvSUN((GLubyte*)c, (GLfloat*)v);
+                unsafe { Delegates.glColor4ubVertex2fvSUN((GLubyte*)c, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -33927,7 +34035,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Color4ubVertex3fv(GLubyte* c, GLfloat* v)
             {
-                Delegates.glColor4ubVertex3fvSUN((GLubyte*)c, (GLfloat*)v);
+                unsafe { Delegates.glColor4ubVertex3fvSUN((GLubyte*)c, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -34032,7 +34140,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Color3fVertex3fv(GLfloat* c, GLfloat* v)
             {
-                Delegates.glColor3fVertex3fvSUN((GLfloat*)c, (GLfloat*)v);
+                unsafe { Delegates.glColor3fVertex3fvSUN((GLfloat*)c, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -34137,7 +34245,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Normal3fVertex3fv(GLfloat* n, GLfloat* v)
             {
-                Delegates.glNormal3fVertex3fvSUN((GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glNormal3fVertex3fvSUN((GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -34242,7 +34350,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Color4fNormal3fVertex3fv(GLfloat* c, GLfloat* n, GLfloat* v)
             {
-                Delegates.glColor4fNormal3fVertex3fvSUN((GLfloat*)c, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glColor4fNormal3fVertex3fvSUN((GLfloat*)c, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -34559,7 +34667,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord2fVertex3fv(GLfloat* tc, GLfloat* v)
             {
-                Delegates.glTexCoord2fVertex3fvSUN((GLfloat*)tc, (GLfloat*)v);
+                unsafe { Delegates.glTexCoord2fVertex3fvSUN((GLfloat*)tc, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -34664,7 +34772,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord4fVertex4fv(GLfloat* tc, GLfloat* v)
             {
-                Delegates.glTexCoord4fVertex4fvSUN((GLfloat*)tc, (GLfloat*)v);
+                unsafe { Delegates.glTexCoord4fVertex4fvSUN((GLfloat*)tc, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -34769,7 +34877,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord2fColor4ubVertex3fv(GLfloat* tc, GLubyte* c, GLfloat* v)
             {
-                Delegates.glTexCoord2fColor4ubVertex3fvSUN((GLfloat*)tc, (GLubyte*)c, (GLfloat*)v);
+                unsafe { Delegates.glTexCoord2fColor4ubVertex3fvSUN((GLfloat*)tc, (GLubyte*)c, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -35086,7 +35194,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord2fColor3fVertex3fv(GLfloat* tc, GLfloat* c, GLfloat* v)
             {
-                Delegates.glTexCoord2fColor3fVertex3fvSUN((GLfloat*)tc, (GLfloat*)c, (GLfloat*)v);
+                unsafe { Delegates.glTexCoord2fColor3fVertex3fvSUN((GLfloat*)tc, (GLfloat*)c, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -35403,7 +35511,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord2fNormal3fVertex3fv(GLfloat* tc, GLfloat* n, GLfloat* v)
             {
-                Delegates.glTexCoord2fNormal3fVertex3fvSUN((GLfloat*)tc, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glTexCoord2fNormal3fVertex3fvSUN((GLfloat*)tc, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -35720,7 +35828,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord2fColor4fNormal3fVertex3fv(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat* v)
             {
-                Delegates.glTexCoord2fColor4fNormal3fVertex3fvSUN((GLfloat*)tc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glTexCoord2fColor4fNormal3fVertex3fvSUN((GLfloat*)tc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -36701,7 +36809,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord4fColor4fNormal3fVertex4fv(GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat* v)
             {
-                Delegates.glTexCoord4fColor4fNormal3fVertex4fvSUN((GLfloat*)tc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glTexCoord4fColor4fNormal3fVertex4fvSUN((GLfloat*)tc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -37698,7 +37806,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiVertex3fv(GLuint* rc, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiVertex3fvSUN((GLuint*)rc, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiVertex3fvSUN((GLuint*)rc, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -37915,7 +38023,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiColor4ubVertex3fv(GLuint* rc, GLubyte* c, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiColor4ubVertex3fvSUN((GLuint*)rc, (GLubyte*)c, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiColor4ubVertex3fvSUN((GLuint*)rc, (GLubyte*)c, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -38560,7 +38668,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiColor3fVertex3fv(GLuint* rc, GLfloat* c, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiColor3fVertex3fvSUN((GLuint*)rc, (GLfloat*)c, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiColor3fVertex3fvSUN((GLuint*)rc, (GLfloat*)c, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -39205,7 +39313,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiNormal3fVertex3fv(GLuint* rc, GLfloat* n, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -39850,7 +39958,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiColor4fNormal3fVertex3fv(GLuint* rc, GLfloat* c, GLfloat* n, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiColor4fNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiColor4fNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -41831,7 +41939,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiTexCoord2fVertex3fv(GLuint* rc, GLfloat* tc, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiTexCoord2fVertex3fvSUN((GLuint*)rc, (GLfloat*)tc, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiTexCoord2fVertex3fvSUN((GLuint*)rc, (GLfloat*)tc, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -42476,7 +42584,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiTexCoord2fNormal3fVertex3fv(GLuint* rc, GLfloat* tc, GLfloat* n, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)tc, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)tc, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -44457,7 +44565,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fv(GLuint* rc, GLfloat* tc, GLfloat* c, GLfloat* n, GLfloat* v)
             {
-                Delegates.glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)tc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v);
+                unsafe { Delegates.glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN((GLuint*)rc, (GLfloat*)tc, (GLfloat*)c, (GLfloat*)n, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -50626,7 +50734,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexArrayRange(GLsizei length, void* pointer)
             {
-                Delegates.glVertexArrayRangeNV((GLsizei)length, (void*)pointer);
+                unsafe { Delegates.glVertexArrayRangeNV((GLsizei)length, (void*)pointer); }
             }
             
             public static 
@@ -50650,7 +50758,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CombinerParameterfv(GL.Enums.NV_register_combiners pname, GLfloat* @params)
             {
-                Delegates.glCombinerParameterfvNV((GL.Enums.NV_register_combiners)pname, (GLfloat*)@params);
+                unsafe { Delegates.glCombinerParameterfvNV((GL.Enums.NV_register_combiners)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -50687,7 +50795,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CombinerParameteriv(GL.Enums.NV_register_combiners pname, GLint* @params)
             {
-                Delegates.glCombinerParameterivNV((GL.Enums.NV_register_combiners)pname, (GLint*)@params);
+                unsafe { Delegates.glCombinerParameterivNV((GL.Enums.NV_register_combiners)pname, (GLint*)@params); }
             }
             
             public static 
@@ -50727,6 +50835,12 @@ namespace OpenTK.OpenGL
             }
             
             public static 
+            void CombinerOutput(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners abOutput, GL.Enums.NV_register_combiners cdOutput, GL.Enums.NV_register_combiners sumOutput, GL.Enums.NV_register_combiners scale, GL.Enums.NV_register_combiners bias, GL.Enums.Boolean abDotProduct, GL.Enums.Boolean cdDotProduct, GL.Enums.Boolean muxSum)
+            {
+                 Delegates.glCombinerOutputNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)abOutput, (GL.Enums.NV_register_combiners)cdOutput, (GL.Enums.NV_register_combiners)sumOutput, (GL.Enums.NV_register_combiners)scale, (GL.Enums.NV_register_combiners)bias, (GL.Enums.Boolean)abDotProduct, (GL.Enums.Boolean)cdDotProduct, (GL.Enums.Boolean)muxSum); 
+            }
+            
+            public static 
             void FinalCombinerInput(GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners input, GL.Enums.NV_register_combiners mapping, GL.Enums.NV_register_combiners componentUsage)
             {
                 Delegates.glFinalCombinerInputNV((GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)input, (GL.Enums.NV_register_combiners)mapping, (GL.Enums.NV_register_combiners)componentUsage);
@@ -50736,7 +50850,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetCombinerInputParameterfv(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, GLfloat* @params)
             {
-                Delegates.glGetCombinerInputParameterfvNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetCombinerInputParameterfvNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -50769,7 +50883,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetCombinerInputParameteriv(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, GLint* @params)
             {
-                Delegates.glGetCombinerInputParameterivNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLint*)@params);
+                unsafe { Delegates.glGetCombinerInputParameterivNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLint*)@params); }
             }
             
             public static 
@@ -50802,7 +50916,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetCombinerOutputParameterfv(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners pname, GLfloat* @params)
             {
-                Delegates.glGetCombinerOutputParameterfvNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetCombinerOutputParameterfvNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -50835,7 +50949,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetCombinerOutputParameteriv(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners pname, GLint* @params)
             {
-                Delegates.glGetCombinerOutputParameterivNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)pname, (GLint*)@params);
+                unsafe { Delegates.glGetCombinerOutputParameterivNV((GL.Enums.NV_register_combiners)stage, (GL.Enums.NV_register_combiners)portion, (GL.Enums.NV_register_combiners)pname, (GLint*)@params); }
             }
             
             public static 
@@ -50868,7 +50982,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFinalCombinerInputParameterfv(GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, GLfloat* @params)
             {
-                Delegates.glGetFinalCombinerInputParameterfvNV((GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetFinalCombinerInputParameterfvNV((GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -50901,7 +51015,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFinalCombinerInputParameteriv(GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, GLint* @params)
             {
-                Delegates.glGetFinalCombinerInputParameterivNV((GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLint*)@params);
+                unsafe { Delegates.glGetFinalCombinerInputParameterivNV((GL.Enums.NV_register_combiners)variable, (GL.Enums.NV_register_combiners)pname, (GLint*)@params); }
             }
             
             public static 
@@ -50943,7 +51057,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteFences(GLsizei n, GLuint* fences)
             {
-                Delegates.glDeleteFencesNV((GLsizei)n, (GLuint*)fences);
+                unsafe { Delegates.glDeleteFencesNV((GLsizei)n, (GLuint*)fences); }
             }
             
             public static 
@@ -51010,7 +51124,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenFences(GLsizei n, GLuint* fences)
             {
-                Delegates.glGenFencesNV((GLsizei)n, (GLuint*)fences);
+                unsafe { Delegates.glGenFencesNV((GLsizei)n, (GLuint*)fences); }
             }
             
             public static 
@@ -51107,7 +51221,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFenceiv(GLuint fence, GL.Enums.NV_fence pname, GLint* @params)
             {
-                Delegates.glGetFenceivNV((GLuint)fence, (GL.Enums.NV_fence)pname, (GLint*)@params);
+                unsafe { Delegates.glGetFenceivNV((GLuint)fence, (GL.Enums.NV_fence)pname, (GLint*)@params); }
             }
             
             public static 
@@ -51203,7 +51317,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MapControlPoints(GL.Enums.NV_evaluators target, GLuint index, GL.Enums.NV_evaluators type, GLsizei ustride, GLsizei vstride, GLint uorder, GLint vorder, GL.Enums.Boolean packed, void* points)
             {
-                Delegates.glMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GLint)uorder, (GLint)vorder, (GL.Enums.Boolean)packed, (void*)points);
+                unsafe { Delegates.glMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GLint)uorder, (GLint)vorder, (GL.Enums.Boolean)packed, (void*)points); }
             }
             
             public static 
@@ -51245,7 +51359,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MapParameteriv(GL.Enums.NV_evaluators target, GL.Enums.NV_evaluators pname, GLint* @params)
             {
-                Delegates.glMapParameterivNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLint*)@params);
+                unsafe { Delegates.glMapParameterivNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLint*)@params); }
             }
             
             public static 
@@ -51276,7 +51390,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MapParameterfv(GL.Enums.NV_evaluators target, GL.Enums.NV_evaluators pname, GLfloat* @params)
             {
-                Delegates.glMapParameterfvNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLfloat*)@params);
+                unsafe { Delegates.glMapParameterfvNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -51317,7 +51431,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapControlPoints(GL.Enums.NV_evaluators target, GLuint index, GL.Enums.NV_evaluators type, GLsizei ustride, GLsizei vstride, GL.Enums.Boolean packed, void* points)
             {
-                Delegates.glGetMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GL.Enums.Boolean)packed, (void*)points);
+                unsafe { Delegates.glGetMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GL.Enums.Boolean)packed, (void*)points); }
             }
             
             public static 
@@ -51359,7 +51473,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapParameteriv(GL.Enums.NV_evaluators target, GL.Enums.NV_evaluators pname, GLint* @params)
             {
-                Delegates.glGetMapParameterivNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLint*)@params);
+                unsafe { Delegates.glGetMapParameterivNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLint*)@params); }
             }
             
             public static 
@@ -51392,7 +51506,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapParameterfv(GL.Enums.NV_evaluators target, GL.Enums.NV_evaluators pname, GLfloat* @params)
             {
-                Delegates.glGetMapParameterfvNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetMapParameterfvNV((GL.Enums.NV_evaluators)target, (GL.Enums.NV_evaluators)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -51435,7 +51549,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapAttribParameteriv(GL.Enums.NV_evaluators target, GLuint index, GL.Enums.NV_evaluators pname, GLint* @params)
             {
-                Delegates.glGetMapAttribParameterivNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)pname, (GLint*)@params);
+                unsafe { Delegates.glGetMapAttribParameterivNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)pname, (GLint*)@params); }
             }
             
             public static 
@@ -51506,7 +51620,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapAttribParameterfv(GL.Enums.NV_evaluators target, GLuint index, GL.Enums.NV_evaluators pname, GLfloat* @params)
             {
-                Delegates.glGetMapAttribParameterfvNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetMapAttribParameterfvNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -51573,7 +51687,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void CombinerStageParameterfv(GL.Enums.NV_register_combiners2 stage, GL.Enums.NV_register_combiners2 pname, GLfloat* @params)
             {
-                Delegates.glCombinerStageParameterfvNV((GL.Enums.NV_register_combiners2)stage, (GL.Enums.NV_register_combiners2)pname, (GLfloat*)@params);
+                unsafe { Delegates.glCombinerStageParameterfvNV((GL.Enums.NV_register_combiners2)stage, (GL.Enums.NV_register_combiners2)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -51604,7 +51718,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetCombinerStageParameterfv(GL.Enums.NV_register_combiners2 stage, GL.Enums.NV_register_combiners2 pname, GLfloat* @params)
             {
-                Delegates.glGetCombinerStageParameterfvNV((GL.Enums.NV_register_combiners2)stage, (GL.Enums.NV_register_combiners2)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetCombinerStageParameterfvNV((GL.Enums.NV_register_combiners2)stage, (GL.Enums.NV_register_combiners2)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -51648,7 +51762,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe GLboolean AreProgramsResident(GLsizei n, GLuint* programs, GL.Enums.Boolean* residences)
             {
-                return Delegates.glAreProgramsResidentNV((GLsizei)n, (GLuint*)programs, (GL.Enums.Boolean*)residences);
+                unsafe { return Delegates.glAreProgramsResidentNV((GLsizei)n, (GLuint*)programs, (GL.Enums.Boolean*)residences); }
             }
             
             [System.CLSCompliant(false)]
@@ -51725,7 +51839,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeletePrograms(GLsizei n, GLuint* programs)
             {
-                Delegates.glDeleteProgramsNV((GLsizei)n, (GLuint*)programs);
+                unsafe { Delegates.glDeleteProgramsNV((GLsizei)n, (GLuint*)programs); }
             }
             
             public static 
@@ -51791,7 +51905,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ExecuteProgram(GL.Enums.NV_vertex_program target, GLuint id, GLfloat* @params)
             {
-                Delegates.glExecuteProgramNV((GL.Enums.NV_vertex_program)target, (GLuint)id, (GLfloat*)@params);
+                unsafe { Delegates.glExecuteProgramNV((GL.Enums.NV_vertex_program)target, (GLuint)id, (GLfloat*)@params); }
             }
             
             public static 
@@ -51858,7 +51972,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenPrograms(GLsizei n, GLuint* programs)
             {
-                Delegates.glGenProgramsNV((GLsizei)n, (GLuint*)programs);
+                unsafe { Delegates.glGenProgramsNV((GLsizei)n, (GLuint*)programs); }
             }
             
             public static 
@@ -51929,7 +52043,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramParameterdv(GL.Enums.NV_vertex_program target, GLuint index, GL.Enums.NV_vertex_program pname, GLdouble* @params)
             {
-                Delegates.glGetProgramParameterdvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLdouble*)@params);
+                unsafe { Delegates.glGetProgramParameterdvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLdouble*)@params); }
             }
             
             public static 
@@ -52000,7 +52114,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramParameterfv(GL.Enums.NV_vertex_program target, GLuint index, GL.Enums.NV_vertex_program pname, GLfloat* @params)
             {
-                Delegates.glGetProgramParameterfvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetProgramParameterfvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -52071,7 +52185,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramiv(GLuint id, GL.Enums.NV_vertex_program pname, GLint* @params)
             {
-                Delegates.glGetProgramivNV((GLuint)id, (GL.Enums.NV_vertex_program)pname, (GLint*)@params);
+                unsafe { Delegates.glGetProgramivNV((GLuint)id, (GL.Enums.NV_vertex_program)pname, (GLint*)@params); }
             }
             
             public static 
@@ -52142,7 +52256,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramString(GLuint id, GL.Enums.NV_vertex_program pname, GLubyte* program)
             {
-                Delegates.glGetProgramStringNV((GLuint)id, (GL.Enums.NV_vertex_program)pname, (GLubyte*)program);
+                unsafe { Delegates.glGetProgramStringNV((GLuint)id, (GL.Enums.NV_vertex_program)pname, (GLubyte*)program); }
             }
             
             public static 
@@ -52213,7 +52327,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTrackMatrixiv(GL.Enums.NV_vertex_program target, GLuint address, GL.Enums.NV_vertex_program pname, GLint* @params)
             {
-                Delegates.glGetTrackMatrixivNV((GL.Enums.NV_vertex_program)target, (GLuint)address, (GL.Enums.NV_vertex_program)pname, (GLint*)@params);
+                unsafe { Delegates.glGetTrackMatrixivNV((GL.Enums.NV_vertex_program)target, (GLuint)address, (GL.Enums.NV_vertex_program)pname, (GLint*)@params); }
             }
             
             public static 
@@ -52284,7 +52398,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribdv(GLuint index, GL.Enums.NV_vertex_program pname, GLdouble* @params)
             {
-                Delegates.glGetVertexAttribdvNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLdouble*)@params);
+                unsafe { Delegates.glGetVertexAttribdvNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLdouble*)@params); }
             }
             
             public static 
@@ -52355,7 +52469,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribfv(GLuint index, GL.Enums.NV_vertex_program pname, GLfloat* @params)
             {
-                Delegates.glGetVertexAttribfvNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetVertexAttribfvNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -52426,7 +52540,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribiv(GLuint index, GL.Enums.NV_vertex_program pname, GLint* @params)
             {
-                Delegates.glGetVertexAttribivNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLint*)@params);
+                unsafe { Delegates.glGetVertexAttribivNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (GLint*)@params); }
             }
             
             public static 
@@ -52497,7 +52611,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribPointerv(GLuint index, GL.Enums.NV_vertex_program pname, void* pointer)
             {
-                Delegates.glGetVertexAttribPointervNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (void*)pointer);
+                unsafe { Delegates.glGetVertexAttribPointervNV((GLuint)index, (GL.Enums.NV_vertex_program)pname, (void*)pointer); }
             }
             
             public static 
@@ -52561,7 +52675,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void LoadProgram(GL.Enums.NV_vertex_program target, GLuint id, GLsizei len, GLubyte* program)
             {
-                Delegates.glLoadProgramNV((GL.Enums.NV_vertex_program)target, (GLuint)id, (GLsizei)len, (GLubyte*)program);
+                unsafe { Delegates.glLoadProgramNV((GL.Enums.NV_vertex_program)target, (GLuint)id, (GLsizei)len, (GLubyte*)program); }
             }
             
             public static 
@@ -52640,7 +52754,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramParameter4dv(GL.Enums.NV_vertex_program target, GLuint index, GLdouble* v)
             {
-                Delegates.glProgramParameter4dvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glProgramParameter4dvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -52719,7 +52833,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramParameter4fv(GL.Enums.NV_vertex_program target, GLuint index, GLfloat* v)
             {
-                Delegates.glProgramParameter4fvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glProgramParameter4fvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -52785,7 +52899,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramParameters4dv(GL.Enums.NV_vertex_program target, GLuint index, GLuint count, GLdouble* v)
             {
-                Delegates.glProgramParameters4dvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLuint)count, (GLdouble*)v);
+                unsafe { Delegates.glProgramParameters4dvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLuint)count, (GLdouble*)v); }
             }
             
             public static 
@@ -52851,7 +52965,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramParameters4fv(GL.Enums.NV_vertex_program target, GLuint index, GLuint count, GLfloat* v)
             {
-                Delegates.glProgramParameters4fvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLuint)count, (GLfloat*)v);
+                unsafe { Delegates.glProgramParameters4fvNV((GL.Enums.NV_vertex_program)target, (GLuint)index, (GLuint)count, (GLfloat*)v); }
             }
             
             public static 
@@ -52917,7 +53031,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void RequestResidentPrograms(GLsizei n, GLuint* programs)
             {
-                Delegates.glRequestResidentProgramsNV((GLsizei)n, (GLuint*)programs);
+                unsafe { Delegates.glRequestResidentProgramsNV((GLsizei)n, (GLuint*)programs); }
             }
             
             public static 
@@ -52996,7 +53110,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribPointer(GLuint index, GLint fsize, GL.Enums.NV_vertex_program type, GLsizei stride, void* pointer)
             {
-                Delegates.glVertexAttribPointerNV((GLuint)index, (GLint)fsize, (GL.Enums.NV_vertex_program)type, (GLsizei)stride, (void*)pointer);
+                unsafe { Delegates.glVertexAttribPointerNV((GLuint)index, (GLint)fsize, (GL.Enums.NV_vertex_program)type, (GLsizei)stride, (void*)pointer); }
             }
             
             public static 
@@ -53060,7 +53174,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib1dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib1dvNV((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib1dvNV((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -53139,7 +53253,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib1fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib1fvNV((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib1fvNV((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -53218,7 +53332,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib1sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib1svNV((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib1svNV((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -53297,7 +53411,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib2dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib2dvNV((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib2dvNV((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -53376,7 +53490,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib2fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib2fvNV((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib2fvNV((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -53455,7 +53569,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib2sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib2svNV((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib2svNV((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -53534,7 +53648,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib3dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib3dvNV((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib3dvNV((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -53613,7 +53727,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib3fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib3fvNV((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib3fvNV((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -53692,7 +53806,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib3sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib3svNV((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib3svNV((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -53771,7 +53885,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4dv(GLuint index, GLdouble* v)
             {
-                Delegates.glVertexAttrib4dvNV((GLuint)index, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttrib4dvNV((GLuint)index, (GLdouble*)v); }
             }
             
             public static 
@@ -53850,7 +53964,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4fv(GLuint index, GLfloat* v)
             {
-                Delegates.glVertexAttrib4fvNV((GLuint)index, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttrib4fvNV((GLuint)index, (GLfloat*)v); }
             }
             
             public static 
@@ -53929,7 +54043,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4sv(GLuint index, GLshort* v)
             {
-                Delegates.glVertexAttrib4svNV((GLuint)index, (GLshort*)v);
+                unsafe { Delegates.glVertexAttrib4svNV((GLuint)index, (GLshort*)v); }
             }
             
             public static 
@@ -54008,7 +54122,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4ubv(GLuint index, GLubyte* v)
             {
-                Delegates.glVertexAttrib4ubvNV((GLuint)index, (GLubyte*)v);
+                unsafe { Delegates.glVertexAttrib4ubvNV((GLuint)index, (GLubyte*)v); }
             }
             
             public static 
@@ -54074,7 +54188,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs1dv(GLuint index, GLsizei count, GLdouble* v)
             {
-                Delegates.glVertexAttribs1dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttribs1dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v); }
             }
             
             public static 
@@ -54140,7 +54254,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs1fv(GLuint index, GLsizei count, GLfloat* v)
             {
-                Delegates.glVertexAttribs1fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttribs1fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v); }
             }
             
             public static 
@@ -54206,7 +54320,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs1sv(GLuint index, GLsizei count, GLshort* v)
             {
-                Delegates.glVertexAttribs1svNV((GLuint)index, (GLsizei)count, (GLshort*)v);
+                unsafe { Delegates.glVertexAttribs1svNV((GLuint)index, (GLsizei)count, (GLshort*)v); }
             }
             
             public static 
@@ -54272,7 +54386,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs2dv(GLuint index, GLsizei count, GLdouble* v)
             {
-                Delegates.glVertexAttribs2dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttribs2dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v); }
             }
             
             public static 
@@ -54338,7 +54452,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs2fv(GLuint index, GLsizei count, GLfloat* v)
             {
-                Delegates.glVertexAttribs2fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttribs2fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v); }
             }
             
             public static 
@@ -54404,7 +54518,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs2sv(GLuint index, GLsizei count, GLshort* v)
             {
-                Delegates.glVertexAttribs2svNV((GLuint)index, (GLsizei)count, (GLshort*)v);
+                unsafe { Delegates.glVertexAttribs2svNV((GLuint)index, (GLsizei)count, (GLshort*)v); }
             }
             
             public static 
@@ -54470,7 +54584,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs3dv(GLuint index, GLsizei count, GLdouble* v)
             {
-                Delegates.glVertexAttribs3dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttribs3dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v); }
             }
             
             public static 
@@ -54536,7 +54650,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs3fv(GLuint index, GLsizei count, GLfloat* v)
             {
-                Delegates.glVertexAttribs3fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttribs3fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v); }
             }
             
             public static 
@@ -54602,7 +54716,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs3sv(GLuint index, GLsizei count, GLshort* v)
             {
-                Delegates.glVertexAttribs3svNV((GLuint)index, (GLsizei)count, (GLshort*)v);
+                unsafe { Delegates.glVertexAttribs3svNV((GLuint)index, (GLsizei)count, (GLshort*)v); }
             }
             
             public static 
@@ -54668,7 +54782,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs4dv(GLuint index, GLsizei count, GLdouble* v)
             {
-                Delegates.glVertexAttribs4dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v);
+                unsafe { Delegates.glVertexAttribs4dvNV((GLuint)index, (GLsizei)count, (GLdouble*)v); }
             }
             
             public static 
@@ -54734,7 +54848,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs4fv(GLuint index, GLsizei count, GLfloat* v)
             {
-                Delegates.glVertexAttribs4fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v);
+                unsafe { Delegates.glVertexAttribs4fvNV((GLuint)index, (GLsizei)count, (GLfloat*)v); }
             }
             
             public static 
@@ -54800,7 +54914,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs4sv(GLuint index, GLsizei count, GLshort* v)
             {
-                Delegates.glVertexAttribs4svNV((GLuint)index, (GLsizei)count, (GLshort*)v);
+                unsafe { Delegates.glVertexAttribs4svNV((GLuint)index, (GLsizei)count, (GLshort*)v); }
             }
             
             public static 
@@ -54866,7 +54980,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs4ubv(GLuint index, GLsizei count, GLubyte* v)
             {
-                Delegates.glVertexAttribs4ubvNV((GLuint)index, (GLsizei)count, (GLubyte*)v);
+                unsafe { Delegates.glVertexAttribs4ubvNV((GLuint)index, (GLsizei)count, (GLubyte*)v); }
             }
             
             public static 
@@ -54933,7 +55047,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenOcclusionQueries(GLsizei n, GLuint* ids)
             {
-                Delegates.glGenOcclusionQueriesNV((GLsizei)n, (GLuint*)ids);
+                unsafe { Delegates.glGenOcclusionQueriesNV((GLsizei)n, (GLuint*)ids); }
             }
             
             public static 
@@ -55003,7 +55117,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteOcclusionQueries(GLsizei n, GLuint* ids)
             {
-                Delegates.glDeleteOcclusionQueriesNV((GLsizei)n, (GLuint*)ids);
+                unsafe { Delegates.glDeleteOcclusionQueriesNV((GLsizei)n, (GLuint*)ids); }
             }
             
             public static 
@@ -55102,7 +55216,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetOcclusionQueryiv(GLuint id, GL.Enums.NV_occlusion_query pname, GLint* @params)
             {
-                Delegates.glGetOcclusionQueryivNV((GLuint)id, (GL.Enums.NV_occlusion_query)pname, (GLint*)@params);
+                unsafe { Delegates.glGetOcclusionQueryivNV((GLuint)id, (GL.Enums.NV_occlusion_query)pname, (GLint*)@params); }
             }
             
             public static 
@@ -55173,7 +55287,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetOcclusionQueryuiv(GLuint id, GL.Enums.NV_occlusion_query pname, GLuint* @params)
             {
-                Delegates.glGetOcclusionQueryuivNV((GLuint)id, (GL.Enums.NV_occlusion_query)pname, (GLuint*)@params);
+                unsafe { Delegates.glGetOcclusionQueryuivNV((GLuint)id, (GL.Enums.NV_occlusion_query)pname, (GLuint*)@params); }
             }
             
             public static 
@@ -55240,7 +55354,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PointParameteriv(GL.Enums.NV_point_sprite pname, GLint* @params)
             {
-                Delegates.glPointParameterivNV((GL.Enums.NV_point_sprite)pname, (GLint*)@params);
+                unsafe { Delegates.glPointParameterivNV((GL.Enums.NV_point_sprite)pname, (GLint*)@params); }
             }
             
             public static 
@@ -55280,7 +55394,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramNamedParameter4f(GLuint id, GLsizei len, GLubyte* name, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
             {
-                Delegates.glProgramNamedParameter4fNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLfloat)x, (GLfloat)y, (GLfloat)z, (GLfloat)w);
+                unsafe { Delegates.glProgramNamedParameter4fNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLfloat)x, (GLfloat)y, (GLfloat)z, (GLfloat)w); }
             }
             
             public static 
@@ -55346,7 +55460,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramNamedParameter4d(GLuint id, GLsizei len, GLubyte* name, GLdouble x, GLdouble y, GLdouble z, GLdouble w)
             {
-                Delegates.glProgramNamedParameter4dNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLdouble)x, (GLdouble)y, (GLdouble)z, (GLdouble)w);
+                unsafe { Delegates.glProgramNamedParameter4dNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLdouble)x, (GLdouble)y, (GLdouble)z, (GLdouble)w); }
             }
             
             public static 
@@ -55412,7 +55526,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramNamedParameter4fv(GLuint id, GLsizei len, GLubyte* name, GLfloat* v)
             {
-                Delegates.glProgramNamedParameter4fvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLfloat*)v);
+                unsafe { Delegates.glProgramNamedParameter4fvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLfloat*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -55616,7 +55730,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramNamedParameter4dv(GLuint id, GLsizei len, GLubyte* name, GLdouble* v)
             {
-                Delegates.glProgramNamedParameter4dvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLdouble*)v);
+                unsafe { Delegates.glProgramNamedParameter4dvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLdouble*)v); }
             }
             
             [System.CLSCompliant(false)]
@@ -55821,7 +55935,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameterfv(GLuint id, GLsizei len, GLubyte* name, GLfloat* @params)
             {
-                Delegates.glGetProgramNamedParameterfvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLfloat*)@params);
+                unsafe { Delegates.glGetProgramNamedParameterfvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLfloat*)@params); }
             }
             
             [System.CLSCompliant(false)]
@@ -56042,7 +56156,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameterdv(GLuint id, GLsizei len, GLubyte* name, GLdouble* @params)
             {
-                Delegates.glGetProgramNamedParameterdvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLdouble*)@params);
+                unsafe { Delegates.glGetProgramNamedParameterdvNV((GLuint)id, (GLsizei)len, (GLubyte*)name, (GLdouble*)@params); }
             }
             
             [System.CLSCompliant(false)]
@@ -56275,7 +56389,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Vertex2hv(GLhalfNV* v)
             {
-                Delegates.glVertex2hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glVertex2hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56354,7 +56468,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Vertex3hv(GLhalfNV* v)
             {
-                Delegates.glVertex3hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glVertex3hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56433,7 +56547,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Vertex4hv(GLhalfNV* v)
             {
-                Delegates.glVertex4hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glVertex4hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56512,7 +56626,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Normal3hv(GLhalfNV* v)
             {
-                Delegates.glNormal3hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glNormal3hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56591,7 +56705,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Color3hv(GLhalfNV* v)
             {
-                Delegates.glColor3hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glColor3hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56670,7 +56784,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void Color4hv(GLhalfNV* v)
             {
-                Delegates.glColor4hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glColor4hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56749,7 +56863,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord1hv(GLhalfNV* v)
             {
-                Delegates.glTexCoord1hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glTexCoord1hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56828,7 +56942,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord2hv(GLhalfNV* v)
             {
-                Delegates.glTexCoord2hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glTexCoord2hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56907,7 +57021,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord3hv(GLhalfNV* v)
             {
-                Delegates.glTexCoord3hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glTexCoord3hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -56986,7 +57100,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoord4hv(GLhalfNV* v)
             {
-                Delegates.glTexCoord4hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glTexCoord4hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -57065,7 +57179,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord1hv(GL.Enums.NV_half_float target, GLhalfNV* v)
             {
-                Delegates.glMultiTexCoord1hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v);
+                unsafe { Delegates.glMultiTexCoord1hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57144,7 +57258,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord2hv(GL.Enums.NV_half_float target, GLhalfNV* v)
             {
-                Delegates.glMultiTexCoord2hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v);
+                unsafe { Delegates.glMultiTexCoord2hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57223,7 +57337,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord3hv(GL.Enums.NV_half_float target, GLhalfNV* v)
             {
-                Delegates.glMultiTexCoord3hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v);
+                unsafe { Delegates.glMultiTexCoord3hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57302,7 +57416,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiTexCoord4hv(GL.Enums.NV_half_float target, GLhalfNV* v)
             {
-                Delegates.glMultiTexCoord4hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v);
+                unsafe { Delegates.glMultiTexCoord4hvNV((GL.Enums.NV_half_float)target, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57381,7 +57495,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FogCoordhv(GLhalfNV* fog)
             {
-                Delegates.glFogCoordhvNV((GLhalfNV*)fog);
+                unsafe { Delegates.glFogCoordhvNV((GLhalfNV*)fog); }
             }
             
             public static 
@@ -57460,7 +57574,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColor3hv(GLhalfNV* v)
             {
-                Delegates.glSecondaryColor3hvNV((GLhalfNV*)v);
+                unsafe { Delegates.glSecondaryColor3hvNV((GLhalfNV*)v); }
             }
             
             public static 
@@ -57539,7 +57653,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexWeighthv(GLhalfNV* weight)
             {
-                Delegates.glVertexWeighthvNV((GLhalfNV*)weight);
+                unsafe { Delegates.glVertexWeighthvNV((GLhalfNV*)weight); }
             }
             
             public static 
@@ -57618,7 +57732,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib1hv(GLuint index, GLhalfNV* v)
             {
-                Delegates.glVertexAttrib1hvNV((GLuint)index, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttrib1hvNV((GLuint)index, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57697,7 +57811,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib2hv(GLuint index, GLhalfNV* v)
             {
-                Delegates.glVertexAttrib2hvNV((GLuint)index, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttrib2hvNV((GLuint)index, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57776,7 +57890,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib3hv(GLuint index, GLhalfNV* v)
             {
-                Delegates.glVertexAttrib3hvNV((GLuint)index, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttrib3hvNV((GLuint)index, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57855,7 +57969,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttrib4hv(GLuint index, GLhalfNV* v)
             {
-                Delegates.glVertexAttrib4hvNV((GLuint)index, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttrib4hvNV((GLuint)index, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57921,7 +58035,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs1hv(GLuint index, GLsizei n, GLhalfNV* v)
             {
-                Delegates.glVertexAttribs1hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttribs1hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v); }
             }
             
             public static 
@@ -57987,7 +58101,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs2hv(GLuint index, GLsizei n, GLhalfNV* v)
             {
-                Delegates.glVertexAttribs2hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttribs2hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v); }
             }
             
             public static 
@@ -58053,7 +58167,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs3hv(GLuint index, GLsizei n, GLhalfNV* v)
             {
-                Delegates.glVertexAttribs3hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttribs3hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v); }
             }
             
             public static 
@@ -58119,7 +58233,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexAttribs4hv(GLuint index, GLsizei n, GLhalfNV* v)
             {
-                Delegates.glVertexAttribs4hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v);
+                unsafe { Delegates.glVertexAttribs4hvNV((GLuint)index, (GLsizei)n, (GLhalfNV*)v); }
             }
             
             public static 
@@ -58176,7 +58290,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void PixelDataRange(GL.Enums.NV_pixel_data_range target, GLsizei length, void* pointer)
             {
-                Delegates.glPixelDataRangeNV((GL.Enums.NV_pixel_data_range)target, (GLsizei)length, (void*)pointer);
+                unsafe { Delegates.glPixelDataRangeNV((GL.Enums.NV_pixel_data_range)target, (GLsizei)length, (void*)pointer); }
             }
             
             public static 
@@ -58247,7 +58361,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramLocalParameterI4iv(GL.Enums.NV_gpu_program4 target, GLuint index, GLint* @params)
             {
-                Delegates.glProgramLocalParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params);
+                unsafe { Delegates.glProgramLocalParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params); }
             }
             
             public static 
@@ -58313,7 +58427,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramLocalParametersI4iv(GL.Enums.NV_gpu_program4 target, GLuint index, GLsizei count, GLint* @params)
             {
-                Delegates.glProgramLocalParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLint*)@params);
+                unsafe { Delegates.glProgramLocalParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLint*)@params); }
             }
             
             public static 
@@ -58392,7 +58506,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramLocalParameterI4uiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLuint* @params)
             {
-                Delegates.glProgramLocalParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params);
+                unsafe { Delegates.glProgramLocalParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params); }
             }
             
             public static 
@@ -58458,7 +58572,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramLocalParametersI4uiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLsizei count, GLuint* @params)
             {
-                Delegates.glProgramLocalParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLuint*)@params);
+                unsafe { Delegates.glProgramLocalParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLuint*)@params); }
             }
             
             public static 
@@ -58537,7 +58651,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramEnvParameterI4iv(GL.Enums.NV_gpu_program4 target, GLuint index, GLint* @params)
             {
-                Delegates.glProgramEnvParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params);
+                unsafe { Delegates.glProgramEnvParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params); }
             }
             
             public static 
@@ -58603,7 +58717,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramEnvParametersI4iv(GL.Enums.NV_gpu_program4 target, GLuint index, GLsizei count, GLint* @params)
             {
-                Delegates.glProgramEnvParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLint*)@params);
+                unsafe { Delegates.glProgramEnvParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLint*)@params); }
             }
             
             public static 
@@ -58682,7 +58796,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramEnvParameterI4uiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLuint* @params)
             {
-                Delegates.glProgramEnvParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params);
+                unsafe { Delegates.glProgramEnvParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params); }
             }
             
             public static 
@@ -58748,7 +58862,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramEnvParametersI4uiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLsizei count, GLuint* @params)
             {
-                Delegates.glProgramEnvParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLuint*)@params);
+                unsafe { Delegates.glProgramEnvParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLsizei)count, (GLuint*)@params); }
             }
             
             public static 
@@ -58815,7 +58929,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramLocalParameterIiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLint* @params)
             {
-                Delegates.glGetProgramLocalParameterIivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params);
+                unsafe { Delegates.glGetProgramLocalParameterIivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params); }
             }
             
             public static 
@@ -58886,7 +59000,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramLocalParameterIuiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLuint* @params)
             {
-                Delegates.glGetProgramLocalParameterIuivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params);
+                unsafe { Delegates.glGetProgramLocalParameterIuivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params); }
             }
             
             public static 
@@ -58957,7 +59071,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramEnvParameterIiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLint* @params)
             {
-                Delegates.glGetProgramEnvParameterIivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params);
+                unsafe { Delegates.glGetProgramEnvParameterIivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLint*)@params); }
             }
             
             public static 
@@ -59028,7 +59142,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramEnvParameterIuiv(GL.Enums.NV_gpu_program4 target, GLuint index, GLuint* @params)
             {
-                Delegates.glGetProgramEnvParameterIuivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params);
+                unsafe { Delegates.glGetProgramEnvParameterIuivNV((GL.Enums.NV_gpu_program4)target, (GLuint)index, (GLuint*)@params); }
             }
             
             public static 
@@ -59128,7 +59242,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramBufferParametersfv(GL.Enums.NV_parameter_buffer_object target, GLuint buffer, GLuint index, GLsizei count, GLfloat* @params)
             {
-                Delegates.glProgramBufferParametersfvNV((GL.Enums.NV_parameter_buffer_object)target, (GLuint)buffer, (GLuint)index, (GLsizei)count, (GLfloat*)@params);
+                unsafe { Delegates.glProgramBufferParametersfvNV((GL.Enums.NV_parameter_buffer_object)target, (GLuint)buffer, (GLuint)index, (GLsizei)count, (GLfloat*)@params); }
             }
             
             public static 
@@ -59194,7 +59308,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramBufferParametersIiv(GL.Enums.NV_parameter_buffer_object target, GLuint buffer, GLuint index, GLsizei count, GLint* @params)
             {
-                Delegates.glProgramBufferParametersIivNV((GL.Enums.NV_parameter_buffer_object)target, (GLuint)buffer, (GLuint)index, (GLsizei)count, (GLint*)@params);
+                unsafe { Delegates.glProgramBufferParametersIivNV((GL.Enums.NV_parameter_buffer_object)target, (GLuint)buffer, (GLuint)index, (GLsizei)count, (GLint*)@params); }
             }
             
             public static 
@@ -59260,7 +59374,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ProgramBufferParametersIuiv(GL.Enums.NV_parameter_buffer_object target, GLuint buffer, GLuint index, GLsizei count, GLuint* @params)
             {
-                Delegates.glProgramBufferParametersIuivNV((GL.Enums.NV_parameter_buffer_object)target, (GLuint)buffer, (GLuint)index, (GLsizei)count, (GLuint*)@params);
+                unsafe { Delegates.glProgramBufferParametersIuivNV((GL.Enums.NV_parameter_buffer_object)target, (GLuint)buffer, (GLuint)index, (GLsizei)count, (GLuint*)@params); }
             }
             
             public static 
@@ -59338,7 +59452,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TransformFeedbackAttribs(GLuint count, GLint* attribs, GL.Enums.NV_transform_feedback bufferMode)
             {
-                Delegates.glTransformFeedbackAttribsNV((GLuint)count, (GLint*)attribs, (GL.Enums.NV_transform_feedback)bufferMode);
+                unsafe { Delegates.glTransformFeedbackAttribsNV((GLuint)count, (GLint*)attribs, (GL.Enums.NV_transform_feedback)bufferMode); }
             }
             
             public static 
@@ -59443,7 +59557,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TransformFeedbackVaryings(GLuint program, GLsizei count, GLint* locations, GL.Enums.NV_transform_feedback bufferMode)
             {
-                Delegates.glTransformFeedbackVaryingsNV((GLuint)program, (GLsizei)count, (GLint*)locations, (GL.Enums.NV_transform_feedback)bufferMode);
+                unsafe { Delegates.glTransformFeedbackVaryingsNV((GLuint)program, (GLsizei)count, (GLint*)locations, (GL.Enums.NV_transform_feedback)bufferMode); }
             }
             
             public static 
@@ -59539,7 +59653,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVarying(GLuint program, GLuint index, GLsizei bufSize, GLsizei* length, GLsizei* size, GL.Enums.NV_transform_feedback* type, System.Text.StringBuilder name)
             {
-                Delegates.glGetActiveVaryingNV((GLuint)program, (GLuint)index, (GLsizei)bufSize, (GLsizei*)length, (GLsizei*)size, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
+                unsafe { Delegates.glGetActiveVaryingNV((GLuint)program, (GLuint)index, (GLsizei)bufSize, (GLsizei*)length, (GLsizei*)size, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name); }
             }
             
             [System.CLSCompliant(false)]
@@ -60380,7 +60494,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTransformFeedbackVarying(GLuint program, GLuint index, GLint* location)
             {
-                Delegates.glGetTransformFeedbackVaryingNV((GLuint)program, (GLuint)index, (GLint*)location);
+                unsafe { Delegates.glGetTransformFeedbackVaryingNV((GLuint)program, (GLuint)index, (GLint*)location); }
             }
             
             public static 
@@ -60457,7 +60571,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2dv(GLdouble* v)
             {
-                Delegates.glWindowPos2dvMESA((GLdouble*)v);
+                unsafe { Delegates.glWindowPos2dvMESA((GLdouble*)v); }
             }
             
             public static 
@@ -60494,7 +60608,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2fv(GLfloat* v)
             {
-                Delegates.glWindowPos2fvMESA((GLfloat*)v);
+                unsafe { Delegates.glWindowPos2fvMESA((GLfloat*)v); }
             }
             
             public static 
@@ -60531,7 +60645,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2iv(GLint* v)
             {
-                Delegates.glWindowPos2ivMESA((GLint*)v);
+                unsafe { Delegates.glWindowPos2ivMESA((GLint*)v); }
             }
             
             public static 
@@ -60568,7 +60682,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos2sv(GLshort* v)
             {
-                Delegates.glWindowPos2svMESA((GLshort*)v);
+                unsafe { Delegates.glWindowPos2svMESA((GLshort*)v); }
             }
             
             public static 
@@ -60605,7 +60719,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3dv(GLdouble* v)
             {
-                Delegates.glWindowPos3dvMESA((GLdouble*)v);
+                unsafe { Delegates.glWindowPos3dvMESA((GLdouble*)v); }
             }
             
             public static 
@@ -60642,7 +60756,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3fv(GLfloat* v)
             {
-                Delegates.glWindowPos3fvMESA((GLfloat*)v);
+                unsafe { Delegates.glWindowPos3fvMESA((GLfloat*)v); }
             }
             
             public static 
@@ -60679,7 +60793,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3iv(GLint* v)
             {
-                Delegates.glWindowPos3ivMESA((GLint*)v);
+                unsafe { Delegates.glWindowPos3ivMESA((GLint*)v); }
             }
             
             public static 
@@ -60716,7 +60830,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos3sv(GLshort* v)
             {
-                Delegates.glWindowPos3svMESA((GLshort*)v);
+                unsafe { Delegates.glWindowPos3svMESA((GLshort*)v); }
             }
             
             public static 
@@ -60753,7 +60867,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos4dv(GLdouble* v)
             {
-                Delegates.glWindowPos4dvMESA((GLdouble*)v);
+                unsafe { Delegates.glWindowPos4dvMESA((GLdouble*)v); }
             }
             
             public static 
@@ -60790,7 +60904,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos4fv(GLfloat* v)
             {
-                Delegates.glWindowPos4fvMESA((GLfloat*)v);
+                unsafe { Delegates.glWindowPos4fvMESA((GLfloat*)v); }
             }
             
             public static 
@@ -60827,7 +60941,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos4iv(GLint* v)
             {
-                Delegates.glWindowPos4ivMESA((GLint*)v);
+                unsafe { Delegates.glWindowPos4ivMESA((GLint*)v); }
             }
             
             public static 
@@ -60864,7 +60978,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void WindowPos4sv(GLshort* v)
             {
-                Delegates.glWindowPos4svMESA((GLshort*)v);
+                unsafe { Delegates.glWindowPos4svMESA((GLshort*)v); }
             }
             
             public static 
@@ -60899,7 +61013,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiModeDrawArrays(GL.Enums.BeginMode* mode, GLint* first, GLsizei* count, GLsizei primcount, GLint modestride)
             {
-                Delegates.glMultiModeDrawArraysIBM((GL.Enums.BeginMode*)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount, (GLint)modestride);
+                unsafe { Delegates.glMultiModeDrawArraysIBM((GL.Enums.BeginMode*)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount, (GLint)modestride); }
             }
             
             [System.CLSCompliant(false)]
@@ -61210,7 +61324,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiModeDrawElements(GL.Enums.BeginMode* mode, GLsizei* count, GL.Enums.IBM_multimode_draw_arrays type, void* indices, GLsizei primcount, GLint modestride)
             {
-                Delegates.glMultiModeDrawElementsIBM((GL.Enums.BeginMode*)mode, (GLsizei*)count, (GL.Enums.IBM_multimode_draw_arrays)type, (void*)indices, (GLsizei)primcount, (GLint)modestride);
+                unsafe { Delegates.glMultiModeDrawElementsIBM((GL.Enums.BeginMode*)mode, (GLsizei*)count, (GL.Enums.IBM_multimode_draw_arrays)type, (void*)indices, (GLsizei)primcount, (GLint)modestride); }
             }
             
             [System.CLSCompliant(false)]
@@ -61456,7 +61570,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ColorPointerList(GLint size, GL.Enums.ColorPointerType type, GLint stride, void* pointer, GLint ptrstride)
             {
-                Delegates.glColorPointerListIBM((GLint)size, (GL.Enums.ColorPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glColorPointerListIBM((GLint)size, (GL.Enums.ColorPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride); }
             }
             
             public static 
@@ -61480,7 +61594,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SecondaryColorPointerList(GLint size, GL.Enums.IBM_vertex_array_lists type, GLint stride, void* pointer, GLint ptrstride)
             {
-                Delegates.glSecondaryColorPointerListIBM((GLint)size, (GL.Enums.IBM_vertex_array_lists)type, (GLint)stride, (void*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glSecondaryColorPointerListIBM((GLint)size, (GL.Enums.IBM_vertex_array_lists)type, (GLint)stride, (void*)pointer, (GLint)ptrstride); }
             }
             
             public static 
@@ -61504,14 +61618,14 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void EdgeFlagPointerList(GLint stride, GLboolean* pointer, GLint ptrstride)
             {
-                Delegates.glEdgeFlagPointerListIBM((GLint)stride, (GLboolean*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glEdgeFlagPointerListIBM((GLint)stride, (GLboolean*)pointer, (GLint)ptrstride); }
             }
             
             [System.CLSCompliant(false)]
             public static 
             unsafe void FogCoordPointerList(GL.Enums.IBM_vertex_array_lists type, GLint stride, void* pointer, GLint ptrstride)
             {
-                Delegates.glFogCoordPointerListIBM((GL.Enums.IBM_vertex_array_lists)type, (GLint)stride, (void*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glFogCoordPointerListIBM((GL.Enums.IBM_vertex_array_lists)type, (GLint)stride, (void*)pointer, (GLint)ptrstride); }
             }
             
             public static 
@@ -61535,7 +61649,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void IndexPointerList(GL.Enums.IndexPointerType type, GLint stride, void* pointer, GLint ptrstride)
             {
-                Delegates.glIndexPointerListIBM((GL.Enums.IndexPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glIndexPointerListIBM((GL.Enums.IndexPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride); }
             }
             
             public static 
@@ -61559,7 +61673,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void NormalPointerList(GL.Enums.NormalPointerType type, GLint stride, void* pointer, GLint ptrstride)
             {
-                Delegates.glNormalPointerListIBM((GL.Enums.NormalPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glNormalPointerListIBM((GL.Enums.NormalPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride); }
             }
             
             public static 
@@ -61583,7 +61697,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexCoordPointerList(GLint size, GL.Enums.TexCoordPointerType type, GLint stride, void* pointer, GLint ptrstride)
             {
-                Delegates.glTexCoordPointerListIBM((GLint)size, (GL.Enums.TexCoordPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glTexCoordPointerListIBM((GLint)size, (GL.Enums.TexCoordPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride); }
             }
             
             public static 
@@ -61607,7 +61721,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexPointerList(GLint size, GL.Enums.VertexPointerType type, GLint stride, void* pointer, GLint ptrstride)
             {
-                Delegates.glVertexPointerListIBM((GLint)size, (GL.Enums.VertexPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride);
+                unsafe { Delegates.glVertexPointerListIBM((GLint)size, (GL.Enums.VertexPointerType)type, (GLint)stride, (void*)pointer, (GLint)ptrstride); }
             }
             
             public static 
@@ -61635,7 +61749,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexBumpParameteriv(GL.Enums.ATI_envmap_bumpmap pname, GLint* param)
             {
-                Delegates.glTexBumpParameterivATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLint*)param);
+                unsafe { Delegates.glTexBumpParameterivATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLint*)param); }
             }
             
             public static 
@@ -61666,7 +61780,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void TexBumpParameterfv(GL.Enums.ATI_envmap_bumpmap pname, GLfloat* param)
             {
-                Delegates.glTexBumpParameterfvATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLfloat*)param);
+                unsafe { Delegates.glTexBumpParameterfvATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLfloat*)param); }
             }
             
             public static 
@@ -61697,7 +61811,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTexBumpParameteriv(GL.Enums.ATI_envmap_bumpmap pname, GLint* param)
             {
-                Delegates.glGetTexBumpParameterivATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLint*)param);
+                unsafe { Delegates.glGetTexBumpParameterivATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLint*)param); }
             }
             
             public static 
@@ -61730,7 +61844,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTexBumpParameterfv(GL.Enums.ATI_envmap_bumpmap pname, GLfloat* param)
             {
-                Delegates.glGetTexBumpParameterfvATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLfloat*)param);
+                unsafe { Delegates.glGetTexBumpParameterfvATI((GL.Enums.ATI_envmap_bumpmap)pname, (GLfloat*)param); }
             }
             
             public static 
@@ -61927,7 +62041,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void SetFragmentShaderConstant(GLuint dst, GLfloat* value)
             {
-                Delegates.glSetFragmentShaderConstantATI((GLuint)dst, (GLfloat*)value);
+                unsafe { Delegates.glSetFragmentShaderConstantATI((GLuint)dst, (GLfloat*)value); }
             }
             
             public static 
@@ -61996,7 +62110,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Int32 NewObjectBuffer(GLsizei size, void* pointer, GL.Enums.ATI_vertex_array_object usage)
             {
-                return Delegates.glNewObjectBufferATI((GLsizei)size, (void*)pointer, (GL.Enums.ATI_vertex_array_object)usage);
+                unsafe { return Delegates.glNewObjectBufferATI((GLsizei)size, (void*)pointer, (GL.Enums.ATI_vertex_array_object)usage); }
             }
             
             public static 
@@ -62043,7 +62157,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void UpdateObjectBuffer(GLuint buffer, GLuint offset, GLsizei size, void* pointer, GL.Enums.ATI_vertex_array_object preserve)
             {
-                Delegates.glUpdateObjectBufferATI((GLuint)buffer, (GLuint)offset, (GLsizei)size, (void*)pointer, (GL.Enums.ATI_vertex_array_object)preserve);
+                unsafe { Delegates.glUpdateObjectBufferATI((GLuint)buffer, (GLuint)offset, (GLsizei)size, (void*)pointer, (GL.Enums.ATI_vertex_array_object)preserve); }
             }
             
             public static 
@@ -62095,7 +62209,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectBufferfv(GLuint buffer, GL.Enums.ATI_vertex_array_object pname, GLfloat* @params)
             {
-                Delegates.glGetObjectBufferfvATI((GLuint)buffer, (GL.Enums.ATI_vertex_array_object)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetObjectBufferfvATI((GLuint)buffer, (GL.Enums.ATI_vertex_array_object)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -62166,7 +62280,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectBufferiv(GLuint buffer, GL.Enums.ATI_vertex_array_object pname, GLint* @params)
             {
-                Delegates.glGetObjectBufferivATI((GLuint)buffer, (GL.Enums.ATI_vertex_array_object)pname, (GLint*)@params);
+                unsafe { Delegates.glGetObjectBufferivATI((GLuint)buffer, (GL.Enums.ATI_vertex_array_object)pname, (GLint*)@params); }
             }
             
             public static 
@@ -62253,7 +62367,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetArrayObjectfv(GL.Enums.EnableCap array, GL.Enums.ATI_vertex_array_object pname, GLfloat* @params)
             {
-                Delegates.glGetArrayObjectfvATI((GL.Enums.EnableCap)array, (GL.Enums.ATI_vertex_array_object)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetArrayObjectfvATI((GL.Enums.EnableCap)array, (GL.Enums.ATI_vertex_array_object)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -62286,7 +62400,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetArrayObjectiv(GL.Enums.EnableCap array, GL.Enums.ATI_vertex_array_object pname, GLint* @params)
             {
-                Delegates.glGetArrayObjectivATI((GL.Enums.EnableCap)array, (GL.Enums.ATI_vertex_array_object)pname, (GLint*)@params);
+                unsafe { Delegates.glGetArrayObjectivATI((GL.Enums.EnableCap)array, (GL.Enums.ATI_vertex_array_object)pname, (GLint*)@params); }
             }
             
             public static 
@@ -62342,7 +62456,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantArrayObjectfv(GLuint id, GL.Enums.ATI_vertex_array_object pname, GLfloat* @params)
             {
-                Delegates.glGetVariantArrayObjectfvATI((GLuint)id, (GL.Enums.ATI_vertex_array_object)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetVariantArrayObjectfvATI((GLuint)id, (GL.Enums.ATI_vertex_array_object)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -62413,7 +62527,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantArrayObjectiv(GLuint id, GL.Enums.ATI_vertex_array_object pname, GLint* @params)
             {
-                Delegates.glGetVariantArrayObjectivATI((GLuint)id, (GL.Enums.ATI_vertex_array_object)pname, (GLint*)@params);
+                unsafe { Delegates.glGetVariantArrayObjectivATI((GLuint)id, (GL.Enums.ATI_vertex_array_object)pname, (GLint*)@params); }
             }
             
             public static 
@@ -62480,7 +62594,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream1sv(GL.Enums.ATI_vertex_streams stream, GLshort* coords)
             {
-                Delegates.glVertexStream1svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords);
+                unsafe { Delegates.glVertexStream1svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords); }
             }
             
             public static 
@@ -62517,7 +62631,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream1iv(GL.Enums.ATI_vertex_streams stream, GLint* coords)
             {
-                Delegates.glVertexStream1ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords);
+                unsafe { Delegates.glVertexStream1ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords); }
             }
             
             public static 
@@ -62554,7 +62668,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream1fv(GL.Enums.ATI_vertex_streams stream, GLfloat* coords)
             {
-                Delegates.glVertexStream1fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords);
+                unsafe { Delegates.glVertexStream1fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords); }
             }
             
             public static 
@@ -62591,7 +62705,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream1dv(GL.Enums.ATI_vertex_streams stream, GLdouble* coords)
             {
-                Delegates.glVertexStream1dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords);
+                unsafe { Delegates.glVertexStream1dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords); }
             }
             
             public static 
@@ -62628,7 +62742,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream2sv(GL.Enums.ATI_vertex_streams stream, GLshort* coords)
             {
-                Delegates.glVertexStream2svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords);
+                unsafe { Delegates.glVertexStream2svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords); }
             }
             
             public static 
@@ -62665,7 +62779,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream2iv(GL.Enums.ATI_vertex_streams stream, GLint* coords)
             {
-                Delegates.glVertexStream2ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords);
+                unsafe { Delegates.glVertexStream2ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords); }
             }
             
             public static 
@@ -62702,7 +62816,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream2fv(GL.Enums.ATI_vertex_streams stream, GLfloat* coords)
             {
-                Delegates.glVertexStream2fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords);
+                unsafe { Delegates.glVertexStream2fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords); }
             }
             
             public static 
@@ -62739,7 +62853,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream2dv(GL.Enums.ATI_vertex_streams stream, GLdouble* coords)
             {
-                Delegates.glVertexStream2dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords);
+                unsafe { Delegates.glVertexStream2dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords); }
             }
             
             public static 
@@ -62776,7 +62890,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream3sv(GL.Enums.ATI_vertex_streams stream, GLshort* coords)
             {
-                Delegates.glVertexStream3svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords);
+                unsafe { Delegates.glVertexStream3svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords); }
             }
             
             public static 
@@ -62813,7 +62927,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream3iv(GL.Enums.ATI_vertex_streams stream, GLint* coords)
             {
-                Delegates.glVertexStream3ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords);
+                unsafe { Delegates.glVertexStream3ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords); }
             }
             
             public static 
@@ -62850,7 +62964,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream3fv(GL.Enums.ATI_vertex_streams stream, GLfloat* coords)
             {
-                Delegates.glVertexStream3fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords);
+                unsafe { Delegates.glVertexStream3fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords); }
             }
             
             public static 
@@ -62887,7 +63001,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream3dv(GL.Enums.ATI_vertex_streams stream, GLdouble* coords)
             {
-                Delegates.glVertexStream3dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords);
+                unsafe { Delegates.glVertexStream3dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords); }
             }
             
             public static 
@@ -62924,7 +63038,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream4sv(GL.Enums.ATI_vertex_streams stream, GLshort* coords)
             {
-                Delegates.glVertexStream4svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords);
+                unsafe { Delegates.glVertexStream4svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords); }
             }
             
             public static 
@@ -62961,7 +63075,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream4iv(GL.Enums.ATI_vertex_streams stream, GLint* coords)
             {
-                Delegates.glVertexStream4ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords);
+                unsafe { Delegates.glVertexStream4ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords); }
             }
             
             public static 
@@ -62998,7 +63112,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream4fv(GL.Enums.ATI_vertex_streams stream, GLfloat* coords)
             {
-                Delegates.glVertexStream4fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords);
+                unsafe { Delegates.glVertexStream4fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords); }
             }
             
             public static 
@@ -63035,7 +63149,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexStream4dv(GL.Enums.ATI_vertex_streams stream, GLdouble* coords)
             {
-                Delegates.glVertexStream4dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords);
+                unsafe { Delegates.glVertexStream4dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords); }
             }
             
             public static 
@@ -63088,7 +63202,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void NormalStream3bv(GL.Enums.ATI_vertex_streams stream, GLbyte* coords)
             {
-                Delegates.glNormalStream3bvATI((GL.Enums.ATI_vertex_streams)stream, (GLbyte*)coords);
+                unsafe { Delegates.glNormalStream3bvATI((GL.Enums.ATI_vertex_streams)stream, (GLbyte*)coords); }
             }
             
             public static 
@@ -63151,7 +63265,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void NormalStream3sv(GL.Enums.ATI_vertex_streams stream, GLshort* coords)
             {
-                Delegates.glNormalStream3svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords);
+                unsafe { Delegates.glNormalStream3svATI((GL.Enums.ATI_vertex_streams)stream, (GLshort*)coords); }
             }
             
             public static 
@@ -63188,7 +63302,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void NormalStream3iv(GL.Enums.ATI_vertex_streams stream, GLint* coords)
             {
-                Delegates.glNormalStream3ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords);
+                unsafe { Delegates.glNormalStream3ivATI((GL.Enums.ATI_vertex_streams)stream, (GLint*)coords); }
             }
             
             public static 
@@ -63225,7 +63339,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void NormalStream3fv(GL.Enums.ATI_vertex_streams stream, GLfloat* coords)
             {
-                Delegates.glNormalStream3fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords);
+                unsafe { Delegates.glNormalStream3fvATI((GL.Enums.ATI_vertex_streams)stream, (GLfloat*)coords); }
             }
             
             public static 
@@ -63262,7 +63376,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void NormalStream3dv(GL.Enums.ATI_vertex_streams stream, GLdouble* coords)
             {
-                Delegates.glNormalStream3dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords);
+                unsafe { Delegates.glNormalStream3dvATI((GL.Enums.ATI_vertex_streams)stream, (GLdouble*)coords); }
             }
             
             public static 
@@ -63311,7 +63425,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ElementPointer(GL.Enums.ATI_element_array type, void* pointer)
             {
-                Delegates.glElementPointerATI((GL.Enums.ATI_element_array)type, (void*)pointer);
+                unsafe { Delegates.glElementPointerATI((GL.Enums.ATI_element_array)type, (void*)pointer); }
             }
             
             public static 
@@ -63354,7 +63468,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DrawBuffers(GLsizei n, GL.Enums.ATI_draw_buffers* bufs)
             {
-                Delegates.glDrawBuffersATI((GLsizei)n, (GL.Enums.ATI_draw_buffers*)bufs);
+                unsafe { Delegates.glDrawBuffersATI((GLsizei)n, (GL.Enums.ATI_draw_buffers*)bufs); }
             }
             
             public static 
@@ -63426,6 +63540,24 @@ namespace OpenTK.OpenGL
                 Delegates.glStencilFuncSeparateATI((GL.Enums.StencilFunction)frontfunc, (GL.Enums.StencilFunction)backfunc, (GLint)@ref, (GLuint)mask);
             }
             
+            public static 
+            void VertexAttribArrayObject(Int32 index, GLint size, GL.Enums.ATI_vertex_attrib_array_object type, GL.Enums.Boolean normalized, GLsizei stride, Int32 buffer, Int32 offset)
+            {
+                unsafe
+                {
+                    {
+                        Delegates.glVertexAttribArrayObjectATI((GLuint)index, (GLint)size, (GL.Enums.ATI_vertex_attrib_array_object)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (GLuint)buffer, (GLuint)offset);
+                    }
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            void VertexAttribArrayObject(GLuint index, GLint size, GL.Enums.ATI_vertex_attrib_array_object type, GL.Enums.Boolean normalized, GLsizei stride, GLuint buffer, GLuint offset)
+            {
+                 Delegates.glVertexAttribArrayObjectATI((GLuint)index, (GLint)size, (GL.Enums.ATI_vertex_attrib_array_object)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (GLuint)buffer, (GLuint)offset); 
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetVertexAttribArrayObjectfv(Int32 index, GL.Enums.ATI_vertex_attrib_array_object pname, GLfloat* @params)
@@ -63440,7 +63572,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribArrayObjectfv(GLuint index, GL.Enums.ATI_vertex_attrib_array_object pname, GLfloat* @params)
             {
-                Delegates.glGetVertexAttribArrayObjectfvATI((GLuint)index, (GL.Enums.ATI_vertex_attrib_array_object)pname, (GLfloat*)@params);
+                unsafe { Delegates.glGetVertexAttribArrayObjectfvATI((GLuint)index, (GL.Enums.ATI_vertex_attrib_array_object)pname, (GLfloat*)@params); }
             }
             
             public static 
@@ -63511,7 +63643,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribArrayObjectiv(GLuint index, GL.Enums.ATI_vertex_attrib_array_object pname, GLint* @params)
             {
-                Delegates.glGetVertexAttribArrayObjectivATI((GLuint)index, (GL.Enums.ATI_vertex_attrib_array_object)pname, (GLint*)@params);
+                unsafe { Delegates.glGetVertexAttribArrayObjectivATI((GLuint)index, (GL.Enums.ATI_vertex_attrib_array_object)pname, (GLint*)@params); }
             }
             
             public static 
@@ -63576,7 +63708,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void ElementPointer(GL.Enums.APPLE_element_array type, void* pointer)
             {
-                Delegates.glElementPointerAPPLE((GL.Enums.APPLE_element_array)type, (void*)pointer);
+                unsafe { Delegates.glElementPointerAPPLE((GL.Enums.APPLE_element_array)type, (void*)pointer); }
             }
             
             public static 
@@ -63619,7 +63751,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawElementArray(GL.Enums.BeginMode mode, GLint* first, GLsizei* count, GLsizei primcount)
             {
-                Delegates.glMultiDrawElementArrayAPPLE((GL.Enums.BeginMode)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount);
+                unsafe { Delegates.glMultiDrawElementArrayAPPLE((GL.Enums.BeginMode)mode, (GLint*)first, (GLsizei*)count, (GLsizei)primcount); }
             }
             
             [System.CLSCompliant(false)]
@@ -63727,7 +63859,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawRangeElementArray(GL.Enums.BeginMode mode, GLuint start, GLuint end, GLint* first, GLsizei* count, GLsizei primcount)
             {
-                Delegates.glMultiDrawRangeElementArrayAPPLE((GL.Enums.BeginMode)mode, (GLuint)start, (GLuint)end, (GLint*)first, (GLsizei*)count, (GLsizei)primcount);
+                unsafe { Delegates.glMultiDrawRangeElementArrayAPPLE((GL.Enums.BeginMode)mode, (GLuint)start, (GLuint)end, (GLint*)first, (GLsizei*)count, (GLsizei)primcount); }
             }
             
             [System.CLSCompliant(false)]
@@ -63932,7 +64064,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenFences(GLsizei n, GLuint* fences)
             {
-                Delegates.glGenFencesAPPLE((GLsizei)n, (GLuint*)fences);
+                unsafe { Delegates.glGenFencesAPPLE((GLsizei)n, (GLuint*)fences); }
             }
             
             public static 
@@ -64002,7 +64134,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteFences(GLsizei n, GLuint* fences)
             {
-                Delegates.glDeleteFencesAPPLE((GLsizei)n, (GLuint*)fences);
+                unsafe { Delegates.glDeleteFencesAPPLE((GLsizei)n, (GLuint*)fences); }
             }
             
             public static 
@@ -64152,7 +64284,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void DeleteVertexArrays(GLsizei n, GLuint* arrays)
             {
-                Delegates.glDeleteVertexArraysAPPLE((GLsizei)n, (GLuint*)arrays);
+                unsafe { Delegates.glDeleteVertexArraysAPPLE((GLsizei)n, (GLuint*)arrays); }
             }
             
             public static 
@@ -64219,7 +64351,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenVertexArrays(GLsizei n, GLuint* arrays)
             {
-                Delegates.glGenVertexArraysAPPLE((GLsizei)n, (GLuint*)arrays);
+                unsafe { Delegates.glGenVertexArraysAPPLE((GLsizei)n, (GLuint*)arrays); }
             }
             
             public static 
@@ -64293,7 +64425,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void VertexArrayRange(GLsizei length, void* pointer)
             {
-                Delegates.glVertexArrayRangeAPPLE((GLsizei)length, (void*)pointer);
+                unsafe { Delegates.glVertexArrayRangeAPPLE((GLsizei)length, (void*)pointer); }
             }
             
             public static 
@@ -64317,7 +64449,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void FlushVertexArrayRange(GLsizei length, void* pointer)
             {
-                Delegates.glFlushVertexArrayRangeAPPLE((GLsizei)length, (void*)pointer);
+                unsafe { Delegates.glFlushVertexArrayRangeAPPLE((GLsizei)length, (void*)pointer); }
             }
             
             public static 
@@ -64363,7 +64495,7 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void StringMarker(GLsizei len, void* @string)
             {
-                Delegates.glStringMarkerGREMEDY((GLsizei)len, (void*)@string);
+                unsafe { Delegates.glStringMarkerGREMEDY((GLsizei)len, (void*)@string); }
             }
             
             public static 

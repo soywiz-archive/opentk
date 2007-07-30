@@ -28,6 +28,17 @@ namespace Bind.Structures
 
         #endregion
 
+        public override bool Unsafe
+        {
+            get
+            {
+                if (Settings.Compatibility == Settings.Legacy.Tao)
+                    return false;
+
+                return base.Unsafe;
+            }
+        }
+
         #region Function body
 
         FunctionBody _body;
@@ -66,6 +77,8 @@ namespace Bind.Structures
 
         #endregion
 
+        #region public Function GetCLSCompliantFunction(Dictionary<string, string> CSTypes)
+
         public Function GetCLSCompliantFunction(Dictionary<string, string> CSTypes)
         {
             Function f = new Function(this);
@@ -91,6 +104,8 @@ namespace Bind.Structures
 
             return f;
         }
+
+        #endregion
     }
 
     #region class FunctionBody : List<string>

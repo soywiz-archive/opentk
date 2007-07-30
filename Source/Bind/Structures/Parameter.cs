@@ -105,7 +105,7 @@ namespace Bind.Structures
 
                 clsCompliant =
                     !(
-                    Pointer ||
+                    (Pointer && (Settings.Compatibility != Settings.Legacy.Tao)) ||
                     (Type.Contains("GLu") && !Type.Contains("GLubyte")) ||
                     Type == "GLbitfield" ||
                     Type.Contains("GLhandle") ||
@@ -253,7 +253,7 @@ namespace Bind.Structures
             get
             {
                 // Checked when setting the Type property.
-                return clsCompliant;
+                return clsCompliant || (Pointer && Settings.Compatibility == Settings.Legacy.Tao);
             }
         }
 
@@ -283,6 +283,8 @@ namespace Bind.Structures
 
         #endregion
 
+        #region public string GetCLSCompliantType(Dictionary<string, string> CSTypes)
+
         public string GetCLSCompliantType(Dictionary<string, string> CSTypes)
         {
             if (!CLSCompliant)
@@ -309,7 +311,9 @@ namespace Bind.Structures
             return Type;
         }
 
-        #region ToString function
+        #endregion
+
+        #region override public string ToString()
 
         override public string ToString()
         {
@@ -317,6 +321,8 @@ namespace Bind.Structures
         }
 
         #endregion
+
+        #region public string ToString(bool taoCompatible)
 
         public string ToString(bool taoCompatible)
         {
@@ -368,6 +374,8 @@ namespace Bind.Structures
             }
             return sb.ToString();
         }
+
+        #endregion
     }
 
     #endregion

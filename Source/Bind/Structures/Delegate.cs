@@ -95,14 +95,12 @@ namespace Bind.Structures
 
         #endregion
 
-        #region public bool Unsafe
-
-        bool @unsafe;
+        #region public virtual bool Unsafe
 
         /// <summary>
         /// True if the delegate must be declared as 'unsafe'.
         /// </summary>
-        public bool Unsafe
+        public virtual bool Unsafe
         {
             //get { return @unsafe; }
             //set { @unsafe = value; }
@@ -220,6 +218,7 @@ namespace Bind.Structures
         public string CallString()
         {
             StringBuilder sb = new StringBuilder();
+
             sb.Append(Settings.DelegatesClass);
             sb.Append(".gl");
             sb.Append(Name);
@@ -376,7 +375,7 @@ namespace Bind.Structures
                         );
 
                         wrappers.Add(f);
-                        break;
+                        return wrappers;         // Only occurs in glGetString, there's no need to check parameters.
 
                     // If the function returns a void* (GenericReturnValue), we'll have to return an IntPtr.
                     // The user will unfortunately need to marshal this IntPtr to a data type manually.
@@ -421,9 +420,9 @@ namespace Bind.Structures
         /// "void f(object p, IntPtr q)"
         /// "void f(object p, object q)"
         /// </summary>
-        protected static void WrapParameters(Function function, List<Function> wrappers, Dictionary<string, string> CSTypes)
+        protected void WrapParameters(Function function, List<Function> wrappers, Dictionary<string, string> CSTypes)
         {
-            if (function.Name == "CallLists")
+            if (function.Name == "LineStipple")
             {
             }
 
@@ -447,6 +446,7 @@ namespace Bind.Structures
                 }
                 else
                 {
+                    wrappers.Add(DefaultWrapper(function));
                     return;
                 }
             }
@@ -515,9 +515,9 @@ namespace Bind.Structures
 
         #endregion
 
-        #region protected static Function GenericWrapper(Function function, int index, Dictionary<string, string> CSTypes)
+        #region protected Function GenericWrapper(Function function, int index, Dictionary<string, string> CSTypes)
 
-        protected static Function GenericWrapper(Function function, int index, Dictionary<string, string> CSTypes)
+        protected Function GenericWrapper(Function function, int index, Dictionary<string, string> CSTypes)
         {
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Reference = false;
@@ -537,9 +537,9 @@ namespace Bind.Structures
 
         #endregion
 
-        #region protected static Function ReferenceWrapper(Function function, int index, Dictionary<string, string> CSTypes)
+        #region protected Function ReferenceWrapper(Function function, int index, Dictionary<string, string> CSTypes)
 
-        protected static Function ReferenceWrapper(Function function, int index, Dictionary<string, string> CSTypes)
+        protected Function ReferenceWrapper(Function function, int index, Dictionary<string, string> CSTypes)
         {
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Reference = true;
@@ -556,9 +556,9 @@ namespace Bind.Structures
 
         #endregion
 
-        #region protected static Function ArrayWrapper(Function function, int index, Dictionary<string, string> CSTypes)
+        #region protected Function ArrayWrapper(Function function, int index, Dictionary<string, string> CSTypes)
 
-        protected static Function ArrayWrapper(Function function, int index, Dictionary<string, string> CSTypes)
+        protected Function ArrayWrapper(Function function, int index, Dictionary<string, string> CSTypes)
         {
             // Search and replace IntPtr parameters with the known parameter types:
             function.Parameters[index].Array = 1;
@@ -575,14 +575,18 @@ namespace Bind.Structures
 
         #endregion
 
-        #region protected static Function DefaultWrapper(Function f)
+        #region protected Function DefaultWrapper(Function f)
 
-        protected static Function DefaultWrapper(Function f)
+        protected Function DefaultWrapper(Function f)
         {
-            if (f.ReturnType.Type.ToLower().Contains("void"))
-                f.Body.Add(String.Format("{0};", f.CallString()));
-            else
-                f.Body.Add(String.Format("return {0};", f.CallString()));
+            string callString = String.Format(
+                "{0} {1}{2}; {3}",
+                Unsafe ? "unsafe {" : "",
+                f.ReturnType.Type.ToLower().Contains("void") ? "" : "return ",
+                f.CallString(), 
+                Unsafe ? "}" : "");
+
+            f.Body.Add(callString);
 
             return f;
         }
