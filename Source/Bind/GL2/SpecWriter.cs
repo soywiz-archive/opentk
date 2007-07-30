@@ -18,19 +18,37 @@ namespace Bind.GL2
             sw.WriteLine("{");
 
             sw.Indent();
-            // Disable BeforeFieldInit and load delegates
+            // Disable BeforeFieldInit
             sw.WriteLine("static {0}()", Settings.DelegatesClass);
             sw.WriteLine("{");
-            sw.Indent();
-            sw.WriteLine("{0}.ReloadFunctions();", Settings.GLClass);
-            sw.Unindent();
+            //sw.Indent();
+            //sw.WriteLine("{0}.ReloadFunctions();", Settings.GLClass);
+            //sw.Unindent();
             sw.WriteLine("}");
             sw.WriteLine();
             foreach (Bind.Structures.Delegate d in delegates.Values)
             {
                 sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
                 sw.WriteLine("internal {0};", d.ToString());
-                sw.WriteLine("internal static {0} gl{0};", d.Name);
+                if (d.Extension == "Core")
+                {
+                    sw.WriteLine(
+                        "internal {0}static {1} gl{1} = ({1}){2}.{3}(\"gl{1}\", typeof({1})) ?? new {1}({4}.{1});",
+                        d.Unsafe ? "unsafe " : "",
+                        d.Name,
+                        Settings.GLClass,
+                        "GetDelegateForExtensionMethod",
+                        Settings.ImportsClass);
+                }
+                else
+                {
+                    sw.WriteLine(
+                        "internal {0}static {1} gl{1} = ({1}){2}.{3}(\"gl{1}\", typeof({1}));",
+                        d.Unsafe ? "unsafe " : "",
+                        d.Name,
+                        Settings.GLClass,
+                        "GetDelegateForExtensionMethod");
+                }
             }
             sw.Unindent();
 
@@ -69,7 +87,7 @@ namespace Bind.GL2
 
         #region void WriteWrappers
 
-        public void WriteWrappers(BindStreamWriter sw, FunctionCollection wrappers)
+        public void WriteWrappers(BindStreamWriter sw, FunctionCollection wrappers, Dictionary<string, string> CSTypes)
         {
             sw.WriteLine();
             sw.WriteLine("public static partial class {0}", Settings.GLClass);
@@ -85,26 +103,31 @@ namespace Bind.GL2
                     sw.WriteLine("public static class {0}", key);
                     sw.WriteLine("{");
                     sw.Indent();
+                }
 
-                    foreach (Function f in wrappers[key])
+                foreach (Function f in wrappers[key])
+                {
+                    if (Settings.Compat == Settings.Legacy.None)
+                        Utilities.StripGL2Extension(f);
+
+                    if (f.Name == "ActiveTexture")
                     {
-                        sw.WriteLine("public static ");
-                        sw.Write(f);
-                        sw.WriteLine();
                     }
 
+                    if (!f.CLSCompliant)
+                    {
+                        sw.WriteLine("[System.CLSCompliant(false)]");
+                    }
+                    sw.WriteLine("public static ");
+                    sw.Write(f);
+                    sw.WriteLine();
+                }
+
+                if (Settings.Compat == Settings.Legacy.None && key != "Core")
+                {
                     sw.Unindent();
                     sw.WriteLine("}");
                     sw.WriteLine();
-                }
-                else
-                {
-                    foreach (Function f in wrappers[key])
-                    {
-                        sw.WriteLine("public static ");
-                        sw.Write(f);
-                        sw.WriteLine();
-                    }
                 }
             }
             sw.Unindent();
@@ -117,6 +140,8 @@ namespace Bind.GL2
 
         public void WriteTypes(BindStreamWriter sw, Dictionary<string, string> CSTypes)
         {
+            sw.WriteLine("using System;");
+            sw.WriteLine();
             foreach (string s in CSTypes.Keys)
             {
                 sw.WriteLine("using {0} = System.{1};", s, CSTypes[s]);

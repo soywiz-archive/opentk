@@ -45,6 +45,7 @@ namespace Bind.Structures
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+
             sb.Append(Unsafe ? "unsafe " : "");
             sb.Append(ReturnType);
             sb.Append(" ");
@@ -60,6 +61,32 @@ namespace Bind.Structures
         }
 
         #endregion
+
+        public Function GetCLSCompliantFunction(Dictionary<string, string> CSTypes)
+        {
+            Function f = new Function(this);
+
+            for (int i = 0; i < f.Parameters.Count; i++)
+            {
+                f.Parameters[i].Type = f.Parameters[i].GetCLSCompliantType(CSTypes);
+            }
+
+            f.Body.Clear();
+            if (!f.NeedsWrapper)
+            {
+                f.Body.Add((f.ReturnType.Type != "void" ? "return " + this.CallString() : this.CallString()) + ";");
+            }
+            else
+            {
+                f.Body.AddRange(Function.GetBodyWithPins(this, CSTypes, true));
+            }
+
+            // The type system cannot differentiate between functions with the same parameters
+            // but different return types. Tough, only CLS-Compliant function in that case.
+            //f.ReturnType.Type = f.ReturnType.GetCLSCompliantType(CSTypes);
+
+            return f;
+        }
     }
 
     #region class FunctionBody : List<string>

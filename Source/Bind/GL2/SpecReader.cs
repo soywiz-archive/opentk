@@ -33,7 +33,10 @@ namespace Bind.GL2
 
                     // Get function name:
                     d.Name = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries)[0];
-                    //d.Extension = Utilities.StripGL2Extension(d.Name);
+
+                    if (d.Name == "CallLists")
+                    {
+                    }
 
                     do
                     {
@@ -264,7 +267,7 @@ namespace Bind.GL2
 
         #endregion
 
-        #region public virtual void ReadTypeMap(System.IO.StreamReader sr)
+        #region public virtual Dictionary<string, string> ReadTypeMap(System.IO.StreamReader sr)
 
         public virtual Dictionary<string, string> ReadTypeMap(System.IO.StreamReader sr)
         {

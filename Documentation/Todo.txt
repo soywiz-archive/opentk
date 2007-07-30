@@ -1,23 +1,26 @@
 Generic Todos:
 + Correctly implement disposable pattern in all relevant classes (WIP as of 0.3.8).
 + Investigate startup lag.
-+ Investigate call performance (5%) (athlon64 venice @2250MHz, Vista Business x64, .Net 2.0 optimized x64)
++ Investigate call performance (+-5%) (AMD Venice 3200+ @2250MHz, Vista Business x64, .Net 2.0 x64 optimized build)
 	+ Dummy managed call:
-		+ 100000000 calls/second.
-		+ 74500000 calls/second.						<--- With try { } finally { } block
-		+ 
-	+ Delegates loaded with reflection:
-		+ GL.Vertex2f: 12300000 calls/second.			(wrapper->delegate->import->unmanaged)
-		+ GL.Vertex2fv: 13300000 calls/second.			<--- 'fixed' statement.
-		+ GL.ARB.ActiveTexture: 18000000 calls/second.	(wrapper->delegate->unmanaged)
-		+ GL.ColorPointer: 2250000 calls/second.		<--- GCHandle.Alloc and Free
+		+ Inline function:		 100000000 calls/second.
+		+ Function with try:	  74500000 calls/second.			<--- With try { } finally { } block
+	- Delegates loaded with reflection:
+		+ GL.Vertex2f:			  21878992 calls/second.			(wrapper->delegate->import->unmanaged)
+		+ GL.Vertex2fv:			  23237133 calls/second.			<--- 'fixed' statement.
+		+ GL.ARB.ActiveTexture:	  20133679 calls/second.			(wrapper->delegate->unmanaged)
+		* GL.ColorPointer:		   2870254 calls/second.			<--- GCHandle.Alloc and Free
 	+ Delegates loaded with constructors:
-		+ GL.Vertex2f: 12800000 calls/second.
-		* GL.Vertex2fv: 2260000 calls/second.			<--- GCHandle.Alloc and Free
-		+ GL.ActiveTextureARB: 18300000 calls/second.
+		+ GL.Vertex2f:			  22396040 calls/second.
+		+ GL.Vertex2fv:			  22448539 calls/second.			<--- fixed statement
+		+ GL.ARB.ActiveTexture:	  19920181 calls/second.
+		* GL.ColorPointer:		   2340392 calls/second.			<--- GCHandle.Alloc and Free
+		* GL.Vertex2fv:			   2260000 calls/second.			<--- GCHandle.Alloc and Free
 	+ Direct DllImport (import->unmanaged)
-		+ glVertex2f_1: 7470000 calls/second.			<--- Unmanaged Code Security active
-		+ glVertex2f_2: 14590000 calls/second.			<--- Unmanaged Code Security suppressed
+		+ glVertex2f_1:			  10445125 calls/second.			<--- Unmanaged Code Security active
+		+ glVertex2f_2:			  24684893 calls/second.			<--- Unmanaged Code Security suppressed
+		+ glVertex2fv:			  25896611 calls/second.			<--- Unmanaged Code Security suppressed
+
 
 
 Bind:

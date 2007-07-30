@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Bind.Structures;
+using System.Diagnostics;
 
 namespace Bind.GL2
 {
@@ -121,7 +122,7 @@ namespace Bind.GL2
 
                 sw.Indent();
                 specWriter.WriteTypes(sw, CSTypes);
-                specWriter.WriteWrappers(sw, wrappers);
+                specWriter.WriteWrappers(sw, wrappers, CSTypes);
                 sw.Unindent();
 
                 sw.WriteLine("}");
@@ -138,6 +139,7 @@ namespace Bind.GL2
         {
             // Add missing enum
             {
+                Trace.WriteLine("Spec error: SGIX_icc_texture enum missing, adding by hand.");
                 Bind.Structures.Enum e = new Bind.Structures.Enum("SGIX_icc_texture");
                 e.ConstantCollection.Add("RGB_ICC_SGIX", new Constant("RGB_ICC_SGIX", "0x8460"));
                 e.ConstantCollection.Add("RGBA_ICC_SGIX", new Constant("RGBA_ICC_SGIX", "0x8461"));
@@ -164,7 +166,17 @@ namespace Bind.GL2
             {
                 TranslateReturnType(d);
                 TranslateParameters(d);
-                wrappers.AddRange(d.CreateWrappers());
+                //wrappers.AddRange(d.CreateWrappers());
+                foreach (Function f in d.CreateWrappers(CSTypes))
+                {
+                    if (!f.CLSCompliant)
+                    {
+                        Function clsFunction = f.GetCLSCompliantFunction(CSTypes);
+                        if (clsFunction.Parameters.ToString() != f.Parameters.ToString())
+                            wrappers.Add(clsFunction);
+                    }
+                    wrappers.Add(f);
+                }
             }
         }
 
@@ -198,13 +210,15 @@ namespace Bind.GL2
 
             if (d.ReturnType.Type.Contains("*"))
             {
-                d.Unsafe = true;
+                //d.Unsafe = true;
             }
 
             if (d.ReturnType.WrapperType != WrapperTypes.None)
             {
                 d.NeedsWrapper = true;
             }
+
+            d.ReturnType.Type = d.ReturnType.GetCLSCompliantType(CSTypes);
         }
 
         #endregion
@@ -247,8 +261,12 @@ namespace Bind.GL2
                     }
                 }
 
-                if (p.Pointer)
-                    d.Unsafe = true;
+                //if (p.Pointer)
+                    //d.Unsafe = true;
+
+                if (d.Name == "CallLists")
+                {
+                }
 
                 // Translate pointer parameters
                 if (p.Pointer)
@@ -294,79 +312,6 @@ namespace Bind.GL2
                 {
                     d.NeedsWrapper = true;
                 }
-
-                /*
-                if (p.Type.ArrayRank == 0 && p.Type.BaseType.ToLower().Contains("enums."))
-                {
-                    // Do nothing
-                }
-                else if (p.Type.ArrayRank > 0 && p.Type.BaseType.Contains("char") ||
-                        p.Type.ArrayRank == 0 && p.Type.BaseType.ToLower().Contains("string"))
-                {
-                    // GLchar[] parameters should become (in) string or (out) StringBuilder
-                    if (p.Direction == FieldDirection.Out || p.Direction == FieldDirection.Ref)
-                        p.Type = new CodeTypeReference("System.Text.StringBuilder");
-                    else
-                        p.Type = new CodeTypeReference("System.String");
-                }
-                else if (p.Type.ArrayRank > 0 && p.Type.BaseType.ToLower().Contains("string"))
-                {
-                    // string parameters do not need special wrappers. We add this here
-                    // to simplify the next if-statements.
-                    // p.Type.ArrayRank = 0;
-                }
-                else if (p.Type.ArrayRank > 0)
-                {
-                    // All other array parameters need wrappers (around IntPtr).
-                    if (p.Type.BaseType.Contains("void") || p.Type.BaseType.Contains("Void"))
-                    {
-                        p.UserData.Add("Wrapper", WrapperTypes.GenericParameter);
-                    }
-                    else if (p.Type.BaseType.Contains("IntPtr"))
-                    {
-                        //p.UserData.Add("Wrapper", WrapperTypes.PointerParameter);
-                    }
-                    else
-                    {
-                        p.UserData.Add("Wrapper", WrapperTypes.ArrayParameter);
-                        p.UserData.Add("OriginalType", new string(p.Type.BaseType.ToCharArray()));
-                    }
-
-                    // We do not want an array of IntPtrs (IntPtr[]) - it is the IntPtr that points to the array.
-                    p.Type = new CodeTypeReference();
-                    p.Type.BaseType = "System.IntPtr";
-                    p.Type.ArrayRank = 0;
-                    p.UserData.Add("Flow", p.Direction);
-                    // The same wrapper works for either in or out parameters.
-                    //p.CustomAttributes.Add(new CodeAttributeDeclaration("In, Out"));
-                }
-                else if (p.Type.BaseType.Contains("ushort") && d.Name.Contains("LineStipple"))
-                {
-                    // glLineStipple needs wrapper to allow large unsigned mask values.
-                    p.UserData.Add("Wrapper", WrapperTypes.UncheckedParameter);
-                }
-
-
-                if (p.Type.BaseType.ToLower().Contains("boolean"))
-                {
-                    p.Type.BaseType = "System.Boolean";
-                    //p.UserData.Add("Wrapper", WrapperTypes.BoolParameter);
-                    p.CustomAttributes.Add(
-                        new CodeAttributeDeclaration(
-                        "MarshalAs",
-                        new CodeAttributeArgument(new CodeSnippetExpression("UnmanagedType.Bool"))
-                        )
-                    );
-                }
-
-                if (p.UserData.Contains("Wrapper") && !d.UserData.Contains("Wrapper"))
-                {
-                    // If there is at least 1 parameter that needs wrappers, mark the funcction for wrapping.
-                    d.UserData.Add("Wrapper", null);
-                }
-
-                //p.Direction = FieldDirection.In;
-                */
             }
         }
 

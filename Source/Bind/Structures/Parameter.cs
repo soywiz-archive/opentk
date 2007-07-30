@@ -95,19 +95,19 @@ namespace Bind.Structures
                     PreviousType = _type;
                 if (!String.IsNullOrEmpty(value))
                     _type = value.Trim();
+
+                clsCompliant =
+                    !(
+                    Pointer ||
+                    (Type.Contains("GLu") && !Type.Contains("GLubyte")) ||
+                    Type == "GLbitfield" ||
+                    Type.Contains("GLhandle") ||
+                    Type.Contains("GLhalf") ||
+                    Type == "GLbyte");
             }
         }
 
         #endregion
-
-        public string GetFullType()
-        {
-            return
-                Type +
-                (Pointer ? "*" : "") +
-                (Array > 0 ? "[]" : "");
-
-        }
 
         #region Previous type property
 
@@ -237,6 +237,64 @@ namespace Bind.Structures
         
         #endregion
 
+        #region public bool CLSCompliant
+
+        private bool clsCompliant;
+
+        public bool CLSCompliant
+        {
+            get
+            {
+                // Checked when setting the Type property.
+                return clsCompliant;
+            }
+        }
+
+        #endregion
+
+        #region public string GetFullType()
+
+        public string GetFullType(Dictionary<string, string> CSTypes, bool compliant)
+        {
+            if (!compliant)
+            {
+                return
+                    Type +
+                    (Pointer ? "*" : "") +
+                    (Array > 0 ? "[]" : "");
+            }
+            return 
+                GetCLSCompliantType(CSTypes) +
+                (Pointer ? "*" : "") +
+                (Array > 0 ? "[]" : "");
+
+        }
+
+        #endregion
+
+        public string GetCLSCompliantType(Dictionary<string, string> CSTypes)
+        {
+            if (!CLSCompliant)
+            {
+                if (CSTypes.ContainsKey(Type))
+                {
+                    switch (CSTypes[Type])
+                    {
+                        case "UInt16":
+                            return "Int16";
+                        case "UInt32":
+                            return "Int32";
+                        case "UInt64":
+                            return "Int64";
+                        case "SByte":
+                            return "Byte";
+                    }
+                }
+            }
+            
+            return Type;
+        }
+
         #region ToString function
 
         override public string ToString()
@@ -303,10 +361,25 @@ namespace Bind.Structures
         #region override public string ToString()
 
         /// <summary>
-        /// 
+        /// Gets the parameter declaration string.
         /// </summary>
         /// <returns>The parameter list of an opengl function in the form ( [parameters] )</returns>
         override public string ToString()
+        {
+            return ToString(false, null);
+        }
+
+        #endregion
+
+        #region public string ToString(bool cslCompliant)
+
+        /// <summary>
+        /// Gets the parameter declaration string.
+        /// </summary>
+        /// <param name="getCLSCompliant">If true, all types will be replaced by their CLSCompliant C# equivalents</param>
+        /// <param name="CSTypes">The list of C# types equivalent to the OpenGL types.</param>
+        /// <returns>The parameter list of an opengl function in the form ( [parameters] )</returns>
+        public string ToString(bool getCLSCompliant, Dictionary<string, string> CSTypes)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("(");
@@ -314,7 +387,15 @@ namespace Bind.Structures
             {
                 foreach (Parameter p in this)
                 {
-                    sb.Append(p.ToString());
+                    if (getCLSCompliant)
+                    {
+                        //sb.Append(p.GetCLSCompliantType(CSTypes));
+                        throw new NotImplementedException();
+                    }
+                    else
+                    {
+                        sb.Append(p.ToString());
+                    }
                     sb.Append(", ");
                 }
                 sb.Replace(", ", ")", sb.Length - 2, 2);
@@ -325,6 +406,8 @@ namespace Bind.Structures
             return sb.ToString();
         }
 
+        #endregion
+
         public bool ContainsType(string type)
         {
             foreach (Parameter p in this)
@@ -332,87 +415,6 @@ namespace Bind.Structures
                     return true;
             return false;
         }
-
-        #endregion
-
-        #region public ParameterCollection ReplaceAll(Parameter, Parameter)
-
-        /// <summary>
-        /// Replaces all parameters that match the old_param with the new_param.
-        /// </summary>
-        /// <param name="old_param"></param>
-        /// <param name="new_param"></param>
-        /// <returns></returns>
-        /// <remarks>The PreviousType property is ignored in parameter matching, and is set to the previous type in case of replacement.</remarks>
-        public ParameterCollection ReplaceAll(Parameter old_param, Parameter new_param)
-        {
-            if (old_param == null || new_param == null)
-                return null;
-
-            ParameterCollection pc = new ParameterCollection(this);
-
-            foreach (Parameter p in pc)
-            {
-                if (p.Pointer == old_param.Pointer &&
-                    p.Flow == old_param.Flow &&
-                    p.Name == old_param.Name &&
-                    //p.PreviousType == old_param.PreviousType &&
-                    p.Type == old_param.Type &&
-                    p.UnmanagedType == old_param.UnmanagedType)
-                {
-                    p.Pointer = new_param.Pointer;
-                    p.Flow = new_param.Flow;
-                    p.Name = new_param.Name;
-                    p.PreviousType = p.Type;
-                    p.Type = new_param.Type;
-                    p.UnmanagedType = new_param.UnmanagedType;
-                }
-            }
-
-            return pc;
-        }
-
-        #endregion
-
-        #region public ParameterCollection Replace(Parameter, Parameter)
-
-        /// <summary>
-        /// Replaces the first parameter that matches old_param with new_param.
-        /// </summary>
-        /// <param name="old_param"></param>
-        /// <param name="new_param"></param>
-        /// <returns></returns>
-        /// <remarks>The PreviousType property is ignored in parameter matching, and is set to the previous type in case of replacement.</remarks>
-        public ParameterCollection Replace(Parameter old_param, Parameter new_param)
-        {
-            if (old_param == null || new_param == null)
-                return null;
-
-            ParameterCollection pc = new ParameterCollection(this);
-
-            foreach (Parameter p in pc)
-            {
-                if (p.Pointer == old_param.Pointer &&
-                    p.Flow == old_param.Flow &&
-                    p.Name == old_param.Name &&
-                    //p.PreviousType == old_param.PreviousType &&
-                    p.Type == old_param.Type &&
-                    p.UnmanagedType == old_param.UnmanagedType)
-                {
-                    p.Pointer = new_param.Pointer;
-                    p.Flow = new_param.Flow;
-                    p.Name = new_param.Name;
-                    p.PreviousType = p.Type;
-                    p.Type = new_param.Type;
-                    p.UnmanagedType = new_param.UnmanagedType;
-                    return pc;
-                }
-            }
-
-            return pc;
-        }
-
-        #endregion
     }
 
     #endregion
