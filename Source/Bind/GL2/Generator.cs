@@ -184,6 +184,11 @@ namespace Bind.GL2
                 d.ReturnType.Type = GLTypes[d.ReturnType.Type];
             }
 
+            if (d.ReturnType.Type.ToLower().Contains("void") && d.ReturnType.Pointer)
+            {
+                d.ReturnType.WrapperType = WrapperTypes.GenericReturnType;
+            }
+
             if (d.ReturnType.Type == "GLstring")
             {
                 d.ReturnType.Type = "System.IntPtr";

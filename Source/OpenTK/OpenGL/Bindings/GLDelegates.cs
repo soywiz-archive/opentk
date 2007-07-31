@@ -1477,7 +1477,7 @@ namespace OpenTK.OpenGL
         internal unsafe delegate void GetBufferSubData(GL.Enums.VERSION_1_5 target, GLintptr offset, GLsizeiptr size, void* data);
         internal unsafe static GetBufferSubData glGetBufferSubData = (GetBufferSubData)GL.GetDelegateForExtensionMethod("glGetBufferSubData", typeof(GetBufferSubData)) ?? new GetBufferSubData(Imports.GetBufferSubData);
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void MapBuffer(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 access);
+        internal delegate IntPtr MapBuffer(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 access);
         internal static MapBuffer glMapBuffer = (MapBuffer)GL.GetDelegateForExtensionMethod("glMapBuffer", typeof(MapBuffer)) ?? new MapBuffer(Imports.MapBuffer);
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate GLboolean UnmapBuffer(GL.Enums.VERSION_1_5 target);
@@ -2230,7 +2230,7 @@ namespace OpenTK.OpenGL
         internal unsafe delegate void GetBufferSubDataARB(GL.Enums.ARB_vertex_buffer_object target, GLintptrARB offset, GLsizeiptrARB size, void* data);
         internal unsafe static GetBufferSubDataARB glGetBufferSubDataARB = (GetBufferSubDataARB)GL.GetDelegateForExtensionMethod("glGetBufferSubDataARB", typeof(GetBufferSubDataARB));
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void MapBufferARB(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object access);
+        internal delegate IntPtr MapBufferARB(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object access);
         internal static MapBufferARB glMapBufferARB = (MapBufferARB)GL.GetDelegateForExtensionMethod("glMapBufferARB", typeof(MapBufferARB));
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate GLboolean UnmapBufferARB(GL.Enums.ARB_vertex_buffer_object target);
@@ -4240,7 +4240,7 @@ namespace OpenTK.OpenGL
         internal delegate void PrimitiveRestartIndexNV(GLuint index);
         internal static PrimitiveRestartIndexNV glPrimitiveRestartIndexNV = (PrimitiveRestartIndexNV)GL.GetDelegateForExtensionMethod("glPrimitiveRestartIndexNV", typeof(PrimitiveRestartIndexNV));
         [System.Security.SuppressUnmanagedCodeSecurity()]
-        internal delegate void MapObjectBufferATI(GLuint buffer);
+        internal delegate IntPtr MapObjectBufferATI(GLuint buffer);
         internal static MapObjectBufferATI glMapObjectBufferATI = (MapObjectBufferATI)GL.GetDelegateForExtensionMethod("glMapObjectBufferATI", typeof(MapObjectBufferATI));
         [System.Security.SuppressUnmanagedCodeSecurity()]
         internal delegate void UnmapObjectBufferATI(GLuint buffer);

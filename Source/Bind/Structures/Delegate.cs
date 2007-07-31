@@ -334,7 +334,7 @@ namespace Bind.Structures
 
         public List<Function> CreateWrappers(Dictionary<string, string> CSTypes)
         {
-            if (this.Name == "Color3bv")
+            if (this.Name == "MapBuffer")
             {
             }
 
@@ -380,8 +380,12 @@ namespace Bind.Structures
                     // If the function returns a void* (GenericReturnValue), we'll have to return an IntPtr.
                     // The user will unfortunately need to marshal this IntPtr to a data type manually.
                     case WrapperTypes.GenericReturnType:
-                        throw new NotImplementedException();
+                        ReturnType.Type = "IntPtr";
+                        ReturnType.Pointer = false;
+                        /*
                         f = new Function(this);
+                        f.ReturnType.Type = "IntPtr";
+                        f.ReturnType.Pointer = false;
 
                         if (f.ReturnType.Type.ToLower().Contains("void"))
                             f.Body.Add(String.Format("{0};", f.CallString()));
@@ -389,6 +393,7 @@ namespace Bind.Structures
                             f.Body.Add(String.Format("return {0};", f.CallString()));
 
                         wrappers.Add(f);
+                        */
                         break;
 
                     case WrapperTypes.None:
@@ -455,7 +460,7 @@ namespace Bind.Structures
             {
                 Function f;
 
-                if (!function.Parameters[index].NeedsWrapper)
+                if (function.Parameters[index].WrapperType == WrapperTypes.None)
                 {
                     // No wrapper needed, visit the next parameter
                     ++index;
@@ -579,10 +584,11 @@ namespace Bind.Structures
 
         protected Function DefaultWrapper(Function f)
         {
+            bool returns = f.ReturnType.Type.ToLower().Contains("void") && !f.ReturnType.Pointer;
             string callString = String.Format(
                 "{0} {1}{2}; {3}",
                 Unsafe ? "unsafe {" : "",
-                f.ReturnType.Type.ToLower().Contains("void") ? "" : "return ",
+                returns ? "" : "return ",
                 f.CallString(), 
                 Unsafe ? "}" : "");
 

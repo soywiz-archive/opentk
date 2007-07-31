@@ -7559,23 +7559,6 @@ namespace OpenTK.OpenGL
             unsafe { Delegates.glGetHistogram((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
         }
         
-        public static 
-        void GetHistogram(GL.Enums.VERSION_1_2 target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, object values)
-        {
-            System.Runtime.InteropServices.GCHandle values_ptr = System.Runtime.InteropServices.GCHandle.Alloc(values, System.Runtime.InteropServices.GCHandleType.Pinned);
-            unsafe
-            {
-                try
-                {
-                    Delegates.glGetHistogram((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    values_ptr.Free();
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void GetHistogramParameterfv(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, GLfloat* @params)
@@ -7647,23 +7630,6 @@ namespace OpenTK.OpenGL
         unsafe void GetMinmax(GL.Enums.VERSION_1_2 target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* values)
         {
             unsafe { Delegates.glGetMinmax((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
-        }
-        
-        public static 
-        void GetMinmax(GL.Enums.VERSION_1_2 target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, object values)
-        {
-            System.Runtime.InteropServices.GCHandle values_ptr = System.Runtime.InteropServices.GCHandle.Alloc(values, System.Runtime.InteropServices.GCHandleType.Pinned);
-            unsafe
-            {
-                try
-                {
-                    Delegates.glGetMinmax((GL.Enums.VERSION_1_2)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    values_ptr.Free();
-                }
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -10405,9 +10371,9 @@ namespace OpenTK.OpenGL
         }
         
         public static 
-        void MapBuffer(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 access)
+        IntPtr MapBuffer(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 access)
         {
-            Delegates.glMapBuffer((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)access);
+             return Delegates.glMapBuffer((GL.Enums.VERSION_1_5)target, (GL.Enums.VERSION_1_5)access); 
         }
         
         public static 
@@ -13808,30 +13774,6 @@ namespace OpenTK.OpenGL
             unsafe { Delegates.glUniformMatrix2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
-        public static 
-        void UniformMatrix2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
@@ -13839,59 +13781,11 @@ namespace OpenTK.OpenGL
             unsafe { Delegates.glUniformMatrix3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
-        public static 
-        void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
             unsafe { Delegates.glUniformMatrix4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
-        }
-        
-        public static 
-        void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
         }
         
         public static 
@@ -15610,70 +15504,11 @@ namespace OpenTK.OpenGL
             unsafe { Delegates.glVertexAttribPointer((GLuint)index, (GLint)size, (GL.Enums.VERSION_2_0)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer); }
         }
         
-        public static 
-        void VertexAttribPointer(Int32 index, GLint size, GL.Enums.VERSION_2_0 type, GL.Enums.Boolean normalized, GLsizei stride, object pointer)
-        {
-            System.Runtime.InteropServices.GCHandle pointer_ptr = System.Runtime.InteropServices.GCHandle.Alloc(pointer, System.Runtime.InteropServices.GCHandleType.Pinned);
-            unsafe
-            {
-                try
-                {
-                    Delegates.glVertexAttribPointer((GLuint)index, (GLint)size, (GL.Enums.VERSION_2_0)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    pointer_ptr.Free();
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        void VertexAttribPointer(GLuint index, GLint size, GL.Enums.VERSION_2_0 type, GL.Enums.Boolean normalized, GLsizei stride, object pointer)
-        {
-            System.Runtime.InteropServices.GCHandle pointer_ptr = System.Runtime.InteropServices.GCHandle.Alloc(pointer, System.Runtime.InteropServices.GCHandleType.Pinned);
-            unsafe
-            {
-                try
-                {
-                    Delegates.glVertexAttribPointer((GLuint)index, (GLint)size, (GL.Enums.VERSION_2_0)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    pointer_ptr.Free();
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void UniformMatrix2x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
             unsafe { Delegates.glUniformMatrix2x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
-        }
-        
-        public static 
-        void UniformMatrix2x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix2x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix2x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix2x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -15683,59 +15518,11 @@ namespace OpenTK.OpenGL
             unsafe { Delegates.glUniformMatrix3x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
-        public static 
-        void UniformMatrix3x2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix3x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix3x2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix3x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void UniformMatrix2x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
             unsafe { Delegates.glUniformMatrix2x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
-        }
-        
-        public static 
-        void UniformMatrix2x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix2x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix2x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix2x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -15745,30 +15532,6 @@ namespace OpenTK.OpenGL
             unsafe { Delegates.glUniformMatrix4x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
-        public static 
-        void UniformMatrix4x2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix4x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix4x2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix4x2fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void UniformMatrix3x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
@@ -15776,59 +15539,11 @@ namespace OpenTK.OpenGL
             unsafe { Delegates.glUniformMatrix3x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
         }
         
-        public static 
-        void UniformMatrix3x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix3x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix3x4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix3x4fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void UniformMatrix4x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
         {
             unsafe { Delegates.glUniformMatrix4x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
-        }
-        
-        public static 
-        void UniformMatrix4x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = value)
-                {
-                    Delegates.glUniformMatrix4x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void UniformMatrix4x3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-        {
-            unsafe
-            {
-                fixed (GLfloat* value_ptr = &value)
-                {
-                    Delegates.glUniformMatrix4x3fv((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                }
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -19457,41 +19172,6 @@ namespace OpenTK.OpenGL
             }
             
             public static 
-            void VertexAttribPointer(Int32 index, GLint size, GL.Enums.ARB_vertex_program type, GL.Enums.Boolean normalized, GLsizei stride, object pointer)
-            {
-                System.Runtime.InteropServices.GCHandle pointer_ptr = System.Runtime.InteropServices.GCHandle.Alloc(pointer, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glVertexAttribPointerARB((GLuint)index, (GLint)size, (GL.Enums.ARB_vertex_program)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        pointer_ptr.Free();
-                    }
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            void VertexAttribPointer(GLuint index, GLint size, GL.Enums.ARB_vertex_program type, GL.Enums.Boolean normalized, GLsizei stride, object pointer)
-            {
-                System.Runtime.InteropServices.GCHandle pointer_ptr = System.Runtime.InteropServices.GCHandle.Alloc(pointer, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glVertexAttribPointerARB((GLuint)index, (GLint)size, (GL.Enums.ARB_vertex_program)type, (GL.Enums.Boolean)normalized, (GLsizei)stride, (void*)pointer_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        pointer_ptr.Free();
-                    }
-                }
-            }
-            
-            public static 
             void EnableVertexAttribArray(Int32 index)
             {
                 Delegates.glEnableVertexAttribArrayARB((GLuint)index);
@@ -20862,9 +20542,9 @@ namespace OpenTK.OpenGL
             }
             
             public static 
-            void MapBuffer(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object access)
+            IntPtr MapBuffer(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object access)
             {
-                Delegates.glMapBufferARB((GL.Enums.ARB_vertex_buffer_object)target, (GL.Enums.ARB_vertex_buffer_object)access);
+                 return Delegates.glMapBufferARB((GL.Enums.ARB_vertex_buffer_object)target, (GL.Enums.ARB_vertex_buffer_object)access); 
             }
             
             public static 
@@ -21752,30 +21432,6 @@ namespace OpenTK.OpenGL
                 unsafe { Delegates.glUniformMatrix2fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
             }
             
-            public static 
-            void UniformMatrix2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-            {
-                unsafe
-                {
-                    fixed (GLfloat* value_ptr = value)
-                    {
-                        Delegates.glUniformMatrix2fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void UniformMatrix2fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-            {
-                unsafe
-                {
-                    fixed (GLfloat* value_ptr = &value)
-                    {
-                        Delegates.glUniformMatrix2fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
@@ -21783,59 +21439,11 @@ namespace OpenTK.OpenGL
                 unsafe { Delegates.glUniformMatrix3fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
             }
             
-            public static 
-            void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-            {
-                unsafe
-                {
-                    fixed (GLfloat* value_ptr = value)
-                    {
-                        Delegates.glUniformMatrix3fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void UniformMatrix3fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-            {
-                unsafe
-                {
-                    fixed (GLfloat* value_ptr = &value)
-                    {
-                        Delegates.glUniformMatrix3fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat* value)
             {
                 unsafe { Delegates.glUniformMatrix4fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value); }
-            }
-            
-            public static 
-            void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, GLfloat[] value)
-            {
-                unsafe
-                {
-                    fixed (GLfloat* value_ptr = value)
-                    {
-                        Delegates.glUniformMatrix4fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void UniformMatrix4fv(GLint location, GLsizei count, GL.Enums.Boolean transpose, ref GLfloat value)
-            {
-                unsafe
-                {
-                    fixed (GLfloat* value_ptr = &value)
-                    {
-                        Delegates.glUniformMatrix4fvARB((GLint)location, (GLsizei)count, (GL.Enums.Boolean)transpose, (GLfloat*)value_ptr);
-                    }
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -24425,23 +24033,6 @@ namespace OpenTK.OpenGL
                 unsafe { Delegates.glGetHistogramEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
             }
             
-            public static 
-            void GetHistogram(GL.Enums.HistogramTargetEXT target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, object values)
-            {
-                System.Runtime.InteropServices.GCHandle values_ptr = System.Runtime.InteropServices.GCHandle.Alloc(values, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glGetHistogramEXT((GL.Enums.HistogramTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        values_ptr.Free();
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetHistogramParameterfv(GL.Enums.HistogramTargetEXT target, GL.Enums.GetHistogramParameterPNameEXT pname, GLfloat* @params)
@@ -24513,23 +24104,6 @@ namespace OpenTK.OpenGL
             unsafe void GetMinmax(GL.Enums.MinmaxTargetEXT target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* values)
             {
                 unsafe { Delegates.glGetMinmaxEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values); }
-            }
-            
-            public static 
-            void GetMinmax(GL.Enums.MinmaxTargetEXT target, GL.Enums.Boolean reset, GL.Enums.PixelFormat format, GL.Enums.PixelType type, object values)
-            {
-                System.Runtime.InteropServices.GCHandle values_ptr = System.Runtime.InteropServices.GCHandle.Alloc(values, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glGetMinmaxEXT((GL.Enums.MinmaxTargetEXT)target, (GL.Enums.Boolean)reset, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)values_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        values_ptr.Free();
-                    }
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -51320,41 +50894,6 @@ namespace OpenTK.OpenGL
                 unsafe { Delegates.glMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GLint)uorder, (GLint)vorder, (GL.Enums.Boolean)packed, (void*)points); }
             }
             
-            public static 
-            void MapControlPoints(GL.Enums.NV_evaluators target, Int32 index, GL.Enums.NV_evaluators type, GLsizei ustride, GLsizei vstride, GLint uorder, GLint vorder, GL.Enums.Boolean packed, object points)
-            {
-                System.Runtime.InteropServices.GCHandle points_ptr = System.Runtime.InteropServices.GCHandle.Alloc(points, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GLint)uorder, (GLint)vorder, (GL.Enums.Boolean)packed, (void*)points_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        points_ptr.Free();
-                    }
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            void MapControlPoints(GL.Enums.NV_evaluators target, GLuint index, GL.Enums.NV_evaluators type, GLsizei ustride, GLsizei vstride, GLint uorder, GLint vorder, GL.Enums.Boolean packed, object points)
-            {
-                System.Runtime.InteropServices.GCHandle points_ptr = System.Runtime.InteropServices.GCHandle.Alloc(points, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GLint)uorder, (GLint)vorder, (GL.Enums.Boolean)packed, (void*)points_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        points_ptr.Free();
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void MapParameteriv(GL.Enums.NV_evaluators target, GL.Enums.NV_evaluators pname, GLint* @params)
@@ -51432,41 +50971,6 @@ namespace OpenTK.OpenGL
             unsafe void GetMapControlPoints(GL.Enums.NV_evaluators target, GLuint index, GL.Enums.NV_evaluators type, GLsizei ustride, GLsizei vstride, GL.Enums.Boolean packed, void* points)
             {
                 unsafe { Delegates.glGetMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GL.Enums.Boolean)packed, (void*)points); }
-            }
-            
-            public static 
-            void GetMapControlPoints(GL.Enums.NV_evaluators target, Int32 index, GL.Enums.NV_evaluators type, GLsizei ustride, GLsizei vstride, GL.Enums.Boolean packed, object points)
-            {
-                System.Runtime.InteropServices.GCHandle points_ptr = System.Runtime.InteropServices.GCHandle.Alloc(points, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glGetMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GL.Enums.Boolean)packed, (void*)points_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        points_ptr.Free();
-                    }
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            void GetMapControlPoints(GL.Enums.NV_evaluators target, GLuint index, GL.Enums.NV_evaluators type, GLsizei ustride, GLsizei vstride, GL.Enums.Boolean packed, object points)
-            {
-                System.Runtime.InteropServices.GCHandle points_ptr = System.Runtime.InteropServices.GCHandle.Alloc(points, System.Runtime.InteropServices.GCHandleType.Pinned);
-                unsafe
-                {
-                    try
-                    {
-                        Delegates.glGetMapControlPointsNV((GL.Enums.NV_evaluators)target, (GLuint)index, (GL.Enums.NV_evaluators)type, (GLsizei)ustride, (GLsizei)vstride, (GL.Enums.Boolean)packed, (void*)points_ptr.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        points_ptr.Free();
-                    }
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -63496,16 +63000,22 @@ namespace OpenTK.OpenGL
             }
             
             public static 
-            void MapObjectBuffer(Int32 buffer)
+            IntPtr MapObjectBuffer(Int32 buffer)
             {
-                Delegates.glMapObjectBufferATI((GLuint)buffer);
+                unsafe
+                {
+                    {
+                        IntPtr retval = Delegates.glMapObjectBufferATI((GLuint)buffer);
+                        return retval;
+                    }
+                }
             }
             
             [System.CLSCompliant(false)]
             public static 
-            void MapObjectBuffer(GLuint buffer)
+            IntPtr MapObjectBuffer(GLuint buffer)
             {
-                Delegates.glMapObjectBufferATI((GLuint)buffer);
+                 return Delegates.glMapObjectBufferATI((GLuint)buffer); 
             }
             
             public static 

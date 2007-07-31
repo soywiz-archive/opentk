@@ -312,7 +312,7 @@ namespace Bind.GL2
                 else if (words[0] == "VoidPointer" || words[0] == "ConstVoidPointer")
                 {
                     // "(Const)VoidPointer" -> "void*"
-                    GLTypes.Add(words[0], "void");
+                    GLTypes.Add(words[0], "void*");
                 }
                 /*else if (words[0] == "CharPointer" || words[0] == "charPointerARB")
                 {

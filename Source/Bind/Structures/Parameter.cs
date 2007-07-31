@@ -102,6 +102,11 @@ namespace Bind.Structures
                     PreviousType = _type;
                 if (!String.IsNullOrEmpty(value))
                     _type = value.Trim();
+                if (_type.EndsWith("*"))
+                {
+                    _type = _type.TrimEnd('*');
+                    Pointer = true;
+                }
 
                 clsCompliant =
                     !(
@@ -212,24 +217,6 @@ namespace Bind.Structures
             set { _unchecked = value; }
         }
 
-        #endregion
-
-        #region NeedsWrapper property
-
-        private bool _needs_wrapper;
-
-        public bool NeedsWrapper
-        {
-            //get { return _needs_wrapper; }
-            //set { _needs_wrapper = value; }
-            get
-            {
-                return
-                    WrapperType == WrapperTypes.ArrayParameter ||
-                    WrapperType == WrapperTypes.GenericParameter;
-            }
-        }
-        
         #endregion
 
         #region WrapperType property

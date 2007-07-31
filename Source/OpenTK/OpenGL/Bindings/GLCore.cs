@@ -1476,7 +1476,7 @@ namespace OpenTK.OpenGL
         internal extern static unsafe void GetBufferSubData(GL.Enums.VERSION_1_5 target, GLintptr offset, GLsizeiptr size, void* data);
         [System.Security.SuppressUnmanagedCodeSecurity()]
         [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glMapBuffer", ExactSpelling = true)]
-        internal extern static void MapBuffer(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 access);
+        internal extern static IntPtr MapBuffer(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 access);
         [System.Security.SuppressUnmanagedCodeSecurity()]
         [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glUnmapBuffer", ExactSpelling = true)]
         internal extern static GLboolean UnmapBuffer(GL.Enums.VERSION_1_5 target);
@@ -2229,7 +2229,7 @@ namespace OpenTK.OpenGL
         internal extern static unsafe void GetBufferSubDataARB(GL.Enums.ARB_vertex_buffer_object target, GLintptrARB offset, GLsizeiptrARB size, void* data);
         [System.Security.SuppressUnmanagedCodeSecurity()]
         [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glMapBufferARB", ExactSpelling = true)]
-        internal extern static void MapBufferARB(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object access);
+        internal extern static IntPtr MapBufferARB(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object access);
         [System.Security.SuppressUnmanagedCodeSecurity()]
         [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glUnmapBufferARB", ExactSpelling = true)]
         internal extern static GLboolean UnmapBufferARB(GL.Enums.ARB_vertex_buffer_object target);
@@ -4239,7 +4239,7 @@ namespace OpenTK.OpenGL
         internal extern static void PrimitiveRestartIndexNV(GLuint index);
         [System.Security.SuppressUnmanagedCodeSecurity()]
         [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glMapObjectBufferATI", ExactSpelling = true)]
-        internal extern static void MapObjectBufferATI(GLuint buffer);
+        internal extern static IntPtr MapObjectBufferATI(GLuint buffer);
         [System.Security.SuppressUnmanagedCodeSecurity()]
         [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glUnmapObjectBufferATI", ExactSpelling = true)]
         internal extern static void UnmapObjectBufferATI(GLuint buffer);
