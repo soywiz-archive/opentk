@@ -107,7 +107,7 @@ namespace Examples.Tutorial
             GL.DrawElements(
                 GL.Enums.BeginMode.QUADS,
                 idata.Length,
-                GL.Enums.GLenum.UNSIGNED_SHORT,
+                GL.Enums.All.UNSIGNED_SHORT,
                 idata);
 
             GL.BindBuffer(GL.Enums.VERSION_1_5.ARRAY_BUFFER, 0);
