@@ -162,42 +162,46 @@ namespace Examples.WinForms
 
         #endregion
 
-        #region DrawCube
-        public void DrawCube()
+        #region DrawCube function
+
+        /// <summary>
+        /// Draws simple, colored cube.
+        /// </summary>
+        protected void DrawCube()
         {
             GL.Begin(Enums.BeginMode.QUADS);
 
-            GL.Color3(1, 0, 0);
+            GL.Color3(1.0f, 0.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
 
-            GL.Color3(1, 1, 0);
+            GL.Color3(1.0f, 1.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, 1.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
 
-            GL.Color3(1, 0, 1);
+            GL.Color3(1.0f, 0.0f, 1.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
 
-            GL.Color3(0, 1, 0);
+            GL.Color3(0.0f, 1.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
             GL.Vertex3(1.0f, -1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
 
-            GL.Color3(0, 0, 1);
+            GL.Color3(0.0f, 0.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
 
-            GL.Color3(0, 1, 1);
+            GL.Color3(0.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);
@@ -205,6 +209,7 @@ namespace Examples.WinForms
 
             GL.End();
         }
+
         #endregion
     }
 }

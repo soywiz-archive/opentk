@@ -1,27 +1,14 @@
-﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
- * See license.txt for license info
- */
-#endregion
-
-#region --- Using Directives ---
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Text;
 
 using OpenTK;
 using OpenTK.OpenGL;
 using OpenTK.Platform;
-using Enums = OpenTK.OpenGL.GL.Enums;
-using OpenTK.Input;
-using System.Diagnostics;
-
-#endregion
 
 namespace Examples.Tutorial
 {
-    public class T03_RotatingCube : OpenTK.GameWindow, IExample
+    public class T04_Lit_Cube : GameWindow, IExample
     {
         #region --- Fields ---
 
@@ -34,14 +21,19 @@ namespace Examples.Tutorial
 
         #region --- Constructors ---
 
-        #region public T03_RotatingCube()
+        #region public T04_Lit_Cube()
 
-        public T03_RotatingCube()
+        public T04_Lit_Cube()
         {
             Context.MakeCurrent();
         
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
-            GL.Enable(Enums.EnableCap.DEPTH_TEST);
+            GL.Enable(GL.Enums.EnableCap.DEPTH_TEST);
+            GL.Enable(GL.Enums.EnableCap.LIGHTING);
+            GL.Light(GL.Enums.LightName.LIGHT0, GL.Enums.LightParameter.AMBIENT, new float[] { 0.4f, 0.2f, 0.7f, 1.0f });
+            //GL.Light(GL.Enums.LightName.LIGHT0, GL.Enums.LightParameter.DIFFUSE, new float[] { 1.0f, 1.0f, 0.4f, 1.0f });
+            //GL.Light(GL.Enums.LightName.LIGHT0, GL.Enums.LightParameter.POSITION, new float[] { 1.0f, 1.0f, -1.0f });
+            GL.Enable(GL.Enums.EnableCap.LIGHT0);
 
             this.OnResize(new ResizeEventArgs(this.Width, this.Height));
         }
@@ -58,7 +50,7 @@ namespace Examples.Tutorial
         /// </remarks>
         static public void Launch()
         {
-            using (T03_RotatingCube ex = new T03_RotatingCube())
+            using (T04_Lit_Cube ex = new T04_Lit_Cube())
             {
                 ex.Run();
             }
@@ -87,7 +79,7 @@ namespace Examples.Tutorial
 
             double ratio = e.Width / (double)e.Height;
 
-            GL.MatrixMode(Enums.MatrixMode.PROJECTION);
+            GL.MatrixMode(GL.Enums.MatrixMode.PROJECTION);
             GL.LoadIdentity();
             Glu.Perspective(45.0, ratio, 1.0, 64.0);
         }
@@ -114,7 +106,7 @@ namespace Examples.Tutorial
                 return;
             }
 
-            GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
+            GL.MatrixMode(GL.Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
                 0.0, 5.0, 5.0,
@@ -138,7 +130,7 @@ namespace Examples.Tutorial
             // Notify all event listeners that the event has fired.
             base.RenderFrame();
 
-            GL.Clear(Enums.ClearBufferMask.COLOR_BUFFER_BIT | Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
+            GL.Clear(GL.Enums.ClearBufferMask.COLOR_BUFFER_BIT | GL.Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
 
             DrawCube();
 
@@ -154,39 +146,39 @@ namespace Examples.Tutorial
         /// </summary>
         private void DrawCube()
         {
-            GL.Begin(Enums.BeginMode.QUADS);
+            GL.Begin(GL.Enums.BeginMode.QUADS);
 
-            GL.Color3(1.0f, 0.0f, 0.0f);
+            GL.Normal3(0.0f, 0.0f, -1.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
 
-            GL.Color3(1.0f, 1.0f, 0.0f);
+            GL.Normal3(0.0f, -1.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, 1.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
 
-            GL.Color3(1.0f, 0.0f, 1.0f);
+            GL.Normal3(-1.0f, 0.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
 
-            GL.Color3(0.0f, 1.0f, 0.0f);
+            GL.Normal3(0.0f, 0.0f, 1.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
             GL.Vertex3(1.0f, -1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
 
-            GL.Color3(0.0f, 0.0f, 1.0f);
+            GL.Normal3(0.0f, 1.0f, 0.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
 
-            GL.Color3(0.0f, 1.0f, 1.0f);
+            GL.Normal3(1.0f, 0.0f, 0.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);

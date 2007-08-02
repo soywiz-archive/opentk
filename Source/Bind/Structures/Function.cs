@@ -314,6 +314,13 @@ namespace Bind.Structures
                 Function fun = Bind.Structures.Function.Wrappers[f.Extension]
                     .Find(delegate(Function target)
                         {
+                            if (Settings.Compatibility == Settings.Legacy.Tao)
+                            {
+                                return
+                                    target.Name == f.Name &&
+                                    target.Parameters.ToString(true) == f.Parameters.ToString(true);
+
+                            }
                             return
                                 !String.IsNullOrEmpty(target.TrimmedName) &&
                                 target.TrimmedName == f.TrimmedName &&

@@ -33,7 +33,7 @@ namespace OpenTK.OpenGL
             Delegates.glCallList((UInt32)list);
         }
         
-        public static 
+        public static
         void CallList(Int32 list)
         {
             Delegates.glCallList((UInt32)list);
@@ -3799,7 +3799,6 @@ namespace OpenTK.OpenGL
         public static 
         void FeedbackBuffer(Int32 size, GL.Enums.FeedbackType type, [Out] out Single buffer)
         {
-            buffer = default(Single);
             unsafe
             {
                 fixed (Single* buffer_ptr = &buffer)
@@ -3821,7 +3820,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void SelectBuffer(Int32 size, [Out] Int32* buffer)
         {
-            buffer = default(Int32*);
                 {
                     Delegates.glSelectBuffer((Int32)size, (UInt32*)buffer);
                 }
@@ -3856,7 +3854,6 @@ namespace OpenTK.OpenGL
         public static 
         void SelectBuffer(Int32 size, [Out] out UInt32 buffer)
         {
-            buffer = default(UInt32);
             unsafe
             {
                 fixed (UInt32* buffer_ptr = &buffer)
@@ -3870,7 +3867,6 @@ namespace OpenTK.OpenGL
         public static 
         void SelectBuffer(Int32 size, [Out] out Int32 buffer)
         {
-            buffer = default(Int32);
             unsafe
             {
                 fixed (Int32* buffer_ptr = &buffer)
@@ -4698,7 +4694,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetClipPlane(GL.Enums.ClipPlaneName plane, [Out] out Double equation)
         {
-            equation = default(Double);
             unsafe
             {
                 fixed (Double* equation_ptr = &equation)
@@ -4731,7 +4726,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetDoublev(GL.Enums.GetPName pname, [Out] out Double @params)
         {
-            @params = default(Double);
             unsafe
             {
                 fixed (Double* @params_ptr = &@params)
@@ -4770,7 +4764,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetFloatv(GL.Enums.GetPName pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -4803,7 +4796,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetIntegerv(GL.Enums.GetPName pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -4836,7 +4828,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetLight(GL.Enums.LightName light, GL.Enums.LightParameter pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -4869,7 +4860,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetLight(GL.Enums.LightName light, GL.Enums.LightParameter pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -4902,7 +4892,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetMap(GL.Enums.MapTarget target, GL.Enums.GetMapQuery query, [Out] out Double v)
         {
-            v = default(Double);
             unsafe
             {
                 fixed (Double* v_ptr = &v)
@@ -4935,7 +4924,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetMap(GL.Enums.MapTarget target, GL.Enums.GetMapQuery query, [Out] out Single v)
         {
-            v = default(Single);
             unsafe
             {
                 fixed (Single* v_ptr = &v)
@@ -4968,7 +4956,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetMap(GL.Enums.MapTarget target, GL.Enums.GetMapQuery query, [Out] out Int32 v)
         {
-            v = default(Int32);
             unsafe
             {
                 fixed (Int32* v_ptr = &v)
@@ -5001,7 +4988,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetMaterial(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -5034,7 +5020,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetMaterial(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -5067,7 +5052,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetPixelMap(GL.Enums.PixelMap map, [Out] out Single values)
         {
-            values = default(Single);
             unsafe
             {
                 fixed (Single* values_ptr = &values)
@@ -5089,7 +5073,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetPixelMap(GL.Enums.PixelMap map, [Out] Int32* values)
         {
-            values = default(Int32*);
                 {
                     Delegates.glGetPixelMapuiv((GL.Enums.PixelMap)map, (UInt32*)values);
                 }
@@ -5124,7 +5107,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetPixelMap(GL.Enums.PixelMap map, [Out] out UInt32 values)
         {
-            values = default(UInt32);
             unsafe
             {
                 fixed (UInt32* values_ptr = &values)
@@ -5138,7 +5120,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetPixelMap(GL.Enums.PixelMap map, [Out] out Int32 values)
         {
-            values = default(Int32);
             unsafe
             {
                 fixed (Int32* values_ptr = &values)
@@ -5160,7 +5141,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetPixelMap(GL.Enums.PixelMap map, [Out] Int16* values)
         {
-            values = default(Int16*);
                 {
                     Delegates.glGetPixelMapusv((GL.Enums.PixelMap)map, (UInt16*)values);
                 }
@@ -5195,7 +5175,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetPixelMap(GL.Enums.PixelMap map, [Out] out UInt16 values)
         {
-            values = default(UInt16);
             unsafe
             {
                 fixed (UInt16* values_ptr = &values)
@@ -5209,7 +5188,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetPixelMap(GL.Enums.PixelMap map, [Out] out Int16 values)
         {
-            values = default(Int16);
             unsafe
             {
                 fixed (Int16* values_ptr = &values)
@@ -5242,7 +5220,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetPolygonStipple([Out] out Byte mask)
         {
-            mask = default(Byte);
             unsafe
             {
                 fixed (Byte* mask_ptr = &mask)
@@ -5281,7 +5258,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexEnv(GL.Enums.TextureEnvTarget target, GL.Enums.TextureEnvParameter pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -5314,7 +5290,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexEnv(GL.Enums.TextureEnvTarget target, GL.Enums.TextureEnvParameter pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -5347,7 +5322,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexGen(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, [Out] out Double @params)
         {
-            @params = default(Double);
             unsafe
             {
                 fixed (Double* @params_ptr = &@params)
@@ -5380,7 +5354,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexGen(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -5413,7 +5386,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexGen(GL.Enums.TextureCoordName coord, GL.Enums.TextureGenParameter pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -5470,7 +5442,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexParameter(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -5503,7 +5474,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexParameter(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -5536,7 +5506,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexLevelParameter(GL.Enums.TextureTarget target, Int32 level, GL.Enums.GetTextureParameter pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -5569,7 +5538,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetTexLevelParameter(GL.Enums.TextureTarget target, Int32 level, GL.Enums.GetTextureParameter pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -6136,7 +6104,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe Boolean AreTexturesResident(Int32 n, Int32* textures, [Out] GL.Enums.Boolean* residences)
         {
-            residences = default(GL.Enums.Boolean*);
                 {
                     Boolean retval = Delegates.glAreTexturesResident((Int32)n, (UInt32*)textures, (GL.Enums.Boolean*)residences);
                     return retval;
@@ -6147,7 +6114,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe Boolean AreTexturesResident(Int32 n, [In, Out] UInt32[] textures, [Out] GL.Enums.Boolean* residences)
         {
-            residences = default(GL.Enums.Boolean*);
                 fixed (UInt32* textures_ptr = textures)
                 {
                     Boolean retval = Delegates.glAreTexturesResident((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -6159,7 +6125,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe Boolean AreTexturesResident(Int32 n, [In, Out] Int32[] textures, [Out] GL.Enums.Boolean* residences)
         {
-            residences = default(GL.Enums.Boolean*);
                 fixed (Int32* textures_ptr = textures)
                 {
                     Boolean retval = Delegates.glAreTexturesResident((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -6171,7 +6136,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe Boolean AreTexturesResident(Int32 n, ref UInt32 textures, [Out] GL.Enums.Boolean* residences)
         {
-            residences = default(GL.Enums.Boolean*);
                 fixed (UInt32* textures_ptr = &textures)
                 {
                     Boolean retval = Delegates.glAreTexturesResident((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -6183,7 +6147,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe Boolean AreTexturesResident(Int32 n, ref Int32 textures, [Out] GL.Enums.Boolean* residences)
         {
-            residences = default(GL.Enums.Boolean*);
                 fixed (Int32* textures_ptr = &textures)
                 {
                     Boolean retval = Delegates.glAreTexturesResident((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -6281,7 +6244,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GenTextures(Int32 n, [Out] Int32* textures)
         {
-            textures = default(Int32*);
                 {
                     Delegates.glGenTextures((Int32)n, (UInt32*)textures);
                 }
@@ -6316,7 +6278,6 @@ namespace OpenTK.OpenGL
         public static 
         void GenTextures(Int32 n, [Out] out UInt32 textures)
         {
-            textures = default(UInt32);
             unsafe
             {
                 fixed (UInt32* textures_ptr = &textures)
@@ -6330,7 +6291,6 @@ namespace OpenTK.OpenGL
         public static 
         void GenTextures(Int32 n, [Out] out Int32 textures)
         {
-            textures = default(Int32);
             unsafe
             {
                 fixed (Int32* textures_ptr = &textures)
@@ -6808,7 +6768,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetColorTableParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -6841,7 +6800,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetColorTableParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -7062,7 +7020,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetConvolutionParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -7095,7 +7052,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetConvolutionParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -7117,8 +7073,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetSeparableFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [Out] void* row, [Out] void* column, [In, Out] object span)
         {
-            row = default(void*);
-            column = default(void*);
             System.Runtime.InteropServices.GCHandle span_ptr = System.Runtime.InteropServices.GCHandle.Alloc(span, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
@@ -7134,8 +7088,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetSeparableFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [Out] void* row, [In, Out] object column, [Out] void* span)
         {
-            row = default(void*);
-            span = default(void*);
             System.Runtime.InteropServices.GCHandle column_ptr = System.Runtime.InteropServices.GCHandle.Alloc(column, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
@@ -7151,7 +7103,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetSeparableFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [Out] void* row, [In, Out] object column, [In, Out] object span)
         {
-            row = default(void*);
             System.Runtime.InteropServices.GCHandle span_ptr = System.Runtime.InteropServices.GCHandle.Alloc(span, System.Runtime.InteropServices.GCHandleType.Pinned);
             System.Runtime.InteropServices.GCHandle column_ptr = System.Runtime.InteropServices.GCHandle.Alloc(column, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
@@ -7169,8 +7120,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetSeparableFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object row, [Out] void* column, [Out] void* span)
         {
-            column = default(void*);
-            span = default(void*);
             System.Runtime.InteropServices.GCHandle row_ptr = System.Runtime.InteropServices.GCHandle.Alloc(row, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
@@ -7186,7 +7135,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetSeparableFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object row, [Out] void* column, [In, Out] object span)
         {
-            column = default(void*);
             System.Runtime.InteropServices.GCHandle span_ptr = System.Runtime.InteropServices.GCHandle.Alloc(span, System.Runtime.InteropServices.GCHandleType.Pinned);
             System.Runtime.InteropServices.GCHandle row_ptr = System.Runtime.InteropServices.GCHandle.Alloc(row, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
@@ -7204,7 +7152,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetSeparableFilter(GL.Enums.VERSION_1_2 target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object row, [In, Out] object column, [Out] void* span)
         {
-            span = default(void*);
             System.Runtime.InteropServices.GCHandle column_ptr = System.Runtime.InteropServices.GCHandle.Alloc(column, System.Runtime.InteropServices.GCHandleType.Pinned);
             System.Runtime.InteropServices.GCHandle row_ptr = System.Runtime.InteropServices.GCHandle.Alloc(row, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
@@ -7324,7 +7271,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetHistogramParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -7357,7 +7303,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetHistogramParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -7397,7 +7342,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetMinmaxParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -7430,7 +7374,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetMinmaxParameter(GL.Enums.VERSION_1_2 target, GL.Enums.VERSION_1_2 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -8536,7 +8479,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiDrawArrays(GL.Enums.BeginMode mode, [Out] Int32* first, [In, Out] Int32[] count, Int32 primcount)
         {
-            first = default(Int32*);
                 fixed (Int32* count_ptr = count)
                 {
                     Delegates.glMultiDrawArrays((GL.Enums.BeginMode)mode, (Int32*)first, (Int32*)count_ptr, (Int32)primcount);
@@ -8547,8 +8489,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiDrawArrays(GL.Enums.BeginMode mode, [Out] Int32* first, [Out] out Int32 count, Int32 primcount)
         {
-            first = default(Int32*);
-            count = default(Int32);
                 fixed (Int32* count_ptr = &count)
                 {
                     Delegates.glMultiDrawArrays((GL.Enums.BeginMode)mode, (Int32*)first, (Int32*)count_ptr, (Int32)primcount);
@@ -8560,7 +8500,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiDrawArrays(GL.Enums.BeginMode mode, [In, Out] Int32[] first, [Out] Int32* count, Int32 primcount)
         {
-            count = default(Int32*);
                 fixed (Int32* first_ptr = first)
                 {
                     Delegates.glMultiDrawArrays((GL.Enums.BeginMode)mode, (Int32*)first_ptr, (Int32*)count, (Int32)primcount);
@@ -8583,7 +8522,6 @@ namespace OpenTK.OpenGL
         public static 
         void MultiDrawArrays(GL.Enums.BeginMode mode, [In, Out] Int32[] first, [Out] out Int32 count, Int32 primcount)
         {
-            count = default(Int32);
             unsafe
             {
                 fixed (Int32* first_ptr = first)
@@ -8599,8 +8537,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void MultiDrawArrays(GL.Enums.BeginMode mode, [Out] out Int32 first, [Out] Int32* count, Int32 primcount)
         {
-            first = default(Int32);
-            count = default(Int32*);
                 fixed (Int32* first_ptr = &first)
                 {
                     Delegates.glMultiDrawArrays((GL.Enums.BeginMode)mode, (Int32*)first_ptr, (Int32*)count, (Int32)primcount);
@@ -8611,7 +8547,6 @@ namespace OpenTK.OpenGL
         public static 
         void MultiDrawArrays(GL.Enums.BeginMode mode, [Out] out Int32 first, [In, Out] Int32[] count, Int32 primcount)
         {
-            first = default(Int32);
             unsafe
             {
                 fixed (Int32* first_ptr = &first)
@@ -8626,8 +8561,6 @@ namespace OpenTK.OpenGL
         public static 
         void MultiDrawArrays(GL.Enums.BeginMode mode, [Out] out Int32 first, [Out] out Int32 count, Int32 primcount)
         {
-            first = default(Int32);
-            count = default(Int32);
             unsafe
             {
                 fixed (Int32* first_ptr = &first)
@@ -9430,7 +9363,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GenQueries(Int32 n, [Out] Int32* ids)
         {
-            ids = default(Int32*);
                 {
                     Delegates.glGenQueries((Int32)n, (UInt32*)ids);
                 }
@@ -9465,7 +9397,6 @@ namespace OpenTK.OpenGL
         public static 
         void GenQueries(Int32 n, [Out] out UInt32 ids)
         {
-            ids = default(UInt32);
             unsafe
             {
                 fixed (UInt32* ids_ptr = &ids)
@@ -9479,7 +9410,6 @@ namespace OpenTK.OpenGL
         public static 
         void GenQueries(Int32 n, [Out] out Int32 ids)
         {
-            ids = default(Int32);
             unsafe
             {
                 fixed (Int32* ids_ptr = &ids)
@@ -9610,7 +9540,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetQuery(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -9632,7 +9561,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetQueryObject(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] Int32* @params)
         {
-            @params = default(Int32*);
                 {
                     Delegates.glGetQueryObjectiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (Int32*)@params);
                 }
@@ -9667,7 +9595,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetQueryObject(UInt32 id, GL.Enums.VERSION_1_5 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -9681,7 +9608,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetQueryObject(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -9716,7 +9642,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetQueryObject(UInt32 id, GL.Enums.VERSION_1_5 pname, [Out] out UInt32 @params)
         {
-            @params = default(UInt32);
             unsafe
             {
                 fixed (UInt32* @params_ptr = &@params)
@@ -9817,7 +9742,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GenBuffers(Int32 n, [Out] Int32* buffers)
         {
-            buffers = default(Int32*);
                 {
                     Delegates.glGenBuffers((Int32)n, (UInt32*)buffers);
                 }
@@ -9852,7 +9776,6 @@ namespace OpenTK.OpenGL
         public static 
         void GenBuffers(Int32 n, [Out] out UInt32 buffers)
         {
-            buffers = default(UInt32);
             unsafe
             {
                 fixed (UInt32* buffers_ptr = &buffers)
@@ -9866,7 +9789,6 @@ namespace OpenTK.OpenGL
         public static 
         void GenBuffers(Int32 n, [Out] out Int32 buffers)
         {
-            buffers = default(Int32);
             unsafe
             {
                 fixed (Int32* buffers_ptr = &buffers)
@@ -9996,7 +9918,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetBufferParameter(GL.Enums.VERSION_1_5 target, GL.Enums.VERSION_1_5 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -10227,10 +10148,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
                 }
@@ -10240,9 +10157,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -10253,9 +10167,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -10266,10 +10177,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -10281,10 +10188,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -10296,9 +10199,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10309,9 +10209,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10322,8 +10219,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10335,8 +10230,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10348,9 +10241,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10363,9 +10253,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10378,10 +10265,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10393,10 +10276,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10408,9 +10287,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10423,9 +10299,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10438,10 +10311,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10455,10 +10324,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10472,9 +10337,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10485,9 +10347,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10498,8 +10357,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10511,8 +10368,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10524,9 +10379,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10539,9 +10391,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10554,8 +10403,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -10567,8 +10414,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -10580,7 +10425,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10595,7 +10439,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10611,8 +10454,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10628,8 +10469,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10646,9 +10485,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -10661,9 +10497,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -10676,8 +10509,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10693,8 +10524,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10711,9 +10540,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10730,9 +10556,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -10750,10 +10573,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10765,10 +10584,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 {
                     Delegates.glGetActiveAttrib((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -10780,9 +10595,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10795,9 +10607,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -10810,10 +10619,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10827,10 +10632,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -10844,9 +10645,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -10859,9 +10657,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -10874,8 +10669,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -10891,8 +10684,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -10909,9 +10700,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -10928,9 +10716,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -10948,10 +10733,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -10965,10 +10746,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -10982,9 +10759,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11001,9 +10775,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11021,10 +10792,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11042,10 +10809,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveAttrib(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11071,10 +10834,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
                 }
@@ -11084,9 +10843,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -11097,9 +10853,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -11110,10 +10863,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -11125,10 +10874,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.VERSION_2_0*)type_ptr, (System.Text.StringBuilder)name);
@@ -11140,9 +10885,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11153,9 +10895,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11166,8 +10905,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11179,8 +10916,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11192,9 +10927,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11207,9 +10939,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11222,10 +10951,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11237,10 +10962,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11252,9 +10973,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11267,9 +10985,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11282,10 +10997,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11299,10 +11010,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32*);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* size_ptr = &size)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11316,9 +11023,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11329,9 +11033,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11342,8 +11043,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11355,8 +11054,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11368,9 +11065,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11383,9 +11077,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11398,8 +11089,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -11411,8 +11100,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -11424,7 +11111,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11439,7 +11125,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11455,8 +11140,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11472,8 +11155,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11490,9 +11171,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -11505,9 +11183,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -11520,8 +11195,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11537,8 +11210,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11555,9 +11226,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11574,9 +11242,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -11594,10 +11259,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11609,10 +11270,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 {
                     Delegates.glGetActiveUniform((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.VERSION_2_0*)type, (System.Text.StringBuilder)name);
@@ -11624,9 +11281,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11639,9 +11293,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = type)
                 {
@@ -11654,10 +11305,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11671,10 +11318,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32*);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (GL.Enums.VERSION_2_0* type_ptr = &type)
                 {
@@ -11688,9 +11331,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -11703,9 +11343,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = size)
                 {
@@ -11718,8 +11355,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11735,8 +11370,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11753,9 +11386,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11772,9 +11402,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11792,10 +11419,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -11809,10 +11432,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.VERSION_2_0* type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0*);
-            name = default(System.Text.StringBuilder);
                 fixed (Int32* length_ptr = &length)
                 fixed (Int32* size_ptr = &size)
                 {
@@ -11826,9 +11445,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11845,9 +11461,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.VERSION_2_0[] type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11865,10 +11478,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11886,10 +11495,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetActiveUniform(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.VERSION_2_0 type, [Out] System.Text.StringBuilder name)
         {
-            length = default(Int32);
-            size = default(Int32);
-            type = default(GL.Enums.VERSION_2_0);
-            name = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -11915,8 +11520,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(Int32 program, Int32 maxCount, [Out] Int32* count, [Out] Int32* obj)
         {
-            count = default(Int32*);
-            obj = default(Int32*);
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count, (UInt32*)obj);
                 }
@@ -11926,7 +11529,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(UInt32 program, Int32 maxCount, [Out] Int32* count, [In, Out] UInt32[] obj)
         {
-            count = default(Int32*);
                 fixed (UInt32* obj_ptr = obj)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -11937,7 +11539,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(Int32 program, Int32 maxCount, [Out] Int32* count, [In, Out] Int32[] obj)
         {
-            count = default(Int32*);
                 fixed (Int32* obj_ptr = obj)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -11948,8 +11549,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(UInt32 program, Int32 maxCount, [Out] Int32* count, [Out] out UInt32 obj)
         {
-            count = default(Int32*);
-            obj = default(UInt32);
                 fixed (UInt32* obj_ptr = &obj)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -11961,8 +11560,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(Int32 program, Int32 maxCount, [Out] Int32* count, [Out] out Int32 obj)
         {
-            count = default(Int32*);
-            obj = default(Int32);
                 fixed (Int32* obj_ptr = &obj)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -11974,7 +11571,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(UInt32 program, Int32 maxCount, [In, Out] Int32[] count, [Out] UInt32* obj)
         {
-            obj = default(UInt32*);
                 fixed (Int32* count_ptr = count)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -11985,7 +11581,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(Int32 program, Int32 maxCount, [In, Out] Int32[] count, [Out] Int32* obj)
         {
-            obj = default(Int32*);
                 fixed (Int32* count_ptr = count)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -12023,7 +11618,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetAttachedShaders(UInt32 program, Int32 maxCount, [In, Out] Int32[] count, [Out] out UInt32 obj)
         {
-            obj = default(UInt32);
             unsafe
             {
                 fixed (Int32* count_ptr = count)
@@ -12038,7 +11632,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetAttachedShaders(Int32 program, Int32 maxCount, [In, Out] Int32[] count, [Out] out Int32 obj)
         {
-            obj = default(Int32);
             unsafe
             {
                 fixed (Int32* count_ptr = count)
@@ -12054,8 +11647,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(UInt32 program, Int32 maxCount, [Out] out Int32 count, [Out] UInt32* obj)
         {
-            count = default(Int32);
-            obj = default(UInt32*);
                 fixed (Int32* count_ptr = &count)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -12067,8 +11658,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetAttachedShaders(Int32 program, Int32 maxCount, [Out] out Int32 count, [Out] Int32* obj)
         {
-            count = default(Int32);
-            obj = default(Int32*);
                 fixed (Int32* count_ptr = &count)
                 {
                     Delegates.glGetAttachedShaders((UInt32)program, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -12080,7 +11669,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetAttachedShaders(UInt32 program, Int32 maxCount, [Out] out Int32 count, [In, Out] UInt32[] obj)
         {
-            count = default(Int32);
             unsafe
             {
                 fixed (Int32* count_ptr = &count)
@@ -12095,7 +11683,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetAttachedShaders(Int32 program, Int32 maxCount, [Out] out Int32 count, [In, Out] Int32[] obj)
         {
-            count = default(Int32);
             unsafe
             {
                 fixed (Int32* count_ptr = &count)
@@ -12111,8 +11698,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetAttachedShaders(UInt32 program, Int32 maxCount, [Out] out Int32 count, [Out] out UInt32 obj)
         {
-            count = default(Int32);
-            obj = default(UInt32);
             unsafe
             {
                 fixed (Int32* count_ptr = &count)
@@ -12128,8 +11713,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetAttachedShaders(Int32 program, Int32 maxCount, [Out] out Int32 count, [Out] out Int32 obj)
         {
-            count = default(Int32);
-            obj = default(Int32);
             unsafe
             {
                 fixed (Int32* count_ptr = &count)
@@ -12166,7 +11749,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetProgram(Int32 program, GL.Enums.VERSION_2_0 pname, [Out] Int32* @params)
         {
-            @params = default(Int32*);
                 {
                     Delegates.glGetProgramiv((UInt32)program, (GL.Enums.VERSION_2_0)pname, (Int32*)@params);
                 }
@@ -12201,7 +11783,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetProgram(UInt32 program, GL.Enums.VERSION_2_0 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12215,7 +11796,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetProgram(Int32 program, GL.Enums.VERSION_2_0 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12237,8 +11817,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetProgramInfoLog(Int32 program, Int32 bufSize, [Out] Int32* length, [Out] System.Text.StringBuilder infoLog)
         {
-            length = default(Int32*);
-            infoLog = default(System.Text.StringBuilder);
                 {
                     Delegates.glGetProgramInfoLog((UInt32)program, (Int32)bufSize, (Int32*)length, (System.Text.StringBuilder)infoLog);
                 }
@@ -12248,7 +11826,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetProgramInfoLog(UInt32 program, Int32 bufSize, [In, Out] Int32[] length, [Out] System.Text.StringBuilder infoLog)
         {
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -12261,7 +11838,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetProgramInfoLog(Int32 program, Int32 bufSize, [In, Out] Int32[] length, [Out] System.Text.StringBuilder infoLog)
         {
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -12275,8 +11851,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetProgramInfoLog(UInt32 program, Int32 bufSize, [Out] out Int32 length, [Out] System.Text.StringBuilder infoLog)
         {
-            length = default(Int32);
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -12290,8 +11864,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetProgramInfoLog(Int32 program, Int32 bufSize, [Out] out Int32 length, [Out] System.Text.StringBuilder infoLog)
         {
-            length = default(Int32);
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -12313,7 +11885,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetShader(Int32 shader, GL.Enums.VERSION_2_0 pname, [Out] Int32* @params)
         {
-            @params = default(Int32*);
                 {
                     Delegates.glGetShaderiv((UInt32)shader, (GL.Enums.VERSION_2_0)pname, (Int32*)@params);
                 }
@@ -12348,7 +11919,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShader(UInt32 shader, GL.Enums.VERSION_2_0 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12362,7 +11932,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShader(Int32 shader, GL.Enums.VERSION_2_0 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12384,8 +11953,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetShaderInfoLog(Int32 shader, Int32 bufSize, [Out] Int32* length, [Out] System.Text.StringBuilder infoLog)
         {
-            length = default(Int32*);
-            infoLog = default(System.Text.StringBuilder);
                 {
                     Delegates.glGetShaderInfoLog((UInt32)shader, (Int32)bufSize, (Int32*)length, (System.Text.StringBuilder)infoLog);
                 }
@@ -12395,7 +11962,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderInfoLog(UInt32 shader, Int32 bufSize, [In, Out] Int32[] length, [Out] System.Text.StringBuilder infoLog)
         {
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -12408,7 +11974,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderInfoLog(Int32 shader, Int32 bufSize, [In, Out] Int32[] length, [Out] System.Text.StringBuilder infoLog)
         {
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -12422,8 +11987,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderInfoLog(UInt32 shader, Int32 bufSize, [Out] out Int32 length, [Out] System.Text.StringBuilder infoLog)
         {
-            length = default(Int32);
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -12437,8 +12000,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderInfoLog(Int32 shader, Int32 bufSize, [Out] out Int32 length, [Out] System.Text.StringBuilder infoLog)
         {
-            length = default(Int32);
-            infoLog = default(System.Text.StringBuilder);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -12460,8 +12021,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetShaderSource(Int32 shader, Int32 bufSize, [Out] Int32* length, [Out] System.Text.StringBuilder[] source)
         {
-            length = default(Int32*);
-            source = default(System.Text.StringBuilder[]);
                 {
                     Delegates.glGetShaderSource((UInt32)shader, (Int32)bufSize, (Int32*)length, (System.Text.StringBuilder[])source);
                 }
@@ -12471,7 +12030,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderSource(UInt32 shader, Int32 bufSize, [In, Out] Int32[] length, [Out] System.Text.StringBuilder[] source)
         {
-            source = default(System.Text.StringBuilder[]);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -12484,7 +12042,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderSource(Int32 shader, Int32 bufSize, [In, Out] Int32[] length, [Out] System.Text.StringBuilder[] source)
         {
-            source = default(System.Text.StringBuilder[]);
             unsafe
             {
                 fixed (Int32* length_ptr = length)
@@ -12498,8 +12055,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderSource(UInt32 shader, Int32 bufSize, [Out] out Int32 length, [Out] System.Text.StringBuilder[] source)
         {
-            length = default(Int32);
-            source = default(System.Text.StringBuilder[]);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -12513,8 +12068,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetShaderSource(Int32 shader, Int32 bufSize, [Out] out Int32 length, [Out] System.Text.StringBuilder[] source)
         {
-            length = default(Int32);
-            source = default(System.Text.StringBuilder[]);
             unsafe
             {
                 fixed (Int32* length_ptr = &length)
@@ -12549,7 +12102,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetUniform(Int32 program, Int32 location, [Out] Single* @params)
         {
-            @params = default(Single*);
                 {
                     Delegates.glGetUniformfv((UInt32)program, (Int32)location, (Single*)@params);
                 }
@@ -12584,7 +12136,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetUniform(UInt32 program, Int32 location, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -12598,7 +12149,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetUniform(Int32 program, Int32 location, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -12620,7 +12170,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetUniform(Int32 program, Int32 location, [Out] Int32* @params)
         {
-            @params = default(Int32*);
                 {
                     Delegates.glGetUniformiv((UInt32)program, (Int32)location, (Int32*)@params);
                 }
@@ -12655,7 +12204,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetUniform(UInt32 program, Int32 location, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12669,7 +12217,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetUniform(Int32 program, Int32 location, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12691,7 +12238,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttrib(Int32 index, GL.Enums.VERSION_2_0 pname, [Out] Double* @params)
         {
-            @params = default(Double*);
                 {
                     Delegates.glGetVertexAttribdv((UInt32)index, (GL.Enums.VERSION_2_0)pname, (Double*)@params);
                 }
@@ -12726,7 +12272,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetVertexAttrib(UInt32 index, GL.Enums.VERSION_2_0 pname, [Out] out Double @params)
         {
-            @params = default(Double);
             unsafe
             {
                 fixed (Double* @params_ptr = &@params)
@@ -12740,7 +12285,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetVertexAttrib(Int32 index, GL.Enums.VERSION_2_0 pname, [Out] out Double @params)
         {
-            @params = default(Double);
             unsafe
             {
                 fixed (Double* @params_ptr = &@params)
@@ -12762,7 +12306,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttrib(Int32 index, GL.Enums.VERSION_2_0 pname, [Out] Single* @params)
         {
-            @params = default(Single*);
                 {
                     Delegates.glGetVertexAttribfv((UInt32)index, (GL.Enums.VERSION_2_0)pname, (Single*)@params);
                 }
@@ -12797,7 +12340,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetVertexAttrib(UInt32 index, GL.Enums.VERSION_2_0 pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -12811,7 +12353,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetVertexAttrib(Int32 index, GL.Enums.VERSION_2_0 pname, [Out] out Single @params)
         {
-            @params = default(Single);
             unsafe
             {
                 fixed (Single* @params_ptr = &@params)
@@ -12833,7 +12374,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttrib(Int32 index, GL.Enums.VERSION_2_0 pname, [Out] Int32* @params)
         {
-            @params = default(Int32*);
                 {
                     Delegates.glGetVertexAttribiv((UInt32)index, (GL.Enums.VERSION_2_0)pname, (Int32*)@params);
                 }
@@ -12868,7 +12408,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetVertexAttrib(UInt32 index, GL.Enums.VERSION_2_0 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12882,7 +12421,6 @@ namespace OpenTK.OpenGL
         public static 
         void GetVertexAttrib(Int32 index, GL.Enums.VERSION_2_0 pname, [Out] out Int32 @params)
         {
-            @params = default(Int32);
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
@@ -12904,7 +12442,6 @@ namespace OpenTK.OpenGL
         public static 
         unsafe void GetVertexAttribPointerv(Int32 index, GL.Enums.VERSION_2_0 pname, [Out] void* pointer)
         {
-            pointer = default(void*);
                 {
                     Delegates.glGetVertexAttribPointerv((UInt32)index, (GL.Enums.VERSION_2_0)pname, (void*)pointer);
                 }
@@ -18410,7 +17947,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenProgramsARB(Int32 n, [Out] Int32* programs)
             {
-                programs = default(Int32*);
                     {
                         Delegates.glGenProgramsARB((Int32)n, (UInt32*)programs);
                     }
@@ -18445,7 +17981,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenProgramsARB(Int32 n, [Out] out UInt32 programs)
             {
-                programs = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* programs_ptr = &programs)
@@ -18459,7 +17994,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenProgramsARB(Int32 n, [Out] out Int32 programs)
             {
-                programs = default(Int32);
                 unsafe
                 {
                     fixed (Int32* programs_ptr = &programs)
@@ -18797,7 +18331,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramEnvParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] Double* @params)
             {
-                @params = default(Double*);
                     {
                         Delegates.glGetProgramEnvParameterdvARB((GL.Enums.ARB_vertex_program)target, (UInt32)index, (Double*)@params);
                     }
@@ -18832,7 +18365,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramEnvParameter(GL.Enums.ARB_vertex_program target, UInt32 index, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -18846,7 +18378,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramEnvParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -18868,7 +18399,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramEnvParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetProgramEnvParameterfvARB((GL.Enums.ARB_vertex_program)target, (UInt32)index, (Single*)@params);
                     }
@@ -18903,7 +18433,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramEnvParameter(GL.Enums.ARB_vertex_program target, UInt32 index, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -18917,7 +18446,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramEnvParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -18939,7 +18467,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramLocalParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] Double* @params)
             {
-                @params = default(Double*);
                     {
                         Delegates.glGetProgramLocalParameterdvARB((GL.Enums.ARB_vertex_program)target, (UInt32)index, (Double*)@params);
                     }
@@ -18974,7 +18501,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramLocalParameter(GL.Enums.ARB_vertex_program target, UInt32 index, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -18988,7 +18514,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramLocalParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -19010,7 +18535,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramLocalParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetProgramLocalParameterfvARB((GL.Enums.ARB_vertex_program)target, (UInt32)index, (Single*)@params);
                     }
@@ -19045,7 +18569,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramLocalParameter(GL.Enums.ARB_vertex_program target, UInt32 index, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -19059,7 +18582,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramLocalParameter(GL.Enums.ARB_vertex_program target, Int32 index, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -19092,7 +18614,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgram(GL.Enums.ARB_vertex_program target, GL.Enums.ARB_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -19138,7 +18659,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttrib(Int32 index, GL.Enums.ARB_vertex_program pname, [Out] Double* @params)
             {
-                @params = default(Double*);
                     {
                         Delegates.glGetVertexAttribdvARB((UInt32)index, (GL.Enums.ARB_vertex_program)pname, (Double*)@params);
                     }
@@ -19173,7 +18693,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(UInt32 index, GL.Enums.ARB_vertex_program pname, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -19187,7 +18706,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(Int32 index, GL.Enums.ARB_vertex_program pname, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -19209,7 +18727,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttrib(Int32 index, GL.Enums.ARB_vertex_program pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetVertexAttribfvARB((UInt32)index, (GL.Enums.ARB_vertex_program)pname, (Single*)@params);
                     }
@@ -19244,7 +18761,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(UInt32 index, GL.Enums.ARB_vertex_program pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -19258,7 +18774,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(Int32 index, GL.Enums.ARB_vertex_program pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -19280,7 +18795,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttrib(Int32 index, GL.Enums.ARB_vertex_program pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetVertexAttribivARB((UInt32)index, (GL.Enums.ARB_vertex_program)pname, (Int32*)@params);
                     }
@@ -19315,7 +18829,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(UInt32 index, GL.Enums.ARB_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -19329,7 +18842,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(Int32 index, GL.Enums.ARB_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -19351,7 +18863,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribPointervARB(Int32 index, GL.Enums.ARB_vertex_program pname, [Out] void* pointer)
             {
-                pointer = default(void*);
                     {
                         Delegates.glGetVertexAttribPointervARB((UInt32)index, (GL.Enums.ARB_vertex_program)pname, (void*)pointer);
                     }
@@ -19495,7 +19006,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenBuffersARB(Int32 n, [Out] Int32* buffers)
             {
-                buffers = default(Int32*);
                     {
                         Delegates.glGenBuffersARB((Int32)n, (UInt32*)buffers);
                     }
@@ -19530,7 +19040,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenBuffersARB(Int32 n, [Out] out UInt32 buffers)
             {
-                buffers = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* buffers_ptr = &buffers)
@@ -19544,7 +19053,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenBuffersARB(Int32 n, [Out] out Int32 buffers)
             {
-                buffers = default(Int32);
                 unsafe
                 {
                     fixed (Int32* buffers_ptr = &buffers)
@@ -19674,7 +19182,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetBufferParameter(GL.Enums.ARB_vertex_buffer_object target, GL.Enums.ARB_vertex_buffer_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -19720,7 +19227,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenQueriesARB(Int32 n, [Out] Int32* ids)
             {
-                ids = default(Int32*);
                     {
                         Delegates.glGenQueriesARB((Int32)n, (UInt32*)ids);
                     }
@@ -19755,7 +19261,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenQueriesARB(Int32 n, [Out] out UInt32 ids)
             {
-                ids = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* ids_ptr = &ids)
@@ -19769,7 +19274,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenQueriesARB(Int32 n, [Out] out Int32 ids)
             {
-                ids = default(Int32);
                 unsafe
                 {
                     fixed (Int32* ids_ptr = &ids)
@@ -19900,7 +19404,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQuery(GL.Enums.ARB_occlusion_query target, GL.Enums.ARB_occlusion_query pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -19922,7 +19425,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryObject(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetQueryObjectivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (Int32*)@params);
                     }
@@ -19957,7 +19459,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQueryObject(UInt32 id, GL.Enums.ARB_occlusion_query pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -19971,7 +19472,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQueryObject(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -20006,7 +19506,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQueryObject(UInt32 id, GL.Enums.ARB_occlusion_query pname, [Out] out UInt32 @params)
             {
-                @params = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
@@ -20520,7 +20019,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectParameter(Int32 obj, GL.Enums.ARB_shader_objects pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetObjectParameterfvARB((UInt32)obj, (GL.Enums.ARB_shader_objects)pname, (Single*)@params);
                     }
@@ -20555,7 +20053,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectParameter(UInt32 obj, GL.Enums.ARB_shader_objects pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -20569,7 +20066,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectParameter(Int32 obj, GL.Enums.ARB_shader_objects pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -20591,7 +20087,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectParameter(Int32 obj, GL.Enums.ARB_shader_objects pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetObjectParameterivARB((UInt32)obj, (GL.Enums.ARB_shader_objects)pname, (Int32*)@params);
                     }
@@ -20626,7 +20121,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectParameter(UInt32 obj, GL.Enums.ARB_shader_objects pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -20640,7 +20134,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectParameter(Int32 obj, GL.Enums.ARB_shader_objects pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -20662,8 +20155,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInfoLogARB(Int32 obj, Int32 maxLength, [Out] Int32* length, [Out] System.Text.StringBuilder infoLog)
             {
-                length = default(Int32*);
-                infoLog = default(System.Text.StringBuilder);
                     {
                         Delegates.glGetInfoLogARB((UInt32)obj, (Int32)maxLength, (Int32*)length, (System.Text.StringBuilder)infoLog);
                     }
@@ -20673,7 +20164,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInfoLogARB(UInt32 obj, Int32 maxLength, [In, Out] Int32[] length, [Out] System.Text.StringBuilder infoLog)
             {
-                infoLog = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -20686,7 +20176,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInfoLogARB(Int32 obj, Int32 maxLength, [In, Out] Int32[] length, [Out] System.Text.StringBuilder infoLog)
             {
-                infoLog = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -20700,8 +20189,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInfoLogARB(UInt32 obj, Int32 maxLength, [Out] out Int32 length, [Out] System.Text.StringBuilder infoLog)
             {
-                length = default(Int32);
-                infoLog = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -20715,8 +20202,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInfoLogARB(Int32 obj, Int32 maxLength, [Out] out Int32 length, [Out] System.Text.StringBuilder infoLog)
             {
-                length = default(Int32);
-                infoLog = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -20738,8 +20223,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [Out] Int32* count, [Out] Int32* obj)
             {
-                count = default(Int32*);
-                obj = default(Int32*);
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count, (UInt32*)obj);
                     }
@@ -20749,7 +20232,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(UInt32 containerObj, Int32 maxCount, [Out] Int32* count, [In, Out] UInt32[] obj)
             {
-                count = default(Int32*);
                     fixed (UInt32* obj_ptr = obj)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -20760,7 +20242,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [Out] Int32* count, [In, Out] Int32[] obj)
             {
-                count = default(Int32*);
                     fixed (Int32* obj_ptr = obj)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -20771,8 +20252,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(UInt32 containerObj, Int32 maxCount, [Out] Int32* count, [Out] out UInt32 obj)
             {
-                count = default(Int32*);
-                obj = default(UInt32);
                     fixed (UInt32* obj_ptr = &obj)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -20784,8 +20263,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [Out] Int32* count, [Out] out Int32 obj)
             {
-                count = default(Int32*);
-                obj = default(Int32);
                     fixed (Int32* obj_ptr = &obj)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count, (UInt32*)obj_ptr);
@@ -20797,7 +20274,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(UInt32 containerObj, Int32 maxCount, [In, Out] Int32[] count, [Out] UInt32* obj)
             {
-                obj = default(UInt32*);
                     fixed (Int32* count_ptr = count)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -20808,7 +20284,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [In, Out] Int32[] count, [Out] Int32* obj)
             {
-                obj = default(Int32*);
                     fixed (Int32* count_ptr = count)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -20846,7 +20321,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetAttachedObjectsARB(UInt32 containerObj, Int32 maxCount, [In, Out] Int32[] count, [Out] out UInt32 obj)
             {
-                obj = default(UInt32);
                 unsafe
                 {
                     fixed (Int32* count_ptr = count)
@@ -20861,7 +20335,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [In, Out] Int32[] count, [Out] out Int32 obj)
             {
-                obj = default(Int32);
                 unsafe
                 {
                     fixed (Int32* count_ptr = count)
@@ -20877,8 +20350,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(UInt32 containerObj, Int32 maxCount, [Out] out Int32 count, [Out] UInt32* obj)
             {
-                count = default(Int32);
-                obj = default(UInt32*);
                     fixed (Int32* count_ptr = &count)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -20890,8 +20361,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [Out] out Int32 count, [Out] Int32* obj)
             {
-                count = default(Int32);
-                obj = default(Int32*);
                     fixed (Int32* count_ptr = &count)
                     {
                         Delegates.glGetAttachedObjectsARB((UInt32)containerObj, (Int32)maxCount, (Int32*)count_ptr, (UInt32*)obj);
@@ -20903,7 +20372,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetAttachedObjectsARB(UInt32 containerObj, Int32 maxCount, [Out] out Int32 count, [In, Out] UInt32[] obj)
             {
-                count = default(Int32);
                 unsafe
                 {
                     fixed (Int32* count_ptr = &count)
@@ -20918,7 +20386,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [Out] out Int32 count, [In, Out] Int32[] obj)
             {
-                count = default(Int32);
                 unsafe
                 {
                     fixed (Int32* count_ptr = &count)
@@ -20934,8 +20401,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetAttachedObjectsARB(UInt32 containerObj, Int32 maxCount, [Out] out Int32 count, [Out] out UInt32 obj)
             {
-                count = default(Int32);
-                obj = default(UInt32);
                 unsafe
                 {
                     fixed (Int32* count_ptr = &count)
@@ -20951,8 +20416,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetAttachedObjectsARB(Int32 containerObj, Int32 maxCount, [Out] out Int32 count, [Out] out Int32 obj)
             {
-                count = default(Int32);
-                obj = default(Int32);
                 unsafe
                 {
                     fixed (Int32* count_ptr = &count)
@@ -20989,10 +20452,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
                     }
@@ -21002,9 +20461,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_shader_objects*)type_ptr, (System.Text.StringBuilder)name);
@@ -21015,9 +20471,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_shader_objects*)type_ptr, (System.Text.StringBuilder)name);
@@ -21028,10 +20481,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_shader_objects*)type_ptr, (System.Text.StringBuilder)name);
@@ -21043,10 +20492,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_shader_objects*)type_ptr, (System.Text.StringBuilder)name);
@@ -21058,9 +20503,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21071,9 +20513,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21084,8 +20523,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21097,8 +20534,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21110,9 +20545,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21125,9 +20557,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21140,10 +20569,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21155,10 +20580,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21170,9 +20591,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21185,9 +20603,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21200,10 +20615,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21217,10 +20628,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21234,9 +20641,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21247,9 +20651,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21260,8 +20661,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21273,8 +20672,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21286,9 +20683,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21301,9 +20695,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21316,8 +20707,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -21329,8 +20718,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -21342,7 +20729,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21357,7 +20743,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21373,8 +20758,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21390,8 +20773,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21408,9 +20789,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -21423,9 +20801,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -21438,8 +20813,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21455,8 +20828,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21473,9 +20844,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21492,9 +20860,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21512,10 +20877,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21527,10 +20888,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     {
                         Delegates.glGetActiveUniformARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_shader_objects*)type, (System.Text.StringBuilder)name);
@@ -21542,9 +20899,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21557,9 +20911,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = type)
                     {
@@ -21572,10 +20923,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21589,10 +20936,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_shader_objects* type_ptr = &type)
                     {
@@ -21606,9 +20949,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -21621,9 +20961,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -21636,8 +20973,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21653,8 +20988,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21671,9 +21004,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21690,9 +21020,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21710,10 +21037,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -21727,10 +21050,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.ARB_shader_objects* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -21744,9 +21063,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21763,9 +21079,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_shader_objects[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21783,10 +21096,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21804,10 +21113,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveUniformARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.ARB_shader_objects type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_shader_objects);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -21833,7 +21138,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetUniform(Int32 programObj, Int32 location, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetUniformfvARB((UInt32)programObj, (Int32)location, (Single*)@params);
                     }
@@ -21868,7 +21172,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetUniform(UInt32 programObj, Int32 location, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -21882,7 +21185,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetUniform(Int32 programObj, Int32 location, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -21904,7 +21206,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetUniform(Int32 programObj, Int32 location, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetUniformivARB((UInt32)programObj, (Int32)location, (Int32*)@params);
                     }
@@ -21939,7 +21240,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetUniform(UInt32 programObj, Int32 location, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -21953,7 +21253,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetUniform(Int32 programObj, Int32 location, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -21975,8 +21274,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetShaderSourceARB(Int32 obj, Int32 maxLength, [Out] Int32* length, [Out] System.Text.StringBuilder[] source)
             {
-                length = default(Int32*);
-                source = default(System.Text.StringBuilder[]);
                     {
                         Delegates.glGetShaderSourceARB((UInt32)obj, (Int32)maxLength, (Int32*)length, (System.Text.StringBuilder[])source);
                     }
@@ -21986,7 +21283,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetShaderSourceARB(UInt32 obj, Int32 maxLength, [In, Out] Int32[] length, [Out] System.Text.StringBuilder[] source)
             {
-                source = default(System.Text.StringBuilder[]);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -21999,7 +21295,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetShaderSourceARB(Int32 obj, Int32 maxLength, [In, Out] Int32[] length, [Out] System.Text.StringBuilder[] source)
             {
-                source = default(System.Text.StringBuilder[]);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22013,8 +21308,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetShaderSourceARB(UInt32 obj, Int32 maxLength, [Out] out Int32 length, [Out] System.Text.StringBuilder[] source)
             {
-                length = default(Int32);
-                source = default(System.Text.StringBuilder[]);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22028,8 +21321,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetShaderSourceARB(Int32 obj, Int32 maxLength, [Out] out Int32 length, [Out] System.Text.StringBuilder[] source)
             {
-                length = default(Int32);
-                source = default(System.Text.StringBuilder[]);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22064,10 +21355,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
                     }
@@ -22077,9 +21364,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type_ptr, (System.Text.StringBuilder)name);
@@ -22090,9 +21374,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type_ptr, (System.Text.StringBuilder)name);
@@ -22103,10 +21384,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type_ptr, (System.Text.StringBuilder)name);
@@ -22118,10 +21395,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type_ptr, (System.Text.StringBuilder)name);
@@ -22133,9 +21406,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22146,9 +21416,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22159,8 +21426,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22172,8 +21437,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22185,9 +21448,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22200,9 +21460,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22215,10 +21472,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22230,10 +21483,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length, (Int32*)size_ptr, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22245,9 +21494,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22260,9 +21506,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22275,10 +21518,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22292,10 +21531,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22309,9 +21544,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22322,9 +21554,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22335,8 +21564,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22348,8 +21575,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22361,9 +21586,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22376,9 +21598,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22391,8 +21610,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -22404,8 +21621,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -22417,7 +21632,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22432,7 +21646,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22448,8 +21661,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22465,8 +21676,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22483,9 +21692,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -22498,9 +21704,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -22513,8 +21716,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22530,8 +21731,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22548,9 +21747,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22567,9 +21763,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -22587,10 +21780,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22602,10 +21791,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     {
                         Delegates.glGetActiveAttribARB((UInt32)programObj, (UInt32)index, (Int32)maxLength, (Int32*)length_ptr, (Int32*)size, (GL.Enums.ARB_vertex_shader*)type, (System.Text.StringBuilder)name);
@@ -22617,9 +21802,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22632,9 +21814,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = type)
                     {
@@ -22647,10 +21826,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22664,10 +21839,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.ARB_vertex_shader* type_ptr = &type)
                     {
@@ -22681,9 +21852,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -22696,9 +21864,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -22711,8 +21876,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22728,8 +21891,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22746,9 +21907,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22765,9 +21923,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22785,10 +21940,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -22802,10 +21953,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.ARB_vertex_shader* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -22819,9 +21966,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22838,9 +21982,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.ARB_vertex_shader[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22858,10 +21999,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(UInt32 programObj, UInt32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -22879,10 +22016,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveAttribARB(Int32 programObj, Int32 index, Int32 maxLength, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.ARB_vertex_shader type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.ARB_vertex_shader);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -23118,7 +22251,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetHistogramParameter(GL.Enums.HistogramTargetEXT target, GL.Enums.GetHistogramParameterPNameEXT pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -23151,7 +22283,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetHistogramParameter(GL.Enums.HistogramTargetEXT target, GL.Enums.GetHistogramParameterPNameEXT pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -23191,7 +22322,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMinmaxParameter(GL.Enums.MinmaxTargetEXT target, GL.Enums.GetMinmaxParameterPNameEXT pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -23224,7 +22354,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMinmaxParameter(GL.Enums.MinmaxTargetEXT target, GL.Enums.GetMinmaxParameterPNameEXT pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -23439,7 +22568,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetConvolutionParameter(GL.Enums.ConvolutionTargetEXT target, GL.Enums.ConvolutionParameterEXT pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -23472,7 +22600,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetConvolutionParameter(GL.Enums.ConvolutionTargetEXT target, GL.Enums.ConvolutionParameterEXT pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -23494,8 +22621,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSeparableFilterEXT(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [Out] void* row, [Out] void* column, [In, Out] object span)
             {
-                row = default(void*);
-                column = default(void*);
                 System.Runtime.InteropServices.GCHandle span_ptr = System.Runtime.InteropServices.GCHandle.Alloc(span, System.Runtime.InteropServices.GCHandleType.Pinned);
                     try
                     {
@@ -23511,8 +22636,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSeparableFilterEXT(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [Out] void* row, [In, Out] object column, [Out] void* span)
             {
-                row = default(void*);
-                span = default(void*);
                 System.Runtime.InteropServices.GCHandle column_ptr = System.Runtime.InteropServices.GCHandle.Alloc(column, System.Runtime.InteropServices.GCHandleType.Pinned);
                     try
                     {
@@ -23528,7 +22651,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSeparableFilterEXT(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [Out] void* row, [In, Out] object column, [In, Out] object span)
             {
-                row = default(void*);
                 System.Runtime.InteropServices.GCHandle span_ptr = System.Runtime.InteropServices.GCHandle.Alloc(span, System.Runtime.InteropServices.GCHandleType.Pinned);
                 System.Runtime.InteropServices.GCHandle column_ptr = System.Runtime.InteropServices.GCHandle.Alloc(column, System.Runtime.InteropServices.GCHandleType.Pinned);
                     try
@@ -23546,8 +22668,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSeparableFilterEXT(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object row, [Out] void* column, [Out] void* span)
             {
-                column = default(void*);
-                span = default(void*);
                 System.Runtime.InteropServices.GCHandle row_ptr = System.Runtime.InteropServices.GCHandle.Alloc(row, System.Runtime.InteropServices.GCHandleType.Pinned);
                     try
                     {
@@ -23563,7 +22683,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSeparableFilterEXT(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object row, [Out] void* column, [In, Out] object span)
             {
-                column = default(void*);
                 System.Runtime.InteropServices.GCHandle span_ptr = System.Runtime.InteropServices.GCHandle.Alloc(span, System.Runtime.InteropServices.GCHandleType.Pinned);
                 System.Runtime.InteropServices.GCHandle row_ptr = System.Runtime.InteropServices.GCHandle.Alloc(row, System.Runtime.InteropServices.GCHandleType.Pinned);
                     try
@@ -23581,7 +22700,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetSeparableFilterEXT(GL.Enums.SeparableTargetEXT target, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object row, [In, Out] object column, [Out] void* span)
             {
-                span = default(void*);
                 System.Runtime.InteropServices.GCHandle column_ptr = System.Runtime.InteropServices.GCHandle.Alloc(column, System.Runtime.InteropServices.GCHandleType.Pinned);
                 System.Runtime.InteropServices.GCHandle row_ptr = System.Runtime.InteropServices.GCHandle.Alloc(row, System.Runtime.InteropServices.GCHandleType.Pinned);
                     try
@@ -23683,7 +22801,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreTexturesResidentEXT(Int32 n, Int32* textures, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     {
                         Boolean retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures, (GL.Enums.Boolean*)residences);
                         return retval;
@@ -23694,7 +22811,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreTexturesResidentEXT(Int32 n, [In, Out] UInt32[] textures, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (UInt32* textures_ptr = textures)
                     {
                         Boolean retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -23706,7 +22822,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreTexturesResidentEXT(Int32 n, [In, Out] Int32[] textures, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (Int32* textures_ptr = textures)
                     {
                         Boolean retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -23718,7 +22833,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreTexturesResidentEXT(Int32 n, ref UInt32 textures, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (UInt32* textures_ptr = &textures)
                     {
                         Boolean retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -23730,7 +22844,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreTexturesResidentEXT(Int32 n, ref Int32 textures, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (Int32* textures_ptr = &textures)
                     {
                         Boolean retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (GL.Enums.Boolean*)residences);
@@ -23828,7 +22941,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenTexturesEXT(Int32 n, [Out] Int32* textures)
             {
-                textures = default(Int32*);
                     {
                         Delegates.glGenTexturesEXT((Int32)n, (UInt32*)textures);
                     }
@@ -23863,7 +22975,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenTexturesEXT(Int32 n, [Out] out UInt32 textures)
             {
-                textures = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* textures_ptr = &textures)
@@ -23877,7 +22988,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenTexturesEXT(Int32 n, [Out] out Int32 textures)
             {
-                textures = default(Int32);
                 unsafe
                 {
                     fixed (Int32* textures_ptr = &textures)
@@ -24411,7 +23521,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetColorTableParameter(GL.Enums.EXT_paletted_texture target, GL.Enums.EXT_paletted_texture pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -24444,7 +23553,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetColorTableParameter(GL.Enums.EXT_paletted_texture target, GL.Enums.EXT_paletted_texture pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -24501,7 +23609,6 @@ namespace OpenTK.OpenGL
             public static 
             void CullParameter(GL.Enums.EXT_cull_vertex pname, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -24534,7 +23641,6 @@ namespace OpenTK.OpenGL
             public static 
             void CullParameter(GL.Enums.EXT_cull_vertex pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -25036,7 +24142,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawArraysEXT(GL.Enums.BeginMode mode, [Out] Int32* first, [In, Out] Int32[] count, Int32 primcount)
             {
-                first = default(Int32*);
                     fixed (Int32* count_ptr = count)
                     {
                         Delegates.glMultiDrawArraysEXT((GL.Enums.BeginMode)mode, (Int32*)first, (Int32*)count_ptr, (Int32)primcount);
@@ -25047,8 +24152,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawArraysEXT(GL.Enums.BeginMode mode, [Out] Int32* first, [Out] out Int32 count, Int32 primcount)
             {
-                first = default(Int32*);
-                count = default(Int32);
                     fixed (Int32* count_ptr = &count)
                     {
                         Delegates.glMultiDrawArraysEXT((GL.Enums.BeginMode)mode, (Int32*)first, (Int32*)count_ptr, (Int32)primcount);
@@ -25060,7 +24163,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawArraysEXT(GL.Enums.BeginMode mode, [In, Out] Int32[] first, [Out] Int32* count, Int32 primcount)
             {
-                count = default(Int32*);
                     fixed (Int32* first_ptr = first)
                     {
                         Delegates.glMultiDrawArraysEXT((GL.Enums.BeginMode)mode, (Int32*)first_ptr, (Int32*)count, (Int32)primcount);
@@ -25083,7 +24185,6 @@ namespace OpenTK.OpenGL
             public static 
             void MultiDrawArraysEXT(GL.Enums.BeginMode mode, [In, Out] Int32[] first, [Out] out Int32 count, Int32 primcount)
             {
-                count = default(Int32);
                 unsafe
                 {
                     fixed (Int32* first_ptr = first)
@@ -25099,8 +24200,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void MultiDrawArraysEXT(GL.Enums.BeginMode mode, [Out] out Int32 first, [Out] Int32* count, Int32 primcount)
             {
-                first = default(Int32);
-                count = default(Int32*);
                     fixed (Int32* first_ptr = &first)
                     {
                         Delegates.glMultiDrawArraysEXT((GL.Enums.BeginMode)mode, (Int32*)first_ptr, (Int32*)count, (Int32)primcount);
@@ -25111,7 +24210,6 @@ namespace OpenTK.OpenGL
             public static 
             void MultiDrawArraysEXT(GL.Enums.BeginMode mode, [Out] out Int32 first, [In, Out] Int32[] count, Int32 primcount)
             {
-                first = default(Int32);
                 unsafe
                 {
                     fixed (Int32* first_ptr = &first)
@@ -25126,8 +24224,6 @@ namespace OpenTK.OpenGL
             public static 
             void MultiDrawArraysEXT(GL.Enums.BeginMode mode, [Out] out Int32 first, [Out] out Int32 count, Int32 primcount)
             {
-                first = default(Int32);
-                count = default(Int32);
                 unsafe
                 {
                     fixed (Int32* first_ptr = &first)
@@ -26714,7 +25810,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantBooleanvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] GL.Enums.Boolean* data)
             {
-                data = default(GL.Enums.Boolean*);
                     {
                         Delegates.glGetVariantBooleanvEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data);
                     }
@@ -26731,7 +25826,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantIntegervEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] Int32* data)
             {
-                data = default(Int32*);
                     {
                         Delegates.glGetVariantIntegervEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (Int32*)data);
                     }
@@ -26766,7 +25860,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantIntegervEXT(UInt32 id, GL.Enums.EXT_vertex_shader value, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -26780,7 +25873,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantIntegervEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -26802,7 +25894,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantFloatvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] Single* data)
             {
-                data = default(Single*);
                     {
                         Delegates.glGetVariantFloatvEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (Single*)data);
                     }
@@ -26837,7 +25928,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantFloatvEXT(UInt32 id, GL.Enums.EXT_vertex_shader value, [Out] out Single data)
             {
-                data = default(Single);
                 unsafe
                 {
                     fixed (Single* data_ptr = &data)
@@ -26851,7 +25941,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantFloatvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] out Single data)
             {
-                data = default(Single);
                 unsafe
                 {
                     fixed (Single* data_ptr = &data)
@@ -26873,7 +25962,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantPointervEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] void* data)
             {
-                data = default(void*);
                     {
                         Delegates.glGetVariantPointervEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (void*)data);
                     }
@@ -26925,7 +26013,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInvariantBooleanvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] GL.Enums.Boolean* data)
             {
-                data = default(GL.Enums.Boolean*);
                     {
                         Delegates.glGetInvariantBooleanvEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data);
                     }
@@ -26942,7 +26029,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInvariantIntegervEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] Int32* data)
             {
-                data = default(Int32*);
                     {
                         Delegates.glGetInvariantIntegervEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (Int32*)data);
                     }
@@ -26977,7 +26063,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInvariantIntegervEXT(UInt32 id, GL.Enums.EXT_vertex_shader value, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -26991,7 +26076,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInvariantIntegervEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -27013,7 +26097,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetInvariantFloatvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] Single* data)
             {
-                data = default(Single*);
                     {
                         Delegates.glGetInvariantFloatvEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (Single*)data);
                     }
@@ -27048,7 +26131,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInvariantFloatvEXT(UInt32 id, GL.Enums.EXT_vertex_shader value, [Out] out Single data)
             {
-                data = default(Single);
                 unsafe
                 {
                     fixed (Single* data_ptr = &data)
@@ -27062,7 +26144,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetInvariantFloatvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] out Single data)
             {
-                data = default(Single);
                 unsafe
                 {
                     fixed (Single* data_ptr = &data)
@@ -27084,7 +26165,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetLocalConstantBooleanvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] GL.Enums.Boolean* data)
             {
-                data = default(GL.Enums.Boolean*);
                     {
                         Delegates.glGetLocalConstantBooleanvEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (GL.Enums.Boolean*)data);
                     }
@@ -27101,7 +26181,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetLocalConstantIntegervEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] Int32* data)
             {
-                data = default(Int32*);
                     {
                         Delegates.glGetLocalConstantIntegervEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (Int32*)data);
                     }
@@ -27136,7 +26215,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetLocalConstantIntegervEXT(UInt32 id, GL.Enums.EXT_vertex_shader value, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -27150,7 +26228,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetLocalConstantIntegervEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -27172,7 +26249,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetLocalConstantFloatvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] Single* data)
             {
-                data = default(Single*);
                     {
                         Delegates.glGetLocalConstantFloatvEXT((UInt32)id, (GL.Enums.EXT_vertex_shader)value, (Single*)data);
                     }
@@ -27207,7 +26283,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetLocalConstantFloatvEXT(UInt32 id, GL.Enums.EXT_vertex_shader value, [Out] out Single data)
             {
-                data = default(Single);
                 unsafe
                 {
                     fixed (Single* data_ptr = &data)
@@ -27221,7 +26296,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetLocalConstantFloatvEXT(Int32 id, GL.Enums.EXT_vertex_shader value, [Out] out Single data)
             {
-                data = default(Single);
                 unsafe
                 {
                     fixed (Single* data_ptr = &data)
@@ -27353,7 +26427,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenRenderbuffersEXT(Int32 n, [Out] Int32* renderbuffers)
             {
-                renderbuffers = default(Int32*);
                     {
                         Delegates.glGenRenderbuffersEXT((Int32)n, (UInt32*)renderbuffers);
                     }
@@ -27388,7 +26461,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenRenderbuffersEXT(Int32 n, [Out] out UInt32 renderbuffers)
             {
-                renderbuffers = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* renderbuffers_ptr = &renderbuffers)
@@ -27402,7 +26474,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenRenderbuffersEXT(Int32 n, [Out] out Int32 renderbuffers)
             {
-                renderbuffers = default(Int32);
                 unsafe
                 {
                     fixed (Int32* renderbuffers_ptr = &renderbuffers)
@@ -27441,7 +26512,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetRenderbufferParameter(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -27555,7 +26625,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenFramebuffersEXT(Int32 n, [Out] Int32* framebuffers)
             {
-                framebuffers = default(Int32*);
                     {
                         Delegates.glGenFramebuffersEXT((Int32)n, (UInt32*)framebuffers);
                     }
@@ -27590,7 +26659,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenFramebuffersEXT(Int32 n, [Out] out UInt32 framebuffers)
             {
-                framebuffers = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* framebuffers_ptr = &framebuffers)
@@ -27604,7 +26672,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenFramebuffersEXT(Int32 n, [Out] out Int32 framebuffers)
             {
-                framebuffers = default(Int32);
                 unsafe
                 {
                     fixed (Int32* framebuffers_ptr = &framebuffers)
@@ -27695,7 +26762,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFramebufferAttachmentParameter(GL.Enums.EXT_framebuffer_object target, GL.Enums.EXT_framebuffer_object attachment, GL.Enums.EXT_framebuffer_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -27748,7 +26814,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryObjecti64vEXT(Int32 id, GL.Enums.EXT_timer_query pname, [Out] Int64* @params)
             {
-                @params = default(Int64*);
                     {
                         Delegates.glGetQueryObjecti64vEXT((UInt32)id, (GL.Enums.EXT_timer_query)pname, (Int64*)@params);
                     }
@@ -27783,7 +26848,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQueryObjecti64vEXT(UInt32 id, GL.Enums.EXT_timer_query pname, [Out] out Int64 @params)
             {
-                @params = default(Int64);
                 unsafe
                 {
                     fixed (Int64* @params_ptr = &@params)
@@ -27797,7 +26861,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQueryObjecti64vEXT(Int32 id, GL.Enums.EXT_timer_query pname, [Out] out Int64 @params)
             {
-                @params = default(Int64);
                 unsafe
                 {
                     fixed (Int64* @params_ptr = &@params)
@@ -27819,7 +26882,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetQueryObjectui64vEXT(Int32 id, GL.Enums.EXT_timer_query pname, [Out] Int64* @params)
             {
-                @params = default(Int64*);
                     {
                         Delegates.glGetQueryObjectui64vEXT((UInt32)id, (GL.Enums.EXT_timer_query)pname, (UInt64*)@params);
                     }
@@ -27854,7 +26916,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQueryObjectui64vEXT(UInt32 id, GL.Enums.EXT_timer_query pname, [Out] out UInt64 @params)
             {
-                @params = default(UInt64);
                 unsafe
                 {
                     fixed (UInt64* @params_ptr = &@params)
@@ -27868,7 +26929,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetQueryObjectui64vEXT(Int32 id, GL.Enums.EXT_timer_query pname, [Out] out Int64 @params)
             {
-                @params = default(Int64);
                 unsafe
                 {
                     fixed (Int64* @params_ptr = &@params)
@@ -28799,7 +27859,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribI(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetVertexAttribIivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (Int32*)@params);
                     }
@@ -28834,7 +27893,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttribI(UInt32 index, GL.Enums.NV_vertex_program4 pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -28848,7 +27906,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttribI(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -28883,7 +27940,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttribI(UInt32 index, GL.Enums.NV_vertex_program4 pname, [Out] out UInt32 @params)
             {
-                @params = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
@@ -28905,7 +27961,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetUniform(Int32 program, Int32 location, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetUniformuivEXT((UInt32)program, (Int32)location, (UInt32*)@params);
                     }
@@ -28940,7 +27995,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetUniform(UInt32 program, Int32 location, [Out] out UInt32 @params)
             {
-                @params = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
@@ -28954,7 +28008,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetUniform(Int32 program, Int32 location, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -29379,7 +28432,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetBooleanIndexe(GL.Enums.EXT_draw_buffers2 target, Int32 index, [Out] GL.Enums.Boolean* data)
             {
-                data = default(GL.Enums.Boolean*);
                     {
                         Delegates.glGetBooleanIndexedvEXT((GL.Enums.EXT_draw_buffers2)target, (UInt32)index, (GL.Enums.Boolean*)data);
                     }
@@ -29396,7 +28448,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetIntegerIndexe(GL.Enums.EXT_draw_buffers2 target, Int32 index, [Out] Int32* data)
             {
-                data = default(Int32*);
                     {
                         Delegates.glGetIntegerIndexedvEXT((GL.Enums.EXT_draw_buffers2)target, (UInt32)index, (Int32*)data);
                     }
@@ -29431,7 +28482,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetIntegerIndexe(GL.Enums.EXT_draw_buffers2 target, UInt32 index, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -29445,7 +28495,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetIntegerIndexe(GL.Enums.EXT_draw_buffers2 target, Int32 index, [Out] out Int32 data)
             {
-                data = default(Int32);
                 unsafe
                 {
                     fixed (Int32* data_ptr = &data)
@@ -29620,7 +28669,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTexParameterI(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -29655,7 +28703,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTexParameterI(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] out UInt32 @params)
             {
-                @params = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
@@ -29711,7 +28758,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTexFilterFuncSGIS(GL.Enums.TextureTarget target, GL.Enums.SGIS_texture_filter4 filter, [Out] out Single weights)
             {
-                weights = default(Single);
                 unsafe
                 {
                     fixed (Single* weights_ptr = &weights)
@@ -29849,7 +28895,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetPixelTexGenParameter(GL.Enums.PixelTexGenParameterNameSGIS pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -29882,7 +28927,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetPixelTexGenParameter(GL.Enums.PixelTexGenParameterNameSGIS pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -29994,7 +29038,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetDetailTexFuncSGIS(GL.Enums.TextureTarget target, [Out] out Single points)
             {
-                points = default(Single);
                 unsafe
                 {
                     fixed (Single* points_ptr = &points)
@@ -30058,7 +29101,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetSharpenTexFuncSGIS(GL.Enums.TextureTarget target, [Out] out Single points)
             {
-                points = default(Single);
                 unsafe
                 {
                     fixed (Single* points_ptr = &points)
@@ -30171,7 +29213,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFogFuncSGIS([Out] out Single points)
             {
-                points = default(Single);
                 unsafe
                 {
                     fixed (Single* points_ptr = &points)
@@ -30330,7 +29371,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetColorTableParameter(GL.Enums.ColorTableTargetSGI target, GL.Enums.GetColorTableParameterPNameSGI pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -30363,7 +29403,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetColorTableParameter(GL.Enums.ColorTableTargetSGI target, GL.Enums.GetColorTableParameterPNameSGI pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -30486,7 +29525,6 @@ namespace OpenTK.OpenGL
             public static 
             void InstrumentsBufferSGIX(Int32 size, [Out] out Int32 buffer)
             {
-                buffer = default(Int32);
                 unsafe
                 {
                     fixed (Int32* buffer_ptr = &buffer)
@@ -30520,7 +29558,6 @@ namespace OpenTK.OpenGL
             public static 
             Int32 PollInstrumentsSGIX([Out] out Int32 marker_p)
             {
-                marker_p = default(Int32);
                 unsafe
                 {
                     fixed (Int32* marker_p_ptr = &marker_p)
@@ -30684,7 +29721,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetListParameter(Int32 list, GL.Enums.ListParameterName pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetListParameterfvSGIX((UInt32)list, (GL.Enums.ListParameterName)pname, (Single*)@params);
                     }
@@ -30719,7 +29755,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetListParameter(UInt32 list, GL.Enums.ListParameterName pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -30733,7 +29768,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetListParameter(Int32 list, GL.Enums.ListParameterName pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -30755,7 +29789,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetListParameter(Int32 list, GL.Enums.ListParameterName pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetListParameterivSGIX((UInt32)list, (GL.Enums.ListParameterName)pname, (Int32*)@params);
                     }
@@ -30790,7 +29823,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetListParameter(UInt32 list, GL.Enums.ListParameterName pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -30804,7 +29836,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetListParameter(Int32 list, GL.Enums.ListParameterName pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -31223,7 +30254,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFragmentLight(GL.Enums.SGIX_fragment_lighting light, GL.Enums.SGIX_fragment_lighting pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -31256,7 +30286,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFragmentLight(GL.Enums.SGIX_fragment_lighting light, GL.Enums.SGIX_fragment_lighting pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -31289,7 +30318,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFragmentMaterial(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -31322,7 +30350,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFragmentMaterial(GL.Enums.MaterialFace face, GL.Enums.MaterialParameter pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -31363,7 +30390,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Int32 FinishAsyncSGIX([Out] Int32* markerp)
             {
-                markerp = default(Int32*);
                     {
                         Int32 retval = Delegates.glFinishAsyncSGIX((UInt32*)markerp);
                         return retval;
@@ -31401,7 +30427,6 @@ namespace OpenTK.OpenGL
             public static 
             Int32 FinishAsyncSGIX([Out] out UInt32 markerp)
             {
-                markerp = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* markerp_ptr = &markerp)
@@ -31416,7 +30441,6 @@ namespace OpenTK.OpenGL
             public static 
             Int32 FinishAsyncSGIX([Out] out Int32 markerp)
             {
-                markerp = default(Int32);
                 unsafe
                 {
                     fixed (Int32* markerp_ptr = &markerp)
@@ -31439,7 +30463,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Int32 PollAsyncSGIX([Out] Int32* markerp)
             {
-                markerp = default(Int32*);
                     {
                         Int32 retval = Delegates.glPollAsyncSGIX((UInt32*)markerp);
                         return retval;
@@ -31477,7 +30500,6 @@ namespace OpenTK.OpenGL
             public static 
             Int32 PollAsyncSGIX([Out] out UInt32 markerp)
             {
-                markerp = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* markerp_ptr = &markerp)
@@ -31492,7 +30514,6 @@ namespace OpenTK.OpenGL
             public static 
             Int32 PollAsyncSGIX([Out] out Int32 markerp)
             {
-                markerp = default(Int32);
                 unsafe
                 {
                     fixed (Int32* markerp_ptr = &markerp)
@@ -31660,7 +30681,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetImageTransformParameter(GL.Enums.HP_image_transform target, GL.Enums.HP_image_transform pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -31693,7 +30713,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetImageTransformParameter(GL.Enums.HP_image_transform target, GL.Enums.HP_image_transform pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -48964,7 +47983,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetCombinerInputParameter(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -48997,7 +48015,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetCombinerInputParameter(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49030,7 +48047,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetCombinerOutputParameter(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -49063,7 +48079,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetCombinerOutputParameter(GL.Enums.NV_register_combiners stage, GL.Enums.NV_register_combiners portion, GL.Enums.NV_register_combiners pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49096,7 +48111,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFinalCombinerInputParameter(GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -49129,7 +48143,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFinalCombinerInputParameter(GL.Enums.NV_register_combiners variable, GL.Enums.NV_register_combiners pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49217,7 +48230,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenFencesNV(Int32 n, [Out] Int32* fences)
             {
-                fences = default(Int32*);
                     {
                         Delegates.glGenFencesNV((Int32)n, (UInt32*)fences);
                     }
@@ -49252,7 +48264,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenFencesNV(Int32 n, [Out] out UInt32 fences)
             {
-                fences = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* fences_ptr = &fences)
@@ -49266,7 +48277,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenFencesNV(Int32 n, [Out] out Int32 fences)
             {
-                fences = default(Int32);
                 unsafe
                 {
                     fixed (Int32* fences_ptr = &fences)
@@ -49314,7 +48324,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetFence(Int32 fence, GL.Enums.NV_fence pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetFenceivNV((UInt32)fence, (GL.Enums.NV_fence)pname, (Int32*)@params);
                     }
@@ -49349,7 +48358,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFence(UInt32 fence, GL.Enums.NV_fence pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49363,7 +48371,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetFence(Int32 fence, GL.Enums.NV_fence pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49489,7 +48496,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapControlPointsNV(GL.Enums.NV_evaluators target, Int32 index, GL.Enums.NV_evaluators type, Int32 ustride, Int32 vstride, GL.Enums.Boolean packed, [Out] void* points)
             {
-                points = default(void*);
                     {
                         Delegates.glGetMapControlPointsNV((GL.Enums.NV_evaluators)target, (UInt32)index, (GL.Enums.NV_evaluators)type, (Int32)ustride, (Int32)vstride, (GL.Enums.Boolean)packed, (void*)points);
                     }
@@ -49517,7 +48523,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMapParameter(GL.Enums.NV_evaluators target, GL.Enums.NV_evaluators pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49550,7 +48555,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMapParameter(GL.Enums.NV_evaluators target, GL.Enums.NV_evaluators pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -49572,7 +48576,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapAttribParameter(GL.Enums.NV_evaluators target, Int32 index, GL.Enums.NV_evaluators pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetMapAttribParameterivNV((GL.Enums.NV_evaluators)target, (UInt32)index, (GL.Enums.NV_evaluators)pname, (Int32*)@params);
                     }
@@ -49607,7 +48610,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMapAttribParameter(GL.Enums.NV_evaluators target, UInt32 index, GL.Enums.NV_evaluators pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49621,7 +48623,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMapAttribParameter(GL.Enums.NV_evaluators target, Int32 index, GL.Enums.NV_evaluators pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -49643,7 +48644,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetMapAttribParameter(GL.Enums.NV_evaluators target, Int32 index, GL.Enums.NV_evaluators pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetMapAttribParameterfvNV((GL.Enums.NV_evaluators)target, (UInt32)index, (GL.Enums.NV_evaluators)pname, (Single*)@params);
                     }
@@ -49678,7 +48678,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMapAttribParameter(GL.Enums.NV_evaluators target, UInt32 index, GL.Enums.NV_evaluators pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -49692,7 +48691,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetMapAttribParameter(GL.Enums.NV_evaluators target, Int32 index, GL.Enums.NV_evaluators pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -49762,7 +48760,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetCombinerStageParameter(GL.Enums.NV_register_combiners2 stage, GL.Enums.NV_register_combiners2 pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -49784,7 +48781,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreProgramsResidentNV(Int32 n, Int32* programs, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     {
                         Boolean retval = Delegates.glAreProgramsResidentNV((Int32)n, (UInt32*)programs, (GL.Enums.Boolean*)residences);
                         return retval;
@@ -49795,7 +48791,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreProgramsResidentNV(Int32 n, [In, Out] UInt32[] programs, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (UInt32* programs_ptr = programs)
                     {
                         Boolean retval = Delegates.glAreProgramsResidentNV((Int32)n, (UInt32*)programs_ptr, (GL.Enums.Boolean*)residences);
@@ -49807,7 +48802,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreProgramsResidentNV(Int32 n, [In, Out] Int32[] programs, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (Int32* programs_ptr = programs)
                     {
                         Boolean retval = Delegates.glAreProgramsResidentNV((Int32)n, (UInt32*)programs_ptr, (GL.Enums.Boolean*)residences);
@@ -49819,7 +48813,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreProgramsResidentNV(Int32 n, ref UInt32 programs, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (UInt32* programs_ptr = &programs)
                     {
                         Boolean retval = Delegates.glAreProgramsResidentNV((Int32)n, (UInt32*)programs_ptr, (GL.Enums.Boolean*)residences);
@@ -49831,7 +48824,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe Boolean AreProgramsResidentNV(Int32 n, ref Int32 programs, [Out] GL.Enums.Boolean* residences)
             {
-                residences = default(GL.Enums.Boolean*);
                     fixed (Int32* programs_ptr = &programs)
                     {
                         Boolean retval = Delegates.glAreProgramsResidentNV((Int32)n, (UInt32*)programs_ptr, (GL.Enums.Boolean*)residences);
@@ -49995,7 +48987,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenProgramsNV(Int32 n, [Out] Int32* programs)
             {
-                programs = default(Int32*);
                     {
                         Delegates.glGenProgramsNV((Int32)n, (UInt32*)programs);
                     }
@@ -50030,7 +49021,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenProgramsNV(Int32 n, [Out] out UInt32 programs)
             {
-                programs = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* programs_ptr = &programs)
@@ -50044,7 +49034,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenProgramsNV(Int32 n, [Out] out Int32 programs)
             {
-                programs = default(Int32);
                 unsafe
                 {
                     fixed (Int32* programs_ptr = &programs)
@@ -50066,7 +49055,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramParameter(GL.Enums.NV_vertex_program target, Int32 index, GL.Enums.NV_vertex_program pname, [Out] Double* @params)
             {
-                @params = default(Double*);
                     {
                         Delegates.glGetProgramParameterdvNV((GL.Enums.NV_vertex_program)target, (UInt32)index, (GL.Enums.NV_vertex_program)pname, (Double*)@params);
                     }
@@ -50101,7 +49089,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramParameter(GL.Enums.NV_vertex_program target, UInt32 index, GL.Enums.NV_vertex_program pname, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -50115,7 +49102,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramParameter(GL.Enums.NV_vertex_program target, Int32 index, GL.Enums.NV_vertex_program pname, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -50137,7 +49123,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramParameter(GL.Enums.NV_vertex_program target, Int32 index, GL.Enums.NV_vertex_program pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetProgramParameterfvNV((GL.Enums.NV_vertex_program)target, (UInt32)index, (GL.Enums.NV_vertex_program)pname, (Single*)@params);
                     }
@@ -50172,7 +49157,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramParameter(GL.Enums.NV_vertex_program target, UInt32 index, GL.Enums.NV_vertex_program pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -50186,7 +49170,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramParameter(GL.Enums.NV_vertex_program target, Int32 index, GL.Enums.NV_vertex_program pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -50208,7 +49191,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgram(Int32 id, GL.Enums.NV_vertex_program pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetProgramivNV((UInt32)id, (GL.Enums.NV_vertex_program)pname, (Int32*)@params);
                     }
@@ -50243,7 +49225,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgram(UInt32 id, GL.Enums.NV_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -50257,7 +49238,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgram(Int32 id, GL.Enums.NV_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -50279,7 +49259,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramStringNV(Int32 id, GL.Enums.NV_vertex_program pname, [Out] Byte* program)
             {
-                program = default(Byte*);
                     {
                         Delegates.glGetProgramStringNV((UInt32)id, (GL.Enums.NV_vertex_program)pname, (Byte*)program);
                     }
@@ -50314,7 +49293,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramStringNV(UInt32 id, GL.Enums.NV_vertex_program pname, [Out] out Byte program)
             {
-                program = default(Byte);
                 unsafe
                 {
                     fixed (Byte* program_ptr = &program)
@@ -50328,7 +49306,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramStringNV(Int32 id, GL.Enums.NV_vertex_program pname, [Out] out Byte program)
             {
-                program = default(Byte);
                 unsafe
                 {
                     fixed (Byte* program_ptr = &program)
@@ -50350,7 +49327,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTrackMatrix(GL.Enums.NV_vertex_program target, Int32 address, GL.Enums.NV_vertex_program pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetTrackMatrixivNV((GL.Enums.NV_vertex_program)target, (UInt32)address, (GL.Enums.NV_vertex_program)pname, (Int32*)@params);
                     }
@@ -50385,7 +49361,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTrackMatrix(GL.Enums.NV_vertex_program target, UInt32 address, GL.Enums.NV_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -50399,7 +49374,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTrackMatrix(GL.Enums.NV_vertex_program target, Int32 address, GL.Enums.NV_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -50421,7 +49395,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttrib(Int32 index, GL.Enums.NV_vertex_program pname, [Out] Double* @params)
             {
-                @params = default(Double*);
                     {
                         Delegates.glGetVertexAttribdvNV((UInt32)index, (GL.Enums.NV_vertex_program)pname, (Double*)@params);
                     }
@@ -50456,7 +49429,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(UInt32 index, GL.Enums.NV_vertex_program pname, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -50470,7 +49442,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(Int32 index, GL.Enums.NV_vertex_program pname, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Double* @params_ptr = &@params)
@@ -50492,7 +49463,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttrib(Int32 index, GL.Enums.NV_vertex_program pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetVertexAttribfvNV((UInt32)index, (GL.Enums.NV_vertex_program)pname, (Single*)@params);
                     }
@@ -50527,7 +49497,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(UInt32 index, GL.Enums.NV_vertex_program pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -50541,7 +49510,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(Int32 index, GL.Enums.NV_vertex_program pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -50563,7 +49531,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttrib(Int32 index, GL.Enums.NV_vertex_program pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetVertexAttribivNV((UInt32)index, (GL.Enums.NV_vertex_program)pname, (Int32*)@params);
                     }
@@ -50598,7 +49565,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(UInt32 index, GL.Enums.NV_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -50612,7 +49578,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttrib(Int32 index, GL.Enums.NV_vertex_program pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -50634,7 +49599,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribPointervNV(Int32 index, GL.Enums.NV_vertex_program pname, [Out] void* pointer)
             {
-                pointer = default(void*);
                     {
                         Delegates.glGetVertexAttribPointervNV((UInt32)index, (GL.Enums.NV_vertex_program)pname, (void*)pointer);
                     }
@@ -53070,7 +52034,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenOcclusionQueriesNV(Int32 n, [Out] Int32* ids)
             {
-                ids = default(Int32*);
                     {
                         Delegates.glGenOcclusionQueriesNV((Int32)n, (UInt32*)ids);
                     }
@@ -53105,7 +52068,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenOcclusionQueriesNV(Int32 n, [Out] out UInt32 ids)
             {
-                ids = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* ids_ptr = &ids)
@@ -53119,7 +52081,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenOcclusionQueriesNV(Int32 n, [Out] out Int32 ids)
             {
-                ids = default(Int32);
                 unsafe
                 {
                     fixed (Int32* ids_ptr = &ids)
@@ -53239,7 +52200,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetOcclusionQuery(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetOcclusionQueryivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (Int32*)@params);
                     }
@@ -53274,7 +52234,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetOcclusionQuery(UInt32 id, GL.Enums.NV_occlusion_query pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -53288,7 +52247,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetOcclusionQuery(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -53323,7 +52281,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetOcclusionQuery(UInt32 id, GL.Enums.NV_occlusion_query pname, [Out] out UInt32 @params)
             {
-                @params = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
@@ -53922,7 +52879,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, Byte* name, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetProgramNamedParameterfvNV((UInt32)id, (Int32)len, (Byte*)name, (Single*)@params);
                     }
@@ -53952,7 +52908,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(UInt32 id, Int32 len, Byte* name, [Out] out Single @params)
             {
-                @params = default(Single);
                     fixed (Single* @params_ptr = &@params)
                     {
                         Delegates.glGetProgramNamedParameterfvNV((UInt32)id, (Int32)len, (Byte*)name, (Single*)@params_ptr);
@@ -53964,7 +52919,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, Byte* name, [Out] out Single @params)
             {
-                @params = default(Single);
                     fixed (Single* @params_ptr = &@params)
                     {
                         Delegates.glGetProgramNamedParameterfvNV((UInt32)id, (Int32)len, (Byte*)name, (Single*)@params_ptr);
@@ -53976,7 +52930,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(UInt32 id, Int32 len, [In, Out] Byte[] name, [Out] Single* @params)
             {
-                @params = default(Single*);
                     fixed (Byte* name_ptr = name)
                     {
                         Delegates.glGetProgramNamedParameterfvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Single*)@params);
@@ -53987,7 +52940,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, [In, Out] Byte[] name, [Out] Single* @params)
             {
-                @params = default(Single*);
                     fixed (Byte* name_ptr = name)
                     {
                         Delegates.glGetProgramNamedParameterfvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Single*)@params);
@@ -54025,7 +52977,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(UInt32 id, Int32 len, [In, Out] Byte[] name, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Byte* name_ptr = name)
@@ -54040,7 +52991,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(Int32 id, Int32 len, [In, Out] Byte[] name, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Byte* name_ptr = name)
@@ -54056,7 +53006,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(UInt32 id, Int32 len, ref Byte name, [Out] Single* @params)
             {
-                @params = default(Single*);
                     fixed (Byte* name_ptr = &name)
                     {
                         Delegates.glGetProgramNamedParameterfvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Single*)@params);
@@ -54067,7 +53016,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, ref Byte name, [Out] Single* @params)
             {
-                @params = default(Single*);
                     fixed (Byte* name_ptr = &name)
                     {
                         Delegates.glGetProgramNamedParameterfvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Single*)@params);
@@ -54105,7 +53053,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(UInt32 id, Int32 len, ref Byte name, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Byte* name_ptr = &name)
@@ -54120,7 +53067,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(Int32 id, Int32 len, ref Byte name, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Byte* name_ptr = &name)
@@ -54143,7 +53089,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, Byte* name, [Out] Double* @params)
             {
-                @params = default(Double*);
                     {
                         Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name, (Double*)@params);
                     }
@@ -54173,7 +53118,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(UInt32 id, Int32 len, Byte* name, [Out] out Double @params)
             {
-                @params = default(Double);
                     fixed (Double* @params_ptr = &@params)
                     {
                         Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name, (Double*)@params_ptr);
@@ -54185,7 +53129,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, Byte* name, [Out] out Double @params)
             {
-                @params = default(Double);
                     fixed (Double* @params_ptr = &@params)
                     {
                         Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name, (Double*)@params_ptr);
@@ -54197,7 +53140,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(UInt32 id, Int32 len, [In, Out] Byte[] name, [Out] Double* @params)
             {
-                @params = default(Double*);
                     fixed (Byte* name_ptr = name)
                     {
                         Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Double*)@params);
@@ -54208,7 +53150,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, [In, Out] Byte[] name, [Out] Double* @params)
             {
-                @params = default(Double*);
                     fixed (Byte* name_ptr = name)
                     {
                         Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Double*)@params);
@@ -54246,7 +53187,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(UInt32 id, Int32 len, [In, Out] Byte[] name, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Byte* name_ptr = name)
@@ -54261,7 +53201,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(Int32 id, Int32 len, [In, Out] Byte[] name, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Byte* name_ptr = name)
@@ -54277,7 +53216,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(UInt32 id, Int32 len, ref Byte name, [Out] Double* @params)
             {
-                @params = default(Double*);
                     fixed (Byte* name_ptr = &name)
                     {
                         Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Double*)@params);
@@ -54288,7 +53226,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramNamedParameter(Int32 id, Int32 len, ref Byte name, [Out] Double* @params)
             {
-                @params = default(Double*);
                     fixed (Byte* name_ptr = &name)
                     {
                         Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name_ptr, (Double*)@params);
@@ -54326,7 +53263,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(UInt32 id, Int32 len, ref Byte name, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Byte* name_ptr = &name)
@@ -54341,7 +53277,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramNamedParameter(Int32 id, Int32 len, ref Byte name, [Out] out Double @params)
             {
-                @params = default(Double);
                 unsafe
                 {
                     fixed (Byte* name_ptr = &name)
@@ -56772,7 +55707,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramLocalParameterI(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetProgramLocalParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params);
                     }
@@ -56807,7 +55741,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramLocalParameterI(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -56821,7 +55754,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramLocalParameterI(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -56856,7 +55788,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramLocalParameterI(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] out UInt32 @params)
             {
-                @params = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
@@ -56878,7 +55809,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetProgramEnvParameterI(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetProgramEnvParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params);
                     }
@@ -56913,7 +55843,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramEnvParameterI(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -56927,7 +55856,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramEnvParameterI(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -56962,7 +55890,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetProgramEnvParameterI(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] out UInt32 @params)
             {
-                @params = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
@@ -57388,10 +56315,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
                     }
@@ -57401,9 +56324,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.NV_transform_feedback*)type_ptr, (System.Text.StringBuilder)name);
@@ -57414,9 +56334,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.NV_transform_feedback*)type_ptr, (System.Text.StringBuilder)name);
@@ -57427,10 +56344,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.NV_transform_feedback*)type_ptr, (System.Text.StringBuilder)name);
@@ -57442,10 +56355,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] Int32* size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size, (GL.Enums.NV_transform_feedback*)type_ptr, (System.Text.StringBuilder)name);
@@ -57457,9 +56366,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57470,9 +56376,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57483,8 +56386,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57496,8 +56397,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57509,9 +56408,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -57524,9 +56420,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [In, Out] Int32[] size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -57539,10 +56432,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57554,10 +56443,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length, (Int32*)size_ptr, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57569,9 +56454,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57584,9 +56466,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57599,10 +56478,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -57616,10 +56491,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] Int32* length, [Out] out Int32 size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32*);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* size_ptr = &size)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -57633,9 +56504,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57646,9 +56514,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57659,8 +56524,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57672,8 +56535,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57685,9 +56546,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -57700,9 +56558,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] Int32* size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -57715,8 +56570,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -57728,8 +56581,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -57741,7 +56592,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57756,7 +56606,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57772,8 +56621,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57789,8 +56636,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [In, Out] Int32[] size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57807,9 +56652,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -57822,9 +56664,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -57837,8 +56676,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57854,8 +56691,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57872,9 +56707,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57891,9 +56723,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [In, Out] Int32[] length, [Out] out Int32 size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = length)
@@ -57911,10 +56740,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57926,10 +56751,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     {
                         Delegates.glGetActiveVaryingNV((UInt32)program, (UInt32)index, (Int32)bufSize, (Int32*)length_ptr, (Int32*)size, (GL.Enums.NV_transform_feedback*)type, (System.Text.StringBuilder)name);
@@ -57941,9 +56762,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57956,9 +56774,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = type)
                     {
@@ -57971,10 +56786,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -57988,10 +56799,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] Int32* size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32*);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (GL.Enums.NV_transform_feedback* type_ptr = &type)
                     {
@@ -58005,9 +56812,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -58020,9 +56824,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = size)
                     {
@@ -58035,8 +56836,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58052,8 +56851,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58070,9 +56867,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58089,9 +56883,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [In, Out] Int32[] size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58109,10 +56900,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -58126,10 +56913,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] GL.Enums.NV_transform_feedback* type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback*);
-                name = default(System.Text.StringBuilder);
                     fixed (Int32* length_ptr = &length)
                     fixed (Int32* size_ptr = &size)
                     {
@@ -58143,9 +56926,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58162,9 +56942,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [In, Out] GL.Enums.NV_transform_feedback[] type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58182,10 +56959,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(UInt32 program, UInt32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58203,10 +56976,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetActiveVaryingNV(Int32 program, Int32 index, Int32 bufSize, [Out] out Int32 length, [Out] out Int32 size, [Out] out GL.Enums.NV_transform_feedback type, [Out] System.Text.StringBuilder name)
             {
-                length = default(Int32);
-                size = default(Int32);
-                type = default(GL.Enums.NV_transform_feedback);
-                name = default(System.Text.StringBuilder);
                 unsafe
                 {
                     fixed (Int32* length_ptr = &length)
@@ -58232,7 +57001,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetTransformFeedbackVaryingNV(Int32 program, Int32 index, [Out] Int32* location)
             {
-                location = default(Int32*);
                     {
                         Delegates.glGetTransformFeedbackVaryingNV((UInt32)program, (UInt32)index, (Int32*)location);
                     }
@@ -58267,7 +57035,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTransformFeedbackVaryingNV(UInt32 program, UInt32 index, [Out] out Int32 location)
             {
-                location = default(Int32);
                 unsafe
                 {
                     fixed (Int32* location_ptr = &location)
@@ -58281,7 +57048,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTransformFeedbackVaryingNV(Int32 program, Int32 index, [Out] out Int32 location)
             {
-                location = default(Int32);
                 unsafe
                 {
                     fixed (Int32* location_ptr = &location)
@@ -59570,7 +58336,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTexBumpParameter(GL.Enums.ATI_envmap_bumpmap pname, [Out] out Int32 param)
             {
-                param = default(Int32);
                 unsafe
                 {
                     fixed (Int32* param_ptr = &param)
@@ -59603,7 +58368,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetTexBumpParameter(GL.Enums.ATI_envmap_bumpmap pname, [Out] out Single param)
             {
-                param = default(Single);
                 unsafe
                 {
                     fixed (Single* param_ptr = &param)
@@ -59947,7 +58711,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectBuffer(Int32 buffer, GL.Enums.ATI_vertex_array_object pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetObjectBufferfvATI((UInt32)buffer, (GL.Enums.ATI_vertex_array_object)pname, (Single*)@params);
                     }
@@ -59982,7 +58745,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectBuffer(UInt32 buffer, GL.Enums.ATI_vertex_array_object pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -59996,7 +58758,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectBuffer(Int32 buffer, GL.Enums.ATI_vertex_array_object pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -60018,7 +58779,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetObjectBuffer(Int32 buffer, GL.Enums.ATI_vertex_array_object pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetObjectBufferivATI((UInt32)buffer, (GL.Enums.ATI_vertex_array_object)pname, (Int32*)@params);
                     }
@@ -60053,7 +58813,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectBuffer(UInt32 buffer, GL.Enums.ATI_vertex_array_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -60067,7 +58826,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetObjectBuffer(Int32 buffer, GL.Enums.ATI_vertex_array_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -60126,7 +58884,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetArrayObject(GL.Enums.EnableCap array, GL.Enums.ATI_vertex_array_object pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -60159,7 +58916,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetArrayObject(GL.Enums.EnableCap array, GL.Enums.ATI_vertex_array_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -60194,7 +58950,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantArrayObject(Int32 id, GL.Enums.ATI_vertex_array_object pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetVariantArrayObjectfvATI((UInt32)id, (GL.Enums.ATI_vertex_array_object)pname, (Single*)@params);
                     }
@@ -60229,7 +58984,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantArrayObject(UInt32 id, GL.Enums.ATI_vertex_array_object pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -60243,7 +58997,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantArrayObject(Int32 id, GL.Enums.ATI_vertex_array_object pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -60265,7 +59018,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVariantArrayObject(Int32 id, GL.Enums.ATI_vertex_array_object pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetVariantArrayObjectivATI((UInt32)id, (GL.Enums.ATI_vertex_array_object)pname, (Int32*)@params);
                     }
@@ -60300,7 +59052,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantArrayObject(UInt32 id, GL.Enums.ATI_vertex_array_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -60314,7 +59065,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVariantArrayObject(Int32 id, GL.Enums.ATI_vertex_array_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -61316,7 +60066,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribArrayObject(Int32 index, GL.Enums.ATI_vertex_attrib_array_object pname, [Out] Single* @params)
             {
-                @params = default(Single*);
                     {
                         Delegates.glGetVertexAttribArrayObjectfvATI((UInt32)index, (GL.Enums.ATI_vertex_attrib_array_object)pname, (Single*)@params);
                     }
@@ -61351,7 +60100,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttribArrayObject(UInt32 index, GL.Enums.ATI_vertex_attrib_array_object pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -61365,7 +60113,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttribArrayObject(Int32 index, GL.Enums.ATI_vertex_attrib_array_object pname, [Out] out Single @params)
             {
-                @params = default(Single);
                 unsafe
                 {
                     fixed (Single* @params_ptr = &@params)
@@ -61387,7 +60134,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GetVertexAttribArrayObject(Int32 index, GL.Enums.ATI_vertex_attrib_array_object pname, [Out] Int32* @params)
             {
-                @params = default(Int32*);
                     {
                         Delegates.glGetVertexAttribArrayObjectivATI((UInt32)index, (GL.Enums.ATI_vertex_attrib_array_object)pname, (Int32*)@params);
                     }
@@ -61422,7 +60168,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttribArrayObject(UInt32 index, GL.Enums.ATI_vertex_attrib_array_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -61436,7 +60181,6 @@ namespace OpenTK.OpenGL
             public static 
             void GetVertexAttribArrayObject(Int32 index, GL.Enums.ATI_vertex_attrib_array_object pname, [Out] out Int32 @params)
             {
-                @params = default(Int32);
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
@@ -61808,7 +60552,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenFencesAPPLE(Int32 n, [Out] Int32* fences)
             {
-                fences = default(Int32*);
                     {
                         Delegates.glGenFencesAPPLE((Int32)n, (UInt32*)fences);
                     }
@@ -61843,7 +60586,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenFencesAPPLE(Int32 n, [Out] out UInt32 fences)
             {
-                fences = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* fences_ptr = &fences)
@@ -61857,7 +60599,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenFencesAPPLE(Int32 n, [Out] out Int32 fences)
             {
-                fences = default(Int32);
                 unsafe
                 {
                     fixed (Int32* fences_ptr = &fences)
@@ -62095,7 +60836,6 @@ namespace OpenTK.OpenGL
             public static 
             unsafe void GenVertexArraysAPPLE(Int32 n, [Out] Int32* arrays)
             {
-                arrays = default(Int32*);
                     {
                         Delegates.glGenVertexArraysAPPLE((Int32)n, (UInt32*)arrays);
                     }
@@ -62130,7 +60870,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenVertexArraysAPPLE(Int32 n, [Out] out UInt32 arrays)
             {
-                arrays = default(UInt32);
                 unsafe
                 {
                     fixed (UInt32* arrays_ptr = &arrays)
@@ -62144,7 +60883,6 @@ namespace OpenTK.OpenGL
             public static 
             void GenVertexArraysAPPLE(Int32 n, [Out] out Int32 arrays)
             {
-                arrays = default(Int32);
                 unsafe
                 {
                     fixed (Int32* arrays_ptr = &arrays)

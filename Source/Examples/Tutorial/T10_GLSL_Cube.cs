@@ -31,7 +31,7 @@ namespace Examples.Tutorial
 
         string[] vertex_shader_source =
         {
-            "void main() {",
+            "void main()asd {",
             "gl_FrontColor = gl_Color;",
             "gl_Position = ftransform();",
             "}",
@@ -49,6 +49,7 @@ namespace Examples.Tutorial
         #endregion
 
         #region --- Constructors ---
+        #region public T10_GLSL_Cube()
 
         public T10_GLSL_Cube()
         {
@@ -74,8 +75,10 @@ namespace Examples.Tutorial
             GL.GetShader(vertex_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
             if (status != (int)Enums.Boolean.TRUE)
             {
-                StringBuilder info = new StringBuilder(1024);
-                GL.GetShaderInfoLog(vertex_shader_object, info.MaxCapacity, (int[])null, info);
+                int length = 0;
+                GL.GetShader(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
+                StringBuilder info = new StringBuilder(length);
+                GL.GetShaderInfoLog(vertex_shader_object, info.Capacity, out length, info);
 
                 throw new Exception(info.ToString());
             }
@@ -85,8 +88,10 @@ namespace Examples.Tutorial
             GL.GetShader(fragment_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
             if (status != (int)Enums.Boolean.TRUE)
             {
-                StringBuilder info = new StringBuilder(1024);
-                GL.GetShaderInfoLog(fragment_shader_object, 1024, (int[])null, info);
+                int length;
+                GL.GetShader(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
+                StringBuilder info = new StringBuilder(length);
+                GL.GetShaderInfoLog(fragment_shader_object, info.Capacity, out length, info);
 
                 throw new Exception(info.ToString());
             }
@@ -118,6 +123,8 @@ namespace Examples.Tutorial
                 ex.Run();
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -178,43 +185,46 @@ namespace Examples.Tutorial
 
         #endregion
 
-        #region DrawCube
+        #region DrawCube function
 
-        public void DrawCube()
+        /// <summary>
+        /// Draws simple, colored cube.
+        /// </summary>
+        protected void DrawCube()
         {
             GL.Begin(Enums.BeginMode.QUADS);
 
-            GL.Color3(1, 0, 0);
+            GL.Color3(1.0f, 0.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
 
-            GL.Color3(1, 1, 0);
+            GL.Color3(1.0f, 1.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, -1.0f, 1.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
 
-            GL.Color3(1, 0, 1);
+            GL.Color3(1.0f, 0.0f, 1.0f);
             GL.Vertex3(-1.0f, -1.0f, -1.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
 
-            GL.Color3(0, 1, 0);
+            GL.Color3(0.0f, 1.0f, 0.0f);
             GL.Vertex3(-1.0f, -1.0f, 1.0f);
             GL.Vertex3(1.0f, -1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
 
-            GL.Color3(0, 0, 1);
+            GL.Color3(0.0f, 0.0f, 1.0f);
             GL.Vertex3(-1.0f, 1.0f, -1.0f);
             GL.Vertex3(-1.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
 
-            GL.Color3(0, 1, 1);
+            GL.Color3(0.0f, 1.0f, 1.0f);
             GL.Vertex3(1.0f, -1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, -1.0f);
             GL.Vertex3(1.0f, 1.0f, 1.0f);

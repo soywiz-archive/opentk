@@ -23,9 +23,9 @@ using OpenTK.Input;
 
 namespace Examples.Tutorial
 {
-    public partial class T07_DisplayLists_Cube : GameWindow, IExample
+    public partial class T07_DisplayLists_Flower : GameWindow, IExample
     {
-        #region --- Variables ---
+        #region --- Fields ---
 
         List<DisplayList> lists = new List<DisplayList>();
 
@@ -33,7 +33,9 @@ namespace Examples.Tutorial
 
         #region --- Constructors ---
 
-        public T07_DisplayLists_Cube()
+        #region public T07_DisplayLists_Flower()
+
+        public T07_DisplayLists_Flower()
         {
             //Text =
             //    "DisplayLists example (" +
@@ -90,11 +92,13 @@ namespace Examples.Tutorial
         /// </remarks>
         static public void Launch()
         {
-            using (T03_RotatingCube ex = new T03_RotatingCube())
+            using (T07_DisplayLists_Flower ex = new T07_DisplayLists_Flower())
             {
                 ex.Run();
             }
         }
+
+        #endregion
 
         #endregion
 

@@ -610,7 +610,10 @@ namespace Bind.Structures
             // Add default initliazers for out parameters:
             foreach (Parameter p in this.Parameters)
             {
-                if (p.Flow == Parameter.FlowDirection.Out)
+                /*
+                if (p.Flow == Parameter.FlowDirection.Out &&
+                    !p.CurrentType.Contains("StringBuilder") &&
+                    !p.Pointer)
                 {
                     f.Body.Add(
                         String.Format(
@@ -619,7 +622,7 @@ namespace Bind.Structures
                             p.GetFullType(Bind.Structures.Type.CSTypes, wantCLSCompliance)
                         )
                     );
-                }
+                }*/
             }
             // All GCHandles statements will go here. This will allow to place only one opening '{'
             // on fixed statements.
