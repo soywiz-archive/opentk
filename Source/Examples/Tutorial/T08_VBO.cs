@@ -183,7 +183,7 @@ namespace Examples.Tutorial
                 (IntPtr)(vdata.Length * 4),
                 vdata,
                 GL.Enums.VERSION_1_5.STATIC_DRAW);
-            GL.GetBufferParameter(
+            GL.GetBufferParameterv(
                 GL.Enums.VERSION_1_5.ARRAY_BUFFER,
                 GL.Enums.VERSION_1_5.BUFFER_SIZE,
                 out size);
@@ -200,7 +200,7 @@ namespace Examples.Tutorial
                 idata,
                 GL.Enums.VERSION_1_5.STATIC_DRAW
             );
-            GL.GetBufferParameter(
+            GL.GetBufferParameterv(
                 GL.Enums.VERSION_1_5.ELEMENT_ARRAY_BUFFER,
                 GL.Enums.VERSION_1_5.BUFFER_SIZE,
                 out size);

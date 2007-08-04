@@ -30,7 +30,7 @@ namespace Examples.Tutorial
             GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
             GL.Enable(GL.Enums.EnableCap.DEPTH_TEST);
             GL.Enable(GL.Enums.EnableCap.LIGHTING);
-            GL.Light(GL.Enums.LightName.LIGHT0, GL.Enums.LightParameter.AMBIENT, new float[] { 0.4f, 0.2f, 0.7f, 1.0f });
+            GL.Lightv(GL.Enums.LightName.LIGHT0, GL.Enums.LightParameter.AMBIENT, new float[] { 0.4f, 0.2f, 0.7f, 1.0f });
             //GL.Light(GL.Enums.LightName.LIGHT0, GL.Enums.LightParameter.DIFFUSE, new float[] { 1.0f, 1.0f, 0.4f, 1.0f });
             //GL.Light(GL.Enums.LightName.LIGHT0, GL.Enums.LightParameter.POSITION, new float[] { 1.0f, 1.0f, -1.0f });
             GL.Enable(GL.Enums.EnableCap.LIGHT0);

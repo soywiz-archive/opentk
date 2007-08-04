@@ -72,11 +72,11 @@ namespace Examples.Tutorial
 
             GL.ShaderSource(vertex_shader_object, vertex_shader_source.Length, vertex_shader_source, (int[])null);
             GL.CompileShader(vertex_shader_object);
-            GL.GetShader(vertex_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
+            GL.GetShaderv(vertex_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
             if (status != (int)Enums.Boolean.TRUE)
             {
                 int length = 0;
-                GL.GetShader(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
+                GL.GetShaderv(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
                 StringBuilder info = new StringBuilder(length);
                 GL.GetShaderInfoLog(vertex_shader_object, info.Capacity, out length, info);
 
@@ -85,11 +85,11 @@ namespace Examples.Tutorial
 
             GL.ShaderSource(fragment_shader_object, fragment_shader_source.Length, fragment_shader_source, (int[])null);
             GL.CompileShader(fragment_shader_object);
-            GL.GetShader(fragment_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
+            GL.GetShaderv(fragment_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
             if (status != (int)Enums.Boolean.TRUE)
             {
                 int length;
-                GL.GetShader(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
+                GL.GetShaderv(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
                 StringBuilder info = new StringBuilder(length);
                 GL.GetShaderInfoLog(fragment_shader_object, info.Capacity, out length, info);
 
