@@ -46,6 +46,7 @@ namespace Examples
         	}
 
         	Debug.Listeners.Add(new TextWriterTraceListener("debug.log"));
+            Debug.Listeners.Add(new ConsoleTraceListener());
         	                    
             try
             {
