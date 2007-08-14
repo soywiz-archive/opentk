@@ -176,6 +176,9 @@ namespace OpenTK.Platform.X11
             {
                 throw new ApplicationException("Could not create opengl context.");
             }
+
+            this.MakeCurrent();
+            OpenTK.OpenGL.GL.LoadAll();
         }
 
         #endregion
