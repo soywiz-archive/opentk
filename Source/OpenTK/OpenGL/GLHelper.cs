@@ -401,27 +401,24 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
         }
         #endregion
 
-        #region public static void ReloadFunctions()
+        #region public static void LoadAll()
         /// <summary>
-        /// Reloads all OpenGL functions (core and extensions).
+        /// Loads all OpenGL functions (core and extensions).
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Call this function to reload all OpenGL entry points. This should be done 
-        /// whenever you change the pixelformat/visual, or in the case you cannot (or do not want)
-        /// to use the automatic initialisation.
+        /// This function will be automatically called the first time you use any opengl function. There is 
         /// </para>
         /// <para>
-        /// Calling this function before the automatic initialisation has taken place will result
-        /// in the Gl class being initialised twice. This is harmless, but given the automatic
-        /// initialisation should be preferred.
+        /// Call this function manually whenever you need to update OpenGL entry points.
+        /// This need may arise if you change the pixelformat/visual, or in case you cannot
+        /// (or do not want) to use the automatic initialisation of the GL class.
         /// </para>
         /// </remarks>
-        public static void ReloadFunctions()
+        public static void LoadAll()
         {
             Assembly asm = Assembly.GetExecutingAssembly();//Assembly.Load("OpenTK.OpenGL");
             Type delegates_class = asm.GetType("OpenTK.OpenGL.Delegates");
-            //Type imports_class = asm.GetType("OpenTK.OpenGL.Imports");
 
             FieldInfo[] v = delegates_class.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
             foreach (FieldInfo f in v)
@@ -429,12 +426,11 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
                 f.SetValue(null, GetDelegateForMethod(f.Name, f.FieldType));
             }
 
-            //ParseAvailableExtensions();
             AvailableExtensions.Clear();
         }
         #endregion
 
-        #region public static bool ReloadFunction(string name)
+        #region public static bool Load(string name)
         /// <summary>
         /// Tries to reload the given OpenGL function (core or extension).
         /// </summary>
@@ -459,7 +455,7 @@ Did you remember to copy OpenTK.OpenGL.dll.config to your binary's folder?
         /// To query supported extensions use the IsExtensionSupported() function instead.
         /// </para>
         /// </remarks>
-        public static bool ReloadFunction(string name)
+        public static bool Load(string name)
         {
             Assembly asm = Assembly.Load("OpenTK.OpenGL");
             Type delegates_class = asm.GetType("OpenTK.OpenGL.Delegates");

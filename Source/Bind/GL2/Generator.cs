@@ -15,8 +15,7 @@ namespace Bind.GL2
 {
     class Generator : IBind
     {
-        //internal static SpecReader specReader;
-        //internal static SpecWriter specWriter;
+        #region --- Fields ---
 
         protected static string glTypemap = "GL2\\gl.tm";
         protected static string csTypemap = "csharp.tm";
@@ -32,12 +31,20 @@ namespace Bind.GL2
     	
     	protected static string className = Settings.GLClass;
 
+        protected static string loadAllFuncName = "LoadAll";
+
         protected string specFolder;
+
+        #endregion
+
+        #region --- Constructors ---
 
         public Generator(string folder)
         {
             specFolder = folder;
         }
+
+        #endregion
 
         #region IBind Members
 
@@ -591,7 +598,7 @@ namespace Bind.GL2
             sw.WriteLine("{");
             // --- Workaround for mono gmcs 1.2.4 issue, where static initalization fails. ---
             sw.Indent();
-            sw.WriteLine("{0}.ReloadFunctions();", className);
+            sw.WriteLine("{0}.{1}();", className, loadAllFuncName);
             sw.Unindent();
             // --- End workaround ---
             sw.WriteLine("}");
@@ -600,31 +607,12 @@ namespace Bind.GL2
             {
                 sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
                 sw.WriteLine("internal {0};", d.ToString());
-                if (d.Extension == "Core")
-                {
-                    /*sw.WriteLine(
-                        "internal {0}static {1} gl{1} = ({1}){2}.{3}(\"gl{1}\", typeof({1})) ?? new {1}({4}.{1});",
-                        d.Unsafe ? "unsafe " : "",
-                        d.Name,
-                        Settings.GLClass,
-                        "GetDelegateForExtensionMethod",
-                        Settings.ImportsClass);*/
-                    // --- Workaround for mono gmcs 1.2.4 issue, where static initalization fails. ---
-                    sw.WriteLine(
-                        "internal {0}static {1} gl{1} = null;",
-                        d.Unsafe ? "unsafe " : "",
-                        d.Name);
-                    // --- End workaround ---
-                }
-                else
-                {
-                    sw.WriteLine(
-                        "internal {0}static {1} gl{1} = ({1}){2}.{3}(\"gl{1}\", typeof({1}));",
-                        d.Unsafe ? "unsafe " : "",
-                        d.Name,
-                        className,
-                        "GetDelegateForExtensionMethod");
-                }
+                // --- Workaround for mono gmcs 1.2.4 issue, where static initalization fails. ---
+                sw.WriteLine(
+                    "internal {0}static {1} gl{1} = null;",
+                    d.Unsafe ? "unsafe " : "",
+                    d.Name);
+                // --- End workaround ---s
             }
             sw.Unindent();
             sw.WriteLine("}");

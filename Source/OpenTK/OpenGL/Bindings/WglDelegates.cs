@@ -10,7 +10,7 @@ namespace OpenTK.OpenGL
         {
             static Delegates()
             {
-                Wgl.ReloadFunctions();
+                Wgl.LoadAll();
             }
 
             [System.Security.SuppressUnmanagedCodeSecurity()]
@@ -81,223 +81,223 @@ namespace OpenTK.OpenGL
             internal static UseFontBitmapsW glUseFontBitmapsW = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr CreateBufferRegionARB(IntPtr hDC, int iLayerPlane, UInt32 uType);
-            internal static CreateBufferRegionARB glCreateBufferRegionARB = (CreateBufferRegionARB)Wgl.GetDelegateForExtensionMethod("glCreateBufferRegionARB", typeof(CreateBufferRegionARB));
+            internal static CreateBufferRegionARB glCreateBufferRegionARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate void DeleteBufferRegionARB(IntPtr hRegion);
-            internal static DeleteBufferRegionARB glDeleteBufferRegionARB = (DeleteBufferRegionARB)Wgl.GetDelegateForExtensionMethod("glDeleteBufferRegionARB", typeof(DeleteBufferRegionARB));
+            internal static DeleteBufferRegionARB glDeleteBufferRegionARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean SaveBufferRegionARB(IntPtr hRegion, int x, int y, int width, int height);
-            internal static SaveBufferRegionARB glSaveBufferRegionARB = (SaveBufferRegionARB)Wgl.GetDelegateForExtensionMethod("glSaveBufferRegionARB", typeof(SaveBufferRegionARB));
+            internal static SaveBufferRegionARB glSaveBufferRegionARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean RestoreBufferRegionARB(IntPtr hRegion, int x, int y, int width, int height, int xSrc, int ySrc);
-            internal static RestoreBufferRegionARB glRestoreBufferRegionARB = (RestoreBufferRegionARB)Wgl.GetDelegateForExtensionMethod("glRestoreBufferRegionARB", typeof(RestoreBufferRegionARB));
+            internal static RestoreBufferRegionARB glRestoreBufferRegionARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr GetExtensionsStringARB(IntPtr hdc);
-            internal static GetExtensionsStringARB glGetExtensionsStringARB = (GetExtensionsStringARB)Wgl.GetDelegateForExtensionMethod("glGetExtensionsStringARB", typeof(GetExtensionsStringARB));
+            internal static GetExtensionsStringARB glGetExtensionsStringARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetPixelFormatAttribivARB(IntPtr hdc, int iPixelFormat, int iLayerPlane, UInt32 nAttributes, int* piAttributes, [Out] int* piValues);
-            internal unsafe static GetPixelFormatAttribivARB glGetPixelFormatAttribivARB = (GetPixelFormatAttribivARB)Wgl.GetDelegateForExtensionMethod("glGetPixelFormatAttribivARB", typeof(GetPixelFormatAttribivARB));
+            internal unsafe static GetPixelFormatAttribivARB glGetPixelFormatAttribivARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetPixelFormatAttribfvARB(IntPtr hdc, int iPixelFormat, int iLayerPlane, UInt32 nAttributes, int* piAttributes, [Out] Single* pfValues);
-            internal unsafe static GetPixelFormatAttribfvARB glGetPixelFormatAttribfvARB = (GetPixelFormatAttribfvARB)Wgl.GetDelegateForExtensionMethod("glGetPixelFormatAttribfvARB", typeof(GetPixelFormatAttribfvARB));
+            internal unsafe static GetPixelFormatAttribfvARB glGetPixelFormatAttribfvARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean ChoosePixelFormatARB(IntPtr hdc, int* piAttribIList, Single* pfAttribFList, UInt32 nMaxFormats, [Out] int* piFormats, [Out] UInt32 nNumFormats);
-            internal unsafe static ChoosePixelFormatARB glChoosePixelFormatARB = (ChoosePixelFormatARB)Wgl.GetDelegateForExtensionMethod("glChoosePixelFormatARB", typeof(ChoosePixelFormatARB));
+            internal unsafe static ChoosePixelFormatARB glChoosePixelFormatARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean MakeContextCurrentARB(IntPtr hDrawDC, IntPtr hReadDC, IntPtr hglrc);
-            internal static MakeContextCurrentARB glMakeContextCurrentARB = (MakeContextCurrentARB)Wgl.GetDelegateForExtensionMethod("glMakeContextCurrentARB", typeof(MakeContextCurrentARB));
+            internal static MakeContextCurrentARB glMakeContextCurrentARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr GetCurrentReadDCARB();
-            internal static GetCurrentReadDCARB glGetCurrentReadDCARB = (GetCurrentReadDCARB)Wgl.GetDelegateForExtensionMethod("glGetCurrentReadDCARB", typeof(GetCurrentReadDCARB));
+            internal static GetCurrentReadDCARB glGetCurrentReadDCARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate IntPtr CreatePbufferARB(IntPtr hDC, int iPixelFormat, int iWidth, int iHeight, int* piAttribList);
-            internal unsafe static CreatePbufferARB glCreatePbufferARB = (CreatePbufferARB)Wgl.GetDelegateForExtensionMethod("glCreatePbufferARB", typeof(CreatePbufferARB));
+            internal unsafe static CreatePbufferARB glCreatePbufferARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr GetPbufferDCARB(IntPtr hPbuffer);
-            internal static GetPbufferDCARB glGetPbufferDCARB = (GetPbufferDCARB)Wgl.GetDelegateForExtensionMethod("glGetPbufferDCARB", typeof(GetPbufferDCARB));
+            internal static GetPbufferDCARB glGetPbufferDCARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate int ReleasePbufferDCARB(IntPtr hPbuffer, IntPtr hDC);
-            internal static ReleasePbufferDCARB glReleasePbufferDCARB = (ReleasePbufferDCARB)Wgl.GetDelegateForExtensionMethod("glReleasePbufferDCARB", typeof(ReleasePbufferDCARB));
+            internal static ReleasePbufferDCARB glReleasePbufferDCARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean DestroyPbufferARB(IntPtr hPbuffer);
-            internal static DestroyPbufferARB glDestroyPbufferARB = (DestroyPbufferARB)Wgl.GetDelegateForExtensionMethod("glDestroyPbufferARB", typeof(DestroyPbufferARB));
+            internal static DestroyPbufferARB glDestroyPbufferARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean QueryPbufferARB(IntPtr hPbuffer, int iAttribute, [Out] int piValue);
-            internal static QueryPbufferARB glQueryPbufferARB = (QueryPbufferARB)Wgl.GetDelegateForExtensionMethod("glQueryPbufferARB", typeof(QueryPbufferARB));
+            internal static QueryPbufferARB glQueryPbufferARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean BindTexImageARB(IntPtr hPbuffer, int iBuffer);
-            internal static BindTexImageARB glBindTexImageARB = (BindTexImageARB)Wgl.GetDelegateForExtensionMethod("glBindTexImageARB", typeof(BindTexImageARB));
+            internal static BindTexImageARB glBindTexImageARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean ReleaseTexImageARB(IntPtr hPbuffer, int iBuffer);
-            internal static ReleaseTexImageARB glReleaseTexImageARB = (ReleaseTexImageARB)Wgl.GetDelegateForExtensionMethod("glReleaseTexImageARB", typeof(ReleaseTexImageARB));
+            internal static ReleaseTexImageARB glReleaseTexImageARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean SetPbufferAttribARB(IntPtr hPbuffer, int* piAttribList);
-            internal unsafe static SetPbufferAttribARB glSetPbufferAttribARB = (SetPbufferAttribARB)Wgl.GetDelegateForExtensionMethod("glSetPbufferAttribARB", typeof(SetPbufferAttribARB));
+            internal unsafe static SetPbufferAttribARB glSetPbufferAttribARB = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean CreateDisplayColorTableEXT(UInt16 id);
-            internal static CreateDisplayColorTableEXT glCreateDisplayColorTableEXT = (CreateDisplayColorTableEXT)Wgl.GetDelegateForExtensionMethod("glCreateDisplayColorTableEXT", typeof(CreateDisplayColorTableEXT));
+            internal static CreateDisplayColorTableEXT glCreateDisplayColorTableEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean LoadDisplayColorTableEXT(UInt16* table, UInt32 length);
-            internal unsafe static LoadDisplayColorTableEXT glLoadDisplayColorTableEXT = (LoadDisplayColorTableEXT)Wgl.GetDelegateForExtensionMethod("glLoadDisplayColorTableEXT", typeof(LoadDisplayColorTableEXT));
+            internal unsafe static LoadDisplayColorTableEXT glLoadDisplayColorTableEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean BindDisplayColorTableEXT(UInt16 id);
-            internal static BindDisplayColorTableEXT glBindDisplayColorTableEXT = (BindDisplayColorTableEXT)Wgl.GetDelegateForExtensionMethod("glBindDisplayColorTableEXT", typeof(BindDisplayColorTableEXT));
+            internal static BindDisplayColorTableEXT glBindDisplayColorTableEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate void DestroyDisplayColorTableEXT(UInt16 id);
-            internal static DestroyDisplayColorTableEXT glDestroyDisplayColorTableEXT = (DestroyDisplayColorTableEXT)Wgl.GetDelegateForExtensionMethod("glDestroyDisplayColorTableEXT", typeof(DestroyDisplayColorTableEXT));
+            internal static DestroyDisplayColorTableEXT glDestroyDisplayColorTableEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr GetExtensionsStringEXT();
-            internal static GetExtensionsStringEXT glGetExtensionsStringEXT = (GetExtensionsStringEXT)Wgl.GetDelegateForExtensionMethod("glGetExtensionsStringEXT", typeof(GetExtensionsStringEXT));
+            internal static GetExtensionsStringEXT glGetExtensionsStringEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean MakeContextCurrentEXT(IntPtr hDrawDC, IntPtr hReadDC, IntPtr hglrc);
-            internal static MakeContextCurrentEXT glMakeContextCurrentEXT = (MakeContextCurrentEXT)Wgl.GetDelegateForExtensionMethod("glMakeContextCurrentEXT", typeof(MakeContextCurrentEXT));
+            internal static MakeContextCurrentEXT glMakeContextCurrentEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr GetCurrentReadDCEXT();
-            internal static GetCurrentReadDCEXT glGetCurrentReadDCEXT = (GetCurrentReadDCEXT)Wgl.GetDelegateForExtensionMethod("glGetCurrentReadDCEXT", typeof(GetCurrentReadDCEXT));
+            internal static GetCurrentReadDCEXT glGetCurrentReadDCEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate IntPtr CreatePbufferEXT(IntPtr hDC, int iPixelFormat, int iWidth, int iHeight, int* piAttribList);
-            internal unsafe static CreatePbufferEXT glCreatePbufferEXT = (CreatePbufferEXT)Wgl.GetDelegateForExtensionMethod("glCreatePbufferEXT", typeof(CreatePbufferEXT));
+            internal unsafe static CreatePbufferEXT glCreatePbufferEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr GetPbufferDCEXT(IntPtr hPbuffer);
-            internal static GetPbufferDCEXT glGetPbufferDCEXT = (GetPbufferDCEXT)Wgl.GetDelegateForExtensionMethod("glGetPbufferDCEXT", typeof(GetPbufferDCEXT));
+            internal static GetPbufferDCEXT glGetPbufferDCEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate int ReleasePbufferDCEXT(IntPtr hPbuffer, IntPtr hDC);
-            internal static ReleasePbufferDCEXT glReleasePbufferDCEXT = (ReleasePbufferDCEXT)Wgl.GetDelegateForExtensionMethod("glReleasePbufferDCEXT", typeof(ReleasePbufferDCEXT));
+            internal static ReleasePbufferDCEXT glReleasePbufferDCEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean DestroyPbufferEXT(IntPtr hPbuffer);
-            internal static DestroyPbufferEXT glDestroyPbufferEXT = (DestroyPbufferEXT)Wgl.GetDelegateForExtensionMethod("glDestroyPbufferEXT", typeof(DestroyPbufferEXT));
+            internal static DestroyPbufferEXT glDestroyPbufferEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean QueryPbufferEXT(IntPtr hPbuffer, int iAttribute, [Out] int piValue);
-            internal static QueryPbufferEXT glQueryPbufferEXT = (QueryPbufferEXT)Wgl.GetDelegateForExtensionMethod("glQueryPbufferEXT", typeof(QueryPbufferEXT));
+            internal static QueryPbufferEXT glQueryPbufferEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetPixelFormatAttribivEXT(IntPtr hdc, int iPixelFormat, int iLayerPlane, UInt32 nAttributes, [Out] int* piAttributes, [Out] int* piValues);
-            internal unsafe static GetPixelFormatAttribivEXT glGetPixelFormatAttribivEXT = (GetPixelFormatAttribivEXT)Wgl.GetDelegateForExtensionMethod("glGetPixelFormatAttribivEXT", typeof(GetPixelFormatAttribivEXT));
+            internal unsafe static GetPixelFormatAttribivEXT glGetPixelFormatAttribivEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetPixelFormatAttribfvEXT(IntPtr hdc, int iPixelFormat, int iLayerPlane, UInt32 nAttributes, [Out] int* piAttributes, [Out] Single* pfValues);
-            internal unsafe static GetPixelFormatAttribfvEXT glGetPixelFormatAttribfvEXT = (GetPixelFormatAttribfvEXT)Wgl.GetDelegateForExtensionMethod("glGetPixelFormatAttribfvEXT", typeof(GetPixelFormatAttribfvEXT));
+            internal unsafe static GetPixelFormatAttribfvEXT glGetPixelFormatAttribfvEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean ChoosePixelFormatEXT(IntPtr hdc, int* piAttribIList, Single* pfAttribFList, UInt32 nMaxFormats, [Out] int* piFormats, [Out] UInt32 nNumFormats);
-            internal unsafe static ChoosePixelFormatEXT glChoosePixelFormatEXT = (ChoosePixelFormatEXT)Wgl.GetDelegateForExtensionMethod("glChoosePixelFormatEXT", typeof(ChoosePixelFormatEXT));
+            internal unsafe static ChoosePixelFormatEXT glChoosePixelFormatEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean SwapIntervalEXT(int interval);
-            internal static SwapIntervalEXT glSwapIntervalEXT = (SwapIntervalEXT)Wgl.GetDelegateForExtensionMethod("glSwapIntervalEXT", typeof(SwapIntervalEXT));
+            internal static SwapIntervalEXT glSwapIntervalEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate int GetSwapIntervalEXT();
-            internal static GetSwapIntervalEXT glGetSwapIntervalEXT = (GetSwapIntervalEXT)Wgl.GetDelegateForExtensionMethod("glGetSwapIntervalEXT", typeof(GetSwapIntervalEXT));
+            internal static GetSwapIntervalEXT glGetSwapIntervalEXT = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr AllocateMemoryNV(Int32 size, Single readfreq, Single writefreq, Single priority);
-            internal static AllocateMemoryNV glAllocateMemoryNV = (AllocateMemoryNV)Wgl.GetDelegateForExtensionMethod("glAllocateMemoryNV", typeof(AllocateMemoryNV));
+            internal static AllocateMemoryNV glAllocateMemoryNV = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate void FreeMemoryNV([Out] void* pointer);
-            internal unsafe static FreeMemoryNV glFreeMemoryNV = (FreeMemoryNV)Wgl.GetDelegateForExtensionMethod("glFreeMemoryNV", typeof(FreeMemoryNV));
+            internal unsafe static FreeMemoryNV glFreeMemoryNV = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetSyncValuesOML(IntPtr hdc, [Out] Int64* ust, [Out] Int64* msc, [Out] Int64* sbc);
-            internal unsafe static GetSyncValuesOML glGetSyncValuesOML = (GetSyncValuesOML)Wgl.GetDelegateForExtensionMethod("glGetSyncValuesOML", typeof(GetSyncValuesOML));
+            internal unsafe static GetSyncValuesOML glGetSyncValuesOML = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetMscRateOML(IntPtr hdc, [Out] Int32* numerator, [Out] Int32* denominator);
-            internal unsafe static GetMscRateOML glGetMscRateOML = (GetMscRateOML)Wgl.GetDelegateForExtensionMethod("glGetMscRateOML", typeof(GetMscRateOML));
+            internal unsafe static GetMscRateOML glGetMscRateOML = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Int64 SwapBuffersMscOML(IntPtr hdc, Int64 target_msc, Int64 divisor, Int64 remainder);
-            internal static SwapBuffersMscOML glSwapBuffersMscOML = (SwapBuffersMscOML)Wgl.GetDelegateForExtensionMethod("glSwapBuffersMscOML", typeof(SwapBuffersMscOML));
+            internal static SwapBuffersMscOML glSwapBuffersMscOML = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Int64 SwapLayerBuffersMscOML(IntPtr hdc, int fuPlanes, Int64 target_msc, Int64 divisor, Int64 remainder);
-            internal static SwapLayerBuffersMscOML glSwapLayerBuffersMscOML = (SwapLayerBuffersMscOML)Wgl.GetDelegateForExtensionMethod("glSwapLayerBuffersMscOML", typeof(SwapLayerBuffersMscOML));
+            internal static SwapLayerBuffersMscOML glSwapLayerBuffersMscOML = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean WaitForMscOML(IntPtr hdc, Int64 target_msc, Int64 divisor, Int64 remainder, [Out] Int64* ust, [Out] Int64* msc, [Out] Int64* sbc);
-            internal unsafe static WaitForMscOML glWaitForMscOML = (WaitForMscOML)Wgl.GetDelegateForExtensionMethod("glWaitForMscOML", typeof(WaitForMscOML));
+            internal unsafe static WaitForMscOML glWaitForMscOML = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean WaitForSbcOML(IntPtr hdc, Int64 target_sbc, [Out] Int64* ust, [Out] Int64* msc, [Out] Int64* sbc);
-            internal unsafe static WaitForSbcOML glWaitForSbcOML = (WaitForSbcOML)Wgl.GetDelegateForExtensionMethod("glWaitForSbcOML", typeof(WaitForSbcOML));
+            internal unsafe static WaitForSbcOML glWaitForSbcOML = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetDigitalVideoParametersI3D(IntPtr hDC, int iAttribute, [Out] int* piValue);
-            internal unsafe static GetDigitalVideoParametersI3D glGetDigitalVideoParametersI3D = (GetDigitalVideoParametersI3D)Wgl.GetDelegateForExtensionMethod("glGetDigitalVideoParametersI3D", typeof(GetDigitalVideoParametersI3D));
+            internal unsafe static GetDigitalVideoParametersI3D glGetDigitalVideoParametersI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean SetDigitalVideoParametersI3D(IntPtr hDC, int iAttribute, int* piValue);
-            internal unsafe static SetDigitalVideoParametersI3D glSetDigitalVideoParametersI3D = (SetDigitalVideoParametersI3D)Wgl.GetDelegateForExtensionMethod("glSetDigitalVideoParametersI3D", typeof(SetDigitalVideoParametersI3D));
+            internal unsafe static SetDigitalVideoParametersI3D glSetDigitalVideoParametersI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetGammaTableParametersI3D(IntPtr hDC, int iAttribute, [Out] int* piValue);
-            internal unsafe static GetGammaTableParametersI3D glGetGammaTableParametersI3D = (GetGammaTableParametersI3D)Wgl.GetDelegateForExtensionMethod("glGetGammaTableParametersI3D", typeof(GetGammaTableParametersI3D));
+            internal unsafe static GetGammaTableParametersI3D glGetGammaTableParametersI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean SetGammaTableParametersI3D(IntPtr hDC, int iAttribute, int* piValue);
-            internal unsafe static SetGammaTableParametersI3D glSetGammaTableParametersI3D = (SetGammaTableParametersI3D)Wgl.GetDelegateForExtensionMethod("glSetGammaTableParametersI3D", typeof(SetGammaTableParametersI3D));
+            internal unsafe static SetGammaTableParametersI3D glSetGammaTableParametersI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean GetGammaTableI3D(IntPtr hDC, int iEntries, [Out] UInt16* puRed, [Out] UInt16* puGreen, [Out] UInt16* puBlue);
-            internal unsafe static GetGammaTableI3D glGetGammaTableI3D = (GetGammaTableI3D)Wgl.GetDelegateForExtensionMethod("glGetGammaTableI3D", typeof(GetGammaTableI3D));
+            internal unsafe static GetGammaTableI3D glGetGammaTableI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean SetGammaTableI3D(IntPtr hDC, int iEntries, UInt16* puRed, UInt16* puGreen, UInt16* puBlue);
-            internal unsafe static SetGammaTableI3D glSetGammaTableI3D = (SetGammaTableI3D)Wgl.GetDelegateForExtensionMethod("glSetGammaTableI3D", typeof(SetGammaTableI3D));
+            internal unsafe static SetGammaTableI3D glSetGammaTableI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean EnableGenlockI3D(IntPtr hDC);
-            internal static EnableGenlockI3D glEnableGenlockI3D = (EnableGenlockI3D)Wgl.GetDelegateForExtensionMethod("glEnableGenlockI3D", typeof(EnableGenlockI3D));
+            internal static EnableGenlockI3D glEnableGenlockI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean DisableGenlockI3D(IntPtr hDC);
-            internal static DisableGenlockI3D glDisableGenlockI3D = (DisableGenlockI3D)Wgl.GetDelegateForExtensionMethod("glDisableGenlockI3D", typeof(DisableGenlockI3D));
+            internal static DisableGenlockI3D glDisableGenlockI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean IsEnabledGenlockI3D(IntPtr hDC, [Out] Boolean pFlag);
-            internal static IsEnabledGenlockI3D glIsEnabledGenlockI3D = (IsEnabledGenlockI3D)Wgl.GetDelegateForExtensionMethod("glIsEnabledGenlockI3D", typeof(IsEnabledGenlockI3D));
+            internal static IsEnabledGenlockI3D glIsEnabledGenlockI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GenlockSourceI3D(IntPtr hDC, UInt32 uSource);
-            internal static GenlockSourceI3D glGenlockSourceI3D = (GenlockSourceI3D)Wgl.GetDelegateForExtensionMethod("glGenlockSourceI3D", typeof(GenlockSourceI3D));
+            internal static GenlockSourceI3D glGenlockSourceI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GetGenlockSourceI3D(IntPtr hDC, [Out] UInt32 uSource);
-            internal static GetGenlockSourceI3D glGetGenlockSourceI3D = (GetGenlockSourceI3D)Wgl.GetDelegateForExtensionMethod("glGetGenlockSourceI3D", typeof(GetGenlockSourceI3D));
+            internal static GetGenlockSourceI3D glGetGenlockSourceI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GenlockSourceEdgeI3D(IntPtr hDC, UInt32 uEdge);
-            internal static GenlockSourceEdgeI3D glGenlockSourceEdgeI3D = (GenlockSourceEdgeI3D)Wgl.GetDelegateForExtensionMethod("glGenlockSourceEdgeI3D", typeof(GenlockSourceEdgeI3D));
+            internal static GenlockSourceEdgeI3D glGenlockSourceEdgeI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GetGenlockSourceEdgeI3D(IntPtr hDC, [Out] UInt32 uEdge);
-            internal static GetGenlockSourceEdgeI3D glGetGenlockSourceEdgeI3D = (GetGenlockSourceEdgeI3D)Wgl.GetDelegateForExtensionMethod("glGetGenlockSourceEdgeI3D", typeof(GetGenlockSourceEdgeI3D));
+            internal static GetGenlockSourceEdgeI3D glGetGenlockSourceEdgeI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GenlockSampleRateI3D(IntPtr hDC, UInt32 uRate);
-            internal static GenlockSampleRateI3D glGenlockSampleRateI3D = (GenlockSampleRateI3D)Wgl.GetDelegateForExtensionMethod("glGenlockSampleRateI3D", typeof(GenlockSampleRateI3D));
+            internal static GenlockSampleRateI3D glGenlockSampleRateI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GetGenlockSampleRateI3D(IntPtr hDC, [Out] UInt32 uRate);
-            internal static GetGenlockSampleRateI3D glGetGenlockSampleRateI3D = (GetGenlockSampleRateI3D)Wgl.GetDelegateForExtensionMethod("glGetGenlockSampleRateI3D", typeof(GetGenlockSampleRateI3D));
+            internal static GetGenlockSampleRateI3D glGetGenlockSampleRateI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GenlockSourceDelayI3D(IntPtr hDC, UInt32 uDelay);
-            internal static GenlockSourceDelayI3D glGenlockSourceDelayI3D = (GenlockSourceDelayI3D)Wgl.GetDelegateForExtensionMethod("glGenlockSourceDelayI3D", typeof(GenlockSourceDelayI3D));
+            internal static GenlockSourceDelayI3D glGenlockSourceDelayI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GetGenlockSourceDelayI3D(IntPtr hDC, [Out] UInt32 uDelay);
-            internal static GetGenlockSourceDelayI3D glGetGenlockSourceDelayI3D = (GetGenlockSourceDelayI3D)Wgl.GetDelegateForExtensionMethod("glGetGenlockSourceDelayI3D", typeof(GetGenlockSourceDelayI3D));
+            internal static GetGenlockSourceDelayI3D glGetGenlockSourceDelayI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean QueryGenlockMaxSourceDelayI3D(IntPtr hDC, [Out] UInt32 uMaxLineDelay, [Out] UInt32 uMaxPixelDelay);
-            internal static QueryGenlockMaxSourceDelayI3D glQueryGenlockMaxSourceDelayI3D = (QueryGenlockMaxSourceDelayI3D)Wgl.GetDelegateForExtensionMethod("glQueryGenlockMaxSourceDelayI3D", typeof(QueryGenlockMaxSourceDelayI3D));
+            internal static QueryGenlockMaxSourceDelayI3D glQueryGenlockMaxSourceDelayI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr CreateImageBufferI3D(IntPtr hDC, Int32 dwSize, UInt32 uFlags);
-            internal static CreateImageBufferI3D glCreateImageBufferI3D = (CreateImageBufferI3D)Wgl.GetDelegateForExtensionMethod("glCreateImageBufferI3D", typeof(CreateImageBufferI3D));
+            internal static CreateImageBufferI3D glCreateImageBufferI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean DestroyImageBufferI3D(IntPtr hDC, void* pAddress);
-            internal unsafe static DestroyImageBufferI3D glDestroyImageBufferI3D = (DestroyImageBufferI3D)Wgl.GetDelegateForExtensionMethod("glDestroyImageBufferI3D", typeof(DestroyImageBufferI3D));
+            internal unsafe static DestroyImageBufferI3D glDestroyImageBufferI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean AssociateImageBufferEventsI3D(IntPtr hDC, IntPtr* pEvent, void* pAddress, Int32* pSize, UInt32 count);
-            internal unsafe static AssociateImageBufferEventsI3D glAssociateImageBufferEventsI3D = (AssociateImageBufferEventsI3D)Wgl.GetDelegateForExtensionMethod("glAssociateImageBufferEventsI3D", typeof(AssociateImageBufferEventsI3D));
+            internal unsafe static AssociateImageBufferEventsI3D glAssociateImageBufferEventsI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal unsafe delegate Boolean ReleaseImageBufferEventsI3D(IntPtr hDC, void* pAddress, UInt32 count);
-            internal unsafe static ReleaseImageBufferEventsI3D glReleaseImageBufferEventsI3D = (ReleaseImageBufferEventsI3D)Wgl.GetDelegateForExtensionMethod("glReleaseImageBufferEventsI3D", typeof(ReleaseImageBufferEventsI3D));
+            internal unsafe static ReleaseImageBufferEventsI3D glReleaseImageBufferEventsI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean EnableFrameLockI3D();
-            internal static EnableFrameLockI3D glEnableFrameLockI3D = (EnableFrameLockI3D)Wgl.GetDelegateForExtensionMethod("glEnableFrameLockI3D", typeof(EnableFrameLockI3D));
+            internal static EnableFrameLockI3D glEnableFrameLockI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean DisableFrameLockI3D();
-            internal static DisableFrameLockI3D glDisableFrameLockI3D = (DisableFrameLockI3D)Wgl.GetDelegateForExtensionMethod("glDisableFrameLockI3D", typeof(DisableFrameLockI3D));
+            internal static DisableFrameLockI3D glDisableFrameLockI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean IsEnabledFrameLockI3D([Out] Boolean pFlag);
-            internal static IsEnabledFrameLockI3D glIsEnabledFrameLockI3D = (IsEnabledFrameLockI3D)Wgl.GetDelegateForExtensionMethod("glIsEnabledFrameLockI3D", typeof(IsEnabledFrameLockI3D));
+            internal static IsEnabledFrameLockI3D glIsEnabledFrameLockI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean QueryFrameLockMasterI3D([Out] Boolean pFlag);
-            internal static QueryFrameLockMasterI3D glQueryFrameLockMasterI3D = (QueryFrameLockMasterI3D)Wgl.GetDelegateForExtensionMethod("glQueryFrameLockMasterI3D", typeof(QueryFrameLockMasterI3D));
+            internal static QueryFrameLockMasterI3D glQueryFrameLockMasterI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean GetFrameUsageI3D([Out] float pUsage);
-            internal static GetFrameUsageI3D glGetFrameUsageI3D = (GetFrameUsageI3D)Wgl.GetDelegateForExtensionMethod("glGetFrameUsageI3D", typeof(GetFrameUsageI3D));
+            internal static GetFrameUsageI3D glGetFrameUsageI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean BeginFrameTrackingI3D();
-            internal static BeginFrameTrackingI3D glBeginFrameTrackingI3D = (BeginFrameTrackingI3D)Wgl.GetDelegateForExtensionMethod("glBeginFrameTrackingI3D", typeof(BeginFrameTrackingI3D));
+            internal static BeginFrameTrackingI3D glBeginFrameTrackingI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean EndFrameTrackingI3D();
-            internal static EndFrameTrackingI3D glEndFrameTrackingI3D = (EndFrameTrackingI3D)Wgl.GetDelegateForExtensionMethod("glEndFrameTrackingI3D", typeof(EndFrameTrackingI3D));
+            internal static EndFrameTrackingI3D glEndFrameTrackingI3D = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean QueryFrameTrackingI3D([Out] Int32 pFrameCount, [Out] Int32 pMissedFrames, [Out] float pLastMissedUsage);
-            internal static QueryFrameTrackingI3D glQueryFrameTrackingI3D = (QueryFrameTrackingI3D)Wgl.GetDelegateForExtensionMethod("glQueryFrameTrackingI3D", typeof(QueryFrameTrackingI3D));
+            internal static QueryFrameTrackingI3D glQueryFrameTrackingI3D = null;
         }
     }
 }

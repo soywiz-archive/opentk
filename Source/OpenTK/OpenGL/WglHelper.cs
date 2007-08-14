@@ -44,5 +44,9 @@ namespace OpenTK.OpenGL
 		{
             return null;
 		}
+
+        public static void LoadAll()
+        {
+        }
 	}
 }
