@@ -31,6 +31,8 @@ namespace Bind.Wgl
             wrappersFile = "Wgl.cs";
             
             className = "Wgl";
+
+            functionPrefix = "wgl";
         }
 
         #endregion

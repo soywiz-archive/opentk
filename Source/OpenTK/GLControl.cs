@@ -46,25 +46,26 @@ namespace OpenTK
         public GLControl(DisplayMode mode)
         {
             InitializeComponent();
-/*
-            System.Diagnostics.Debug.Listeners.Clear();
-            System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
-            System.Diagnostics.Debug.AutoFlush = true;
-            System.Diagnostics.Trace.Listeners.Clear();
-            System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-            System.Diagnostics.Trace.AutoFlush = true;
-            Trace.AutoFlush = true;
-*/
+
+            this.Fullscreen = mode.Fullscreen;
+            
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+        }
+
+        #endregion
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
                 glControl = new OpenTK.Platform.Windows.WinGLControl(this, new DisplayMode(Width, Height));
             }
             else if (Environment.OSVersion.Platform == PlatformID.Unix ||
-                     Environment.OSVersion.Platform == (PlatformID)128)
-                    // some older versions of Mono reported 128.
+                     Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
             {
-				glControl =  new OpenTK.Platform.X11.X11GLControl(this, new DisplayMode(Width, Height));
+                glControl = new OpenTK.Platform.X11.X11GLControl(this, new DisplayMode(Width, Height));
             }
             else
             {
@@ -73,24 +74,11 @@ namespace OpenTK
                 );
             }
 
-            glControl.Context.MakeCurrent();
-            /*
-            Context.MakeCurrent();
+            this.Context.MakeCurrent();
+            OpenTK.OpenGL.GL.LoadAll();
 
-            //GL.ReloadFunctions();
-
-            if (width > 0)
-                this.Width = width;
-            if (height > 0)
-                this.Height = height;
-            */
-            this.Fullscreen = mode.Fullscreen;
-            
-            this.SetStyle(ControlStyles.UserPaint, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            base.OnHandleCreated(e);
         }
-
-        #endregion
 
         #region --- Public Methods ---
 

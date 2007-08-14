@@ -42,7 +42,7 @@ namespace Examples
         	}
         	catch (Exception e)
         	{
-        		MessageBox.Show("Could not access debug.log");
+        		MessageBox.Show("Could not access debug.log", e.ToString());
         	}
 
         	Debug.Listeners.Add(new TextWriterTraceListener("debug.log"));

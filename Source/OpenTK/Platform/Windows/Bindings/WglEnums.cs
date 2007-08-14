@@ -1,4 +1,4 @@
-namespace OpenTK.OpenGL
+namespace OpenTK.Platform.Windows
 {
     public static partial class Wgl
     {
