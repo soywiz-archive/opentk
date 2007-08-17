@@ -29,10 +29,10 @@ namespace OpenTK.Platform.Windows
             internal delegate Boolean CopyContext(IntPtr hglrcSrc, IntPtr hglrcDst, UInt32 mask);
             internal static CopyContext wglCopyContext = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate int ChoosePixelFormat(IntPtr hDc, OpenTK.Platform.Windows.API.PixelFormatDescriptor pPfd);
+            internal delegate int ChoosePixelFormat(IntPtr hDc, PixelFormatDescriptor pPfd);
             internal static ChoosePixelFormat wglChoosePixelFormat = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate int DescribePixelFormat(IntPtr hdc, int ipfd, UInt32 cjpfd, OpenTK.Platform.Windows.API.PixelFormatDescriptor ppfd);
+            internal delegate int DescribePixelFormat(IntPtr hdc, int ipfd, UInt32 cjpfd, PixelFormatDescriptor ppfd);
             internal static DescribePixelFormat wglDescribePixelFormat = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr GetCurrentDC();
@@ -47,7 +47,7 @@ namespace OpenTK.Platform.Windows
             internal delegate int GetPixelFormat(IntPtr hdc);
             internal static GetPixelFormat wglGetPixelFormat = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate Boolean SetPixelFormat(IntPtr hdc, int ipfd, OpenTK.Platform.Windows.API.PixelFormatDescriptor ppfd);
+            internal delegate Boolean SetPixelFormat(IntPtr hdc, int ipfd, PixelFormatDescriptor ppfd);
             internal static SetPixelFormat wglSetPixelFormat = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean SwapBuffers(IntPtr hdc);
@@ -59,7 +59,7 @@ namespace OpenTK.Platform.Windows
             internal delegate IntPtr CreateLayerContext(IntPtr hDc, int level);
             internal static CreateLayerContext wglCreateLayerContext = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate Boolean DescribeLayerPlane(IntPtr hDc, int pixelFormat, int layerPlane, UInt32 nBytes, OpenTK.Platform.Windows.API.LayerPlaneDescriptor plpd);
+            internal delegate Boolean DescribeLayerPlane(IntPtr hDc, int pixelFormat, int layerPlane, UInt32 nBytes, LayerPlaneDescriptor plpd);
             internal static DescribeLayerPlane wglDescribeLayerPlane = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate int SetLayerPaletteEntries(IntPtr hdc, int iLayerPlane, int iStart, int cEntries, Int32 pcr);
@@ -79,6 +79,18 @@ namespace OpenTK.Platform.Windows
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate Boolean UseFontBitmapsW(IntPtr hDC, Int32 first, Int32 count, Int32 listBase);
             internal static UseFontBitmapsW wglUseFontBitmapsW = null;
+            [System.Security.SuppressUnmanagedCodeSecurity()]
+            internal delegate Boolean UseFontBitmaps(IntPtr hDC, Int32 first, Int32 count, Int32 listBase);
+            internal static UseFontBitmaps wglUseFontBitmaps = null;
+            [System.Security.SuppressUnmanagedCodeSecurity()]
+            internal delegate Boolean UseFontOutlinesA(IntPtr hDC, Int32 first, Int32 count, Int32 listBase, float thickness, float deviation, GlyphMetrics glyphMetrics);
+            internal static UseFontOutlinesA wglUseFontOutlinesA = null;
+            [System.Security.SuppressUnmanagedCodeSecurity()]
+            internal delegate Boolean UseFontOutlinesW(IntPtr hDC, Int32 first, Int32 count, Int32 listBase, float thickness, float deviation, GlyphMetrics glyphMetrics);
+            internal static UseFontOutlinesW wglUseFontOutlinesW = null;
+            [System.Security.SuppressUnmanagedCodeSecurity()]
+            internal delegate Boolean UseFontOutlines(IntPtr hDC, Int32 first, Int32 count, Int32 listBase, float thickness, float deviation, GlyphMetrics glyphMetrics);
+            internal static UseFontOutlines wglUseFontOutlines = null;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate IntPtr CreateBufferRegionARB(IntPtr hDC, int iLayerPlane, UInt32 uType);
             internal static CreateBufferRegionARB wglCreateBufferRegionARB = null;

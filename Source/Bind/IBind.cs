@@ -14,7 +14,5 @@ namespace Bind
     {
         //ISpecReader SpecReader { get; }
         void Process();
-
-        string FunctionPrefix { get; }
     }
 }

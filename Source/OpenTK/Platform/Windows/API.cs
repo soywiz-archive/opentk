@@ -66,7 +66,7 @@ namespace OpenTK.Platform.Windows
             RawInputDeviceInfoSize = Marshal.SizeOf(typeof(RawInputDeviceInfo));
         }
 
-        #region Constants
+        #region --- Constants ---
 
         public struct Constants
         {
@@ -1322,7 +1322,7 @@ namespace OpenTK.Platform.Windows
         [StructLayout(LayoutKind.Sequential)]
         public class LayerPlaneDescriptor
         {
-			public readonly WORD  Size = (WORD)Marshal.SizeOf(typeof(PixelFormatDescriptor)); 
+            public readonly WORD Size = (WORD)Marshal.SizeOf(typeof(LayerPlaneDescriptor)); 
 			public WORD  Version; 
 			public DWORD Flags; 
 			public BYTE  PixelType; 

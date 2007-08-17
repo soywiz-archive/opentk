@@ -185,3 +185,50 @@ UseFontBitmapsW( hDC, first, count, listBase )
 	category	wgl
 	dlflags		notlistable
 
+# Added by hand. Where can we find an updated spec?
+
+UseFontBitmaps( hDC, first, count, listBase )
+	return		BOOL
+	param		hDC		HDC in value
+	param		first		DWORD in value
+	param		count		DWORD in value
+	param		listBase	DWORD in value
+	category	wgl
+	dlflags		notlistable
+
+UseFontOutlinesA( hDC, first, count, listBase )
+	return		BOOL
+	param		hDC		HDC in value
+	param		first		DWORD in value
+	param		count		DWORD in value
+	param		listBase	DWORD in value
+	param		thickness	float in value
+	param		deviation	float in value
+	param		glyphMetrics	GLYPHMETRICSFLOAT in value
+	category	wgl
+	dlflags		notlistable
+
+UseFontOutlinesW( hDC, first, count, listBase )
+	return		BOOL
+	param		hDC		HDC in value
+	param		first		DWORD in value
+	param		count		DWORD in value
+	param		listBase	DWORD in value
+	param		thickness	float in value
+	param		deviation	float in value
+	param		glyphMetrics	GLYPHMETRICSFLOAT in value
+	category	wgl
+	dlflags		notlistable
+	
+UseFontOutlines( hDC, first, count, listBase )
+	return		BOOL
+	param		hDC		HDC in value
+	param		first		DWORD in value
+	param		count		DWORD in value
+	param		listBase	DWORD in value
+	param		thickness	float in value
+	param		deviation	float in value
+	param		glyphMetrics	GLYPHMETRICSFLOAT in value
+	category	wgl
+	dlflags		notlistable
+

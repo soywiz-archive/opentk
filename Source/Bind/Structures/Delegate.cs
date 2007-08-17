@@ -270,7 +270,7 @@ namespace Bind.Structures
 
             sb.Append(Settings.DelegatesClass);
             sb.Append(".");
-            sb.Append(Bind.MainClass.Generator.FunctionPrefix);
+            sb.Append(Settings.FunctionPrefix);
             sb.Append(Name);
             sb.Append(Parameters.CallString());
 
@@ -361,7 +361,6 @@ namespace Bind.Structures
             {
                 Function f = WrapReturnType();
 
-
                 WrapParameters(new Function((Function)f ?? this), wrappers);
             }
 
@@ -432,13 +431,13 @@ namespace Bind.Structures
         /// </summary>
         protected void WrapParameters(Function function, List<Function> wrappers)
         {
-            if (function.Name == "GetString")
+            if (function.Name == "ChoosePixelFormat")
             {
             }
 
             if (index == 0)
             {
-                bool containsPointerParameters = false;
+                bool containsPointerParameters = false, containsReferenceParameters = false;
                 // Check if there are any IntPtr parameters (we may have come here from a ReturnType wrapper
                 // such as glGetString, which contains no IntPtr parameters)
                 foreach (Parameter p in function.Parameters)
@@ -448,11 +447,19 @@ namespace Bind.Structures
                         containsPointerParameters = true;
                         break;
                     }
+                    else if (p.Reference)
+                    {
+                        containsReferenceParameters = true;
+                        break;
+                    }
                 }
 
                 if (containsPointerParameters)
                 {
                     wrappers.Add(DefaultWrapper(function));
+                }
+                else if (containsReferenceParameters)
+                {
                 }
                 else
                 {
@@ -486,7 +493,12 @@ namespace Bind.Structures
                             --index;
 
                             // On stack rewind, create array wrappers
-                            f = ArrayWrapper(new Function(function), index);
+                            f = new Function(this);
+                            f.Parameters[index].Reference = false;
+                            f.Parameters[index].Array = 0;
+                            f.Parameters[index].Pointer = true;
+                            f.Body = CreateBody(f, false);
+                            //f = ReferenceWrapper(new Function(function), index);
                             wrappers.Add(f);
 
                             // Recurse to the last parameter again, keeping the Array wrappers
@@ -494,8 +506,12 @@ namespace Bind.Structures
                             WrapParameters(f, wrappers);
                             --index;
 
-                            // On stack rewind, create Ref wrappers.
-                            f = ReferenceWrapper(new Function(function), index);
+                            //f = new Function(this);
+                            f.Parameters[index].Reference = true;
+                            f.Parameters[index].Array = 0;
+                            f.Parameters[index].Pointer = true;
+                            f.Body = CreateBody(f, false);
+                            //f = ReferenceWrapper(new Function(function), index);
                             wrappers.Add(f);
 
                             // Keeping the current Ref wrapper, visit all other parameters once more
@@ -512,7 +528,36 @@ namespace Bind.Structures
                             --index;
 
                             // On stack rewind, create array wrappers
-                            f = GenericWrapper(new Function(function), index);
+                            f = new Function(this);
+                            f.Parameters[index].Reference = false;
+                            f.Parameters[index].Array = 0;
+                            f.Parameters[index].Pointer = false;
+                            f.Parameters[index].CurrentType = "object";
+                            f.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
+
+                            f.Body = CreateBody(f, false);
+                            wrappers.Add(f);
+
+                            // Keeping the current Object wrapper, visit all other parameters once more
+                            ++index;
+                            WrapParameters(f, wrappers);
+                            --index;
+
+                            break;
+
+                        case WrapperTypes.ReferenceParameter:
+                            // Recurse to the last parameter
+                            ++index;
+                            WrapParameters(function, wrappers);
+                            --index;
+
+                            // On stack rewind, create reference wrappers
+                            f = new Function(this);
+                            f.Parameters[index].Reference = true;
+                            f.Parameters[index].Array = 0;
+                            f.Parameters[index].Pointer = false;
+                            f.Body = CreateBody(f, false);
+                            //f = ReferenceWrapper(new Function(function), index);
                             wrappers.Add(f);
 
                             // Keeping the current Object wrapper, visit all other parameters once more
@@ -524,66 +569,6 @@ namespace Bind.Structures
                     }
                 }
             }
-        }
-
-        #endregion
-
-        #region protected Function GenericWrapper(Function function, int index)
-
-        protected Function GenericWrapper(Function function, int index)
-        {
-            // Search and replace IntPtr parameters with the known parameter types:
-            function.Parameters[index].Reference = false;
-            function.Parameters[index].Array = 0;
-            function.Parameters[index].Pointer = false;
-            function.Parameters[index].CurrentType = "object";
-            function.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
-
-            // In the function body we should pin all objects in memory before calling the
-            // low-level function.
-            function.Body.Clear();
-            //function.Body.AddRange(GetBodyWithFixedPins(function));
-            function.Body.AddRange(function.GetBodyWithPins(false));
-
-            return function;
-        }
-
-        #endregion
-
-        #region protected Function ReferenceWrapper(Function function, int index)
-
-        protected Function ReferenceWrapper(Function function, int index)
-        {
-            // Search and replace IntPtr parameters with the known parameter types:
-            function.Parameters[index].Reference = true;
-            function.Parameters[index].Array = 0;
-            function.Parameters[index].Pointer = false;
-
-            // In the function body we should pin all objects in memory before calling the
-            // low-level function.
-            function.Body.Clear();
-            function.Body.AddRange(function.GetBodyWithPins(false));
-
-            return function;
-        }
-
-        #endregion
-
-        #region protected Function ArrayWrapper(Function function, int index)
-
-        protected Function ArrayWrapper(Function function, int index)
-        {
-            // Search and replace IntPtr parameters with the known parameter types:
-            function.Parameters[index].Array = 1;
-            function.Parameters[index].Pointer = false;
-            function.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
-
-            // In the function body we should pin all objects in memory before calling the
-            // low-level function.
-            function.Body.Clear();
-            function.Body.AddRange(function.GetBodyWithPins(false));
-
-            return function;
         }
 
         #endregion
@@ -607,36 +592,11 @@ namespace Bind.Structures
 
         #endregion
 
-        #region protected FunctionBody GetBodyWithPins(bool wantCLSCompliance)
-
-        /// <summary>
-        /// Generates a body which calls the specified function, pinning all needed parameters.
-        /// </summary>
-        /// <param name="function"></param>
-        protected FunctionBody GetBodyWithPins(bool wantCLSCompliance)
+        protected FunctionBody CreateBody(Function fun, bool wantCLSCompliance)
         {
-            // We'll make changes, but we want the original intact.
-            //Function function = this as Function ?? new Function(this);
-            //Function f = new Function(function);
-            Function f = new Function(this);
+            Function f = new Function(fun);
             f.Body.Clear();
-            // Unsafe only if 
-            //function.Unsafe = false;
 
-            // Add default initliazers for out parameters:
-            foreach (Parameter p in this.Parameters)
-            {
-                if (p.Flow == Parameter.FlowDirection.Out)
-                {
-                    f.Body.Add(
-                        String.Format(
-                            "{0} = default({1});",
-                            p.Name,
-                            p.GetFullType(Bind.Structures.Type.CSTypes, wantCLSCompliance)
-                        )
-                    );
-                }
-            }
             // All GCHandles statements will go here. This will allow to place only one opening '{'
             // on fixed statements.
             int handleStart = f.Body.Count;
@@ -652,6 +612,191 @@ namespace Bind.Structures
             // True if function body contains at least one fixed statement. Add a statement-level
             // unsafe block if true (and the function is not unsafe at the function-level).
             bool fixedAllocated = false;
+
+            // Obtain pointers by pinning the parameters
+            int param = 0;
+            foreach (Parameter p in f.Parameters)
+            {
+                if (p.NeedsPin)
+                {
+                    // Use GCHandle to obtain pointer to generic parameters and 'fixed' for arrays.
+                    // This is because fixed can only take the address of fields, not managed objects.
+                    if (p.WrapperType == WrapperTypes.GenericParameter)
+                    {
+                        f.Body.Insert(
+                            handleStart,
+                            String.Format(
+                                "{0} {1} = {0}.Alloc({2}, System.Runtime.InteropServices.GCHandleType.Pinned);",
+                                "System.Runtime.InteropServices.GCHandle",
+                                p.Name + "_ptr",
+                                p.Name
+                            )
+                        );
+                        // Note! The following line modifies f.Parameters, *not* function.Parameters
+                        p.Name = "(void*)" + p.Name + "_ptr.AddrOfPinnedObject()";
+
+                        handleAllocated = true;
+
+                        handleEnd++;
+                    }
+                    else if (p.WrapperType == WrapperTypes.PointerParameter || p.WrapperType == WrapperTypes.ArrayParameter ||
+                        (p.WrapperType == WrapperTypes.ReferenceParameter &&
+                        (this.Parameters[param].Pointer || this.Parameters[param].Array > 0) || this.Parameters[param].CurrentType.Contains("IntPtr")))
+                    {
+                        f.Body.Add(
+                            String.Format(
+                                "    fixed ({0}* {1} = {2})",
+                                wantCLSCompliance && !p.CLSCompliant ?
+                                    p.GetCLSCompliantType() :
+                                    p.CurrentType,
+                                p.Name + "_ptr",
+                                p.Array > 0 ? p.Name : "&" + p.Name
+                            )
+                        );
+                        p.Name = p.Name + "_ptr";
+
+                        fixedAllocated = true;
+                    }
+                    else
+                    {
+                        throw new ApplicationException("Unknown parameter type");
+                    }
+                }
+            }
+
+            if (!this.Unsafe && fixedAllocated)
+            {
+                f.Body.Insert(handleEnd, "unsafe");
+                f.Body.Insert(handleEnd + 1, "{");
+            }
+
+            if (handleAllocated)
+            {
+                f.Body.Add("    try");
+                f.Body.Add("    {");
+            }
+
+            // Add delegate call:
+            if (f.ReturnType.CurrentType.ToLower().Contains("void"))
+                f.Body.Add(String.Format("        {0};", f.CallString()));
+            else
+                f.Body.Add(String.Format("        {0} {1} = {2};", f.ReturnType.CurrentType, "retval", f.CallString()));
+
+            // Assign out parameters:
+            foreach (Parameter p in this.Parameters)
+            {
+                if (p.Flow == Parameter.FlowDirection.Out)
+                {
+                    // Check each out parameter. If it has been pinned, get the Target of the GCHandle.
+                    // Otherwise, nothing needs be done.
+                    if (p.NeedsPin)
+                    {
+                        if (p.WrapperType == WrapperTypes.GenericParameter)
+                        {
+                            f.Body.Add(
+                                String.Format(
+                                    "        {0} = ({1}){2}.Target;",
+                                    p.Name,
+                                    p.CurrentType,
+                                    p.Name + "_ptr"
+                                )
+                            );
+                        }
+                        else
+                        {
+                            f.Body.Add(
+                                String.Format(
+                                    "        {0} = *{0}_ptr;",
+                                    p.Name
+                                )
+                            );
+                        }
+                    }
+                }
+            }
+
+            // Return:
+            if (!f.ReturnType.CurrentType.ToLower().Contains("void"))
+            {
+                f.Body.Add("        return retval;");
+            }
+
+            if (handleAllocated)
+            {
+                f.Body.Add("    }");
+                f.Body.Add("    finally");
+                f.Body.Add("    {");
+                foreach (Parameter p in this.Parameters)
+                {
+                    // Free all allocated GCHandles
+                    if (p.NeedsPin)
+                    {
+                        if (p.WrapperType == WrapperTypes.GenericParameter)
+                            f.Body.Add(String.Format("        {0}_ptr.Free();", p.Name));
+                        //else
+                        //    f.Body.Add("}");
+                    }
+                }
+                f.Body.Add("    }");
+            }
+
+            if (!this.Unsafe && fixedAllocated)
+            {
+                f.Body.Add("}");
+            }
+
+            return f.Body;
+        }
+
+        #region protected FunctionBody GetBodyWithPins(bool wantCLSCompliance)
+
+        /// <summary>
+        /// Generates a body which calls the specified function, pinning all needed parameters.
+        /// </summary>
+        /// <param name="function"></param>
+        protected FunctionBody GetBodyWithPins(bool wantCLSCompliance)
+        {
+            // We'll make changes, but we want the original intact.
+            //Function function = this as Function ?? new Function(this);
+            //Function f = new Function(function);
+            Function f = new Function(this);
+            f.Body.Clear();
+
+            if (f.Name.Contains("DescribePixelFormat"))
+            {
+            }
+            /*
+            // Add default initliazers for out parameters:
+            foreach (Parameter p in this.Parameters)
+            {
+                if (p.Flow == Parameter.FlowDirection.Out)
+                {
+                    f.Body.Add(
+                        String.Format(
+                            "{0} = default({1});",
+                            p.Name,
+                            p.GetFullType(Bind.Structures.Type.CSTypes, wantCLSCompliance)
+                        )
+                    );
+                }
+            }
+            */
+
+            // All GCHandles statements will go here. This will allow to place only one opening '{'
+            // on fixed statements.
+            int handleStart = f.Body.Count;
+
+            // Indicates the index where the last GCHandle statement is. Used to add an unsafe stamement
+            // (if needed) at exactl that spot, i.e. after the GCHandles but before the fixed statements.
+            int handleEnd = f.Body.Count;
+
+            // True if at least on GCHandle is allocated. Used to remove the try { } finally { }
+            // block if no handle has been allocated.
+            bool handleAllocated = false;
+
+            // True if function body contains at least one fixed statement. Add a statement-level
+            // unsafe block if true (and the function is not unsafe at the function-level).
+            //bool fixedAllocated = false;
 
             // Obtain pointers by pinning the parameters
             foreach (Parameter p in f.Parameters)
@@ -678,6 +823,10 @@ namespace Bind.Structures
 
                         handleEnd++;
                     }
+                    else if (p.WrapperType == WrapperTypes.ReferenceParameter)
+                    {
+                        // Nothing special
+                    }
                     else
                     {
                         f.Body.Add(
@@ -692,7 +841,7 @@ namespace Bind.Structures
                         );
                         p.Name = p.Name + "_ptr";
 
-                        fixedAllocated = true;
+                        //fixedAllocated = true;
                     }
                 }
             }
@@ -836,11 +985,16 @@ namespace Bind.Structures
 
             if (ReturnType.CurrentType.ToLower().Contains("bool"))
             {
+                // TODO: Is the translation to 'int' needed 100%? It breaks WGL.
+                /*
                 if (Settings.Compatibility == Settings.Legacy.Tao)
+                {
                     ReturnType.CurrentType = "int";
+                }
                 else
                 {
                 }
+                */
 
                 //ReturnType.WrapperType = WrapperTypes.ReturnsBool;
             }
@@ -870,24 +1024,6 @@ namespace Bind.Structures
                     // Special case: these functions take a string[]
                     //IsPointer = true;
                     Parameters[i].Array = 1;
-                }
-                
-                if (Parameters[i].CurrentType == "PIXELFORMATDESCRIPTOR")
-                {
-                	Parameters[i].CurrentType = Settings.WindowsPlatform + ".PixelFormatDescriptor";
-                }
-                else if (Parameters[i].CurrentType == "LAYERPLANEDESCRIPTOR")
-                {
-                	Parameters[i].CurrentType = Settings.WindowsPlatform + ".LayerPlaneDescriptor";
-                }
-                else if (Parameters[i].CurrentType == "LPCSTR")
-                {
-                	// TODO: Why doesn't the cs typemap work for LPCSTR and COLORREF?
-                	Parameters[i].CurrentType = "String";
-                }
-                else if (Parameters[i].CurrentType == "COLORREF")
-                {
-                	Parameters[i].CurrentType = "Int32";
                 }
             }
         }

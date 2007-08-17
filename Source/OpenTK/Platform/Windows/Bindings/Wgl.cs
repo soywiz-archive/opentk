@@ -44,22 +44,22 @@ namespace OpenTK.Platform.Windows
         }
         
         public static 
-        int ChoosePixelFormat(IntPtr hDc, OpenTK.Platform.Windows.API.PixelFormatDescriptor pPfd)
+        int ChoosePixelFormat(IntPtr hDc, PixelFormatDescriptor pPfd)
         {
-            return Delegates.wglChoosePixelFormat((IntPtr)hDc, (OpenTK.Platform.Windows.API.PixelFormatDescriptor)pPfd);
+            return Delegates.wglChoosePixelFormat((IntPtr)hDc, (PixelFormatDescriptor)pPfd);
         }
         
         [System.CLSCompliant(false)]
         public static 
-        int DescribePixelFormat(IntPtr hdc, int ipfd, UInt32 cjpfd, OpenTK.Platform.Windows.API.PixelFormatDescriptor ppfd)
+        int DescribePixelFormat(IntPtr hdc, int ipfd, UInt32 cjpfd, PixelFormatDescriptor ppfd)
         {
-            return Delegates.wglDescribePixelFormat((IntPtr)hdc, (int)ipfd, (UInt32)cjpfd, (OpenTK.Platform.Windows.API.PixelFormatDescriptor)ppfd);
+            return Delegates.wglDescribePixelFormat((IntPtr)hdc, (int)ipfd, (UInt32)cjpfd, (PixelFormatDescriptor)ppfd);
         }
         
         public static 
-        int DescribePixelFormat(IntPtr hdc, int ipfd, Int32 cjpfd, OpenTK.Platform.Windows.API.PixelFormatDescriptor ppfd)
+        int DescribePixelFormat(IntPtr hdc, int ipfd, Int32 cjpfd, PixelFormatDescriptor ppfd)
         {
-            return Delegates.wglDescribePixelFormat((IntPtr)hdc, (int)ipfd, (UInt32)cjpfd, (OpenTK.Platform.Windows.API.PixelFormatDescriptor)ppfd);
+            return Delegates.wglDescribePixelFormat((IntPtr)hdc, (int)ipfd, (UInt32)cjpfd, (PixelFormatDescriptor)ppfd);
         }
         
         public static 
@@ -87,9 +87,9 @@ namespace OpenTK.Platform.Windows
         }
         
         public static 
-        Boolean SetPixelFormat(IntPtr hdc, int ipfd, OpenTK.Platform.Windows.API.PixelFormatDescriptor ppfd)
+        Boolean SetPixelFormat(IntPtr hdc, int ipfd, PixelFormatDescriptor ppfd)
         {
-            return Delegates.wglSetPixelFormat((IntPtr)hdc, (int)ipfd, (OpenTK.Platform.Windows.API.PixelFormatDescriptor)ppfd);
+            return Delegates.wglSetPixelFormat((IntPtr)hdc, (int)ipfd, (PixelFormatDescriptor)ppfd);
         }
         
         public static 
@@ -112,15 +112,15 @@ namespace OpenTK.Platform.Windows
         
         [System.CLSCompliant(false)]
         public static 
-        Boolean DescribeLayerPlane(IntPtr hDc, int pixelFormat, int layerPlane, UInt32 nBytes, OpenTK.Platform.Windows.API.LayerPlaneDescriptor plpd)
+        Boolean DescribeLayerPlane(IntPtr hDc, int pixelFormat, int layerPlane, UInt32 nBytes, LayerPlaneDescriptor plpd)
         {
-            return Delegates.wglDescribeLayerPlane((IntPtr)hDc, (int)pixelFormat, (int)layerPlane, (UInt32)nBytes, (OpenTK.Platform.Windows.API.LayerPlaneDescriptor)plpd);
+            return Delegates.wglDescribeLayerPlane((IntPtr)hDc, (int)pixelFormat, (int)layerPlane, (UInt32)nBytes, (LayerPlaneDescriptor)plpd);
         }
         
         public static 
-        Boolean DescribeLayerPlane(IntPtr hDc, int pixelFormat, int layerPlane, Int32 nBytes, OpenTK.Platform.Windows.API.LayerPlaneDescriptor plpd)
+        Boolean DescribeLayerPlane(IntPtr hDc, int pixelFormat, int layerPlane, Int32 nBytes, LayerPlaneDescriptor plpd)
         {
-            return Delegates.wglDescribeLayerPlane((IntPtr)hDc, (int)pixelFormat, (int)layerPlane, (UInt32)nBytes, (OpenTK.Platform.Windows.API.LayerPlaneDescriptor)plpd);
+            return Delegates.wglDescribeLayerPlane((IntPtr)hDc, (int)pixelFormat, (int)layerPlane, (UInt32)nBytes, (LayerPlaneDescriptor)plpd);
         }
         
         public static 
@@ -164,6 +164,30 @@ namespace OpenTK.Platform.Windows
         Boolean UseFontBitmapsW(IntPtr hDC, Int32 first, Int32 count, Int32 listBase)
         {
             return Delegates.wglUseFontBitmapsW((IntPtr)hDC, (Int32)first, (Int32)count, (Int32)listBase);
+        }
+        
+        public static 
+        Boolean UseFontBitmaps(IntPtr hDC, Int32 first, Int32 count, Int32 listBase)
+        {
+            return Delegates.wglUseFontBitmaps((IntPtr)hDC, (Int32)first, (Int32)count, (Int32)listBase);
+        }
+        
+        public static 
+        Boolean UseFontOutlinesA(IntPtr hDC, Int32 first, Int32 count, Int32 listBase, float thickness, float deviation, GlyphMetrics glyphMetrics)
+        {
+            return Delegates.wglUseFontOutlinesA((IntPtr)hDC, (Int32)first, (Int32)count, (Int32)listBase, (float)thickness, (float)deviation, (GlyphMetrics)glyphMetrics);
+        }
+        
+        public static 
+        Boolean UseFontOutlinesW(IntPtr hDC, Int32 first, Int32 count, Int32 listBase, float thickness, float deviation, GlyphMetrics glyphMetrics)
+        {
+            return Delegates.wglUseFontOutlinesW((IntPtr)hDC, (Int32)first, (Int32)count, (Int32)listBase, (float)thickness, (float)deviation, (GlyphMetrics)glyphMetrics);
+        }
+        
+        public static 
+        Boolean UseFontOutlines(IntPtr hDC, Int32 first, Int32 count, Int32 listBase, float thickness, float deviation, GlyphMetrics glyphMetrics)
+        {
+            return Delegates.wglUseFontOutlines((IntPtr)hDC, (Int32)first, (Int32)count, (Int32)listBase, (float)thickness, (float)deviation, (GlyphMetrics)glyphMetrics);
         }
         
         public static class ARB

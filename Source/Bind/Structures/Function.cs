@@ -138,9 +138,13 @@ namespace Bind.Structures
                 // remove the Extension and the overload information from the name
                 // (Extension == "ARB", "EXT", etc, overload == [u][bsidf][v])
                 // TODO: Use some regex's here, to reduce clutter.
-                if (Settings.Compatibility != Settings.Legacy.Tao)
+                TrimmedName = value;
+
+                if (Settings.Compatibility == Settings.Legacy.Tao)
                 {
-                    TrimmedName = value;
+                }
+                else
+                {
                     TrimmedName = Utilities.StripGL2Extension(value);
                     
                     //if (TrimmedName.Contains("Uniform2iv"))
@@ -194,7 +198,7 @@ namespace Bind.Structures
             sb.Append(" ");
             if (Settings.Compatibility == Settings.Legacy.Tao)
             {
-                sb.Append("gl");
+                sb.Append(Settings.FunctionPrefix);
             }
             sb.Append(!String.IsNullOrEmpty(TrimmedName) ? TrimmedName : Name);
             sb.Append(Parameters.ToString(true));

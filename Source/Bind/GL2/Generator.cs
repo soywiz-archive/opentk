@@ -29,20 +29,23 @@ namespace Bind.GL2
     	protected static string enumsFile = "GLEnums.cs";
     	protected static string wrappersFile = "GL.cs";
 
-        protected static string className = Settings.GLClass;
         protected static string loadAllFuncName = "LoadAll";
-        protected static string functionPrefix = "gl";
-        public string FunctionPrefix { get { return functionPrefix; } }
-
-        protected string specFolder;
 
         #endregion
 
         #region --- Constructors ---
 
-        public Generator(string folder)
+        public Generator()
         {
-            specFolder = folder;
+            if (Settings.Compatibility == Settings.Legacy.Tao)
+            {
+                Settings.OutputNamespace = "Tao.OpenGl";
+                Settings.OutputClass = "Gl";
+            }
+            else
+            {
+                // Defaults
+            }
         }
 
         #endregion
@@ -168,7 +171,7 @@ namespace Bind.GL2
                     // Get function name:
                     d.Name = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries)[0];
 
-                    if (d.Name.Contains("MultiTexCoord1"))
+                    if (d.Name.Contains("DescribeLayerPlane"))
                     {
                     }
 
@@ -226,14 +229,14 @@ namespace Bind.GL2
 
         public virtual EnumCollection ReadEnums(StreamReader specFile)
         {
+            Trace.WriteLine("Reading opengl enumerant specs.");
+            Trace.Indent();
+
             EnumCollection enums = new EnumCollection();
 
             // complete_enum contains all opengl enumerants.
             Bind.Structures.Enum complete_enum = new Bind.Structures.Enum();
             complete_enum.Name = Settings.CompleteEnumName;
-
-            Trace.WriteLine(String.Format("Reading opengl enumerant specs"));
-            Trace.Indent();
 
             do
             {
@@ -252,7 +255,7 @@ namespace Bind.GL2
 
                     // Declare a new enumerant
                     Bind.Structures.Enum e = new Bind.Structures.Enum();
-                    e.Name = Char.IsDigit(words[0][0]) ? "GL_" + words[0] : words[0];
+                    e.Name = Char.IsDigit(words[0][0]) ? Settings.ConstantPrefix + words[0] : words[0];
 
                     // And fill in the values for this enumerant
                     do
@@ -275,12 +278,18 @@ namespace Bind.GL2
                         Constant c = new Constant();
                         if (line.Contains("="))
                         {
-                            // Trim the "GL_" from the start of the string.
-                            if (words[0].StartsWith("GL_"))
-                                words[0] = words[0].Substring(3);
+                            // Trim the name's prefix, but only if not in Tao compat mode.
+                            if (Settings.Compatibility == Settings.Legacy.Tao)
+                            {
+                            }
+                            else
+                            {
+                                if (words[0].StartsWith(Settings.ConstantPrefix))
+                                    words[0] = words[0].Substring(3);
 
-                            if (Char.IsDigit(words[0][0]))
-                                words[0] = "GL_" + words[0];
+                                if (Char.IsDigit(words[0][0]))
+                                    words[0] = Settings.ConstantPrefix + words[0];
+                            }
 
                             c.Name = words[0];
 
@@ -297,14 +306,14 @@ namespace Bind.GL2
                             {
                                 // The value is not a number.
                                 // Strip the "GL_" from the start of the string.
-                                if (words[2].StartsWith("GL_"))
+                                if (words[2].StartsWith(Settings.ConstantPrefix))
                                     words[2] = words[2].Substring(3);
 
                                 // If the name now starts with a digit (doesn't matter whether we
                                 // stripped "GL_" above), add a "GL_" prefix.
                                 // (e.g. GL_4_BYTES).
                                 if (Char.IsDigit(words[2][0]))
-                                    words[2] = "GL_" + words[2];
+                                    words[2] = Settings.ConstantPrefix + words[2];
                             }
 
                             c.Value = words[2];
@@ -312,13 +321,13 @@ namespace Bind.GL2
                         else if (words[0] == "use")
                         {
                             // Trim the "GL_" from the start of the string.
-                            if (words[2].StartsWith("GL_"))
+                            if (words[2].StartsWith(Settings.ConstantPrefix))
                                 words[2] = words[2].Substring(3);
 
                             // If the remaining string starts with a digit, we were wrong above.
                             // Re-add the "GL_"
                             if (Char.IsDigit(words[2][0]))
-                                words[2] = "GL_" + words[2];
+                                words[2] = Settings.ConstantPrefix + words[2];
 
                             c.Name = words[2];
 
@@ -510,18 +519,18 @@ namespace Bind.GL2
 
         #region void WriteBindings
         
-        public void WriteBindings(
-        	DelegateCollection delegates, FunctionCollection functions,
-            EnumCollection enums)
+        public void WriteBindings(DelegateCollection delegates, FunctionCollection functions, EnumCollection enums)
         {
-        	// Write
+            if (!Directory.Exists(Settings.OutputPath))
+                Directory.CreateDirectory(Settings.OutputPath);
+
             using (BindStreamWriter sw = new BindStreamWriter(Path.Combine(Settings.OutputPath, enumsFile)))
             {
                 sw.WriteLine("namespace {0}", Settings.OutputNamespace);
                 sw.WriteLine("{");
                 
                 sw.Indent();
-                sw.WriteLine("public static partial class {0}", className);
+                sw.WriteLine("public static partial class {0}", Settings.OutputClass);
                 sw.WriteLine("{");
                 
                 sw.Indent();
@@ -586,7 +595,7 @@ namespace Bind.GL2
             Trace.WriteLine(String.Format("Writing delegates to {0}.{1}", Settings.OutputNamespace, Settings.DelegatesClass));
 
             sw.WriteLine();
-            sw.WriteLine("partial class {0}", className);
+            sw.WriteLine("partial class {0}", Settings.OutputClass);
             sw.WriteLine("{");
             sw.Indent();
             sw.WriteLine();
@@ -599,7 +608,7 @@ namespace Bind.GL2
             sw.WriteLine("{");
             // --- Workaround for mono gmcs 1.2.4 issue, where static initalization fails. ---
             sw.Indent();
-            sw.WriteLine("{0}.{1}();", className, loadAllFuncName);
+            sw.WriteLine("{0}.{1}();", Settings.OutputClass, loadAllFuncName);
             sw.Unindent();
             // --- End workaround ---
             sw.WriteLine("}");
@@ -613,7 +622,7 @@ namespace Bind.GL2
                     "internal {0}static {1} {2}{1} = null;",
                     d.Unsafe ? "unsafe " : "",
                     d.Name,
-                    functionPrefix);
+                    Settings.FunctionPrefix);
                 // --- End workaround ---s
             }
             sw.Unindent();
@@ -631,7 +640,7 @@ namespace Bind.GL2
             Trace.WriteLine(String.Format("Writing imports to {0}.{1}", Settings.OutputNamespace, Settings.ImportsClass));
 
             sw.WriteLine();
-            sw.WriteLine("partial class {0}", className);
+            sw.WriteLine("partial class {0}", Settings.OutputClass);
             sw.WriteLine("{");
             sw.Indent();
             sw.WriteLine();
@@ -648,8 +657,8 @@ namespace Bind.GL2
 	                sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
 	                sw.WriteLine(
 	                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"{1}{2}\", ExactSpelling = true)]",
-	                    className,
-                        functionPrefix,
+                        Settings.OutputClass,
+                        Settings.FunctionPrefix,
 	                    d.Name
 	                );
 	                sw.WriteLine("internal extern static {0};", d.DeclarationString());
@@ -667,10 +676,10 @@ namespace Bind.GL2
 
         public void WriteWrappers(BindStreamWriter sw, FunctionCollection wrappers, Dictionary<string, string> CSTypes)
         {
-            Trace.WriteLine(String.Format("Writing wrappers to {0}.{1}", Settings.OutputNamespace, className));
+            Trace.WriteLine(String.Format("Writing wrappers to {0}.{1}", Settings.OutputNamespace, Settings.OutputClass));
 
             sw.WriteLine();
-            sw.WriteLine("public static partial class {0}", className);
+            sw.WriteLine("public static partial class {0}", Settings.OutputClass);
             sw.WriteLine("{");
 
             sw.Indent();
@@ -687,7 +696,7 @@ namespace Bind.GL2
                     else
                     {
                     	// Identifiers cannot start with a number:
-                    	sw.WriteLine("public static class GL_{0}", key);
+                        sw.WriteLine("public static class {0}{1}", Settings.FunctionPrefix, key);
                     }
                     sw.WriteLine("{");
                     sw.Indent();
@@ -735,7 +744,7 @@ namespace Bind.GL2
 
         public void WriteEnums(BindStreamWriter sw, EnumCollection enums)
         {
-            Trace.WriteLine(String.Format("Writing enums to {0}.{1}", Settings.OutputNamespace, className));
+            Trace.WriteLine(String.Format("Writing enums to {0}.{1}", Settings.OutputNamespace, Settings.OutputClass));
 
             if (Settings.Compatibility == Settings.Legacy.None)
             {
@@ -762,8 +771,8 @@ namespace Bind.GL2
                     {
                         sw.WriteLine(String.Format(
                             "public const int {0} = {2}((int){1});",
-                            c.Name.StartsWith("GL_") ? c.Name : "GL_" + c.Name,
-                            Char.IsDigit(c.Value[0]) ? c.Value : c.Value.StartsWith("GL_") ? c.Value : "GL_" + c.Value,
+                            c.Name.StartsWith(Settings.ConstantPrefix) ? c.Name : Settings.ConstantPrefix + c.Name,
+                            Char.IsDigit(c.Value[0]) ? c.Value : c.Value.StartsWith(Settings.ConstantPrefix) ? c.Value : Settings.ConstantPrefix + c.Value,
                             c.Unchecked ? "unchecked" : ""));
                     }
                     else

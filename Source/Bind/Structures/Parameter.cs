@@ -104,10 +104,11 @@ namespace Bind.Structures
 
         public bool NeedsPin
         {
-            get { return
-              (Array > 0 || Reference || CurrentType == "object") &&
-              !CurrentType.ToLower().Contains("string");
-        }
+            get
+            {
+                return (Array > 0 || /*Reference ||*/ CurrentType == "object") &&
+                        !CurrentType.ToLower().Contains("string");
+            }
         }
 
         #endregion
@@ -235,7 +236,17 @@ namespace Bind.Structures
                 else
                 {
                     // This is not enum, default translation:
-                    p.CurrentType = s;
+                    if ((p.CurrentType == "PIXELFORMATDESCRIPTOR" || p.CurrentType == "LAYERPLANEDESCRIPTOR" ||
+                        p.CurrentType == "GLYPHMETRICSFLOAT") && Settings.Compatibility == Settings.Legacy.Tao)
+                    {
+                        p.CurrentType = p.CurrentType.Insert(0, "Gdi.");
+                        //p.Pointer = true;
+                        p.Reference = true;
+                    }
+                    else
+                    {
+                        p.CurrentType = s;
+                    }
                     p.CurrentType =
                         Bind.Structures.Type.CSTypes.ContainsKey(p.CurrentType) ?
                         Bind.Structures.Type.CSTypes[p.CurrentType] : p.CurrentType;
@@ -265,6 +276,11 @@ namespace Bind.Structures
                 {
                     p.WrapperType = WrapperTypes.GenericParameter;
                 }
+            }
+
+            if (p.Reference)
+            {
+                p.WrapperType = WrapperTypes.ReferenceParameter;
             }
 
             if (p.CurrentType.ToLower().Contains("bool"))
@@ -375,18 +391,23 @@ namespace Bind.Structures
                     {
                         if (p.CurrentType.ToLower().Contains("string"))
                         {
-                            sb.Append(String.Format(
-                                "({0}{1})",
-                                p.CurrentType,
-                                (p.Array > 0) ? "[]" : ""));
+                            sb.Append(String.Format("({0}{1})",
+                                p.CurrentType, (p.Array > 0) ? "[]" : ""));
 
+                        }
+                        else if (p.Pointer || p.Array > 0)
+                        {
+                            sb.Append(String.Format("({0}{1})",
+                                p.CurrentType, (p.Pointer || p.Array > 0) ? "*" : ""));
+                        }
+                        else if (p.Reference)
+                        {
+                            sb.Append(String.Format("{0} ({1})",
+                               p.Flow == Parameter.FlowDirection.Out ? "out" : "ref", p.CurrentType));
                         }
                         else
                         {
-                            sb.Append(String.Format(
-                                "({0}{1})",
-                                p.CurrentType,
-                                (p.Pointer || p.Array > 0 || p.Reference) ? "*" : ""));
+                            sb.Append(String.Format("({0})", p.CurrentType));
                         }
                     }
 
