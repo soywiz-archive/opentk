@@ -24,34 +24,32 @@ namespace OpenTK.Platform.Windows
         static private readonly string opengl32Name = "OPENGL32.DLL";
         private IntPtr windowHandle;
 
+        private DisplayMode mode;
+
         private bool disposed;
 
         #region --- Contructors ---
 
-        public WinGLContext(IntPtr windowHandle)
-            : this(windowHandle, new DisplayMode(640, 480, new ColorDepth(32), 16, 0, 0, 2, false, false, false, 0.0f))
+        public WinGLContext()
+            : this(new DisplayMode(640, 480, new ColorDepth(32), 16, 0, 0, 2, false, false, false, 0.0f))
         {
         }
 
-        public WinGLContext(IntPtr windowHandle, DisplayMode mode)
+        public WinGLContext(DisplayMode mode)
         {
-            Debug.WriteLine(String.Format("Creating opengl context (driver: {0})", this.ToString()));
-            Debug.Indent();
-
-            this.windowHandle = windowHandle;
-            Debug.WriteLine(String.Format("Window handle: {0}", windowHandle));
-
-            PrepareContext(mode);
-
-            Debug.Unindent();
+            Debug.Print("Creating opengl context (driver: {0})", this.ToString());
+            this.mode = mode;
         }
 
         #endregion
 
-        #region public void PrepareContext(DisplayMode mode)
+        #region public void PrepareContext(IntPtr handle)
 
-        public void PrepareContext(DisplayMode mode)
+        public void PrepareContext(IntPtr handle)
         {
+            this.windowHandle = handle;
+            Debug.WriteLine(String.Format("OpenGL context is bound to handle: {0}", windowHandle));
+
             // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
             if (opengl32Handle == IntPtr.Zero)
             {
@@ -267,10 +265,7 @@ namespace OpenTK.Platform.Windows
             if (!disposed)
             {
                 // Clean unmanaged resources here:
-                Wgl.Imports.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
-                Wgl.Imports.DeleteContext(renderContext);
-                API.ReleaseDC(windowHandle, deviceContext);
-                API.FreeLibrary(opengl32Handle);
+                ReleaseResources();
 
                 if (calledManually)
                 {
@@ -291,13 +286,23 @@ namespace OpenTK.Platform.Windows
         {
             if (renderContext != IntPtr.Zero)
             {
-                if (!Wgl.DeleteContext(renderContext))
+                Wgl.Imports.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
+                if (!Wgl.Imports.DeleteContext(renderContext))
                 {
                     throw new ApplicationException(
                         "Could not destroy the OpenGL render context. Error: " + Marshal.GetLastWin32Error()
                     );
                 }
                 renderContext = IntPtr.Zero;
+            }
+
+            if (deviceContext != IntPtr.Zero)
+            {
+                if (!API.ReleaseDC(windowHandle, deviceContext))
+                {
+                    throw new ApplicationException(
+                        "Could not release device context. Error: " + Marshal.GetLastWin32Error());
+                }
             }
 
             if (opengl32Handle != IntPtr.Zero)

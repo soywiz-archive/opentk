@@ -51,12 +51,7 @@ namespace OpenTK
             
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-        }
 
-        #endregion
-
-        protected override void OnHandleCreated(EventArgs e)
-        {
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
             {
@@ -73,12 +68,9 @@ namespace OpenTK
                     "Your operating system is not currently supported. We are sorry for the inconvenience."
                 );
             }
-
-            this.Context.MakeCurrent();
-            OpenTK.OpenGL.GL.LoadAll();
-
-            base.OnHandleCreated(e);
         }
+
+        #endregion
 
         #region --- Public Methods ---
 

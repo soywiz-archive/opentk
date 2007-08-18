@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 #endregion
 
@@ -21,6 +22,7 @@ namespace OpenTK.Platform.Windows
         private WinGLContext glContext;
         private bool fullscreen;
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+        private DisplayMode mode;
 
         private bool disposed;
         private Message msg;        // Used only by the IsIdle event.
@@ -29,31 +31,24 @@ namespace OpenTK.Platform.Windows
 
         public WinGLControl(Control c, DisplayMode mode)
         {
-            glContext = new WinGLContext(c.Handle, mode);
+            this.mode = mode;
+            c.HandleCreated += new EventHandler(c_HandleCreated);
+            c.HandleDestroyed += new EventHandler(c_HandleDestroyed);
 
-            glContext.CreateContext();
+            glContext = new WinGLContext(mode);
+            c.CreateControl();
         }
 
-        [Obsolete("Use WinGLControl(Control c, DisplayMode mode) instead")]
-        public WinGLControl(Control c, int width, int height, bool fullscreen)
+        void c_HandleCreated(object sender, EventArgs e)
         {
-            glContext = new WinGLContext(
-                c.Handle,
-                new DisplayMode(
-                    width, height,
-                    new ColorDepth(32),
-                    16, 0, 0, 2,
-                    fullscreen,
-                    false,
-                    false,
-                    0.0f
-                )
-            );
-
+            glContext.PrepareContext((sender as Control).Handle);
             glContext.CreateContext();
-
-            glContext.MakeCurrent();
             OpenTK.OpenGL.GL.LoadAll();
+        }
+
+        void c_HandleDestroyed(object sender, EventArgs e)
+        {
+            glContext.Dispose();
         }
 
         #endregion
@@ -106,7 +101,6 @@ namespace OpenTK.Platform.Windows
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
-
         }
 
         private void Dispose(bool calledManually)

@@ -340,7 +340,7 @@ namespace Bind.Structures
 
         public void CreateWrappers()
         {
-            if (this.Name.Contains("UseFontOutlinesA"))
+            if (this.Name.Contains("GenBuffers"))
             {
             }
 
@@ -375,7 +375,7 @@ namespace Bind.Structures
 
                 if (!f.CLSCompliant)
                 {
-                    Function cls = new Function(this);
+                    Function cls = new Function(f);
 
                     cls.Body.Clear();
                     if (!cls.NeedsWrapper)
@@ -387,22 +387,16 @@ namespace Bind.Structures
                         cls.Body.AddRange(this.CreateBody(cls, true));
                     }
 
-                    if (cls != null)
+                    bool somethingChanged = false;
+                    for (int i = 0; i < f.Parameters.Count; i++)
                     {
-
-                        bool somethingChanged = false;
-                        for (int i = 0; i < f.Parameters.Count; i++)
-                        {
-                            cls.Parameters[i].CurrentType = cls.Parameters[i].GetCLSCompliantType();
-                            if (cls.Parameters[i].CurrentType != f.Parameters[i].CurrentType)
-                                somethingChanged = true;
-                        }
-
-                        if (!somethingChanged)
-                            continue;
-
-                        Bind.Structures.Function.Wrappers.AddChecked(cls);
+                        cls.Parameters[i].CurrentType = cls.Parameters[i].GetCLSCompliantType();
+                        if (cls.Parameters[i].CurrentType != f.Parameters[i].CurrentType)
+                            somethingChanged = true;
                     }
+
+                    if (somethingChanged)
+                        Bind.Structures.Function.Wrappers.AddChecked(cls);
                 }
             }
         }

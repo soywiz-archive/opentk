@@ -102,5 +102,21 @@ namespace OpenTK.Platform.Windows
 
             return f.GetValue(null) != null;
         }
+        /*
+        /// <summary>
+        /// Checks if an extension is supported by the given context.
+        /// </summary>
+        /// <param name="deviceContext">The device context to check.</param>
+        /// <param name="ext">The extension to check.</param>
+        /// <returns>True if the extension is supported by the given context, false otherwise</returns>
+        public static bool SupportsExtensionARB(IntPtr deviceContext, string ext)
+        {
+            string extension_string = Wgl.ARB.GetExtensionsString(deviceContext);
+            string[] extensions = extension_string.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            Array.Sort(extensions);
+            return Array.BinarySearch(extensions, ext) != -1;
+        }
+        */
 	}
 }

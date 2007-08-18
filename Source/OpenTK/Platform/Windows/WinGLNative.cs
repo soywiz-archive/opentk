@@ -260,7 +260,8 @@ namespace OpenTK.Platform.Windows
 
             try
             {
-                glContext = new WinGLContext(this.Handle, this.mode);
+                glContext = new WinGLContext(this.mode);
+                glContext.PrepareContext(this.Handle);
                 glContext.CreateContext();
             }
             catch (ApplicationException expt)

@@ -288,6 +288,11 @@ namespace OpenTK.Platform.Windows
                 TYPE_RGBA_FLOAT_ATI = ((int)0x21A0),
             }
             
+            public enum WGL_font_type
+            {
+                FONT_LINES = ((int)0),
+            }
+            
             public enum All
             {
                 GENLOCK_SOURCE_EXTENAL_SYNC_I3D = ((int)0x2045),
@@ -430,6 +435,7 @@ namespace OpenTK.Platform.Windows
                 GREEN_BITS_EXT = ((int)0x2017),
                 GENLOCK_SOURCE_MULTIVIEW_I3D = ((int)0x2044),
                 GENERIC_ACCELERATION_EXT = ((int)0x2026),
+                FONT_LINES = ((int)0),
                 ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB = ((int)0x2054),
                 SWAP_METHOD_EXT = ((int)0x2007),
                 PIXEL_TYPE_EXT = ((int)0x2013),
