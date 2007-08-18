@@ -212,42 +212,6 @@ namespace Bind.Structures
         }
 
         #endregion
-
-        #region public Function GetCLSCompliantFunction(Dictionary<string, string> CSTypes)
-
-        public Function GetCLSCompliantFunction()
-        {
-            Function f = new Function(this);
-
-            bool somethingChanged = false;
-            for (int i = 0; i < f.Parameters.Count; i++)
-            {
-                f.Parameters[i].CurrentType = f.Parameters[i].GetCLSCompliantType();
-                if (f.Parameters[i].CurrentType != this.Parameters[i].CurrentType)
-                    somethingChanged = true;
-            }
-
-            if (!somethingChanged)
-                return null;
-
-            f.Body.Clear();
-            if (!f.NeedsWrapper)
-            {
-                f.Body.Add((f.ReturnType.CurrentType != "void" ? "return " + this.CallString() : this.CallString()) + ";");
-            }
-            else
-            {
-                f.Body.AddRange(this.GetBodyWithPins(true));
-            }
-
-            // The type system cannot differentiate between functions with the same parameters
-            // but different return types. Tough, only CLS-Compliant function in that case.
-            //f.ReturnType.Type = f.ReturnType.GetCLSCompliantType(CSTypes);
-
-            return f;
-        }
-
-        #endregion
     }
 
     #region class FunctionBody : List<string>
@@ -263,6 +227,32 @@ namespace Bind.Structures
             foreach (string s in fb)
             {
                 this.Add(s);
+            }
+        }
+
+        private string indent = "";
+
+        public void Indent()
+        {
+            indent += "    ";
+        }
+
+        public void Unindent()
+        {
+            if (indent.Length >= 4)
+                indent = indent.Substring(4);
+        }
+
+        new public void Add(string s)
+        {
+            base.Add(indent + s);
+        }
+
+        new public void AddRange(IEnumerable<string> collection)
+        {
+            foreach (string t in collection)
+            {
+                this.Add(t);
             }
         }
 

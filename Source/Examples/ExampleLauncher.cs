@@ -45,6 +45,7 @@ namespace Examples
         		MessageBox.Show("Could not access debug.log", e.ToString());
         	}
 
+            Debug.Listeners.Clear();
         	Debug.Listeners.Add(new TextWriterTraceListener("debug.log"));
             Debug.Listeners.Add(new ConsoleTraceListener());
         	                    

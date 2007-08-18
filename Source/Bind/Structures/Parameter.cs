@@ -106,7 +106,7 @@ namespace Bind.Structures
         {
             get
             {
-                return (Array > 0 || /*Reference ||*/ CurrentType == "object") &&
+                return (Array > 0 || Reference || CurrentType == "object") &&
                         !CurrentType.ToLower().Contains("string");
             }
         }
@@ -236,12 +236,22 @@ namespace Bind.Structures
                 else
                 {
                     // This is not enum, default translation:
-                    if ((p.CurrentType == "PIXELFORMATDESCRIPTOR" || p.CurrentType == "LAYERPLANEDESCRIPTOR" ||
-                        p.CurrentType == "GLYPHMETRICSFLOAT") && Settings.Compatibility == Settings.Legacy.Tao)
+                    if (p.CurrentType == "PIXELFORMATDESCRIPTOR" || p.CurrentType == "LAYERPLANEDESCRIPTOR" ||
+                        p.CurrentType == "GLYPHMETRICSFLOAT")
                     {
-                        p.CurrentType = p.CurrentType.Insert(0, "Gdi.");
-                        //p.Pointer = true;
-                        p.Reference = true;
+                        if (Settings.Compatibility == Settings.Legacy.Tao)
+                        {
+                            p.CurrentType = p.CurrentType.Insert(0, "Gdi.");
+                        }
+                        else
+                        {
+                            if (p.CurrentType == "PIXELFORMATDESCRIPTOR")
+                                p.CurrentType ="API.PixelFormatDescriptor";
+                            else if (p.CurrentType == "LAYERPLANEDESCRIPTOR")
+                                p.CurrentType = "API.LayerPlaneDescriptor";
+                            else if (p.CurrentType == "GLYPHMETRICSFLOAT")
+                                p.CurrentType = "API.GlyphMetricsFloat";
+                        }
                     }
                     else
                     {
@@ -395,16 +405,16 @@ namespace Bind.Structures
                                 p.CurrentType, (p.Array > 0) ? "[]" : ""));
 
                         }
-                        else if (p.Pointer || p.Array > 0)
+                        else if (p.Pointer || p.Array > 0 || p.Reference)
                         {
-                            sb.Append(String.Format("({0}{1})",
-                                p.CurrentType, (p.Pointer || p.Array > 0) ? "*" : ""));
+                            sb.Append(String.Format("({0}*)",
+                                p.CurrentType /*, (p.Pointer || p.Array > 0) ? "*" : ""*/));
                         }
-                        else if (p.Reference)
-                        {
-                            sb.Append(String.Format("{0} ({1})",
-                               p.Flow == Parameter.FlowDirection.Out ? "out" : "ref", p.CurrentType));
-                        }
+                        //else if (p.Reference)
+                        //{
+                        //    sb.Append(String.Format("{0} ({1})",
+                        //       p.Flow == Parameter.FlowDirection.Out ? "out" : "ref", p.CurrentType));
+                        //}
                         else
                         {
                             sb.Append(String.Format("({0})", p.CurrentType));

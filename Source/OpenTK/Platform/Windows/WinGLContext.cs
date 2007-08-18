@@ -35,31 +35,21 @@ namespace OpenTK.Platform.Windows
 
         public WinGLContext(IntPtr windowHandle, DisplayMode mode)
         {
-            Trace.WriteLine(String.Format("Creating opengl context (driver: {0})", this.ToString()));
-            Trace.Indent();
+            Debug.WriteLine(String.Format("Creating opengl context (driver: {0})", this.ToString()));
+            Debug.Indent();
 
             this.windowHandle = windowHandle;
-            Trace.WriteLine(String.Format("Window handle: {0}", windowHandle));
+            Debug.WriteLine(String.Format("Window handle: {0}", windowHandle));
 
             PrepareContext(mode);
 
-            Trace.Unindent();
+            Debug.Unindent();
         }
 
         #endregion
 
-        public void CreateContext()
-        {
-            Trace.Write("Creating render context... ");
-            // Do not rely on OpenTK.Platform.Windows.Wgl - the context is not ready yet,
-            // and Wgl extensions will fail to load.
-            //renderContext = Wgl.CreateContext(deviceContext);     
-            renderContext = Wgl.Imports.CreateContext(deviceContext);
-            Trace.WriteLine(String.Format("done! (id: {0})", renderContext));
-            Wgl.Imports.MakeCurrent(deviceContext, renderContext);
-            Wgl.LoadAll();
-        }
-        
+        #region public void PrepareContext(DisplayMode mode)
+
         public void PrepareContext(DisplayMode mode)
         {
             // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
@@ -77,20 +67,33 @@ namespace OpenTK.Platform.Windows
                         )
                     );
                 }
-                Trace.WriteLine(String.Format("Loaded opengl32.dll: {0}", opengl32Handle));
+                Debug.WriteLine(String.Format("Loaded opengl32.dll: {0}", opengl32Handle));
             }
 
             deviceContext = API.GetDC(windowHandle);
-            Trace.WriteLine(String.Format("Device context: {0}", deviceContext));
+            Debug.WriteLine(String.Format("Device context: {0}", deviceContext));
 
-            Trace.Write("Setting pixel format... ");
+            Debug.Write("Setting pixel format... ");
             API.PixelFormatDescriptor pixelFormat = new API.PixelFormatDescriptor();
-
+            pixelFormat.Size = API.PixelFormatDescriptorSize;
+            pixelFormat.Version = API.PixelFormatDescriptorVersion;
+            pixelFormat.Flags =
+                API.PixelFormatDescriptorFlags.SUPPORT_OPENGL |
+                API.PixelFormatDescriptorFlags.DRAW_TO_WINDOW;
             pixelFormat.ColorBits = (byte)(mode.Color.Red + mode.Color.Green + mode.Color.Blue);
-            pixelFormat.RedBits = (byte)mode.Color.Red;
-            pixelFormat.GreenBits = (byte)mode.Color.Green;
-            pixelFormat.BlueBits = (byte)mode.Color.Blue;
-            pixelFormat.AlphaBits = (byte)mode.Color.Alpha;
+            if (mode.Color.IsIndexed)
+            {
+                pixelFormat.PixelType = API.PixelType.INDEXED;
+            }
+            else
+            {
+                pixelFormat.PixelType = API.PixelType.RGBA;
+                pixelFormat.RedBits = (byte)mode.Color.Red;
+                pixelFormat.GreenBits = (byte)mode.Color.Green;
+                pixelFormat.BlueBits = (byte)mode.Color.Blue;
+                pixelFormat.AlphaBits = (byte)mode.Color.Alpha;
+            }
+
             /*
             if (accum != null)
             {
@@ -120,18 +123,54 @@ namespace OpenTK.Platform.Windows
             }
 
             // TODO: More elaborate mode setting, using DescribePixelFormat.
+            /*
+            unsafe
+            {
+                int pixel = Wgl.Imports.ChoosePixelFormat(deviceContext, &pixelFormat);
 
-            int pixel = API.ChoosePixelFormat(deviceContext, pixelFormat);
+                if (pixel == 0)
+                {
+                    throw new ApplicationException("The requested pixel format is not supported by the hardware configuration.");
+                }
 
+                Wgl.Imports.SetPixelFormat(deviceContext, pixel, &pixelFormat);
+
+                Debug.WriteLine(String.Format("done! (format: {0})", pixel));
+            }
+            */
+            int pixel = API.ChoosePixelFormat(deviceContext, ref pixelFormat);
             if (pixel == 0)
             {
                 throw new ApplicationException("The requested pixel format is not supported by the hardware configuration.");
             }
+            API.SetPixelFormat(deviceContext, pixel, ref pixelFormat);
 
-            API.SetPixelFormat(deviceContext, pixel, pixelFormat);
-
-            Trace.WriteLine(String.Format("done! (format: {0})", pixel));
+            Debug.Print("done! (format: {0})", pixel);
         }
+
+        #endregion
+
+        #region public void CreateContext()
+
+        public void CreateContext()
+        {
+            Debug.Write("Creating render context... ");
+            // Do not rely on OpenTK.Platform.Windows.Wgl - the context is not ready yet,
+            // and Wgl extensions will fail to load.
+            renderContext = Wgl.Imports.CreateContext(deviceContext);
+            if (renderContext != IntPtr.Zero)
+            {
+                Debug.WriteLine(String.Format("done! (id: {0})", renderContext));
+            }
+            else
+            {
+                throw new ApplicationException("Could not create opengl Rendering Context.");
+            }
+            Wgl.Imports.MakeCurrent(deviceContext, renderContext);
+            Wgl.LoadAll();
+        }
+
+        #endregion
 
         #region --- IGLContext Members ---
 
@@ -148,7 +187,7 @@ namespace OpenTK.Platform.Windows
 
         public IntPtr GetAddress(string function_string)
         {
-            return Wgl.GetProcAddress(function_string);
+            return Wgl.Imports.GetProcAddress(function_string);
         }
 
         #endregion
@@ -157,7 +196,7 @@ namespace OpenTK.Platform.Windows
         
         public void MakeCurrent()
         {
-            Wgl.MakeCurrent(deviceContext, renderContext);
+            Wgl.Imports.MakeCurrent(deviceContext, renderContext);
         }
 
 	    #endregion
@@ -228,8 +267,8 @@ namespace OpenTK.Platform.Windows
             if (!disposed)
             {
                 // Clean unmanaged resources here:
-                Wgl.MakeCurrent(deviceContext, renderContext);
-                Wgl.DeleteContext(renderContext);
+                Wgl.Imports.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
+                Wgl.Imports.DeleteContext(renderContext);
                 API.ReleaseDC(windowHandle, deviceContext);
                 API.FreeLibrary(opengl32Handle);
 

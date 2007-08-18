@@ -149,6 +149,8 @@ namespace Bind.GL2
 
         #region ISpecReader Members
 
+        #region public virtual DelegateCollection ReadDelegates(StreamReader specFile)
+
         public virtual DelegateCollection ReadDelegates(StreamReader specFile)
         {
             Console.WriteLine("Reading function specs.");
@@ -171,7 +173,7 @@ namespace Bind.GL2
                     // Get function name:
                     d.Name = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries)[0];
 
-                    if (d.Name.Contains("DescribeLayerPlane"))
+                    if (d.Name.Contains("UseFontOutlinesA"))
                     {
                     }
 
@@ -199,7 +201,7 @@ namespace Bind.GL2
 
                                 p.Name = Utilities.Keywords.Contains(words[1]) ? "@" + words[1] : words[1];
                                 p.CurrentType = words[2];
-                                p.Pointer = words[4] == "array" ? true : false;
+                                p.Pointer = words[4] == "array" ? true : words[4] == "reference" ? true : false;
                                 p.Flow = words[3] == "in" ? Parameter.FlowDirection.In : Parameter.FlowDirection.Out;
  
                                 d.Parameters.Add(p);
@@ -226,6 +228,10 @@ namespace Bind.GL2
 
             return delegates;
         }
+
+        #endregion
+
+        #region public virtual EnumCollection ReadEnums(StreamReader specFile)
 
         public virtual EnumCollection ReadEnums(StreamReader specFile)
         {
@@ -285,7 +291,7 @@ namespace Bind.GL2
                             else
                             {
                                 if (words[0].StartsWith(Settings.ConstantPrefix))
-                                    words[0] = words[0].Substring(3);
+                                    words[0] = words[0].Substring(Settings.ConstantPrefix.Length);
 
                                 if (Char.IsDigit(words[0][0]))
                                     words[0] = Settings.ConstantPrefix + words[0];
@@ -304,10 +310,9 @@ namespace Bind.GL2
                             }
                             else
                             {
-                                // The value is not a number.
-                                // Strip the "GL_" from the start of the string.
+                                // The value is not a number. Strip the prefix.
                                 if (words[2].StartsWith(Settings.ConstantPrefix))
-                                    words[2] = words[2].Substring(3);
+                                    words[2] = words[2].Substring(Settings.ConstantPrefix.Length);
 
                                 // If the name now starts with a digit (doesn't matter whether we
                                 // stripped "GL_" above), add a "GL_" prefix.
@@ -320,9 +325,9 @@ namespace Bind.GL2
                         }
                         else if (words[0] == "use")
                         {
-                            // Trim the "GL_" from the start of the string.
+                            // Trim the prefix.
                             if (words[2].StartsWith(Settings.ConstantPrefix))
-                                words[2] = words[2].Substring(3);
+                                words[2] = words[2].Substring(Settings.ConstantPrefix.Length);
 
                             // If the remaining string starts with a digit, we were wrong above.
                             // Re-add the "GL_"
@@ -404,6 +409,10 @@ namespace Bind.GL2
             return enums;
         }
 
+        #endregion
+
+        #region public virtual Dictionary<string, string> ReadTypeMap(StreamReader specFile)
+
         public virtual Dictionary<string, string> ReadTypeMap(StreamReader specFile)
         {
             Console.WriteLine("Reading opengl types.");
@@ -450,6 +459,10 @@ namespace Bind.GL2
             return GLTypes;
         }
 
+        #endregion
+
+        #region public virtual Dictionary<string, string> ReadCSTypeMap(StreamReader specFile)
+
         public virtual Dictionary<string, string> ReadCSTypeMap(StreamReader specFile)
         {
             Dictionary<string, string> CSTypes = new Dictionary<string, string>();
@@ -470,7 +483,9 @@ namespace Bind.GL2
 
             return CSTypes;
         }
-        
+
+        #endregion
+
         #region private string NextValidLine(StreamReader sr)
 
         private string NextValidLine(System.IO.StreamReader sr)
@@ -607,9 +622,9 @@ namespace Bind.GL2
             sw.WriteLine("static {0}()", Settings.DelegatesClass);
             sw.WriteLine("{");
             // --- Workaround for mono gmcs 1.2.4 issue, where static initalization fails. ---
-            sw.Indent();
-            sw.WriteLine("{0}.{1}();", Settings.OutputClass, loadAllFuncName);
-            sw.Unindent();
+            //sw.Indent();
+            //sw.WriteLine("{0}.{1}();", Settings.OutputClass, loadAllFuncName);
+            //sw.Unindent();
             // --- End workaround ---
             sw.WriteLine("}");
             sw.WriteLine();
@@ -656,10 +671,11 @@ namespace Bind.GL2
             	{
 	                sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
 	                sw.WriteLine(
-	                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"{1}{2}\", ExactSpelling = true)]",
+	                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"{1}{2}\"{3})]",
                         Settings.OutputClass,
                         Settings.FunctionPrefix,
-	                    d.Name
+	                    d.Name,
+                        d.Name.EndsWith("W") || d.Name.EndsWith("A") ? ", CharSet = CharSet.Auto" : ", ExactSpelling = true"
 	                );
 	                sw.WriteLine("internal extern static {0};", d.DeclarationString());
             	}

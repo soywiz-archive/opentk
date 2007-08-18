@@ -102,6 +102,5 @@ namespace OpenTK.Platform.Windows
 
             return f.GetValue(null) != null;
         }
-            
 	}
 }
