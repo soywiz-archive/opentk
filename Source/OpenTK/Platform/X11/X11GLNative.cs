@@ -51,6 +51,7 @@ namespace OpenTK.Platform.X11
         public X11GLNative()
         {
             Debug.Print("Native window driver: {0}", this.ToString());
+            window = new WindowInfo();
         }
 
         #endregion

@@ -47,6 +47,8 @@ namespace OpenTK
         {
             InitializeComponent();
 
+            this.SuspendLayout();
+
             this.Fullscreen = mode.Fullscreen;
             
             this.SetStyle(ControlStyles.UserPaint, true);
@@ -69,6 +71,14 @@ namespace OpenTK
                     "Your operating system is not currently supported. We are sorry for the inconvenience."
                 );
             }
+
+            Debug.Print("Creating handle");
+            this.CreateHandle();
+
+            Debug.Print("Creating GLControl.");
+            this.CreateControl();
+
+            this.ResumeLayout();
         }
 
         #endregion

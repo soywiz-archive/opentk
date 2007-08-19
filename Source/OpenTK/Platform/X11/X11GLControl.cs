@@ -20,7 +20,6 @@ namespace OpenTK.Platform.X11
         private Type xplatui;
         X11GLContext glContext;
 
-        private bool quit;
         private bool disposed;
         private bool fullscreen;
 
@@ -31,7 +30,7 @@ namespace OpenTK.Platform.X11
             Debug.WriteLine("Creating opengl control (X11GLControl driver)");
             Debug.Indent();
 
-            this.mode = mode;
+            this.mode = mode;//new DisplayMode(mode);
             glContext = new X11GLContext(mode);
 
             if (c == null/* || c.TopLevelControl == null*/)
@@ -56,14 +55,22 @@ namespace OpenTK.Platform.X11
                 Debug.Print("Screen: {0}, Display: {1}, Root Window: {2}, Handle: {3}",
                     info.Screen, info.Display, info.RootWindow, info.Handle);
 
-                glContext.PrepareContext(info);
+                try
+                {
+                    glContext.PrepareContext(info);
+                }
+                catch (ApplicationException e)
+                {
+                    Debug.Print(e.ToString());
+                    return;
+                }
                 info.VisualInfo = glContext.windowInfo.VisualInfo;
 
                 xplatui.GetField("CustomVisual", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
                     .SetValue(null, glContext.windowInfo.VisualInfo.visual);
 
                 xplatui.GetField("CustomColormap", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
-                    .SetValue(null, API.CreateColormap(info.Display, info.RootWindow, glContext.windowInfo.VisualInfo.visual, 0/*AllocNone*/));
+                    .SetValue(null, FindColormap());
             }
 
             c.HandleCreated += new EventHandler(c_HandleCreated);
@@ -71,22 +78,26 @@ namespace OpenTK.Platform.X11
             c.ParentChanged += new EventHandler(c_ParentChanged);
             c.Load += new EventHandler(c_Load);
 
-            c.CreateControl();
+            Debug.Print("GLControl events hooked to X11GLControl.");
         }
 
         void c_HandleCreated(object sender, EventArgs e)
         {
+            Debug.Print("X11GLControl handle created, creating X11GLContext.");
             glContext.windowInfo.Handle = info.Handle = (sender as UserControl).Handle;
             glContext.CreateContext(null, true);
         }
 
         void c_HandleDestroyed(object sender, EventArgs e)
         {
+            Debug.Print("X11GLControl handle destroyed, disposing X11GLContext.");
             glContext.Dispose();
         }
 
         void c_ParentChanged(object sender, EventArgs e)
         {
+            Debug.Print("Mapping X11GLControl.");
+
             Control c = sender as Control;
             Debug.Print("TopLevel control is {0}",
                 c.TopLevelControl != null ? c.TopLevelControl.ToString() : "not available");
@@ -94,7 +105,7 @@ namespace OpenTK.Platform.X11
             if (c.TopLevelControl == null)
             {
                 info.TopLevelWindow = c.Handle;
-                throw new ApplicationException("GLControl does not have a parent.");
+                throw new ApplicationException("Problem: GLControl does not have a parent, aborting.");
             }
             else
             {
@@ -111,6 +122,25 @@ namespace OpenTK.Platform.X11
         {
             Context.MakeCurrent();
             OpenTK.OpenGL.GL.LoadAll();
+        }
+
+        /// <summary>
+        /// Finds a colormap suitable for use with the GLControl.
+        /// </summary>
+        /// <returns>A pointer to the colormap</returns>
+        /// <remarks>
+        /// If the visual of the GLControl matches the default visual, the function returns
+        /// the default colormap (i.e. the colormap of the root window). Otherwise, it creates
+        /// a new, private colormap.
+        /// </remarks>
+        private IntPtr FindColormap()
+        {
+            if (info.VisualInfo.visual == Functions.XDefaultVisual(info.Display, info.Screen))
+            {
+                return Functions.XDefaultColormap(info.Display, info.Screen);
+            }
+
+            return API.CreateColormap(info.Display, info.RootWindow, glContext.windowInfo.VisualInfo.visual, 0/*AllocNone*/);
         }
 
         #endregion

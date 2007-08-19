@@ -29,26 +29,31 @@ namespace OpenTK.Platform.Windows
 
         #region --- Constructors ---
 
-        public WinGLControl(Control c, DisplayMode mode)
+        public WinGLControl(UserControl c, DisplayMode mode)
         {
             this.mode = mode;
             c.HandleCreated += new EventHandler(c_HandleCreated);
             c.HandleDestroyed += new EventHandler(c_HandleDestroyed);
+            c.Load += new EventHandler(c_Load);
 
             glContext = new WinGLContext(mode);
-            c.CreateControl();
         }
 
         void c_HandleCreated(object sender, EventArgs e)
         {
             glContext.PrepareContext((sender as Control).Handle);
             glContext.CreateContext();
-            OpenTK.OpenGL.GL.LoadAll();
         }
 
         void c_HandleDestroyed(object sender, EventArgs e)
         {
             glContext.Dispose();
+        }
+
+        void c_Load(object sender, EventArgs e)
+        {
+            glContext.MakeCurrent();
+            OpenTK.OpenGL.GL.LoadAll();
         }
 
         #endregion

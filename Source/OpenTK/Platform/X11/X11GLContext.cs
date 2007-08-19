@@ -52,9 +52,23 @@ namespace OpenTK.Platform.X11
 
         internal void PrepareContext(X11.WindowInfo info)
         {
-            this.windowInfo = info;
+            this.windowInfo = new WindowInfo(info);
 
             Debug.Print("Preparing visual for DisplayMode: {0}", mode.ToString());
+
+            /*
+int[] attrib =
+    {
+        (int)Glx.Enums.GLXAttribute.RGBA,
+        (int)Glx.Enums.GLXAttribute.RED_SIZE, 1,
+        (int)Glx.Enums.GLXAttribute.GREEN_SIZE, 1,
+        (int)Glx.Enums.GLXAttribute.BLUE_SIZE, 1,
+        (int)Glx.Enums.GLXAttribute.DEPTH_SIZE, 1,
+        (int)Glx.Enums.GLXAttribute.DOUBLEBUFFER,
+        0
+    };
+visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, attrib);
+*/
 
             List<int> visualAttributes = new List<int>();
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
@@ -68,18 +82,28 @@ namespace OpenTK.Platform.X11
             visualAttributes.Add((int)mode.Color.Alpha);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
             visualAttributes.Add((int)mode.DepthBits);
-            //visualAttributes.Add(1);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
             visualAttributes.Add((int)1);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
+            visualAttributes.Add((int)0);
 
+            //try
+            //{
             visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, visualAttributes.ToArray());
             if (visual == IntPtr.Zero)
             {
-                throw new ApplicationException("Requested DisplayMode not available.");
+                throw new ApplicationException(String.Format("Requested DisplayMode not available ({0}).", mode.ToString()));
             }
-            windowInfo.VisualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
-            Debug.Print("Prepared visual: {0}", windowInfo.VisualInfo.ToString());
+            else
+            {
+                windowInfo.VisualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
+                Debug.Print("Prepared visual: {0}", windowInfo.VisualInfo.ToString());
+            }
+            //}
+            //catch (Exception e)
+            //{
+            //    Debug.Print(e.ToString());
+            //    throw;
+            //}
         }
 
         #endregion
@@ -117,29 +141,34 @@ namespace OpenTK.Platform.X11
 
         public void SwapBuffers()
         {
-            Glx.SwapBuffers(windowInfo.Display, windowInfo.Handle);
+            if (windowInfo.Display != IntPtr.Zero && windowInfo.Handle != IntPtr.Zero)
+                Glx.SwapBuffers(windowInfo.Display, windowInfo.Handle);
         }
 
         #endregion
 
         #region public void MakeCurrent()
 
+        bool result;
         public void MakeCurrent()
         {
             Debug.Write(String.Format("Making context {0} current on thread {1} (Display: {2}, Screen: {3}, Window: {4})... ",
                     context, System.Threading.Thread.CurrentThread.ManagedThreadId, windowInfo.Display, windowInfo.Screen, windowInfo.Handle));
-            
-            bool result = Glx.MakeCurrent(windowInfo.Display, windowInfo.Handle, context);
 
-            if (!result)
+            if (windowInfo.Display != IntPtr.Zero && windowInfo.Handle != IntPtr.Zero && context != IntPtr.Zero)
             {
-                Debug.WriteLine("failed...");
-                // probably need to recreate context here.
-                //throw new Exception(String.Format("Failed to make context {0} current.", context));
-            }
-            else
-            {
-                Debug.WriteLine("done!");
+                result = Glx.MakeCurrent(windowInfo.Display, windowInfo.Handle, context);
+
+                if (!result)
+                {
+                    Debug.WriteLine("failed...");
+                    // probably need to recreate context here.
+                    //throw new Exception(String.Format("Failed to make context {0} current.", context));
+                }
+                else
+                {
+                    Debug.WriteLine("done!");
+                }
             }
         }
 

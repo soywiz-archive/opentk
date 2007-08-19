@@ -67,7 +67,7 @@ namespace Examples.WinForms
         #region private void Render()
 
         private void Render()
-        { 
+        {
             GL.MatrixMode(GL.Enums.MatrixMode.MODELVIEW);
             GL.LoadIdentity();
             Glu.LookAt(
