@@ -16,6 +16,7 @@ namespace OpenTK.Platform.X11
     sealed class X11GLControl : IGLControl
     {
         WindowInfo info = new WindowInfo();
+        DisplayMode mode;
         private Type xplatui;
         X11GLContext glContext;
 
@@ -25,29 +26,18 @@ namespace OpenTK.Platform.X11
 
         #region --- Contructors ---
 
-        [Obsolete("Use X11GLControl(UserControl c, DisplayMode mode) instead.")]
-        public X11GLControl(UserControl c, int width, int height, bool fullscreen)
-            : this(c, new DisplayMode(width, height, new ColorDepth(32), 16,
-                   0, 0, 2, false, false, false, 0.0f)) { }
-        
         public X11GLControl(UserControl c, DisplayMode mode)
         {
             Debug.WriteLine("Creating opengl control (X11GLControl driver)");
             Debug.Indent();
 
+            this.mode = mode;
+            glContext = new X11GLContext(mode);
+
             if (c == null/* || c.TopLevelControl == null*/)
             {
                 throw new ArgumentException("UserControl c may not be null.");
             }
-
-            c.ParentChanged += new EventHandler(c_ParentChanged);
-            if (c.ParentForm != null)
-            {
-                throw new ApplicationException("Internal OpenTK error, please report at http://opentk.sourceforge.net");
-            }
-
-            info.Handle = c.Handle;
-            Debug.Print("Binding to control: {0}", String.IsNullOrEmpty(c.Name) ? c.Text : c.Name);
 
             xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
             Debug.Write("System.Windows.Forms.XplatUIX11: ");
@@ -55,70 +45,72 @@ namespace OpenTK.Platform.X11
             if (xplatui != null)
             {
                 info.Display = (IntPtr)xplatui.GetField("DisplayHandle",
-                    System.Reflection.BindingFlags.Static |
-                    System.Reflection.BindingFlags.NonPublic).GetValue(null);
+                    System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
                 info.RootWindow = (IntPtr)xplatui.GetField("RootWindow",
-                    System.Reflection.BindingFlags.Static |
-                    System.Reflection.BindingFlags.NonPublic).GetValue(null);
+                    System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
                 info.Screen = (int)xplatui.GetField("ScreenNo",
-                    System.Reflection.BindingFlags.Static |
-                    System.Reflection.BindingFlags.NonPublic).GetValue(null);
+                    System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
-                Debug.Print(
-                    "Screen: {0}, Display: {1}, Root Window: {2}, Handle: {3}",
+                Debug.Print("Screen: {0}, Display: {1}, Root Window: {2}, Handle: {3}",
                     info.Screen, info.Display, info.RootWindow, info.Handle);
 
-                glContext = new X11GLContext(info, mode);
-                
-                info.VisualInfo = glContext.CreateVisual();
+                glContext.PrepareContext(info);
+                info.VisualInfo = glContext.windowInfo.VisualInfo;
 
-                xplatui.GetField(
-                    "CustomVisual",
-                    System.Reflection.BindingFlags.Static |
-                    System.Reflection.BindingFlags.NonPublic).SetValue(
-                        null,
-                        //glContext.XVisual
-                        info.VisualInfo.visual
-                    );
+                xplatui.GetField("CustomVisual", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                    .SetValue(null, glContext.windowInfo.VisualInfo.visual);
 
-                xplatui.GetField(
-                    "CustomColormap",
-                    System.Reflection.BindingFlags.Static |
-                    System.Reflection.BindingFlags.NonPublic).SetValue(
-                        null,
-                        API.CreateColormap(info.Display, info.RootWindow, info.VisualInfo.visual, 0/*AllocNone*/)
-                        //glContext.colormap
-                    );
-
-                glContext.CreateContext(null, true);
+                xplatui.GetField("CustomColormap", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                    .SetValue(null, API.CreateColormap(info.Display, info.RootWindow, glContext.windowInfo.VisualInfo.visual, 0/*AllocNone*/));
             }
+
+            c.HandleCreated += new EventHandler(c_HandleCreated);
+            c.HandleDestroyed += new EventHandler(c_HandleDestroyed);
+            c.ParentChanged += new EventHandler(c_ParentChanged);
+            c.Load += new EventHandler(c_Load);
+
+            c.CreateControl();
+        }
+
+        void c_HandleCreated(object sender, EventArgs e)
+        {
+            glContext.windowInfo.Handle = info.Handle = (sender as UserControl).Handle;
+            glContext.CreateContext(null, true);
+        }
+
+        void c_HandleDestroyed(object sender, EventArgs e)
+        {
+            glContext.Dispose();
         }
 
         void c_ParentChanged(object sender, EventArgs e)
         {
-            UserControl c = sender as UserControl;
-            Debug.WriteLine(
-                String.Format(
-                    "TopLevel control is {0}",
-                    c.TopLevelControl != null ? c.TopLevelControl.ToString() : "not available"
-                )
-            );
+            Control c = sender as Control;
+            Debug.Print("TopLevel control is {0}",
+                c.TopLevelControl != null ? c.TopLevelControl.ToString() : "not available");
 
             if (c.TopLevelControl == null)
             {
                 info.TopLevelWindow = c.Handle;
-                throw new Exception("GLControl does not have a parent.");
+                throw new ApplicationException("GLControl does not have a parent.");
             }
             else
             {
                 info.TopLevelWindow = c.TopLevelControl.Handle;
             }
 
-            Debug.WriteLine(String.Format("Mapping window to top level: {0}", info.TopLevelWindow));
+            Debug.WriteLine(String.Format("Mapping window {0} to top level: {1}", info.Handle, info.TopLevelWindow));
             API.MapRaised(info.Display, info.TopLevelWindow);
+            //API.MapRaised(info.Display, info.Handle);
             Debug.Unindent();
+        }
+
+        void c_Load(object sender, EventArgs e)
+        {
+            Context.MakeCurrent();
+            OpenTK.OpenGL.GL.LoadAll();
         }
 
         #endregion

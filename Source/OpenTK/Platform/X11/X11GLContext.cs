@@ -19,8 +19,7 @@ namespace OpenTK.Platform.X11
     /// </summary>
     public sealed class X11GLContext : OpenTK.Platform.IGLContext
     {
-        private IntPtr x11context;
-
+        private IntPtr context;
         private DisplayMode mode;// = new DisplayMode();
         internal WindowInfo windowInfo;
 
@@ -37,15 +36,77 @@ namespace OpenTK.Platform.X11
         #region --- Public Constructor ---
 
         internal X11GLContext()
+            : this(new DisplayMode())
         {
-            this.windowInfo = new WindowInfo();
-            this.mode = new DisplayMode();
         }
 
-        internal X11GLContext(WindowInfo window, DisplayMode mode)
+        internal X11GLContext(DisplayMode mode)
         {
-            this.windowInfo = new WindowInfo(window);
+            this.windowInfo = new WindowInfo();
             this.mode = mode;
+        }
+
+        #endregion
+
+        #region internal void PrepareContext(X11.WindowInfo info)
+
+        internal void PrepareContext(X11.WindowInfo info)
+        {
+            this.windowInfo = info;
+
+            Debug.Print("Preparing visual for DisplayMode: {0}", mode.ToString());
+
+            List<int> visualAttributes = new List<int>();
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
+            visualAttributes.Add((int)mode.Color.Red);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
+            visualAttributes.Add((int)mode.Color.Green);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
+            visualAttributes.Add((int)mode.Color.Blue);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
+            visualAttributes.Add((int)mode.Color.Alpha);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
+            visualAttributes.Add((int)mode.DepthBits);
+            //visualAttributes.Add(1);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
+            visualAttributes.Add((int)1);
+            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
+
+            visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, visualAttributes.ToArray());
+            if (visual == IntPtr.Zero)
+            {
+                throw new ApplicationException("Requested DisplayMode not available.");
+            }
+            windowInfo.VisualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
+            Debug.Print("Prepared visual: {0}", windowInfo.VisualInfo.ToString());
+        }
+
+        #endregion
+
+        #region internal void CreateContext(X11GLContext shareContext, bool direct)
+
+        internal void CreateContext(X11GLContext shareContext, bool direct)
+        {
+            Debug.WriteLine("Creating opengl context.");
+            Debug.Indent();
+
+            IntPtr shareHandle = shareContext != null ? shareContext.windowInfo.Handle : IntPtr.Zero;
+            Debug.WriteLine(shareHandle == IntPtr.Zero ? "Context is not shared." :
+                String.Format("Context is shared with context: {0}", shareHandle));
+
+            Debug.WriteLine(direct ? "Context is direct." : "Context is indirect.");
+
+            context = Glx.CreateContext(windowInfo.Display, visual, shareHandle, direct);
+            if (context != IntPtr.Zero)
+            {
+                Debug.WriteLine(String.Format("New opengl context created. (id: {0})", context));
+                Debug.Unindent();
+            }
+            else
+            {
+                throw new ApplicationException("Could not create opengl context.");
+            }
         }
 
         #endregion
@@ -65,23 +126,16 @@ namespace OpenTK.Platform.X11
 
         public void MakeCurrent()
         {
-            Debug.Write(
-                String.Format(
-                    "Making context {0} current on thread {1} (Display: {2}, Screen: {3}, Window: {4})... ",
-                    x11context,
-                    System.Threading.Thread.CurrentThread.ManagedThreadId,
-                    windowInfo.Display,
-                    windowInfo.Screen,
-                    windowInfo.Handle
-                )
-            );
-            bool result = Glx.MakeCurrent(windowInfo.Display, windowInfo.Handle, x11context);
+            Debug.Write(String.Format("Making context {0} current on thread {1} (Display: {2}, Screen: {3}, Window: {4})... ",
+                    context, System.Threading.Thread.CurrentThread.ManagedThreadId, windowInfo.Display, windowInfo.Screen, windowInfo.Handle));
+            
+            bool result = Glx.MakeCurrent(windowInfo.Display, windowInfo.Handle, context);
 
             if (!result)
             {
                 Debug.WriteLine("failed...");
                 // probably need to recreate context here.
-                //throw new Exception(String.Format("Failed to make context {0} current.", x11context));
+                //throw new Exception(String.Format("Failed to make context {0} current.", context));
             }
             else
             {
@@ -125,7 +179,8 @@ namespace OpenTK.Platform.X11
             if (!disposed)
             {
                 // Clean unmanaged resources:
-                Glx.DestroyContext(windowInfo.Display, x11context);
+                Glx.MakeCurrent(windowInfo.Display, IntPtr.Zero, IntPtr.Zero);
+                Glx.DestroyContext(windowInfo.Display, context);
                 API.Free(visual);
 
                 if (manuallyCalled)
@@ -142,108 +197,5 @@ namespace OpenTK.Platform.X11
         }
 
         #endregion
-
-        #region public void CreateContext(X11GLContext shareContext, bool direct)
-
-        public void CreateContext(X11GLContext shareContext, bool direct)
-        {
-            Debug.WriteLine("Creating opengl context.");
-            Debug.Indent();
-
-            IntPtr shareHandle = shareContext != null ? shareContext.windowInfo.Handle : IntPtr.Zero;
-            Debug.WriteLine(
-                shareHandle == IntPtr.Zero ?
-                "Context is not shared." :
-                String.Format("Context is shared with context: {0}", shareHandle)
-            );
-            Debug.WriteLine(
-                direct ?
-                "Context is direct." :
-                "Context is indirect."
-            );
-            x11context = Glx.CreateContext(
-                windowInfo.Display,
-                visual,
-                shareHandle,
-                direct
-            );
-            if (x11context != IntPtr.Zero)
-            {
-                Debug.WriteLine(String.Format("New opengl context created. (id: {0})", x11context));
-                Debug.Unindent();
-            }
-            else
-            {
-                throw new ApplicationException("Could not create opengl context.");
-            }
-
-            this.MakeCurrent();
-            OpenTK.OpenGL.GL.LoadAll();
-        }
-
-        #endregion
-
-        #region public void CreateVisual()
-
-        internal VisualInfo CreateVisual()
-        {
-            Debug.WriteLine("Creating visual.");
-            Debug.Indent();
-
-            Debug.Print("Requesting DisplayMode: {0}. ", mode.ToString());
-            // Hack; Temp workaround for invalid depth of 24
-            //if (mode.DepthBits == 24)
-            //{
-            //    mode.DepthBits = 16;
-            //    Debug.WriteLine("Temporary workaround applied: depth changed to 16.");
-            //}
-            
-            List<int> visualAttributes = new List<int>();
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
-            visualAttributes.Add((int)mode.Color.Red);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
-            visualAttributes.Add((int)mode.Color.Green);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
-            visualAttributes.Add((int)mode.Color.Blue);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            visualAttributes.Add((int)mode.Color.Alpha);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            //visualAttributes.Add((int)mode.DepthBits);
-            visualAttributes.Add(1);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
-
-            visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, visualAttributes.ToArray());
-            if (visual == IntPtr.Zero)
-            {
-                throw new ApplicationException("Requested mode not available.");
-            }
-            windowInfo.VisualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
-            Debug.Print("Got visual: {0}", windowInfo.VisualInfo.ToString());
-
-            Debug.Unindent();
-
-            return windowInfo.VisualInfo;
-        }
-
-        #endregion
-
-        [Obsolete]
-        internal IntPtr XVisual
-        {
-            get { return this.visual; }
-        }
-
-        internal VisualInfo XVisualInfo
-        {
-            get { return windowInfo.VisualInfo; }
-        }
-
-        [Obsolete]
-        internal IntPtr Handle
-        {
-            get { return this.x11context; }
-        }
     }
 }

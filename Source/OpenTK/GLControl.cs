@@ -51,6 +51,7 @@ namespace OpenTK
             
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
                 Environment.OSVersion.Platform == PlatformID.Win32Windows)
@@ -71,7 +72,28 @@ namespace OpenTK
         }
 
         #endregion
-
+        /*
+        CreateParams @params;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                if (@params == null)
+                {
+                    @params = base.CreateParams;
+                    //@params.ClassStyle = (int)
+                    //    (OpenTK.Platform.Windows.API.WindowClassStyle.OwnDC |
+                    //    OpenTK.Platform.Windows.API.WindowClassStyle.HRedraw |
+                    //    OpenTK.Platform.Windows.API.WindowClassStyle.VRedraw);
+                    //@params.Style = (int)
+                    //    (OpenTK.Platform.Windows.API.WindowStyle.ClipChildren);
+                    //    OpenTK.Platform.Windows.API.WindowStyle.ClipSiblings);
+                    //@params.ExStyle = OpenTK.Platform.Windows.API.ExtendedWindowStyle.
+                }
+                return @params;
+            }
+        }
+        */
         #region --- Public Methods ---
 
         /// <summary>
