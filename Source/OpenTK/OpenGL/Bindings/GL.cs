@@ -137,27 +137,11 @@ namespace OpenTK.OpenGL
             Delegates.glColor3b((SByte)red, (SByte)green, (SByte)blue);
         }
         
-        public static 
-        void Color3(Byte red, Byte green, Byte blue)
-        {
-            Delegates.glColor3b((SByte)red, (SByte)green, (SByte)blue);
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void Color3(SByte* v)
         {
             unsafe { Delegates.glColor3bv((SByte*)v); }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void Color3(Byte* v)
-        {
-            unsafe
-            {
-                Delegates.glColor3bv((SByte*)v);
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -173,18 +157,6 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void Color3(Byte[] v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = v)
-                {
-                    Delegates.glColor3bv((SByte*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         void Color3(ref SByte v)
@@ -192,18 +164,6 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (SByte* v_ptr = &v)
-                {
-                    Delegates.glColor3bv((SByte*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void Color3(ref Byte v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = &v)
                 {
                     Delegates.glColor3bv((SByte*)v_ptr);
                 }
@@ -285,75 +245,38 @@ namespace OpenTK.OpenGL
         }
         
         public static 
-        void Color3(Int32 red, Int32 green, Int32 blue)
+        void Color3(Byte red, Byte green, Byte blue)
         {
-            Delegates.glColor3i((Int32)red, (Int32)green, (Int32)blue);
+            Delegates.glColor3ub((Byte)red, (Byte)green, (Byte)blue);
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void Color3(Int32* v)
+        unsafe void Color3(Byte* v)
         {
-            unsafe { Delegates.glColor3iv((Int32*)v); }
+            unsafe { Delegates.glColor3ubv((Byte*)v); }
         }
         
         public static 
-        void Color3(Int32[] v)
+        void Color3(Byte[] v)
         {
             unsafe
             {
-                fixed (Int32* v_ptr = v)
+                fixed (Byte* v_ptr = v)
                 {
-                    Delegates.glColor3iv((Int32*)v_ptr);
+                    Delegates.glColor3ubv((Byte*)v_ptr);
                 }
             }
         }
         
         public static 
-        void Color3(ref Int32 v)
+        void Color3(ref Byte v)
         {
             unsafe
             {
-                fixed (Int32* v_ptr = &v)
+                fixed (Byte* v_ptr = &v)
                 {
-                    Delegates.glColor3iv((Int32*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void Color3(Int16 red, Int16 green, Int16 blue)
-        {
-            Delegates.glColor3s((Int16)red, (Int16)green, (Int16)blue);
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void Color3(Int16* v)
-        {
-            unsafe { Delegates.glColor3sv((Int16*)v); }
-        }
-        
-        public static 
-        void Color3(Int16[] v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = v)
-                {
-                    Delegates.glColor3sv((Int16*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void Color3(ref Int16 v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = &v)
-                {
-                    Delegates.glColor3sv((Int16*)v_ptr);
+                    Delegates.glColor3ubv((Byte*)v_ptr);
                 }
             }
         }
@@ -361,6 +284,12 @@ namespace OpenTK.OpenGL
         [System.CLSCompliant(false)]
         public static 
         void Color3(UInt32 red, UInt32 green, UInt32 blue)
+        {
+            Delegates.glColor3ui((UInt32)red, (UInt32)green, (UInt32)blue);
+        }
+        
+        public static 
+        void Color3(Int32 red, Int32 green, Int32 blue)
         {
             Delegates.glColor3ui((UInt32)red, (UInt32)green, (UInt32)blue);
         }
@@ -374,11 +303,33 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void Color3(Int32* v)
+        {
+            unsafe
+            {
+                Delegates.glColor3uiv((UInt32*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void Color3(UInt32[] v)
         {
             unsafe
             {
                 fixed (UInt32* v_ptr = v)
+                {
+                    Delegates.glColor3uiv((UInt32*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void Color3(Int32[] v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = v)
                 {
                     Delegates.glColor3uiv((UInt32*)v_ptr);
                 }
@@ -398,9 +349,27 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void Color3(ref Int32 v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = &v)
+                {
+                    Delegates.glColor3uiv((UInt32*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void Color3(UInt16 red, UInt16 green, UInt16 blue)
+        {
+            Delegates.glColor3us((UInt16)red, (UInt16)green, (UInt16)blue);
+        }
+        
+        public static 
+        void Color3(Int16 red, Int16 green, Int16 blue)
         {
             Delegates.glColor3us((UInt16)red, (UInt16)green, (UInt16)blue);
         }
@@ -414,11 +383,33 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void Color3(Int16* v)
+        {
+            unsafe
+            {
+                Delegates.glColor3usv((UInt16*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void Color3(UInt16[] v)
         {
             unsafe
             {
                 fixed (UInt16* v_ptr = v)
+                {
+                    Delegates.glColor3usv((UInt16*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void Color3(Int16[] v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = v)
                 {
                     Delegates.glColor3usv((UInt16*)v_ptr);
                 }
@@ -438,15 +429,21 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void Color3(ref Int16 v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = &v)
+                {
+                    Delegates.glColor3usv((UInt16*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void Color4(SByte red, SByte green, SByte blue, SByte alpha)
-        {
-            Delegates.glColor4b((SByte)red, (SByte)green, (SByte)blue, (SByte)alpha);
-        }
-        
-        public static 
-        void Color4(Byte red, Byte green, Byte blue, Byte alpha)
         {
             Delegates.glColor4b((SByte)red, (SByte)green, (SByte)blue, (SByte)alpha);
         }
@@ -456,16 +453,6 @@ namespace OpenTK.OpenGL
         unsafe void Color4(SByte* v)
         {
             unsafe { Delegates.glColor4bv((SByte*)v); }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void Color4(Byte* v)
-        {
-            unsafe
-            {
-                Delegates.glColor4bv((SByte*)v);
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -481,18 +468,6 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void Color4(Byte[] v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = v)
-                {
-                    Delegates.glColor4bv((SByte*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         void Color4(ref SByte v)
@@ -500,18 +475,6 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (SByte* v_ptr = &v)
-                {
-                    Delegates.glColor4bv((SByte*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void Color4(ref Byte v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = &v)
                 {
                     Delegates.glColor4bv((SByte*)v_ptr);
                 }
@@ -593,75 +556,38 @@ namespace OpenTK.OpenGL
         }
         
         public static 
-        void Color4(Int32 red, Int32 green, Int32 blue, Int32 alpha)
+        void Color4(Byte red, Byte green, Byte blue, Byte alpha)
         {
-            Delegates.glColor4i((Int32)red, (Int32)green, (Int32)blue, (Int32)alpha);
+            Delegates.glColor4ub((Byte)red, (Byte)green, (Byte)blue, (Byte)alpha);
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void Color4(Int32* v)
+        unsafe void Color4(Byte* v)
         {
-            unsafe { Delegates.glColor4iv((Int32*)v); }
+            unsafe { Delegates.glColor4ubv((Byte*)v); }
         }
         
         public static 
-        void Color4(Int32[] v)
+        void Color4(Byte[] v)
         {
             unsafe
             {
-                fixed (Int32* v_ptr = v)
+                fixed (Byte* v_ptr = v)
                 {
-                    Delegates.glColor4iv((Int32*)v_ptr);
+                    Delegates.glColor4ubv((Byte*)v_ptr);
                 }
             }
         }
         
         public static 
-        void Color4(ref Int32 v)
+        void Color4(ref Byte v)
         {
             unsafe
             {
-                fixed (Int32* v_ptr = &v)
+                fixed (Byte* v_ptr = &v)
                 {
-                    Delegates.glColor4iv((Int32*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void Color4(Int16 red, Int16 green, Int16 blue, Int16 alpha)
-        {
-            Delegates.glColor4s((Int16)red, (Int16)green, (Int16)blue, (Int16)alpha);
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void Color4(Int16* v)
-        {
-            unsafe { Delegates.glColor4sv((Int16*)v); }
-        }
-        
-        public static 
-        void Color4(Int16[] v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = v)
-                {
-                    Delegates.glColor4sv((Int16*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void Color4(ref Int16 v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = &v)
-                {
-                    Delegates.glColor4sv((Int16*)v_ptr);
+                    Delegates.glColor4ubv((Byte*)v_ptr);
                 }
             }
         }
@@ -669,6 +595,12 @@ namespace OpenTK.OpenGL
         [System.CLSCompliant(false)]
         public static 
         void Color4(UInt32 red, UInt32 green, UInt32 blue, UInt32 alpha)
+        {
+            Delegates.glColor4ui((UInt32)red, (UInt32)green, (UInt32)blue, (UInt32)alpha);
+        }
+        
+        public static 
+        void Color4(Int32 red, Int32 green, Int32 blue, Int32 alpha)
         {
             Delegates.glColor4ui((UInt32)red, (UInt32)green, (UInt32)blue, (UInt32)alpha);
         }
@@ -682,11 +614,33 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void Color4(Int32* v)
+        {
+            unsafe
+            {
+                Delegates.glColor4uiv((UInt32*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void Color4(UInt32[] v)
         {
             unsafe
             {
                 fixed (UInt32* v_ptr = v)
+                {
+                    Delegates.glColor4uiv((UInt32*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void Color4(Int32[] v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = v)
                 {
                     Delegates.glColor4uiv((UInt32*)v_ptr);
                 }
@@ -706,9 +660,27 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void Color4(ref Int32 v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = &v)
+                {
+                    Delegates.glColor4uiv((UInt32*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void Color4(UInt16 red, UInt16 green, UInt16 blue, UInt16 alpha)
+        {
+            Delegates.glColor4us((UInt16)red, (UInt16)green, (UInt16)blue, (UInt16)alpha);
+        }
+        
+        public static 
+        void Color4(Int16 red, Int16 green, Int16 blue, Int16 alpha)
         {
             Delegates.glColor4us((UInt16)red, (UInt16)green, (UInt16)blue, (UInt16)alpha);
         }
@@ -718,6 +690,16 @@ namespace OpenTK.OpenGL
         unsafe void Color4(UInt16* v)
         {
             unsafe { Delegates.glColor4usv((UInt16*)v); }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void Color4(Int16* v)
+        {
+            unsafe
+            {
+                Delegates.glColor4usv((UInt16*)v);
+            }
         }
         
         [System.CLSCompliant(false)]
@@ -733,6 +715,18 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void Color4(Int16[] v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = v)
+                {
+                    Delegates.glColor4usv((UInt16*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void Color4(ref UInt16 v)
@@ -740,6 +734,18 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (UInt16* v_ptr = &v)
+                {
+                    Delegates.glColor4usv((UInt16*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void Color4(ref Int16 v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = &v)
                 {
                     Delegates.glColor4usv((UInt16*)v_ptr);
                 }
@@ -8821,27 +8827,11 @@ namespace OpenTK.OpenGL
             Delegates.glSecondaryColor3b((SByte)red, (SByte)green, (SByte)blue);
         }
         
-        public static 
-        void SecondaryColor3(Byte red, Byte green, Byte blue)
-        {
-            Delegates.glSecondaryColor3b((SByte)red, (SByte)green, (SByte)blue);
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void SecondaryColor3(SByte* v)
         {
             unsafe { Delegates.glSecondaryColor3bv((SByte*)v); }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void SecondaryColor3(Byte* v)
-        {
-            unsafe
-            {
-                Delegates.glSecondaryColor3bv((SByte*)v);
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -8857,18 +8847,6 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void SecondaryColor3(Byte[] v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = v)
-                {
-                    Delegates.glSecondaryColor3bv((SByte*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         void SecondaryColor3(ref SByte v)
@@ -8876,18 +8854,6 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (SByte* v_ptr = &v)
-                {
-                    Delegates.glSecondaryColor3bv((SByte*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void SecondaryColor3(ref Byte v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = &v)
                 {
                     Delegates.glSecondaryColor3bv((SByte*)v_ptr);
                 }
@@ -8969,75 +8935,38 @@ namespace OpenTK.OpenGL
         }
         
         public static 
-        void SecondaryColor3(Int32 red, Int32 green, Int32 blue)
+        void SecondaryColor3(Byte red, Byte green, Byte blue)
         {
-            Delegates.glSecondaryColor3i((Int32)red, (Int32)green, (Int32)blue);
+            Delegates.glSecondaryColor3ub((Byte)red, (Byte)green, (Byte)blue);
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void SecondaryColor3(Int32* v)
+        unsafe void SecondaryColor3(Byte* v)
         {
-            unsafe { Delegates.glSecondaryColor3iv((Int32*)v); }
+            unsafe { Delegates.glSecondaryColor3ubv((Byte*)v); }
         }
         
         public static 
-        void SecondaryColor3(Int32[] v)
+        void SecondaryColor3(Byte[] v)
         {
             unsafe
             {
-                fixed (Int32* v_ptr = v)
+                fixed (Byte* v_ptr = v)
                 {
-                    Delegates.glSecondaryColor3iv((Int32*)v_ptr);
+                    Delegates.glSecondaryColor3ubv((Byte*)v_ptr);
                 }
             }
         }
         
         public static 
-        void SecondaryColor3(ref Int32 v)
+        void SecondaryColor3(ref Byte v)
         {
             unsafe
             {
-                fixed (Int32* v_ptr = &v)
+                fixed (Byte* v_ptr = &v)
                 {
-                    Delegates.glSecondaryColor3iv((Int32*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void SecondaryColor3(Int16 red, Int16 green, Int16 blue)
-        {
-            Delegates.glSecondaryColor3s((Int16)red, (Int16)green, (Int16)blue);
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void SecondaryColor3(Int16* v)
-        {
-            unsafe { Delegates.glSecondaryColor3sv((Int16*)v); }
-        }
-        
-        public static 
-        void SecondaryColor3(Int16[] v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = v)
-                {
-                    Delegates.glSecondaryColor3sv((Int16*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void SecondaryColor3(ref Int16 v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = &v)
-                {
-                    Delegates.glSecondaryColor3sv((Int16*)v_ptr);
+                    Delegates.glSecondaryColor3ubv((Byte*)v_ptr);
                 }
             }
         }
@@ -9045,6 +8974,12 @@ namespace OpenTK.OpenGL
         [System.CLSCompliant(false)]
         public static 
         void SecondaryColor3(UInt32 red, UInt32 green, UInt32 blue)
+        {
+            Delegates.glSecondaryColor3ui((UInt32)red, (UInt32)green, (UInt32)blue);
+        }
+        
+        public static 
+        void SecondaryColor3(Int32 red, Int32 green, Int32 blue)
         {
             Delegates.glSecondaryColor3ui((UInt32)red, (UInt32)green, (UInt32)blue);
         }
@@ -9058,11 +8993,33 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void SecondaryColor3(Int32* v)
+        {
+            unsafe
+            {
+                Delegates.glSecondaryColor3uiv((UInt32*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void SecondaryColor3(UInt32[] v)
         {
             unsafe
             {
                 fixed (UInt32* v_ptr = v)
+                {
+                    Delegates.glSecondaryColor3uiv((UInt32*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void SecondaryColor3(Int32[] v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = v)
                 {
                     Delegates.glSecondaryColor3uiv((UInt32*)v_ptr);
                 }
@@ -9082,9 +9039,27 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void SecondaryColor3(ref Int32 v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = &v)
+                {
+                    Delegates.glSecondaryColor3uiv((UInt32*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void SecondaryColor3(UInt16 red, UInt16 green, UInt16 blue)
+        {
+            Delegates.glSecondaryColor3us((UInt16)red, (UInt16)green, (UInt16)blue);
+        }
+        
+        public static 
+        void SecondaryColor3(Int16 red, Int16 green, Int16 blue)
         {
             Delegates.glSecondaryColor3us((UInt16)red, (UInt16)green, (UInt16)blue);
         }
@@ -9094,6 +9069,16 @@ namespace OpenTK.OpenGL
         unsafe void SecondaryColor3(UInt16* v)
         {
             unsafe { Delegates.glSecondaryColor3usv((UInt16*)v); }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void SecondaryColor3(Int16* v)
+        {
+            unsafe
+            {
+                Delegates.glSecondaryColor3usv((UInt16*)v);
+            }
         }
         
         [System.CLSCompliant(false)]
@@ -9109,6 +9094,18 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void SecondaryColor3(Int16[] v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = v)
+                {
+                    Delegates.glSecondaryColor3usv((UInt16*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void SecondaryColor3(ref UInt16 v)
@@ -9116,6 +9113,18 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (UInt16* v_ptr = &v)
+                {
+                    Delegates.glSecondaryColor3usv((UInt16*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void SecondaryColor3(ref Int16 v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = &v)
                 {
                     Delegates.glSecondaryColor3usv((UInt16*)v_ptr);
                 }
@@ -9650,29 +9659,7 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void GetQueryObjectv(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] Int32* @params)
-        {
-            unsafe
-            {
-                Delegates.glGetQueryObjectiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (Int32*)@params);
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
         void GetQueryObjectv(UInt32 id, GL.Enums.VERSION_1_5 pname, [Out] Int32[] @params)
-        {
-            unsafe
-            {
-                fixed (Int32* @params_ptr = @params)
-                {
-                    Delegates.glGetQueryObjectiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (Int32*)@params_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void GetQueryObjectv(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] Int32[] @params)
         {
             unsafe
             {
@@ -9697,24 +9684,21 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void GetQueryObjectv(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] out Int32 @params)
-        {
-            unsafe
-            {
-                fixed (Int32* @params_ptr = &@params)
-                {
-                    Delegates.glGetQueryObjectiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (Int32*)@params_ptr);
-                            @params = *@params_ptr;
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void GetQueryObjectv(UInt32 id, GL.Enums.VERSION_1_5 pname, [Out] UInt32* @params)
         {
             unsafe { Delegates.glGetQueryObjectuiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (UInt32*)@params); }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void GetQueryObjectv(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] Int32* @params)
+        {
+            unsafe
+            {
+                Delegates.glGetQueryObjectuiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (UInt32*)@params);
+            }
         }
         
         [System.CLSCompliant(false)]
@@ -9730,6 +9714,18 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void GetQueryObjectv(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] Int32[] @params)
+        {
+            unsafe
+            {
+                fixed (Int32* @params_ptr = @params)
+                {
+                    Delegates.glGetQueryObjectuiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (UInt32*)@params_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void GetQueryObjectv(UInt32 id, GL.Enums.VERSION_1_5 pname, [Out] out UInt32 @params)
@@ -9737,6 +9733,19 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (UInt32* @params_ptr = &@params)
+                {
+                    Delegates.glGetQueryObjectuiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (UInt32*)@params_ptr);
+                            @params = *@params_ptr;
+                }
+            }
+        }
+        
+        public static 
+        void GetQueryObjectv(Int32 id, GL.Enums.VERSION_1_5 pname, [Out] out Int32 @params)
+        {
+            unsafe
+            {
+                fixed (Int32* @params_ptr = &@params)
                 {
                     Delegates.glGetQueryObjectuiv((UInt32)id, (GL.Enums.VERSION_1_5)pname, (UInt32*)@params_ptr);
                             @params = *@params_ptr;
@@ -14002,33 +14011,11 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void VertexAttrib4Nv(Int32 index, Byte* v)
-        {
-            unsafe
-            {
-                Delegates.glVertexAttrib4Nbv((UInt32)index, (SByte*)v);
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
         void VertexAttrib4Nv(UInt32 index, SByte[] v)
         {
             unsafe
             {
                 fixed (SByte* v_ptr = v)
-                {
-                    Delegates.glVertexAttrib4Nbv((UInt32)index, (SByte*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void VertexAttrib4Nv(Int32 index, Byte[] v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = v)
                 {
                     Delegates.glVertexAttrib4Nbv((UInt32)index, (SByte*)v_ptr);
                 }
@@ -14048,18 +14035,6 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void VertexAttrib4Nv(Int32 index, ref Byte v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = &v)
-                {
-                    Delegates.glVertexAttrib4Nbv((UInt32)index, (SByte*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4Nv(UInt32 index, Int32* v)
@@ -14069,29 +14044,7 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void VertexAttrib4Nv(Int32 index, Int32* v)
-        {
-            unsafe
-            {
-                Delegates.glVertexAttrib4Niv((UInt32)index, (Int32*)v);
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
         void VertexAttrib4Nv(UInt32 index, Int32[] v)
-        {
-            unsafe
-            {
-                fixed (Int32* v_ptr = v)
-                {
-                    Delegates.glVertexAttrib4Niv((UInt32)index, (Int32*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void VertexAttrib4Nv(Int32 index, Int32[] v)
         {
             unsafe
             {
@@ -14115,33 +14068,11 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void VertexAttrib4Nv(Int32 index, ref Int32 v)
-        {
-            unsafe
-            {
-                fixed (Int32* v_ptr = &v)
-                {
-                    Delegates.glVertexAttrib4Niv((UInt32)index, (Int32*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4Nv(UInt32 index, Int16* v)
         {
             unsafe { Delegates.glVertexAttrib4Nsv((UInt32)index, (Int16*)v); }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void VertexAttrib4Nv(Int32 index, Int16* v)
-        {
-            unsafe
-            {
-                Delegates.glVertexAttrib4Nsv((UInt32)index, (Int16*)v);
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -14157,33 +14088,9 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void VertexAttrib4Nv(Int32 index, Int16[] v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = v)
-                {
-                    Delegates.glVertexAttrib4Nsv((UInt32)index, (Int16*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         void VertexAttrib4Nv(UInt32 index, ref Int16 v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = &v)
-                {
-                    Delegates.glVertexAttrib4Nsv((UInt32)index, (Int16*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void VertexAttrib4Nv(Int32 index, ref Int16 v)
         {
             unsafe
             {
@@ -14216,7 +14123,29 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void VertexAttrib4Nv(Int32 index, Byte* v)
+        {
+            unsafe
+            {
+                Delegates.glVertexAttrib4Nubv((UInt32)index, (Byte*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void VertexAttrib4Nv(UInt32 index, Byte[] v)
+        {
+            unsafe
+            {
+                fixed (Byte* v_ptr = v)
+                {
+                    Delegates.glVertexAttrib4Nubv((UInt32)index, (Byte*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void VertexAttrib4Nv(Int32 index, Byte[] v)
         {
             unsafe
             {
@@ -14240,6 +14169,18 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void VertexAttrib4Nv(Int32 index, ref Byte v)
+        {
+            unsafe
+            {
+                fixed (Byte* v_ptr = &v)
+                {
+                    Delegates.glVertexAttrib4Nubv((UInt32)index, (Byte*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4Nv(UInt32 index, UInt32* v)
@@ -14249,11 +14190,33 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void VertexAttrib4Nv(Int32 index, Int32* v)
+        {
+            unsafe
+            {
+                Delegates.glVertexAttrib4Nuiv((UInt32)index, (UInt32*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void VertexAttrib4Nv(UInt32 index, UInt32[] v)
         {
             unsafe
             {
                 fixed (UInt32* v_ptr = v)
+                {
+                    Delegates.glVertexAttrib4Nuiv((UInt32)index, (UInt32*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void VertexAttrib4Nv(Int32 index, Int32[] v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = v)
                 {
                     Delegates.glVertexAttrib4Nuiv((UInt32)index, (UInt32*)v_ptr);
                 }
@@ -14273,6 +14236,18 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void VertexAttrib4Nv(Int32 index, ref Int32 v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = &v)
+                {
+                    Delegates.glVertexAttrib4Nuiv((UInt32)index, (UInt32*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4Nv(UInt32 index, UInt16* v)
@@ -14282,11 +14257,33 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void VertexAttrib4Nv(Int32 index, Int16* v)
+        {
+            unsafe
+            {
+                Delegates.glVertexAttrib4Nusv((UInt32)index, (UInt16*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void VertexAttrib4Nv(UInt32 index, UInt16[] v)
         {
             unsafe
             {
                 fixed (UInt16* v_ptr = v)
+                {
+                    Delegates.glVertexAttrib4Nusv((UInt32)index, (UInt16*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void VertexAttrib4Nv(Int32 index, Int16[] v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = v)
                 {
                     Delegates.glVertexAttrib4Nusv((UInt32)index, (UInt16*)v_ptr);
                 }
@@ -14306,21 +14303,23 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void VertexAttrib4Nv(Int32 index, ref Int16 v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = &v)
+                {
+                    Delegates.glVertexAttrib4Nusv((UInt32)index, (UInt16*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4(UInt32 index, SByte* v)
         {
             unsafe { Delegates.glVertexAttrib4bv((UInt32)index, (SByte*)v); }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void VertexAttrib4(Int32 index, Byte* v)
-        {
-            unsafe
-            {
-                Delegates.glVertexAttrib4bv((UInt32)index, (SByte*)v);
-            }
         }
         
         [System.CLSCompliant(false)]
@@ -14336,18 +14335,6 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void VertexAttrib4(Int32 index, Byte[] v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = v)
-                {
-                    Delegates.glVertexAttrib4bv((UInt32)index, (SByte*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         void VertexAttrib4(UInt32 index, ref SByte v)
@@ -14355,18 +14342,6 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (SByte* v_ptr = &v)
-                {
-                    Delegates.glVertexAttrib4bv((UInt32)index, (SByte*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void VertexAttrib4(Int32 index, ref Byte v)
-        {
-            unsafe
-            {
-                fixed (Byte* v_ptr = &v)
                 {
                     Delegates.glVertexAttrib4bv((UInt32)index, (SByte*)v_ptr);
                 }
@@ -14542,29 +14517,7 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void VertexAttrib4(Int32 index, Int32* v)
-        {
-            unsafe
-            {
-                Delegates.glVertexAttrib4iv((UInt32)index, (Int32*)v);
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
         void VertexAttrib4(UInt32 index, Int32[] v)
-        {
-            unsafe
-            {
-                fixed (Int32* v_ptr = v)
-                {
-                    Delegates.glVertexAttrib4iv((UInt32)index, (Int32*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void VertexAttrib4(Int32 index, Int32[] v)
         {
             unsafe
             {
@@ -14578,18 +14531,6 @@ namespace OpenTK.OpenGL
         [System.CLSCompliant(false)]
         public static 
         void VertexAttrib4(UInt32 index, ref Int32 v)
-        {
-            unsafe
-            {
-                fixed (Int32* v_ptr = &v)
-                {
-                    Delegates.glVertexAttrib4iv((UInt32)index, (Int32*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void VertexAttrib4(Int32 index, ref Int32 v)
         {
             unsafe
             {
@@ -14622,29 +14563,7 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void VertexAttrib4(Int32 index, Int16* v)
-        {
-            unsafe
-            {
-                Delegates.glVertexAttrib4sv((UInt32)index, (Int16*)v);
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
         void VertexAttrib4(UInt32 index, Int16[] v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = v)
-                {
-                    Delegates.glVertexAttrib4sv((UInt32)index, (Int16*)v_ptr);
-                }
-            }
-        }
-        
-        public static 
-        void VertexAttrib4(Int32 index, Int16[] v)
         {
             unsafe
             {
@@ -14668,18 +14587,6 @@ namespace OpenTK.OpenGL
             }
         }
         
-        public static 
-        void VertexAttrib4(Int32 index, ref Int16 v)
-        {
-            unsafe
-            {
-                fixed (Int16* v_ptr = &v)
-                {
-                    Delegates.glVertexAttrib4sv((UInt32)index, (Int16*)v_ptr);
-                }
-            }
-        }
-        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4(UInt32 index, Byte* v)
@@ -14689,7 +14596,29 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void VertexAttrib4(Int32 index, Byte* v)
+        {
+            unsafe
+            {
+                Delegates.glVertexAttrib4ubv((UInt32)index, (Byte*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void VertexAttrib4(UInt32 index, Byte[] v)
+        {
+            unsafe
+            {
+                fixed (Byte* v_ptr = v)
+                {
+                    Delegates.glVertexAttrib4ubv((UInt32)index, (Byte*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void VertexAttrib4(Int32 index, Byte[] v)
         {
             unsafe
             {
@@ -14713,6 +14642,18 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void VertexAttrib4(Int32 index, ref Byte v)
+        {
+            unsafe
+            {
+                fixed (Byte* v_ptr = &v)
+                {
+                    Delegates.glVertexAttrib4ubv((UInt32)index, (Byte*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4(UInt32 index, UInt32* v)
@@ -14722,11 +14663,33 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
+        unsafe void VertexAttrib4(Int32 index, Int32* v)
+        {
+            unsafe
+            {
+                Delegates.glVertexAttrib4uiv((UInt32)index, (UInt32*)v);
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
         void VertexAttrib4(UInt32 index, UInt32[] v)
         {
             unsafe
             {
                 fixed (UInt32* v_ptr = v)
+                {
+                    Delegates.glVertexAttrib4uiv((UInt32)index, (UInt32*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void VertexAttrib4(Int32 index, Int32[] v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = v)
                 {
                     Delegates.glVertexAttrib4uiv((UInt32)index, (UInt32*)v_ptr);
                 }
@@ -14746,11 +14709,33 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void VertexAttrib4(Int32 index, ref Int32 v)
+        {
+            unsafe
+            {
+                fixed (Int32* v_ptr = &v)
+                {
+                    Delegates.glVertexAttrib4uiv((UInt32)index, (UInt32*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         unsafe void VertexAttrib4(UInt32 index, UInt16* v)
         {
             unsafe { Delegates.glVertexAttrib4usv((UInt32)index, (UInt16*)v); }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void VertexAttrib4(Int32 index, Int16* v)
+        {
+            unsafe
+            {
+                Delegates.glVertexAttrib4usv((UInt32)index, (UInt16*)v);
+            }
         }
         
         [System.CLSCompliant(false)]
@@ -14766,6 +14751,18 @@ namespace OpenTK.OpenGL
             }
         }
         
+        public static 
+        void VertexAttrib4(Int32 index, Int16[] v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = v)
+                {
+                    Delegates.glVertexAttrib4usv((UInt32)index, (UInt16*)v_ptr);
+                }
+            }
+        }
+        
         [System.CLSCompliant(false)]
         public static 
         void VertexAttrib4(UInt32 index, ref UInt16 v)
@@ -14773,6 +14770,18 @@ namespace OpenTK.OpenGL
             unsafe
             {
                 fixed (UInt16* v_ptr = &v)
+                {
+                    Delegates.glVertexAttrib4usv((UInt32)index, (UInt16*)v_ptr);
+                }
+            }
+        }
+        
+        public static 
+        void VertexAttrib4(Int32 index, ref Int16 v)
+        {
+            unsafe
+            {
+                fixed (Int16* v_ptr = &v)
                 {
                     Delegates.glVertexAttrib4usv((UInt32)index, (UInt16*)v_ptr);
                 }
@@ -15781,33 +15790,11 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void Weightv(Int32 size, Byte* weights)
-            {
-                unsafe
-                {
-                    Delegates.glWeightbvARB((Int32)size, (SByte*)weights);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void Weightv(Int32 size, SByte[] weights)
             {
                 unsafe
                 {
                     fixed (SByte* weights_ptr = weights)
-                    {
-                        Delegates.glWeightbvARB((Int32)size, (SByte*)weights_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void Weightv(Int32 size, Byte[] weights)
-            {
-                unsafe
-                {
-                    fixed (Byte* weights_ptr = weights)
                     {
                         Delegates.glWeightbvARB((Int32)size, (SByte*)weights_ptr);
                     }
@@ -15823,80 +15810,6 @@ namespace OpenTK.OpenGL
                     fixed (SByte* weights_ptr = &weights)
                     {
                         Delegates.glWeightbvARB((Int32)size, (SByte*)weights_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void Weightv(Int32 size, ref Byte weights)
-            {
-                unsafe
-                {
-                    fixed (Byte* weights_ptr = &weights)
-                    {
-                        Delegates.glWeightbvARB((Int32)size, (SByte*)weights_ptr);
-                    }
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Weightv(Int32 size, Int16* weights)
-            {
-                unsafe { Delegates.glWeightsvARB((Int32)size, (Int16*)weights); }
-            }
-            
-            public static 
-            void Weightv(Int32 size, Int16[] weights)
-            {
-                unsafe
-                {
-                    fixed (Int16* weights_ptr = weights)
-                    {
-                        Delegates.glWeightsvARB((Int32)size, (Int16*)weights_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void Weightv(Int32 size, ref Int16 weights)
-            {
-                unsafe
-                {
-                    fixed (Int16* weights_ptr = &weights)
-                    {
-                        Delegates.glWeightsvARB((Int32)size, (Int16*)weights_ptr);
-                    }
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Weightv(Int32 size, Int32* weights)
-            {
-                unsafe { Delegates.glWeightivARB((Int32)size, (Int32*)weights); }
-            }
-            
-            public static 
-            void Weightv(Int32 size, Int32[] weights)
-            {
-                unsafe
-                {
-                    fixed (Int32* weights_ptr = weights)
-                    {
-                        Delegates.glWeightivARB((Int32)size, (Int32*)weights_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void Weightv(Int32 size, ref Int32 weights)
-            {
-                unsafe
-                {
-                    fixed (Int32* weights_ptr = &weights)
-                    {
-                        Delegates.glWeightivARB((Int32)size, (Int32*)weights_ptr);
                     }
                 }
             }
@@ -15965,9 +15878,50 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void Weightv(Int32 size, Byte* weights)
+            {
+                unsafe { Delegates.glWeightubvARB((Int32)size, (Byte*)weights); }
+            }
+            
+            public static 
+            void Weightv(Int32 size, Byte[] weights)
+            {
+                unsafe
+                {
+                    fixed (Byte* weights_ptr = weights)
+                    {
+                        Delegates.glWeightubvARB((Int32)size, (Byte*)weights_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void Weightv(Int32 size, ref Byte weights)
+            {
+                unsafe
+                {
+                    fixed (Byte* weights_ptr = &weights)
+                    {
+                        Delegates.glWeightubvARB((Int32)size, (Byte*)weights_ptr);
+                    }
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             unsafe void Weightv(Int32 size, UInt16* weights)
             {
                 unsafe { Delegates.glWeightusvARB((Int32)size, (UInt16*)weights); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void Weightv(Int32 size, Int16* weights)
+            {
+                unsafe
+                {
+                    Delegates.glWeightusvARB((Int32)size, (UInt16*)weights);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -15977,6 +15931,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt16* weights_ptr = weights)
+                    {
+                        Delegates.glWeightusvARB((Int32)size, (UInt16*)weights_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void Weightv(Int32 size, Int16[] weights)
+            {
+                unsafe
+                {
+                    fixed (Int16* weights_ptr = weights)
                     {
                         Delegates.glWeightusvARB((Int32)size, (UInt16*)weights_ptr);
                     }
@@ -15996,11 +15962,33 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void Weightv(Int32 size, ref Int16 weights)
+            {
+                unsafe
+                {
+                    fixed (Int16* weights_ptr = &weights)
+                    {
+                        Delegates.glWeightusvARB((Int32)size, (UInt16*)weights_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void Weightv(Int32 size, UInt32* weights)
             {
                 unsafe { Delegates.glWeightuivARB((Int32)size, (UInt32*)weights); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void Weightv(Int32 size, Int32* weights)
+            {
+                unsafe
+                {
+                    Delegates.glWeightuivARB((Int32)size, (UInt32*)weights);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -16016,6 +16004,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void Weightv(Int32 size, Int32[] weights)
+            {
+                unsafe
+                {
+                    fixed (Int32* weights_ptr = weights)
+                    {
+                        Delegates.glWeightuivARB((Int32)size, (UInt32*)weights_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void Weightv(Int32 size, ref UInt32 weights)
@@ -16023,6 +16023,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* weights_ptr = &weights)
+                    {
+                        Delegates.glWeightuivARB((Int32)size, (UInt32*)weights_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void Weightv(Int32 size, ref Int32 weights)
+            {
+                unsafe
+                {
+                    fixed (Int32* weights_ptr = &weights)
                     {
                         Delegates.glWeightuivARB((Int32)size, (UInt32*)weights_ptr);
                     }
@@ -17277,33 +17289,11 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib4Nv(Int32 index, Byte* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttrib4NbvARB((UInt32)index, (SByte*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttrib4Nv(UInt32 index, SByte[] v)
             {
                 unsafe
                 {
                     fixed (SByte* v_ptr = v)
-                    {
-                        Delegates.glVertexAttrib4NbvARB((UInt32)index, (SByte*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttrib4Nv(Int32 index, Byte[] v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = v)
                     {
                         Delegates.glVertexAttrib4NbvARB((UInt32)index, (SByte*)v_ptr);
                     }
@@ -17323,18 +17313,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttrib4Nv(Int32 index, ref Byte v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttrib4NbvARB((UInt32)index, (SByte*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4Nv(UInt32 index, Int32* v)
@@ -17344,29 +17322,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib4Nv(Int32 index, Int32* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttrib4NivARB((UInt32)index, (Int32*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttrib4Nv(UInt32 index, Int32[] v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = v)
-                    {
-                        Delegates.glVertexAttrib4NivARB((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttrib4Nv(Int32 index, Int32[] v)
             {
                 unsafe
                 {
@@ -17390,33 +17346,11 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttrib4Nv(Int32 index, ref Int32 v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttrib4NivARB((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4Nv(UInt32 index, Int16* v)
             {
                 unsafe { Delegates.glVertexAttrib4NsvARB((UInt32)index, (Int16*)v); }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void VertexAttrib4Nv(Int32 index, Int16* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttrib4NsvARB((UInt32)index, (Int16*)v);
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -17432,33 +17366,9 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttrib4Nv(Int32 index, Int16[] v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glVertexAttrib4NsvARB((UInt32)index, (Int16*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttrib4Nv(UInt32 index, ref Int16 v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttrib4NsvARB((UInt32)index, (Int16*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttrib4Nv(Int32 index, ref Int16 v)
             {
                 unsafe
                 {
@@ -17491,7 +17401,29 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttrib4Nv(Int32 index, Byte* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttrib4NubvARB((UInt32)index, (Byte*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttrib4Nv(UInt32 index, Byte[] v)
+            {
+                unsafe
+                {
+                    fixed (Byte* v_ptr = v)
+                    {
+                        Delegates.glVertexAttrib4NubvARB((UInt32)index, (Byte*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttrib4Nv(Int32 index, Byte[] v)
             {
                 unsafe
                 {
@@ -17515,6 +17447,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttrib4Nv(Int32 index, ref Byte v)
+            {
+                unsafe
+                {
+                    fixed (Byte* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttrib4NubvARB((UInt32)index, (Byte*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4Nv(UInt32 index, UInt32* v)
@@ -17524,11 +17468,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttrib4Nv(Int32 index, Int32* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttrib4NuivARB((UInt32)index, (UInt32*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttrib4Nv(UInt32 index, UInt32[] v)
             {
                 unsafe
                 {
                     fixed (UInt32* v_ptr = v)
+                    {
+                        Delegates.glVertexAttrib4NuivARB((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttrib4Nv(Int32 index, Int32[] v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = v)
                     {
                         Delegates.glVertexAttrib4NuivARB((UInt32)index, (UInt32*)v_ptr);
                     }
@@ -17548,6 +17514,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttrib4Nv(Int32 index, ref Int32 v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttrib4NuivARB((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4Nv(UInt32 index, UInt16* v)
@@ -17557,11 +17535,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttrib4Nv(Int32 index, Int16* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttrib4NusvARB((UInt32)index, (UInt16*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttrib4Nv(UInt32 index, UInt16[] v)
             {
                 unsafe
                 {
                     fixed (UInt16* v_ptr = v)
+                    {
+                        Delegates.glVertexAttrib4NusvARB((UInt32)index, (UInt16*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttrib4Nv(Int32 index, Int16[] v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = v)
                     {
                         Delegates.glVertexAttrib4NusvARB((UInt32)index, (UInt16*)v_ptr);
                     }
@@ -17581,21 +17581,23 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttrib4Nv(Int32 index, ref Int16 v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttrib4NusvARB((UInt32)index, (UInt16*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4(UInt32 index, SByte* v)
             {
                 unsafe { Delegates.glVertexAttrib4bvARB((UInt32)index, (SByte*)v); }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void VertexAttrib4(Int32 index, Byte* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttrib4bvARB((UInt32)index, (SByte*)v);
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -17611,18 +17613,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttrib4(Int32 index, Byte[] v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = v)
-                    {
-                        Delegates.glVertexAttrib4bvARB((UInt32)index, (SByte*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttrib4(UInt32 index, ref SByte v)
@@ -17630,18 +17620,6 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (SByte* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttrib4bvARB((UInt32)index, (SByte*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttrib4(Int32 index, ref Byte v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = &v)
                     {
                         Delegates.glVertexAttrib4bvARB((UInt32)index, (SByte*)v_ptr);
                     }
@@ -17817,29 +17795,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib4(Int32 index, Int32* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttrib4ivARB((UInt32)index, (Int32*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttrib4(UInt32 index, Int32[] v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = v)
-                    {
-                        Delegates.glVertexAttrib4ivARB((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttrib4(Int32 index, Int32[] v)
             {
                 unsafe
                 {
@@ -17853,18 +17809,6 @@ namespace OpenTK.OpenGL
             [System.CLSCompliant(false)]
             public static 
             void VertexAttrib4(UInt32 index, ref Int32 v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttrib4ivARB((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttrib4(Int32 index, ref Int32 v)
             {
                 unsafe
                 {
@@ -17897,29 +17841,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib4(Int32 index, Int16* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttrib4svARB((UInt32)index, (Int16*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttrib4(UInt32 index, Int16[] v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glVertexAttrib4svARB((UInt32)index, (Int16*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttrib4(Int32 index, Int16[] v)
             {
                 unsafe
                 {
@@ -17943,18 +17865,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttrib4(Int32 index, ref Int16 v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttrib4svARB((UInt32)index, (Int16*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4(UInt32 index, Byte* v)
@@ -17964,7 +17874,29 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttrib4(Int32 index, Byte* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttrib4ubvARB((UInt32)index, (Byte*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttrib4(UInt32 index, Byte[] v)
+            {
+                unsafe
+                {
+                    fixed (Byte* v_ptr = v)
+                    {
+                        Delegates.glVertexAttrib4ubvARB((UInt32)index, (Byte*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttrib4(Int32 index, Byte[] v)
             {
                 unsafe
                 {
@@ -17988,6 +17920,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttrib4(Int32 index, ref Byte v)
+            {
+                unsafe
+                {
+                    fixed (Byte* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttrib4ubvARB((UInt32)index, (Byte*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4(UInt32 index, UInt32* v)
@@ -17997,11 +17941,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttrib4(Int32 index, Int32* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttrib4uivARB((UInt32)index, (UInt32*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttrib4(UInt32 index, UInt32[] v)
             {
                 unsafe
                 {
                     fixed (UInt32* v_ptr = v)
+                    {
+                        Delegates.glVertexAttrib4uivARB((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttrib4(Int32 index, Int32[] v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = v)
                     {
                         Delegates.glVertexAttrib4uivARB((UInt32)index, (UInt32*)v_ptr);
                     }
@@ -18021,11 +17987,33 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttrib4(Int32 index, ref Int32 v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttrib4uivARB((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttrib4(UInt32 index, UInt16* v)
             {
                 unsafe { Delegates.glVertexAttrib4usvARB((UInt32)index, (UInt16*)v); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void VertexAttrib4(Int32 index, Int16* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttrib4usvARB((UInt32)index, (UInt16*)v);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -18041,6 +18029,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttrib4(Int32 index, Int16[] v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = v)
+                    {
+                        Delegates.glVertexAttrib4usvARB((UInt32)index, (UInt16*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttrib4(UInt32 index, ref UInt16 v)
@@ -18048,6 +18048,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt16* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttrib4usvARB((UInt32)index, (UInt16*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttrib4(Int32 index, ref Int16 v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = &v)
                     {
                         Delegates.glVertexAttrib4usvARB((UInt32)index, (UInt16*)v_ptr);
                     }
@@ -19697,29 +19709,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void GetQueryObjectv(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glGetQueryObjectivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void GetQueryObjectv(UInt32 id, GL.Enums.ARB_occlusion_query pname, [Out] Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glGetQueryObjectivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void GetQueryObjectv(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] Int32[] @params)
             {
                 unsafe
                 {
@@ -19744,24 +19734,21 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void GetQueryObjectv(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] out Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glGetQueryObjectivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (Int32*)@params_ptr);
-                                @params = *@params_ptr;
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetQueryObjectv(UInt32 id, GL.Enums.ARB_occlusion_query pname, [Out] UInt32* @params)
             {
                 unsafe { Delegates.glGetQueryObjectuivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (UInt32*)@params); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void GetQueryObjectv(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glGetQueryObjectuivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (UInt32*)@params);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -19777,6 +19764,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void GetQueryObjectv(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
+                    {
+                        Delegates.glGetQueryObjectuivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void GetQueryObjectv(UInt32 id, GL.Enums.ARB_occlusion_query pname, [Out] out UInt32 @params)
@@ -19784,6 +19783,19 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
+                    {
+                        Delegates.glGetQueryObjectuivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (UInt32*)@params_ptr);
+                                @params = *@params_ptr;
+                    }
+                }
+            }
+            
+            public static 
+            void GetQueryObjectv(Int32 id, GL.Enums.ARB_occlusion_query pname, [Out] out Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
                     {
                         Delegates.glGetQueryObjectuivARB((UInt32)id, (GL.Enums.ARB_occlusion_query)pname, (UInt32*)@params_ptr);
                                 @params = *@params_ptr;
@@ -24357,27 +24369,11 @@ namespace OpenTK.OpenGL
                 Delegates.glSecondaryColor3bEXT((SByte)red, (SByte)green, (SByte)blue);
             }
             
-            public static 
-            void SecondaryColor3(Byte red, Byte green, Byte blue)
-            {
-                Delegates.glSecondaryColor3bEXT((SByte)red, (SByte)green, (SByte)blue);
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void SecondaryColor3(SByte* v)
             {
                 unsafe { Delegates.glSecondaryColor3bvEXT((SByte*)v); }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void SecondaryColor3(Byte* v)
-            {
-                unsafe
-                {
-                    Delegates.glSecondaryColor3bvEXT((SByte*)v);
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -24393,18 +24389,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void SecondaryColor3(Byte[] v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = v)
-                    {
-                        Delegates.glSecondaryColor3bvEXT((SByte*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void SecondaryColor3(ref SByte v)
@@ -24412,18 +24396,6 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (SByte* v_ptr = &v)
-                    {
-                        Delegates.glSecondaryColor3bvEXT((SByte*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void SecondaryColor3(ref Byte v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = &v)
                     {
                         Delegates.glSecondaryColor3bvEXT((SByte*)v_ptr);
                     }
@@ -24505,75 +24477,38 @@ namespace OpenTK.OpenGL
             }
             
             public static 
-            void SecondaryColor3(Int32 red, Int32 green, Int32 blue)
+            void SecondaryColor3(Byte red, Byte green, Byte blue)
             {
-                Delegates.glSecondaryColor3iEXT((Int32)red, (Int32)green, (Int32)blue);
+                Delegates.glSecondaryColor3ubEXT((Byte)red, (Byte)green, (Byte)blue);
             }
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void SecondaryColor3(Int32* v)
+            unsafe void SecondaryColor3(Byte* v)
             {
-                unsafe { Delegates.glSecondaryColor3ivEXT((Int32*)v); }
+                unsafe { Delegates.glSecondaryColor3ubvEXT((Byte*)v); }
             }
             
             public static 
-            void SecondaryColor3(Int32[] v)
+            void SecondaryColor3(Byte[] v)
             {
                 unsafe
                 {
-                    fixed (Int32* v_ptr = v)
+                    fixed (Byte* v_ptr = v)
                     {
-                        Delegates.glSecondaryColor3ivEXT((Int32*)v_ptr);
+                        Delegates.glSecondaryColor3ubvEXT((Byte*)v_ptr);
                     }
                 }
             }
             
             public static 
-            void SecondaryColor3(ref Int32 v)
+            void SecondaryColor3(ref Byte v)
             {
                 unsafe
                 {
-                    fixed (Int32* v_ptr = &v)
+                    fixed (Byte* v_ptr = &v)
                     {
-                        Delegates.glSecondaryColor3ivEXT((Int32*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void SecondaryColor3(Int16 red, Int16 green, Int16 blue)
-            {
-                Delegates.glSecondaryColor3sEXT((Int16)red, (Int16)green, (Int16)blue);
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void SecondaryColor3(Int16* v)
-            {
-                unsafe { Delegates.glSecondaryColor3svEXT((Int16*)v); }
-            }
-            
-            public static 
-            void SecondaryColor3(Int16[] v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glSecondaryColor3svEXT((Int16*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void SecondaryColor3(ref Int16 v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = &v)
-                    {
-                        Delegates.glSecondaryColor3svEXT((Int16*)v_ptr);
+                        Delegates.glSecondaryColor3ubvEXT((Byte*)v_ptr);
                     }
                 }
             }
@@ -24581,6 +24516,12 @@ namespace OpenTK.OpenGL
             [System.CLSCompliant(false)]
             public static 
             void SecondaryColor3(UInt32 red, UInt32 green, UInt32 blue)
+            {
+                Delegates.glSecondaryColor3uiEXT((UInt32)red, (UInt32)green, (UInt32)blue);
+            }
+            
+            public static 
+            void SecondaryColor3(Int32 red, Int32 green, Int32 blue)
             {
                 Delegates.glSecondaryColor3uiEXT((UInt32)red, (UInt32)green, (UInt32)blue);
             }
@@ -24594,11 +24535,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void SecondaryColor3(Int32* v)
+            {
+                unsafe
+                {
+                    Delegates.glSecondaryColor3uivEXT((UInt32*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void SecondaryColor3(UInt32[] v)
             {
                 unsafe
                 {
                     fixed (UInt32* v_ptr = v)
+                    {
+                        Delegates.glSecondaryColor3uivEXT((UInt32*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void SecondaryColor3(Int32[] v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = v)
                     {
                         Delegates.glSecondaryColor3uivEXT((UInt32*)v_ptr);
                     }
@@ -24618,9 +24581,27 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void SecondaryColor3(ref Int32 v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = &v)
+                    {
+                        Delegates.glSecondaryColor3uivEXT((UInt32*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void SecondaryColor3(UInt16 red, UInt16 green, UInt16 blue)
+            {
+                Delegates.glSecondaryColor3usEXT((UInt16)red, (UInt16)green, (UInt16)blue);
+            }
+            
+            public static 
+            void SecondaryColor3(Int16 red, Int16 green, Int16 blue)
             {
                 Delegates.glSecondaryColor3usEXT((UInt16)red, (UInt16)green, (UInt16)blue);
             }
@@ -24630,6 +24611,16 @@ namespace OpenTK.OpenGL
             unsafe void SecondaryColor3(UInt16* v)
             {
                 unsafe { Delegates.glSecondaryColor3usvEXT((UInt16*)v); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void SecondaryColor3(Int16* v)
+            {
+                unsafe
+                {
+                    Delegates.glSecondaryColor3usvEXT((UInt16*)v);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -24645,6 +24636,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void SecondaryColor3(Int16[] v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = v)
+                    {
+                        Delegates.glSecondaryColor3usvEXT((UInt16*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void SecondaryColor3(ref UInt16 v)
@@ -24652,6 +24655,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt16* v_ptr = &v)
+                    {
+                        Delegates.glSecondaryColor3usvEXT((UInt16*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void SecondaryColor3(ref Int16 v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = &v)
                     {
                         Delegates.glSecondaryColor3usvEXT((UInt16*)v_ptr);
                     }
@@ -25833,33 +25848,11 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void Variantv(Int32 id, Byte* addr)
-            {
-                unsafe
-                {
-                    Delegates.glVariantbvEXT((UInt32)id, (SByte*)addr);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void Variantv(UInt32 id, SByte[] addr)
             {
                 unsafe
                 {
                     fixed (SByte* addr_ptr = addr)
-                    {
-                        Delegates.glVariantbvEXT((UInt32)id, (SByte*)addr_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void Variantv(Int32 id, Byte[] addr)
-            {
-                unsafe
-                {
-                    fixed (Byte* addr_ptr = addr)
                     {
                         Delegates.glVariantbvEXT((UInt32)id, (SByte*)addr_ptr);
                     }
@@ -25879,18 +25872,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void Variantv(Int32 id, ref Byte addr)
-            {
-                unsafe
-                {
-                    fixed (Byte* addr_ptr = &addr)
-                    {
-                        Delegates.glVariantbvEXT((UInt32)id, (SByte*)addr_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void Variantv(UInt32 id, Int16* addr)
@@ -25900,29 +25881,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void Variantv(Int32 id, Int16* addr)
-            {
-                unsafe
-                {
-                    Delegates.glVariantsvEXT((UInt32)id, (Int16*)addr);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void Variantv(UInt32 id, Int16[] addr)
-            {
-                unsafe
-                {
-                    fixed (Int16* addr_ptr = addr)
-                    {
-                        Delegates.glVariantsvEXT((UInt32)id, (Int16*)addr_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void Variantv(Int32 id, Int16[] addr)
             {
                 unsafe
                 {
@@ -25946,33 +25905,11 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void Variantv(Int32 id, ref Int16 addr)
-            {
-                unsafe
-                {
-                    fixed (Int16* addr_ptr = &addr)
-                    {
-                        Delegates.glVariantsvEXT((UInt32)id, (Int16*)addr_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void Variantv(UInt32 id, Int32* addr)
             {
                 unsafe { Delegates.glVariantivEXT((UInt32)id, (Int32*)addr); }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Variantv(Int32 id, Int32* addr)
-            {
-                unsafe
-                {
-                    Delegates.glVariantivEXT((UInt32)id, (Int32*)addr);
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -25988,33 +25925,9 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void Variantv(Int32 id, Int32[] addr)
-            {
-                unsafe
-                {
-                    fixed (Int32* addr_ptr = addr)
-                    {
-                        Delegates.glVariantivEXT((UInt32)id, (Int32*)addr_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void Variantv(UInt32 id, ref Int32 addr)
-            {
-                unsafe
-                {
-                    fixed (Int32* addr_ptr = &addr)
-                    {
-                        Delegates.glVariantivEXT((UInt32)id, (Int32*)addr_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void Variantv(Int32 id, ref Int32 addr)
             {
                 unsafe
                 {
@@ -26168,7 +26081,29 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void Variantv(Int32 id, Byte* addr)
+            {
+                unsafe
+                {
+                    Delegates.glVariantubvEXT((UInt32)id, (Byte*)addr);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void Variantv(UInt32 id, Byte[] addr)
+            {
+                unsafe
+                {
+                    fixed (Byte* addr_ptr = addr)
+                    {
+                        Delegates.glVariantubvEXT((UInt32)id, (Byte*)addr_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void Variantv(Int32 id, Byte[] addr)
             {
                 unsafe
                 {
@@ -26192,6 +26127,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void Variantv(Int32 id, ref Byte addr)
+            {
+                unsafe
+                {
+                    fixed (Byte* addr_ptr = &addr)
+                    {
+                        Delegates.glVariantubvEXT((UInt32)id, (Byte*)addr_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void Variantv(UInt32 id, UInt16* addr)
@@ -26201,11 +26148,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void Variantv(Int32 id, Int16* addr)
+            {
+                unsafe
+                {
+                    Delegates.glVariantusvEXT((UInt32)id, (UInt16*)addr);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void Variantv(UInt32 id, UInt16[] addr)
             {
                 unsafe
                 {
                     fixed (UInt16* addr_ptr = addr)
+                    {
+                        Delegates.glVariantusvEXT((UInt32)id, (UInt16*)addr_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void Variantv(Int32 id, Int16[] addr)
+            {
+                unsafe
+                {
+                    fixed (Int16* addr_ptr = addr)
                     {
                         Delegates.glVariantusvEXT((UInt32)id, (UInt16*)addr_ptr);
                     }
@@ -26225,11 +26194,33 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void Variantv(Int32 id, ref Int16 addr)
+            {
+                unsafe
+                {
+                    fixed (Int16* addr_ptr = &addr)
+                    {
+                        Delegates.glVariantusvEXT((UInt32)id, (UInt16*)addr_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void Variantv(UInt32 id, UInt32* addr)
             {
                 unsafe { Delegates.glVariantuivEXT((UInt32)id, (UInt32*)addr); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void Variantv(Int32 id, Int32* addr)
+            {
+                unsafe
+                {
+                    Delegates.glVariantuivEXT((UInt32)id, (UInt32*)addr);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -26245,6 +26236,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void Variantv(Int32 id, Int32[] addr)
+            {
+                unsafe
+                {
+                    fixed (Int32* addr_ptr = addr)
+                    {
+                        Delegates.glVariantuivEXT((UInt32)id, (UInt32*)addr_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void Variantv(UInt32 id, ref UInt32 addr)
@@ -26252,6 +26255,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* addr_ptr = &addr)
+                    {
+                        Delegates.glVariantuivEXT((UInt32)id, (UInt32*)addr_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void Variantv(Int32 id, ref Int32 addr)
+            {
+                unsafe
+                {
+                    fixed (Int32* addr_ptr = &addr)
                     {
                         Delegates.glVariantuivEXT((UInt32)id, (UInt32*)addr_ptr);
                     }
@@ -27724,21 +27739,9 @@ namespace OpenTK.OpenGL
                 Delegates.glVertexAttribI1iEXT((UInt32)index, (Int32)x);
             }
             
-            public static 
-            void VertexAttribI1(Int32 index, Int32 x)
-            {
-                Delegates.glVertexAttribI1iEXT((UInt32)index, (Int32)x);
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttribI2(UInt32 index, Int32 x, Int32 y)
-            {
-                Delegates.glVertexAttribI2iEXT((UInt32)index, (Int32)x, (Int32)y);
-            }
-            
-            public static 
-            void VertexAttribI2(Int32 index, Int32 x, Int32 y)
             {
                 Delegates.glVertexAttribI2iEXT((UInt32)index, (Int32)x, (Int32)y);
             }
@@ -27750,21 +27753,9 @@ namespace OpenTK.OpenGL
                 Delegates.glVertexAttribI3iEXT((UInt32)index, (Int32)x, (Int32)y, (Int32)z);
             }
             
-            public static 
-            void VertexAttribI3(Int32 index, Int32 x, Int32 y, Int32 z)
-            {
-                Delegates.glVertexAttribI3iEXT((UInt32)index, (Int32)x, (Int32)y, (Int32)z);
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttribI4(UInt32 index, Int32 x, Int32 y, Int32 z, Int32 w)
-            {
-                Delegates.glVertexAttribI4iEXT((UInt32)index, (Int32)x, (Int32)y, (Int32)z, (Int32)w);
-            }
-            
-            public static 
-            void VertexAttribI4(Int32 index, Int32 x, Int32 y, Int32 z, Int32 w)
             {
                 Delegates.glVertexAttribI4iEXT((UInt32)index, (Int32)x, (Int32)y, (Int32)z, (Int32)w);
             }
@@ -27776,9 +27767,21 @@ namespace OpenTK.OpenGL
                 Delegates.glVertexAttribI1uiEXT((UInt32)index, (UInt32)x);
             }
             
+            public static 
+            void VertexAttribI1(Int32 index, Int32 x)
+            {
+                Delegates.glVertexAttribI1uiEXT((UInt32)index, (UInt32)x);
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttribI2(UInt32 index, UInt32 x, UInt32 y)
+            {
+                Delegates.glVertexAttribI2uiEXT((UInt32)index, (UInt32)x, (UInt32)y);
+            }
+            
+            public static 
+            void VertexAttribI2(Int32 index, Int32 x, Int32 y)
             {
                 Delegates.glVertexAttribI2uiEXT((UInt32)index, (UInt32)x, (UInt32)y);
             }
@@ -27790,9 +27793,21 @@ namespace OpenTK.OpenGL
                 Delegates.glVertexAttribI3uiEXT((UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z);
             }
             
+            public static 
+            void VertexAttribI3(Int32 index, Int32 x, Int32 y, Int32 z)
+            {
+                Delegates.glVertexAttribI3uiEXT((UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z);
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttribI4(UInt32 index, UInt32 x, UInt32 y, UInt32 z, UInt32 w)
+            {
+                Delegates.glVertexAttribI4uiEXT((UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z, (UInt32)w);
+            }
+            
+            public static 
+            void VertexAttribI4(Int32 index, Int32 x, Int32 y, Int32 z, Int32 w)
             {
                 Delegates.glVertexAttribI4uiEXT((UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z, (UInt32)w);
             }
@@ -27873,29 +27888,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribI2(Int32 index, Int32* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttribI2ivEXT((UInt32)index, (Int32*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttribI2(UInt32 index, Int32[] v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = v)
-                    {
-                        Delegates.glVertexAttribI2ivEXT((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttribI2(Int32 index, Int32[] v)
             {
                 unsafe
                 {
@@ -27919,18 +27912,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttribI2(Int32 index, ref Int32 v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttribI2ivEXT((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI3(UInt32 index, Int32* v)
@@ -27940,29 +27921,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribI3(Int32 index, Int32* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttribI3ivEXT((UInt32)index, (Int32*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttribI3(UInt32 index, Int32[] v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = v)
-                    {
-                        Delegates.glVertexAttribI3ivEXT((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttribI3(Int32 index, Int32[] v)
             {
                 unsafe
                 {
@@ -27986,33 +27945,11 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttribI3(Int32 index, ref Int32 v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttribI3ivEXT((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI4(UInt32 index, Int32* v)
             {
                 unsafe { Delegates.glVertexAttribI4ivEXT((UInt32)index, (Int32*)v); }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void VertexAttribI4(Int32 index, Int32* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttribI4ivEXT((UInt32)index, (Int32*)v);
-                }
             }
             
             [System.CLSCompliant(false)]
@@ -28028,33 +27965,9 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttribI4(Int32 index, Int32[] v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = v)
-                    {
-                        Delegates.glVertexAttribI4ivEXT((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttribI4(UInt32 index, ref Int32 v)
-            {
-                unsafe
-                {
-                    fixed (Int32* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttribI4ivEXT((UInt32)index, (Int32*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttribI4(Int32 index, ref Int32 v)
             {
                 unsafe
                 {
@@ -28141,11 +28054,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttribI2(Int32 index, Int32* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttribI2uivEXT((UInt32)index, (UInt32*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttribI2(UInt32 index, UInt32[] v)
             {
                 unsafe
                 {
                     fixed (UInt32* v_ptr = v)
+                    {
+                        Delegates.glVertexAttribI2uivEXT((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttribI2(Int32 index, Int32[] v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = v)
                     {
                         Delegates.glVertexAttribI2uivEXT((UInt32)index, (UInt32*)v_ptr);
                     }
@@ -28165,6 +28100,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttribI2(Int32 index, ref Int32 v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttribI2uivEXT((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI3(UInt32 index, UInt32* v)
@@ -28174,11 +28121,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttribI3(Int32 index, Int32* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttribI3uivEXT((UInt32)index, (UInt32*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttribI3(UInt32 index, UInt32[] v)
             {
                 unsafe
                 {
                     fixed (UInt32* v_ptr = v)
+                    {
+                        Delegates.glVertexAttribI3uivEXT((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttribI3(Int32 index, Int32[] v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = v)
                     {
                         Delegates.glVertexAttribI3uivEXT((UInt32)index, (UInt32*)v_ptr);
                     }
@@ -28198,6 +28167,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttribI3(Int32 index, ref Int32 v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttribI3uivEXT((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI4(UInt32 index, UInt32* v)
@@ -28207,11 +28188,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttribI4(Int32 index, Int32* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttribI4uivEXT((UInt32)index, (UInt32*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttribI4(UInt32 index, UInt32[] v)
             {
                 unsafe
                 {
                     fixed (UInt32* v_ptr = v)
+                    {
+                        Delegates.glVertexAttribI4uivEXT((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttribI4(Int32 index, Int32[] v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = v)
                     {
                         Delegates.glVertexAttribI4uivEXT((UInt32)index, (UInt32*)v_ptr);
                     }
@@ -28231,6 +28234,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttribI4(Int32 index, ref Int32 v)
+            {
+                unsafe
+                {
+                    fixed (Int32* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttribI4uivEXT((UInt32)index, (UInt32*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI4(UInt32 index, SByte* v)
@@ -28240,33 +28255,11 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribI4(Int32 index, Byte* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttribI4bvEXT((UInt32)index, (SByte*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttribI4(UInt32 index, SByte[] v)
             {
                 unsafe
                 {
                     fixed (SByte* v_ptr = v)
-                    {
-                        Delegates.glVertexAttribI4bvEXT((UInt32)index, (SByte*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttribI4(Int32 index, Byte[] v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = v)
                     {
                         Delegates.glVertexAttribI4bvEXT((UInt32)index, (SByte*)v_ptr);
                     }
@@ -28286,18 +28279,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttribI4(Int32 index, ref Byte v)
-            {
-                unsafe
-                {
-                    fixed (Byte* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttribI4bvEXT((UInt32)index, (SByte*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI4(UInt32 index, Int16* v)
@@ -28307,29 +28288,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribI4(Int32 index, Int16* v)
-            {
-                unsafe
-                {
-                    Delegates.glVertexAttribI4svEXT((UInt32)index, (Int16*)v);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void VertexAttribI4(UInt32 index, Int16[] v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glVertexAttribI4svEXT((UInt32)index, (Int16*)v_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void VertexAttribI4(Int32 index, Int16[] v)
             {
                 unsafe
                 {
@@ -28353,18 +28312,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void VertexAttribI4(Int32 index, ref Int16 v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = &v)
-                    {
-                        Delegates.glVertexAttribI4svEXT((UInt32)index, (Int16*)v_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI4(UInt32 index, Byte* v)
@@ -28374,7 +28321,29 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void VertexAttribI4(Int32 index, Byte* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttribI4ubvEXT((UInt32)index, (Byte*)v);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void VertexAttribI4(UInt32 index, Byte[] v)
+            {
+                unsafe
+                {
+                    fixed (Byte* v_ptr = v)
+                    {
+                        Delegates.glVertexAttribI4ubvEXT((UInt32)index, (Byte*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttribI4(Int32 index, Byte[] v)
             {
                 unsafe
                 {
@@ -28398,11 +28367,33 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttribI4(Int32 index, ref Byte v)
+            {
+                unsafe
+                {
+                    fixed (Byte* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttribI4ubvEXT((UInt32)index, (Byte*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void VertexAttribI4(UInt32 index, UInt16* v)
             {
                 unsafe { Delegates.glVertexAttribI4usvEXT((UInt32)index, (UInt16*)v); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void VertexAttribI4(Int32 index, Int16* v)
+            {
+                unsafe
+                {
+                    Delegates.glVertexAttribI4usvEXT((UInt32)index, (UInt16*)v);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -28418,6 +28409,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void VertexAttribI4(Int32 index, Int16[] v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = v)
+                    {
+                        Delegates.glVertexAttribI4usvEXT((UInt32)index, (UInt16*)v_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void VertexAttribI4(UInt32 index, ref UInt16 v)
@@ -28425,6 +28428,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt16* v_ptr = &v)
+                    {
+                        Delegates.glVertexAttribI4usvEXT((UInt32)index, (UInt16*)v_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void VertexAttribI4(Int32 index, ref Int16 v)
+            {
+                unsafe
+                {
+                    fixed (Int16* v_ptr = &v)
                     {
                         Delegates.glVertexAttribI4usvEXT((UInt32)index, (UInt16*)v_ptr);
                     }
@@ -28490,29 +28505,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void GetVertexAttribIv(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glGetVertexAttribIivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void GetVertexAttribIv(UInt32 index, GL.Enums.NV_vertex_program4 pname, [Out] Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glGetVertexAttribIivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void GetVertexAttribIv(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] Int32[] @params)
             {
                 unsafe
                 {
@@ -28537,24 +28530,21 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void GetVertexAttribIv(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] out Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glGetVertexAttribIivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (Int32*)@params_ptr);
-                                @params = *@params_ptr;
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetVertexAttribIv(UInt32 index, GL.Enums.NV_vertex_program4 pname, [Out] UInt32* @params)
             {
                 unsafe { Delegates.glGetVertexAttribIuivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (UInt32*)@params); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void GetVertexAttribIv(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glGetVertexAttribIuivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (UInt32*)@params);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -28570,6 +28560,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void GetVertexAttribIv(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
+                    {
+                        Delegates.glGetVertexAttribIuivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void GetVertexAttribIv(UInt32 index, GL.Enums.NV_vertex_program4 pname, [Out] out UInt32 @params)
@@ -28577,6 +28579,19 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
+                    {
+                        Delegates.glGetVertexAttribIuivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (UInt32*)@params_ptr);
+                                @params = *@params_ptr;
+                    }
+                }
+            }
+            
+            public static 
+            void GetVertexAttribIv(Int32 index, GL.Enums.NV_vertex_program4 pname, [Out] out Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
                     {
                         Delegates.glGetVertexAttribIuivEXT((UInt32)index, (GL.Enums.NV_vertex_program4)pname, (UInt32*)@params_ptr);
                                 @params = *@params_ptr;
@@ -29223,40 +29238,19 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, Int32* @params)
+            unsafe void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, UInt32* @params)
             {
-                unsafe { Delegates.glTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (Int32*)@params); }
-            }
-            
-            public static 
-            void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, ref Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (Int32*)@params_ptr);
-                    }
-                }
+                unsafe { Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (UInt32*)@params); }
             }
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, UInt32* @params)
+            unsafe void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, Int32* @params)
             {
-                unsafe { Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (UInt32*)@params); }
+                unsafe
+                {
+                    Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (UInt32*)@params);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -29266,6 +29260,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = @params)
+                    {
+                        Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
                     {
                         Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (UInt32*)@params_ptr);
                     }
@@ -29285,34 +29291,14 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            [System.CLSCompliant(false)]
             public static 
-            unsafe void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] Int32* @params)
-            {
-                unsafe { Delegates.glGetTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (Int32*)@params); }
-            }
-            
-            public static 
-            void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glGetTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] out Int32 @params)
+            void TexParameterIv(GL.Enums.TextureTarget target, GL.Enums.TextureParameterName pname, ref Int32 @params)
             {
                 unsafe
                 {
                     fixed (Int32* @params_ptr = &@params)
                     {
-                        Delegates.glGetTexParameterIivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (Int32*)@params_ptr);
-                                @params = *@params_ptr;
+                        Delegates.glTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.TextureParameterName)pname, (UInt32*)@params_ptr);
                     }
                 }
             }
@@ -29322,6 +29308,16 @@ namespace OpenTK.OpenGL
             unsafe void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] UInt32* @params)
             {
                 unsafe { Delegates.glGetTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (UInt32*)@params); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glGetTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (UInt32*)@params);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -29337,6 +29333,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
+                    {
+                        Delegates.glGetTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] out UInt32 @params)
@@ -29344,6 +29352,19 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
+                    {
+                        Delegates.glGetTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (UInt32*)@params_ptr);
+                                @params = *@params_ptr;
+                    }
+                }
+            }
+            
+            public static 
+            void GetTexParameterIv(GL.Enums.TextureTarget target, GL.Enums.GetTextureParameter pname, [Out] out Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
                     {
                         Delegates.glGetTexParameterIuivEXT((GL.Enums.TextureTarget)target, (GL.Enums.GetTextureParameter)pname, (UInt32*)@params_ptr);
                                 @params = *@params_ptr;
@@ -56160,29 +56181,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void GetOcclusionQueryv(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glGetOcclusionQueryivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void GetOcclusionQueryv(UInt32 id, GL.Enums.NV_occlusion_query pname, [Out] Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glGetOcclusionQueryivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void GetOcclusionQueryv(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] Int32[] @params)
             {
                 unsafe
                 {
@@ -56207,24 +56206,21 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void GetOcclusionQueryv(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] out Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glGetOcclusionQueryivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (Int32*)@params_ptr);
-                                @params = *@params_ptr;
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetOcclusionQueryv(UInt32 id, GL.Enums.NV_occlusion_query pname, [Out] UInt32* @params)
             {
                 unsafe { Delegates.glGetOcclusionQueryuivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (UInt32*)@params); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void GetOcclusionQueryv(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glGetOcclusionQueryuivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (UInt32*)@params);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -56240,6 +56236,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void GetOcclusionQueryv(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
+                    {
+                        Delegates.glGetOcclusionQueryuivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void GetOcclusionQueryv(UInt32 id, GL.Enums.NV_occlusion_query pname, [Out] out UInt32 @params)
@@ -56247,6 +56255,19 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
+                    {
+                        Delegates.glGetOcclusionQueryuivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (UInt32*)@params_ptr);
+                                @params = *@params_ptr;
+                    }
+                }
+            }
+            
+            public static 
+            void GetOcclusionQueryv(Int32 id, GL.Enums.NV_occlusion_query pname, [Out] out Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
                     {
                         Delegates.glGetOcclusionQueryuivNV((UInt32)id, (GL.Enums.NV_occlusion_query)pname, (UInt32*)@params_ptr);
                                 @params = *@params_ptr;
@@ -59356,12 +59377,6 @@ namespace OpenTK.OpenGL
                 Delegates.glProgramLocalParameterI4iNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)x, (Int32)y, (Int32)z, (Int32)w);
             }
             
-            public static 
-            void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 x, Int32 y, Int32 z, Int32 w)
-            {
-                Delegates.glProgramLocalParameterI4iNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)x, (Int32)y, (Int32)z, (Int32)w);
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32* @params)
@@ -59371,29 +59386,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glProgramLocalParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glProgramLocalParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32[] @params)
             {
                 unsafe
                 {
@@ -59417,18 +59410,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, ref Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glProgramLocalParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, Int32* @params)
@@ -59438,29 +59419,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glProgramLocalParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glProgramLocalParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32[] @params)
             {
                 unsafe
                 {
@@ -59484,21 +59443,15 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, ref Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glProgramLocalParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, UInt32 x, UInt32 y, UInt32 z, UInt32 w)
+            {
+                Delegates.glProgramLocalParameterI4uiNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z, (UInt32)w);
+            }
+            
+            public static 
+            void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 x, Int32 y, Int32 z, Int32 w)
             {
                 Delegates.glProgramLocalParameterI4uiNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z, (UInt32)w);
             }
@@ -59512,11 +59465,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glProgramLocalParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, UInt32[] @params)
             {
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = @params)
+                    {
+                        Delegates.glProgramLocalParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
                     {
                         Delegates.glProgramLocalParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
                     }
@@ -59536,6 +59511,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void ProgramLocalParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, ref Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
+                    {
+                        Delegates.glProgramLocalParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, UInt32* @params)
@@ -59545,11 +59532,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glProgramLocalParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, UInt32[] @params)
             {
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = @params)
+                    {
+                        Delegates.glProgramLocalParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
                     {
                         Delegates.glProgramLocalParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
                     }
@@ -59569,15 +59578,21 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void ProgramLocalParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, ref Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
+                    {
+                        Delegates.glProgramLocalParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 x, Int32 y, Int32 z, Int32 w)
-            {
-                Delegates.glProgramEnvParameterI4iNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)x, (Int32)y, (Int32)z, (Int32)w);
-            }
-            
-            public static 
-            void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 x, Int32 y, Int32 z, Int32 w)
             {
                 Delegates.glProgramEnvParameterI4iNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)x, (Int32)y, (Int32)z, (Int32)w);
             }
@@ -59591,29 +59606,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glProgramEnvParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glProgramEnvParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32[] @params)
             {
                 unsafe
                 {
@@ -59637,18 +59630,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, ref Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glProgramEnvParameterI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, Int32* @params)
@@ -59658,29 +59639,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glProgramEnvParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glProgramEnvParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32[] @params)
             {
                 unsafe
                 {
@@ -59704,21 +59663,15 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, ref Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glProgramEnvParametersI4ivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, UInt32 x, UInt32 y, UInt32 z, UInt32 w)
+            {
+                Delegates.glProgramEnvParameterI4uiNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z, (UInt32)w);
+            }
+            
+            public static 
+            void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 x, Int32 y, Int32 z, Int32 w)
             {
                 Delegates.glProgramEnvParameterI4uiNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32)x, (UInt32)y, (UInt32)z, (UInt32)w);
             }
@@ -59732,11 +59685,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glProgramEnvParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, UInt32 index, UInt32[] @params)
             {
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = @params)
+                    {
+                        Delegates.glProgramEnvParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
                     {
                         Delegates.glProgramEnvParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
                     }
@@ -59756,6 +59731,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void ProgramEnvParameterI4(GL.Enums.NV_gpu_program4 target, Int32 index, ref Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
+                    {
+                        Delegates.glProgramEnvParameterI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, UInt32* @params)
@@ -59765,11 +59752,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glProgramEnvParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, UInt32 index, Int32 count, UInt32[] @params)
             {
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = @params)
+                    {
+                        Delegates.glProgramEnvParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
                     {
                         Delegates.glProgramEnvParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
                     }
@@ -59789,6 +59798,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void ProgramEnvParametersI4(GL.Enums.NV_gpu_program4 target, Int32 index, Int32 count, ref Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
+                    {
+                        Delegates.glProgramEnvParametersI4uivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] Int32* @params)
@@ -59798,29 +59819,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glGetProgramLocalParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glGetProgramLocalParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32[] @params)
             {
                 unsafe
                 {
@@ -59845,19 +59844,6 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] out Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glGetProgramLocalParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                                @params = *@params_ptr;
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] UInt32* @params)
@@ -59867,11 +59853,33 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
+            unsafe void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glGetProgramLocalParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params);
+                }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
             void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] UInt32[] @params)
             {
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = @params)
+                    {
+                        Delegates.glGetProgramLocalParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
                     {
                         Delegates.glGetProgramLocalParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
                     }
@@ -59892,6 +59900,19 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void GetProgramLocalParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] out Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
+                    {
+                        Delegates.glGetProgramLocalParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                                @params = *@params_ptr;
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] Int32* @params)
@@ -59901,29 +59922,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glGetProgramEnvParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glGetProgramEnvParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32[] @params)
             {
                 unsafe
                 {
@@ -59948,24 +59947,21 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] out Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glGetProgramEnvParameterIivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (Int32*)@params_ptr);
-                                @params = *@params_ptr;
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] UInt32* @params)
             {
                 unsafe { Delegates.glGetProgramEnvParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glGetProgramEnvParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -59981,6 +59977,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
+                    {
+                        Delegates.glGetProgramEnvParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, UInt32 index, [Out] out UInt32 @params)
@@ -59988,6 +59996,19 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
+                    {
+                        Delegates.glGetProgramEnvParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
+                                @params = *@params_ptr;
+                    }
+                }
+            }
+            
+            public static 
+            void GetProgramEnvParameterIv(GL.Enums.NV_gpu_program4 target, Int32 index, [Out] out Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
                     {
                         Delegates.glGetProgramEnvParameterIuivNV((GL.Enums.NV_gpu_program4)target, (UInt32)index, (UInt32*)@params_ptr);
                                 @params = *@params_ptr;
@@ -60101,29 +60122,7 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, Int32 buffer, Int32 index, Int32 count, Int32* @params)
-            {
-                unsafe
-                {
-                    Delegates.glProgramBufferParametersIivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (Int32*)@params);
-                }
-            }
-            
-            [System.CLSCompliant(false)]
-            public static 
             void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, UInt32 buffer, UInt32 index, Int32 count, Int32[] @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = @params)
-                    {
-                        Delegates.glProgramBufferParametersIivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
-            public static 
-            void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, Int32 buffer, Int32 index, Int32 count, Int32[] @params)
             {
                 unsafe
                 {
@@ -60147,23 +60146,21 @@ namespace OpenTK.OpenGL
                 }
             }
             
-            public static 
-            void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, Int32 buffer, Int32 index, Int32 count, ref Int32 @params)
-            {
-                unsafe
-                {
-                    fixed (Int32* @params_ptr = &@params)
-                    {
-                        Delegates.glProgramBufferParametersIivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (Int32*)@params_ptr);
-                    }
-                }
-            }
-            
             [System.CLSCompliant(false)]
             public static 
             unsafe void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, UInt32 buffer, UInt32 index, Int32 count, UInt32* @params)
             {
                 unsafe { Delegates.glProgramBufferParametersIuivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (UInt32*)@params); }
+            }
+            
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, Int32 buffer, Int32 index, Int32 count, Int32* @params)
+            {
+                unsafe
+                {
+                    Delegates.glProgramBufferParametersIuivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (UInt32*)@params);
+                }
             }
             
             [System.CLSCompliant(false)]
@@ -60179,6 +60176,18 @@ namespace OpenTK.OpenGL
                 }
             }
             
+            public static 
+            void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, Int32 buffer, Int32 index, Int32 count, Int32[] @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = @params)
+                    {
+                        Delegates.glProgramBufferParametersIuivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
             [System.CLSCompliant(false)]
             public static 
             void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, UInt32 buffer, UInt32 index, Int32 count, ref UInt32 @params)
@@ -60186,6 +60195,18 @@ namespace OpenTK.OpenGL
                 unsafe
                 {
                     fixed (UInt32* @params_ptr = &@params)
+                    {
+                        Delegates.glProgramBufferParametersIuivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
+                    }
+                }
+            }
+            
+            public static 
+            void ProgramBufferParametersIv(GL.Enums.NV_parameter_buffer_object target, Int32 buffer, Int32 index, Int32 count, ref Int32 @params)
+            {
+                unsafe
+                {
+                    fixed (Int32* @params_ptr = &@params)
                     {
                         Delegates.glProgramBufferParametersIuivNV((GL.Enums.NV_parameter_buffer_object)target, (UInt32)buffer, (UInt32)index, (Int32)count, (UInt32*)@params_ptr);
                     }

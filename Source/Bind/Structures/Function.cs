@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace Bind.Structures
 {
-    public class Function : Delegate
+    public class Function : Delegate, IEquatable<Function>
     {
         internal static FunctionCollection Wrappers;
 
@@ -212,6 +212,17 @@ namespace Bind.Structures
         }
 
         #endregion
+
+        #region IEquatable<Function> Members
+
+        public bool Equals(Function other)
+        {
+            return !String.IsNullOrEmpty(this.TrimmedName) && !String.IsNullOrEmpty(other.TrimmedName) &&
+                this.TrimmedName == other.TrimmedName &&
+                this.Parameters.ToString(true) == other.Parameters.ToString(true);
+        }
+
+        #endregion
     }
 
     #region class FunctionBody : List<string>
@@ -280,6 +291,8 @@ namespace Bind.Structures
 
     class FunctionCollection : Dictionary<string, List<Function>>
     {
+        Regex unsignedFunctions = new Regex(@".+(u[dfisb]v?)", RegexOptions.Compiled);
+
         public void Add(Function f)
         {
             if (!this.ContainsKey(f.Extension))
@@ -308,28 +321,28 @@ namespace Bind.Structures
         /// <param name="f">The Function to add.</param>
         public void AddChecked(Function f)
         {
-            bool exists = false;
             if (Bind.Structures.Function.Wrappers.ContainsKey(f.Extension))
             {
-                Function fun = Bind.Structures.Function.Wrappers[f.Extension]
-                    .Find(delegate(Function target)
-                        {
-                            return
-                                !String.IsNullOrEmpty(target.TrimmedName) &&
-                                target.TrimmedName == f.TrimmedName &&
-                                target.Parameters.ToString(true) == f.Parameters.ToString(true);
-                        });
-                if (fun != null)
+                int index = Bind.Structures.Function.Wrappers[f.Extension].IndexOf(f);
+                if (index == -1)
                 {
-                    exists = true;
-                    /*Debug.WriteLine("Function redefinition:");
-                    Debug.WriteLine(fun.ToString());
-                    Debug.WriteLine(f.ToString());*/
+                    Bind.Structures.Function.Wrappers.Add(f);
+                }
+                else
+                {
+                    if (unsignedFunctions.IsMatch(Utilities.StripGL2Extension(f.Name)))// &&
+                        //!unsignedFunctions.IsMatch(
+                        //    Utilities.StripGL2Extension(Bind.Structures.Function.Wrappers[f.Extension][index].Name)))
+                    {
+                        Bind.Structures.Function.Wrappers[f.Extension].RemoveAt(index);
+                        Bind.Structures.Function.Wrappers[f.Extension].Add(f);
+                    }
                 }
             }
-
-            if (!exists)
+            else
+            {
                 Bind.Structures.Function.Wrappers.Add(f);
+            }
         }
     }
 

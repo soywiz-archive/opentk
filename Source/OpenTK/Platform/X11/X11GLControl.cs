@@ -65,17 +65,17 @@ namespace OpenTK.Platform.X11
                     return;
                 }
                 info.VisualInfo = glContext.windowInfo.VisualInfo;
-
+                /*
                 xplatui.GetField("CustomVisual", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
                     .SetValue(null, glContext.windowInfo.VisualInfo.visual);
 
                 xplatui.GetField("CustomColormap", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
-                    .SetValue(null, FindColormap());
+                    .SetValue(null, FindColormap());*/
             }
 
             c.HandleCreated += new EventHandler(c_HandleCreated);
             c.HandleDestroyed += new EventHandler(c_HandleDestroyed);
-            c.ParentChanged += new EventHandler(c_ParentChanged);
+            //c.ParentChanged += new EventHandler(c_ParentChanged);
             c.Load += new EventHandler(c_Load);
 
             Debug.Print("GLControl events hooked to X11GLControl.");
@@ -83,9 +83,22 @@ namespace OpenTK.Platform.X11
 
         void c_HandleCreated(object sender, EventArgs e)
         {
+            UserControl c = (sender as UserControl);
             Debug.Print("X11GLControl handle created, creating X11GLContext.");
             glContext.windowInfo.Handle = info.Handle = (sender as UserControl).Handle;
-            glContext.CreateContext(null, true);
+
+            try
+            {
+                glContext.CreateContext(null, true);
+            }
+            catch (ApplicationException expt)
+            {
+                Debug.Print(expt.ToString());
+                throw;
+            }
+
+            Debug.WriteLine(String.Format("Mapping control {0} to parent {1}", c.Handle, c.FindForm().Handle));
+            API.MapRaised(info.Display, c.FindForm().Handle);
         }
 
         void c_HandleDestroyed(object sender, EventArgs e)
@@ -112,7 +125,7 @@ namespace OpenTK.Platform.X11
                 info.TopLevelWindow = c.TopLevelControl.Handle;
             }
 
-            Debug.WriteLine(String.Format("Mapping window {0} to top level: {1}", info.Handle, info.TopLevelWindow));
+            Debug.WriteLine(String.Format("Mapping window {0} to top level {1}", info.Handle, info.TopLevelWindow));
             API.MapRaised(info.Display, info.TopLevelWindow);
             //API.MapRaised(info.Display, info.Handle);
             Debug.Unindent();
@@ -120,6 +133,7 @@ namespace OpenTK.Platform.X11
 
         void c_Load(object sender, EventArgs e)
         {
+            Debug.Print("GLControl loaded, will now try to make context current and load all GL functions.");
             Context.MakeCurrent();
             OpenTK.OpenGL.GL.LoadAll();
         }
