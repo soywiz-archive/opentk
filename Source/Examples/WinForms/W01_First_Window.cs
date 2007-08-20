@@ -58,7 +58,7 @@ namespace Examples.WinForms
         private void glControl1_Paint(object sender, PaintEventArgs e)
         {
             //GL.Clear(GL.Enums.ClearBufferMask.COLOR_BUFFER_BIT);
-            glControl1.SwapBuffers();
+            //glControl1.SwapBuffers();
         }
 
         private void glControl1_Resize(object sender, OpenTK.Platform.ResizeEventArgs e)

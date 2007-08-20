@@ -61,19 +61,17 @@ namespace OpenTK.Platform.X11
 
                 Debug.Print("Display: {0}, Screen: {1}, Root Window: {2}, GLControl: {3}",
                     info.Display, info.Screen, info.RootWindow, info.Handle);
-
+                
                 glContext.PrepareContext(info);
                 info.VisualInfo = glContext.windowInfo.VisualInfo;
-
                 xplatui.GetField("CustomVisual", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
                     .SetValue(null, info.VisualInfo.visual);
 
                 xplatui.GetField("CustomColormap", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
-                    .SetValue(null, API.CreateColormap(info.Display, info.RootWindow, info.VisualInfo.visual, 0/*AllocNone*/));
+                    .SetValue(null, API.CreateColormap(info.Display, info.RootWindow, info.VisualInfo.visual, 0));
 
+                c.Visible = true;
                 glContext.windowInfo.Handle = info.Handle = c.Handle;
-
-                glContext.CreateContext(null, true);
             }
             
             //Debug.Print("Parent: {0}", c.ParentForm.Handle);
@@ -97,14 +95,15 @@ namespace OpenTK.Platform.X11
                 },
                 info.Handle);
             */
-            glContext.MakeCurrent();
+            //glContext.MakeCurrent();
             //OpenTK.OpenGL.GL.LoadAll();
         }
 
         void c_HandleCreated(object sender, EventArgs e)
         {
             UserControl c = (sender as UserControl);
-            Debug.Print("X11GLControl handle created, creating X11GLContext.");
+            Debug.Print("GLControl handle created, creating X11GLContext.");
+            Debug.Indent();
             glContext.windowInfo.Handle = info.Handle = (sender as UserControl).Handle;
 
             try
@@ -116,14 +115,17 @@ namespace OpenTK.Platform.X11
                 Debug.Print(expt.ToString());
                 throw;
             }
-            /*finally
+            finally
             {
+                Debug.Unindent();
+                /*
                 Debug.WriteLine(String.Format("Mapping control {0} to parent {1}", c.Handle, c.Handle));
                 API.MapRaised(info.Display, c.Handle);
 
                 Context.MakeCurrent();
                 OpenTK.OpenGL.GL.LoadAll();
-            }*/
+                */
+            }
         }
 
         void c_HandleDestroyed(object sender, EventArgs e)

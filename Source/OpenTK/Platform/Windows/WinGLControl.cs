@@ -39,14 +39,30 @@ namespace OpenTK.Platform.Windows
             glContext = new WinGLContext(mode);
 
             // Create the actual context
-            this.c_HandleCreated(c, EventArgs.Empty);
+            c.Visible = true;
+            //c.CreateControl();
             glContext.MakeCurrent();
         }
 
         void c_HandleCreated(object sender, EventArgs e)
         {
-            glContext.PrepareContext((sender as Control).Handle);
-            glContext.CreateContext();
+            Debug.Print("GLControl handle created, creating WinGLContext.");
+            Debug.Indent();
+
+            try
+            {
+                glContext.PrepareContext((sender as Control).Handle);
+                glContext.CreateContext();
+            }
+            catch (ApplicationException expt)
+            {
+                Debug.Print(expt.ToString());
+                throw;
+            }
+            finally
+            {
+                Debug.Unindent();
+            }
         }
 
         void c_HandleDestroyed(object sender, EventArgs e)
