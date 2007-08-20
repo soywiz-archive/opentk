@@ -53,25 +53,8 @@ namespace OpenTK
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
-                Environment.OSVersion.Platform == PlatformID.Win32Windows)
-            {
-                glControl = new OpenTK.Platform.Windows.WinGLControl(this, new DisplayMode(Width, Height));
-            }
-            else if (Environment.OSVersion.Platform == PlatformID.Unix ||
-                     Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
-            {
-                glControl = new OpenTK.Platform.X11.X11GLControl(this, new DisplayMode(Width, Height));
-            }
-            else
-            {
-                throw new PlatformNotSupportedException(
-                    "Your operating system is not currently supported. We are sorry for the inconvenience."
-                );
-            }
-
-            Debug.Print("Creating GLControl.");
-            this.CreateControl();
+            //Debug.Print("Creating GLControl.");
+            //this.CreateControl();
         }
 
         #endregion
@@ -98,6 +81,36 @@ namespace OpenTK
         }
         */
         #region --- Public Methods ---
+
+        /// <summary>
+        /// Forces the creation of the opengl rendering context.
+        /// </summary>
+        public void CreateContext()
+        {
+            Debug.Print("Creating opengl context");
+            Debug.Indent();
+
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
+                Environment.OSVersion.Platform == PlatformID.Win32Windows)
+            {
+                glControl = new OpenTK.Platform.Windows.WinGLControl(this, new DisplayMode(Width, Height));
+            }
+            else if (Environment.OSVersion.Platform == PlatformID.Unix ||
+                Environment.OSVersion.Platform == (PlatformID)128) // some older versions of Mono reported 128.
+            {
+                glControl = new OpenTK.Platform.X11.X11GLControl(this, new DisplayMode(Width, Height));
+            }
+            else
+            {
+                throw new PlatformNotSupportedException(
+                    "Your operating system is not currently supported. We are sorry for the inconvenience."
+                );
+            }
+
+            OpenTK.OpenGL.GL.LoadAll();
+
+            Debug.Unindent();
+        }
 
         /// <summary>
         /// Swaps the front and back buffers, and presents the rendered scene to the screen.
@@ -171,7 +184,13 @@ namespace OpenTK
         /// </summary>
         public IGLContext Context
         {
-            get { return glControl.Context; }
+            get
+            {
+                if (glControl == null)
+                    this.CreateContext();
+                
+                return glControl.Context;
+            }
         }
 
         #endregion

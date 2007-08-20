@@ -48,6 +48,26 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        #region internal DisplayMode Mode
+
+        internal DisplayMode Mode
+        {
+            get { return mode; }
+            set
+            {
+                if (context == IntPtr.Zero)
+                {
+                    mode = value;
+                }
+                else
+                {
+                    Debug.Print("Cannot change DisplayMode of an existing context.");
+                }
+            }
+        }
+
+        #endregion
+
         #region internal void PrepareContext(X11.WindowInfo info)
 
         internal void PrepareContext(X11.WindowInfo info)
@@ -78,8 +98,8 @@ visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, attrib);
             visualAttributes.Add((int)mode.Color.Green);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
             visualAttributes.Add((int)mode.Color.Blue);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            visualAttributes.Add((int)mode.Color.Alpha);
+            //visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
+            //visualAttributes.Add((int)mode.Color.Alpha);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
             visualAttributes.Add((int)mode.DepthBits);
             visualAttributes.Add((int)1);
@@ -129,7 +149,7 @@ visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, attrib);
             }
             else
             {
-                throw new ApplicationException("Could not create opengl context.");
+                throw new ApplicationException("Glx.CreateContext call failed (returned 0).");
             }
         }
 
@@ -141,8 +161,8 @@ visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, attrib);
 
         public void SwapBuffers()
         {
-            if (windowInfo.Display != IntPtr.Zero && windowInfo.Handle != IntPtr.Zero)
-                Glx.SwapBuffers(windowInfo.Display, windowInfo.Handle);
+            Debug.Print("Swapping buffers");
+            Glx.SwapBuffers(windowInfo.Display, windowInfo.Handle);
         }
 
         #endregion
@@ -158,12 +178,13 @@ visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, attrib);
             if (windowInfo.Display != IntPtr.Zero && windowInfo.Handle != IntPtr.Zero && context != IntPtr.Zero)
             {
                 result = Glx.MakeCurrent(windowInfo.Display, windowInfo.Handle, context);
-
+                
                 if (!result)
                 {
-                    Debug.WriteLine("failed...");
+                    Debug.WriteLine("failed.");
                     // probably need to recreate context here.
-                    //throw new Exception(String.Format("Failed to make context {0} current.", context));
+                    //throw new ApplicationException(String.Format("Failed to make context {0} current on thread {1}.",
+                    //    context, System.Threading.Thread.CurrentThread.ManagedThreadId));
                 }
                 else
                 {

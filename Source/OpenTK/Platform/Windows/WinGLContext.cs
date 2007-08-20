@@ -256,6 +256,7 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
+            Debug.Print("Manually disposing WinGLContext {0}.", this.renderContext);
             Dispose(true);
             GC.SuppressFinalize(this);
         }

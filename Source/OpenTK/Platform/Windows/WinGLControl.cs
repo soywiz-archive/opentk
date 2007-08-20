@@ -32,11 +32,15 @@ namespace OpenTK.Platform.Windows
         public WinGLControl(UserControl c, DisplayMode mode)
         {
             this.mode = mode;
+            
             c.HandleCreated += new EventHandler(c_HandleCreated);
             c.HandleDestroyed += new EventHandler(c_HandleDestroyed);
-            c.Load += new EventHandler(c_Load);
 
             glContext = new WinGLContext(mode);
+
+            // Create the actual context
+            this.c_HandleCreated(c, EventArgs.Empty);
+            glContext.MakeCurrent();
         }
 
         void c_HandleCreated(object sender, EventArgs e)
@@ -48,12 +52,6 @@ namespace OpenTK.Platform.Windows
         void c_HandleDestroyed(object sender, EventArgs e)
         {
             glContext.Dispose();
-        }
-
-        void c_Load(object sender, EventArgs e)
-        {
-            glContext.MakeCurrent();
-            OpenTK.OpenGL.GL.LoadAll();
         }
 
         #endregion

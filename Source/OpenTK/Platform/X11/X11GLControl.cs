@@ -30,13 +30,20 @@ namespace OpenTK.Platform.X11
             Debug.WriteLine("Creating opengl control (X11GLControl driver)");
             Debug.Indent();
 
-            this.mode = mode;//new DisplayMode(mode);
-            glContext = new X11GLContext(mode);
 
             if (c == null/* || c.TopLevelControl == null*/)
             {
                 throw new ArgumentException("UserControl c may not be null.");
             }
+
+            this.mode = mode;//new DisplayMode(mode);
+            glContext = new X11GLContext(mode);
+
+            c.HandleCreated += new EventHandler(c_HandleCreated);
+            c.HandleDestroyed += new EventHandler(c_HandleDestroyed);
+            //c.ParentChanged += new EventHandler(c_ParentChanged);
+            //c.Load += new EventHandler(c_Load);
+            //Debug.Print("GLControl events hooked to X11GLControl.");
 
             xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
             Debug.Write("System.Windows.Forms.XplatUIX11: ");
@@ -52,33 +59,46 @@ namespace OpenTK.Platform.X11
                 info.Screen = (int)xplatui.GetField("ScreenNo",
                     System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
-                Debug.Print("Screen: {0}, Display: {1}, Root Window: {2}, Handle: {3}",
-                    info.Screen, info.Display, info.RootWindow, info.Handle);
+                Debug.Print("Display: {0}, Screen: {1}, Root Window: {2}, GLControl: {3}",
+                    info.Display, info.Screen, info.RootWindow, info.Handle);
 
-                try
-                {
-                    glContext.PrepareContext(info);
-                }
-                catch (ApplicationException e)
-                {
-                    Debug.Print(e.ToString());
-                    return;
-                }
+                glContext.PrepareContext(info);
                 info.VisualInfo = glContext.windowInfo.VisualInfo;
-                /*
+
                 xplatui.GetField("CustomVisual", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
-                    .SetValue(null, glContext.windowInfo.VisualInfo.visual);
+                    .SetValue(null, info.VisualInfo.visual);
 
                 xplatui.GetField("CustomColormap", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
-                    .SetValue(null, FindColormap());*/
+                    .SetValue(null, API.CreateColormap(info.Display, info.RootWindow, info.VisualInfo.visual, 0/*AllocNone*/));
+
+                glContext.windowInfo.Handle = info.Handle = c.Handle;
+
+                glContext.CreateContext(null, true);
             }
+            
+            //Debug.Print("Parent: {0}", c.ParentForm.Handle);
+            //API.MapRaised(info.Display, info.Handle);
+            //API.MapRaised(info.Display, c.ParentForm.Handle);
 
-            c.HandleCreated += new EventHandler(c_HandleCreated);
-            c.HandleDestroyed += new EventHandler(c_HandleDestroyed);
-            //c.ParentChanged += new EventHandler(c_ParentChanged);
-            c.Load += new EventHandler(c_Load);
+            //OpenTK.OpenGL.GL.Imports.Flush();
 
-            Debug.Print("GLControl events hooked to X11GLControl.");
+            /*
+            // Wait until the GLControl is mapped.
+            XEvent ev = new XEvent();
+            API.IfEvent(info.Display, ref ev,
+                delegate(IntPtr display, ref XEvent @event, IntPtr arg)
+                {
+                    Debug.Print("Checking event: {0}", @event.type);
+                    if (@event.type == XEventName.MapNotify)
+                    {
+                        Debug.Print("Map event for window: {0}", @event.MapEvent.window);
+                    }
+                    return (@event.type == XEventName.MapNotify) && (@event.MapEvent.window == arg);
+                },
+                info.Handle);
+            */
+            glContext.MakeCurrent();
+            //OpenTK.OpenGL.GL.LoadAll();
         }
 
         void c_HandleCreated(object sender, EventArgs e)
@@ -96,9 +116,14 @@ namespace OpenTK.Platform.X11
                 Debug.Print(expt.ToString());
                 throw;
             }
+            /*finally
+            {
+                Debug.WriteLine(String.Format("Mapping control {0} to parent {1}", c.Handle, c.Handle));
+                API.MapRaised(info.Display, c.Handle);
 
-            Debug.WriteLine(String.Format("Mapping control {0} to parent {1}", c.Handle, c.FindForm().Handle));
-            API.MapRaised(info.Display, c.FindForm().Handle);
+                Context.MakeCurrent();
+                OpenTK.OpenGL.GL.LoadAll();
+            }*/
         }
 
         void c_HandleDestroyed(object sender, EventArgs e)
@@ -110,6 +135,7 @@ namespace OpenTK.Platform.X11
         void c_ParentChanged(object sender, EventArgs e)
         {
             Debug.Print("Mapping X11GLControl.");
+            Debug.Indent();
 
             Control c = sender as Control;
             Debug.Print("TopLevel control is {0}",
@@ -117,7 +143,6 @@ namespace OpenTK.Platform.X11
 
             if (c.TopLevelControl == null)
             {
-                info.TopLevelWindow = c.Handle;
                 throw new ApplicationException("Problem: GLControl does not have a parent, aborting.");
             }
             else
@@ -125,9 +150,21 @@ namespace OpenTK.Platform.X11
                 info.TopLevelWindow = c.TopLevelControl.Handle;
             }
 
-            Debug.WriteLine(String.Format("Mapping window {0} to top level {1}", info.Handle, info.TopLevelWindow));
-            API.MapRaised(info.Display, info.TopLevelWindow);
-            //API.MapRaised(info.Display, info.Handle);
+            Debug.WriteLine(String.Format("Mapping GLControl {0} to window {1}", info.Handle, info.TopLevelWindow));
+            //API.MapRaised(info.Display, info.TopLevelWindow);
+            /*
+            // Wait until the GLControl is mapped.
+            XEvent ev = new XEvent();
+            API.IfEvent(info.Display, ref ev,
+                delegate(IntPtr display, ref XEvent @event, IntPtr arg)
+                {
+                    //Debug.Print("Checking event: {0}", @event.type);
+                    return (@event.type == XEventName.MapNotify) && (@event.MapEvent.window == arg);
+                },
+                info.Handle);
+
+            glContext.MakeCurrent();
+            OpenTK.OpenGL.GL.LoadAll();*/
             Debug.Unindent();
         }
 
