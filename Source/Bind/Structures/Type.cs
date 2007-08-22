@@ -52,8 +52,8 @@ namespace Bind.Structures
 
         public Type(Type t)
         {
-            this.CurrentType = new string(t.CurrentType.ToCharArray());
-            this.PreviousType = !String.IsNullOrEmpty(t.PreviousType) ? new string(t.PreviousType.ToCharArray()) : "";
+            this.CurrentType = t.CurrentType;
+            this.PreviousType = t.PreviousType;
             this.WrapperType = t.WrapperType;
             this.Array = t.Array;
             this.Pointer = t.Pointer;

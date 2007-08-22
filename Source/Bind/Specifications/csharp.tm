@@ -57,3 +57,9 @@ VoidPointer,    void*
 float,          float
 int,            int
 #void,           *
+
+# Glu types.
+Float64         double
+Float64Pointer  double*
+Float32         float
+Float32Pointer  float*

@@ -72,7 +72,8 @@ namespace Bind
                                 mode = 
                                     arg == "gl2" ? GeneratorMode.GL2 : 
                                     arg == "gl3" ? GeneratorMode.GL3 :
-                                    arg == "wgl" ? GeneratorMode.Wgl : GeneratorMode.GL2;
+                                    arg == "wgl" ? GeneratorMode.Wgl : 
+                                    arg == "glu" ? GeneratorMode.Glu : GeneratorMode.GL2;
                                 break;
                             case "namespace":
                             case "ns":
@@ -120,15 +121,11 @@ namespace Bind
                         break;
 
                     case GeneratorMode.Wgl:
-                        if (Settings.OutputPath == Settings.DefaultOutputPath)
-                        {
-                            Settings.OutputPath = Settings.DefaultWglOutputPath;
-                        }
-                        if (Settings.OutputNamespace == Settings.DefaultOutputNamespace)
-                        {
-                            Settings.OutputNamespace = "OpenTK.Platform.Windows";
-                        }
                         Generator = new Bind.Wgl.Generator();
+                        break;
+
+                    case GeneratorMode.Glu:
+                        Generator = new Bind.Glu.Generator();
                         break;
 
                     default:

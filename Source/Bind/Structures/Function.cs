@@ -31,10 +31,11 @@ namespace Bind.Structures
         
         #endregion
 
-        Regex functionsNotToTrim = new Regex(@"(Coord1|Attrib(I?)1(u?)|Stream1|Uniform2(u?))[dfis]v");
+        static Regex functionsNotToTrim = new Regex(@"(Coord1|Attrib(I?)1(u?)|Stream1|Uniform2(u?))[dfis]v", RegexOptions.Compiled);
         
-        //Regex endings = new Regex(@"(.)+[df(u?[isb])]v?");
-        
+        static Regex endings = //new Regex(@".+[df(u?[isb])]v?", RegexOptions.Compiled);
+            new Regex(@"([df]|u?[isb])v?", RegexOptions.Compiled | RegexOptions.RightToLeft);
+        /*
         private static List<string> endings = new List<string>(
             new string[]
             {
@@ -47,7 +48,7 @@ namespace Bind.Structures
                 "us", "usv",
                 "ub", "ubv"
             });
-
+        */
         #region --- Constructors ---
 
         public Function()
@@ -55,14 +56,7 @@ namespace Bind.Structures
         {
             Body = new FunctionBody();
         }
-        /*
-        public Function(Function f)
-            : base(f)
-        {
-            this.Body = new FunctionBody(f.Body);
-            this.Name = f.Name;
-        }
-        */
+
         public Function(Delegate d)
             : base(d)
         {
@@ -103,7 +97,7 @@ namespace Bind.Structures
         #endregion
 
         #region public string TrimmedName
-
+        /*
         string trimmedName;
         /// <summary>
         /// Gets or sets the name of the opengl function, trimming the excess 234dfubsiv endings.
@@ -117,7 +111,8 @@ namespace Bind.Structures
                     trimmedName = value.Trim();
             }
         }
-
+        */
+        public string TrimmedName;
         #endregion
 
         #region public override string Name
@@ -153,6 +148,7 @@ namespace Bind.Structures
                     }
 
                     // Remove overload
+                    /*
                     for (int i = 3; i >= 1; i--)
                     {
 		                if (endings.Contains(TrimmedName.Substring(TrimmedName.Length - i)))
@@ -180,6 +176,26 @@ namespace Bind.Structures
 		                	}
 		                    return;
 		                }
+                    }
+                    */
+                    if (Name == "CallLists")
+                    {
+                    }
+                    if (!functionsNotToTrim.IsMatch(Name))
+                    {
+                        Match m = endings.Match(TrimmedName);
+                        if (m.Value == "s" && !Char.IsDigit(TrimmedName[m.Index - 1]))
+                        { }
+                        else if (m.Value.EndsWith("v") && !Char.IsDigit(TrimmedName[m.Index - 1]))
+                        {
+                            // Only trim ending 'v' when there is a number
+                            TrimmedName = TrimmedName.Substring(0, m.Index) + "v";
+                        }
+                        else if (m.Index + m.Length == TrimmedName.Length)
+                        {
+                            // Only trim endings, not internal matches.
+                            TrimmedName = TrimmedName.Substring(0, m.Index);
+                        }
                     }
                 }
             }
