@@ -10,6 +10,7 @@ using System.Text;
 using System.IO;
 using Bind.Structures;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Bind.GL2
 {
@@ -56,6 +57,10 @@ namespace Bind.GL2
 
         public virtual void Process()
         {
+            Function.endingsAddV =
+                new Regex(@"(Coord1|Attrib(I?)1(u?)|Stream1|Uniform2(u?)|Parameter|Fog(Coord)?.*|VertexWeight|(Fragment)?Light(Model)?|Material|ReplacementCodeu?b?|Tex(Gen|Env)|Indexu?b?)", RegexOptions.Compiled);
+
+
             Bind.Structures.Type.Initialize(glTypemap, csTypemap);
             Bind.Structures.Enum.Initialize(enumSpec, enumSpecExt);
             Bind.Structures.Function.Initialize();

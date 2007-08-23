@@ -520,7 +520,7 @@ namespace Bind.Structures
                             WrapParameters(function, wrappers);
                             --index;
 
-                            if (function.Name == "UseFontOutlinesA")
+                            //if (function.Name == "UseFontOutlinesA")
                             {
                             }
 
@@ -640,7 +640,7 @@ namespace Bind.Structures
             fixed_statements.Clear();
             assign_statements.Clear();
 
-            if (f.Name == "LoadDisplayColorTableEXT")
+            //if (f.Name == "LoadDisplayColorTableEXT")
             { 
             }
 

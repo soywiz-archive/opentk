@@ -31,24 +31,18 @@ namespace Bind.Structures
         
         #endregion
 
-        static Regex functionsNotToTrim = new Regex(@"(Coord1|Attrib(I?)1(u?)|Stream1|Uniform2(u?))[dfis]v", RegexOptions.Compiled);
+        static Regex endings = new Regex(@"([df]|u?[isb])v?", RegexOptions.Compiled | RegexOptions.RightToLeft);
+        static Regex endingsNotToTrim = new Regex("(ib|[tdr]s|nd)", RegexOptions.Compiled | RegexOptions.RightToLeft);
+
+        /// <summary>
+        /// Add a trailing v to functions matching this regex. Used to differntiate between overloads taking both
+        /// a 'type' and a 'ref type' (such overloads are not CLS Compliant).
+        /// </summary>
+        /// <remarks>
+        /// The default Regex matches no functions. Create a new Regex in Bind.Generator classes to override the default behavior. 
+        /// </remarks>
+        internal static Regex endingsAddV = new Regex("^0", RegexOptions.Compiled);
         
-        static Regex endings = //new Regex(@".+[df(u?[isb])]v?", RegexOptions.Compiled);
-            new Regex(@"([df]|u?[isb])v?", RegexOptions.Compiled | RegexOptions.RightToLeft);
-        /*
-        private static List<string> endings = new List<string>(
-            new string[]
-            {
-                "fv", "f",
-                "dv", "d",
-                "i",  "iv",
-                "s",  "sv",
-                "b",  "bv",
-                "ui", "uiv",
-                "us", "usv",
-                "ub", "ubv"
-            });
-        */
         #region --- Constructors ---
 
         public Function()
@@ -129,23 +123,22 @@ namespace Bind.Structures
             {
                 base.Name = value;
 
-                // If we don't need compatibility with Tao,
-                // remove the Extension and the overload information from the name
-                // (Extension == "ARB", "EXT", etc, overload == [u][bsidf][v])
-                // TODO: Use some regex's here, to reduce clutter.
-                TrimmedName = value;
-
                 if (Settings.Compatibility == Settings.Legacy.Tao)
                 {
+                    // If we don't need compatibility with Tao,
+                    // remove the Extension and the overload information from the name
+                    // (Extension == "ARB", "EXT", etc, overload == [u][bsidf][v])
+                    // TODO: Use some regex's here, to reduce clutter.
+                    TrimmedName = value;
                 }
                 else
                 {
                     TrimmedName = Utilities.StripGL2Extension(value);
                     
                     //if (TrimmedName.Contains("Uniform2iv"))
-                    {
-                    	//Console.Write("niar");
-                    }
+                    //{
+                    //    Console.Write("niar");
+                    //}
 
                     // Remove overload
                     /*
@@ -161,7 +154,7 @@ namespace Bind.Structures
 		                	// TODO: Add better handling for CLS-Compliance on ref ('v') functions.
 		                	if (Char.IsDigit(TrimmedName[TrimmedName.Length - (i + 1)]))
 		                	{
-	                	    	if (!functionsNotToTrim.IsMatch(Name))
+	                	    	if (!endingsAddV.IsMatch(Name))
 	                	    	{
 		                    		TrimmedName = TrimmedName.Substring(0, TrimmedName.Length - i);	
 	                	    	}
@@ -178,23 +171,25 @@ namespace Bind.Structures
 		                }
                     }
                     */
-                    if (Name == "CallLists")
+
+                    if (!endingsNotToTrim.IsMatch(Name))
                     {
-                    }
-                    if (!functionsNotToTrim.IsMatch(Name))
-                    {
+                        // Some endings should not be trimmed, for example: 'b' from Attrib
+
                         Match m = endings.Match(TrimmedName);
-                        if (m.Value == "s" && !Char.IsDigit(TrimmedName[m.Index - 1]))
-                        { }
-                        else if (m.Value.EndsWith("v") && !Char.IsDigit(TrimmedName[m.Index - 1]))
-                        {
-                            // Only trim ending 'v' when there is a number
-                            TrimmedName = TrimmedName.Substring(0, m.Index) + "v";
-                        }
-                        else if (m.Index + m.Length == TrimmedName.Length)
-                        {
-                            // Only trim endings, not internal matches.
-                            TrimmedName = TrimmedName.Substring(0, m.Index);
+
+                        if (m.Index + m.Length == TrimmedName.Length)
+                        {   // Only trim endings, not internal matches.
+                            if (m.Value.EndsWith("v") && 
+                                (/*!Char.IsDigit(TrimmedName[m.Index - 1]) ||*/ endingsAddV.IsMatch(Name)))
+                            {   // Only trim ending 'v' when there is a number
+                                TrimmedName = TrimmedName.Substring(0, m.Index) + "v";
+                            }
+                            else
+                            {
+
+                                TrimmedName = TrimmedName.Substring(0, m.Index);
+                            }
                         }
                     }
                 }
