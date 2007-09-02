@@ -73,7 +73,8 @@ namespace Bind
                                     arg == "gl2" ? GeneratorMode.GL2 : 
                                     arg == "gl3" ? GeneratorMode.GL3 :
                                     arg == "wgl" ? GeneratorMode.Wgl : 
-                                    arg == "glu" ? GeneratorMode.Glu : GeneratorMode.GL2;
+                                    arg == "glu" ? GeneratorMode.Glu : 
+                                    arg == "glx" ? GeneratorMode.Glx : GeneratorMode.GL2;
                                 break;
                             case "namespace":
                             case "ns":
@@ -128,6 +129,11 @@ namespace Bind
                         Generator = new Bind.Glu.Generator();
                         break;
 
+                    case GeneratorMode.Glx:
+                        Generator = new Bind.Glx.Generator();
+                        break;
+
+                    case GeneratorMode.GL3:
                     default:
                         throw new NotImplementedException(String.Format("Mode {0} not implemented.", mode));
                 }

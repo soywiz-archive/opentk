@@ -44,7 +44,7 @@ namespace Bind.Structures
             this.UnmanagedType = p.UnmanagedType;
             this.Flow = p.Flow;
             this.cache = p.cache;
-            this.rebuild = false;
+            //this.rebuild = false;
         }
 
         #endregion

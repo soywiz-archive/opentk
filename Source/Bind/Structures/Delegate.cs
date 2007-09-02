@@ -449,7 +449,7 @@ namespace Bind.Structures
 
         #region protected void WrapParameters(Function function, List<Function> wrappers)
 
-        protected static int index = 0;
+        protected static int index;
 
         /// <summary>
         /// This function needs some heavy refactoring. I'm ashamed I ever wrote it, but it works...
@@ -629,7 +629,6 @@ namespace Bind.Structures
         static List<string> handle_statements = new List<string>();
         static List<string> fixed_statements = new List<string>();
         static List<string> assign_statements = new List<string>();
-        static string function_call_statement;
 
         protected FunctionBody CreateBody(Function fun, bool wantCLSCompliance)
         {

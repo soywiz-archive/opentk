@@ -180,8 +180,7 @@ namespace Bind.Structures
 
                         if (m.Index + m.Length == TrimmedName.Length)
                         {   // Only trim endings, not internal matches.
-                            if (m.Value.EndsWith("v") && 
-                                (/*!Char.IsDigit(TrimmedName[m.Index - 1]) ||*/ endingsAddV.IsMatch(Name)))
+                            if (m.Value[m.Length - 1] == 'v' && endingsAddV.IsMatch(Name))
                             {   // Only trim ending 'v' when there is a number
                                 TrimmedName = TrimmedName.Substring(0, m.Index) + "v";
                             }
@@ -228,7 +227,8 @@ namespace Bind.Structures
 
         public bool Equals(Function other)
         {
-            return !String.IsNullOrEmpty(this.TrimmedName) && !String.IsNullOrEmpty(other.TrimmedName) &&
+            return
+                !String.IsNullOrEmpty(this.TrimmedName) && !String.IsNullOrEmpty(other.TrimmedName) &&
                 this.TrimmedName == other.TrimmedName &&
                 this.Parameters.ToString(true) == other.Parameters.ToString(true);
         }

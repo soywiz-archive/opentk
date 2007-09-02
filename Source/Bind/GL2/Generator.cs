@@ -178,7 +178,7 @@ namespace Bind.GL2
                     // Get function name:
                     d.Name = line.Split(Utilities.Separators, StringSplitOptions.RemoveEmptyEntries)[0];
 
-                    if (d.Name.Contains("UseFontOutlinesA"))
+                    if (d.Name.Contains("QueryHyperpipeBestAttribSGIX"))
                     {
                     }
 
@@ -206,7 +206,7 @@ namespace Bind.GL2
 
                                 p.Name = Utilities.Keywords.Contains(words[1]) ? "@" + words[1] : words[1];
                                 p.CurrentType = words[2];
-                                p.Pointer = words[4] == "array" ? true : words[4] == "reference" ? true : false;
+                                p.Pointer = words[4].Contains("array") ? true : words[4].Contains("reference") ? true : false;
                                 p.Flow = words[3] == "in" ? Parameter.FlowDirection.In : Parameter.FlowDirection.Out;
  
                                 d.Parameters.Add(p);
