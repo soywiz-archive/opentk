@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
+using OpenTK.OpenGL;
 
 namespace OpenTK.Platform.X11
 {
@@ -174,7 +175,8 @@ namespace OpenTK.Platform.X11
         {
             Debug.Print("GLControl loaded, will now try to make context current and load all GL functions.");
             Context.MakeCurrent();
-            OpenTK.OpenGL.GL.LoadAll();
+            GL.LoadAll();
+            Glu.LoadAll();
         }
 
         /// <summary>

@@ -12,6 +12,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Diagnostics;
+using OpenTK.OpenGL;
 
 #endregion
 
@@ -269,7 +270,8 @@ namespace OpenTK.Platform.Windows
                 Debug.Print("Could not create opengl context, error: {0}", expt.ToString());
                 throw;
             }
-            OpenTK.OpenGL.GL.LoadAll();
+            GL.LoadAll();
+            Glu.LoadAll();
 
             if (this.Create != null)
             {

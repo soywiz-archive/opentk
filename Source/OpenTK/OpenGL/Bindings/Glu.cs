@@ -32,144 +32,150 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 Build1DMipmapLevel(int target, Int32 internalFormat, Int32 width, int format, int type, Int32 level, Int32 @base, Int32 max, void* data)
+        unsafe Int32 Build1DMipmapLevel(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, Int32 level, Int32 @base, Int32 max, void* data)
         {
-            unsafe { return Delegates.gluBuild1DMipmapLevels((int)target, (Int32)internalFormat, (Int32)width, (int)format, (int)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data); }
+            unsafe { return Delegates.gluBuild1DMipmapLevels((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data); }
         }
         
         public static 
-        Int32 Build1DMipmapLevel(int target, Int32 internalFormat, Int32 width, int format, int type, Int32 level, Int32 @base, Int32 max, [In, Out] object data)
+        Int32 Build1DMipmapLevel(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, Int32 level, Int32 @base, Int32 max, [In, Out] object data)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle data_ptr = System.Runtime.InteropServices.GCHandle.Alloc(data, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluBuild1DMipmapLevels((int)target, (Int32)internalFormat, (Int32)width, (int)format, (int)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluBuild1DMipmapLevels((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 Build1DMipmap(int target, Int32 internalFormat, Int32 width, int format, int type, void* data)
+        unsafe Int32 Build1DMipmap(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* data)
         {
-            unsafe { return Delegates.gluBuild1DMipmaps((int)target, (Int32)internalFormat, (Int32)width, (int)format, (int)type, (void*)data); }
+            unsafe { return Delegates.gluBuild1DMipmaps((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data); }
         }
         
         public static 
-        Int32 Build1DMipmap(int target, Int32 internalFormat, Int32 width, int format, int type, [In, Out] object data)
+        Int32 Build1DMipmap(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object data)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle data_ptr = System.Runtime.InteropServices.GCHandle.Alloc(data, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluBuild1DMipmaps((int)target, (Int32)internalFormat, (Int32)width, (int)format, (int)type, (void*)data_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluBuild1DMipmaps((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 Build2DMipmapLevel(int target, Int32 internalFormat, Int32 width, Int32 height, int format, int type, Int32 level, Int32 @base, Int32 max, void* data)
+        unsafe Int32 Build2DMipmapLevel(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, Int32 level, Int32 @base, Int32 max, void* data)
         {
-            unsafe { return Delegates.gluBuild2DMipmapLevels((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (int)format, (int)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data); }
+            unsafe { return Delegates.gluBuild2DMipmapLevels((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data); }
         }
         
         public static 
-        Int32 Build2DMipmapLevel(int target, Int32 internalFormat, Int32 width, Int32 height, int format, int type, Int32 level, Int32 @base, Int32 max, [In, Out] object data)
+        Int32 Build2DMipmapLevel(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, Int32 level, Int32 @base, Int32 max, [In, Out] object data)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle data_ptr = System.Runtime.InteropServices.GCHandle.Alloc(data, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluBuild2DMipmapLevels((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (int)format, (int)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluBuild2DMipmapLevels((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 Build2DMipmap(int target, Int32 internalFormat, Int32 width, Int32 height, int format, int type, void* data)
+        unsafe Int32 Build2DMipmap(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* data)
         {
-            unsafe { return Delegates.gluBuild2DMipmaps((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (int)format, (int)type, (void*)data); }
+            unsafe { return Delegates.gluBuild2DMipmaps((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data); }
         }
         
         public static 
-        Int32 Build2DMipmap(int target, Int32 internalFormat, Int32 width, Int32 height, int format, int type, [In, Out] object data)
+        Int32 Build2DMipmap(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object data)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle data_ptr = System.Runtime.InteropServices.GCHandle.Alloc(data, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluBuild2DMipmaps((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (int)format, (int)type, (void*)data_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluBuild2DMipmaps((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 Build3DMipmapLevel(int target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, int format, int type, Int32 level, Int32 @base, Int32 max, void* data)
+        unsafe Int32 Build3DMipmapLevel(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, GL.Enums.PixelFormat format, GL.Enums.PixelType type, Int32 level, Int32 @base, Int32 max, void* data)
         {
-            unsafe { return Delegates.gluBuild3DMipmapLevels((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (int)format, (int)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data); }
+            unsafe { return Delegates.gluBuild3DMipmapLevels((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data); }
         }
         
         public static 
-        Int32 Build3DMipmapLevel(int target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, int format, int type, Int32 level, Int32 @base, Int32 max, [In, Out] object data)
+        Int32 Build3DMipmapLevel(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, GL.Enums.PixelFormat format, GL.Enums.PixelType type, Int32 level, Int32 @base, Int32 max, [In, Out] object data)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle data_ptr = System.Runtime.InteropServices.GCHandle.Alloc(data, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluBuild3DMipmapLevels((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (int)format, (int)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluBuild3DMipmapLevels((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (Int32)level, (Int32)@base, (Int32)max, (void*)data_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 Build3DMipmap(int target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, int format, int type, void* data)
+        unsafe Int32 Build3DMipmap(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, GL.Enums.PixelFormat format, GL.Enums.PixelType type, void* data)
         {
-            unsafe { return Delegates.gluBuild3DMipmaps((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (int)format, (int)type, (void*)data); }
+            unsafe { return Delegates.gluBuild3DMipmaps((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data); }
         }
         
         public static 
-        Int32 Build3DMipmap(int target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, int format, int type, [In, Out] object data)
+        Int32 Build3DMipmap(GL.Enums.TextureTarget target, Int32 internalFormat, Int32 width, Int32 height, Int32 depth, GL.Enums.PixelFormat format, GL.Enums.PixelType type, [In, Out] object data)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle data_ptr = System.Runtime.InteropServices.GCHandle.Alloc(data, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluBuild3DMipmaps((int)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (int)format, (int)type, (void*)data_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluBuild3DMipmaps((GL.Enums.TextureTarget)target, (Int32)internalFormat, (Int32)width, (Int32)height, (Int32)depth, (GL.Enums.PixelFormat)format, (GL.Enums.PixelType)type, (void*)data_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -843,39 +849,40 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    userData_ptr.Free();
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float* knots, Int32 stride, [Out] float* control, Int32 order, int type)
+        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float* knots, Int32 stride, [Out] float* control, Int32 order, GL.Enums.MapTarget type)
         {
-            unsafe { Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots, (Int32)stride, (float*)control, (Int32)order, (int)type); }
+            unsafe { Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots, (Int32)stride, (float*)control, (Int32)order, (GL.Enums.MapTarget)type); }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float* knots, Int32 stride, [Out] float[] control, Int32 order, int type)
+        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float* knots, Int32 stride, [Out] float[] control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots, (Int32)stride, (float*)control_ptr, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots, (Int32)stride, (float*)control_ptr, (Int32)order, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float* knots, Int32 stride, [Out] out float control, Int32 order, int type)
+        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float* knots, Int32 stride, [Out] out float control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots, (Int32)stride, (float*)control_ptr, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots, (Int32)stride, (float*)control_ptr, (Int32)order, (GL.Enums.MapTarget)type);
                             control = *control_ptr;
                 }
             }
@@ -883,39 +890,39 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float[] knots, Int32 stride, [Out] float* control, Int32 order, int type)
+        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] float[] knots, Int32 stride, [Out] float* control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* knots_ptr = knots)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control, (Int32)order, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsCurve(int nurb, Int32 knotCount, [Out] float[] knots, Int32 stride, [Out] float[] control, Int32 order, int type)
+        void NurbsCurve(int nurb, Int32 knotCount, [Out] float[] knots, Int32 stride, [Out] float[] control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* knots_ptr = knots)
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsCurve(int nurb, Int32 knotCount, [Out] float[] knots, Int32 stride, [Out] out float control, Int32 order, int type)
+        void NurbsCurve(int nurb, Int32 knotCount, [Out] float[] knots, Int32 stride, [Out] out float control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* knots_ptr = knots)
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (GL.Enums.MapTarget)type);
                             control = *control_ptr;
                 }
             }
@@ -923,41 +930,41 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] out float knots, Int32 stride, [Out] float* control, Int32 order, int type)
+        unsafe void NurbsCurve(int nurb, Int32 knotCount, [Out] out float knots, Int32 stride, [Out] float* control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* knots_ptr = &knots)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control, (Int32)order, (GL.Enums.MapTarget)type);
                             knots = *knots_ptr;
                 }
             }
         }
         
         public static 
-        void NurbsCurve(int nurb, Int32 knotCount, [Out] out float knots, Int32 stride, [Out] float[] control, Int32 order, int type)
+        void NurbsCurve(int nurb, Int32 knotCount, [Out] out float knots, Int32 stride, [Out] float[] control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* knots_ptr = &knots)
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (GL.Enums.MapTarget)type);
                             knots = *knots_ptr;
                 }
             }
         }
         
         public static 
-        void NurbsCurve(int nurb, Int32 knotCount, [Out] out float knots, Int32 stride, [Out] out float control, Int32 order, int type)
+        void NurbsCurve(int nurb, Int32 knotCount, [Out] out float knots, Int32 stride, [Out] out float control, Int32 order, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* knots_ptr = &knots)
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (int)type);
+                    Delegates.gluNurbsCurve((int)nurb, (Int32)knotCount, (float*)knots_ptr, (Int32)stride, (float*)control_ptr, (Int32)order, (GL.Enums.MapTarget)type);
                             knots = *knots_ptr;
                             control = *control_ptr;
                 }
@@ -972,190 +979,190 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
-            unsafe { Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type); }
+            unsafe { Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type); }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* tKnots_ptr = tKnots)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
-                fixed (float* tKnots_ptr = tKnots)
-                fixed (float* control_ptr = control)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* tKnots_ptr = tKnots)
-                fixed (float* control_ptr = &control)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* tKnots_ptr = &tKnots)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* tKnots_ptr = &tKnots)
-                fixed (float* control_ptr = control)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* tKnots_ptr = &tKnots)
-                fixed (float* control_ptr = &control)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* sKnots_ptr = sKnots)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* sKnots_ptr = sKnots)
-                fixed (float* control_ptr = control)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* sKnots_ptr = sKnots)
-                fixed (float* control_ptr = &control)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* sKnots_ptr = sKnots)
-                fixed (float* tKnots_ptr = tKnots)
-                {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
-                }
-            }
-        }
-        
-        public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
-        {
-            unsafe
-            {
-                fixed (float* sKnots_ptr = sKnots)
                 fixed (float* tKnots_ptr = tKnots)
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* tKnots_ptr = tKnots)
+                fixed (float* control_ptr = &control)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* tKnots_ptr = &tKnots)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* tKnots_ptr = &tKnots)
+                fixed (float* control_ptr = control)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float* sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* tKnots_ptr = &tKnots)
+                fixed (float* control_ptr = &control)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* sKnots_ptr = sKnots)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* sKnots_ptr = sKnots)
+                fixed (float* control_ptr = control)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* sKnots_ptr = sKnots)
+                fixed (float* control_ptr = &control)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        [System.CLSCompliant(false)]
+        public static 
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* sKnots_ptr = sKnots)
+                fixed (float* tKnots_ptr = tKnots)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
+        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
+        {
+            unsafe
+            {
+                fixed (float* sKnots_ptr = sKnots)
+                fixed (float* tKnots_ptr = tKnots)
+                fixed (float* control_ptr = control)
+                {
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
+                }
+            }
+        }
+        
+        public static 
+        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
@@ -1163,27 +1170,27 @@ namespace OpenTK.OpenGL
                 fixed (float* tKnots_ptr = tKnots)
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* sKnots_ptr = sKnots)
                 fixed (float* tKnots_ptr = &tKnots)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
+        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
@@ -1191,13 +1198,13 @@ namespace OpenTK.OpenGL
                 fixed (float* tKnots_ptr = &tKnots)
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
+        void NurbsSurface(int nurb, Int32 sKnotCount, float[] sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
@@ -1205,68 +1212,68 @@ namespace OpenTK.OpenGL
                 fixed (float* tKnots_ptr = &tKnots)
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* sKnots_ptr = &sKnots)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* sKnots_ptr = &sKnots)
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float* tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* sKnots_ptr = &sKnots)
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* sKnots_ptr = &sKnots)
                 fixed (float* tKnots_ptr = tKnots)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
+        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
@@ -1274,13 +1281,13 @@ namespace OpenTK.OpenGL
                 fixed (float* tKnots_ptr = tKnots)
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
+        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, float[] tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
@@ -1288,27 +1295,27 @@ namespace OpenTK.OpenGL
                 fixed (float* tKnots_ptr = tKnots)
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, int type)
+        unsafe void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float* control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
                 fixed (float* sKnots_ptr = &sKnots)
                 fixed (float* tKnots_ptr = &tKnots)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, int type)
+        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, float[] control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
@@ -1316,13 +1323,13 @@ namespace OpenTK.OpenGL
                 fixed (float* tKnots_ptr = &tKnots)
                 fixed (float* control_ptr = control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
         
         public static 
-        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, int type)
+        void NurbsSurface(int nurb, Int32 sKnotCount, ref float sKnots, Int32 tKnotCount, ref float tKnots, Int32 sStride, Int32 tStride, ref float control, Int32 sOrder, Int32 tOrder, GL.Enums.MapTarget type)
         {
             unsafe
             {
@@ -1330,7 +1337,7 @@ namespace OpenTK.OpenGL
                 fixed (float* tKnots_ptr = &tKnots)
                 fixed (float* control_ptr = &control)
                 {
-                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (int)type);
+                    Delegates.gluNurbsSurface((int)nurb, (Int32)sKnotCount, (float*)sKnots_ptr, (Int32)tKnotCount, (float*)tKnots_ptr, (Int32)sStride, (Int32)tStride, (float*)control_ptr, (Int32)sOrder, (Int32)tOrder, (GL.Enums.MapTarget)type);
                 }
             }
         }
@@ -13771,49 +13778,51 @@ namespace OpenTK.OpenGL
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 ScaleImage(int format, Int32 wIn, Int32 hIn, int typeIn, void* dataIn, Int32 wOut, Int32 hOut, int typeOut, [Out] void* dataOut)
+        unsafe Int32 ScaleImage(GL.Enums.PixelFormat format, Int32 wIn, Int32 hIn, GL.Enums.PixelType typeIn, void* dataIn, Int32 wOut, Int32 hOut, GL.Enums.PixelType typeOut, [Out] void* dataOut)
         {
-            unsafe { return Delegates.gluScaleImage((int)format, (Int32)wIn, (Int32)hIn, (int)typeIn, (void*)dataIn, (Int32)wOut, (Int32)hOut, (int)typeOut, (void*)dataOut); }
+            unsafe { return Delegates.gluScaleImage((GL.Enums.PixelFormat)format, (Int32)wIn, (Int32)hIn, (GL.Enums.PixelType)typeIn, (void*)dataIn, (Int32)wOut, (Int32)hOut, (GL.Enums.PixelType)typeOut, (void*)dataOut); }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 ScaleImage(int format, Int32 wIn, Int32 hIn, int typeIn, void* dataIn, Int32 wOut, Int32 hOut, int typeOut, [In, Out] object dataOut)
+        unsafe Int32 ScaleImage(GL.Enums.PixelFormat format, Int32 wIn, Int32 hIn, GL.Enums.PixelType typeIn, void* dataIn, Int32 wOut, Int32 hOut, GL.Enums.PixelType typeOut, [In, Out] object dataOut)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle dataOut_ptr = System.Runtime.InteropServices.GCHandle.Alloc(dataOut, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluScaleImage((int)format, (Int32)wIn, (Int32)hIn, (int)typeIn, (void*)dataIn, (Int32)wOut, (Int32)hOut, (int)typeOut, (void*)dataOut_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluScaleImage((GL.Enums.PixelFormat)format, (Int32)wIn, (Int32)hIn, (GL.Enums.PixelType)typeIn, (void*)dataIn, (Int32)wOut, (Int32)hOut, (GL.Enums.PixelType)typeOut, (void*)dataOut_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    dataOut_ptr.Free();
                 }
             }
         }
         
         [System.CLSCompliant(false)]
         public static 
-        unsafe Int32 ScaleImage(int format, Int32 wIn, Int32 hIn, int typeIn, [In, Out] object dataIn, Int32 wOut, Int32 hOut, int typeOut, [Out] void* dataOut)
+        unsafe Int32 ScaleImage(GL.Enums.PixelFormat format, Int32 wIn, Int32 hIn, GL.Enums.PixelType typeIn, [In, Out] object dataIn, Int32 wOut, Int32 hOut, GL.Enums.PixelType typeOut, [Out] void* dataOut)
         {
             unsafe
             {
                 System.Runtime.InteropServices.GCHandle dataIn_ptr = System.Runtime.InteropServices.GCHandle.Alloc(dataIn, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluScaleImage((int)format, (Int32)wIn, (Int32)hIn, (int)typeIn, (void*)dataIn_ptr.AddrOfPinnedObject(), (Int32)wOut, (Int32)hOut, (int)typeOut, (void*)dataOut);
+                    Int32 retval = Delegates.gluScaleImage((GL.Enums.PixelFormat)format, (Int32)wIn, (Int32)hIn, (GL.Enums.PixelType)typeIn, (void*)dataIn_ptr.AddrOfPinnedObject(), (Int32)wOut, (Int32)hOut, (GL.Enums.PixelType)typeOut, (void*)dataOut);
                     return retval;
                 }
                 finally
                 {
+                    dataIn_ptr.Free();
                 }
             }
         }
         
         public static 
-        Int32 ScaleImage(int format, Int32 wIn, Int32 hIn, int typeIn, [In, Out] object dataIn, Int32 wOut, Int32 hOut, int typeOut, [In, Out] object dataOut)
+        Int32 ScaleImage(GL.Enums.PixelFormat format, Int32 wIn, Int32 hIn, GL.Enums.PixelType typeIn, [In, Out] object dataIn, Int32 wOut, Int32 hOut, GL.Enums.PixelType typeOut, [In, Out] object dataOut)
         {
             unsafe
             {
@@ -13821,11 +13830,13 @@ namespace OpenTK.OpenGL
                 System.Runtime.InteropServices.GCHandle dataOut_ptr = System.Runtime.InteropServices.GCHandle.Alloc(dataOut, System.Runtime.InteropServices.GCHandleType.Pinned);
                 try
                 {
-                    Int32 retval = Delegates.gluScaleImage((int)format, (Int32)wIn, (Int32)hIn, (int)typeIn, (void*)dataIn_ptr.AddrOfPinnedObject(), (Int32)wOut, (Int32)hOut, (int)typeOut, (void*)dataOut_ptr.AddrOfPinnedObject());
+                    Int32 retval = Delegates.gluScaleImage((GL.Enums.PixelFormat)format, (Int32)wIn, (Int32)hIn, (GL.Enums.PixelType)typeIn, (void*)dataIn_ptr.AddrOfPinnedObject(), (Int32)wOut, (Int32)hOut, (GL.Enums.PixelType)typeOut, (void*)dataOut_ptr.AddrOfPinnedObject());
                     return retval;
                 }
                 finally
                 {
+                    dataIn_ptr.Free();
+                    dataOut_ptr.Free();
                 }
             }
         }
@@ -13861,6 +13872,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -13915,6 +13927,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -13946,6 +13959,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -13980,6 +13994,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -64832,6 +64847,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        userData_ptr.Free();
                     }
                 }
             }
@@ -64842,20 +64858,20 @@ namespace OpenTK.OpenGL
         {
             [System.CLSCompliant(false)]
             public static 
-            unsafe Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, float* parms, Int32 n, [Out] float* weights)
+            unsafe Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, float* parms, Int32 n, [Out] float* weights)
             {
-                unsafe { return Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms, (Int32)n, (float*)weights); }
+                unsafe { return Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms, (Int32)n, (float*)weights); }
             }
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, float* parms, Int32 n, [Out] float[] weights)
+            unsafe Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, float* parms, Int32 n, [Out] float[] weights)
             {
                 unsafe
                 {
                     fixed (float* weights_ptr = weights)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms, (Int32)n, (float*)weights_ptr);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms, (Int32)n, (float*)weights_ptr);
                         return retval;
                     }
                 }
@@ -64863,13 +64879,13 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, float* parms, Int32 n, [Out] out float weights)
+            unsafe Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, float* parms, Int32 n, [Out] out float weights)
             {
                 unsafe
                 {
                     fixed (float* weights_ptr = &weights)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms, (Int32)n, (float*)weights_ptr);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms, (Int32)n, (float*)weights_ptr);
                                 weights = *weights_ptr;
                         return retval;
                     }
@@ -64878,41 +64894,41 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, float[] parms, Int32 n, [Out] float* weights)
+            unsafe Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, float[] parms, Int32 n, [Out] float* weights)
             {
                 unsafe
                 {
                     fixed (float* parms_ptr = parms)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights);
                         return retval;
                     }
                 }
             }
             
             public static 
-            Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, float[] parms, Int32 n, [Out] float[] weights)
+            Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, float[] parms, Int32 n, [Out] float[] weights)
             {
                 unsafe
                 {
                     fixed (float* parms_ptr = parms)
                     fixed (float* weights_ptr = weights)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
                         return retval;
                     }
                 }
             }
             
             public static 
-            Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, float[] parms, Int32 n, [Out] out float weights)
+            Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, float[] parms, Int32 n, [Out] out float weights)
             {
                 unsafe
                 {
                     fixed (float* parms_ptr = parms)
                     fixed (float* weights_ptr = &weights)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
                                 weights = *weights_ptr;
                         return retval;
                     }
@@ -64921,41 +64937,41 @@ namespace OpenTK.OpenGL
             
             [System.CLSCompliant(false)]
             public static 
-            unsafe Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, ref float parms, Int32 n, [Out] float* weights)
+            unsafe Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, ref float parms, Int32 n, [Out] float* weights)
             {
                 unsafe
                 {
                     fixed (float* parms_ptr = &parms)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights);
                         return retval;
                     }
                 }
             }
             
             public static 
-            Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, ref float parms, Int32 n, [Out] float[] weights)
+            Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, ref float parms, Int32 n, [Out] float[] weights)
             {
                 unsafe
                 {
                     fixed (float* parms_ptr = &parms)
                     fixed (float* weights_ptr = weights)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
                         return retval;
                     }
                 }
             }
             
             public static 
-            Int32 TexFilterFunc(int target, Glu.Enums.Filter4TypeSGIS filtertype, ref float parms, Int32 n, [Out] out float weights)
+            Int32 TexFilterFunc(GL.Enums.TextureTarget target, Glu.Enums.Filter4TypeSGIS filtertype, ref float parms, Int32 n, [Out] out float weights)
             {
                 unsafe
                 {
                     fixed (float* parms_ptr = &parms)
                     fixed (float* weights_ptr = &weights)
                     {
-                        Int32 retval = Delegates.gluTexFilterFuncSGI((int)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
+                        Int32 retval = Delegates.gluTexFilterFuncSGI((GL.Enums.TextureTarget)target, (Glu.Enums.Filter4TypeSGIS)filtertype, (float*)parms_ptr, (Int32)n, (float*)weights_ptr);
                                 weights = *weights_ptr;
                         return retval;
                     }

@@ -57,6 +57,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    lists_ptr.Free();
                 }
             }
         }
@@ -3616,6 +3617,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -3639,6 +3641,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -4690,6 +4693,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -4713,6 +4717,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -5469,6 +5474,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -5853,6 +5859,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -5888,6 +5895,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    indices_ptr.Free();
                 }
             }
         }
@@ -5911,6 +5919,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -5940,6 +5949,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    @params_ptr.Free();
                 }
             }
         }
@@ -5963,6 +5973,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -5986,6 +5997,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -6009,6 +6021,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -6032,6 +6045,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -6055,6 +6069,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -6108,6 +6123,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -6131,6 +6147,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -6691,6 +6708,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    indices_ptr.Free();
                 }
             }
         }
@@ -6707,6 +6725,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    indices_ptr.Free();
                 }
             }
         }
@@ -6730,6 +6749,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    table_ptr.Free();
                 }
             }
         }
@@ -6821,6 +6841,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    table_ptr.Free();
                 }
             }
         }
@@ -6908,6 +6929,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -6937,6 +6959,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    image_ptr.Free();
                 }
             }
         }
@@ -6960,6 +6983,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    image_ptr.Free();
                 }
             }
         }
@@ -7069,6 +7093,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    image_ptr.Free();
                 }
             }
         }
@@ -7157,6 +7182,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    span_ptr.Free();
                 }
             }
         }
@@ -7174,6 +7200,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    column_ptr.Free();
                 }
             }
         }
@@ -7192,6 +7219,8 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    column_ptr.Free();
+                    span_ptr.Free();
                 }
             }
         }
@@ -7209,6 +7238,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    row_ptr.Free();
                 }
             }
         }
@@ -7227,6 +7257,8 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    row_ptr.Free();
+                    span_ptr.Free();
                 }
             }
         }
@@ -7245,6 +7277,8 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    row_ptr.Free();
+                    column_ptr.Free();
                 }
             }
         }
@@ -7263,6 +7297,9 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    row_ptr.Free();
+                    column_ptr.Free();
+                    span_ptr.Free();
                 }
             }
         }
@@ -7287,6 +7324,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    column_ptr.Free();
                 }
             }
         }
@@ -7304,6 +7342,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    row_ptr.Free();
                 }
             }
         }
@@ -7321,6 +7360,8 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    row_ptr.Free();
+                    column_ptr.Free();
                 }
             }
         }
@@ -7510,6 +7551,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -7533,6 +7575,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pixels_ptr.Free();
                 }
             }
         }
@@ -8296,6 +8339,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -8319,6 +8363,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -8342,6 +8387,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -8365,6 +8411,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -8388,6 +8435,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -8411,6 +8459,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -8434,6 +8483,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    img_ptr.Free();
                 }
             }
         }
@@ -8537,6 +8587,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -8678,6 +8729,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    indices_ptr.Free();
                 }
             }
         }
@@ -8709,6 +8761,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        indices_ptr.Free();
                     }
                 }
             }
@@ -8741,6 +8794,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        indices_ptr.Free();
                     }
                 }
             }
@@ -9264,6 +9318,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -10048,6 +10103,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -10071,6 +10127,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -10094,6 +10151,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    data_ptr.Free();
                 }
             }
         }
@@ -10161,6 +10219,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    @params_ptr.Free();
                 }
             }
         }
@@ -12927,6 +12986,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -12943,6 +13003,7 @@ namespace OpenTK.OpenGL
                 }
                 finally
                 {
+                    pointer_ptr.Free();
                 }
             }
         }
@@ -15920,6 +15981,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -15943,6 +16005,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -15966,6 +16029,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -15989,6 +16053,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -16012,6 +16077,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -16035,6 +16101,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -16058,6 +16125,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        img_ptr.Free();
                     }
                 }
             }
@@ -16409,6 +16477,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -16609,6 +16678,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -18681,6 +18751,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        @string_ptr.Free();
                     }
                 }
             }
@@ -19481,6 +19552,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        @string_ptr.Free();
                     }
                 }
             }
@@ -19722,6 +19794,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -19738,6 +19811,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -19936,6 +20010,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -19959,6 +20034,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -19982,6 +20058,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -20049,6 +20126,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        @params_ptr.Free();
                     }
                 }
             }
@@ -23205,6 +23283,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pixels_ptr.Free();
                     }
                 }
             }
@@ -23228,6 +23307,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pixels_ptr.Free();
                     }
                 }
             }
@@ -23251,6 +23331,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pixels_ptr.Free();
                     }
                 }
             }
@@ -23274,6 +23355,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pixels_ptr.Free();
                     }
                 }
             }
@@ -23493,6 +23575,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        image_ptr.Free();
                     }
                 }
             }
@@ -23516,6 +23599,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        image_ptr.Free();
                     }
                 }
             }
@@ -23625,6 +23709,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        image_ptr.Free();
                     }
                 }
             }
@@ -23713,6 +23798,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        span_ptr.Free();
                     }
                 }
             }
@@ -23730,6 +23816,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        column_ptr.Free();
                     }
                 }
             }
@@ -23748,6 +23835,8 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        column_ptr.Free();
+                        span_ptr.Free();
                     }
                 }
             }
@@ -23765,6 +23854,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        row_ptr.Free();
                     }
                 }
             }
@@ -23783,6 +23873,8 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        row_ptr.Free();
+                        span_ptr.Free();
                     }
                 }
             }
@@ -23801,6 +23893,8 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        row_ptr.Free();
+                        column_ptr.Free();
                     }
                 }
             }
@@ -23819,6 +23913,9 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        row_ptr.Free();
+                        column_ptr.Free();
+                        span_ptr.Free();
                     }
                 }
             }
@@ -23843,6 +23940,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        column_ptr.Free();
                     }
                 }
             }
@@ -23860,6 +23958,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        row_ptr.Free();
                     }
                 }
             }
@@ -23877,6 +23976,8 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        row_ptr.Free();
+                        column_ptr.Free();
                     }
                 }
             }
@@ -24371,6 +24472,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -24407,6 +24509,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        @params_ptr.Free();
                     }
                 }
             }
@@ -24430,6 +24533,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -24453,6 +24557,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -24476,6 +24581,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -24499,6 +24605,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -24565,6 +24672,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -24594,6 +24702,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        table_ptr.Free();
                     }
                 }
             }
@@ -24617,6 +24726,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -24803,6 +24913,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        indices_ptr.Free();
                     }
                 }
             }
@@ -24819,6 +24930,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        indices_ptr.Free();
                     }
                 }
             }
@@ -25359,6 +25471,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -25506,6 +25619,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        indices_ptr.Free();
                     }
                 }
             }
@@ -25537,6 +25651,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -25569,6 +25684,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -25667,6 +25783,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -26146,6 +26263,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -26169,6 +26287,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -26235,6 +26354,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -26436,6 +26556,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        addr_ptr.Free();
                     }
                 }
             }
@@ -26452,6 +26573,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        addr_ptr.Free();
                     }
                 }
             }
@@ -26486,6 +26608,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        addr_ptr.Free();
                     }
                 }
             }
@@ -26502,6 +26625,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        addr_ptr.Free();
                     }
                 }
             }
@@ -27004,6 +27128,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        addr_ptr.Free();
                     }
                 }
             }
@@ -27020,6 +27145,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        addr_ptr.Free();
                     }
                 }
             }
@@ -27278,6 +27404,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -27294,6 +27421,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        data_ptr.Free();
                     }
                 }
             }
@@ -29371,6 +29499,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -29387,6 +29516,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -29969,6 +30099,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        indices_ptr.Free();
                     }
                 }
             }
@@ -30539,6 +30670,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pixels_ptr.Free();
                     }
                 }
             }
@@ -30562,6 +30694,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pixels_ptr.Free();
                     }
                 }
             }
@@ -30833,6 +30966,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        table_ptr.Free();
                     }
                 }
             }
@@ -30924,6 +31058,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        table_ptr.Free();
                     }
                 }
             }
@@ -32161,6 +32296,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        @params_ptr.Free();
                     }
                 }
             }
@@ -32340,6 +32476,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -32363,6 +32500,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -32386,6 +32524,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -32409,6 +32548,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -32700,6 +32840,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -52697,6 +52838,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -54481,6 +54623,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -54497,6 +54640,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -54985,6 +55129,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -55001,6 +55146,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -60253,6 +60399,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63145,6 +63292,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        indices_ptr.Free();
                     }
                 }
             }
@@ -63177,6 +63325,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63210,6 +63359,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63243,6 +63393,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63277,6 +63428,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63311,6 +63463,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63344,6 +63497,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63378,6 +63532,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63412,6 +63567,7 @@ namespace OpenTK.OpenGL
                         }
                         finally
                         {
+                            indices_ptr.Free();
                         }
                     }
                 }
@@ -63436,6 +63592,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63459,6 +63616,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63489,6 +63647,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63512,6 +63671,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63535,6 +63695,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63558,6 +63719,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63581,6 +63743,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -63986,6 +64149,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -64033,6 +64197,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -64049,6 +64214,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -65289,6 +65455,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -65569,6 +65736,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -66320,6 +66488,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -66343,6 +66512,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        pointer_ptr.Free();
                     }
                 }
             }
@@ -66388,6 +66558,7 @@ namespace OpenTK.OpenGL
                     }
                     finally
                     {
+                        @string_ptr.Free();
                     }
                 }
             }

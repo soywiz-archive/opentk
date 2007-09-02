@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 
 using OpenTK.Platform;
+using OpenTK.OpenGL;
 
 #endregion
 
@@ -108,7 +109,8 @@ namespace OpenTK
                 );
             }
 
-            OpenTK.OpenGL.GL.LoadAll();
+            GL.LoadAll();
+            Glu.LoadAll();
 
             Debug.Unindent();
         }

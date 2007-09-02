@@ -655,7 +655,7 @@ namespace Bind.GL2
         
         #region void WriteImports
 
-        public void WriteImports(BindStreamWriter sw, DelegateCollection delegates)
+        public virtual void WriteImports(BindStreamWriter sw, DelegateCollection delegates)
         {
             Trace.WriteLine(String.Format("Writing imports to {0}.{1}", Settings.OutputNamespace, Settings.ImportsClass));
 

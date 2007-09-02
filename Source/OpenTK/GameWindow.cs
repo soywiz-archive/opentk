@@ -12,6 +12,7 @@ using System.Diagnostics;
 using OpenTK.Platform;
 using OpenTK.Input;
 using System.Threading;
+using OpenTK.OpenGL;
 
 namespace OpenTK
 {
@@ -204,7 +205,8 @@ namespace OpenTK
             if (!Exists)
             {
                 glWindow.CreateWindow(mode);
-                OpenTK.OpenGL.GL.LoadAll();
+                GL.LoadAll();
+                Glu.LoadAll();
             }
             else
             {

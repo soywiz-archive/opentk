@@ -89,7 +89,7 @@ int[] attrib =
     };
 visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, attrib);
 */
-
+            
             List<int> visualAttributes = new List<int>();
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
             visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);

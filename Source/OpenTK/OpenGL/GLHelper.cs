@@ -79,7 +79,7 @@ namespace OpenTK.OpenGL
 
         internal const string Library = "opengl32.dll";
         
-        private static System.Collections.Generic.Dictionary<string, bool> AvailableExtensions = new Dictionary<string, bool>();
+        private static Dictionary<string, bool> AvailableExtensions = new Dictionary<string, bool>();
         private static bool rebuildExtensionList;
 
         private static Assembly assembly;
@@ -124,6 +124,7 @@ namespace OpenTK.OpenGL
         private static void BuildExtensionList()
         {
             // Assumes there is an opengl context current.
+            AvailableExtensions.Clear();
 
             string version_string = GL.GetString(OpenTK.OpenGL.GL.Enums.StringName.VERSION);
             if (String.IsNullOrEmpty(version_string))
@@ -201,6 +202,7 @@ namespace OpenTK.OpenGL
         /// </returns>
         public static Delegate GetDelegate(string name, Type signature)
         {
+            /*
             Delegate d;
 
             if (importsClass.GetMethod(name.Substring(2), BindingFlags.NonPublic | BindingFlags.Static) != null)
@@ -214,6 +216,11 @@ namespace OpenTK.OpenGL
             }
 
             return d;
+            */
+            MethodInfo m = importsClass.GetMethod(name.Substring(2), BindingFlags.Static | BindingFlags.NonPublic);
+            return
+                Utilities.GetExtensionDelegate(name, signature) ??
+                (m != null ? Delegate.CreateDelegate(signature, m) : null);
         }
 
         #endregion
