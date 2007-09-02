@@ -1,4 +1,10 @@
-﻿using System;
+﻿#region --- License ---
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,6 +42,15 @@ namespace Examples.WinForms
 
             glControl.CreateContext();
 
+            listBox1.BeginInvoke(new LoadExtensionsDelegate(LoadExtensions));
+        }
+
+        delegate void LoadExtensionsDelegate();
+
+        void LoadExtensions()
+        {
+            glControl.MakeCurrent();
+
             FieldInfo[] v = delegatesClass.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
 
             int i = 0, supported = 0;
@@ -47,7 +62,7 @@ namespace Examples.WinForms
                     Delegate d = GL.GetDelegate(f.Name, f.FieldType);
 
                     f.SetValue(null, d);
-                    this.listBox1.Items.Add(String.Format("{0}/{1} {2}: {3}",
+                    listBox1.Items.Add(String.Format("{0}/{1} {2}: {3}",
                         (++i).ToString(), v.Length, d != null ? "ok" : "failed", f.Name));
 
                     if (d != null)
@@ -56,7 +71,7 @@ namespace Examples.WinForms
                     }
                 }
 
-                this.Text = String.Format("Supported extensions: {0}", supported);
+                //this.Text = String.Format("Supported extensions: {0}", supported);
             }
             catch (Exception expt)
             {

@@ -12,6 +12,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Diagnostics;
+using OpenTK.OpenGL;
 
 #endregion
 
@@ -298,7 +299,8 @@ namespace OpenTK.Platform.Windows
                 glContext.PrepareContext(this.Handle);
                 glContext.CreateContext();
                 //glContext.MakeCurrent();
-                OpenTK.OpenGL.GL.LoadAll();
+                GL.LoadAll();
+                Glu.LoadAll();
             }
             catch (ApplicationException expt)
             {
