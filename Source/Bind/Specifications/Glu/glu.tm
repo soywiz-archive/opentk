@@ -17,7 +17,7 @@ SizeI		    GLsizei
 UInt8           GLubyte
 
 # Enum types (find Tao-compatible solution!)
-TextureTarget   int
-PixelFormat     int
-PixelType       int
-MapTarget       int
+TextureTarget   TextureTarget
+PixelFormat     PixelFormat
+PixelType       PixelType
+MapTarget       MapTarget

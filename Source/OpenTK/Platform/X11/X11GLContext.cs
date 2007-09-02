@@ -115,7 +115,7 @@ visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, attrib);
             }
             else
             {
-                windowInfo.VisualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
+                windowInfo.VisualInfo = (XVisualInfo)Marshal.PtrToStructure(visual, typeof(XVisualInfo));
                 Debug.Print("Prepared visual: {0}", windowInfo.VisualInfo.ToString());
             }
             //}

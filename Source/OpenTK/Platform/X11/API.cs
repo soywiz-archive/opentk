@@ -528,10 +528,10 @@ XF86VidModeGetGammaRampSize(
 
     #region X11 Structures
 
-    #region internal class VisualInfo
+    #region internal class XVisualInfo
 
     [StructLayout(LayoutKind.Sequential)]
-    public class VisualInfo
+    public class XVisualInfo
     {
         internal IntPtr visual;
         internal int visualid;
