@@ -12,11 +12,19 @@ namespace OpenTK.Platform.X11
         static Glx() { }
     }
 
-    public struct GLXDrawable
+    public struct Status
     {
     }
 
-    public struct GLXContext
+    public struct GLXFBConfig
+    {
+    }
+
+    public struct GLXPbuffer
+    {
+    }
+
+    public struct GLXContextID
     {
     }
 
@@ -28,7 +36,31 @@ namespace OpenTK.Platform.X11
     {
     }
 
+    public struct GLXHyperpipeConfigSGIX
+    {
+    }
+
     public struct GLXHyperpipeConfigPointer
+    {
+    }
+
+    public struct GLXVideoSourceSGIX
+    {
+    }
+
+    public struct GLXFBConfigSGIX
+    {
+    }
+
+    public struct GLXPbufferSGIX
+    {
+    }
+
+    public struct DMparams
+    {
+    }
+
+    public struct DMbuffer
     {
     }
 }

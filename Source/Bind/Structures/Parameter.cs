@@ -304,6 +304,12 @@ namespace Bind.Structures
                                 p.CurrentType = "API.GlyphMetricsFloat";
                         }
                     }
+                    else if (p.CurrentType == "XVisualInfo")
+                    {
+                        //p.Pointer = false;
+                        //p.Reference = true;
+
+                    }
                     else
                     {
                         p.CurrentType = s;
@@ -311,6 +317,11 @@ namespace Bind.Structures
                     p.CurrentType =
                         Bind.Structures.Type.CSTypes.ContainsKey(p.CurrentType) ?
                         Bind.Structures.Type.CSTypes[p.CurrentType] : p.CurrentType;
+
+                    if (p.CurrentType == "IntPtr")
+                    {
+                        p.Pointer = false;
+                    }
                 }
             }
 
