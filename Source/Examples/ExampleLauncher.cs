@@ -20,6 +20,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Security.Policy;
 using System.IO;
+using System.CodeDom.Compiler;
 
 using OpenTK;
 
@@ -29,6 +30,9 @@ namespace Examples
 {
     public partial class ExampleLauncher : Form
     {
+        CodeDomProvider codeProvider = Microsoft.CSharp.CSharpCodeProvider.CreateProvider("CSharp");
+        CompilerParameters options = new CompilerParameters();
+
         #region class ExampleInfo
 
         /// <summary>
@@ -58,6 +62,10 @@ namespace Examples
         public ExampleLauncher()
         {
             InitializeComponent();
+
+            options.GenerateExecutable = true;
+            options.ReferencedAssemblies.Add("OpenTK.dll");
+            options.ReferencedAssemblies.Add("System.Drawing.dll");
         }
 
         #endregion
@@ -124,6 +132,29 @@ namespace Examples
             {
                 try
                 {
+                    options.OutputAssembly = "T01_Simple_Window.exe";
+                    
+                    CompilerResults result = codeProvider.CompileAssemblyFromFile(options, "Tutorial/T01_Simple_Window.cs", "ExampleAttribute.cs");
+                    //File.Copy("OpenTK.dll", Path.Combine(Path.GetDirectoryName(result.PathToAssembly), "OpenTK.dll"));
+
+                    try
+                    {
+                        if (!result.Errors.HasErrors)
+                            System.Diagnostics.Process.Start(result.PathToAssembly);
+                        else
+                        {
+                            StringBuilder sb = new StringBuilder();
+                            foreach (CompilerError error in result.Errors)
+                                sb.AppendLine(error.ErrorText);
+                            MessageBox.Show(sb.ToString());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+
+                    /*
                     ExampleInfo info = (ExampleInfo)listBox1.SelectedItem;
                     Type example = info.Example;
 
@@ -135,6 +166,7 @@ namespace Examples
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
                     GC.Collect();
+                    */
 
                 }
                 catch (TargetInvocationException expt)
