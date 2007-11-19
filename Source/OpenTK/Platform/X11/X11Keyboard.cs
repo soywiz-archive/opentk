@@ -222,13 +222,13 @@ namespace OpenTK.Platform.X11
             switch (keysym.ToInt64())
             {
                 default:
-                if (keymap.ContainsKey((XKey)keysym))
+                if (keymap.ContainsKey((XKey)(long)keysym))
                 {
-                    keyboards[index][keymap[(XKey)keysym]] = pressed;
+                    keyboards[index][keymap[(XKey)(long)keysym]] = pressed;
                 }
-                else if (keymap.ContainsKey((XKey)keysym2))
+                else if (keymap.ContainsKey((XKey)(long)keysym2))
                 {
-                    keyboards[index][keymap[(XKey)keysym2]] = pressed;
+                    keyboards[index][keymap[(XKey)(long)keysym2]] = pressed;
                 }
                 else
                 {
