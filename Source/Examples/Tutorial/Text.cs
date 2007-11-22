@@ -22,7 +22,7 @@ namespace Examples.Tutorial
     /// <summary>
     /// Shows how to render and scroll large amounts of text.
     /// </summary>
-    [Example("Text", ExampleCategory.Tutorial, 4)]
+    [Example("Text", ExampleCategory.Tutorial, 4, null, false)]
     public class Text : GameWindow
     {
         TextureFont serif = new TextureFont(new Font(FontFamily.GenericSerif, 24.0f));

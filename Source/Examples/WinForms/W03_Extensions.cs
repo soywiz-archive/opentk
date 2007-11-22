@@ -20,7 +20,7 @@ using OpenTK.OpenGL.Enums;
 
 namespace Examples.WinForms
 {
-    [Example("Extensions", ExampleCategory.WinForms, 3)]
+    [Example("Extensions", ExampleCategory.WinForms, 3, null, false)]
     public partial class W03_Extensions : Form
     {
         //GLControl glControl = new GLControl();

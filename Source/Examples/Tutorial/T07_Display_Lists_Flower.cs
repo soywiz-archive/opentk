@@ -23,7 +23,7 @@ using OpenTK.OpenGL.Enums;
 
 namespace Examples.Tutorial
 {
-    [Example("Display Lists", ExampleCategory.Tutorial, 3)]
+    [Example("Display Lists", ExampleCategory.Tutorial, 3, null, false)]
     public class T07_Display_Lists_Flower : GameWindow
     {
         #region --- Fields ---

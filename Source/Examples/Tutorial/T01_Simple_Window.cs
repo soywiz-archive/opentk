@@ -20,7 +20,7 @@ namespace Examples.Tutorial
     /// <summary>
     /// Demonstrates the GameWindow class.
     /// </summary>
-    [Example("Simple Window", ExampleCategory.Tutorial, 1)]
+    [Example("Simple Window", ExampleCategory.Tutorial, 1, null, false)]
     public class T01_Simple_Window : GameWindow
     {
         public T01_Simple_Window() : base(new DisplayMode(800, 600))

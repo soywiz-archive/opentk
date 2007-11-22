@@ -27,7 +27,7 @@ namespace Examples.Tutorial
     /// <summary>
     /// Demonstrates how to load and use a simple OpenGL shader program. Example is incomplete (documentation).
     /// </summary>
-    [Example("First shader", ExampleCategory.GLSL, 1)]
+    [Example("First shader", ExampleCategory.GLSL, 1, null, false)]
     public class T10_GLSL_Cube : GameWindow
     {
         #region --- Fields ---

@@ -17,7 +17,9 @@ namespace Examples
         public readonly ExampleCategory Category;
         public readonly int Difficulty;
         public readonly bool Visible = true;
-
+        public readonly string Documentation;
+        /*
+        [Obsolete]
         public ExampleAttribute(string title, ExampleCategory category, int difficulty)
         {
             this.Title = title;
@@ -25,12 +27,22 @@ namespace Examples
             this.Difficulty = difficulty;
         }
 
+        [Obsolete]
         public ExampleAttribute(string title, ExampleCategory category, int difficulty, bool visible)
         {
             this.Title = title;
             this.Category = category;
             this.Difficulty = difficulty;
             this.Visible = visible;
+        }
+        */
+        public ExampleAttribute(string title, ExampleCategory category, int difficulty, string documentation, bool visible)
+        {
+            this.Title = title;
+            this.Category = category;
+            this.Difficulty = difficulty;
+            this.Visible = visible;
+            this.Documentation = documentation;
         }
 
         public override string ToString()

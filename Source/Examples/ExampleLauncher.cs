@@ -41,17 +41,17 @@ namespace Examples
         class ExampleInfo
         {
             public Type Example;
-            public ExampleAttribute Attributes;
+            public ExampleAttribute Attribute;
 
             public ExampleInfo(Type example, ExampleAttribute attr)
             {
                 Example = example;
-                Attributes = attr;
+                Attribute = attr;
             }
 
             public override string ToString()
             {
-                return Attributes.ToString();
+                return Attribute.ToString();
             }
         }
 
@@ -66,6 +66,7 @@ namespace Examples
             options.GenerateExecutable = true;
             options.ReferencedAssemblies.Add("OpenTK.dll");
             options.ReferencedAssemblies.Add("System.Drawing.dll");
+            //options.ReferencedAssemblies.Add("ExampleLauncher.exe");
         }
 
         #endregion
@@ -132,10 +133,12 @@ namespace Examples
             {
                 try
                 {
+                    string name = ((ExampleInfo)listBox1.SelectedItem).Example.Name;
                     options.OutputAssembly = "T01_Simple_Window.exe";
                     
-                    CompilerResults result = codeProvider.CompileAssemblyFromFile(options, "Tutorial/T01_Simple_Window.cs", "ExampleAttribute.cs");
-                    //File.Copy("OpenTK.dll", Path.Combine(Path.GetDirectoryName(result.PathToAssembly), "OpenTK.dll"));
+                    CompilerResults result = codeProvider.CompileAssemblyFromFile(options,
+                        Path.Combine("Source", "T01_Simple_Window.cs"),
+                        Path.Combine("Source", "ExampleAttribute.cs"));
 
                     try
                     {
@@ -240,6 +243,19 @@ namespace Examples
             {
                 Application.EnableVisualStyles();
                 Application.Run(exampleLauncher);
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+            {
+                ExampleInfo info = (ExampleInfo)listBox1.SelectedItem;
+
+                string doc = "file:///" + System.Environment.CurrentDirectory + "\\" + info.Attribute.Documentation;
+                docBrowser.Navigate(doc);
+                    /*!String.IsNullOrEmpty(info.Attribute.Documentation) ?
+                    Path.Combine("Docs", info.Attribute.Documentation) : "");*/
             }
         }
     }

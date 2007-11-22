@@ -22,7 +22,7 @@ namespace Examples.Tutorial
     /// <summary>
     /// Tests Font loading and rendering.
     /// </summary>
-    [Example("Fonts", ExampleCategory.Tutorial, 3)]
+    [Example("Fonts", ExampleCategory.Tutorial, 3, null, false)]
     class Fonts : GameWindow
     {
         public Fonts() : base(new DisplayMode(800, 600))

@@ -22,7 +22,7 @@ using OpenTK.OpenGL.Enums;
 
 namespace Examples.WinForms
 {
-    [Example("Simple GLControl", ExampleCategory.WinForms, 1)]
+    [Example("Simple GLControl", ExampleCategory.WinForms, 1, null, false)]
     public partial class W01_First_Window : Form
     {
         public W01_First_Window()

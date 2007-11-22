@@ -24,7 +24,7 @@ namespace Examples.Tutorial
     /// <summary>
     /// Demonstrates immediate mode rendering. Example is incomplete, and will probably go away in the future.
     /// </summary>
-    [Example("Immediate mode", ExampleCategory.Tutorial, 2)]
+    [Example("Immediate mode", ExampleCategory.Tutorial, 2, null, false)]
     public class T03_Immediate_Mode_Cube : GameWindow
     {
         #region --- Fields ---

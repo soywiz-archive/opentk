@@ -25,7 +25,7 @@ using OpenTK.OpenGL.Enums;
 
 namespace Examples.WinForms
 {
-    [Example("GLControl game loop", ExampleCategory.WinForms, 2)]
+    [Example("GLControl game loop", ExampleCategory.WinForms, 2, null, false)]
     public partial class W02_Immediate_Mode_Cube : Form
     {
         static float angle = 0.0f;
