@@ -20,6 +20,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Security.Policy;
 using System.IO;
+using System.CodeDom;
 using System.CodeDom.Compiler;
 
 using OpenTK;
@@ -30,8 +31,12 @@ namespace Examples
 {
     public partial class ExampleLauncher : Form
     {
-        CodeDomProvider codeProvider = Microsoft.CSharp.CSharpCodeProvider.CreateProvider("CSharp");
+        CodeDomProvider compiler = Microsoft.CSharp.CSharpCodeProvider.CreateProvider("CSharp");
         CompilerParameters options = new CompilerParameters();
+        string docsPath = Path.Combine(Environment.CurrentDirectory, "Docs");
+        string sourcePath = Path.Combine(Environment.CurrentDirectory, "Source");
+        string outputPath = Path.Combine(Environment.CurrentDirectory, "Compiled");
+        string propertiesPath = Path.Combine(Environment.CurrentDirectory, "Properties");
 
         #region class ExampleInfo
 
@@ -40,18 +45,25 @@ namespace Examples
         /// </summary>
         class ExampleInfo
         {
-            public Type Example;
-            public ExampleAttribute Attribute;
+            public ExampleAttribute MetaData;
+            public string Source;
+            public CompilerResults Result;
 
-            public ExampleInfo(Type example, ExampleAttribute attr)
+            public string Executable
             {
-                Example = example;
-                Attribute = attr;
+                get
+                {
+                    return Result != null ? Result.PathToAssembly : null;
+                }
+            }
+
+            public ExampleInfo()
+            {
             }
 
             public override string ToString()
             {
-                return Attribute.ToString();
+                return String.Format("{0} ({1})", MetaData.ToString(), Source);
             }
         }
 
@@ -66,7 +78,13 @@ namespace Examples
             options.GenerateExecutable = true;
             options.ReferencedAssemblies.Add("OpenTK.dll");
             options.ReferencedAssemblies.Add("System.Drawing.dll");
-            //options.ReferencedAssemblies.Add("ExampleLauncher.exe");
+            options.ReferencedAssemblies.Add(Path.Combine(outputPath, "Examples.dll"));
+
+            if (!Directory.Exists(outputPath))
+                Directory.CreateDirectory(outputPath);
+            File.Copy("OpenTK.dll", Path.Combine(outputPath, "OpenTK.dll"), true);
+            File.Copy("OpenTK.dll.config", Path.Combine(outputPath, "OpenTK.dll.config"), true);
+            File.Copy("Examples.exe", Path.Combine(outputPath, "Examples.dll"), true);
         }
 
         #endregion
@@ -85,143 +103,106 @@ namespace Examples
                 MessageBox.Show("Could not access debug.log", expt.ToString());
             }
 
-            Debug.Listeners.Clear();
+            //Debug.Listeners.Clear();
             Debug.Listeners.Add(new TextWriterTraceListener("debug.log"));
             Debug.Listeners.Add(new ConsoleTraceListener());
             Debug.AutoFlush = true;
 
-            // Get all examples
-            Type[] types = Assembly.GetExecutingAssembly().GetTypes();
-            StringBuilder sb = new StringBuilder();
-            foreach (Type type in types)
+            Dictionary<string, TreeNode> categories = new Dictionary<string, TreeNode>();
+
+            foreach (string path in Directory.GetFiles(sourcePath))
             {
-                object[] attributes = type.GetCustomAttributes(false);
-                ExampleAttribute example = null;
-                foreach (object attr in attributes)
-                    if (attr is ExampleAttribute)
-                        example = (ExampleAttribute)attr;
+                string filename = Path.GetFileName(path);
+                // Skip helper source files. We only want to display genuine examples.
+                if (filename.Contains("ExampleAttribute") || filename.Contains("Utilities"))
+                    continue;
 
-                if (example != null && example.Visible == true)
+                string[] name = filename.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < name.Length; i++)
+                    name[i] = name[i].Trim();
+
+                ExampleInfo info = new ExampleInfo();
+                info.Source = filename;
+                CompileExample(ref info, true);
+                TreeNode node = new TreeNode(info.MetaData.Title);
+                node.Tag = info;
+
+                TreeNode category;
+                if (!categories.TryGetValue(name[0], out category))
                 {
-                    sb.Append(example.Category);
-                    sb.Append(" ");
-                    if (example.Difficulty < 10)
-                        sb.Append("0");         // To keep items nicely sorted.
-                    sb.Append(example.Difficulty);
-                    sb.Append(": ");
-                    //sb.Append(type.Name);
-                    sb.Append(example.Title);
-
-                    listBox1.Items.Add(new ExampleInfo(type, example));
-                    
-                    // Clean the StringBuilder for the next pass.
-                    sb.Remove(0, sb.Length);
+                    category = new TreeNode(name[0]);
+                    category.Name = name[0];
+                    categories.Add(name[0], category);
                 }
+
+                // Insert sorted by difficulty. This algorithm is very slow,
+                // but we are unlikely to have more than ~30 examples, so it's
+                // not an issue.
+                //category.Nodes.Add(node);
+                if (category.Nodes.Count > 0)
+                {
+                    int i = 0;
+                    while ((category.Nodes[i].Tag as ExampleInfo).MetaData.Difficulty <
+                           (node.Tag as ExampleInfo).MetaData.Difficulty)
+                        ++i;
+                    category.Nodes.Insert(i, node);
+                }
+                else
+                    category.Nodes.Add(node);
             }
-            // Select first item
-            if (listBox1.Items.Count > 0)
-                this.listBox1.SelectedIndex = 0;
+
+            foreach (TreeNode t in categories.Values)
+                exampleTreeView.Nodes.Add(t);
         }
 
         #endregion
 
-        #region private void RunExample()
+        #region private void viewCode_Click(object sender, EventArgs e)
 
-        private void RunExample()
+        /// <summary>
+        /// "Executes" the source file (which opens the default code editor).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void viewCode_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
+            try
             {
-                try
+                if (exampleTreeView.SelectedNode != null && exampleTreeView.SelectedNode.Tag is ExampleInfo)
                 {
-                    string name = ((ExampleInfo)listBox1.SelectedItem).Example.Name;
-                    options.OutputAssembly = "T01_Simple_Window.exe";
-                    
-                    CompilerResults result = codeProvider.CompileAssemblyFromFile(options,
-                        Path.Combine("Source", "T01_Simple_Window.cs"),
-                        Path.Combine("Source", "ExampleAttribute.cs"));
-
-                    try
-                    {
-                        if (!result.Errors.HasErrors)
-                            System.Diagnostics.Process.Start(result.PathToAssembly);
-                        else
-                        {
-                            StringBuilder sb = new StringBuilder();
-                            foreach (CompilerError error in result.Errors)
-                                sb.AppendLine(error.ErrorText);
-                            MessageBox.Show(sb.ToString());
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.ToString());
-                    }
-
-                    /*
-                    ExampleInfo info = (ExampleInfo)listBox1.SelectedItem;
-                    Type example = info.Example;
-
-                    Debug.Print("Launching example: {0}", example.ToString());
-                    this.Visible = false;
-
-                    example.GetMethod("Main").Invoke(null, null);
-
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    GC.Collect();
-                    */
-
+                    string source = Path.Combine(sourcePath, (exampleTreeView.SelectedNode.Tag as ExampleInfo).Source);
+                    Process.Start(source);
                 }
-                catch (TargetInvocationException expt)
-                {
-                    string ex_info;
-                    if (expt.InnerException != null)
-                        ex_info = expt.InnerException.ToString();
-                    else
-                        ex_info = expt.ToString();
-                    MessageBox.Show(ex_info, "An OpenTK example encountered an error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    Debug.Print(expt.ToString());
-#if DEBUG
-                    throw;
-#endif
-                }
-                catch (NullReferenceException expt)
-                {
-                    MessageBox.Show(expt.ToString(), "The Example launcher failed to load the example.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                finally
-                {
-                    this.Visible = true;
-                    this.TopMost = true;    // Bring the ExampleLauncher window to front
-                    this.TopMost = false;   // but don't allow the user to cover it with other windows.
-                }
+            }
+            catch (Win32Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
         #endregion
 
-        #region Launcher events
+        #region private void run_Click(object sender, EventArgs e)
 
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+        private void run_Click(object sender, EventArgs e)
         {
-            RunExample();
+            if (exampleTreeView.SelectedNode != null && exampleTreeView.SelectedNode.Tag is ExampleInfo)
+                LaunchExample(exampleTreeView.SelectedNode.Tag as ExampleInfo);
         }
 
-        private void listBox1_KeyUp(object sender, KeyEventArgs e)
+        #endregion
+
+        #region private void exampleTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+
+        private void exampleTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    RunExample();
-                    break;
-            }
+            if (e.Node.Tag is ExampleInfo)
+                LaunchExample(e.Node.Tag as ExampleInfo);
         }
 
-        private void runButton_Click(object sender, EventArgs e)
-        {
-            RunExample();
-        }
+        #endregion
+
+        #region private void ExampleLauncher_FormClosing(object sender, FormClosingEventArgs e)
 
         private void ExampleLauncher_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -232,6 +213,8 @@ namespace Examples
         }
 
         #endregion
+
+        #region static void Main()
 
         /// <summary>
         /// The main entry point for the application.
@@ -246,17 +229,91 @@ namespace Examples
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedItem != null)
-            {
-                ExampleInfo info = (ExampleInfo)listBox1.SelectedItem;
+        #endregion
 
-                string doc = "file:///" + System.Environment.CurrentDirectory + "\\" + info.Attribute.Documentation;
+        #region private void exampleTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+
+        /// <summary>
+        /// Displays the documentation for the selected example.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exampleTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node != null && e.Node.Tag is ExampleInfo)
+            {
+                ExampleInfo info = (ExampleInfo)e.Node.Tag;
+                string doc;
+                if (!String.IsNullOrEmpty(info.MetaData.Documentation))
+                    doc = Path.Combine(docsPath, info.MetaData.Documentation);
+                else
+                    doc = Path.Combine(docsPath, "Missing doc.html");
                 docBrowser.Navigate(doc);
-                    /*!String.IsNullOrEmpty(info.Attribute.Documentation) ?
-                    Path.Combine("Docs", info.Attribute.Documentation) : "");*/
             }
         }
+
+        #endregion
+
+        #region private ExampleInfo CompileExample(string filename)
+
+        /// <summary>
+        /// Compiles the given example and returns an ExampleInfo struct that describes
+        /// this example.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        private bool CompileExample(ref ExampleInfo info, bool generateInMemory)
+        {
+            string source = Path.Combine(sourcePath, info.Source);
+            options.OutputAssembly = Path.Combine(outputPath, Path.ChangeExtension(info.Source, "exe"));
+            options.GenerateInMemory = generateInMemory;
+
+            info.Result = compiler.CompileAssemblyFromFile(options, source);
+
+            if (generateInMemory)
+            {
+                //info.MetaData = ExampleAttribute.GetCustomAttribute(result.CompiledAssembly, typeof(ExampleAttribute))
+                //                as ExampleAttribute;
+
+                Type[] types = info.Result.CompiledAssembly.GetTypes();
+                object[] attributes = types[0].GetCustomAttributes(false);
+                foreach (object attr in attributes)
+                    if (attr.GetType() == typeof(ExampleAttribute))
+                        info.MetaData = (ExampleAttribute)attr;
+            }
+            return info.Result.Errors.Count == 0;
+        }
+
+        #endregion
+
+        #region private void LaunchExample(ExampleInfo info)
+
+        /// <summary>
+        /// Launches the selected example.
+        /// </summary>
+        /// <param name="info"></param>
+        private void LaunchExample(ExampleInfo info)
+        {
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            // Check if we need to recompile the example.
+            if (String.IsNullOrEmpty(info.Executable) ||
+                (File.Exists(info.Executable)) &&
+                File.GetLastWriteTime(Path.Combine(sourcePath, info.Source)).CompareTo(File.GetLastWriteTime(info.Executable)) > 0)
+                CompileExample(ref info, false);
+
+            if (!String.IsNullOrEmpty(info.Executable))
+            {
+                ProcessStartInfo p = new ProcessStartInfo(info.Executable);
+                p.CreateNoWindow = true;
+                p.UseShellExecute = false;
+                System.Diagnostics.Process.Start(p);
+            }
+            else
+                MessageBox.Show(info.Result.Errors.ToString(), "Compilation failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        #endregion
     }
 }
