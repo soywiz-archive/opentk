@@ -16,32 +16,20 @@ namespace Examples
         public readonly string Title;
         public readonly ExampleCategory Category;
         public readonly int Difficulty;
-        public readonly bool Visible = true;
         public readonly string Documentation;
-        /*
-        [Obsolete]
-        public ExampleAttribute(string title, ExampleCategory category, int difficulty)
-        {
-            this.Title = title;
-            this.Category = category;
-            this.Difficulty = difficulty;
-        }
+
 
         [Obsolete]
-        public ExampleAttribute(string title, ExampleCategory category, int difficulty, bool visible)
-        {
-            this.Title = title;
-            this.Category = category;
-            this.Difficulty = difficulty;
-            this.Visible = visible;
-        }
-        */
         public ExampleAttribute(string title, ExampleCategory category, int difficulty, string documentation, bool visible)
         {
+            throw new NotSupportedException();
+        }
+
+        public ExampleAttribute(string title, ExampleCategory category, int difficulty, string documentation)
+        {
             this.Title = title;
             this.Category = category;
             this.Difficulty = difficulty;
-            this.Visible = visible;
             this.Documentation = documentation;
         }
 
