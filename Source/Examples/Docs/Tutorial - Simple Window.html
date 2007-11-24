@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Tutorial - Simple Window</title>
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="code.cs">
+    <h1>
+        Tutorial - Simple Window
+    </h1>
+    
+    <div class="preview">
+            <img src="Images/Tutorial%20-%20Simple%20Window.png" id="IMG1" />
+    </div>
+    
+    <p>This tutorial explains how to create an OpenTK window and draw a single colored
+        triangle.</p>
+    <!--<br /><br /><br /><br /><br /><br /><br /><br />-->
+    <h2>Overview</h2>
+    <p>The <a href="">OpenTK.GameWindow</a> provides the simplest method to create an OpenTK window. Your
+       application may derive from this class and call the <a href="">GameWindow constructor</a> with the desired
+        <a href="">DisplayMode</a> and window <a href="">Title</a> as parameters. Below is a brief overview
+        of the GameWindow class.</p>
+    <h2>Events and Methods</h2>
+    <p>As soon as the GameWindow is created, you may call the <a href="">GameWindow.Run</a> method to 
+       start execution of the game loop. The game loop consists of frame <a href="">Update</a> and
+       <a href="">Render</a> events. You can optionally set a target frame <a href="">update</a> and
+       <a href="">render frequency</a>, which OpenTK will try to maintain.</p>
+    <p>The <a href="">GameWindow.Load</a> and <a href="">Unload</a> events occur just before entering
+       and leaving the game loop. The OpenGL context exists and is current in both cases, making them
+       a good place to load and dispose game resources like textures, shaders and buffers.</p>
+    <p></p>
+
+</body>
+</html>
