@@ -6,7 +6,7 @@
     <xsl:if test="starts-with(@name, 'T')">
 
       <xsl:variable name="currentType">
-        <xsl:value-of select='substring(@name, 3)' />
+        <xsl:value-of select="concat(substring(@name, 3), '.')" />
       </xsl:variable>
       
       <!-- Print title -->
@@ -22,14 +22,14 @@
           
           <!-- Methods -->
           <xsl:if test="starts-with(@name, 'M')">
-            <h3>Method: <xsl:value-of select="translate(substring(@name, 4 + string-length($currentType)), ',', ', ')" /></h3>
-            <xsl:value-of select="." />
+            <h3>Method: <xsl:value-of select="translate(substring(@name, 3 + string-length($currentType)), ',', ', ')" /></h3>
+            <xsl:value-of select="summary" />
           </xsl:if>
 
           <!-- Properties -->
           <xsl:if test="starts-with(@name, 'P')">
             <h3>
-              Property: <xsl:value-of select="substring(@name, 4+string-length($currentType))" />
+              Property: <xsl:value-of select="substring(@name, 3 + string-length($currentType))" />
             </h3>
             <xsl:value-of select="." />
           </xsl:if>
@@ -37,7 +37,7 @@
           <!-- Fields -->
           <xsl:if test="starts-with(@name, 'F')">
             <h3>
-              Field: <xsl:value-of select="substring(@name, 4+string-length($currentType))" />
+              Field: <xsl:value-of select="substring(@name, 3 + string-length($currentType))" />
             </h3>
             <xsl:value-of select="." />
           </xsl:if>
