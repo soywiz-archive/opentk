@@ -164,6 +164,7 @@
 
       <head>
         <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+        <![CDATA[
         <script type="text/javascript">
           function toggleLayer (whichLayer)
           {
@@ -177,12 +178,13 @@
               
             vis = elem.style;
 
-            if ((vis.display == '') &amp;&amp; (elem.offsetWidth != undefined) &amp;&amp; (elem.offsetHeight != undefined))
-              vis.display = (elem.offsetWidth !=0 &amp;&amp; elem.offsetHeight != 0) ? 'block' : 'none';
+            if ((vis.display == '') && (elem.offsetWidth != undefined) && (elem.offsetHeight != undefined))
+              vis.display = (elem.offsetWidth !=0 && elem.offsetHeight != 0) ? 'block' : 'none';
 
             vis.display = (vis.display == '' || vis.display == 'block') ? 'none' : 'block';
           }
         </script>
+        ]]>
 
         <title>
           OpenTK function reference
