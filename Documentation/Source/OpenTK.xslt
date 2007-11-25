@@ -158,7 +158,35 @@
     </xsl:if>
 
   </xsl:template>
+
+  <!-- For viewing in drupal
+  <xsl:template match="/doc">
+    <script type="text/javascript">
+      <![CDATA[
+          function toggleLayer (whichLayer)
+          {
+            var elem, vis;
+            if (document.getElementById)  // Standard compliant
+              elem = document.getElementById (whichLayer);
+            else if (document.all)        // Old IE
+              elem = document.all[whichLayer];
+            else if (document.layers)    // Old Netscape
+              elem = document.layers[whichLayer];
+              
+            vis = elem.style;
+
+            if ((vis.display == '') && (elem.offsetWidth != undefined) && (elem.offsetHeight != undefined))
+              vis.display = (elem.offsetWidth !=0 && elem.offsetHeight != 0) ? 'block' : 'none';
+
+            vis.display = (vis.display == '' || vis.display == 'block') ? 'none' : 'block';
+          }
+          ]]>
+    </script>
+    <xsl:call-template name='DocumentationSection' />
+  </xsl:template>
+  -->
   
+  <!-- For general viewing -->
   <xsl:template match="/doc">
     <html>
 
@@ -202,5 +230,5 @@
 
     </html>
   </xsl:template>
-  
+
 </xsl:stylesheet>
