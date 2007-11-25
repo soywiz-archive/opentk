@@ -24,7 +24,6 @@ h1
 
 h2
 {
-	padding-top: 1em;
 	font-size: 140%;
 	font-weight: bold;
 	color: #505050;
@@ -41,8 +40,11 @@ h3
 	text-align: left;
 }
 
-h4 {
-  font-size: 115%;
+h4 
+{
+	color: #808080;
+	font-size: 115%;
+	font-weight: bold;
 }
 
 h5 {
@@ -89,10 +91,49 @@ hr
   background: #5294c1;
 }
 
-div
+/********/
+/* Divs */
+/********/
+
+div 
 {
-	padding-top: 1em;
-	padding-bottom: .5em;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+}
+
+div.type
+{
+	background-color: #fff5f5;
+	/*border: 1px solid #eeeeee;*/
+	margin-left: 0em;
+	margin-right: 0em;	
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
+	padding: 0.5em;
+}
+
+div.method
+{
+	background-color: #eeeeff;
+	border: 1px solid #e9e9f9;
+}
+
+div.field
+{
+	background-color: #ffddff;
+	border: 1px solid #f9d9f9;
+}
+
+div.property
+{
+	background-color: #f9f9dd;
+	border: 1px solid #f0f0dd;
+}
+
+div.event
+{
+	background-color: #eeffee;
+	border: 1px solid #e9f9e9;
 }
 
 div.preview 
