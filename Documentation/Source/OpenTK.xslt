@@ -164,8 +164,8 @@
 
       <head>
         <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
-        <![CDATA[
         <script type="text/javascript">
+          <![CDATA[
           function toggleLayer (whichLayer)
           {
             var elem, vis;
@@ -183,8 +183,8 @@
 
             vis.display = (vis.display == '' || vis.display == 'block') ? 'none' : 'block';
           }
+          ]]>
         </script>
-        ]]>
 
         <title>
           OpenTK function reference
