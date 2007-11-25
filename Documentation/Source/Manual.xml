@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="OpenTK.xslt"?>
-<!DOCTYPE manual SYSTEM "Manual.dtd" [ <!ENTITY doc SYSTEM "OpenTK.xml"> ]>
-<manual>
-  &doc;
-</manual>

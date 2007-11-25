@@ -2,6 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <!-- String replace template -->
+  <!-- Not used yet, but can be useful for long function declarations -->
   <xsl:template name="globalReplace">
     <xsl:param name="outputString"/>
     <xsl:param name="target"/>
@@ -29,10 +30,13 @@
   <!-- Comment printer -->
   <xsl:template name="PrintComment">
     <xsl:param name="CommentType" />
-    <h4>
-      <xsl:value-of select='name($CommentType)'/>
-    </h4>
-    <xsl:value-of select="$CommentType" />
+    <xsl:if test="$CommentType!=''">
+      <h4>
+        <xsl:value-of select='name($CommentType)'/>: 
+        <xsl:value-of select='$CommentType/@*'/>
+      </h4>
+      <xsl:value-of select="$CommentType" />
+    </xsl:if>
   </xsl:template>
 
   <!-- Prints all comments associated with this type -->
@@ -41,22 +45,41 @@
     <xsl:call-template name='PrintComment'>
       <xsl:with-param name='CommentType' select='summary'/>
     </xsl:call-template>
-    
-    <xsl:call-template name='PrintComment'>
-      <xsl:with-param name='CommentType' select='remarks'/>
-    </xsl:call-template>
-    
+
+    <xsl:for-each select='param'>
+      <xsl:call-template name='PrintComment'>
+        <xsl:with-param name='CommentType' select='.'/>
+      </xsl:call-template>
+    </xsl:for-each>
+
     <xsl:call-template name='PrintComment'>
       <xsl:with-param name='CommentType' select='returns'/>
     </xsl:call-template>
-    
-    <xsl:for-each select='param'>
-      <xsl:call-template name='PrintComment'>
-        <xsl:with-param name='CommentType' select='name'/>
-      </xsl:call-template>
-    </xsl:for-each>
-    
+
+    <xsl:call-template name='PrintComment'>
+      <xsl:with-param name='CommentType' select='remarks'/>
+    </xsl:call-template>
+
   </xsl:template>
+
+  <!-- Prints documentation for a type. -->
+  <xsl:template name='DocumentationSection'>
+
+    <!--<xsl:apply-templates select='*/members'/>-->
+    <xsl:for-each select='members/*'>
+
+      <xsl:sort select='@name'/>
+      <xsl:if test="starts-with(@name, 'T')">
+        <div class="type">
+          <xsl:call-template name='TypeDeclaration' />
+        </div>
+      </xsl:if>
+
+    </xsl:for-each>
+
+  </xsl:template>
+  
+  <!-- Member declaration (method/event/field/property) -->
   
   <!-- Type Declaration -->
   <xsl:template match='member' name='TypeDeclaration'>
@@ -71,7 +94,7 @@
       <!-- We use a simple javascript to hide/unhide the members for this type 
            when clicking the type name. -->
       <h2>
-        <a href="javascript:;" onmousedown="toggleLayer('{concat($currentType, 'hideable')}')">
+        <a href="javascript:;" onmousedown="toggleLayer('{concat($currentType, 'hideable')}')" title="View members">
         <xsl:value-of select='substring(@name, 3)' />
         </a>
       </h2>
@@ -134,23 +157,6 @@
       
     </xsl:if>
 
-  </xsl:template>
-
-  <!-- One section for each type -->
-  <xsl:template name='DocumentationSection'>
-    
-    <!--<xsl:apply-templates select='*/members'/>-->
-    <xsl:for-each select='members/*'>
-
-      <xsl:sort select='@name'/>
-      <xsl:if test="starts-with(@name, 'T')">
-        <div class="type">
-          <xsl:call-template name='TypeDeclaration' />
-        </div>
-      </xsl:if>
-      
-    </xsl:for-each>
-    
   </xsl:template>
   
   <xsl:template match="/doc">
