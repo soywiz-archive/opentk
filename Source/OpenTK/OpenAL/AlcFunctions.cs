@@ -76,10 +76,10 @@ typedef void ALCvoid;
 namespace OpenTK.OpenAL
 {
  /// <summary>Alc = Audio Library Context</summary>
-    public static class Alc
+    internal static class Alc
     {
         #region Constants
-        private const string Lib = Al.Lib;
+        private const string Lib = AL.Lib;
         private const CallingConvention Style = CallingConvention.Cdecl;
         #endregion Constants
 
@@ -90,7 +90,7 @@ namespace OpenTK.OpenAL
 
         // ALC_API ALCboolean      ALC_APIENTRY alcMakeContextCurrent( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcMakeContextCurrent", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern Al.Bool MakeContextCurrent( [In] IntPtr context );
+        internal static extern AL.Bool MakeContextCurrent( [In] IntPtr context );
 
         // ALC_API void            ALC_APIENTRY alcProcessContext( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcProcessContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
@@ -121,7 +121,7 @@ namespace OpenTK.OpenAL
 
         // ALC_API ALCboolean      ALC_APIENTRY alcCloseDevice( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCloseDevice", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern Al.Bool CloseDevice( [In] IntPtr device );
+        internal static extern AL.Bool CloseDevice( [In] IntPtr device );
         #endregion Device Management
 
         #region Error support.
@@ -137,7 +137,7 @@ namespace OpenTK.OpenAL
 
         // ALC_API ALCboolean      ALC_APIENTRY alcIsExtensionPresent( ALCdevice *device, const ALCchar *extname );
         [DllImport( Alc.Lib, EntryPoint = "alcIsExtensionPresent", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern Al.Bool IsExtensionPresent( [In] IntPtr device, [In] string extname );
+        internal static extern AL.Bool IsExtensionPresent( [In] IntPtr device, [In] string extname );
 
         // ALC_API void  *         ALC_APIENTRY alcGetProcAddress( ALCdevice *device, const ALCchar *funcname );
         [DllImport( Alc.Lib, EntryPoint = "alcGetProcAddress", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
@@ -149,10 +149,10 @@ namespace OpenTK.OpenAL
         #endregion Extension support.
 
         #region Query functions
-        // ALC_API const ALCchar * ALC_APIENTRY alcGetString( ALCdevice *device, ALCenum param );
         [DllImport( Alc.Lib, EntryPoint = "alcGetString", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
         private static extern IntPtr GetStringInternal( [In] IntPtr device, Enums.AlcGetString param );
-       
+        // ALC_API const ALCchar * ALC_APIENTRY alcGetString( ALCdevice *device, ALCenum param );
+          
         internal static string GetString( IntPtr device, Enums.AlcGetString param )
         {
             return Marshal.PtrToStringAnsi( GetStringInternal( device, param ) );
@@ -160,7 +160,7 @@ namespace OpenTK.OpenAL
 
         internal static string GetStringDevices( )
         {
-            return  Marshal.PtrToStringBSTR( GetStringInternal( Al.Null, Enums.AlcGetString.DeviceSpecifier ));
+            return  Marshal.PtrToStringBSTR( GetStringInternal( AL.Null, Enums.AlcGetString.DeviceSpecifier ));
         }
 
         // ALC_API void            ALC_APIENTRY alcGetIntegerv( ALCdevice *device, ALCenum param, ALCsizei size, ALCint *data );
@@ -175,7 +175,7 @@ namespace OpenTK.OpenAL
 
         // ALC_API ALCboolean      ALC_APIENTRY alcCaptureCloseDevice( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureCloseDevice", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern Al.Bool CaptureCloseDevice( [In] IntPtr device );
+        internal static extern AL.Bool CaptureCloseDevice( [In] IntPtr device );
 
         // ALC_API void            ALC_APIENTRY alcCaptureStart( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureStart", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
