@@ -96,13 +96,13 @@ namespace OpenTK.OpenAL
         /// <summary>Query total amount of X-RAM.</summary>
         public int GetRamSize( )
         {
-            return AL.GetInteger( (Enums.ALGlobalState) AL_EAX_RAM_SIZE );
+            return AL.Get( (Enums.ALGetInteger) AL_EAX_RAM_SIZE );
         }
 
         /// <summary>Query free X-RAM available.</summary>
         public int GetRamFree( )
         {
-            return AL.GetInteger( (Enums.ALGlobalState) AL_EAX_RAM_FREE );
+            return AL.Get( (Enums.ALGetInteger) AL_EAX_RAM_FREE );
         }
 
         public enum XRamStorage : byte

@@ -239,7 +239,7 @@ namespace OpenTK.OpenAL.Enums
         Extensions = 0xB004,
     }
 
-    public enum ALGlobalState : int // alGetBool/Int/Float/Double
+    public enum ALGetFloat : int
     { // Global tweakage.
         ///<summary>Doppler scale.  Default 1.0f</summary>
         DopplerFactor = 0xC000,
@@ -249,7 +249,10 @@ namespace OpenTK.OpenAL.Enums
 
         ///<summary>Speed of Sound in units per second. default value 343.3f</summary>
         SpeedOfSound = 0xC003,
+    }
 
+    public enum ALGetInteger : int
+    {
         ///<summary>See enum AlDistanceModel.</summary><see cref="AlDistanceModels"/>
         DistanceModel = 0xD000,
     }

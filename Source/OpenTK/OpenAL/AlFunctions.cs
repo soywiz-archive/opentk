@@ -124,13 +124,13 @@ namespace OpenTK.OpenAL
         /// <summary>This function retrieves an OpenAL string property.</summary>
         /// <param name="param">The property to be returned: AL_VENDOR, AL_VERSION, AL_RENDERER, AL_EXTENSIONS</param>
         /// <returns>Returns a pointer to a null-terminated string.</returns>
-        public static string GetString( Enums.ALGetString param )
+        public static string Get( Enums.ALGetString param )
         {
             return Marshal.PtrToStringAnsi( GetStringPrivate( param ) );
         }
 
         /// <summary>This function retrieves an OpenAL string property.</summary>
-        /// <param name="param">The human-readable Errorstring to be returned.</param>
+        /// <param name="param">The human-readable errorstring to be returned.</param>
         /// <returns>Returns a pointer to a null-terminated string.</returns>
         public static string GetErrorString( Enums.ALError param )
         {
@@ -144,79 +144,83 @@ namespace OpenTK.OpenAL
 // AL_API void AL_APIENTRY alGetDoublev( ALenum param, ALdouble* data );
          */
 
+        /* disabled due to no token using it
         /// <summary>This function returns a boolean OpenAL state.</summary>
         /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
         /// <returns>The boolean state described by param will be returned.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetBoolean", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern AL.Bool GetBoolean( Enums.ALGlobalState param );
+        public static extern AL.Bool Get( Enums.ALGetBoolean param );
         // AL_API ALboolean AL_APIENTRY alGetBoolean( ALenum param );
+        */
 
         /// <summary>This function returns an integer OpenAL state.</summary>
         /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
         /// <returns>The integer state described by param will be returned.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetInteger", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern int GetInteger( Enums.ALGlobalState param );
+        public static extern int Get( Enums.ALGetInteger param );
         // AL_API ALint AL_APIENTRY alGetInteger( ALenum param );
 
         /// <summary>This function returns a floating point OpenAL state.</summary>
         /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
         /// <returns>The floating point state described by param will be returned.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetFloat", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern float GetFloat( Enums.ALGlobalState param );
+        public static extern float Get( Enums.ALGetFloat param );
         // AL_API ALfloat AL_APIENTRY alGetFloat( ALenum param );
 
-        /// <summary>This function returns a double precision floating point OpenAL state.</summary>
-        /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
-        /// <returns>The double value described by param will be returned.</returns>
-        [DllImport( AL.Lib, EntryPoint = "alGetDouble", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern double GetDouble( Enums.ALGlobalState param );
-        // AL_API ALdouble AL_APIENTRY alGetDouble( ALenum param );
+        /* disabled due to no token using it
+       /// <summary>This function returns a double precision floating point OpenAL state.</summary>
+       /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
+       /// <returns>The double value described by param will be returned.</returns>
+       [DllImport( AL.Lib, EntryPoint = "alGetDouble", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
+       public static extern double Get( Enums.ALGetDouble param );
+       // AL_API ALdouble AL_APIENTRY alGetDouble( ALenum param );
+       */
 
-        /// <summary>Error support. Obtain the most recent error generated in the AL state machine. When an error is detected by AL, a flag is set and the error code is recorded. Further errors, if they occur, do not affect this recorded code. When alGetError is called, the code is returned and the flag is cleared, so that a further error will again record its code.</summary>
-        /// <returns>The first error that occured. can be used with Al.GetString. Returns an Alenum representing the error state. When an OpenAL error occurs, the error state is set and will not be changed until the error state is retrieved using alGetError. Whenever alGetError is called, the error state is cleared and the last state (the current state when the call was made) is returned. To isolate error detection to a specific portion of code, alGetError should be called before the isolated section to clear the current error state.</returns>
-        [DllImport( AL.Lib, EntryPoint = "alGetError", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern Enums.ALError GetError( );
-        // AL_API ALenum AL_APIENTRY alGetError( void );
+       /// <summary>Error support. Obtain the most recent error generated in the AL state machine. When an error is detected by AL, a flag is set and the error code is recorded. Further errors, if they occur, do not affect this recorded code. When alGetError is called, the code is returned and the flag is cleared, so that a further error will again record its code.</summary>
+       /// <returns>The first error that occured. can be used with Al.GetString. Returns an Alenum representing the error state. When an OpenAL error occurs, the error state is set and will not be changed until the error state is retrieved using alGetError. Whenever alGetError is called, the error state is cleared and the last state (the current state when the call was made) is returned. To isolate error detection to a specific portion of code, alGetError should be called before the isolated section to clear the current error state.</returns>
+       [DllImport( AL.Lib, EntryPoint = "alGetError", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
+       public static extern Enums.ALError GetError( );
+       // AL_API ALenum AL_APIENTRY alGetError( void );
 
-        #endregion State retrieval
+       #endregion State retrieval
 
-        #region Extension support.
+       #region Extension support.
 
-        /// <summary>This function tests if a specific extension is available for the OpenAL driver.</summary>
-        /// <param name="extname">A null-terminated string describing the desired extension.</param>
-        /// <returns>Returns AL_TRUE if the extension is available, AL_FALSE if the extension is not available.</returns>
-        [DllImport( AL.Lib, EntryPoint = "alIsExtensionPresent", ExactSpelling = true, CallingConvention = AL.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        public static extern AL.Bool IsExtensionPresent( [In] string extname );
-        // AL_API ALboolean AL_APIENTRY alIsExtensionPresent( const ALchar* extname );
+       /// <summary>This function tests if a specific extension is available for the OpenAL driver.</summary>
+       /// <param name="extname">A null-terminated string describing the desired extension.</param>
+       /// <returns>Returns AL_TRUE if the extension is available, AL_FALSE if the extension is not available.</returns>
+       [DllImport( AL.Lib, EntryPoint = "alIsExtensionPresent", ExactSpelling = true, CallingConvention = AL.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
+       public static extern AL.Bool IsExtensionPresent( [In] string extname );
+       // AL_API ALboolean AL_APIENTRY alIsExtensionPresent( const ALchar* extname );
 
-        /// <summary>This function returns the address of an OpenAL extension function. Handle with care.</summary>
-        /// <param name="fname">A null-terminated string containing the function name.</param>
-        /// <returns>The return value is a pointer to the specified function. The return value will be NULL if the function is not found.</returns>
-        [DllImport( AL.Lib, EntryPoint = "alGetProcAddress", ExactSpelling = true, CallingConvention = AL.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        public static extern IntPtr GetProcAddress( [In] string fname );
-        // AL_API void* AL_APIENTRY alGetProcAddress( const ALchar* fname );
+       /// <summary>This function returns the address of an OpenAL extension function. Handle with care.</summary>
+       /// <param name="fname">A null-terminated string containing the function name.</param>
+       /// <returns>The return value is a pointer to the specified function. The return value will be NULL if the function is not found.</returns>
+       [DllImport( AL.Lib, EntryPoint = "alGetProcAddress", ExactSpelling = true, CallingConvention = AL.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
+       public static extern IntPtr GetProcAddress( [In] string fname );
+       // AL_API void* AL_APIENTRY alGetProcAddress( const ALchar* fname );
 
-        /// <summary>This function returns the enumeration value of an OpenAL enum described by a string.</summary>
-        /// <param name="ename">A null-terminated string describing an OpenAL enum.</param>
-        /// <returns>Returns the actual ALenum described by a string. Returns NULL if the string doesn’t describe a valid OpenAL enum.</returns>
-        [DllImport( AL.Lib, EntryPoint = "alGetEnumValue", ExactSpelling = true, CallingConvention = AL.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        public static extern int GetEnumValue( [In] string ename );
-        // AL_API ALenum AL_APIENTRY alGetEnumValue( const ALchar* ename );
+       /// <summary>This function returns the enumeration value of an OpenAL enum described by a string.</summary>
+       /// <param name="ename">A null-terminated string describing an OpenAL enum.</param>
+       /// <returns>Returns the actual ALenum described by a string. Returns NULL if the string doesn’t describe a valid OpenAL enum.</returns>
+       [DllImport( AL.Lib, EntryPoint = "alGetEnumValue", ExactSpelling = true, CallingConvention = AL.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
+       public static extern int GetEnumValue( [In] string ename );
+       // AL_API ALenum AL_APIENTRY alGetEnumValue( const ALchar* ename );
 
-        #endregion Extension support.
+       #endregion Extension support.
 
-        /*
-         * Listener
-         * Listener represents the location and orientation of the
-         * 'user' in 3D-space.
-         *
-         * Properties include: -
-         *
-         * Gain         AL_GAIN         ALfloat
-         * Position     AL_POSITION     ALfloat[3]
-         * Velocity     AL_VELOCITY     ALfloat[3]
-         * Orientation  AL_ORIENTATION  ALfloat[6] (Forward then Up vectors)
-        */
+       /*
+        * Listener
+        * Listener represents the location and orientation of the
+        * 'user' in 3D-space.
+        *
+        * Properties include: -
+        *
+        * Gain         AL_GAIN         ALfloat
+        * Position     AL_POSITION     ALfloat[3]
+        * Velocity     AL_VELOCITY     ALfloat[3]
+        * Orientation  AL_ORIENTATION  ALfloat[6] (Forward then Up vectors)
+       */
 
         #region Set Listener parameters
 
@@ -269,6 +273,7 @@ namespace OpenTK.OpenAL
         public static void Listener( Enums.ALListenerfv param, ref Vector3 at, ref Vector3 up )
         {
             float[] temp = new float[6];
+
             temp[0] = at.X;
             temp[1] = at.Y;
             temp[2] = at.Z;
@@ -416,7 +421,7 @@ namespace OpenTK.OpenAL
 
         /// <summary>This function generates one source only. References to sources are ALuint values, which are used wherever a source reference is needed (in calls such as alDeleteSources and alSourcei).</summary>
         /// <param name="sources">Pointer to an uint value which will store the name of the new source.</param>
-        public static void GenSource( out uint source )
+        public static void GenSources( out uint source )
         {
             GenSources( 1, out source );
         }
@@ -441,7 +446,7 @@ namespace OpenTK.OpenAL
 
         /// <summary>This function deletes one source only.</summary>
         /// <param name="sources">Pointer to a source name identifying the source to be deleted.</param>
-        public static void DeleteSource( ref uint source )
+        public static void DeleteSources( ref uint source )
         {
             uint[] t = new uint[1];
             t[0] = source;
@@ -543,7 +548,7 @@ namespace OpenTK.OpenAL
         /// <param name="param">The name of the attribute to retrieve: AL_SOURCE_RELATIVE, AL_BUFFER, AL_SOURCE_STATE, AL_BUFFERS_QUEUED, AL_BUFFERS_PROCESSED</param>
         /// <param name="value">A pointer to the integer value being retrieved.</param>
         [DllImport( AL.Lib, EntryPoint = "alGetSourcei", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void GetSourcei( uint sid, Enums.ALSourceiGet param, [Out] out int value );
+        public static extern void GetSource( uint sid, Enums.ALSourceiGet param, [Out] out int value );
         // AL_API void AL_APIENTRY alGetSourcei( ALuint sid,  ALenum param, ALint* value );
 
         /// <summary>This function retrieves a bool property of a source.</summary>
@@ -553,7 +558,7 @@ namespace OpenTK.OpenAL
         public static void GetSource( uint sid, Enums.ALSourceb param, [Out] out bool value )
         {
             int result;
-            GetSourcei( sid, (Enums.ALSourceiGet) param, out result );
+            GetSource( sid, (Enums.ALSourceiGet) param, out result );
             if ( result == 1 )
                 value = true;
             else
@@ -813,6 +818,7 @@ namespace OpenTK.OpenAL
          */
 
         #region Buffer objects
+
         [DllImport( AL.Lib, EntryPoint = "alGenBuffers", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
         unsafe private static extern void GenBuffersPrivate( int n, [Out] uint* buffers );
         // AL_API void AL_APIENTRY alGenBuffers( ALsizei n, ALuint* Buffers );
@@ -834,7 +840,7 @@ namespace OpenTK.OpenAL
 
         /// <summary>This function generates one buffer only, which contain audio data (see alBufferData). References to buffers are ALuint values, which are used wherever a buffer reference is needed (in calls such as alDeleteBuffers, alSourcei, alSourceQueueBuffers, and alSourceUnqueueBuffers).</summary>
         /// <param name="buffers">Pointer to an uint value which will store the name of the new buffer.</param>
-        public static void GenBuffer( out uint buffer )
+        public static void GenBuffers( out uint buffer )
         {
             GenBuffers( 1, out buffer );
         }
@@ -859,7 +865,7 @@ namespace OpenTK.OpenAL
 
         /// <summary>This function deletes one buffer only, freeing the resources used by the buffer. Buffers which are attached to a source can not be deleted. See AL.Source and AL.SourceUnqueueBuffers for information on how to detach a buffer from a source.</summary>
         /// <param name="buffers">Pointer to a buffer name identifying the buffer to be deleted.</param>
-        public static void DeleteBuffer( ref uint buffer )
+        public static void DeleteBuffers( ref uint buffer )
         {
             unsafe
             {
@@ -886,7 +892,8 @@ namespace OpenTK.OpenAL
         [DllImport( AL.Lib, EntryPoint = "alBufferData", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern void BufferData( uint bid, Enums.ALFormat format, IntPtr data, int size, int freq ); // Specify the data to be copied into a Buffer
         // AL_API void AL_APIENTRY alBufferData( ALuint bid, ALenum format, const ALvoid* data, ALsizei size, ALsizei freq );
-        #endregion Buffer objects
+     
+#endregion Buffer objects
 
         #region Set Buffer parameters (currently parameters can only be read)
 
