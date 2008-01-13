@@ -76,7 +76,7 @@ typedef void ALCvoid;
 namespace OpenTK.OpenAL
 {
  /// <summary>Alc = Audio Library Context</summary>
-    internal static class Alc
+    public static class Alc
     {
         #region Constants
         private const string Lib = AL.Lib;
@@ -86,42 +86,42 @@ namespace OpenTK.OpenAL
         #region Context Management
         // ALC_API ALCcontext *    ALC_APIENTRY alcCreateContext( ALCdevice *device, const ALCint* attrlist );
         [DllImport( Alc.Lib, EntryPoint = "alcCreateContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern IntPtr CreateContext( [In] IntPtr device, [In] IntPtr attrlist );
+        public static extern IntPtr CreateContext( [In] IntPtr device, [In] IntPtr attrlist );
 
         // ALC_API ALCboolean      ALC_APIENTRY alcMakeContextCurrent( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcMakeContextCurrent", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern AL.Bool MakeContextCurrent( [In] IntPtr context );
+        public static extern AL.Bool MakeContextCurrent( [In] IntPtr context );
 
         // ALC_API void            ALC_APIENTRY alcProcessContext( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcProcessContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern void ProcessContext( [In] IntPtr context );
+        public static extern void ProcessContext( [In] IntPtr context );
 
         // ALC_API void            ALC_APIENTRY alcSuspendContext( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcSuspendContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern void SuspendContext( [In] IntPtr context );
+        public static extern void SuspendContext( [In] IntPtr context );
 
 
         // ALC_API void            ALC_APIENTRY alcDestroyContext( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcDestroyContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern void DestroyContext( [In] IntPtr context );
+        public static extern void DestroyContext( [In] IntPtr context );
 
         // ALC_API ALCcontext *    ALC_APIENTRY alcGetCurrentContext( void );
         [DllImport( Alc.Lib, EntryPoint = "alcGetCurrentContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern IntPtr GetCurrentContext( );
+        public static extern IntPtr GetCurrentContext( );
 
         // ALC_API ALCdevice*      ALC_APIENTRY alcGetContextsDevice( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcGetContextsDevice", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern IntPtr GetContextsDevice( [In] IntPtr context );
+        public static extern IntPtr GetContextsDevice( [In] IntPtr context );
         #endregion Context Management
 
         #region Device Management
         // ALC_API ALCdevice *     ALC_APIENTRY alcOpenDevice( const ALCchar *devicename );
         [DllImport( Alc.Lib, EntryPoint = "alcOpenDevice", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern IntPtr OpenDevice( [In] string devicename );
+        public static extern IntPtr OpenDevice( [In] string devicename );
 
         // ALC_API ALCboolean      ALC_APIENTRY alcCloseDevice( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCloseDevice", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern AL.Bool CloseDevice( [In] IntPtr device );
+        public static extern AL.Bool CloseDevice( [In] IntPtr device );
         #endregion Device Management
 
         #region Error support.
@@ -129,7 +129,7 @@ namespace OpenTK.OpenAL
 
         // ALC_API ALCenum         ALC_APIENTRY alcGetError( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcGetError", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern Enums.AlcError GetError( [In] IntPtr device );
+        public static extern Enums.AlcError GetError( [In] IntPtr device );
         #endregion Error support.
 
         #region Extension support.
@@ -137,57 +137,57 @@ namespace OpenTK.OpenAL
 
         // ALC_API ALCboolean      ALC_APIENTRY alcIsExtensionPresent( ALCdevice *device, const ALCchar *extname );
         [DllImport( Alc.Lib, EntryPoint = "alcIsExtensionPresent", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern AL.Bool IsExtensionPresent( [In] IntPtr device, [In] string extname );
+        public static extern AL.Bool IsExtensionPresent( [In] IntPtr device, [In] string extname );
 
         // ALC_API void  *         ALC_APIENTRY alcGetProcAddress( ALCdevice *device, const ALCchar *funcname );
         [DllImport( Alc.Lib, EntryPoint = "alcGetProcAddress", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern IntPtr GetProcAddress( [In] IntPtr device, [In] string funcname );
+        public static extern IntPtr GetProcAddress( [In] IntPtr device, [In] string funcname );
 
         // ALC_API ALCenum         ALC_APIENTRY alcGetEnumValue( ALCdevice *device, const ALCchar *enumname );
         [DllImport( Alc.Lib, EntryPoint = "alcGetEnumValue", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern int GetEnumValue( [In] IntPtr device, [In] string enumname );
+        public static extern int GetEnumValue( [In] IntPtr device, [In] string enumname );
         #endregion Extension support.
 
         #region Query functions
         [DllImport( Alc.Lib, EntryPoint = "alcGetString", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        private static extern IntPtr GetStringInternal( [In] IntPtr device, Enums.AlcGetString param );
+        private static extern IntPtr GetStringpublic( [In] IntPtr device, Enums.AlcGetString param );
         // ALC_API const ALCchar * ALC_APIENTRY alcGetString( ALCdevice *device, ALCenum param );
           
-        internal static string GetString( IntPtr device, Enums.AlcGetString param )
+        public static string GetString( IntPtr device, Enums.AlcGetString param )
         {
-            return Marshal.PtrToStringAnsi( GetStringInternal( device, param ) );
+            return Marshal.PtrToStringAnsi( GetStringpublic( device, param ) );
         }
 
-        internal static string GetStringDevices( )
+        public static string GetStringDevices( )
         {
-            return  Marshal.PtrToStringBSTR( GetStringInternal( AL.Null, Enums.AlcGetString.DeviceSpecifier ));
+            return  Marshal.PtrToStringBSTR( GetStringpublic( AL.Null, Enums.AlcGetString.DeviceSpecifier ));
         }
 
         // ALC_API void            ALC_APIENTRY alcGetIntegerv( ALCdevice *device, ALCenum param, ALCsizei size, ALCint *data );
         [DllImport( Alc.Lib, EntryPoint = "alcGetIntegerv", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern void GetInteger( [In] IntPtr device, Enums.AlcGetInteger param, int sizeofdatainbytes, [Out] out int data );
+        public static extern void GetInteger( [In] IntPtr device, Enums.AlcGetInteger param, int sizeofdatainbytes, [Out] out int data );
         #endregion Query functions
 
         #region Capture functions
         // ALC_API ALCdevice*      ALC_APIENTRY alcCaptureOpenDevice( const ALCchar *devicename, ALCuint frequency, ALCenum format, ALCsizei buffersize );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureOpenDevice", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern IntPtr CaptureOpenDevice( string devicename, uint frequency, Enums.AlFormat format, int buffersize );
+        public static extern IntPtr CaptureOpenDevice( string devicename, uint frequency, Enums.AlFormat format, int buffersize );
 
         // ALC_API ALCboolean      ALC_APIENTRY alcCaptureCloseDevice( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureCloseDevice", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern AL.Bool CaptureCloseDevice( [In] IntPtr device );
+        public static extern AL.Bool CaptureCloseDevice( [In] IntPtr device );
 
         // ALC_API void            ALC_APIENTRY alcCaptureStart( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureStart", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern void CaptureStart( [In] IntPtr device );
+        public static extern void CaptureStart( [In] IntPtr device );
 
         // ALC_API void            ALC_APIENTRY alcCaptureStop( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureStop", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern void CaptureStop( [In] IntPtr device );
+        public static extern void CaptureStop( [In] IntPtr device );
 
         // ALC_API void            ALC_APIENTRY alcCaptureSamples( ALCdevice *device, ALCvoid *buffer, ALCsizei samples );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureSamples", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
-        internal static extern void CaptureSamples( [In] IntPtr device, [Out] out IntPtr buffer, [Out] out int samples );
+        public static extern void CaptureSamples( [In] IntPtr device, [Out] out IntPtr buffer, [Out] out int samples );
         #endregion Capture functions
 
         /* delegates
