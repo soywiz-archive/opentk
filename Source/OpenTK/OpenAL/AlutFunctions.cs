@@ -4,17 +4,7 @@
  * Spec: http://www.openal.org/openal_webstf/specs/alut.html
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
  * See license.txt for license details (MIT)
- * http://www.OpenTK.net
- */
-
-/* Version History:
- * 0.1
- * - The following functions are not bound/imported. Issue of undoing C malloc to prevent memory leaks.
- *     "alutLoadMemoryFromFile, alutLoadMemoryFromFileImage, alutLoadMemoryHelloWorld, alutLoadMemoryWaveform"
- *   Please use Alut.CreateBuffer* functions instead, which have similar functionality and return a Buffer Handle instead.
- * 
- * 
- */
+ * http://www.OpenTK.net */
 #endregion
 
 using System;
@@ -23,6 +13,7 @@ using System.Security;
 
 namespace OpenTK.OpenAL
 {
+
     /// <summary>Alut, FreeAlut = Free Audio Library Utilities</summary>
     public static class Alut
     {
@@ -32,22 +23,23 @@ namespace OpenTK.OpenAL
         #endregion Constants
 
         #region Init/Exit
-        /// <summary>Alut.Init initializes the ALUT publics and creates an OpenAL context on the default device and makes it the current OpenAL context. If you want something more complex than that (e.g. running on a non-default device or opening multiple contexts on multiple devices), you can use alutInitWithoutContext  instead. alutInit examines the commandline arguments passed to it and remove those it recognizes. It is acceptable to pass two NULL  pointers in settings where no useful information can be obtained from argc and argv.</summary>
-        /// <param name="argcp">Application Main Parameters</param>
-        /// <param name="argv">Application Main Parameters</param>
+
+        /// <summary>Alut.Init initializes the ALUT internals and creates an OpenAL context on the default device and makes it the current OpenAL context. If you want something more complex than that (e.g. running on a non-default device or opening multiple contexts on multiple devices), you can use alutInitWithoutContext  instead. alutInit examines the commandline arguments passed to it and remove those it recognizes. It is acceptable to pass two NULL  pointers in settings where no useful information can be obtained from argc and argv.</summary>
+        /// <param name="argcp">Application Main Parameters. Can be IntPtr.Zero.</param>
+        /// <param name="argv">Application Main Parameters. Can be IntPtr.Zero.</param>
         /// <returns>Success.</returns>
         [DllImport( Alut.Lib, EntryPoint = "alutInit", ExactSpelling = true, CallingConvention = Alut.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern AL.Bool Init( [In] IntPtr argcp, [In] IntPtr argv );
         // ALUT_API ALboolean ALUT_APIENTRY alutInit (int *argcp, char **argv);
-     
-        /// <summary>Parameterless function for convenience. publicly passes IntPtr.Zero as parameters.</summary>
+
+        /// <summary>Parameterless function for convenience. Internally passes IntPtr.Zero as parameters.</summary>
         /// <returns>Success.</returns>
         public static AL.Bool Init( ) // overload for convenience
         {
             return Init( IntPtr.Zero, IntPtr.Zero );
         }
 
-        /// <summary>Alut.InitWithoutContext initializes the ALUT publics. It does not create any OpenAL context or device, so this has to be done via the usual ALC calls. alutInitWithoutContext examines the commandline arguments passed to it and remove those it recognizes. It is acceptable to pass two NULL pointers in settings where no useful information can be obtained from argc and argv.</summary>
+        /// <summary>Alut.InitWithoutContext initializes the ALUT internals. It does not create any OpenAL context or device, so this has to be done via the usual ALC calls. alutInitWithoutContext examines the commandline arguments passed to it and remove those it recognizes. It is acceptable to pass two NULL pointers in settings where no useful information can be obtained from argc and argv.</summary>
         /// <param name="argcp">Application Main Parameters</param>
         /// <param name="argv">Application Main Parameters</param>
         /// <returns>Success.</returns>
@@ -55,6 +47,8 @@ namespace OpenTK.OpenAL
         public static extern AL.Bool InitWithoutContext( [In] IntPtr argcp, [In] IntPtr argv );
         // ALUT_API ALboolean ALUT_APIENTRY alutInitWithoutContext (int *argcp, char **argv);
 
+        /// <summary>Alut.InitWithoutContext initializes the ALUT internals. It does not create any OpenAL context or device, so this has to be done via the usual ALC calls. alutInitWithoutContext examines the commandline arguments passed to it and remove those it recognizes. It is acceptable to pass two NULL pointers in settings where no useful information can be obtained from argc and argv.</summary>
+        /// <returns>Success.</returns>
         public static AL.Bool InitWithoutContext( ) // overload for convenience
         {
             return InitWithoutContext( IntPtr.Zero, IntPtr.Zero );
@@ -65,17 +59,19 @@ namespace OpenTK.OpenAL
         [DllImport( Alut.Lib, EntryPoint = "alutExit", ExactSpelling = true, CallingConvention = Alut.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern AL.Bool Exit( );
         // ALUT_API ALboolean ALUT_APIENTRY alutExit (void);
+
         #endregion Init/Exit
 
         #region Error Checking
-        /// <summary>Any ALUT routine that fails will return AL_FALSE / AL_NONE / NULL and set the global error state. If a subsequent error occurs while there is still an error recorded publicly, the second error will simply be ignored. Calling alutGetError will reset the error code to ALUT_ERROR_NO_ERROR. Note that the error state is not cleared by other successful ALUT calls. Alut.GetError can be called in any ALUT state and will never fail.</summary>
+
+        /// <summary>Any ALUT routine that fails will return AL_FALSE / AL_NONE / NULL and set the global error state. If a subsequent error occurs while there is still an error recorded internally, the second error will simply be ignored. Calling alutGetError will reset the error code to ALUT_ERROR_NO_ERROR. Note that the error state is not cleared by other successful ALUT calls. Alut.GetError can be called in any ALUT state and will never fail.</summary>
         /// <returns><see cref="Enums.AlutError"/></returns>
         [DllImport( Alut.Lib, EntryPoint = "alutGetError", ExactSpelling = true, CallingConvention = Alut.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern Enums.AlutError GetError( );
         // ALUT_API ALenum ALUT_APIENTRY alutGetError (void);
 
         [DllImport( Alut.Lib, EntryPoint = "alutGetErrorString", ExactSpelling = true, CallingConvention = Alut.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        private static extern IntPtr GetErrorStringpublic( Enums.AlutError error );
+        private static extern IntPtr GetErrorStringPrivate( Enums.AlutError error );
         // ALUT_API const char *ALUT_APIENTRY alutGetErrorString (ALenum error);
 
         /// <summary>Alut.GetErrorString can be used to convert an error code into a human-readable description. The precise text of these descriptions may vary from implementation to implementation and should not be relied upon by the application.</summary>
@@ -83,11 +79,13 @@ namespace OpenTK.OpenAL
         /// <returns>A human-readable description of the Error.</returns>
         public static string GetErrorString( Enums.AlutError error )
         {
-            return Marshal.PtrToStringAnsi( GetErrorStringpublic( error ) );
+            return Marshal.PtrToStringAnsi( GetErrorStringPrivate( error ) );
         }
+
         #endregion Error Checking
 
-        #region File Loading 
+        #region File Loading
+
         /// <summary>Alut.CreateBufferFromFile tries to guess the sound data format by looking at the filename and/or the file contents and loads the sound data into an OpenAL buffer.</summary>
         /// <param name="filename">The file to be loaded</param>
         /// <returns>OpenAL Buffer, 0 on failure.</returns>
@@ -125,11 +123,12 @@ namespace OpenTK.OpenAL
         // ALUT_API ALvoid *ALUT_APIENTRY alutLoadMemoryFromFileImage (const ALvoid *data, ALsizei length, ALenum *format, ALsizei *size, ALfloat *frequency);
         // ALUT_API ALvoid *ALUT_APIENTRY alutLoadMemoryHelloWorld (ALenum *format, ALsizei *size, ALfloat *frequency);
         // ALUT_API ALvoid *ALUT_APIENTRY alutLoadMemoryWaveform (ALenum waveshape, ALfloat frequency, ALfloat phase, ALfloat duration, ALenum *format, ALsizei *size, ALfloat *freq);
+
         #endregion File Loading
 
         #region Misc
         [DllImport( Alut.Lib, EntryPoint = "alutGetMIMETypes", ExactSpelling = true, CallingConvention = Alut.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        private static extern IntPtr GetMIMETypespublic( Enums.AlutLoader loader );
+        private static extern IntPtr GetMIMETypesPrivate( Enums.AlutLoader loader );
         // ALUT_API const char *ALUT_APIENTRY alutGetMIMETypes (ALenum loader); 
 
         /// <summary>Alut.GetMIMETypes returns a comma-separated list of supported MIME types for the given loader type, e.g. something like "audio/basic,audio/mpeg,audio/x-wav". 
@@ -139,7 +138,7 @@ namespace OpenTK.OpenAL
         /// <returns>A comma-separated list of supported MIME types.</returns>
         public static string GetMIMETypes( Enums.AlutLoader loader )
         {
-            return Marshal.PtrToStringAnsi( GetMIMETypespublic( loader ) );
+            return Marshal.PtrToStringAnsi( GetMIMETypesPrivate( loader ) );
         }
 
         /// <summary>Alut.GetMajorVersion returns the major version number of the ALUT in use, which will match the major version number of the corresponding ALUT specification document. Can be compared using Enums.AlutVersions.</summary>
@@ -164,4 +163,5 @@ namespace OpenTK.OpenAL
         // ALUT_API ALboolean ALUT_APIENTRY alutSleep (ALfloat duration);
         #endregion Misc
     }
+
 }

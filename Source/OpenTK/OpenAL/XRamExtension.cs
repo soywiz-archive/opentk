@@ -1,10 +1,22 @@
-﻿using System;
+﻿#region --- OpenTK.OpenAL License ---
+/* XRamExtension.cs
+ * C header: \OpenAL 1.1 SDK\include\xram.h
+ * Spec: ?
+ * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
+ * See license.txt for license details (MIT)
+ * http://www.OpenTK.net */
+#endregion
+
+using System;
 using System.Runtime.InteropServices;
 
 namespace OpenTK.OpenAL
 {
-    public sealed class XRam
+
+    public sealed class XRamExtension
     {
+        #region instance state
+
         private bool _valid = false;
 
         /// <summary>Returns True if the X-Ram Extension has been found and could be initialized.</summary>
@@ -13,7 +25,10 @@ namespace OpenTK.OpenAL
             get { return _valid; }
         }
 
-        // X-RAM Function pointer definitions
+        #endregion instance state
+
+        #region X-RAM Function pointer definitions
+
         unsafe delegate AL.Bool SetBufferMode( int n, ref uint buffers, int value );
         //typedef ALboolean (__cdecl *EAXSetBufferMode)(ALsizei n, ALuint *buffers, ALint value);
 
@@ -23,10 +38,18 @@ namespace OpenTK.OpenAL
         private SetBufferMode EAXSetBufferMode;
         private GetBufferMode EAXGetBufferMode;
 
+        #endregion X-RAM Function pointer definitions
+
+        #region X-RAM Tokens
+
         private int AL_EAX_RAM_SIZE, AL_EAX_RAM_FREE,
                     AL_STORAGE_AUTOMATIC, AL_STORAGE_HARDWARE, AL_STORAGE_ACCESSIBLE;
 
-        public XRam( )
+        #endregion X-RAM Tokens
+
+        #region Constructor / Extension Loading
+
+        public XRamExtension( )
         { // Query if Extension supported and retrieve Tokens/Pointers if it is.
             _valid = false;
             if ( AL.IsExtensionPresent( "EAX-RAM" ) == AL.Bool.False )
@@ -39,46 +62,47 @@ namespace OpenTK.OpenAL
             AL_STORAGE_ACCESSIBLE = AL.GetEnumValue( "AL_STORAGE_ACCESSIBLE" );
 
             Console.WriteLine( "RamSize: {0} RamFree: {1} StorageAuto: {2} StorageHW: {3} StorageAccess: {4}", AL_EAX_RAM_SIZE, AL_EAX_RAM_FREE, AL_STORAGE_AUTOMATIC, AL_STORAGE_HARDWARE, AL_STORAGE_ACCESSIBLE );
+
+            if ( AL_EAX_RAM_SIZE == 0 ||
+                 AL_EAX_RAM_FREE == 0 ||
+                 AL_STORAGE_AUTOMATIC == 0 ||
+                 AL_STORAGE_HARDWARE == 0 ||
+                 AL_STORAGE_ACCESSIBLE == 0 )
+            {
+                Console.WriteLine( "Token values could not be retrieved." );
+                return;
+            }
+
             Console.WriteLine( "Free Ram: {0} / {1}", GetRamFree( ), GetRamSize( ) );
 
-            EAXGetBufferMode = (GetBufferMode)Marshal.GetDelegateForFunctionPointer(AL.GetProcAddress("EAXGetBufferMode"), typeof(GetBufferMode));
-            EAXSetBufferMode = (SetBufferMode)Marshal.GetDelegateForFunctionPointer(AL.GetProcAddress("EAXSetBufferMode"), typeof(SetBufferMode));
-
-            // Todo: add some error checking
-
-            //////////////////////////////////////////////////////////////////////////////
-            // Query X-RAM Function pointers
-            // 
-            // Use typedefs defined above to get the X-RAM function pointers using
-            // alGetProcAddress
-            //
-            // EAXSetBufferMode eaxSetBufferMode;
-            // EAXGetBufferMode eaxGetBufferMode;
-            //
-            // eaxSetBufferMode = (EAXSetBufferMode)alGetProcAddress("EAXSetBufferMode");
-            // eaxGetBufferMode = (EAXGetBufferMode)alGetProcAddress("EAXGetBufferMode");
+            try
+            {
+                EAXGetBufferMode = (GetBufferMode) Marshal.GetDelegateForFunctionPointer( AL.GetProcAddress( "EAXGetBufferMode" ), typeof( GetBufferMode ) );
+                EAXSetBufferMode = (SetBufferMode) Marshal.GetDelegateForFunctionPointer( AL.GetProcAddress( "EAXSetBufferMode" ), typeof( SetBufferMode ) );
+            }
+            catch ( Exception e )
+            {
+                Console.WriteLine( "Attempt to marshal AL.GetProcAddress failed. " + e.ToString( ) );
+                return;
+            }
 
             _valid = true;
         }
+
+        #endregion Constructor / Extension Loading
 
         #region Public Methods
 
         /// <summary>Query total amount of X-RAM.</summary>
         public int GetRamSize( )
         {
-            if ( _valid )
-                return AL.GetInteger( (Enums.AlGlobalState) AL_EAX_RAM_SIZE );
-            else
-                return -1;
+            return AL.GetInteger( (Enums.ALGlobalState) AL_EAX_RAM_SIZE );
         }
 
         /// <summary>Query free X-RAM available.</summary>
         public int GetRamFree( )
         {
-            if ( _valid )
-                return AL.GetInteger( (Enums.AlGlobalState) AL_EAX_RAM_FREE );
-            else
-                return -1;
+            return AL.GetInteger( (Enums.ALGlobalState) AL_EAX_RAM_FREE );
         }
 
         public enum XRamStorage : byte
@@ -106,9 +130,6 @@ namespace OpenTK.OpenAL
 
         public void _SetBufferMode( ref uint buffer, XRamStorage mode )
         {
-            if ( _valid == false )
-                return;
-
             switch ( mode )
             {
             case XRamStorage.Acessible:
@@ -124,6 +145,6 @@ namespace OpenTK.OpenAL
         }
 
         #endregion Public Methods
-
     }
+
 }

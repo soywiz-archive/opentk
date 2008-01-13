@@ -4,15 +4,7 @@
  * Spec: http://www.openal.org/openal_webstf/specs/alut.html
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
  * See license.txt for license details (MIT)
- * http://www.OpenTK.net
- */
-
-/* Version History:
- * 0.1
- * - Tokens AL_TRUE and AL_FALSE removed, created new type. see Al.Bool
- * 
- * 
- */
+ * http://www.OpenTK.net */
 #endregion
 
 using System;

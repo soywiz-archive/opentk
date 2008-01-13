@@ -4,39 +4,27 @@
  * Spec: http://www.openal.org/openal_webstf/specs/OpenAL11Specification.pdf
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
  * See license.txt for license details (MIT)
- * http://www.OpenTK.net
- */
-
-/* Version History:
- * 0.1
- * - Tokens AL_TRUE and AL_FALSE removed, created new type. see Al.Bool
- * 0.2
- * - Largely improved documentation, found homes for previously orphaned Tokens.
- * 
- * Todo:
- * - Clarify ownership of SecOffset = 0x1024, // AL_EXT_OFFSET extension.
- *   Docu is conflicting, mixing MiliSeconds and Seconds.
- * - Enums themselves require summaries
- */
+ * http://www.OpenTK.net */
 #endregion
 
 using System;
 
 namespace OpenTK.OpenAL.Enums
 {
-    public enum AlCapability : int
+
+    public enum ALCapability : int
     {
         ///<summary>Currently no state toggles exist for vanilla OpenAL.</summary>
         Invalid = -1,
     }
 
-    public enum AlListenerf : int
+    public enum ALListenerf : int
     {
         ///<summary>Indicate the gain (volume amplification) applied. Type: float. Range: [0.0f - ? ] A value of 1.0 means un-attenuated/unchanged. Each division by 2 equals an attenuation of -6dB. Each multiplicaton with 2 equals an amplification of +6dB. A value of 0.0f is meaningless with respect to a logarithmic scale; it is interpreted as zero volume - the channel is effectively disabled.</summary>
         Gain = 0x100A,
     }
 
-    public enum AlListener3f : int
+    public enum ALListener3f : int
     {
         ///<summary>Specify the current location in three dimensional space. OpenAL, like OpenGL, uses a right handed coordinate system, where in a frontal default view X (thumb) points right, Y points up (index finger), and Z points towards the viewer/camera (middle finger). To switch from a left handed coordinate system, flip the sign on the Z coordinate. Listener position is always in the world coordinate system.</summary>
         Position = 0x1004,
@@ -45,13 +33,13 @@ namespace OpenTK.OpenAL.Enums
         Velocity = 0x1006,
     }
 
-    public enum AlListenerfv : int
+    public enum ALListenerfv : int
     {
         ///<summary>Indicate Listener orientation. (at/up)</summary>
         Orientation = 0x100F,
     }
 
-    public enum AlSourcef : int
+    public enum ALSourcef : int
     {
         ///<summary>Source specific reference distance. Type: float Range: [0.0f - float.PositiveInfinity] At 0.0f, no distance attenuation occurs.  Default is 1.0.</summary>
         ReferenceDistance = 0x1020,
@@ -87,7 +75,7 @@ namespace OpenTK.OpenAL.Enums
         SecOffset = 0x1024, // AL_EXT_OFFSET extension.
     }
 
-    public enum AlSource3f : int
+    public enum ALSource3f : int
     {
         ///<summary>Specify the current location in three dimensional space. OpenAL, like OpenGL, uses a right handed coordinate system, where in a frontal default view X (thumb) points right, Y points up (index finger), and Z points towards the viewer/camera (middle finger). To switch from a left handed coordinate system, flip the sign on the Z coordinate. Listener position is always in the world coordinate system.</summary>
         Position = 0x1004,
@@ -97,9 +85,9 @@ namespace OpenTK.OpenAL.Enums
 
         ///<summary>Specify the current direction vector.</summary>
         Direction = 0x1005,
-    }  
-    
-    public enum AlSourceb : int
+    }
+
+    public enum ALSourceb : int
     {
         ///<summary>Indicate Source has relative coordinates.</summary>
         SourceRelative = 0x202,
@@ -108,7 +96,7 @@ namespace OpenTK.OpenAL.Enums
         Looping = 0x1007,
     }
 
-    public enum AlSourcei : int
+    public enum ALSourcei : int
     {
         ///<summary>The playback position, expressed in bytes.</summary>
         ByteOffset = 0x1026,  // AL_EXT_OFFSET extension.
@@ -123,7 +111,7 @@ namespace OpenTK.OpenAL.Enums
         SourceType = 0x1027,
     }
 
-    public enum AlSourceiGet : int
+    public enum ALSourceiGet : int
     {
         ///<summary>The playback position, expressed in bytes.</summary>
         ByteOffset = 0x1026,  // AL_EXT_OFFSET extension.
@@ -136,7 +124,7 @@ namespace OpenTK.OpenAL.Enums
 
         /// <summary>The state of the source (Stopped, Playing, etc.) Use the enum AlSourceState for comparison.</summary>
         SourceState = 0x1010,
-       
+
         /// <summary>The number of buffers queued on this source.</summary>
         BuffersQueued = 0x1015,
 
@@ -147,15 +135,14 @@ namespace OpenTK.OpenAL.Enums
         SourceType = 0x1027,
     }
 
-    public enum AlSourceParameterszzzzzzzzzzzzzzzzzz : int
+    public enum ALSourcerelatedTODO : int
     {
-
         ///<summary>Specify the channel mask. (Creative) Type: uint Range: [0 - 255]</summary>
         ChannelMask = 0x3000,
     }
 
     ///<summary>Source state information.</summary>
-    public enum AlSourceState : int
+    public enum ALSourceState : int
     {
         ///<summary>Default State when loaded, can be manually set with Al.SourceRewind().</summary>
         Initial = 0x1011,
@@ -168,7 +155,7 @@ namespace OpenTK.OpenAL.Enums
     }
 
     ///<summary>Source type (Static, Streaming or undetermined)</summary>
-    public enum AlSourceType : int
+    public enum ALSourceType : int
     {
         ///<summary>Source is Static if a Buffer has been attached using AL_Buffer</summary>
         Static = 0x1028,
@@ -179,7 +166,7 @@ namespace OpenTK.OpenAL.Enums
     }
 
     ///<summary>Sound samples: Format specifier.</summary>
-    public enum AlFormat : int
+    public enum ALFormat : int
     {
         ///<summary>1 Channel, 8 Bit.</summary>
         FormatMono8 = 0x1100,
@@ -194,7 +181,7 @@ namespace OpenTK.OpenAL.Enums
         FormatStereo16 = 0x1103,
     }
 
-    public enum AGetBufferi : int
+    public enum ALGetBufferi : int
     {
         ///<summary>Sound sample's frequency, in units of Hertz [Hz]. This is the number of samples per second. Half of the sample frequency marks the maximum significant frequency component.</summary>
         Frequency = 0x2001,
@@ -209,7 +196,7 @@ namespace OpenTK.OpenAL.Enums
     }
 
     ///<summary>Buffer state. Not supported for public use (yet).</summary>
-    public enum AlBufferState : int
+    public enum ALBufferState : int
     {
         ///<summary>Buffer state. Not supported for public use (yet).</summary>
         Unused = 0x2010,
@@ -219,7 +206,7 @@ namespace OpenTK.OpenAL.Enums
         Processed = 0x2012,
     }
 
-    public enum AlError : int // alGetString
+    public enum ALError : int // alGetString
     {
         ///<summary>No OpenAL Error.</summary>
         NoError = 0,
@@ -244,7 +231,7 @@ namespace OpenTK.OpenAL.Enums
         OutOfMemory = 0xA005,
     }
 
-    public enum AlGetString : int // alGetString
+    public enum ALGetString : int // alGetString
     {// Context strings: Vendor Name. 
         Vendor = 0xB001,
         Version = 0xB002,
@@ -252,7 +239,7 @@ namespace OpenTK.OpenAL.Enums
         Extensions = 0xB004,
     }
 
-    public enum AlGlobalState : int // alGetBool/Int/Float/Double
+    public enum ALGlobalState : int // alGetBool/Int/Float/Double
     { // Global tweakage.
         ///<summary>Doppler scale.  Default 1.0f</summary>
         DopplerFactor = 0xC000,
@@ -267,7 +254,7 @@ namespace OpenTK.OpenAL.Enums
         DistanceModel = 0xD000,
     }
 
-    public enum AlDistanceModel : int // used in conjunction with Al.DistanceModel
+    public enum ALDistanceModel : int // used in conjunction with Al.DistanceModel
     {
         ///<summary>bypasses all distance attenuation calculation for all sources.</summary>
         None = 0,

@@ -4,18 +4,11 @@
  * Spec: http://www.openal.org/openal_webstf/specs/OpenAL11Specification.pdf
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
  * See license.txt for license details (MIT)
- * http://www.OpenTK.net
- */
-
-/* Version History:
- * 0.1
- * 
- * 
- * 
- */
+ * http://www.OpenTK.net */
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -72,10 +65,11 @@ typedef void ALCvoid;
  * ALCcontext *context
  * IntPtr
 */
- 
+
 namespace OpenTK.OpenAL
 {
- /// <summary>Alc = Audio Library Context</summary>
+
+    /// <summary>Alc = Audio Library Context</summary>
     public static class Alc
     {
         #region Constants
@@ -99,7 +93,6 @@ namespace OpenTK.OpenAL
         // ALC_API void            ALC_APIENTRY alcSuspendContext( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcSuspendContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern void SuspendContext( [In] IntPtr context );
-
 
         // ALC_API void            ALC_APIENTRY alcDestroyContext( ALCcontext *context );
         [DllImport( Alc.Lib, EntryPoint = "alcDestroyContext", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
@@ -149,29 +142,35 @@ namespace OpenTK.OpenAL
         #endregion Extension support.
 
         #region Query functions
+
         [DllImport( Alc.Lib, EntryPoint = "alcGetString", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        private static extern IntPtr GetStringpublic( [In] IntPtr device, Enums.AlcGetString param );
+        private static extern IntPtr GetStringPrivate( [In] IntPtr device, Enums.AlcGetString param );
         // ALC_API const ALCchar * ALC_APIENTRY alcGetString( ALCdevice *device, ALCenum param );
-          
+
         public static string GetString( IntPtr device, Enums.AlcGetString param )
         {
-            return Marshal.PtrToStringAnsi( GetStringpublic( device, param ) );
+            return Marshal.PtrToStringAnsi( GetStringPrivate( device, param ) );
         }
 
-        public static string GetStringDevices( )
+        public static List<string> GetStringDevices( )
         {
-            return  Marshal.PtrToStringBSTR( GetStringpublic( AL.Null, Enums.AlcGetString.DeviceSpecifier ));
+            List<string> result = new List<string>( );
+            IntPtr t = GetStringPrivate( AL.Null, Enums.AlcGetString.DeviceSpecifier );
+
+
+            return result;
         }
 
         // ALC_API void            ALC_APIENTRY alcGetIntegerv( ALCdevice *device, ALCenum param, ALCsizei size, ALCint *data );
         [DllImport( Alc.Lib, EntryPoint = "alcGetIntegerv", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
         public static extern void GetInteger( [In] IntPtr device, Enums.AlcGetInteger param, int sizeofdatainbytes, [Out] out int data );
+
         #endregion Query functions
 
         #region Capture functions
         // ALC_API ALCdevice*      ALC_APIENTRY alcCaptureOpenDevice( const ALCchar *devicename, ALCuint frequency, ALCenum format, ALCsizei buffersize );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureOpenDevice", ExactSpelling = true, CallingConvention = Alc.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        public static extern IntPtr CaptureOpenDevice( string devicename, uint frequency, Enums.AlFormat format, int buffersize );
+        public static extern IntPtr CaptureOpenDevice( string devicename, uint frequency, Enums.ALFormat format, int buffersize );
 
         // ALC_API ALCboolean      ALC_APIENTRY alcCaptureCloseDevice( ALCdevice *device );
         [DllImport( Alc.Lib, EntryPoint = "alcCaptureCloseDevice", ExactSpelling = true, CallingConvention = Alc.Style ), SuppressUnmanagedCodeSecurity( )]
@@ -215,4 +214,5 @@ namespace OpenTK.OpenAL
    typedef void           (ALC_APIENTRY *LPALCCAPTURESAMPLES)( ALCdevice *device, ALCvoid *Buffer, ALCsizei samples );
            */
     }
+
 }

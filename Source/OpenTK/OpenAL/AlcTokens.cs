@@ -4,21 +4,14 @@
  * Spec: http://www.openal.org/openal_webstf/specs/OpenAL11Specification.pdf
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
  * See license.txt for license details (MIT)
- * http://www.OpenTK.net
- */
-
-/* Version History:
- * 0.1
- * - Tokens ALC_TRUE and ALC_FALSE removed, created new type. see Al.Bool
- * 
- * 
- */
+ * http://www.OpenTK.net */
 #endregion
 
 using System;
 
 namespace OpenTK.OpenAL.Enums
 {
+
     public enum AlcContextAttributes : int
     {
         ///<summary>followed by <int> Hz</summary>
@@ -37,7 +30,7 @@ namespace OpenTK.OpenAL.Enums
         StereoSources = 0x1011,
     }
 
-    public enum AlcError : int  // errors
+    public enum AlcError : int
     {
         ///<summary>There is no current error.</summary>
         NoError = 0,

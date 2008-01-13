@@ -4,18 +4,7 @@
  * Spec: http://www.openal.org/openal_webstf/specs/OpenAL11Specification.pdf
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
  * See license.txt for license details (MIT)
- * http://www.OpenTK.net
- */
-
-/* Version History:
- * 0.1 initial
- * 0.2
- *  - The Token AL_DATA was hidden, as it returns a pointer to unmanaged memory
- *    where the buffer was located previously to calling Al.BufferData
- * 
- * 
- * 
- */
+ * http://www.OpenTK.net */
 #endregion
 
 using System;
@@ -76,12 +65,13 @@ typedef void ALvoid;
 
 namespace OpenTK.OpenAL
 {
+
     // Al = Audio Library
     public static class AL
     {
         #region Constants
 
-        public const string Lib = "wrap_oal.dll";
+        public const string Lib = "OpenAL32.dll";
         private const CallingConvention Style = CallingConvention.Cdecl;
 
         #endregion Constants
@@ -107,20 +97,20 @@ namespace OpenTK.OpenAL
         /// <summary>This function enables a feature of the OpenAL driver. There are no capabilities defined in OpenAL 1.1 to be used with this function, but it may be used by an extension.</summary>
         /// <param name="capability">The name of a capability to enable.</param>
         [DllImport( AL.Lib, EntryPoint = "alEnable", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void Enable( Enums.AlCapability capability );
+        public static extern void Enable( Enums.ALCapability capability );
         //AL_API void AL_APIENTRY alEnable( ALenum capability );
 
         /// <summary>This function disables a feature of the OpenAL driver.</summary>
         /// <param name="capability">The name of a capability to disable.</param>
         [DllImport( AL.Lib, EntryPoint = "alDisable", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void Disable( Enums.AlCapability capability );
+        public static extern void Disable( Enums.ALCapability capability );
         // AL_API void AL_APIENTRY alDisable( ALenum capability ); 
 
         /// <summary>This function returns a boolean indicating if a specific feature is enabled in the OpenAL driver.</summary>
         /// <param name="capability">The name of a capability to enable.</param>
         /// <returns>True if enabled, False if disabled.</returns>
         [DllImport( AL.Lib, EntryPoint = "alIsEnabled", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern AL.Bool IsEnabled( Enums.AlCapability capability );
+        public static extern AL.Bool IsEnabled( Enums.ALCapability capability );
         // AL_API ALboolean AL_APIENTRY alIsEnabled( ALenum capability ); 
 
         #endregion Renderer State management
@@ -128,15 +118,23 @@ namespace OpenTK.OpenAL
         #region State retrieval
 
         [DllImport( AL.Lib, EntryPoint = "alGetString", ExactSpelling = true, CallingConvention = AL.Style, CharSet = CharSet.Ansi ), SuppressUnmanagedCodeSecurity( )]
-        private static extern IntPtr GetStringpublic( Enums.AlGetString param ); // accepts the enums Enums.AlError, Enums.AlContextString
+        private static extern IntPtr GetStringPrivate( Enums.ALGetString param ); // accepts the enums Enums.AlError, Enums.AlContextString
         // AL_API const ALchar* AL_APIENTRY alGetString( ALenum param );
 
         /// <summary>This function retrieves an OpenAL string property.</summary>
         /// <param name="param">The property to be returned: AL_VENDOR, AL_VERSION, AL_RENDERER, AL_EXTENSIONS</param>
         /// <returns>Returns a pointer to a null-terminated string.</returns>
-        public static string GetString( Enums.AlGetString param )
+        public static string GetString( Enums.ALGetString param )
         {
-            return Marshal.PtrToStringAnsi( GetStringpublic( param ) );
+            return Marshal.PtrToStringAnsi( GetStringPrivate( param ) );
+        }
+
+        /// <summary>This function retrieves an OpenAL string property.</summary>
+        /// <param name="param">The human-readable Errorstring to be returned.</param>
+        /// <returns>Returns a pointer to a null-terminated string.</returns>
+        public static string GetErrorString( Enums.ALError param )
+        {
+            return Marshal.PtrToStringAnsi( GetStringPrivate( (Enums.ALGetString) param ) );
         }
 
         /* no functions return more than 1 result ..
@@ -150,34 +148,34 @@ namespace OpenTK.OpenAL
         /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
         /// <returns>The boolean state described by param will be returned.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetBoolean", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern AL.Bool GetBoolean( Enums.AlGlobalState param );
+        public static extern AL.Bool GetBoolean( Enums.ALGlobalState param );
         // AL_API ALboolean AL_APIENTRY alGetBoolean( ALenum param );
 
         /// <summary>This function returns an integer OpenAL state.</summary>
         /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
         /// <returns>The integer state described by param will be returned.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetInteger", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern int GetInteger( Enums.AlGlobalState param );
+        public static extern int GetInteger( Enums.ALGlobalState param );
         // AL_API ALint AL_APIENTRY alGetInteger( ALenum param );
 
         /// <summary>This function returns a floating point OpenAL state.</summary>
         /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
         /// <returns>The floating point state described by param will be returned.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetFloat", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern float GetFloat( Enums.AlGlobalState param );
+        public static extern float GetFloat( Enums.ALGlobalState param );
         // AL_API ALfloat AL_APIENTRY alGetFloat( ALenum param );
 
         /// <summary>This function returns a double precision floating point OpenAL state.</summary>
         /// <param name="param">the state to be queried: AL_DOPPLER_FACTOR, AL_SPEED_OF_SOUND, AL_DISTANCE_MODEL</param>
         /// <returns>The double value described by param will be returned.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetDouble", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern double GetDouble( Enums.AlGlobalState param );
+        public static extern double GetDouble( Enums.ALGlobalState param );
         // AL_API ALdouble AL_APIENTRY alGetDouble( ALenum param );
 
         /// <summary>Error support. Obtain the most recent error generated in the AL state machine. When an error is detected by AL, a flag is set and the error code is recorded. Further errors, if they occur, do not affect this recorded code. When alGetError is called, the code is returned and the flag is cleared, so that a further error will again record its code.</summary>
         /// <returns>The first error that occured. can be used with Al.GetString. Returns an Alenum representing the error state. When an OpenAL error occurs, the error state is set and will not be changed until the error state is retrieved using alGetError. Whenever alGetError is called, the error state is cleared and the last state (the current state when the call was made) is returned. To isolate error detection to a specific portion of code, alGetError should be called before the isolated section to clear the current error state.</returns>
         [DllImport( AL.Lib, EntryPoint = "alGetError", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern Enums.AlError GetError( );
+        public static extern Enums.ALError GetError( );
         // AL_API ALenum AL_APIENTRY alGetError( void );
 
         #endregion State retrieval
@@ -221,11 +219,12 @@ namespace OpenTK.OpenAL
         */
 
         #region Set Listener parameters
+
         /// <summary>This function sets a floating point property for the listener.</summary>
         /// <param name="param">The name of the attribute to be set: AL_GAIN</param>
         /// <param name="value">The float value to set the attribute to.</param>
         [DllImport( AL.Lib, EntryPoint = "alListenerf", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void Listenerf( Enums.AlListenerf param, float value );
+        public static extern void Listener( Enums.ALListenerf param, float value );
         // AL_API void AL_APIENTRY alListenerf( ALenum param, ALfloat value );
 
         /// <summary>This function sets a floating point property for the listener.</summary>
@@ -234,47 +233,72 @@ namespace OpenTK.OpenAL
         /// <param name="value2">The value to set the attribute to.</param>
         /// <param name="value3">The value to set the attribute to.</param>
         [DllImport( AL.Lib, EntryPoint = "alListener3f", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void Listener3f( Enums.AlListener3f param, float value1, float value2, float value3 );
+        public static extern void Listener( Enums.ALListener3f param, float value1, float value2, float value3 );
         // AL_API void AL_APIENTRY alListener3f( ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
 
         /// <summary>This function sets a Math.Vector3 property for the listener.</summary>
         /// <param name="param">The name of the attribute to set: AL_POSITION, AL_VELOCITY</param>
         /// <param name="values">The Math.Vector3 to set the attribute to.</param>
-        public static void Listener3f( Enums.AlListener3f param, ref Vector3 values )
+        public static void Listener( Enums.ALListener3f param, ref Vector3 values )
         {
-            Listener3f( param, values.X, values.Y, values.Z );
+            Listener( param, values.X, values.Y, values.Z );
         }
 
         [DllImport( AL.Lib, EntryPoint = "alListenerfv", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe private static extern void Listenerfv( Enums.AlListenerfv param, float* values );
+        unsafe private static extern void ListenerPrivate( Enums.ALListenerfv param, float* values );
         // AL_API void AL_APIENTRY alListenerfv( ALenum param, const ALfloat* values );
 
         /// <summary>This function sets a floating point-vector property of the listener.</summary>
         /// <param name="param">The name of the attribute to be set: AL_POSITION, AL_VELOCITY, AL_ORIENTATION</param>
         /// <param name="values">Pointer to floating point-vector values.</param>
-        public static void Listenerfv( Enums.AlListenerfv param, ref float[] values )
+        public static void Listener( Enums.ALListenerfv param, ref float[] values )
         {
             unsafe
             {
                 fixed ( float* ptr = &values[0] )
                 {
-                    Listenerfv( param, ptr );
+                    ListenerPrivate( param, ptr );
                 }
             }
         }
 
+        /// <summary>This function sets two Math.Vector3 properties of the listener.</summary>
+        /// <param name="param">The name of the attribute to be set: AL_ORIENTATION</param>
+        /// <param name="at">A Math.Vector3 for the At-Vector.</param>
+        /// <param name="up">A Math.Vector3 for the Up-Vector.</param>
+        public static void Listener( Enums.ALListenerfv param, ref Vector3 at, ref Vector3 up )
+        {
+            float[] temp = new float[6];
+            temp[0] = at.X;
+            temp[1] = at.Y;
+            temp[2] = at.Z;
+
+            temp[3] = up.X;
+            temp[4] = up.Y;
+            temp[5] = up.Z;
+
+            unsafe
+            {
+                fixed ( float* ptr = &temp[0] )
+                {
+                    ListenerPrivate( param, ptr );
+                }
+            }
+        }
 
         // AL_API void AL_APIENTRY alListeneri( ALenum param, ALint value );
         // AL_API void AL_APIENTRY alListener3i( ALenum param, ALint value1, ALint value2, ALint value3 );
         // AL_API void AL_APIENTRY alListeneriv( ALenum param, const ALint* values );
+
         #endregion Set Listener parameters
 
         #region Get Listener parameters
+
         /// <summary>This function retrieves a floating point property of the listener.</summary>
         /// <param name="param">the name of the attribute to be retrieved: AL_GAIN</param>
         /// <param name="value">a pointer to the floating point value being retrieved.</param>
         [DllImport( AL.Lib, EntryPoint = "alGetListenerf", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe public static extern void GetListenerf( Enums.AlListenerf param, [Out] out float value );
+        public static extern void GetListener( Enums.ALListenerf param, [Out] out float value );
         // AL_API void AL_APIENTRY alGetListenerf( ALenum param, ALfloat* value );
 
         /// <summary>This function retrieves a set of three floating point values from a property of the listener.</summary>
@@ -283,27 +307,52 @@ namespace OpenTK.OpenAL
         /// <param name="value2">Pointers to the three floating point being retrieved.</param>
         /// <param name="value3">Pointers to the three floating point being retrieved.</param>
         [DllImport( AL.Lib, EntryPoint = "alGetListener3f", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe public static extern void GetListener3f( Enums.AlListener3f param, [Out] out float value1, [Out] out float value2, [Out] out float value3 );
+        public static extern void GetListener( Enums.ALListener3f param, [Out] out float value1, [Out] out float value2, [Out] out float value3 );
         // AL_API void AL_APIENTRY alGetListener3f( ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3 );
 
         /// <summary>This function retrieves a Math.Vector3 from a property of the listener.</summary>
         /// <param name="param">The name of the attribute to be retrieved: AL_POSITION, AL_VELOCITY</param>
         /// <param name="values">A Math.Vector3 to hold the three floats being retrieved.</param>
-        public static void GetListener3f( Enums.AlListener3f param, out Vector3 values )
+        public static void GetListener( Enums.ALListener3f param, out Vector3 values )
         {
-            GetListener3f( param, out values.X, out values.Y, out values.Z );
+            GetListener( param, out values.X, out values.Y, out values.Z );
         }
 
-        /// <summary>This function retrieves a floating point-vector property of the listener.</summary>
+        /// <summary>This function retrieves a floating point-vector property of the listener. You must pin it manually.</summary>
         /// <param name="param">the name of the attribute to be retrieved: AL_POSITION, AL_VELOCITY, AL_ORIENTATION</param>
         /// <param name="values">A pointer to the floating point-vector value being retrieved.</param>
         [DllImport( AL.Lib, EntryPoint = "alGetListenerfv", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe public static extern void GetListenerfv( Enums.AlListenerfv param, float* values );
+        unsafe public static extern void GetListener( Enums.ALListenerfv param, float* values );
         // AL_API void AL_APIENTRY alGetListenerfv( ALenum param, ALfloat* values );
+
+        /// <summary>This function retrieves two Math.Vector3 properties of the listener.</summary>
+        /// <param name="param">the name of the attribute to be retrieved: AL_ORIENTATION</param>
+        /// <param name="at">A Math.Vector3 for the At-Vector.</param>
+        /// <param name="up">A Math.Vector3 for the Up-Vector.</param>
+        public static void GetListener( Enums.ALListenerfv param, out Vector3 at, out Vector3 up )
+        {
+            float[] pinned = new float[6]; // should lose scope when the function exits
+            unsafe
+            {
+                fixed ( float* ptr = &pinned[0] )
+                {
+                    GetListener( param, ptr );
+
+                    at.X = pinned[0];
+                    at.Y = pinned[1];
+                    at.Z = pinned[2];
+
+                    up.X = pinned[3];
+                    up.Y = pinned[4];
+                    up.Z = pinned[5];
+                }
+            }
+        }
 
         // AL_API void AL_APIENTRY alGetListeneri( ALenum param, ALint* value );
         // AL_API void AL_APIENTRY alGetListener3i( ALenum param, ALint *value1, ALint *value2, ALint *value3 );
         // AL_API void AL_APIENTRY alGetListeneriv( ALenum param, ALint* values );
+
         #endregion Get Listener parameters
 
         /*
@@ -345,41 +394,58 @@ namespace OpenTK.OpenAL
          */
 
         #region Create Source objects
+
         [DllImport( AL.Lib, EntryPoint = "alGenSources", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe private static extern void GenSourcespublic( int n, [Out] uint* sources );
+        unsafe private static extern void GenSourcesPrivate( int n, [Out] uint* sources );
         // AL_API void AL_APIENTRY alGenSources( ALsizei n, ALuint* Sources );
 
         /// <summary>This function generates one or more sources. References to sources are ALuint values, which are used wherever a source reference is needed (in calls such as alDeleteSources and alSourcei).</summary>
         /// <param name="n">The number of sources to be generated.</param>
-        /// <param name="sources">Pointer to an array of ALuint values which will store the names of the new sources.</param>
-        public static void GenSources( int n, [Out] out uint sources )
+        /// <param name="sources">Pointer to an array of uint values which will store the names of the new sources.</param>
+        public static void GenSources( int n, out uint sources )
         {
             unsafe
             {
                 fixed ( uint* ptr = &sources )
                 {
-                    GenSourcespublic( n, (uint*) ptr );
+                    GenSourcesPrivate( n, (uint*) ptr );
                     sources = *ptr;
                 }
             }
         }
 
+        /// <summary>This function generates one source only. References to sources are ALuint values, which are used wherever a source reference is needed (in calls such as alDeleteSources and alSourcei).</summary>
+        /// <param name="sources">Pointer to an uint value which will store the name of the new source.</param>
+        public static void GenSource( out uint source )
+        {
+            GenSources( 1, out source );
+        }
+
         [DllImport( AL.Lib, EntryPoint = "alDeleteSources", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe private static extern void DeleteSourcespublic( int n, [In] uint* sources ); // Delete Source objects 
+        unsafe private static extern void DeleteSourcesPrivate( int n, [In] uint* sources ); // Delete Source objects 
         // AL_API void AL_APIENTRY alDeleteSources( ALsizei n, const ALuint* Sources );
 
         /// <summary>This function deletes one or more sources.</summary>
         /// <param name="n">The number of sources to be deleted.</param>
         /// <param name="sources">Pointer to an array of source names identifying the sources to be deleted.</param>
-        public static void DeleteSources( int n, uint[] sources )
+        public static void DeleteSources( int n, ref uint[] sources )
         {
             unsafe
             {
                 fixed ( uint* ptr = sources )
                 {
-                    DeleteSourcespublic( n, (uint*) ptr );
+                    DeleteSourcesPrivate( n, (uint*) ptr );
                 }
             }
+        }
+
+        /// <summary>This function deletes one source only.</summary>
+        /// <param name="sources">Pointer to a source name identifying the source to be deleted.</param>
+        public static void DeleteSource( ref uint source )
+        {
+            uint[] t = new uint[1];
+            t[0] = source;
+            DeleteSources( 1, ref t );
         }
 
         /// <summary>This function tests if a source name is valid, returning True if valid and False if not.</summary>
@@ -388,15 +454,17 @@ namespace OpenTK.OpenAL
         [DllImport( AL.Lib, EntryPoint = "alIsSource", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern AL.Bool IsSource( uint sid ); // Verify a handle is a valid Source 
         // AL_API ALboolean AL_APIENTRY alIsSource( ALuint sid );
+
         #endregion Create Source objects
 
         #region Set Source parameters
+
         /// <summary>This function sets a floating point property of a source.</summary>
         /// <param name="sid">Source name whose attribute is being set</param>
         /// <param name="param">The name of the attribute to set: AL_PITCH, AL_GAIN, AL_MIN_GAIN, AL_MAX_GAIN, AL_MAX_DISTANCE, AL_ROLLOFF_FACTOR, AL_CONE_OUTER_GAIN, AL_CONE_INNER_ANGLE, AL_CONE_OUTER_ANGLE, AL_REFERENCE_DISTANCE</param>
         /// <param name="value">The value to set the attribute to.</param>
         [DllImport( AL.Lib, EntryPoint = "alSourcef", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void Sourcef( uint sid, Enums.AlSourcef param, float value );
+        public static extern void Source( uint sid, Enums.ALSourcef param, float value );
         // AL_API void AL_APIENTRY alSourcef( ALuint sid, ALenum param, ALfloat value );
 
         /// <summary>This function sets a source property requiring three floating point values.</summary>
@@ -406,16 +474,16 @@ namespace OpenTK.OpenAL
         /// <param name="value2">The three ALfloat values which the attribute will be set to.</param>
         /// <param name="value3">The three ALfloat values which the attribute will be set to.</param>
         [DllImport( AL.Lib, EntryPoint = "alSource3f", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void Source3f( uint sid, Enums.AlSource3f param, float value1, float value2, float value3 );
+        public static extern void Source( uint sid, Enums.ALSource3f param, float value1, float value2, float value3 );
         // AL_API void AL_APIENTRY alSource3f( ALuint sid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
 
         /// <summary>This function sets a source property requiring three floating point values.</summary>
         /// <param name="sid">Source name whose attribute is being set.</param>
         /// <param name="param">The name of the attribute to set: AL_POSITION, AL_VELOCITY, AL_DIRECTION</param>
         /// <param name="values">A Math.Vector3 which the attribute will be set to.</param>
-        public static void Source3f( uint sid, Enums.AlSource3f param, ref Vector3 values )
+        public static void Source( uint sid, Enums.ALSource3f param, ref Vector3 values )
         {
-            Source3f( sid, param, values.X, values.Y, values.Z );
+            Source( sid, param, values.X, values.Y, values.Z );
         }
 
         /// <summary>This function sets an integer property of a source.</summary>
@@ -423,30 +491,32 @@ namespace OpenTK.OpenAL
         /// <param name="param">The name of the attribute to set: AL_SOURCE_RELATIVE, AL_CONE_INNER_ANGLE, AL_CONE_OUTER_ANGLE, AL_LOOPING, AL_BUFFER, AL_SOURCE_STATE</param>
         /// <param name="value">The value to set the attribute to.</param>
         [DllImport( AL.Lib, EntryPoint = "alSourcei", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void Sourcei( uint sid, Enums.AlSourcei param, int value );
+        public static extern void Source( uint sid, Enums.ALSourcei param, int value );
         // AL_API void AL_APIENTRY alSourcei( ALuint sid, ALenum param, ALint value ); 
 
         /// <summary>This function sets an bool property of a source.</summary>
         /// <param name="sid">Source name whose attribute is being set.</param>
         /// <param name="param">The name of the attribute to set: AL_SOURCE_RELATIVE, AL_LOOPING</param>
         /// <param name="value">The value to set the attribute to.</param>
-        public static void Sourceb( uint sid, Enums.AlSourceb param, bool value )
+        public static void Source( uint sid, Enums.ALSourceb param, bool value )
         {
-            Sourcei( sid, (Enums.AlSourcei) param, ( value ) ? 1 : 0 );
+            Source( sid, (Enums.ALSourcei) param, ( value ) ? 1 : 0 );
         }
 
         // AL_API void AL_APIENTRY alSourcefv( ALuint sid, ALenum param, const ALfloat* values );
         // AL_API void AL_APIENTRY alSource3i( ALuint sid, ALenum param, ALint value1, ALint value2, ALint value3 );
         // AL_API void AL_APIENTRY alSourceiv( ALuint sid, ALenum param, const ALint* values );
+
         #endregion Set Source parameters
 
         #region Get Source parameters
+
         /// <summary>This function retrieves a floating point property of a source.</summary>
         /// <param name="sid">Source name whose attribute is being retrieved.</param>
         /// <param name="param">The name of the attribute to retrieve: AL_PITCH, AL_GAIN, AL_MIN_GAIN, AL_MAX_GAIN, AL_MAX_DISTANCE, AL_ROLLOFF_FACTOR, AL_CONE_OUTER_GAIN, AL_CONE_INNER_ANGLE, AL_CONE_OUTER_ANGLE, AL_REFERENCE_DISTANCE</param>
         /// <param name="value">A pointer to the floating point value being retrieved</param>
         [DllImport( AL.Lib, EntryPoint = "alGetSourcef", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void GetSourcef( uint sid, Enums.AlSourcef param, [Out] out float value );
+        public static extern void GetSource( uint sid, Enums.ALSourcef param, [Out] out float value );
         // AL_API void AL_APIENTRY alGetSourcef( ALuint sid, ALenum param, ALfloat* value );
 
         /// <summary>This function retrieves three floating point values representing a property of a source.</summary>
@@ -456,16 +526,16 @@ namespace OpenTK.OpenAL
         /// <param name="value2">Pointer to the value to retrieve.</param>
         /// <param name="value3">Pointer to the value to retrieve.</param>
         [DllImport( AL.Lib, EntryPoint = "alGetSource3f", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void GetSource3f( uint sid, Enums.AlSource3f param, [Out] out float value1, [Out] out float value2, [Out] out float value3 );
+        public static extern void GetSource( uint sid, Enums.ALSource3f param, [Out] out float value1, [Out] out float value2, [Out] out float value3 );
         // AL_API void AL_APIENTRY alGetSource3f( ALuint sid, ALenum param, ALfloat* value1, ALfloat* value2, ALfloat* value3);
 
         /// <summary>This function retrieves three floating point values representing a property of a source.</summary>
         /// <param name="sid">Source name whose attribute is being retrieved.</param>
         /// <param name="param">the name of the attribute being retrieved: AL_POSITION, AL_VELOCITY, AL_DIRECTION</param>
         /// <param name="values">A Math.Vector3 to retrieve the values to.</param>
-        public static void GetSource3f( uint sid, Enums.AlSource3f param, out Vector3 values )
+        public static void GetSource( uint sid, Enums.ALSource3f param, out Vector3 values )
         {
-            GetSource3f( sid, param, out values.X, out values.Y, out values.Z );
+            GetSource( sid, param, out values.X, out values.Y, out values.Z );
         }
 
         /// <summary>This function retrieves an integer property of a source.</summary>
@@ -473,17 +543,17 @@ namespace OpenTK.OpenAL
         /// <param name="param">The name of the attribute to retrieve: AL_SOURCE_RELATIVE, AL_BUFFER, AL_SOURCE_STATE, AL_BUFFERS_QUEUED, AL_BUFFERS_PROCESSED</param>
         /// <param name="value">A pointer to the integer value being retrieved.</param>
         [DllImport( AL.Lib, EntryPoint = "alGetSourcei", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void GetSourcei( uint sid, Enums.AlSourceiGet param, [Out] out int value );
+        public static extern void GetSourcei( uint sid, Enums.ALSourceiGet param, [Out] out int value );
         // AL_API void AL_APIENTRY alGetSourcei( ALuint sid,  ALenum param, ALint* value );
 
         /// <summary>This function retrieves a bool property of a source.</summary>
         /// <param name="sid">Source name whose attribute is being retrieved.</param>
         /// <param name="param">The name of the attribute to get: AL_SOURCE_RELATIVE, AL_LOOPING</param>
         /// <param name="value">A pointer to the bool value being retrieved.</param>
-        public static void GetSourceb( uint sid, Enums.AlSourceb param, [Out] out bool value )
+        public static void GetSource( uint sid, Enums.ALSourceb param, [Out] out bool value )
         {
             int result;
-            GetSourcei( sid, (Enums.AlSourceiGet) param, out result );
+            GetSourcei( sid, (Enums.ALSourceiGet) param, out result );
             if ( result == 1 )
                 value = true;
             else
@@ -493,24 +563,25 @@ namespace OpenTK.OpenAL
         // AL_API void AL_APIENTRY alGetSourcefv( ALuint sid, ALenum param, ALfloat* values );
         // AL_API void AL_APIENTRY alGetSource3i( ALuint sid, ALenum param, ALint* value1, ALint* value2, ALint* value3);
         // AL_API void AL_APIENTRY alGetSourceiv( ALuint sid,  ALenum param, ALint* values );
+
         #endregion Get Source parameters
 
         #region Source vector based playback calls
 
         [DllImport( AL.Lib, EntryPoint = "alSourcePlayv" ), SuppressUnmanagedCodeSecurity]
-        unsafe private static extern void SourcePlayv( int ns, [In] uint* sids );
+        unsafe private static extern void SourcePlayPrivate( int ns, [In] uint* sids );
         // AL_API void AL_APIENTRY alSourcePlayv( ALsizei ns, const ALuint *sids );
 
         /// <summary>This function plays a set of sources. The playing sources will have their state changed to AL_PLAYING. When called on a source which is already playing, the source will restart at the beginning. When the attached buffer(s) are done playing, the source will progress to the AL_STOPPED state.</summary>
         /// <param name="ns">The number of sources to be played.</param>
         /// <param name="sids">A pointer to an array of sources to be played.</param>
-        public static void SourcePlayv( int ns, [In] uint[] sids )
+        public static void SourcePlay( int ns, [In] uint[] sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = sids )
                 {
-                    SourcePlayv( ns, ptr );
+                    SourcePlayPrivate( ns, ptr );
                 }
             }
         }
@@ -518,31 +589,31 @@ namespace OpenTK.OpenAL
         /// <summary>This function plays a set of sources. The playing sources will have their state changed to AL_PLAYING. When called on a source which is already playing, the source will restart at the beginning. When the attached buffer(s) are done playing, the source will progress to the AL_STOPPED state.</summary>
         /// <param name="ns">The number of sources to be played.</param>
         /// <param name="sids">A pointer to an array of sources to be played.</param>
-        public static void SourcePlayv( int ns, [In] ref uint sids )
+        public static void SourcePlay( int ns, [In] ref uint sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = &sids )
                 {
-                    SourcePlayv( ns, ptr );
+                    SourcePlayPrivate( ns, ptr );
                 }
             }
         }
 
         [DllImport( AL.Lib, EntryPoint = "alSourceStopv" ), SuppressUnmanagedCodeSecurity]
-        unsafe private static extern void SourceStopv( int ns, [In] uint* sids );
+        unsafe private static extern void SourceStopPrivate( int ns, [In] uint* sids );
         // AL_API void AL_APIENTRY alSourceStopv( ALsizei ns, const ALuint *sids );
 
         /// <summary>This function stops a set of sources. The stopped sources will have their state changed to AL_STOPPED.</summary>
         /// <param name="ns">The number of sources to stop.</param>
         /// <param name="sids">A pointer to an array of sources to be stopped.</param>
-        public static void SourceStopv( int ns, [In] uint[] sids )
+        public static void SourceStop( int ns, [In] uint[] sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = sids )
                 {
-                    SourceStopv( ns, ptr );
+                    SourceStopPrivate( ns, ptr );
                 }
             }
         }
@@ -550,31 +621,31 @@ namespace OpenTK.OpenAL
         /// <summary>This function stops a set of sources. The stopped sources will have their state changed to AL_STOPPED.</summary>
         /// <param name="ns">The number of sources to stop.</param>
         /// <param name="sids">A pointer to an array of sources to be stopped.</param>
-        public static void SourceStopv( int ns, [In] ref uint sids )
+        public static void SourceStop( int ns, [In] ref uint sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = &sids )
                 {
-                    SourceStopv( ns, ptr );
+                    SourceStopPrivate( ns, ptr );
                 }
             }
         }
 
         [DllImport( AL.Lib, EntryPoint = "alSourceRewindv" ), SuppressUnmanagedCodeSecurity]
-        unsafe private static extern void SourceRewindv( int ns, [In] uint* sids );
+        unsafe private static extern void SourceRewindPrivate( int ns, [In] uint* sids );
         // AL_API void AL_APIENTRY alSourceRewindv( ALsizei ns, const ALuint *sids );
 
         /// <summary>This function stops a set of sources and sets all their states to AL_INITIAL.</summary>
         /// <param name="ns">The number of sources to be rewound.</param>
         /// <param name="sids">A pointer to an array of sources to be rewound.</param>
-        public static void SourceRewindv( int ns, [In] uint[] sids )
+        public static void SourceRewind( int ns, [In] uint[] sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = sids )
                 {
-                    SourceRewindv( ns, ptr );
+                    SourceRewindPrivate( ns, ptr );
                 }
             }
         }
@@ -582,31 +653,31 @@ namespace OpenTK.OpenAL
         /// <summary>This function stops a set of sources and sets all their states to AL_INITIAL.</summary>
         /// <param name="ns">The number of sources to be rewound.</param>
         /// <param name="sids">A pointer to an array of sources to be rewound.</param>
-        public static void SourceRewindv( int ns, [In] ref uint sids )
+        public static void SourceRewind( int ns, [In] ref uint sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = &sids )
                 {
-                    SourceRewindv( ns, ptr );
+                    SourceRewindPrivate( ns, ptr );
                 }
             }
         }
 
         [DllImport( AL.Lib, EntryPoint = "alSourcePausev" ), SuppressUnmanagedCodeSecurity]
-        unsafe private static extern void SourcePausev( int ns, [In] uint* sids );
+        unsafe private static extern void SourcePausePrivate( int ns, [In] uint* sids );
         // AL_API void AL_APIENTRY alSourcePausev( ALsizei ns, const ALuint *sids );
 
         /// <summary>This function pauses a set of sources. The paused sources will have their state changed to AL_PAUSED.</summary>
         /// <param name="ns">The number of sources to be paused.</param>
         /// <param name="sids">A pointer to an array of sources to be paused.</param>
-        public static void SourcePausev( int ns, [In] uint[] sids )
+        public static void SourcePause( int ns, [In] uint[] sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = sids )
                 {
-                    SourcePausev( ns, ptr );
+                    SourcePausePrivate( ns, ptr );
                 }
             }
         }
@@ -614,13 +685,13 @@ namespace OpenTK.OpenAL
         /// <summary>This function pauses a set of sources. The paused sources will have their state changed to AL_PAUSED.</summary>
         /// <param name="ns">The number of sources to be paused.</param>
         /// <param name="sids">A pointer to an array of sources to be paused.</param>
-        public static void SourcePausev( int ns, [In] ref uint sids )
+        public static void SourcePause( int ns, [In] ref uint sids )
         {
             unsafe
             {
                 fixed ( uint* ptr = &sids )
                 {
-                    SourcePausev( ns, ptr );
+                    SourcePausePrivate( ns, ptr );
                 }
             }
         }
@@ -628,6 +699,7 @@ namespace OpenTK.OpenAL
         #endregion Source vector based playback calls
 
         #region Source based playback calls
+
         /// <summary>This function plays a source. The playing source will have its state changed to AL_PLAYING. When called on a source which is already playing, the source will restart at the beginning. When the attached buffer(s) are done playing, the source will progress to the AL_STOPPED state.</summary>
         /// <param name="sid">The name of the source to be played.</param>
         [DllImport( AL.Lib, EntryPoint = "alSourcePlay", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
@@ -651,9 +723,11 @@ namespace OpenTK.OpenAL
         [DllImport( AL.Lib, EntryPoint = "alSourcePause", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern void SourcePause( uint sid ); // Pause a Source
         // AL_API void AL_APIENTRY alSourcePause( ALuint sid );
+
         #endregion Source based playback calls
 
         #region Source Queuing
+
         [DllImport( AL.Lib, EntryPoint = "alSourceQueueBuffers" ), SuppressUnmanagedCodeSecurity]
         unsafe private static extern void SourceQueueBuffers( uint sid, int numEntries, [In] uint* bids );
         // AL_API void AL_APIENTRY alSourceQueueBuffers( ALuint sid, ALsizei numEntries, const ALuint *bids );
@@ -721,6 +795,7 @@ namespace OpenTK.OpenAL
                 }
             }
         }
+
         #endregion Source Queuing
 
         /*
@@ -739,38 +814,58 @@ namespace OpenTK.OpenAL
 
         #region Buffer objects
         [DllImport( AL.Lib, EntryPoint = "alGenBuffers", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe private static extern void GenBufferspublic( int n, [Out] uint* buffers );
+        unsafe private static extern void GenBuffersPrivate( int n, [Out] uint* buffers );
         // AL_API void AL_APIENTRY alGenBuffers( ALsizei n, ALuint* Buffers );
 
         /// <summary>This function generates one or more buffers, which contain audio data (see alBufferData). References to buffers are ALuint values, which are used wherever a buffer reference is needed (in calls such as alDeleteBuffers, alSourcei, alSourceQueueBuffers, and alSourceUnqueueBuffers).</summary>
         /// <param name="n">The number of buffers to be generated.</param>
-        /// <param name="buffers">Pointer to an array of ALuint values which will store the names of the new buffers.</param>
-        public static void GenBuffers( int n, [Out] out uint buffers )
+        /// <param name="buffers">Pointer to an array of uint values which will store the names of the new buffers.</param>
+        public static void GenBuffers( int n, out uint buffers )
         {
             unsafe
             {
                 fixed ( uint* ptr = &buffers )
                 {
-                    GenBufferspublic( n, (uint*) ptr );
+                    GenBuffersPrivate( n, (uint*) ptr );
                     buffers = *ptr;
                 }
             }
         }
 
+        /// <summary>This function generates one buffer only, which contain audio data (see alBufferData). References to buffers are ALuint values, which are used wherever a buffer reference is needed (in calls such as alDeleteBuffers, alSourcei, alSourceQueueBuffers, and alSourceUnqueueBuffers).</summary>
+        /// <param name="buffers">Pointer to an uint value which will store the name of the new buffer.</param>
+        public static void GenBuffer( out uint buffer )
+        {
+            GenBuffers( 1, out buffer );
+        }
+
         [DllImport( AL.Lib, EntryPoint = "alDeleteBuffers", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        unsafe private static extern void DeleteBufferspublic( int n, [In] uint* buffers );  // Delete Buffer objects
+        unsafe private static extern void DeleteBuffersPrivate( int n, [In] uint* buffers );  // Delete Buffer objects
         // AL_API void AL_APIENTRY alDeleteBuffers( ALsizei n, const ALuint* Buffers );
 
         /// <summary>This function deletes one or more buffers, freeing the resources used by the buffer. Buffers which are attached to a source can not be deleted. See alSourcei and alSourceUnqueueBuffers for information on how to detach a buffer from a source.</summary>
         /// <param name="n">The number of buffers to be deleted.</param>
         /// <param name="buffers">Pointer to an array of buffer names identifying the buffers to be deleted.</param>
-        public static void DeleteBuffers( int n, uint[] buffers )
+        public static void DeleteBuffers( int n, ref uint[] buffers )
         {
             unsafe
             {
                 fixed ( uint* ptr = buffers )
                 {
-                    DeleteBufferspublic( n, (uint*) ptr );
+                    DeleteBuffersPrivate( n, (uint*) ptr );
+                }
+            }
+        }
+
+        /// <summary>This function deletes one buffer only, freeing the resources used by the buffer. Buffers which are attached to a source can not be deleted. See AL.Source and AL.SourceUnqueueBuffers for information on how to detach a buffer from a source.</summary>
+        /// <param name="buffers">Pointer to a buffer name identifying the buffer to be deleted.</param>
+        public static void DeleteBuffer( ref uint buffer )
+        {
+            unsafe
+            {
+                fixed ( uint* ptr = &buffer )
+                {
+                    DeleteBuffersPrivate( 1, (uint*) ptr );
                 }
             }
         }
@@ -789,7 +884,7 @@ namespace OpenTK.OpenAL
         /// <param name="size">The size of the audio data in bytes.</param>
         /// <param name="freq">The frequency of the audio data.</param>
         [DllImport( AL.Lib, EntryPoint = "alBufferData", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void BufferData( uint bid, Enums.AlFormat format, IntPtr data, int size, int freq ); // Specify the data to be copied into a Buffer
+        public static extern void BufferData( uint bid, Enums.ALFormat format, IntPtr data, int size, int freq ); // Specify the data to be copied into a Buffer
         // AL_API void AL_APIENTRY alBufferData( ALuint bid, ALenum format, const ALvoid* data, ALsizei size, ALsizei freq );
         #endregion Buffer objects
 
@@ -799,40 +894,41 @@ namespace OpenTK.OpenAL
         Remarks (from Manual)
          * There are no relevant buffer properties defined in OpenAL 1.1 which can be affected by this call,
          * but this function may be used by OpenAL extensions.
-    */
 
         // AL_API void AL_APIENTRY alBufferf( ALuint bid, ALenum param, ALfloat value );
-
-        // AL_API void AL_APIENTRY alBuffer3f( ALuint bid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
-        /* [DllImport( Al.Lib, EntryPoint = "alBuffer3f", ExactSpelling = true, CallingConvention = Al.Style ), SuppressUnmanagedCodeSecurity( )]
-         public static extern void Buffer3f( uint bid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
-
-         public static void Bufferv3( uint bid, Alenum param, ref Vector3 values )
-         {
-             Buffer3f( bid, param, values.X, values.Y, values.Z );
-         }*/
-
         // AL_API void AL_APIENTRY alBufferfv( ALuint bid, ALenum param, const ALfloat* values );
         // AL_API void AL_APIENTRY alBufferi( ALuint bid, ALenum param, ALint value );
         // AL_API void AL_APIENTRY alBuffer3i( ALuint bid, ALenum param, ALint value1, ALint value2, ALint value3 );
         // AL_API void AL_APIENTRY alBufferiv( ALuint bid, ALenum param, const ALint* values );
+        // AL_API void AL_APIENTRY alBuffer3f( ALuint bid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
+       */
+        /*
+        [DllImport( Al.Lib, EntryPoint = "alBuffer3f", ExactSpelling = true, CallingConvention = Al.Style ), SuppressUnmanagedCodeSecurity( )]
+        public static extern void Buffer3f( uint bid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
+
+        public static void Bufferv3( uint bid, Alenum param, ref Vector3 values )
+        {
+            Buffer3f( bid, param, values.X, values.Y, values.Z );
+        }*/
+
         #endregion Set Buffer parameters
 
         #region Get Buffer parameters
+
         /// <summary>This function retrieves an integer property of a buffer.</summary>
         /// <param name="bid">Buffer name whose attribute is being retrieved</param>
         /// <param name="param">The name of the attribute to be retrieved: AL_FREQUENCY, AL_BITS, AL_CHANNELS, AL_SIZE, and the currently hidden AL_DATA.</param>
         /// <param name="value">A pointer to an ALint to hold the retrieved data</param>
         [DllImport( AL.Lib, EntryPoint = "alGetBufferi", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void GetBufferi( uint bid, Enums.AGetBufferi param, [Out] out int value );
+        public static extern void GetBuffer( uint bid, Enums.ALGetBufferi param, [Out] out int value );
         // AL_API void AL_APIENTRY alGetBufferi( ALuint bid, ALenum param, ALint* value );
-
 
         // AL_API void AL_APIENTRY alGetBufferf( ALuint bid, ALenum param, ALfloat* value );
         // AL_API void AL_APIENTRY alGetBuffer3f( ALuint bid, ALenum param, ALfloat* value1, ALfloat* value2, ALfloat* value3);
         // AL_API void AL_APIENTRY alGetBufferfv( ALuint bid, ALenum param, ALfloat* values );
         // AL_API void AL_APIENTRY alGetBuffer3i( ALuint bid, ALenum param, ALint* value1, ALint* value2, ALint* value3);
         // AL_API void AL_APIENTRY alGetBufferiv( ALuint bid, ALenum param, ALint* values );
+
         #endregion Get Buffer parameters
 
         #region Global Parameters
@@ -842,7 +938,6 @@ namespace OpenTK.OpenAL
         [DllImport( AL.Lib, EntryPoint = "alDopplerFactor", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern void DopplerFactor( float value );
         // AL_API void AL_APIENTRY alDopplerFactor( ALfloat value );
-
 
         [DllImport( AL.Lib, EntryPoint = "alDopplerVelocity", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
         public static extern void DopplerVelocity( float value );
@@ -886,86 +981,10 @@ namespace OpenTK.OpenAL
         /// </remarks>
         /// <param name="distancemodel"></param>
         [DllImport( AL.Lib, EntryPoint = "alDistanceModel", ExactSpelling = true, CallingConvention = AL.Style ), SuppressUnmanagedCodeSecurity( )]
-        public static extern void DistanceModel( Enums.AlDistanceModel distancemodel );
+        public static extern void DistanceModel( Enums.ALDistanceModel distancemodel );
         // AL_API void AL_APIENTRY alDistanceModel( ALenum distanceModel );
+
         #endregion Global Parameters
-
-        /*
-#else // AL_NO_PROTOTYPES 
-
-typedef void           (AL_APIENTRY *LPALENABLE)( ALenum capability );
-typedef void           (AL_APIENTRY *LPALDISABLE)( ALenum capability ); 
-typedef ALboolean      (AL_APIENTRY *LPALISENABLED)( ALenum capability ); 
-typedef const ALchar*  (AL_APIENTRY *LPALGETSTRING)( ALenum param );
-typedef void           (AL_APIENTRY *LPALGETBOOLEANV)( ALenum param, ALboolean* data );
-typedef void           (AL_APIENTRY *LPALGETINTEGERV)( ALenum param, ALint* data );
-typedef void           (AL_APIENTRY *LPALGETFLOATV)( ALenum param, ALfloat* data );
-typedef void           (AL_APIENTRY *LPALGETDOUBLEV)( ALenum param, ALdouble* data );
-typedef ALboolean      (AL_APIENTRY *LPALGETBOOLEAN)( ALenum param );
-typedef ALint          (AL_APIENTRY *LPALGETINTEGER)( ALenum param );
-typedef ALfloat        (AL_APIENTRY *LPALGETFLOAT)( ALenum param );
-typedef ALdouble       (AL_APIENTRY *LPALGETDOUBLE)( ALenum param );
-typedef ALenum         (AL_APIENTRY *LPALGETERROR)( void );
-typedef ALboolean      (AL_APIENTRY *LPALISEXTENSIONPRESENT)(const ALchar* extname );
-typedef void*          (AL_APIENTRY *LPALGETPROCADDRESS)( const ALchar* fname );
-typedef ALenum         (AL_APIENTRY *LPALGETENUMVALUE)( const ALchar* ename );
-typedef void           (AL_APIENTRY *LPALListenerF)( ALenum param, ALfloat value );
-typedef void           (AL_APIENTRY *LPALListener3F)( ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
-typedef void           (AL_APIENTRY *LPALListenerFV)( ALenum param, const ALfloat* values );
-typedef void           (AL_APIENTRY *LPALListenerI)( ALenum param, ALint value );
-typedef void           (AL_APIENTRY *LPALListener3I)( ALenum param, ALint value1, ALint value2, ALint value3 );
-typedef void           (AL_APIENTRY *LPALListenerIV)( ALenum param, const ALint* values );
-typedef void           (AL_APIENTRY *LPALGETListenerF)( ALenum param, ALfloat* value );
-typedef void           (AL_APIENTRY *LPALGETListener3F)( ALenum param, ALfloat *value1, ALfloat *value2, ALfloat *value3 );
-typedef void           (AL_APIENTRY *LPALGETListenerFV)( ALenum param, ALfloat* values );
-typedef void           (AL_APIENTRY *LPALGETListenerI)( ALenum param, ALint* value );
-typedef void           (AL_APIENTRY *LPALGETListener3I)( ALenum param, ALint *value1, ALint *value2, ALint *value3 );
-typedef void           (AL_APIENTRY *LPALGETListenerIV)( ALenum param, ALint* values );
-typedef void           (AL_APIENTRY *LPALGENSourceS)( ALsizei n, ALuint* Sources ); 
-typedef void           (AL_APIENTRY *LPALDELETESourceS)( ALsizei n, const ALuint* Sources );
-typedef ALboolean      (AL_APIENTRY *LPALISSource)( ALuint sid ); 
-typedef void           (AL_APIENTRY *LPALSourceF)( ALuint sid, ALenum param, ALfloat value); 
-typedef void           (AL_APIENTRY *LPALSource3F)( ALuint sid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
-typedef void           (AL_APIENTRY *LPALSourceFV)( ALuint sid, ALenum param, const ALfloat* values );
-typedef void           (AL_APIENTRY *LPALSourceI)( ALuint sid, ALenum param, ALint value); 
-typedef void           (AL_APIENTRY *LPALSource3I)( ALuint sid, ALenum param, ALint value1, ALint value2, ALint value3 );
-typedef void           (AL_APIENTRY *LPALSourceIV)( ALuint sid, ALenum param, const ALint* values );
-typedef void           (AL_APIENTRY *LPALGETSourceF)( ALuint sid, ALenum param, ALfloat* value );
-typedef void           (AL_APIENTRY *LPALGETSource3F)( ALuint sid, ALenum param, ALfloat* value1, ALfloat* value2, ALfloat* value3);
-typedef void           (AL_APIENTRY *LPALGETSourceFV)( ALuint sid, ALenum param, ALfloat* values );
-typedef void           (AL_APIENTRY *LPALGETSourceI)( ALuint sid, ALenum param, ALint* value );
-typedef void           (AL_APIENTRY *LPALGETSource3I)( ALuint sid, ALenum param, ALint* value1, ALint* value2, ALint* value3);
-typedef void           (AL_APIENTRY *LPALGETSourceIV)( ALuint sid, ALenum param, ALint* values );
-typedef void           (AL_APIENTRY *LPALSourcePLAYV)( ALsizei ns, const ALuint *sids );
-typedef void           (AL_APIENTRY *LPALSourceSTOPV)( ALsizei ns, const ALuint *sids );
-typedef void           (AL_APIENTRY *LPALSourceREWINDV)( ALsizei ns, const ALuint *sids );
-typedef void           (AL_APIENTRY *LPALSourcePAUSEV)( ALsizei ns, const ALuint *sids );
-typedef void           (AL_APIENTRY *LPALSourcePLAY)( ALuint sid );
-typedef void           (AL_APIENTRY *LPALSourceSTOP)( ALuint sid );
-typedef void           (AL_APIENTRY *LPALSourceREWIND)( ALuint sid );
-typedef void           (AL_APIENTRY *LPALSourcePAUSE)( ALuint sid );
-typedef void           (AL_APIENTRY *LPALSourceQUEUEBufferS)(ALuint sid, ALsizei numEntries, const ALuint *bids );
-typedef void           (AL_APIENTRY *LPALSourceUNQUEUEBufferS)(ALuint sid, ALsizei numEntries, ALuint *bids );
-typedef void           (AL_APIENTRY *LPALGENBufferS)( ALsizei n, ALuint* Buffers );
-typedef void           (AL_APIENTRY *LPALDELETEBufferS)( ALsizei n, const ALuint* Buffers );
-typedef ALboolean      (AL_APIENTRY *LPALISBuffer)( ALuint bid );
-typedef void           (AL_APIENTRY *LPALBufferDATA)( ALuint bid, ALenum format, const ALvoid* data, ALsizei size, ALsizei freq );
-typedef void           (AL_APIENTRY *LPALBufferF)( ALuint bid, ALenum param, ALfloat value);
-typedef void           (AL_APIENTRY *LPALBuffer3F)( ALuint bid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 );
-typedef void           (AL_APIENTRY *LPALBufferFV)( ALuint bid, ALenum param, const ALfloat* values );
-typedef void           (AL_APIENTRY *LPALBufferI)( ALuint bid, ALenum param, ALint value);
-typedef void           (AL_APIENTRY *LPALBuffer3I)( ALuint bid, ALenum param, ALint value1, ALint value2, ALint value3 );
-typedef void           (AL_APIENTRY *LPALBufferIV)( ALuint bid, ALenum param, const ALint* values );
-typedef void           (AL_APIENTRY *LPALGETBufferF)( ALuint bid, ALenum param, ALfloat* value );
-typedef void           (AL_APIENTRY *LPALGETBuffer3F)( ALuint bid, ALenum param, ALfloat* value1, ALfloat* value2, ALfloat* value3);
-typedef void           (AL_APIENTRY *LPALGETBufferFV)( ALuint bid, ALenum param, ALfloat* values );
-typedef void           (AL_APIENTRY *LPALGETBufferI)( ALuint bid, ALenum param, ALint* value );
-typedef void           (AL_APIENTRY *LPALGETBuffer3I)( ALuint bid, ALenum param, ALint* value1, ALint* value2, ALint* value3);
-typedef void           (AL_APIENTRY *LPALGETBufferIV)( ALuint bid, ALenum param, ALint* values );
-typedef void           (AL_APIENTRY *LPALDOPPLERFACTOR)( ALfloat value );
-typedef void           (AL_APIENTRY *LPALDOPPLERVELOCITY)( ALfloat value );
-typedef void           (AL_APIENTRY *LPALSPEEDOFSOUND)( ALfloat value );
-typedef void           (AL_APIENTRY *LPALDISTANCEMODEL)( ALenum distanceModel );
-         */
     }
+
 }
