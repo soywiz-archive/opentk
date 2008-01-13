@@ -1,6 +1,7 @@
 ﻿using System;
 
 using OpenTK.OpenAL;
+using OpenTK.OpenAL.Enums;
 
 using AlContext = System.IntPtr;
 using AlDevice = System.IntPtr;
@@ -8,15 +9,14 @@ using Examples;
 
 namespace OpenALTestProgram
 {
-#if false
     [Example("OpenAL Context Test", ExampleCategory.OpenAL, 101, false)]
     class TestApp
     {
         public static void GetOpenALErrors( IntPtr device )
         {
-            Enums.AlError AlErr = Al.GetError( );
-            Enums.AlcError AlcErr = Alc.GetError( device );
-            Enums.AlutError AlutErr = Alut.GetError( );
+            AlError AlErr = AL.GetError( );
+            AlcError AlcErr = Alc.GetError( device );
+            AlutError AlutErr = Alut.GetError( );
             Console.WriteLine( " Al: " + AlErr + "  Alc: " + AlcErr + "  Alut: " + AlcErr + " " + Alut.GetErrorString( AlutErr ) );
         }
 
@@ -27,42 +27,42 @@ namespace OpenALTestProgram
 
         public static void AlcUnitTestFunc()
         {
-            Console.WriteLine("Found Devices: "+ Alc.GetString( Al.Null, Enums.AlcGetString.DeviceSpecifier ));
+            Console.WriteLine("Found Devices: "+ Alc.GetString( AL.Null, AlcGetString.DeviceSpecifier ));
 
             AlDevice MyDevice;
             AlContext MyContext;
 
             // Initialize Open AL
             MyDevice = Alc.OpenDevice( null );// open default device
-            if ( MyDevice != Al.Null )
+            if ( MyDevice != AL.Null )
             {
                 Console.WriteLine( "Device allocation succeeded." );
-                MyContext = Alc.CreateContext( MyDevice, Al.Null ); // create context
-                if ( MyContext != Al.Null )
+                MyContext = Alc.CreateContext( MyDevice, AL.Null ); // create context
+                if ( MyContext != AL.Null )
                 {
                     Console.WriteLine( "Context allocation succeeded." );
                     GetOpenALErrors( MyDevice );
 
                     Alc.SuspendContext( MyContext ); // disable context
                     Alc.ProcessContext( MyContext ); // enable context. The default state of a context created by alcCreateContext is that it is processing.
-                    Al.Bool result = Alc.MakeContextCurrent( MyContext ); // set active context
+                    AL.Bool result = Alc.MakeContextCurrent( MyContext ); // set active context
                     Console.WriteLine( "MakeContextCurrent succeeded? " + result );
                     GetOpenALErrors( MyDevice );
 
-                    Console.WriteLine( "Default: " + Alc.GetString( MyDevice, Enums.AlcGetString.DefaultDeviceSpecifier ) );
-                    Console.WriteLine( "Device: " + Alc.GetString( MyDevice, Enums.AlcGetString.DeviceSpecifier ) );
-                    Console.WriteLine( "Extensions: " + Alc.GetString( MyDevice, Enums.AlcGetString.Extensions ) );
+                    Console.WriteLine( "Default: " + Alc.GetString( MyDevice, AlcGetString.DefaultDeviceSpecifier ) );
+                    Console.WriteLine( "Device: " + Alc.GetString( MyDevice, AlcGetString.DeviceSpecifier ) );
+                    Console.WriteLine( "Extensions: " + Alc.GetString( MyDevice, AlcGetString.Extensions ) );
                     GetOpenALErrors( MyDevice );
 
                     #region Get Attribs
                     int AttribCount;
-                    Alc.GetInteger( MyDevice, Enums.AlcGetInteger.AttributesSize, sizeof( int ), out AttribCount );
+                    Alc.GetInteger( MyDevice, AlcGetInteger.AttributesSize, sizeof( int ), out AttribCount );
                     Console.WriteLine( "AttributeSize: " + AttribCount );
 
                     if ( AttribCount > 0 )
                     {
                         int[] Attribs = new int[AttribCount];
-                        Alc.GetInteger( MyDevice, Enums.AlcGetInteger.AttributesSize, AttribCount, out Attribs[0] );
+                        Alc.GetInteger( MyDevice, AlcGetInteger.AttributesSize, AttribCount, out Attribs[0] );
                         for ( int i = 0; i < Attribs.Length; i++ )
                             Console.Write( ", " + Attribs[i] );
                         Console.WriteLine( );
@@ -84,7 +84,7 @@ namespace OpenALTestProgram
                         Console.WriteLine( "Error: Contexts do not match." );
 
                     // exit
-                    Alc.MakeContextCurrent( Al.Null ); // results in no context being current
+                    Alc.MakeContextCurrent( AL.Null ); // results in no context being current
                     Alc.DestroyContext( MyContext );
                     result = Alc.CloseDevice( MyDevice );
                     Console.WriteLine( "Result: " + result );
@@ -147,5 +147,4 @@ alListenerfv(AL_ORIENTATION, directionvect);
             */
         }
     }
-#endif
 }
