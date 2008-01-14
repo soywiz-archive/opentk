@@ -53,8 +53,11 @@ namespace OpenTK.OpenAL.Enums
 
     public enum AlcGetString : int
     {
-        ///<summary>The specifier string for the default device</summary>
+        ///<summary>The specifier string for the default device.</summary>
         DefaultDeviceSpecifier = 0x1004,
+
+        ///<summary>The specifier strings for all available devices.</summary>
+        DeviceSpecifier = 0x1005,
 
         ///<summary>A list of available context extensions separated by spaces.</summary>
         Extensions = 0x1006,
