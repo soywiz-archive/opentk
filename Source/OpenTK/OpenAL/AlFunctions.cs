@@ -950,7 +950,7 @@ namespace OpenTK.OpenAL
         /// <param name="bid">Buffer name whose attribute is being retrieved</param>
         /// <param name="param">The name of the attribute to be retrieved: AL_FREQUENCY, AL_BITS, AL_CHANNELS, AL_SIZE, and the currently hidden AL_DATA.</param>
         /// <param name="value">A pointer to an ALint to hold the retrieved data</param>
-        [CLSCompliant(false), CLSCompliant(false), DllImport(AL.Lib, EntryPoint = "alGetBufferi", ExactSpelling = true, CallingConvention = AL.Style), SuppressUnmanagedCodeSecurity()]
+        [CLSCompliant(false), DllImport(AL.Lib, EntryPoint = "alGetBufferi", ExactSpelling = true, CallingConvention = AL.Style), SuppressUnmanagedCodeSecurity()]
         public static extern void GetBuffer(uint bid, Enums.ALGetBufferi param, [Out] out int value);
         // AL_API void AL_APIENTRY alGetBufferi( ALuint bid, ALenum param, ALint* value );
 
