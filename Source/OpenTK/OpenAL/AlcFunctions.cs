@@ -218,15 +218,17 @@ namespace OpenTK.OpenAL
             do
             {
                 b = Marshal.ReadByte(t, offset++);
-                sb.Append(b);
-                if (b == 0)
+                if (b != 0) sb.Append((char)b);
+                else
+                {
                     if (Marshal.ReadByte(t, offset + 1) == 0)
                         break;
                     else
                     {
-                        result.Add(sb.ToString());
+                        if (sb.Length > 1) result.Add(sb.ToString());
                         sb.Remove(0, sb.Length);
                     }
+                }
             } while (true);
 
             return result;

@@ -39,7 +39,7 @@ Version History:
 - DopplerVelocity, ChannelMask  are deprecated and marked.
 - functions with ushort, uint, ulong marked 
 
-Todo:
+0.5 vanilla complete
 - Fix Alc.GetString( Enums.AlcGetStringList ) to terminate with 2 null, and split at 1 null
 
 Next Version:

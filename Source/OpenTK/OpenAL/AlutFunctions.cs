@@ -19,7 +19,7 @@ namespace OpenTK.OpenAL
     {
         #region Constants
 
-        private const string Lib = "Alut.dll";
+        private const string Lib = "alut.dll";
         private const CallingConvention Style = CallingConvention.Cdecl;
 
         #endregion Constants
