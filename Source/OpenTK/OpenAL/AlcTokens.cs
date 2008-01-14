@@ -3,7 +3,7 @@
  * C header: \OpenAL 1.1 SDK\include\Alc.h
  * Spec: http://www.openal.org/openal_webstf/specs/OpenAL11Specification.pdf
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
- * See license.txt for license details (MIT)
+ * See license.txt for license details
  * http://www.OpenTK.net */
 #endregion
 
@@ -56,28 +56,39 @@ namespace OpenTK.OpenAL.Enums
         ///<summary>The specifier string for the default device</summary>
         DefaultDeviceSpecifier = 0x1004,
 
-        ///<summary>The specifier string for the device</summary>
-        DeviceSpecifier = 0x1005,
-
         ///<summary>A list of available context extensions separated by spaces.</summary>
         Extensions = 0x1006,
 
         ///<summary>The name of the default capture device</summary>
         CaptureDefaultDeviceSpecifier = 0x311, // ALC_EXT_CAPTURE extension.
 
+        /// <summary>a list of the default devices.</summary>
+        DefaultAllDevicesSpecifier = 0x1012,
+    }
+
+    public enum AlcGetStringList : int
+    {
         ///<summary>The name of the specified capture device, or a list of all available capture devices if no capture device is specified.</summary>
-        CaptureDeviceSpecifier = 0x310, // ALC_EXT_CAPTURE extension.
+        CaptureDeviceSpecifier = 0x310, // ALC_EXT_CAPTURE extension. 
+
+        ///<summary>The specifier string for the device.</summary>
+        DeviceSpecifier = 0x1005,
+
+        /// <summary>A list of all available devices.</summary>
+        AllDevicesSpecifier = 0x1013,
     }
 
     public enum AlcGetInteger : int
     {
         ///<summary>The specification revision for this implementation (major version). NULL is an acceptable device.</summary>
         MajorVersion = 0x1000,
+
         ///<summary>The specification revision for this implementation (minor version). NULL is an acceptable device.</summary>
         MinorVersion = 0x1001,
 
         ///<summary>The size (number of ALCint values) required for a zero-terminated attributes list, for the current context. NULL is an invalid device.</summary>
         AttributesSize = 0x1002,
+
         ///<summary>Expects a destination of ALC_ATTRIBUTES_SIZE, and provides an attribute list for the current context of the specified device. NULL is an invalid device.</summary>
         AllAttributes = 0x1003,
 
@@ -85,11 +96,5 @@ namespace OpenTK.OpenAL.Enums
         CaptureSamples = 0x312,
     }
 
-    // ALC_ENUMERATE_ALL_EXT token
-    public enum AlcEnumerateAll : int
-    {
-        DefaultAllDevicesSpecifier = 0x1012,
-        AllDevicesSpecifier = 0x1013,
-    }
 
 }

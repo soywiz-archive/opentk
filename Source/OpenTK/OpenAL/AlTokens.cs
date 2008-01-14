@@ -3,7 +3,7 @@
  * C header: \OpenAL 1.1 SDK\include\Al.h
  * Spec: http://www.openal.org/openal_webstf/specs/OpenAL11Specification.pdf
  * Copyright (c) 2008 Christoph Brandtner and Stefanos Apostolopoulos
- * See license.txt for license details (MIT)
+ * See license.txt for license details
  * http://www.OpenTK.net */
 #endregion
 
@@ -135,9 +135,9 @@ namespace OpenTK.OpenAL.Enums
         SourceType = 0x1027,
     }
 
-    public enum ALSourcerelatedTODO : int
+    public enum ALDeprecated : int
     {
-        ///<summary>Specify the channel mask. (Creative) Type: uint Range: [0 - 255]</summary>
+        ///<summary>Deprecated. Specify the channel mask. (Creative) Type: uint Range: [0 - 255]</summary>
         ChannelMask = 0x3000,
     }
 
@@ -232,20 +232,27 @@ namespace OpenTK.OpenAL.Enums
     }
 
     public enum ALGetString : int // alGetString
-    {// Context strings: Vendor Name. 
+    {
+        /// <summary>Gets the Vendor name.</summary>
         Vendor = 0xB001,
+
+        /// <summary>Gets the driver version.</summary>
         Version = 0xB002,
+
+        /// <summary>Gets the renderer mode.</summary>
         Renderer = 0xB003,
+
+        /// <summary>Gets a list of all available Extensions, separated with spaces.</summary>
         Extensions = 0xB004,
     }
 
     public enum ALGetFloat : int
-    { // Global tweakage.
+    {
         ///<summary>Doppler scale.  Default 1.0f</summary>
         DopplerFactor = 0xC000,
 
-        ///<summary>Tweaks speed of propagation.</summary>
-        DopplerVelocity = 0xC001, // TODO : Verify!
+        ///<summary>Tweaks speed of propagation. This functionality is deprecated.</summary>
+        DopplerVelocity = 0xC001,
 
         ///<summary>Speed of Sound in units per second. default value 343.3f</summary>
         SpeedOfSound = 0xC003,

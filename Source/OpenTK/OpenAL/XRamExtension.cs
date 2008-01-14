@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 namespace OpenTK.OpenAL
 {
 
-    public sealed class XRamExtension
+    public class XRamExtension
     {
         #region instance state
 
@@ -29,14 +29,14 @@ namespace OpenTK.OpenAL
 
         #region X-RAM Function pointer definitions
 
-        unsafe delegate AL.Bool SetBufferMode( int n, ref uint buffers, int value );
+        public unsafe delegate AL.Bool SetBufferMode(int n, ref uint buffers, int value);
         //typedef ALboolean (__cdecl *EAXSetBufferMode)(ALsizei n, ALuint *buffers, ALint value);
 
-        delegate int GetBufferMode( uint buffer, out int value );
+        public delegate int GetBufferMode(uint buffer, out int value);
         //typedef ALenum    (__cdecl *EAXGetBufferMode)(ALuint buffer, ALint *value);
 
-        private SetBufferMode EAXSetBufferMode;
-        private GetBufferMode EAXGetBufferMode;
+        public SetBufferMode EAXSetBufferMode;
+        public GetBufferMode EAXGetBufferMode;
 
         #endregion X-RAM Function pointer definitions
 
@@ -49,40 +49,40 @@ namespace OpenTK.OpenAL
 
         #region Constructor / Extension Loading
 
-        public XRamExtension( )
+        public XRamExtension()
         { // Query if Extension supported and retrieve Tokens/Pointers if it is.
             _valid = false;
-            if ( AL.IsExtensionPresent( "EAX-RAM" ) == AL.Bool.False )
+            if (AL.IsExtensionPresent("EAX-RAM") == AL.Bool.False)
                 return;
 
-            AL_EAX_RAM_SIZE = AL.GetEnumValue( "AL_EAX_RAM_SIZE" );
-            AL_EAX_RAM_FREE = AL.GetEnumValue( "AL_EAX_RAM_FREE" );
-            AL_STORAGE_AUTOMATIC = AL.GetEnumValue( "AL_STORAGE_AUTOMATIC" );
-            AL_STORAGE_HARDWARE = AL.GetEnumValue( "AL_STORAGE_HARDWARE" );
-            AL_STORAGE_ACCESSIBLE = AL.GetEnumValue( "AL_STORAGE_ACCESSIBLE" );
+            AL_EAX_RAM_SIZE = AL.GetEnumValue("AL_EAX_RAM_SIZE");
+            AL_EAX_RAM_FREE = AL.GetEnumValue("AL_EAX_RAM_FREE");
+            AL_STORAGE_AUTOMATIC = AL.GetEnumValue("AL_STORAGE_AUTOMATIC");
+            AL_STORAGE_HARDWARE = AL.GetEnumValue("AL_STORAGE_HARDWARE");
+            AL_STORAGE_ACCESSIBLE = AL.GetEnumValue("AL_STORAGE_ACCESSIBLE");
 
-            Console.WriteLine( "RamSize: {0} RamFree: {1} StorageAuto: {2} StorageHW: {3} StorageAccess: {4}", AL_EAX_RAM_SIZE, AL_EAX_RAM_FREE, AL_STORAGE_AUTOMATIC, AL_STORAGE_HARDWARE, AL_STORAGE_ACCESSIBLE );
+            Console.WriteLine("RamSize: {0} RamFree: {1} StorageAuto: {2} StorageHW: {3} StorageAccess: {4}", AL_EAX_RAM_SIZE, AL_EAX_RAM_FREE, AL_STORAGE_AUTOMATIC, AL_STORAGE_HARDWARE, AL_STORAGE_ACCESSIBLE);
 
-            if ( AL_EAX_RAM_SIZE == 0 ||
+            if (AL_EAX_RAM_SIZE == 0 ||
                  AL_EAX_RAM_FREE == 0 ||
                  AL_STORAGE_AUTOMATIC == 0 ||
                  AL_STORAGE_HARDWARE == 0 ||
-                 AL_STORAGE_ACCESSIBLE == 0 )
+                 AL_STORAGE_ACCESSIBLE == 0)
             {
-                Console.WriteLine( "Token values could not be retrieved." );
+                Console.WriteLine("Token values could not be retrieved.");
                 return;
             }
 
-            Console.WriteLine( "Free Ram: {0} / {1}", GetRamFree( ), GetRamSize( ) );
+            Console.WriteLine("Free Ram: {0} / {1}", GetRamFree(), GetRamSize());
 
             try
             {
-                EAXGetBufferMode = (GetBufferMode) Marshal.GetDelegateForFunctionPointer( AL.GetProcAddress( "EAXGetBufferMode" ), typeof( GetBufferMode ) );
-                EAXSetBufferMode = (SetBufferMode) Marshal.GetDelegateForFunctionPointer( AL.GetProcAddress( "EAXSetBufferMode" ), typeof( SetBufferMode ) );
+                EAXGetBufferMode = (GetBufferMode)Marshal.GetDelegateForFunctionPointer(AL.GetProcAddress("EAXGetBufferMode"), typeof(GetBufferMode));
+                EAXSetBufferMode = (SetBufferMode)Marshal.GetDelegateForFunctionPointer(AL.GetProcAddress("EAXSetBufferMode"), typeof(SetBufferMode));
             }
-            catch ( Exception e )
+            catch (Exception e)
             {
-                Console.WriteLine( "Attempt to marshal AL.GetProcAddress failed. " + e.ToString( ) );
+                Console.WriteLine("Attempt to marshal AL.GetProcAddress failed. " + e.ToString());
                 return;
             }
 
@@ -94,15 +94,15 @@ namespace OpenTK.OpenAL
         #region Public Methods
 
         /// <summary>Query total amount of X-RAM.</summary>
-        public int GetRamSize( )
+        public int GetRamSize()
         {
-            return AL.Get( (Enums.ALGetInteger) AL_EAX_RAM_SIZE );
+            return AL.Get((Enums.ALGetInteger)AL_EAX_RAM_SIZE);
         }
 
         /// <summary>Query free X-RAM available.</summary>
-        public int GetRamFree( )
+        public int GetRamFree()
         {
-            return AL.Get( (Enums.ALGetInteger) AL_EAX_RAM_FREE );
+            return AL.Get((Enums.ALGetInteger)AL_EAX_RAM_FREE);
         }
 
         public enum XRamStorage : byte
@@ -128,23 +128,22 @@ namespace OpenTK.OpenAL
 
         }
 
-        public void _SetBufferMode( ref uint buffer, XRamStorage mode )
+        public void _SetBufferMode(ref uint buffer, XRamStorage mode)
         {
-            switch ( mode )
+            switch (mode)
             {
-            case XRamStorage.Acessible:
-                EAXSetBufferMode( 1, ref buffer, AL_STORAGE_ACCESSIBLE );
-                break;
-            case XRamStorage.Hardware:
-                EAXSetBufferMode( 1, ref buffer, AL_STORAGE_HARDWARE );
-                break;
-            default:
-                EAXSetBufferMode( 1, ref buffer, AL_STORAGE_AUTOMATIC );
-                break;
+                case XRamStorage.Acessible:
+                    EAXSetBufferMode(1, ref buffer, AL_STORAGE_ACCESSIBLE);
+                    break;
+                case XRamStorage.Hardware:
+                    EAXSetBufferMode(1, ref buffer, AL_STORAGE_HARDWARE);
+                    break;
+                default:
+                    EAXSetBufferMode(1, ref buffer, AL_STORAGE_AUTOMATIC);
+                    break;
             }
         }
 
         #endregion Public Methods
     }
-
 }

@@ -33,15 +33,15 @@ Version History:
 - Removed all C prototype comments from AL/ALC/ALUT
 - Documented Alc properly
 
+0.4
+- changed Alc enum GetString/GetStringList
+- disabled Alut.Sleep, rather use Thread.Sleep
+- DopplerVelocity, ChannelMask  are deprecated and marked.
+- functions with ushort, uint, ulong marked 
 
 Todo:
-- <TheFiddler> functions with ushort, uint, ulong should be marked with [CSLCompliant(false)]
-- Fix Alc.GetStringDevices to terminate with 2 null, and split at 1 null
-- EFX Extension
+- Fix Alc.GetString( Enums.AlcGetStringList ) to terminate with 2 null, and split at 1 null
 
-- Clarify details of SecOffset = 0x1024, // AL_EXT_OFFSET extension.
-  Docu is conflicting, mixing MiliSeconds and Seconds.
-- Clarify details of DopplerVelocity = 0xC001,
-- find a home for ChannelMask = 0x3000,
-  
+Next Version:
+- EFX Extension 
 - Enums themselves require summaries (do EFX 1st)
