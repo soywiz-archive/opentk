@@ -212,7 +212,22 @@ namespace OpenTK.OpenAL
         {
             List<string> result = new List<string>();
             IntPtr t = GetStringPrivate(AL.Null, (Enums.AlcGetString)Enums.AlcGetStringList.DeviceSpecifier);
-
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            byte b;
+            int offset = 0;
+            do
+            {
+                b = Marshal.ReadByte(t, offset++);
+                sb.Append(b);
+                if (b == 0)
+                    if (Marshal.ReadByte(t, offset + 1) == 0)
+                        break;
+                    else
+                    {
+                        result.Add(sb.ToString());
+                        sb.Remove(0, sb.Length);
+                    }
+            } while (true);
 
             return result;
         }
