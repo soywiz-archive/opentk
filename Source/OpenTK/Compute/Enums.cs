@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OpenTK.Compute
 {
-    public enum Errorcodes
+    public enum ErrorCode
     {
         Success = 0,
         DeviceNotFound = -1,
