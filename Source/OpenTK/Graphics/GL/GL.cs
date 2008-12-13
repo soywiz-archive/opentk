@@ -18010,1877 +18010,1197 @@ namespace OpenTK.Graphics
                 Delegates.glGetProgramNamedParameterdvNV((UInt32)id, (Int32)len, (Byte*)name, (Double*)@params);
             }
 
-            [System.CLSCompliant(false)]
-            public static 
-            void Vertex2h(UInt16 x, UInt16 y)
-            {
-                Delegates.glVertex2hNV((UInt16)x, (UInt16)y);
-            }
-
-            public static 
-            void Vertex2h(Int16 x, Int16 y)
-            {
-                Delegates.glVertex2hNV((UInt16)x, (UInt16)y);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void Vertex2h(UInt16[] v)
-            {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glVertex2hvNV((UInt16*)v_ptr);
-                    }
-                }
-            }
-
             public static 
-            void Vertex2h(Int16[] v)
+            void Vertex2h(OpenTK.Math.Half x, OpenTK.Math.Half y)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glVertex2hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glVertex2hNV((OpenTK.Math.Half)x, (OpenTK.Math.Half)y);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void Vertex2h(ref UInt16 v)
+            void Vertex2h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertex2hvNV((UInt16*)v_ptr);
+                        Delegates.glVertex2hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void Vertex2h(ref Int16 v)
+            void Vertex2h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertex2hvNV((UInt16*)v_ptr);
+                        Delegates.glVertex2hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Vertex2h(UInt16* v)
-            {
-                Delegates.glVertex2hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Vertex2h(Int16* v)
-            {
-                Delegates.glVertex2hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void Vertex3h(UInt16 x, UInt16 y, UInt16 z)
-            {
-                Delegates.glVertex3hNV((UInt16)x, (UInt16)y, (UInt16)z);
-            }
-
-            public static 
-            void Vertex3h(Int16 x, Int16 y, Int16 z)
-            {
-                Delegates.glVertex3hNV((UInt16)x, (UInt16)y, (UInt16)z);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void Vertex3h(UInt16[] v)
+            unsafe void Vertex2h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glVertex3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glVertex2hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void Vertex3h(Int16[] v)
+            void Vertex3h(OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glVertex3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glVertex3hNV((OpenTK.Math.Half)x, (OpenTK.Math.Half)y, (OpenTK.Math.Half)z);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void Vertex3h(ref UInt16 v)
+            void Vertex3h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertex3hvNV((UInt16*)v_ptr);
+                        Delegates.glVertex3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void Vertex3h(ref Int16 v)
+            void Vertex3h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertex3hvNV((UInt16*)v_ptr);
+                        Delegates.glVertex3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Vertex3h(UInt16* v)
-            {
-                Delegates.glVertex3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Vertex3h(Int16* v)
-            {
-                Delegates.glVertex3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void Vertex4h(UInt16 x, UInt16 y, UInt16 z, UInt16 w)
-            {
-                Delegates.glVertex4hNV((UInt16)x, (UInt16)y, (UInt16)z, (UInt16)w);
-            }
-
-            public static 
-            void Vertex4h(Int16 x, Int16 y, Int16 z, Int16 w)
-            {
-                Delegates.glVertex4hNV((UInt16)x, (UInt16)y, (UInt16)z, (UInt16)w);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void Vertex4h(UInt16[] v)
+            unsafe void Vertex3h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glVertex4hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glVertex3hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void Vertex4h(Int16[] v)
+            void Vertex4h(OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z, OpenTK.Math.Half w)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glVertex4hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glVertex4hNV((OpenTK.Math.Half)x, (OpenTK.Math.Half)y, (OpenTK.Math.Half)z, (OpenTK.Math.Half)w);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void Vertex4h(ref UInt16 v)
+            void Vertex4h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertex4hvNV((UInt16*)v_ptr);
+                        Delegates.glVertex4hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void Vertex4h(ref Int16 v)
+            void Vertex4h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertex4hvNV((UInt16*)v_ptr);
+                        Delegates.glVertex4hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Vertex4h(UInt16* v)
-            {
-                Delegates.glVertex4hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Vertex4h(Int16* v)
-            {
-                Delegates.glVertex4hvNV((UInt16*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void Normal3h(UInt16 nx, UInt16 ny, UInt16 nz)
+            unsafe void Vertex4h(OpenTK.Math.Half* v)
             {
-                Delegates.glNormal3hNV((UInt16)nx, (UInt16)ny, (UInt16)nz);
+                Delegates.glVertex4hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void Normal3h(Int16 nx, Int16 ny, Int16 nz)
+            void Normal3h(OpenTK.Math.Half nx, OpenTK.Math.Half ny, OpenTK.Math.Half nz)
             {
-                Delegates.glNormal3hNV((UInt16)nx, (UInt16)ny, (UInt16)nz);
+                Delegates.glNormal3hNV((OpenTK.Math.Half)nx, (OpenTK.Math.Half)ny, (OpenTK.Math.Half)nz);
             }
 
-            [System.CLSCompliant(false)]
-            public static 
-            void Normal3h(UInt16[] v)
-            {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glNormal3hvNV((UInt16*)v_ptr);
-                    }
-                }
-            }
-
-            public static 
-            void Normal3h(Int16[] v)
-            {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glNormal3hvNV((UInt16*)v_ptr);
-                    }
-                }
-            }
-
-            [System.CLSCompliant(false)]
             public static 
-            void Normal3h(ref UInt16 v)
+            void Normal3h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glNormal3hvNV((UInt16*)v_ptr);
+                        Delegates.glNormal3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void Normal3h(ref Int16 v)
+            void Normal3h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glNormal3hvNV((UInt16*)v_ptr);
+                        Delegates.glNormal3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Normal3h(UInt16* v)
-            {
-                Delegates.glNormal3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Normal3h(Int16* v)
-            {
-                Delegates.glNormal3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void Color3h(UInt16 red, UInt16 green, UInt16 blue)
-            {
-                Delegates.glColor3hNV((UInt16)red, (UInt16)green, (UInt16)blue);
-            }
-
-            public static 
-            void Color3h(Int16 red, Int16 green, Int16 blue)
-            {
-                Delegates.glColor3hNV((UInt16)red, (UInt16)green, (UInt16)blue);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void Color3h(UInt16[] v)
+            unsafe void Normal3h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glColor3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glNormal3hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void Color3h(Int16[] v)
+            void Color3h(OpenTK.Math.Half red, OpenTK.Math.Half green, OpenTK.Math.Half blue)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glColor3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glColor3hNV((OpenTK.Math.Half)red, (OpenTK.Math.Half)green, (OpenTK.Math.Half)blue);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void Color3h(ref UInt16 v)
+            void Color3h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glColor3hvNV((UInt16*)v_ptr);
+                        Delegates.glColor3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void Color3h(ref Int16 v)
+            void Color3h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glColor3hvNV((UInt16*)v_ptr);
+                        Delegates.glColor3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Color3h(UInt16* v)
-            {
-                Delegates.glColor3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Color3h(Int16* v)
-            {
-                Delegates.glColor3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void Color4h(UInt16 red, UInt16 green, UInt16 blue, UInt16 alpha)
-            {
-                Delegates.glColor4hNV((UInt16)red, (UInt16)green, (UInt16)blue, (UInt16)alpha);
-            }
-
-            public static 
-            void Color4h(Int16 red, Int16 green, Int16 blue, Int16 alpha)
-            {
-                Delegates.glColor4hNV((UInt16)red, (UInt16)green, (UInt16)blue, (UInt16)alpha);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void Color4h(UInt16[] v)
+            unsafe void Color3h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glColor4hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glColor3hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void Color4h(Int16[] v)
+            void Color4h(OpenTK.Math.Half red, OpenTK.Math.Half green, OpenTK.Math.Half blue, OpenTK.Math.Half alpha)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glColor4hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glColor4hNV((OpenTK.Math.Half)red, (OpenTK.Math.Half)green, (OpenTK.Math.Half)blue, (OpenTK.Math.Half)alpha);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void Color4h(ref UInt16 v)
+            void Color4h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glColor4hvNV((UInt16*)v_ptr);
+                        Delegates.glColor4hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void Color4h(ref Int16 v)
+            void Color4h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glColor4hvNV((UInt16*)v_ptr);
+                        Delegates.glColor4hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Color4h(UInt16* v)
-            {
-                Delegates.glColor4hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void Color4h(Int16* v)
-            {
-                Delegates.glColor4hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void TexCoord1h(UInt16 s)
-            {
-                Delegates.glTexCoord1hNV((UInt16)s);
-            }
-
-            public static 
-            void TexCoord1h(Int16 s)
-            {
-                Delegates.glTexCoord1hNV((UInt16)s);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void TexCoord1hv(UInt16[] v)
+            unsafe void Color4h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord1hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glColor4hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void TexCoord1hv(Int16[] v)
+            void TexCoord1h(OpenTK.Math.Half s)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord1hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord1hNV((OpenTK.Math.Half)s);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void TexCoord1hv(ref UInt16 v)
+            void TexCoord1hv(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glTexCoord1hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord1hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void TexCoord1hv(ref Int16 v)
+            void TexCoord1hv(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glTexCoord1hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord1hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void TexCoord1hv(UInt16* v)
-            {
-                Delegates.glTexCoord1hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void TexCoord1hv(Int16* v)
-            {
-                Delegates.glTexCoord1hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void TexCoord2h(UInt16 s, UInt16 t)
-            {
-                Delegates.glTexCoord2hNV((UInt16)s, (UInt16)t);
-            }
-
-            public static 
-            void TexCoord2h(Int16 s, Int16 t)
-            {
-                Delegates.glTexCoord2hNV((UInt16)s, (UInt16)t);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void TexCoord2h(UInt16[] v)
+            unsafe void TexCoord1hv(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord2hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord1hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void TexCoord2h(Int16[] v)
+            void TexCoord2h(OpenTK.Math.Half s, OpenTK.Math.Half t)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord2hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord2hNV((OpenTK.Math.Half)s, (OpenTK.Math.Half)t);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void TexCoord2h(ref UInt16 v)
+            void TexCoord2h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glTexCoord2hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord2hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void TexCoord2h(ref Int16 v)
+            void TexCoord2h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glTexCoord2hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord2hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void TexCoord2h(UInt16* v)
-            {
-                Delegates.glTexCoord2hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void TexCoord2h(Int16* v)
-            {
-                Delegates.glTexCoord2hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void TexCoord3h(UInt16 s, UInt16 t, UInt16 r)
-            {
-                Delegates.glTexCoord3hNV((UInt16)s, (UInt16)t, (UInt16)r);
-            }
-
-            public static 
-            void TexCoord3h(Int16 s, Int16 t, Int16 r)
-            {
-                Delegates.glTexCoord3hNV((UInt16)s, (UInt16)t, (UInt16)r);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void TexCoord3h(UInt16[] v)
+            unsafe void TexCoord2h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord2hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void TexCoord3h(Int16[] v)
+            void TexCoord3h(OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord3hNV((OpenTK.Math.Half)s, (OpenTK.Math.Half)t, (OpenTK.Math.Half)r);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void TexCoord3h(ref UInt16 v)
+            void TexCoord3h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glTexCoord3hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void TexCoord3h(ref Int16 v)
+            void TexCoord3h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glTexCoord3hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void TexCoord3h(UInt16* v)
-            {
-                Delegates.glTexCoord3hvNV((UInt16*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void TexCoord3h(Int16* v)
+            unsafe void TexCoord3h(OpenTK.Math.Half* v)
             {
-                Delegates.glTexCoord3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void TexCoord4h(UInt16 s, UInt16 t, UInt16 r, UInt16 q)
-            {
-                Delegates.glTexCoord4hNV((UInt16)s, (UInt16)t, (UInt16)r, (UInt16)q);
-            }
-
-            public static 
-            void TexCoord4h(Int16 s, Int16 t, Int16 r, Int16 q)
-            {
-                Delegates.glTexCoord4hNV((UInt16)s, (UInt16)t, (UInt16)r, (UInt16)q);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void TexCoord4h(UInt16[] v)
-            {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord4hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord3hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void TexCoord4h(Int16[] v)
+            void TexCoord4h(OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r, OpenTK.Math.Half q)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glTexCoord4hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord4hNV((OpenTK.Math.Half)s, (OpenTK.Math.Half)t, (OpenTK.Math.Half)r, (OpenTK.Math.Half)q);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void TexCoord4h(ref UInt16 v)
+            void TexCoord4h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glTexCoord4hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord4hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void TexCoord4h(ref Int16 v)
+            void TexCoord4h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glTexCoord4hvNV((UInt16*)v_ptr);
+                        Delegates.glTexCoord4hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void TexCoord4h(UInt16* v)
-            {
-                Delegates.glTexCoord4hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void TexCoord4h(Int16* v)
-            {
-                Delegates.glTexCoord4hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void MultiTexCoord1h(OpenTK.Graphics.TextureUnit target, UInt16 s)
-            {
-                Delegates.glMultiTexCoord1hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s);
             }
 
-            public static 
-            void MultiTexCoord1h(OpenTK.Graphics.TextureUnit target, Int16 s)
-            {
-                Delegates.glMultiTexCoord1hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s);
-            }
-
             [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, UInt16[] v)
+            unsafe void TexCoord4h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glTexCoord4hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, Int16[] v)
+            void MultiTexCoord1h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord1hNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half)s);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, ref UInt16 v)
+            void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, ref Int16 v)
+            void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, UInt16* v)
-            {
-                Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, Int16* v)
-            {
-                Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, UInt16 s, UInt16 t)
-            {
-                Delegates.glMultiTexCoord2hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s, (UInt16)t);
-            }
-
-            public static 
-            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, Int16 s, Int16 t)
-            {
-                Delegates.glMultiTexCoord2hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s, (UInt16)t);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, UInt16[] v)
+            unsafe void MultiTexCoord1hv(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord1hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v);
             }
 
             public static 
-            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, Int16[] v)
+            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s, OpenTK.Math.Half t)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord2hNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half)s, (OpenTK.Math.Half)t);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, ref UInt16 v)
+            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, ref Int16 v)
+            void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, UInt16* v)
-            {
-                Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, Int16* v)
-            {
-                Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, UInt16 s, UInt16 t, UInt16 r)
-            {
-                Delegates.glMultiTexCoord3hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s, (UInt16)t, (UInt16)r);
-            }
-
-            public static 
-            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, Int16 s, Int16 t, Int16 r)
-            {
-                Delegates.glMultiTexCoord3hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s, (UInt16)t, (UInt16)r);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, UInt16[] v)
+            unsafe void MultiTexCoord2h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord2hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v);
             }
 
             public static 
-            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, Int16[] v)
+            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord3hNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half)s, (OpenTK.Math.Half)t, (OpenTK.Math.Half)r);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, ref UInt16 v)
+            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, ref Int16 v)
+            void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, UInt16* v)
-            {
-                Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, Int16* v)
-            {
-                Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, UInt16 s, UInt16 t, UInt16 r, UInt16 q)
-            {
-                Delegates.glMultiTexCoord4hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s, (UInt16)t, (UInt16)r, (UInt16)q);
-            }
-
-            public static 
-            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, Int16 s, Int16 t, Int16 r, Int16 q)
-            {
-                Delegates.glMultiTexCoord4hNV((OpenTK.Graphics.TextureUnit)target, (UInt16)s, (UInt16)t, (UInt16)r, (UInt16)q);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, UInt16[] v)
+            unsafe void MultiTexCoord3h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord3hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v);
             }
 
             public static 
-            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, Int16[] v)
+            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r, OpenTK.Math.Half q)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord4hNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half)s, (OpenTK.Math.Half)t, (OpenTK.Math.Half)r, (OpenTK.Math.Half)q);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, ref UInt16 v)
+            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, ref Int16 v)
+            void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v_ptr);
+                        Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, UInt16* v)
-            {
-                Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, Int16* v)
-            {
-                Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void FogCoordh(UInt16 fog)
-            {
-                Delegates.glFogCoordhNV((UInt16)fog);
             }
 
-            public static 
-            void FogCoordh(Int16 fog)
-            {
-                Delegates.glFogCoordhNV((UInt16)fog);
-            }
-
             [System.CLSCompliant(false)]
             public static 
-            void FogCoordhv(UInt16[] fog)
+            unsafe void MultiTexCoord4h(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* fog_ptr = fog)
-                    {
-                        Delegates.glFogCoordhvNV((UInt16*)fog_ptr);
-                    }
-                }
+                Delegates.glMultiTexCoord4hvNV((OpenTK.Graphics.TextureUnit)target, (OpenTK.Math.Half*)v);
             }
 
             public static 
-            void FogCoordhv(Int16[] fog)
+            void FogCoordh(OpenTK.Math.Half fog)
             {
-                unsafe
-                {
-                    fixed (Int16* fog_ptr = fog)
-                    {
-                        Delegates.glFogCoordhvNV((UInt16*)fog_ptr);
-                    }
-                }
+                Delegates.glFogCoordhNV((OpenTK.Math.Half)fog);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void FogCoordhv(ref UInt16 fog)
+            void FogCoordhv(OpenTK.Math.Half[] fog)
             {
                 unsafe
                 {
-                    fixed (UInt16* fog_ptr = &fog)
+                    fixed (OpenTK.Math.Half* fog_ptr = fog)
                     {
-                        Delegates.glFogCoordhvNV((UInt16*)fog_ptr);
+                        Delegates.glFogCoordhvNV((OpenTK.Math.Half*)fog_ptr);
                     }
                 }
             }
 
             public static 
-            void FogCoordhv(ref Int16 fog)
+            void FogCoordhv(ref OpenTK.Math.Half fog)
             {
                 unsafe
                 {
-                    fixed (Int16* fog_ptr = &fog)
+                    fixed (OpenTK.Math.Half* fog_ptr = &fog)
                     {
-                        Delegates.glFogCoordhvNV((UInt16*)fog_ptr);
+                        Delegates.glFogCoordhvNV((OpenTK.Math.Half*)fog_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void FogCoordhv(UInt16* fog)
-            {
-                Delegates.glFogCoordhvNV((UInt16*)fog);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void FogCoordhv(Int16* fog)
-            {
-                Delegates.glFogCoordhvNV((UInt16*)fog);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void SecondaryColor3h(UInt16 red, UInt16 green, UInt16 blue)
-            {
-                Delegates.glSecondaryColor3hNV((UInt16)red, (UInt16)green, (UInt16)blue);
-            }
-
-            public static 
-            void SecondaryColor3h(Int16 red, Int16 green, Int16 blue)
-            {
-                Delegates.glSecondaryColor3hNV((UInt16)red, (UInt16)green, (UInt16)blue);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void SecondaryColor3h(UInt16[] v)
+            unsafe void FogCoordhv(OpenTK.Math.Half* fog)
             {
-                unsafe
-                {
-                    fixed (UInt16* v_ptr = v)
-                    {
-                        Delegates.glSecondaryColor3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glFogCoordhvNV((OpenTK.Math.Half*)fog);
             }
 
             public static 
-            void SecondaryColor3h(Int16[] v)
+            void SecondaryColor3h(OpenTK.Math.Half red, OpenTK.Math.Half green, OpenTK.Math.Half blue)
             {
-                unsafe
-                {
-                    fixed (Int16* v_ptr = v)
-                    {
-                        Delegates.glSecondaryColor3hvNV((UInt16*)v_ptr);
-                    }
-                }
+                Delegates.glSecondaryColor3hNV((OpenTK.Math.Half)red, (OpenTK.Math.Half)green, (OpenTK.Math.Half)blue);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void SecondaryColor3h(ref UInt16 v)
+            void SecondaryColor3h(OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glSecondaryColor3hvNV((UInt16*)v_ptr);
+                        Delegates.glSecondaryColor3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void SecondaryColor3h(ref Int16 v)
+            void SecondaryColor3h(ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glSecondaryColor3hvNV((UInt16*)v_ptr);
+                        Delegates.glSecondaryColor3hvNV((OpenTK.Math.Half*)v_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void SecondaryColor3h(UInt16* v)
-            {
-                Delegates.glSecondaryColor3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void SecondaryColor3h(Int16* v)
-            {
-                Delegates.glSecondaryColor3hvNV((UInt16*)v);
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            void VertexWeighth(UInt16 weight)
-            {
-                Delegates.glVertexWeighthNV((UInt16)weight);
-            }
-
-            public static 
-            void VertexWeighth(Int16 weight)
-            {
-                Delegates.glVertexWeighthNV((UInt16)weight);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexWeighthv(UInt16[] weight)
+            unsafe void SecondaryColor3h(OpenTK.Math.Half* v)
             {
-                unsafe
-                {
-                    fixed (UInt16* weight_ptr = weight)
-                    {
-                        Delegates.glVertexWeighthvNV((UInt16*)weight_ptr);
-                    }
-                }
+                Delegates.glSecondaryColor3hvNV((OpenTK.Math.Half*)v);
             }
 
             public static 
-            void VertexWeighthv(Int16[] weight)
+            void VertexWeighth(OpenTK.Math.Half weight)
             {
-                unsafe
-                {
-                    fixed (Int16* weight_ptr = weight)
-                    {
-                        Delegates.glVertexWeighthvNV((UInt16*)weight_ptr);
-                    }
-                }
+                Delegates.glVertexWeighthNV((OpenTK.Math.Half)weight);
             }
 
-            [System.CLSCompliant(false)]
             public static 
-            void VertexWeighthv(ref UInt16 weight)
+            void VertexWeighthv(OpenTK.Math.Half[] weight)
             {
                 unsafe
                 {
-                    fixed (UInt16* weight_ptr = &weight)
+                    fixed (OpenTK.Math.Half* weight_ptr = weight)
                     {
-                        Delegates.glVertexWeighthvNV((UInt16*)weight_ptr);
+                        Delegates.glVertexWeighthvNV((OpenTK.Math.Half*)weight_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexWeighthv(ref Int16 weight)
+            void VertexWeighthv(ref OpenTK.Math.Half weight)
             {
                 unsafe
                 {
-                    fixed (Int16* weight_ptr = &weight)
+                    fixed (OpenTK.Math.Half* weight_ptr = &weight)
                     {
-                        Delegates.glVertexWeighthvNV((UInt16*)weight_ptr);
+                        Delegates.glVertexWeighthvNV((OpenTK.Math.Half*)weight_ptr);
                     }
                 }
-            }
-
-            [System.CLSCompliant(false)]
-            public static 
-            unsafe void VertexWeighthv(UInt16* weight)
-            {
-                Delegates.glVertexWeighthvNV((UInt16*)weight);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexWeighthv(Int16* weight)
+            unsafe void VertexWeighthv(OpenTK.Math.Half* weight)
             {
-                Delegates.glVertexWeighthvNV((UInt16*)weight);
+                Delegates.glVertexWeighthvNV((OpenTK.Math.Half*)weight);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib1h(UInt32 index, UInt16 x)
+            void VertexAttrib1h(UInt32 index, OpenTK.Math.Half x)
             {
-                Delegates.glVertexAttrib1hNV((UInt32)index, (UInt16)x);
+                Delegates.glVertexAttrib1hNV((UInt32)index, (OpenTK.Math.Half)x);
             }
 
             public static 
-            void VertexAttrib1h(Int32 index, Int16 x)
+            void VertexAttrib1h(Int32 index, OpenTK.Math.Half x)
             {
-                Delegates.glVertexAttrib1hNV((UInt32)index, (UInt16)x);
+                Delegates.glVertexAttrib1hNV((UInt32)index, (OpenTK.Math.Half)x);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib1hv(UInt32 index, UInt16[] v)
+            void VertexAttrib1hv(UInt32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib1hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib1hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib1hv(Int32 index, Int16[] v)
+            void VertexAttrib1hv(Int32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib1hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib1hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib1hv(UInt32 index, ref UInt16 v)
+            void VertexAttrib1hv(UInt32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib1hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib1hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib1hv(Int32 index, ref Int16 v)
+            void VertexAttrib1hv(Int32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib1hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib1hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib1hv(UInt32 index, UInt16* v)
+            unsafe void VertexAttrib1hv(UInt32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib1hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib1hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib1hv(Int32 index, Int16* v)
+            unsafe void VertexAttrib1hv(Int32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib1hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib1hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib2h(UInt32 index, UInt16 x, UInt16 y)
+            void VertexAttrib2h(UInt32 index, OpenTK.Math.Half x, OpenTK.Math.Half y)
             {
-                Delegates.glVertexAttrib2hNV((UInt32)index, (UInt16)x, (UInt16)y);
+                Delegates.glVertexAttrib2hNV((UInt32)index, (OpenTK.Math.Half)x, (OpenTK.Math.Half)y);
             }
 
             public static 
-            void VertexAttrib2h(Int32 index, Int16 x, Int16 y)
+            void VertexAttrib2h(Int32 index, OpenTK.Math.Half x, OpenTK.Math.Half y)
             {
-                Delegates.glVertexAttrib2hNV((UInt32)index, (UInt16)x, (UInt16)y);
+                Delegates.glVertexAttrib2hNV((UInt32)index, (OpenTK.Math.Half)x, (OpenTK.Math.Half)y);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib2h(UInt32 index, UInt16[] v)
+            void VertexAttrib2h(UInt32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib2hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib2hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib2h(Int32 index, Int16[] v)
+            void VertexAttrib2h(Int32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib2hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib2hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib2h(UInt32 index, ref UInt16 v)
+            void VertexAttrib2h(UInt32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib2hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib2hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib2h(Int32 index, ref Int16 v)
+            void VertexAttrib2h(Int32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib2hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib2hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib2h(UInt32 index, UInt16* v)
+            unsafe void VertexAttrib2h(UInt32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib2hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib2hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib2h(Int32 index, Int16* v)
+            unsafe void VertexAttrib2h(Int32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib2hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib2hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib3h(UInt32 index, UInt16 x, UInt16 y, UInt16 z)
+            void VertexAttrib3h(UInt32 index, OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z)
             {
-                Delegates.glVertexAttrib3hNV((UInt32)index, (UInt16)x, (UInt16)y, (UInt16)z);
+                Delegates.glVertexAttrib3hNV((UInt32)index, (OpenTK.Math.Half)x, (OpenTK.Math.Half)y, (OpenTK.Math.Half)z);
             }
 
             public static 
-            void VertexAttrib3h(Int32 index, Int16 x, Int16 y, Int16 z)
+            void VertexAttrib3h(Int32 index, OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z)
             {
-                Delegates.glVertexAttrib3hNV((UInt32)index, (UInt16)x, (UInt16)y, (UInt16)z);
+                Delegates.glVertexAttrib3hNV((UInt32)index, (OpenTK.Math.Half)x, (OpenTK.Math.Half)y, (OpenTK.Math.Half)z);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib3h(UInt32 index, UInt16[] v)
+            void VertexAttrib3h(UInt32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib3hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib3hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib3h(Int32 index, Int16[] v)
+            void VertexAttrib3h(Int32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib3hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib3hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib3h(UInt32 index, ref UInt16 v)
+            void VertexAttrib3h(UInt32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib3hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib3hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib3h(Int32 index, ref Int16 v)
+            void VertexAttrib3h(Int32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib3hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib3hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib3h(UInt32 index, UInt16* v)
+            unsafe void VertexAttrib3h(UInt32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib3hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib3hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib3h(Int32 index, Int16* v)
+            unsafe void VertexAttrib3h(Int32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib3hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib3hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib4h(UInt32 index, UInt16 x, UInt16 y, UInt16 z, UInt16 w)
+            void VertexAttrib4h(UInt32 index, OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z, OpenTK.Math.Half w)
             {
-                Delegates.glVertexAttrib4hNV((UInt32)index, (UInt16)x, (UInt16)y, (UInt16)z, (UInt16)w);
+                Delegates.glVertexAttrib4hNV((UInt32)index, (OpenTK.Math.Half)x, (OpenTK.Math.Half)y, (OpenTK.Math.Half)z, (OpenTK.Math.Half)w);
             }
 
             public static 
-            void VertexAttrib4h(Int32 index, Int16 x, Int16 y, Int16 z, Int16 w)
+            void VertexAttrib4h(Int32 index, OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z, OpenTK.Math.Half w)
             {
-                Delegates.glVertexAttrib4hNV((UInt32)index, (UInt16)x, (UInt16)y, (UInt16)z, (UInt16)w);
+                Delegates.glVertexAttrib4hNV((UInt32)index, (OpenTK.Math.Half)x, (OpenTK.Math.Half)y, (OpenTK.Math.Half)z, (OpenTK.Math.Half)w);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib4h(UInt32 index, UInt16[] v)
+            void VertexAttrib4h(UInt32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib4hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib4hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib4h(Int32 index, Int16[] v)
+            void VertexAttrib4h(Int32 index, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttrib4hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib4hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttrib4h(UInt32 index, ref UInt16 v)
+            void VertexAttrib4h(UInt32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib4hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib4hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttrib4h(Int32 index, ref Int16 v)
+            void VertexAttrib4h(Int32 index, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttrib4hvNV((UInt32)index, (UInt16*)v_ptr);
+                        Delegates.glVertexAttrib4hvNV((UInt32)index, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib4h(UInt32 index, UInt16* v)
+            unsafe void VertexAttrib4h(UInt32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib4hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib4hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttrib4h(Int32 index, Int16* v)
+            unsafe void VertexAttrib4h(Int32 index, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttrib4hvNV((UInt32)index, (UInt16*)v);
+                Delegates.glVertexAttrib4hvNV((UInt32)index, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs1h(UInt32 index, Int32 n, UInt16[] v)
+            void VertexAttribs1h(UInt32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs1h(Int32 index, Int32 n, Int16[] v)
+            void VertexAttribs1h(Int32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs1h(UInt32 index, Int32 n, ref UInt16 v)
+            void VertexAttribs1h(UInt32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs1h(Int32 index, Int32 n, ref Int16 v)
+            void VertexAttribs1h(Int32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs1h(UInt32 index, Int32 n, UInt16* v)
+            unsafe void VertexAttribs1h(UInt32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs1h(Int32 index, Int32 n, Int16* v)
+            unsafe void VertexAttribs1h(Int32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs1hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs2h(UInt32 index, Int32 n, UInt16[] v)
+            void VertexAttribs2h(UInt32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs2h(Int32 index, Int32 n, Int16[] v)
+            void VertexAttribs2h(Int32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs2h(UInt32 index, Int32 n, ref UInt16 v)
+            void VertexAttribs2h(UInt32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs2h(Int32 index, Int32 n, ref Int16 v)
+            void VertexAttribs2h(Int32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs2h(UInt32 index, Int32 n, UInt16* v)
+            unsafe void VertexAttribs2h(UInt32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs2h(Int32 index, Int32 n, Int16* v)
+            unsafe void VertexAttribs2h(Int32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs2hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs3h(UInt32 index, Int32 n, UInt16[] v)
+            void VertexAttribs3h(UInt32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs3h(Int32 index, Int32 n, Int16[] v)
+            void VertexAttribs3h(Int32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs3h(UInt32 index, Int32 n, ref UInt16 v)
+            void VertexAttribs3h(UInt32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs3h(Int32 index, Int32 n, ref Int16 v)
+            void VertexAttribs3h(Int32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs3h(UInt32 index, Int32 n, UInt16* v)
+            unsafe void VertexAttribs3h(UInt32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs3h(Int32 index, Int32 n, Int16* v)
+            unsafe void VertexAttribs3h(Int32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs3hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs4h(UInt32 index, Int32 n, UInt16[] v)
+            void VertexAttribs4h(UInt32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs4h(Int32 index, Int32 n, Int16[] v)
+            void VertexAttribs4h(Int32 index, Int32 n, OpenTK.Math.Half[] v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = v)
+                    fixed (OpenTK.Math.Half* v_ptr = v)
                     {
-                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            void VertexAttribs4h(UInt32 index, Int32 n, ref UInt16 v)
+            void VertexAttribs4h(UInt32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (UInt16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             public static 
-            void VertexAttribs4h(Int32 index, Int32 n, ref Int16 v)
+            void VertexAttribs4h(Int32 index, Int32 n, ref OpenTK.Math.Half v)
             {
                 unsafe
                 {
-                    fixed (Int16* v_ptr = &v)
+                    fixed (OpenTK.Math.Half* v_ptr = &v)
                     {
-                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (UInt16*)v_ptr);
+                        Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v_ptr);
                     }
                 }
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs4h(UInt32 index, Int32 n, UInt16* v)
+            unsafe void VertexAttribs4h(UInt32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             [System.CLSCompliant(false)]
             public static 
-            unsafe void VertexAttribs4h(Int32 index, Int32 n, Int16* v)
+            unsafe void VertexAttribs4h(Int32 index, Int32 n, OpenTK.Math.Half* v)
             {
-                Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (UInt16*)v);
+                Delegates.glVertexAttribs4hvNV((UInt32)index, (Int32)n, (OpenTK.Math.Half*)v);
             }
 
             public static 

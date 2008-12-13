@@ -4064,142 +4064,142 @@ namespace OpenTK.Graphics
             internal unsafe delegate void GetProgramNamedParameterdvNV(UInt32 id, Int32 len, Byte* name, [Out] Double* @params);
             internal unsafe static GetProgramNamedParameterdvNV glGetProgramNamedParameterdvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void Vertex2hNV(UInt16 x, UInt16 y);
+            internal delegate void Vertex2hNV(OpenTK.Math.Half x, OpenTK.Math.Half y);
             internal static Vertex2hNV glVertex2hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void Vertex2hvNV(UInt16* v);
+            internal unsafe delegate void Vertex2hvNV(OpenTK.Math.Half* v);
             internal unsafe static Vertex2hvNV glVertex2hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void Vertex3hNV(UInt16 x, UInt16 y, UInt16 z);
+            internal delegate void Vertex3hNV(OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z);
             internal static Vertex3hNV glVertex3hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void Vertex3hvNV(UInt16* v);
+            internal unsafe delegate void Vertex3hvNV(OpenTK.Math.Half* v);
             internal unsafe static Vertex3hvNV glVertex3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void Vertex4hNV(UInt16 x, UInt16 y, UInt16 z, UInt16 w);
+            internal delegate void Vertex4hNV(OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z, OpenTK.Math.Half w);
             internal static Vertex4hNV glVertex4hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void Vertex4hvNV(UInt16* v);
+            internal unsafe delegate void Vertex4hvNV(OpenTK.Math.Half* v);
             internal unsafe static Vertex4hvNV glVertex4hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void Normal3hNV(UInt16 nx, UInt16 ny, UInt16 nz);
+            internal delegate void Normal3hNV(OpenTK.Math.Half nx, OpenTK.Math.Half ny, OpenTK.Math.Half nz);
             internal static Normal3hNV glNormal3hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void Normal3hvNV(UInt16* v);
+            internal unsafe delegate void Normal3hvNV(OpenTK.Math.Half* v);
             internal unsafe static Normal3hvNV glNormal3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void Color3hNV(UInt16 red, UInt16 green, UInt16 blue);
+            internal delegate void Color3hNV(OpenTK.Math.Half red, OpenTK.Math.Half green, OpenTK.Math.Half blue);
             internal static Color3hNV glColor3hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void Color3hvNV(UInt16* v);
+            internal unsafe delegate void Color3hvNV(OpenTK.Math.Half* v);
             internal unsafe static Color3hvNV glColor3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void Color4hNV(UInt16 red, UInt16 green, UInt16 blue, UInt16 alpha);
+            internal delegate void Color4hNV(OpenTK.Math.Half red, OpenTK.Math.Half green, OpenTK.Math.Half blue, OpenTK.Math.Half alpha);
             internal static Color4hNV glColor4hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void Color4hvNV(UInt16* v);
+            internal unsafe delegate void Color4hvNV(OpenTK.Math.Half* v);
             internal unsafe static Color4hvNV glColor4hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void TexCoord1hNV(UInt16 s);
+            internal delegate void TexCoord1hNV(OpenTK.Math.Half s);
             internal static TexCoord1hNV glTexCoord1hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void TexCoord1hvNV(UInt16* v);
+            internal unsafe delegate void TexCoord1hvNV(OpenTK.Math.Half* v);
             internal unsafe static TexCoord1hvNV glTexCoord1hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void TexCoord2hNV(UInt16 s, UInt16 t);
+            internal delegate void TexCoord2hNV(OpenTK.Math.Half s, OpenTK.Math.Half t);
             internal static TexCoord2hNV glTexCoord2hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void TexCoord2hvNV(UInt16* v);
+            internal unsafe delegate void TexCoord2hvNV(OpenTK.Math.Half* v);
             internal unsafe static TexCoord2hvNV glTexCoord2hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void TexCoord3hNV(UInt16 s, UInt16 t, UInt16 r);
+            internal delegate void TexCoord3hNV(OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r);
             internal static TexCoord3hNV glTexCoord3hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void TexCoord3hvNV(UInt16* v);
+            internal unsafe delegate void TexCoord3hvNV(OpenTK.Math.Half* v);
             internal unsafe static TexCoord3hvNV glTexCoord3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void TexCoord4hNV(UInt16 s, UInt16 t, UInt16 r, UInt16 q);
+            internal delegate void TexCoord4hNV(OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r, OpenTK.Math.Half q);
             internal static TexCoord4hNV glTexCoord4hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void TexCoord4hvNV(UInt16* v);
+            internal unsafe delegate void TexCoord4hvNV(OpenTK.Math.Half* v);
             internal unsafe static TexCoord4hvNV glTexCoord4hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void MultiTexCoord1hNV(OpenTK.Graphics.TextureUnit target, UInt16 s);
+            internal delegate void MultiTexCoord1hNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s);
             internal static MultiTexCoord1hNV glMultiTexCoord1hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void MultiTexCoord1hvNV(OpenTK.Graphics.TextureUnit target, UInt16* v);
+            internal unsafe delegate void MultiTexCoord1hvNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v);
             internal unsafe static MultiTexCoord1hvNV glMultiTexCoord1hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void MultiTexCoord2hNV(OpenTK.Graphics.TextureUnit target, UInt16 s, UInt16 t);
+            internal delegate void MultiTexCoord2hNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s, OpenTK.Math.Half t);
             internal static MultiTexCoord2hNV glMultiTexCoord2hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void MultiTexCoord2hvNV(OpenTK.Graphics.TextureUnit target, UInt16* v);
+            internal unsafe delegate void MultiTexCoord2hvNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v);
             internal unsafe static MultiTexCoord2hvNV glMultiTexCoord2hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void MultiTexCoord3hNV(OpenTK.Graphics.TextureUnit target, UInt16 s, UInt16 t, UInt16 r);
+            internal delegate void MultiTexCoord3hNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r);
             internal static MultiTexCoord3hNV glMultiTexCoord3hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void MultiTexCoord3hvNV(OpenTK.Graphics.TextureUnit target, UInt16* v);
+            internal unsafe delegate void MultiTexCoord3hvNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v);
             internal unsafe static MultiTexCoord3hvNV glMultiTexCoord3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void MultiTexCoord4hNV(OpenTK.Graphics.TextureUnit target, UInt16 s, UInt16 t, UInt16 r, UInt16 q);
+            internal delegate void MultiTexCoord4hNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half s, OpenTK.Math.Half t, OpenTK.Math.Half r, OpenTK.Math.Half q);
             internal static MultiTexCoord4hNV glMultiTexCoord4hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void MultiTexCoord4hvNV(OpenTK.Graphics.TextureUnit target, UInt16* v);
+            internal unsafe delegate void MultiTexCoord4hvNV(OpenTK.Graphics.TextureUnit target, OpenTK.Math.Half* v);
             internal unsafe static MultiTexCoord4hvNV glMultiTexCoord4hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void FogCoordhNV(UInt16 fog);
+            internal delegate void FogCoordhNV(OpenTK.Math.Half fog);
             internal static FogCoordhNV glFogCoordhNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void FogCoordhvNV(UInt16* fog);
+            internal unsafe delegate void FogCoordhvNV(OpenTK.Math.Half* fog);
             internal unsafe static FogCoordhvNV glFogCoordhvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void SecondaryColor3hNV(UInt16 red, UInt16 green, UInt16 blue);
+            internal delegate void SecondaryColor3hNV(OpenTK.Math.Half red, OpenTK.Math.Half green, OpenTK.Math.Half blue);
             internal static SecondaryColor3hNV glSecondaryColor3hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void SecondaryColor3hvNV(UInt16* v);
+            internal unsafe delegate void SecondaryColor3hvNV(OpenTK.Math.Half* v);
             internal unsafe static SecondaryColor3hvNV glSecondaryColor3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void VertexWeighthNV(UInt16 weight);
+            internal delegate void VertexWeighthNV(OpenTK.Math.Half weight);
             internal static VertexWeighthNV glVertexWeighthNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexWeighthvNV(UInt16* weight);
+            internal unsafe delegate void VertexWeighthvNV(OpenTK.Math.Half* weight);
             internal unsafe static VertexWeighthvNV glVertexWeighthvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void VertexAttrib1hNV(UInt32 index, UInt16 x);
+            internal delegate void VertexAttrib1hNV(UInt32 index, OpenTK.Math.Half x);
             internal static VertexAttrib1hNV glVertexAttrib1hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttrib1hvNV(UInt32 index, UInt16* v);
+            internal unsafe delegate void VertexAttrib1hvNV(UInt32 index, OpenTK.Math.Half* v);
             internal unsafe static VertexAttrib1hvNV glVertexAttrib1hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void VertexAttrib2hNV(UInt32 index, UInt16 x, UInt16 y);
+            internal delegate void VertexAttrib2hNV(UInt32 index, OpenTK.Math.Half x, OpenTK.Math.Half y);
             internal static VertexAttrib2hNV glVertexAttrib2hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttrib2hvNV(UInt32 index, UInt16* v);
+            internal unsafe delegate void VertexAttrib2hvNV(UInt32 index, OpenTK.Math.Half* v);
             internal unsafe static VertexAttrib2hvNV glVertexAttrib2hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void VertexAttrib3hNV(UInt32 index, UInt16 x, UInt16 y, UInt16 z);
+            internal delegate void VertexAttrib3hNV(UInt32 index, OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z);
             internal static VertexAttrib3hNV glVertexAttrib3hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttrib3hvNV(UInt32 index, UInt16* v);
+            internal unsafe delegate void VertexAttrib3hvNV(UInt32 index, OpenTK.Math.Half* v);
             internal unsafe static VertexAttrib3hvNV glVertexAttrib3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void VertexAttrib4hNV(UInt32 index, UInt16 x, UInt16 y, UInt16 z, UInt16 w);
+            internal delegate void VertexAttrib4hNV(UInt32 index, OpenTK.Math.Half x, OpenTK.Math.Half y, OpenTK.Math.Half z, OpenTK.Math.Half w);
             internal static VertexAttrib4hNV glVertexAttrib4hNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttrib4hvNV(UInt32 index, UInt16* v);
+            internal unsafe delegate void VertexAttrib4hvNV(UInt32 index, OpenTK.Math.Half* v);
             internal unsafe static VertexAttrib4hvNV glVertexAttrib4hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttribs1hvNV(UInt32 index, Int32 n, UInt16* v);
+            internal unsafe delegate void VertexAttribs1hvNV(UInt32 index, Int32 n, OpenTK.Math.Half* v);
             internal unsafe static VertexAttribs1hvNV glVertexAttribs1hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttribs2hvNV(UInt32 index, Int32 n, UInt16* v);
+            internal unsafe delegate void VertexAttribs2hvNV(UInt32 index, Int32 n, OpenTK.Math.Half* v);
             internal unsafe static VertexAttribs2hvNV glVertexAttribs2hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttribs3hvNV(UInt32 index, Int32 n, UInt16* v);
+            internal unsafe delegate void VertexAttribs3hvNV(UInt32 index, Int32 n, OpenTK.Math.Half* v);
             internal unsafe static VertexAttribs3hvNV glVertexAttribs3hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void VertexAttribs4hvNV(UInt32 index, Int32 n, UInt16* v);
+            internal unsafe delegate void VertexAttribs4hvNV(UInt32 index, Int32 n, OpenTK.Math.Half* v);
             internal unsafe static VertexAttribs4hvNV glVertexAttribs4hvNV;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate void PixelDataRangeNV(OpenTK.Graphics.All target, Int32 length, [Out] IntPtr pointer);
