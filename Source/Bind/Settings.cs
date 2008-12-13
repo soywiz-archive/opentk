@@ -67,8 +67,8 @@ namespace Bind
             }
         }
 
-        // New enums namespace (no nested class).
-        public static string EnumsNamespace;// = "Enums";
+        // New enums namespace (don't use a nested class).
+        public static string EnumsNamespace = null;// = "Enums";
 
         public static string DelegatesClass = "Delegates";
         public static string ImportsClass = "Imports";
