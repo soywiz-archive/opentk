@@ -1,4 +1,10 @@
-﻿using System;
+﻿#region --- License ---
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +14,12 @@ namespace OpenTK.Platform
     {
         int Height { get; set; }
         int Width { get; set; }
-
+        /*
+        int Top { get; }
+        int Bottom { get; }
+        int Left { get; }
+        int Right { get; }
+        */
         event ResizeEvent Resize;
     }
 
@@ -26,6 +37,11 @@ namespace OpenTK.Platform
         {
             this.Width = width;
             this.Height = height;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("New size: {0}x{1}", Width, Height);
         }
     }
 }

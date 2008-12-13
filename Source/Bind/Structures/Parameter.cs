@@ -1,6 +1,7 @@
-#region License
-//Copyright (c) 2006 Stefanos Apostolopoulos
-//See license.txt for license info
+#region --- License ---
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
+ */
 #endregion
 
 using System;
@@ -10,13 +11,15 @@ using System.Runtime.InteropServices;
 
 namespace Bind.Structures
 {
-    #region Parameter class
-
     /// <summary>
     /// Represents a single parameter of an opengl function.
     /// </summary>
     public class Parameter : Type
     {
+        string cache;
+        bool rebuild;
+        bool unsafe_allowed;        // True if the cache may contain unsafe types, false otherwise.
+
         #region Constructors
 
         /// <summary>
@@ -37,24 +40,33 @@ namespace Bind.Structures
             if (p == null)
                 return;
 
-            this.Name = !String.IsNullOrEmpty(p.Name) ? new string(p.Name.ToCharArray()) : "";
+            this.Name = p.Name;
             this.Unchecked = p.Unchecked;
             this.UnmanagedType = p.UnmanagedType;
             this.Flow = p.Flow;
+            this.cache = p.cache;
+            //this.rebuild = false;
         }
 
         #endregion
 
         #region public string Name
 
-        string _name;
+        string _name = String.Empty;
         /// <summary>
         /// Gets or sets the name of the parameter.
         /// </summary>
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    rebuild = true;
+                }
+            }
         }
 
         #endregion
@@ -68,7 +80,14 @@ namespace Bind.Structures
         private UnmanagedType UnmanagedType
         {
             get { return _unmanaged_type; }
-            set { _unmanaged_type = value; }
+            set
+            {
+                if (_unmanaged_type != value)
+                {
+                    _unmanaged_type = value;
+                    rebuild = true;
+                }
+            }
         }
 
         #endregion
@@ -94,7 +113,14 @@ namespace Bind.Structures
         public FlowDirection Flow
         {
             get { return _flow; }
-            set { _flow = value; }
+            set
+            {
+                if (_flow != value)
+                {
+                    _flow = value;
+                    rebuild = true;
+                }
+            }
         }
 
         #endregion
@@ -103,10 +129,11 @@ namespace Bind.Structures
 
         public bool NeedsPin
         {
-            get { return
-              (Array > 0 || Reference || CurrentType == "object") &&
-              !CurrentType.ToLower().Contains("string");
-        }
+            get
+            {
+                return (Array > 0 || Reference || CurrentType == "object") &&
+                        !CurrentType.ToLower().Contains("string");
+            }
         }
 
         #endregion
@@ -118,195 +145,162 @@ namespace Bind.Structures
         public bool Unchecked
         {
             get { return _unchecked; }
-            set { _unchecked = value; }
-        }
-
-        #endregion
-
-        #region public string GetFullType()
-
-        public string GetFullType(Dictionary<string, string> CSTypes, bool compliant)
-        {
-            if (Pointer && Settings.Compatibility == Settings.Legacy.Tao)
-                return "IntPtr";
-
-            if (!compliant)
+            set
             {
-                return
-                    CurrentType +
-                    (Pointer ? "*" : "") +
-                    (Array > 0 ? "[]" : "");
+                if (_unchecked != value)
+                {
+                    _unchecked = value;
+                    rebuild = true;
+                }
             }
-
-            return 
-                GetCLSCompliantType() +
-                (Pointer ? "*" : "") +
-                (Array > 0 ? "[]" : "");
-
         }
 
         #endregion
 
-        #region override public string ToString()
+        #region public override string CurrentType
 
-        override public string ToString()
+        public override string CurrentType
+        {
+            get
+            {
+                return base.CurrentType;
+            }
+            set
+            {
+                base.CurrentType = value;
+                rebuild = true;
+            }
+        }
+
+        #endregion
+
+        public override string ToString()
         {
             return ToString(false);
         }
 
-        #endregion
+        #region public string ToString(bool override_unsafe_setting)
 
-        #region public string ToString(bool taoCompatible)
-
-        public string ToString(bool taoCompatible)
+        public string ToString(bool override_unsafe_setting)
         {
-            StringBuilder sb = new StringBuilder();
+            rebuild |= unsafe_allowed |= override_unsafe_setting;
+            unsafe_allowed = override_unsafe_setting;
 
-            //if (UnmanagedType == UnmanagedType.AsAny && Flow == FlowDirection.In)
-            //    sb.Append("[MarshalAs(UnmanagedType.AsAny)] ");
-
-            //if (UnmanagedType == UnmanagedType.LPArray)
-            //    sb.Append("[MarshalAs(UnmanagedType.LPArray)] ");
-
-            //if (Flow == FlowDirection.Out && !Array && !(Type == "IntPtr"))
-            //    sb.Append("out ");
-
-            if (Flow == FlowDirection.Out)
-                sb.Append("[Out] ");
-            else if (Flow == FlowDirection.Undefined)
-                sb.Append("[In, Out] ");
-
-            if (Reference)
+            if (!String.IsNullOrEmpty(cache) && !rebuild)
             {
-                if (Flow == FlowDirection.Out)
-                    sb.Append("out ");
-                else
-                    sb.Append("ref ");
+               return cache;
             }
-
-            if (taoCompatible && Settings.Compatibility == Settings.Legacy.Tao)
+            else
             {
-                if (Pointer)
+                StringBuilder sb = new StringBuilder();
+
+                if (Flow == FlowDirection.Out)
+                    sb.Append("[Out] ");
+                else if (Flow == FlowDirection.Undefined)
+                    sb.Append("[In, Out] ");
+
+                if (Reference)
                 {
-                    sb.Append("IntPtr");
+                    if (Flow == FlowDirection.Out)
+                        sb.Append("out ");
+                    else
+                        sb.Append("ref ");
+                }
+
+                if (!override_unsafe_setting && ((Settings.Compatibility & Settings.Legacy.NoPublicUnsafeFunctions) != Settings.Legacy.None))
+                {
+                    if (Pointer)
+                    {
+                        sb.Append("IntPtr");
+                    }
+                    else
+                    {
+                        sb.Append(CurrentType);
+                        if (Array > 0)
+                            sb.Append("[]");
+                    }
                 }
                 else
                 {
                     sb.Append(CurrentType);
+                    if (Pointer)
+                        sb.Append("*");
                     if (Array > 0)
                         sb.Append("[]");
                 }
-            }
-            else
-            {
-                sb.Append(CurrentType);
-                if (Pointer)
-                    sb.Append("*");
-                if (Array > 0)
-                    sb.Append("[]");
-            }
+                if (!String.IsNullOrEmpty(Name))
+                {
+                    sb.Append(" ");
+                    sb.Append(Utilities.Keywords.Contains(Name) ? "@" + Name : Name);
+                }
 
-            if (!String.IsNullOrEmpty(Name))
-            {
-                sb.Append(" ");
-                sb.Append(Utilities.Keywords.Contains(Name) ? "@" + Name : Name);
+                rebuild = false;
+                cache = sb.ToString();
+                return cache;
             }
-            return sb.ToString();
         }
 
         #endregion
 
-        internal static Parameter Translate(Parameter par, string Category)
+        #region override public void Translate(string category)
+
+        override public void Translate(string category)
         {
-            Enum @enum;
-            string s;
-            Parameter p = new Parameter(par);
+            base.Translate(category);
 
-            // Translate enum types
-            if (Enum.GLEnums.TryGetValue(p.CurrentType, out @enum) && @enum.Name != "GLenum")
+            // Find out the necessary wrapper types.
+            if (Pointer)/* || CurrentType == "IntPtr")*/
             {
-                if (Settings.Compatibility == Settings.Legacy.Tao)
-                    p.CurrentType = "int";
-                else
-                    p.CurrentType = p.CurrentType.Insert(0, String.Format("{0}.", Settings.GLEnumsClass));
-            }
-            else if (Bind.Structures.Type.GLTypes.TryGetValue(p.CurrentType, out s))
-            {
-                // Check if the parameter is a generic GLenum. If yes,
-                // check if a better match exists:
-                if (s.Contains("GLenum") && !String.IsNullOrEmpty(Category))
-                {
-                    if (Settings.Compatibility == Settings.Legacy.None)
-                    {
-                        // Better match: enum.Name == function.Category (e.g. GL_VERSION_1_1 etc)
-                        if (Enum.GLEnums.ContainsKey(Category))
-                        {
-                            p.CurrentType = String.Format("{0}.{1}", Settings.GLEnumsClass, Category);
-                        }
-                        else
-                        {
-                            p.CurrentType = String.Format("{0}.{1}", Settings.GLEnumsClass, Settings.CompleteEnumName);
-                        }
-                    }
-                    else
-                    {
-                        p.CurrentType = "int";
-                    }
-                }
-                else
-                {
-                    // This is not enum, default translation:
-                    p.CurrentType = s;
-                    p.CurrentType =
-                        Bind.Structures.Type.CSTypes.ContainsKey(p.CurrentType) ?
-                        Bind.Structures.Type.CSTypes[p.CurrentType] : p.CurrentType;
-                }
-            }
+                WrapperType = WrapperTypes.ArrayParameter;
 
-            //if (CSTypes.ContainsKey(p.CurrentType))
-            //    p.CurrentType = CSTypes[p.CurrentType];
-
-            // Translate pointer parameters
-            if (p.Pointer)
-            {
-                p.WrapperType = WrapperTypes.ArrayParameter;
-
-                if (p.CurrentType.ToLower().Contains("char") || p.CurrentType.ToLower().Contains("string"))
+                if (CurrentType.ToLower().Contains("char") || CurrentType.ToLower().Contains("string"))
                 {
                     // char* or string -> [In] String or [Out] StringBuilder
-                    p.CurrentType =
-                        p.Flow == Parameter.FlowDirection.Out ?
+                    CurrentType =
+                        Flow == Parameter.FlowDirection.Out ?
                         "System.Text.StringBuilder" :
                         "System.String";
 
-                    p.Pointer = false;
-                    p.WrapperType = WrapperTypes.None;
+                    Pointer = false;
+                    WrapperType = WrapperTypes.None;
                 }
-                else if (p.CurrentType.ToLower().Contains("void"))
+                else if (CurrentType.ToLower().Contains("void") ||
+                         (!String.IsNullOrEmpty(PreviousType) && PreviousType.ToLower().Contains("void"))) /*|| CurrentType.Contains("IntPtr"))*/
                 {
-                    p.WrapperType = WrapperTypes.GenericParameter;
+                    CurrentType = "IntPtr";
+                    Pointer = false;
+                    WrapperType = WrapperTypes.GenericParameter;
                 }
             }
 
-            if (p.CurrentType.ToLower().Contains("bool"))
-            {
-                // Is this actually used anywhere?
-                p.WrapperType = WrapperTypes.BoolParameter;
-            }
+            if (Reference)
+                WrapperType |= WrapperTypes.ReferenceParameter;
 
-            return p;
+            // This causes problems with bool arrays
+            //if (CurrentType.ToLower().Contains("bool"))
+            //    WrapperType = WrapperTypes.BoolParameter;
         }
+
+        #endregion
     }
-
-    #endregion
-
-    #region ParameterCollection class
 
     /// <summary>
     /// Holds the parameter list of an opengl function.
     /// </summary>
     public class ParameterCollection : List<Parameter>
     {
+        string cache = String.Empty;
+        string callStringCache = String.Empty;
+        private bool rebuild = true;
+        bool hasPointerParameters;
+        bool hasReferenceParameters;
+        bool unsafe_types_allowed;
+        public bool Rebuild
+        {
+            private get { return rebuild; }
+            set { rebuild = true;/*value;*/ }
+        }
+
         #region Constructors
 
         public ParameterCollection()
@@ -323,43 +317,129 @@ namespace Bind.Structures
 
         #endregion
 
-        #region override public string ToString()
+        #region void BuildCache()
 
-        /// <summary>
-        /// Gets the parameter declaration string.
-        /// </summary>
-        /// <returns>The parameter list of an opengl function in the form ( [parameters] )</returns>
-        override public string ToString()
+        void BuildCache()
         {
-            return ToString(false);
+            BuildCallStringCache();
+            BuildToStringCache(unsafe_types_allowed);
+            BuildReferenceAndPointerParametersCache();
+            Rebuild = false;
         }
 
         #endregion
 
-        #region public string ToString(bool taoCompatible)
+        #region public bool HasPointerParameters
+
+        public bool HasPointerParameters
+        {
+            get
+            {
+                if (!rebuild)
+                {
+                    return hasPointerParameters;
+                }
+                else
+                {
+                    BuildCache();
+                    return hasPointerParameters;
+                }
+            }
+        }
+
+        #endregion
+
+        #region public bool HasReferenceParameters
+
+        public bool HasReferenceParameters
+        {
+            get
+            {
+                if (!Rebuild)
+                {
+                    return hasReferenceParameters;
+                }
+                else
+                {
+                    BuildCache();
+                    return hasReferenceParameters;
+                }
+            }
+        }
+
+        #endregion
+
+        #region void BuildReferenceAndPointerParametersCache()
+
+        void BuildReferenceAndPointerParametersCache()
+        {
+            foreach (Parameter p in this)
+            {
+                if (p.Pointer || p.CurrentType.Contains("IntPtr"))
+                    hasPointerParameters = true;
+
+                if (p.Reference)
+                    hasReferenceParameters = true;
+            }
+        }
+
+        #endregion
+
+        #region new public void Add(Parameter p)
+
+        new public void Add(Parameter p)
+        {
+            Rebuild = true;
+            base.Add(p);
+        }
+
+        #endregion
+
+        public override string ToString()
+        {
+            return ToString(false);
+        }
+
+        #region public string ToString(bool override_unsafe_setting)
 
         /// <summary>
         /// Gets the parameter declaration string.
         /// </summary>
-        /// <param name="getCLSCompliant">If true, all types will be replaced by their CLSCompliant C# equivalents</param>
-        /// <param name="CSTypes">The list of C# types equivalent to the OpenGL types.</param>
+        /// <param name="override_unsafe_setting">
+        /// If true, unsafe types will be used even if the Settings.Compatibility.NoPublicUnsafeFunctions flag is set.
+        /// </param>
         /// <returns>The parameter list of an opengl function in the form ( [parameters] )</returns>
-        public string ToString(bool taoCompatible)
+        public string ToString(bool override_unsafe_setting)
         {
+            Rebuild |= unsafe_types_allowed != override_unsafe_setting;
+            unsafe_types_allowed = override_unsafe_setting;
+
+            if (!Rebuild)
+            {
+                return cache;
+            }
+            else
+            {
+                BuildCache();
+                return cache;
+            }
+        }
+
+        #endregion
+
+        #region void BuildToStringCache(bool override_unsafe_setting)
+
+        void BuildToStringCache(bool override_unsafe_setting)
+        {
+            unsafe_types_allowed = override_unsafe_setting;
+
             StringBuilder sb = new StringBuilder();
             sb.Append("(");
             if (this.Count > 0)
             {
                 foreach (Parameter p in this)
                 {
-                    if (taoCompatible)
-                    {
-                        sb.Append(p.ToString(true));
-                    }
-                    else
-                    {
-                        sb.Append(p.ToString());
-                    }
+                    sb.Append(p.ToString(override_unsafe_setting));
                     sb.Append(", ");
                 }
                 sb.Replace(", ", ")", sb.Length - 2, 2);
@@ -367,17 +447,34 @@ namespace Bind.Structures
             else
                 sb.Append(")");
 
-            return sb.ToString();
+            cache = sb.ToString();
         }
 
         #endregion
 
+        #region public string CallString()
+
         public string CallString()
         {
-            return CallString(false);
+            if (!Rebuild)
+            {
+                return callStringCache;
+            }
+            else
+            {
+                BuildCache();
+                return callStringCache;
+            }
         }
 
-        public string CallString(bool taoCompatible)
+        #endregion
+
+        #region private void BuildCallStringCache()
+
+        /// <summary>
+        /// Builds a call string instance and caches it.
+        /// </summary>
+        private void BuildCallStringCache()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -394,18 +491,20 @@ namespace Bind.Structures
                     {
                         if (p.CurrentType.ToLower().Contains("string"))
                         {
-                            sb.Append(String.Format(
-                                "({0}{1})",
-                                p.CurrentType,
-                                (p.Array > 0) ? "[]" : ""));
-
+                            sb.Append(String.Format("({0}{1})",
+                                p.CurrentType, (p.Array > 0) ? "[]" : ""));
+                        }
+                        else if (p.Pointer || p.Array > 0 || p.Reference)
+                        {
+                            if (((Settings.Compatibility & Settings.Legacy.TurnVoidPointersToIntPtr) != Settings.Legacy.None) &&
+                                p.Pointer && p.CurrentType.Contains("void"))
+                                sb.Append("(IntPtr)");
+                            else 
+                                sb.Append(String.Format("({0}*)", p.CurrentType));
                         }
                         else
                         {
-                            sb.Append(String.Format(
-                                "({0}{1})",
-                                p.CurrentType,
-                                (p.Pointer || p.Array > 0 || p.Reference) ? "*" : ""));
+                            sb.Append(String.Format("({0})", p.CurrentType));
                         }
                     }
 
@@ -425,8 +524,10 @@ namespace Bind.Structures
                 sb.Append(")");
             }
 
-            return sb.ToString();
+            callStringCache = sb.ToString();
         }
+
+        #endregion
 
         public bool ContainsType(string type)
         {
@@ -436,6 +537,4 @@ namespace Bind.Structures
             return false;
         }
     }
-
-    #endregion
 }

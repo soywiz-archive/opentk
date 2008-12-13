@@ -1,6 +1,8 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
- * See license.txt for license info
+/* Licensed under the MIT/X11 license.
+ * Copyright (c) 2006-2008 the OpenTK Team.
+ * This notice may not be removed from any source distribution.
+ * See license.txt for licensing detailed licensing details.
  */
 #endregion
 
@@ -13,224 +15,281 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Diagnostics;
+using System.IO;
 
-using OpenTK.OpenGL;
-using Enums = OpenTK.OpenGL.GL.Enums;
 using OpenTK;
-using OpenTK.Input;
+using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL;
 
 #endregion --- Using Directives ---
 
 namespace Examples.Tutorial
 {
-    public class T10_GLSL_Cube : GameWindow, IExample
+    /// <summary>
+    /// Demonstrates how to load and use a simple OpenGL shader program. Example is incomplete (documentation).
+    /// </summary>
+    [Example("First shader", ExampleCategory.GLSL, 1)]
+    public class T10_GLSL_Cube : GameWindow
     {
         #region --- Fields ---
 
-        #region Shaders
+        static float angle = 0.0f, rotation_speed = 3.0f;
+        int vertex_shader_object, fragment_shader_object, shader_program;
+        int vertex_buffer_object, color_buffer_object, element_buffer_object;
 
-        string[] vertex_shader_source =
-        {
-            "void main()asd {",
-            "gl_FrontColor = gl_Color;",
-            "gl_Position = ftransform();",
-            "}",
-        };
-
-        string[] fragment_shader_source =
-        {
-            "void main() { gl_FragColor = gl_Color; }\0"
-        };
-
-        #endregion
-
-        static float angle;
+        Shapes.Shape shape = new Examples.Shapes.Cube();
 
         #endregion
 
         #region --- Constructors ---
-        #region public T10_GLSL_Cube()
 
         public T10_GLSL_Cube()
-        {
-            Context.MakeCurrent();
-
-            //Text =
-            //    GL.GetString(Enums.StringName.VENDOR) + " " +
-            //    GL.GetString(Enums.StringName.RENDERER) + " " +
-            //    GL.GetString(Enums.StringName.VERSION);
-
-            GL.ClearColor(0.1f, 0.1f, 0.5f, 0.0f);
-            GL.Enable(Enums.EnableCap.DEPTH_TEST);
-
-            int vertex_shader_object, fragment_shader_object;
-            int status;
-            int shader_program;
-
-            vertex_shader_object = GL.CreateShader(Enums.VERSION_2_0.VERTEX_SHADER);
-            fragment_shader_object = GL.CreateShader(Enums.VERSION_2_0.FRAGMENT_SHADER);
-
-            GL.ShaderSource(vertex_shader_object, vertex_shader_source.Length, vertex_shader_source, (int[])null);
-            GL.CompileShader(vertex_shader_object);
-            GL.GetShaderv(vertex_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
-            if (status != (int)Enums.Boolean.TRUE)
-            {
-                int length = 0;
-                GL.GetShaderv(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
-                StringBuilder info = new StringBuilder(length);
-                GL.GetShaderInfoLog(vertex_shader_object, info.Capacity, out length, info);
-
-                throw new Exception(info.ToString());
-            }
-
-            GL.ShaderSource(fragment_shader_object, fragment_shader_source.Length, fragment_shader_source, (int[])null);
-            GL.CompileShader(fragment_shader_object);
-            GL.GetShaderv(fragment_shader_object, Enums.VERSION_2_0.COMPILE_STATUS, out status);
-            if (status != (int)Enums.Boolean.TRUE)
-            {
-                int length;
-                GL.GetShaderv(vertex_shader_object, Enums.VERSION_2_0.INFO_LOG_LENGTH, out length);
-                StringBuilder info = new StringBuilder(length);
-                GL.GetShaderInfoLog(fragment_shader_object, info.Capacity, out length, info);
-
-                throw new Exception(info.ToString());
-            }
-
-            shader_program = GL.CreateProgram();
-            GL.AttachShader(shader_program, fragment_shader_object);
-            GL.AttachShader(shader_program, vertex_shader_object);
-
-            GL.LinkProgram(shader_program);
-            GL.UseProgram(shader_program);
-
-            OnResize(new OpenTK.Platform.ResizeEventArgs(this.Width, this.Height));
-        }
+            : base(800, 600, GraphicsMode.Default)
+        { }
 
         #endregion
 
-        #region static public void Launch()
+        #region OnLoad
 
         /// <summary>
-        /// Launches this example.
+        /// This is the place to load resources that change little
+        /// during the lifetime of the GameWindow. In this case, we
+        /// check for GLSL support, and load the shaders.
         /// </summary>
-        /// <remarks>
-        /// Provides a simple way for the example launcher to launch the examples.
-        /// </remarks>
-        static public void Launch()
+        /// <param name="e">Not used.</param>
+        public override void OnLoad(EventArgs e)
         {
-            using (T10_GLSL_Cube ex = new T10_GLSL_Cube())
+            // Check for necessary capabilities:
+            if (!GL.SupportsExtension("VERSION_2_0"))
             {
-                ex.Run();
+                MessageBox.Show("You need at least OpenGL 2.0 to run this example. Aborting.", "GLSL not supported",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Exit();
             }
+
+            GL.ClearColor(Color.SteelBlue);
+            GL.Enable(EnableCap.DepthTest);
+
+            CreateVBO();
+
+            using (StreamReader vs = new StreamReader("Data/Shaders/Simple_VS.glsl"))
+            using (StreamReader fs = new StreamReader("Data/Shaders/Simple_FS.glsl"))
+                CreateShaders(vs.ReadToEnd(), fs.ReadToEnd(),
+                    out vertex_shader_object, out fragment_shader_object,
+                    out shader_program);
         }
 
         #endregion
+
+        #region CreateShaders
+
+        void CreateShaders(string vs, string fs,
+            out int vertexObject, out int fragmentObject, 
+            out int program)
+        {
+            int status_code;
+            string info;
+
+            vertexObject = GL.CreateShader(ShaderType.VertexShader);
+            fragmentObject = GL.CreateShader(ShaderType.FragmentShader);
+
+            // Compile vertex shader
+            GL.ShaderSource(vertexObject, vs);
+            GL.CompileShader(vertexObject);
+            GL.GetShaderInfoLog(vertexObject, out info);
+            GL.GetShader(vertexObject, ShaderParameter.CompileStatus, out status_code);
+
+            if (status_code != 1)
+                throw new ApplicationException(info);
+
+            // Compile vertex shader
+            GL.ShaderSource(fragmentObject, fs);
+            GL.CompileShader(fragmentObject);
+            GL.GetShaderInfoLog(fragmentObject, out info);
+            GL.GetShader(fragmentObject, ShaderParameter.CompileStatus, out status_code);
+            
+            if (status_code != 1)
+                throw new ApplicationException(info);
+
+            program = GL.CreateProgram();
+            GL.AttachShader(program, fragmentObject);
+            GL.AttachShader(program, vertexObject);
+
+            GL.LinkProgram(program);
+            GL.UseProgram(program);
+        }
+
+        #endregion
+
+        #region private void CreateVBO()
+
+        void CreateVBO()
+        {
+            int size;
+
+            GL.GenBuffers(1, out vertex_buffer_object);
+            GL.GenBuffers(1, out color_buffer_object);
+            GL.GenBuffers(1, out element_buffer_object);
+
+            // Upload the vertex buffer.
+            GL.BindBuffer(BufferTarget.ArrayBuffer, vertex_buffer_object);
+            GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)(shape.Vertices.Length * 3 * sizeof(float)), shape.Vertices,
+                BufferUsageHint.StaticDraw);
+            GL.GetBufferParameter(BufferTarget.ArrayBuffer, BufferParameterName.BufferSize, out size);
+            if (size != shape.Vertices.Length * 3 * sizeof(Single))
+                throw new ApplicationException(String.Format(
+                    "Problem uploading vertex buffer to VBO (vertices). Tried to upload {0} bytes, uploaded {1}.",
+                    shape.Vertices.Length * 3 * sizeof(Single), size));
+
+            // Upload the color buffer.
+            GL.BindBuffer(BufferTarget.ArrayBuffer, color_buffer_object);
+            GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)(shape.Colors.Length * sizeof(int)), shape.Colors,
+                BufferUsageHint.StaticDraw);
+            GL.GetBufferParameter(BufferTarget.ArrayBuffer, BufferParameterName.BufferSize, out size);
+            if (size != shape.Colors.Length * sizeof(int))
+                throw new ApplicationException(String.Format(
+                    "Problem uploading vertex buffer to VBO (colors). Tried to upload {0} bytes, uploaded {1}.",
+                    shape.Colors.Length * sizeof(int), size));
+            
+            // Upload the index buffer (elements inside the vertex buffer, not color indices as per the IndexPointer function!)
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, element_buffer_object);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, (IntPtr)(shape.Indices.Length * sizeof(Int32)), shape.Indices,
+                BufferUsageHint.StaticDraw);
+            GL.GetBufferParameter(BufferTarget.ElementArrayBuffer, BufferParameterName.BufferSize, out size);
+            if (size != shape.Indices.Length * sizeof(int))
+                throw new ApplicationException(String.Format(
+                    "Problem uploading vertex buffer to VBO (offsets). Tried to upload {0} bytes, uploaded {1}.",
+                    shape.Indices.Length * sizeof(int), size));
+        }
+
+        #endregion
+
+        #region OnUnload
+
+        public override void OnUnload(EventArgs e)
+        {
+            if (shader_program != 0)
+                GL.DeleteProgram(shader_program);
+            if (fragment_shader_object != 0)
+                GL.DeleteShader(fragment_shader_object);
+            if (vertex_shader_object != 0)
+                GL.DeleteShader(vertex_shader_object);
+            if (vertex_buffer_object != 0)
+                GL.DeleteBuffers(1, ref vertex_buffer_object);
+            if (element_buffer_object != 0)
+                GL.DeleteBuffers(1, ref element_buffer_object);
+        }
 
         #endregion
 
         #region OnResize
 
+        /// <summary>
+        /// Called when the user resizes the window.
+        /// </summary>
+        /// <param name="e">Contains the new width/height of the window.</param>
+        /// <remarks>
+        /// You want the OpenGL viewport to match the window. This is the place to do it!
+        /// </remarks>
         protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
-            base.OnResize(e);
+            GL.Viewport(0, 0, Width, Height);
 
-            GL.Viewport(0, 0, this.Width, this.Height);
+            double ratio = e.Width / (double)e.Height;
 
-            double ratio = 0.0;
-            ratio = this.Width / (double)this.Height;
-
-            GL.MatrixMode(Enums.MatrixMode.PROJECTION);
+            GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
             Glu.Perspective(45.0, ratio, 1.0, 64.0);
         }
 
         #endregion
 
-        #region UpdateFrame
-
-        public override void UpdateFrame()
-        {
-            base.UpdateFrame();
-
-            if (Key[OpenTK.Input.Keys.Escape])
-            {
-                this.Quit = true;
-            }
-
-            GL.MatrixMode(Enums.MatrixMode.MODELVIEW);
-            GL.LoadIdentity();
-            Glu.LookAt(
-                0.0, 5.0, 5.0,
-                0.0, 0.0, 0.0,
-                0.0, 1.0, 0.0
-            );
-            GL.Rotatef(angle, 0.0f, 1.0f, 0.0f);
-            angle += 0.05f;
-        }
-
-        #endregion
-
-        #region RenderFrame
-
-        public override void RenderFrame()
-        {
- 	        base.RenderFrame();
-
-            GL.Clear(Enums.ClearBufferMask.COLOR_BUFFER_BIT | Enums.ClearBufferMask.DEPTH_BUFFER_BIT);
-
-            DrawCube();
-
-            Context.SwapBuffers();
-        }
-
-        #endregion
-
-        #region DrawCube function
+        #region OnUpdateFrame
 
         /// <summary>
-        /// Draws simple, colored cube.
+        /// Prepares the next frame for rendering.
         /// </summary>
-        protected void DrawCube()
+        /// <remarks>
+        /// Place your control logic here. This is the place to respond to user input,
+        /// update object positions etc.
+        /// </remarks>
+        public override void OnUpdateFrame(UpdateFrameEventArgs e)
         {
-            GL.Begin(Enums.BeginMode.QUADS);
+            if (Keyboard[OpenTK.Input.Key.Escape])
+                this.Exit();
 
-            GL.Color3(1.0f, 0.0f, 0.0f);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
+            if ((Keyboard[OpenTK.Input.Key.AltLeft] || Keyboard[OpenTK.Input.Key.AltRight]) &&
+                Keyboard[OpenTK.Input.Key.Enter])
+                if (WindowState != WindowState.Fullscreen)
+                    WindowState = WindowState.Fullscreen;
+                else
+                    WindowState = WindowState.Normal;
+        }
 
-            GL.Color3(1.0f, 1.0f, 0.0f);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
+        #endregion
 
-            GL.Color3(1.0f, 0.0f, 1.0f);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
+        #region OnRenderFrame
 
-            GL.Color3(0.0f, 1.0f, 0.0f);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
+        /// <summary>
+        /// Place your rendering code here.
+        /// </summary>
+        public override void OnRenderFrame(RenderFrameEventArgs e)
+        {
+            GL.Clear(ClearBufferMask.ColorBufferBit |
+                     ClearBufferMask.DepthBufferBit);
 
-            GL.Color3(0.0f, 0.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadIdentity();
+            Glu.LookAt(0.0, 5.0, 5.0,
+                       0.0, 0.0, 0.0,
+                       0.0, 1.0, 0.0);
 
-            GL.Color3(0.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
+            angle += rotation_speed * (float)e.ScaleFactor;
+            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
 
-            GL.End();
+            GL.EnableClientState(EnableCap.VertexArray);
+            GL.EnableClientState(EnableCap.ColorArray);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, vertex_buffer_object);
+            GL.VertexPointer(3, VertexPointerType.Float, 0, IntPtr.Zero);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, color_buffer_object);
+            GL.ColorPointer(4, ColorPointerType.UnsignedByte, 0, IntPtr.Zero);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, element_buffer_object);
+
+            GL.DrawElements(BeginMode.Triangles, shape.Indices.Length,
+                DrawElementsType.UnsignedInt, IntPtr.Zero);
+
+            //GL.DrawArrays(GL.Enums.BeginMode.POINTS, 0, shape.Vertices.Length);
+
+            GL.DisableClientState(EnableCap.VertexArray);
+            GL.DisableClientState(EnableCap.ColorArray);
+            
+
+            //int error = GL.GetError();
+            //if (error != 0)
+            //    Debug.Print(Glu.ErrorString(Glu.Enums.ErrorCode.INVALID_OPERATION));
+
+            SwapBuffers();
+        }
+
+        #endregion
+
+        #region public static void Main()
+
+        /// <summary>
+        /// Entry point of this example.
+        /// </summary>
+        [STAThread]
+        public static void Main()
+        {
+            using (T10_GLSL_Cube example = new T10_GLSL_Cube())
+            {
+                // Get the title and category  of this example using reflection.
+                ExampleAttribute info = ((ExampleAttribute)example.GetType().GetCustomAttributes(false)[0]);
+                example.Title = String.Format("OpenTK | {0} {1}: {2}", info.Category, info.Difficulty, info.Title);
+                example.Run(30.0, 0.0);
+            }
         }
 
         #endregion

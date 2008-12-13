@@ -1,29 +1,8 @@
-#region License
-/*
-MIT License
-Copyright ©2003-2006 Tao Framework Team
-http://www.taoframework.com
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-#endregion License
+#region --- License ---
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
 
 using System;
 using System.Text;
@@ -39,11 +18,12 @@ namespace Bind
 {
     enum GeneratorMode
     {
+        Unknown,
         GL2,
         GL3,
         Wgl,
         Glx,
-        Glu
+        Glu,
     }
 
     static class MainClass
@@ -67,8 +47,6 @@ namespace Bind
             //Console.WriteLine(" - the OpenTK team ;-)");
             Console.WriteLine();
 
-            #region Handle Arguments
-
             try
             {
                 foreach (string a in arguments)
@@ -80,7 +58,7 @@ namespace Bind
                         {
                             case "?":
                             case "help":
-                                Console.WriteLine("Help not implemented yet.");
+                                ShowHelp();
                                 return;
                             case "in":
                             case "input":
@@ -92,28 +70,35 @@ namespace Bind
                                 break;
                             case "mode":
                                 string arg = b[1].ToLower();
-                                mode = 
+                                mode =
+                                    arg == "gl" ? GeneratorMode.GL2 : 
                                     arg == "gl2" ? GeneratorMode.GL2 : 
                                     arg == "gl3" ? GeneratorMode.GL3 :
-                                    arg == "wgl" ? GeneratorMode.Wgl : GeneratorMode.GL2;
+                                    arg == "wgl" ? GeneratorMode.Wgl : 
+                                    arg == "glu" ? GeneratorMode.Glu :
+                                    arg == "glx" ? GeneratorMode.Glx : GeneratorMode.Unknown;
+                                if (mode == GeneratorMode.Unknown)
+                                    throw new ArgumentException(String.Format("Mode {0} unknown.", arg));
                                 break;
                             case "namespace":
                             case "ns":
                                 Settings.OutputNamespace = b[1];
                                 break;
+                            case "class":
+                                Settings.OutputClass = b[1];
+                                break;
                             case "gl":
                                 Settings.GLClass = b[1];
                                 break;
-                            case "glu":
-                                Settings.GluClass = b[1];
-                                break;
                             case "legacy":
-                                Settings.Compatibility = b[1].ToLower() == "tao" ? Settings.Legacy.Tao : Settings.Legacy.None;
-                                Settings.OutputNamespace = "Tao.OpenGl";
-                                Settings.GLClass = "Gl";
-                                break;
-                            case "class":
-                                Settings.GLClass = b[1];
+                            case "o":
+                            case "option":
+                                Settings.Compatibility |= b[1].ToLower().Contains("tao") ? Settings.Legacy.Tao : Settings.Legacy.None;
+                                Settings.Compatibility |= b[1].ToLower().Contains("enums") ? Settings.Legacy.NoAdvancedEnumProcessing : Settings.Legacy.None;
+                                Settings.Compatibility |= b[1].ToLower().Contains("safe") ? Settings.Legacy.NoPublicUnsafeFunctions : Settings.Legacy.None;
+                                //Settings.Compatibility |= b[1].ToLower().Contains("novoid") ? Settings.Legacy.TurnVoidPointersToIntPtr : Settings.Legacy.None;
+                                Settings.Compatibility |= b[1].ToLower().Contains("permutations") ? Settings.Legacy.GenerateAllPermutations : Settings.Legacy.None;
+                                Settings.Compatibility |= b[1].ToLower().Contains("enums_in_class") ? Settings.Legacy.NestedEnums : Settings.Legacy.None;
                                 break;
                             default:
                                 throw new ArgumentException(
@@ -125,16 +110,14 @@ namespace Bind
             }
             catch (NullReferenceException e)
             {
-                Console.WriteLine("Argument error ({0}). Please use the '/?' switch for help.", e.ToString());
+                Console.WriteLine("Argument error ({0}). Please use the '-?' switch for help.", e.ToString());
                 return;
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine("Argument error ({0}). Please use the '/?' switch for help.", e.ToString());
+                Console.WriteLine("Argument error ({0}). Please use the '-?' switch for help.", e.ToString());
                 return;
             }
-
-            #endregion
 
             try
             {
@@ -143,15 +126,29 @@ namespace Bind
                 switch (mode)
                 {
                     case GeneratorMode.GL2:
-                        Generator = new Bind.GL2.Generator(Settings.InputPath);
+                        Generator = new Bind.GL2.Generator();
                         break;
 
                     case GeneratorMode.Wgl:
-                        Generator = new Bind.Wgl.Generator(Settings.InputPath);
+                        Generator = new Bind.Wgl.Generator();
                         break;
 
-                    default:
+                    case GeneratorMode.Glu:
+                        Generator = new Bind.Glu.Generator();
+                        break;
+
+                    case GeneratorMode.Glx:
+                        Generator = new Bind.Glx.Generator();
+                        break;
+
+                    case GeneratorMode.GL3:
                         throw new NotImplementedException(String.Format("Mode {0} not implemented.", mode));
+                    
+                    case GeneratorMode.Unknown:
+                    default:
+                        Console.WriteLine("Please specify a generator mode (use '-mode:gl2/gl3/glu/wgl/glx])'");
+                        return;
+                        
                 }
 
                 Generator.Process();
@@ -161,8 +158,6 @@ namespace Bind
                 Console.WriteLine();
                 Console.WriteLine("Bindings generated in {0} seconds.", ticks / (double)10000000.0);
                 Console.WriteLine();
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey(true);
             }
             catch (SecurityException e)
             {
@@ -174,6 +169,35 @@ namespace Bind
                 Console.WriteLine(e.Message);
                 Console.WriteLine("The requested functionality is not implemented yet.");
             }
+            finally
+            {
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey(true);
+            }
+        }
+
+        private static void ShowHelp()
+        {
+            Console.WriteLine(
+@"Usage: bind -mode:[gl/gl2/gl3/glu/wgl/glx] [switches]
+Available switches:
+-in:         Input directory (e.g. -in:../specs/)
+-out:        Output directory (e.g. -out:out)
+-ns:         Output namespace (e.g. -ns:OpenTK.Graphics.OpenGL).
+             Default: OpenTK.Graphics.OpenGL
+-namespace:  Same as -ns
+-class:      Output class (e.g. -class:GL3).
+             Default: GL/Wgl/Glu/Glx (depends on -mode)
+-o/-option:  Set advanced option. Available options:
+    -o:tao   Tao compatibility mode.
+    -o:enums Follow OpenGL instead .Net naming conventions.
+    -o:safe  Do not generate public unsafe functions.
+    -o:permutations
+             Generate all possible parameter permutations.
+    -o:enums_in_class
+             Place enums in a nested class (i.e. GL.Enums)
+             instead of a namespace (i.e. OpenTK.Graphics.OpenGL.Enums)
+");
         }
     }
 }

@@ -2000,11 +2000,12 @@ TexParameteriv(target, pname, params)
 	wglflags	small-data
 	offset		181
 
+# Revision 2
 TexImage1D(target, level, internalformat, width, border, format, type, pixels)
 	return		void
 	param		target		TextureTarget in value
 	param		level		CheckedInt32 in value
-	param		internalformat	TextureComponentCount in value
+	param		internalformat	PixelInternalFormat in value # TextureComponentCount in value
 	param		width		SizeI in value
 	param		border		CheckedInt32 in value
 	param		format		PixelFormat in value
@@ -2020,11 +2021,12 @@ TexImage1D(target, level, internalformat, width, border, format, type, pixels)
 	wglflags	client-handcode server-handcode
 	offset		182
 
+# Revision 2
 TexImage2D(target, level, internalformat, width, height, border, format, type, pixels)
 	return		void
 	param		target		TextureTarget in value
 	param		level		CheckedInt32 in value
-	param		internalformat	TextureComponentCount in value
+	param		internalformat	PixelInternalFormat in value # TextureComponentCount in value
 	param		width		SizeI in value
 	param		height		SizeI in value
 	param		border		CheckedInt32 in value
@@ -4430,13 +4432,13 @@ ResetMinmax(target)
 	offset		370
 
 # OpenGL 1.2 (EXT_texture3D) commands
-
+# Revision 2
 # Arguably TexelInternalFormat, not PixelInternalFormat
 TexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels)
 	return		void
 	param		target		TextureTarget in value
 	param		level		CheckedInt32 in value
-	param		internalformat	TextureComponentCount in value
+	param		internalformat	PixelInternalFormat in value # TextureComponentCount in value
 	param		width		SizeI in value
 	param		height		SizeI in value
 	param		depth		SizeI in value
@@ -5091,10 +5093,10 @@ GetCompressedTexImage(target, level, img)
 
 BlendFuncSeparate(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha)
 	return		void
-	param		sfactorRGB	BlendFuncSeparateParameterEXT in value
-	param		dfactorRGB	BlendFuncSeparateParameterEXT in value
-	param		sfactorAlpha	BlendFuncSeparateParameterEXT in value
-	param		dfactorAlpha	BlendFuncSeparateParameterEXT in value
+	param		sfactorRGB		BlendingFactorSrc in value # BlendFuncSeparateParameterEXT in value
+	param		dfactorRGB		BlendingFactorDest in value # BlendFuncSeparateParameterEXT in value
+	param		sfactorAlpha	BlendingFactorSrc in value # BlendFuncSeparateParameterEXT in value
+	param		dfactorAlpha	BlendingFactorDest in value # BlendFuncSeparateParameterEXT in value
 	category	VERSION_1_4
 	glxropcode	4134
 	version		1.4
@@ -5140,7 +5142,7 @@ FogCoorddv(coord)
 
 FogCoordPointer(type, stride, pointer)
 	return		void
-	param		type		FogPointerTypeEXT in value
+	param		type		FogPointerType in value	# FogPointerTypeEXT in value
 	param		stride		SizeI in value
 	param		pointer		Void in array [COMPSIZE(type/stride)] retained
 	category	VERSION_1_4
@@ -5183,7 +5185,7 @@ MultiDrawElements(mode, count, type, indices, primcount)
 
 PointParameterf(pname, param)
 	return		void
-	param		pname		PointParameterNameARB in value
+	param		pname		PointParameterName in value		# PointParameterNameARB in value
 	param		param		CheckedFloat32 in value
 	category	VERSION_1_4
 	version		1.4
@@ -5194,7 +5196,7 @@ PointParameterf(pname, param)
 
 PointParameterfv(pname, params)
 	return		void
-	param		pname		PointParameterNameARB in value
+	param		pname		PointParameterName in value		# PointParameterNameARB in value
 	param		params		CheckedFloat32 in array [COMPSIZE(pname)]
 	category	VERSION_1_4
 	version		1.4
@@ -5205,7 +5207,7 @@ PointParameterfv(pname, params)
 
 PointParameteri(pname, param)
 	return		void
-	param		pname		PointParameterNameARB in value
+	param		pname		PointParameterName in value		# PointParameterNameARB in value
 	param		param		Int32 in value
 	category	VERSION_1_4
 	version		1.4
@@ -5216,7 +5218,7 @@ PointParameteri(pname, param)
 
 PointParameteriv(pname, params)
 	return		void
-	param		pname		PointParameterNameARB in value
+	param		pname		PointParameterName in value		# PointParameterNameARB in value
 	param		params		Int32 in array [COMPSIZE(pname)]
 	category	VERSION_1_4
 	version		1.4
@@ -5229,7 +5231,7 @@ PointParameteriv(pname, params)
 
 SecondaryColor3b(red, green, blue)
 	return		void
-	param		red		ColorB in value
+	param		red			ColorB in value
 	param		green		ColorB in value
 	param		blue		ColorB in value
 	category	VERSION_1_4
@@ -5248,7 +5250,7 @@ SecondaryColor3bv(v)
 
 SecondaryColor3d(red, green, blue)
 	return		void
-	param		red		ColorD in value
+	param		red			ColorD in value
 	param		green		ColorD in value
 	param		blue		ColorD in value
 	category	VERSION_1_4
@@ -5601,7 +5603,7 @@ IsQuery(id)
 
 BeginQuery(target, id)
 	return		void
-	param		target		GLenum in value
+	param		target	QueryTarget in value		# GLenum in value
 	param		id		UInt32 in value
 	category	VERSION_1_5
 	version		1.5
@@ -5613,7 +5615,7 @@ BeginQuery(target, id)
 
 EndQuery(target)
 	return		void
-	param		target		GLenum in value
+	param		target	QueryTarget in value		# GLenum in value
 	category	VERSION_1_5
 	version		1.5
 	extension
@@ -5624,8 +5626,8 @@ EndQuery(target)
 
 GetQueryiv(target, pname, params)
 	return		void
-	param		target		GLenum in value
-	param		pname		GLenum in value
+	param		target		QueryTarget in value		# GLenum in value
+	param		pname		GetQueryParam in value		# GLenum in value
 	param		params		Int32 out array [pname]
 	category	VERSION_1_5
 	dlflags		notlistable
@@ -5639,8 +5641,8 @@ GetQueryiv(target, pname, params)
 
 GetQueryObjectiv(id, pname, params)
 	return		void
-	param		id		UInt32 in value
-	param		pname		GLenum in value
+	param		id			UInt32 in value
+	param		pname		GetQueryObjectParam in value	# GLenum in value
 	param		params		Int32 out array [pname]
 	category	VERSION_1_5
 	dlflags		notlistable
@@ -5654,8 +5656,8 @@ GetQueryObjectiv(id, pname, params)
 
 GetQueryObjectuiv(id, pname, params)
 	return		void
-	param		id		UInt32 in value
-	param		pname		GLenum in value
+	param		id			UInt32 in value
+	param		pname		GetQueryObjectParam in value	# GLenum in value
 	param		params		UInt32 out array [pname]
 	category	VERSION_1_5
 	dlflags		notlistable
@@ -5671,7 +5673,7 @@ GetQueryObjectuiv(id, pname, params)
 
 BindBuffer(target, buffer)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTarget in value			# BufferTargetARB in value
 	param		buffer		UInt32 in value
 	category	VERSION_1_5
 	version		1.5
@@ -5718,10 +5720,10 @@ IsBuffer(buffer)
 
 BufferData(target, size, data, usage)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTarget in value		# BufferTargetARB in value
 	param		size		BufferSize in value
 	param		data		ConstVoid in array [size]
-	param		usage		BufferUsageARB in value
+	param		usage		BufferUsageHint in value		# BufferUsageARB in value
 	category	VERSION_1_5
 	version		1.5
 	extension
@@ -5732,7 +5734,7 @@ BufferData(target, size, data, usage)
 
 BufferSubData(target, offset, size, data)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTarget in value		# BufferTargetARB in value
 	param		offset		BufferOffset in value
 	param		size		BufferSize in value
 	param		data		ConstVoid in array [size]
@@ -5746,7 +5748,7 @@ BufferSubData(target, offset, size, data)
 
 GetBufferSubData(target, offset, size, data)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTarget in value		# BufferTargetARB in value
 	param		offset		BufferOffset in value
 	param		size		BufferSize in value
 	param		data		Void out array [size]
@@ -5762,8 +5764,8 @@ GetBufferSubData(target, offset, size, data)
 
 MapBuffer(target, access)
 	return		VoidPointer
-	param		target		BufferTargetARB in value
-	param		access		BufferAccessARB in value
+	param		target		BufferTarget in value		# BufferTargetARB in value
+	param		access		BufferAccess in value		# BufferAccessARB in value
 	category	VERSION_1_5
 	version		1.5
 	extension
@@ -5774,7 +5776,7 @@ MapBuffer(target, access)
 
 UnmapBuffer(target)
 	return		Boolean
-	param		target		BufferTargetARB in value
+	param		target		BufferTarget in value		# BufferTargetARB in value
 	category	VERSION_1_5
 	version		1.5
 	extension
@@ -5785,8 +5787,8 @@ UnmapBuffer(target)
 
 GetBufferParameteriv(target, pname, params)
 	return		void
-	param		target		BufferTargetARB in value
-	param		pname		BufferPNameARB in value
+	param		target		BufferTarget in value			# BufferTargetARB in value
+	param		pname		BufferParameterName in value	# BufferPNameARB in value
 	param		params		Int32 out array [COMPSIZE(pname)]
 	category	VERSION_1_5
 	dlflags		notlistable
@@ -5800,8 +5802,8 @@ GetBufferParameteriv(target, pname, params)
 
 GetBufferPointerv(target, pname, params)
 	return		void
-	param		target		BufferTargetARB in value
-	param		pname		BufferPointerNameARB in value
+	param		target		BufferTarget in value		# BufferTargetARB in value
+	param		pname		BufferPointer in value		# BufferPointerNameARB in value
 	param		params		VoidPointer out array [1]
 	category	VERSION_1_5
 	dlflags		notlistable
@@ -5840,8 +5842,8 @@ BlendEquationSeparate(modeRGB, modeAlpha)
 
 DrawBuffers(n, bufs)
 	return		void
-	param		n		SizeI in value
-	param		bufs		DrawBufferModeATI in array [n]
+	param		n			SizeI in value
+	param		bufs		DrawBuffersEnum in array [n] # DrawBufferModeATI in array [n]
 	category	VERSION_2_0
 	version		2.0
 	extension
@@ -5866,12 +5868,14 @@ StencilOpSeparate(face, sfail, dpfail, dppass)
 	glsopcode	?
 	offset		?
 
-StencilFuncSeparate(frontfunc, backfunc, ref, mask)
+
+# Edited for OpenTK
+StencilFuncSeparate(face, func, ref, mask)
 	return		void
-	param		frontfunc	StencilFunction in value
-	param		backfunc	StencilFunction in value
+	param		face	StencilFace in value
+	param		func	StencilFunction in value
 	param		ref		ClampedStencilValue in value
-	param		mask		MaskedStencilValue in value
+	param		mask	MaskedStencilValue in value
 	category	VERSION_2_0
 	version		2.0
 	extension
@@ -5942,7 +5946,7 @@ CreateProgram()
 
 CreateShader(type)
 	return		UInt32
-	param		type		GLenum in value
+	param		type		ShaderType in value		# GLenum in value
 	category	VERSION_2_0
 	version		2.0
 	extension
@@ -6014,7 +6018,7 @@ GetActiveAttrib(program, index, bufSize, length, size, type, name)
 	param		bufSize		SizeI in value
 	param		length		SizeI out array [1]
 	param		size		Int32 out array [1]
-	param		type		GLenum out array [1]
+	param		type		ActiveAttribType out array [1] # GLenum out array [1]
 	param		name		Char out array []
 	category	VERSION_2_0
 	dlflags		notlistable
@@ -6033,7 +6037,7 @@ GetActiveUniform(program, index, bufSize, length, size, type, name)
 	param		bufSize		SizeI in value
 	param		length		SizeI out array [1]
 	param		size		Int32 out array [1]
-	param		type		GLenum out array [1]
+	param		type		ActiveUniformType out array [1]		# GLenum out array [1]
 	param		name		Char out array []
 	category	VERSION_2_0
 	dlflags		notlistable
@@ -6078,7 +6082,7 @@ GetAttribLocation(program, name)
 GetProgramiv(program, pname, params)
 	return		void
 	param		program		UInt32 in value
-	param		pname		GLenum in value
+	param		pname		ProgramParameter in value	# GLenum in value
 	param		params		Int32 out array [pname]
 	category	VERSION_2_0
 	dlflags		notlistable
@@ -6109,7 +6113,7 @@ GetProgramInfoLog(program, bufSize, length, infoLog)
 GetShaderiv(shader, pname, params)
 	return		void
 	param		shader		UInt32 in value
-	param		pname		GLenum in value
+	param		pname		ShaderParameter in value	# GLenum in value
 	param		params		Int32 out array [pname]
 	category	VERSION_2_0
 	dlflags		notlistable
@@ -6200,7 +6204,7 @@ GetUniformiv(program, location, params)
 GetVertexAttribdv(index, pname, params)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPropertyARB in value
+	param		pname		VertexAttribParameter in value		# VertexAttribPropertyARB in value
 	param		params		Float64 out array [4]
 	dlflags		notlistable
 	category	VERSION_2_0
@@ -6214,7 +6218,7 @@ GetVertexAttribdv(index, pname, params)
 GetVertexAttribfv(index, pname, params)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPropertyARB in value
+	param		pname		VertexAttribParameter in value		# VertexAttribPropertyARB in value
 	param		params		Float32 out array [4]
 	dlflags		notlistable
 	category	VERSION_2_0
@@ -6228,7 +6232,7 @@ GetVertexAttribfv(index, pname, params)
 GetVertexAttribiv(index, pname, params)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPropertyARB in value
+	param		pname		VertexAttribParameter in value		# VertexAttribPropertyARB in value
 	param		params		Int32 out array [4]
 	dlflags		notlistable
 	category	VERSION_2_0
@@ -6242,7 +6246,7 @@ GetVertexAttribiv(index, pname, params)
 GetVertexAttribPointerv(index, pname, pointer)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPointerPropertyARB in value
+	param		pname		VertexAttribPointerParameter in value # VertexAttribPointerPropertyARB in value
 	param		pointer		VoidPointer out array [1]
 	dlflags		notlistable
 	category	VERSION_2_0
@@ -7015,7 +7019,7 @@ VertexAttribPointer(index, size, type, normalized, stride, pointer)
 	return		void
 	param		index		UInt32 in value
 	param		size		Int32 in value
-	param		type		VertexAttribPointerTypeARB in value
+	param		type		VertexAttribPointerType in value # VertexAttribPointerTypeARB in value
 	param		normalized	Boolean in value
 	param		stride		SizeI in value
 	param		pointer		Void in array [COMPSIZE(size/type/stride)] retained
@@ -8239,6 +8243,7 @@ WindowPos3svARB(v)
 #
 # ARB Extension #26
 # ARB_vertex_program commands
+# Edited for OpenTK
 #
 ###############################################################################
 
@@ -8665,7 +8670,7 @@ VertexAttribPointerARB(index, size, type, normalized, stride, pointer)
 	return		void
 	param		index		UInt32 in value
 	param		size		Int32 in value
-	param		type		VertexAttribPointerTypeARB in value
+	param		type		VertexAttribPointerTypeArb in value		# VertexAttribPointerTypeARB in value
 	param		normalized	Boolean in value
 	param		stride		SizeI in value
 	param		pointer		Void in array [COMPSIZE(size/type/stride)] retained
@@ -8698,8 +8703,8 @@ DisableVertexAttribArrayARB(index)
 
 ProgramStringARB(target, format, len, string)
 	return		void
-	param		target		ProgramTargetARB in value
-	param		format		ProgramFormatARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
+	param		format		AssemblyProgramFormatArb in value	# AssemblyProgramFormatARB in value
 	param		len		SizeI in value
 	param		string		Void in array [len]
 	category	ARB_vertex_program
@@ -8711,7 +8716,7 @@ ProgramStringARB(target, format, len, string)
 
 BindProgramARB(target, program)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		program		UInt32 in value
 	category	ARB_vertex_program
 	version		1.3
@@ -8746,7 +8751,7 @@ GenProgramsARB(n, programs)
 
 ProgramEnvParameter4dARB(target, index, x, y, z, w)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		x		Float64 in value
 	param		y		Float64 in value
@@ -8762,7 +8767,7 @@ ProgramEnvParameter4dARB(target, index, x, y, z, w)
 
 ProgramEnvParameter4dvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float64 in array [4]
 	category	ARB_vertex_program
@@ -8774,7 +8779,7 @@ ProgramEnvParameter4dvARB(target, index, params)
 
 ProgramEnvParameter4fARB(target, index, x, y, z, w)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		x		Float32 in value
 	param		y		Float32 in value
@@ -8790,7 +8795,7 @@ ProgramEnvParameter4fARB(target, index, x, y, z, w)
 
 ProgramEnvParameter4fvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float32 in array [4]
 	category	ARB_vertex_program
@@ -8802,7 +8807,7 @@ ProgramEnvParameter4fvARB(target, index, params)
 
 ProgramLocalParameter4dARB(target, index, x, y, z, w)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		x		Float64 in value
 	param		y		Float64 in value
@@ -8818,7 +8823,7 @@ ProgramLocalParameter4dARB(target, index, x, y, z, w)
 
 ProgramLocalParameter4dvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float64 in array [4]
 	category	ARB_vertex_program
@@ -8830,7 +8835,7 @@ ProgramLocalParameter4dvARB(target, index, params)
 
 ProgramLocalParameter4fARB(target, index, x, y, z, w)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		x		Float32 in value
 	param		y		Float32 in value
@@ -8846,7 +8851,7 @@ ProgramLocalParameter4fARB(target, index, x, y, z, w)
 
 ProgramLocalParameter4fvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float32 in array [4]
 	category	ARB_vertex_program
@@ -8858,7 +8863,7 @@ ProgramLocalParameter4fvARB(target, index, params)
 
 GetProgramEnvParameterdvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float64 out array [4]
 	dlflags		notlistable
@@ -8871,7 +8876,7 @@ GetProgramEnvParameterdvARB(target, index, params)
 
 GetProgramEnvParameterfvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float32 out array [4]
 	dlflags		notlistable
@@ -8884,7 +8889,7 @@ GetProgramEnvParameterfvARB(target, index, params)
 
 GetProgramLocalParameterdvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float64 out array [4]
 	dlflags		notlistable
@@ -8897,7 +8902,7 @@ GetProgramLocalParameterdvARB(target, index, params)
 
 GetProgramLocalParameterfvARB(target, index, params)
 	return		void
-	param		target		ProgramTargetARB in value
+	param		target		AssemblyProgramTargetArb in value	# ProgramTargetARB in value
 	param		index		UInt32 in value
 	param		params		Float32 out array [4]
 	dlflags		notlistable
@@ -8910,8 +8915,8 @@ GetProgramLocalParameterfvARB(target, index, params)
 
 GetProgramivARB(target, pname, params)
 	return		void
-	param		target		ProgramTargetARB in value
-	param		pname		ProgramPropertyARB in value
+	param		target		AssemblyProgramTargetArb in value		# ProgramTargetARB in value
+	param		pname		AssemblyProgramParameterArb in value	# ProgramPropertyARB in value
 	param		params		Int32 out array [1]
 	dlflags		notlistable
 	category	ARB_vertex_program
@@ -8923,8 +8928,8 @@ GetProgramivARB(target, pname, params)
 
 GetProgramStringARB(target, pname, string)
 	return		void
-	param		target		ProgramTargetARB in value
-	param		pname		ProgramStringPropertyARB in value
+	param		target		AssemblyProgramTargetArb in value			# ProgramTargetARB in value
+	param		pname		AssemblyProgramStringParameterArb in value	 # ProgramStringPropertyARB in value
 	param		string		Void out array [COMPSIZE(target,pname)]
 	dlflags		notlistable
 	category	ARB_vertex_program
@@ -8937,7 +8942,7 @@ GetProgramStringARB(target, pname, string)
 GetVertexAttribdvARB(index, pname, params)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPropertyARB in value
+	param		pname		VertexAttribParameterArb in value	# VertexAttribPropertyARB in value
 	param		params		Float64 out array [4]
 	dlflags		notlistable
 	category	ARB_vertex_program
@@ -8952,7 +8957,7 @@ GetVertexAttribdvARB(index, pname, params)
 GetVertexAttribfvARB(index, pname, params)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPropertyARB in value
+	param		pname		VertexAttribParameterArb in value	# VertexAttribPropertyARB in value
 	param		params		Float32 out array [4]
 	dlflags		notlistable
 	category	ARB_vertex_program
@@ -8967,7 +8972,7 @@ GetVertexAttribfvARB(index, pname, params)
 GetVertexAttribivARB(index, pname, params)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPropertyARB in value
+	param		pname		VertexAttribParameterArb in value	# VertexAttribPropertyARB in value
 	param		params		Int32 out array [4]
 	dlflags		notlistable
 	category	ARB_vertex_program
@@ -8982,7 +8987,7 @@ GetVertexAttribivARB(index, pname, params)
 GetVertexAttribPointervARB(index, pname, pointer)
 	return		void
 	param		index		UInt32 in value
-	param		pname		VertexAttribPointerPropertyARB in value
+	param		pname		VertexAttribPointerParameterArb in value	# VertexAttribPointerPropertyARB in value
 	param		pointer		VoidPointer out array [1]
 	dlflags		notlistable
 	category	ARB_vertex_program
@@ -9023,12 +9028,13 @@ passthru: /* All ARB_fragment_program entry points are shared with ARB_vertex_pr
 #
 # ARB Extension #28
 # ARB_vertex_buffer_object commands
+# Edited for OpenTK
 #
 ###############################################################################
 
 BindBufferARB(target, buffer)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTargetArb in value			# BufferTargetARB in value
 	param		buffer		UInt32 in value
 	category	ARB_vertex_buffer_object
 	version		1.2
@@ -9067,10 +9073,10 @@ IsBufferARB(buffer)
 
 BufferDataARB(target, size, data, usage)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTargetArb in value			# BufferTargetARB in value
 	param		size		BufferSizeARB in value
 	param		data		ConstVoid in array [size]
-	param		usage		BufferUsageARB in value
+	param		usage		BufferUsageArb in value				# BufferUsageARB in value
 	category	ARB_vertex_buffer_object
 	version		1.2
 	extension
@@ -9079,7 +9085,7 @@ BufferDataARB(target, size, data, usage)
 
 BufferSubDataARB(target, offset, size, data)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTargetArb in value			# BufferTargetARB in value
 	param		offset		BufferOffsetARB in value
 	param		size		BufferSizeARB in value
 	param		data		ConstVoid in array [size]
@@ -9091,7 +9097,7 @@ BufferSubDataARB(target, offset, size, data)
 
 GetBufferSubDataARB(target, offset, size, data)
 	return		void
-	param		target		BufferTargetARB in value
+	param		target		BufferTargetArb in value			# BufferTargetARB in value
 	param		offset		BufferOffsetARB in value
 	param		size		BufferSizeARB in value
 	param		data		Void out array [size]
@@ -9104,8 +9110,8 @@ GetBufferSubDataARB(target, offset, size, data)
 
 MapBufferARB(target, access)
 	return		VoidPointer
-	param		target		BufferTargetARB in value
-	param		access		BufferAccessARB in value
+	param		target		BufferTargetArb in value			# BufferTargetARB in value
+	param		access		BufferAccessArb in value			# BufferAccessAARB in value
 	category	ARB_vertex_buffer_object
 	version		1.2
 	extension
@@ -9114,7 +9120,7 @@ MapBufferARB(target, access)
 
 UnmapBufferARB(target)
 	return		Boolean
-	param		target		BufferTargetARB in value
+	param		target		BufferTargetArb in value			# BufferTargetARB in value
 	category	ARB_vertex_buffer_object
 	version		1.2
 	extension
@@ -9124,7 +9130,7 @@ UnmapBufferARB(target)
 GetBufferParameterivARB(target, pname, params)
 	return		void
 	param		target		BufferTargetARB in value
-	param		pname		BufferPNameARB in value
+	param		pname		BufferParameterNameArb in value		# BufferPNameARB in value
 	param		params		Int32 out array [COMPSIZE(pname)]
 	category	ARB_vertex_buffer_object
 	dlflags		notlistable
@@ -9136,7 +9142,7 @@ GetBufferParameterivARB(target, pname, params)
 GetBufferPointervARB(target, pname, params)
 	return		void
 	param		target		BufferTargetARB in value
-	param		pname		BufferPointerNameARB in value
+	param		pname		BufferPointerNameArb in value		# BufferPointerNameARB in value
 	param		params		VoidPointer out array [1]
 	category	ARB_vertex_buffer_object
 	dlflags		notlistable
@@ -20231,7 +20237,7 @@ GenRenderbuffersEXT(n, renderbuffers)
 RenderbufferStorageEXT(target, internalformat, width, height)
 	return		void
 	param		target		RenderbufferTarget in value
-	param		internalformat	GLenum in value
+	param		internalformat	RenderbufferStorage in value		# GLenum in value
 	param		width		SizeI in value
 	param		height		SizeI in value
 	category	EXT_framebuffer_object
@@ -20245,7 +20251,7 @@ RenderbufferStorageEXT(target, internalformat, width, height)
 GetRenderbufferParameterivEXT(target, pname, params)
 	return		void
 	param		target		RenderbufferTarget in value
-	param		pname		GLenum in value
+	param		pname		RenderbufferParameterName in value		# GLenum in value
 	param		params		Int32 out array [COMPSIZE(pname)]
 	category	EXT_framebuffer_object
 	dlflags		notlistable
@@ -20305,7 +20311,7 @@ GenFramebuffersEXT(n, framebuffers)
 	offset		?
 
 CheckFramebufferStatusEXT(target)
-	return		GLenum
+	return		FramebufferErrorCode
 	param		target		FramebufferTarget in value
 	category	EXT_framebuffer_object
 	version		1.2
@@ -20319,7 +20325,7 @@ FramebufferTexture1DEXT(target, attachment, textarget, texture, level)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		textarget	GLenum in value
+	param		textarget	TextureTarget in value		# GLenum in value
 	param		texture		UInt32 in value
 	param		level		Int32 in value
 	category	EXT_framebuffer_object
@@ -20334,7 +20340,7 @@ FramebufferTexture2DEXT(target, attachment, textarget, texture, level)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		textarget	GLenum in value
+	param		textarget	TextureTarget in value		# GLenum in value
 	param		texture		UInt32 in value
 	param		level		Int32 in value
 	category	EXT_framebuffer_object
@@ -20349,7 +20355,7 @@ FramebufferTexture3DEXT(target, attachment, textarget, texture, level, zoffset)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		textarget	GLenum in value
+	param		textarget	TextureTarget in value		# GLenum in value
 	param		texture		UInt32 in value
 	param		level		Int32 in value
 	param		zoffset		Int32 in value
@@ -20379,7 +20385,7 @@ GetFramebufferAttachmentParameterivEXT(target, attachment, pname, params)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		pname		GLenum in value
+	param		pname		FramebufferParameterName in value		# GLenum in value
 	param		params		Int32 out array [COMPSIZE(pname)]
 	category	EXT_framebuffer_object
 	dlflags		notlistable
@@ -20393,7 +20399,7 @@ GetFramebufferAttachmentParameterivEXT(target, attachment, pname, params)
 
 GenerateMipmapEXT(target)
 	return		void
-	param		target		GLenum in value
+	param		target		GenerateMipmapTarget in value		# GLenum in value
 	category	EXT_framebuffer_object
 	version		1.2
 	extension

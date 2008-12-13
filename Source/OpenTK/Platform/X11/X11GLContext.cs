@@ -10,122 +10,221 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
-using OpenTK.OpenGL;
+using OpenTK.Graphics.OpenGL;
+using OpenTK.Graphics;
 
 namespace OpenTK.Platform.X11
 {
-    public class X11GLContext : OpenTK.Platform.IGLContext
+    /// <summary>
+    /// Provides methods to create and control an opengl context on the X11 platform.
+    /// This class supports OpenTK, and is not intended for use by OpenTK programs.
+    /// </summary>
+    internal sealed class X11GLContext : IGraphicsContext, IGraphicsContextInternal
     {
-        private IntPtr x11context;
-        private IntPtr display;
-        private int screenNo;
+        ContextHandle context;
+        //X11WindowInfo window;
+        X11WindowInfo currentWindow;
+        //IntPtr visual;
+        bool vsync_supported;
+        int vsync_interval;
 
-        private DisplayMode mode;// = new DisplayMode();
-        internal X11WindowInfo windowInfo = new X11WindowInfo();
-        private VisualInfo visualInfo;
+        bool disposed;
 
-        //private IntPtr desktopResolution = IntPtr.Zero;
+        #region --- Constructors ---
 
-        //private int depthBits;
-        //private int stencilBits;
-
-        // These have to be used by the X11GLControl.
-        internal IntPtr visual;
-        internal IntPtr colormap;
-
-        private bool disposed;
-
-        #region --- Public Constructor ---
-
-        private X11GLContext()
+        static X11GLContext()
         {
-            this.mode = new DisplayMode();
+            // Set the GetCurrentContext implementation.
+            if (GraphicsContext.GetCurrentContext == null)
+                GraphicsContext.GetCurrentContext = X11GLContext.GetCurrentContext;
         }
 
-        public X11GLContext(IWindowInfo info, DisplayMode mode)
+        public X11GLContext(GraphicsMode mode, IWindowInfo info, IGraphicsContext shared, bool directRendering)
         {
-            X11WindowInfo xInfo = info as X11WindowInfo;            
-            this.windowInfo.Window = xInfo.Window;
-            this.windowInfo.RootWindow = xInfo.RootWindow;
-            this.windowInfo.TopLevelWindow = xInfo.TopLevelWindow;
-            this.windowInfo.Display = xInfo.Display;
-            this.windowInfo.Screen = xInfo.Screen;
-            
-            this.mode = mode;
+            //if (mode == null) mode = GraphicsMode.Default;
+            if (info == null) throw new ArgumentNullException("info", "Should point to a valid window.");
+
+            currentWindow = (X11WindowInfo)info;
+            currentWindow.VisualInfo = SelectVisual(mode, currentWindow);
+
+            Debug.Print("Chose visual: {0}", currentWindow.VisualInfo);
+
+            CreateContext(shared, directRendering, currentWindow);
         }
 
-        public X11GLContext(
-            IntPtr handle,
-            IntPtr display,
-            IntPtr rootWindow,
-            int screenNo,
-            IntPtr handleToTopLevelControl,
-            ColorDepth color,
-            ColorDepth accum,
-            int depthBits,
-            int stencilBits,
-            int auxBits,
-            bool stereo,
-            bool doublebuffer
-        )
+        public X11GLContext(IWindowInfo window)
         {
-            Trace.WriteLine("Creating opengl context (X11GLContext driver)");
-            Trace.Indent();
+            if (window == null) throw new ArgumentNullException("window");
 
-            this.display = display;
-            this.screenNo = screenNo;
-            //this.depthBits = depthBits;
-            //this.stencilBits = stencilBits;
+            //renderContext = Glx.GetCurrentContext();
+            //if (renderContext == IntPtr.Zero)
+            //    throw new InvalidOperationException("No OpenGL context is current in the calling thread.");
 
-            this.CreateVisual();
+            //currentWindow = window;
         }
 
         #endregion
 
-        #region --- IGLContext Members ---
+        #region --- Private Methods ---
+
+        #region XVisualInfo SelectVisual(GraphicsMode mode, X11WindowInfo currentWindow)
+
+        XVisualInfo SelectVisual(GraphicsMode mode, X11WindowInfo currentWindow)
+        {
+            XVisualInfo info = new XVisualInfo();
+            info.visualid = (IntPtr)mode.Index;
+            info.screen = currentWindow.Screen;
+            int items;
+            
+            lock (API.Lock)
+            {
+                IntPtr vs = Functions.XGetVisualInfo(currentWindow.Display, XVisualInfoMask.ID | XVisualInfoMask.Screen, ref info, out items);
+                if (items == 0)
+                    throw new GraphicsModeException(String.Format("Invalid GraphicsMode specified ({0}).", mode));
+
+                info = (XVisualInfo)Marshal.PtrToStructure(vs, typeof(XVisualInfo));
+                Functions.XFree(vs);
+            }
+
+            return info;
+        }
+
+        #endregion
+
+        #region void CreateContext(IGraphicsContext shareContext, bool direct)
+
+        void CreateContext(IGraphicsContext shareContext, bool direct, X11WindowInfo window)
+        {
+            try
+            {
+                ContextHandle shareHandle = shareContext != null ? (shareContext as IGraphicsContextInternal).Context :
+                                                                   (ContextHandle)IntPtr.Zero;
+
+                Debug.Write("Creating OpenGL context: ");
+                Debug.Write(direct ? "direct, " : "indirect, ");
+                Debug.Write(shareHandle.Handle == IntPtr.Zero ? "not shared... " :
+                    String.Format("shared with ({0})... ", shareHandle));
+
+                lock (API.Lock)
+                {
+                    XVisualInfo info = window.VisualInfo;   // Cannot pass a Property by reference.
+                    context = new ContextHandle(Glx.CreateContext(window.Display, ref info, shareHandle.Handle, direct));
+
+                    // Context creation succeeded, return.
+                    if (context != ContextHandle.Zero)
+                    {
+                        Debug.Print("done! (id: {0})", context);
+                        return;
+                    }
+
+                    // Context creation failed. Retry with a non-shared context with the direct/indirect bit flipped.
+                    Debug.Print("failed.");
+                    Debug.Write(String.Format("Creating OpenGL context: {0}, not shared... ", !direct ? "direct" : "indirect"));
+                    context = new ContextHandle(Glx.CreateContext(window.Display, ref info, IntPtr.Zero, !direct));
+                    if (context != ContextHandle.Zero)
+                    {
+                        Debug.Print("done! (id: {0})", context);
+                        return;
+                    }
+                }
+
+                Debug.Print("failed.");
+                throw new GraphicsModeException("Failed to create OpenGL context. Glx.CreateContext call returned 0.");
+            }
+            finally
+            {
+                //Debug.Unindent();
+            }
+        }
+
+        #endregion
+
+        bool SupportsExtension(X11WindowInfo window, string e)
+        {
+            string extensions = Glx.QueryExtensionsString(window.Display, window.Screen);
+            return !String.IsNullOrEmpty(extensions) && extensions.Contains(e);
+        }
+
+        #endregion
+
+        #region --- IGraphicsContext Members ---
 
         #region public void SwapBuffers()
 
         public void SwapBuffers()
         {
-            Glx.SwapBuffers(windowInfo.Display, windowInfo.Window);
+            //if (window == null) throw new ArgumentNullException("window", "Must point to a valid window.");
+            //X11WindowInfo w = (X11WindowInfo)window;
+            if (currentWindow.Display == IntPtr.Zero || currentWindow.WindowHandle == IntPtr.Zero)
+                throw new InvalidOperationException(
+                    String.Format("Window is invalid. Display ({0}), Handle ({1}).", currentWindow.Display, currentWindow.WindowHandle));
+            Glx.SwapBuffers(currentWindow.Display, currentWindow.WindowHandle);
         }
 
         #endregion
 
-        #region public void MakeCurrent()
+        #region public void MakeCurrent(IWindowInfo window)
 
-        public void MakeCurrent()
+        public void MakeCurrent(IWindowInfo window)
         {
-            Debug.Write(
-                String.Format(
-                    "Making context {0} current on thread {1} (display: {2}, window: {3})... ",
-                    x11context,
-                    System.Threading.Thread.CurrentThread.ManagedThreadId,
-                    windowInfo.Display,
-                    windowInfo.Window
-                )
-            );
-            bool result = Glx.MakeCurrent(windowInfo.Display, windowInfo.Window, x11context);
+            X11WindowInfo w = (X11WindowInfo)window;
+            bool result;
+
+            Debug.Write(String.Format("Making context {0} current on thread {1} (Display: {2}, Screen: {3}, Window: {4})... ",
+                    context, System.Threading.Thread.CurrentThread.ManagedThreadId, w.Display, w.Screen, w.WindowHandle));
+
+            if (w.Display == IntPtr.Zero || w.WindowHandle == IntPtr.Zero || context == ContextHandle.Zero)
+                throw new InvalidOperationException("Invalid display, window or context.");
+
+            result = Glx.MakeCurrent(w.Display, w.WindowHandle, context);
 
             if (!result)
-            {
-                Debug.WriteLine(String.Format("Failed to make context {0} current.", x11context));
-                // probably need to recreate context here.
-                throw new Exception(String.Format("Failed to make context {0} current.", x11context));
-            }
+                throw new GraphicsContextException("Failed to make context current.");
             else
-            {
                 Debug.WriteLine("done!");
+        }
+
+        #endregion
+
+        #region public bool IsCurrent
+
+        public bool IsCurrent
+        {
+            get { return Glx.GetCurrentContext() == this.context.Handle; }
+            //set
+            //{
+            //    if (value)
+            //        Glx.MakeCurrent(window.Display, window.Handle, context);
+            //    else
+            //        Glx.MakeCurrent(window.Handle, IntPtr.Zero, IntPtr.Zero);
+            //}
+        }
+
+        #endregion
+
+        #region public bool VSync
+
+        public bool VSync
+        {
+            get
+            {
+                return vsync_supported && vsync_interval > 0;
+            }
+            set
+            {
+                if (vsync_supported)
+                {
+                    int error_code = Glx.Sgi.SwapInterval(value ? 1 : 0);
+                    if (error_code != 0)
+                        throw new GraphicsException(String.Format("Could not set vsync, error code: {0}", error_code));
+                    vsync_interval = value ? 1 : 0;
+                }
             }
         }
 
         #endregion
 
-        public bool IsCurrent()
-        {
-            throw new NotImplementedException();
-        }
+        public event DestroyEvent<IGraphicsContext> Destroy;
 
         #region public IntPtr GetAddress(string function)
 
@@ -136,10 +235,76 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        public IEnumerable<DisplayMode> GetDisplayModes()
+        public void RegisterForDisposal(IDisposable resource)
         {
-            throw new Exception("The method or operation is not implemented.");
+            throw new NotSupportedException("Use OpenTK.GraphicsContext instead.");
         }
+
+        public void DisposeResources()
+        {
+            throw new NotSupportedException("Use OpenTK.GraphicsContext instead.");
+        }
+
+        #endregion
+
+        #region --- IGLContextInternal Members ---
+
+        #region void LoadAll()
+
+        void IGraphicsContextInternal.LoadAll()
+        {
+            GL.LoadAll();
+            Glu.LoadAll();
+            Glx.LoadAll();
+            vsync_supported = this.SupportsExtension(currentWindow, "SGI_swap_control") &&
+                              this.GetAddress("glXSwapControlSGI") != IntPtr.Zero;
+        }
+
+        #endregion
+
+        #region public DisplayMode Mode
+
+        GraphicsMode IGraphicsContextInternal.GraphicsMode
+        {
+            get { return null; }
+        }
+
+        #endregion
+
+        #region ContextHandle IGLContextInternal.Context
+
+        ContextHandle IGraphicsContextInternal.Context
+        {
+            get { return context; }
+            /*private set { context = value; }*/
+        }
+
+        #endregion
+
+        #region IWindowInfo IGLContextInternal.Info
+
+        //IWindowInfo IGraphicsContextInternal.Info { get { return window; } }
+
+        #endregion
+
+        #endregion
+
+        #region --- Methods ---
+
+        void OnDestroy()
+        {
+            if (Destroy != null)
+                Destroy(this, EventArgs.Empty);
+        }
+
+        #region static ContextHandle GetCurrentContext()
+
+        static ContextHandle GetCurrentContext()
+        {
+            return (ContextHandle)Glx.GetCurrentContext();
+        }
+
+        #endregion
 
         #endregion
 
@@ -156,12 +321,20 @@ namespace OpenTK.Platform.X11
             if (!disposed)
             {
                 // Clean unmanaged resources:
-                Glx.DestroyContext(windowInfo.Display, x11context);
-                API.Free(visual);
+                try
+                {
+                    Functions.XLockDisplay(currentWindow.Display);
+                    Glx.MakeCurrent(currentWindow.Display, IntPtr.Zero, IntPtr.Zero);
+                    Glx.DestroyContext(currentWindow.Display, context);
+                    //Functions.XFree(visual);
+                }
+                finally
+                {
+                    Functions.XUnlockDisplay(currentWindow.Display);               
+                }
 
                 if (manuallyCalled)
                 {
-                    // Safe to clean managed resources, too
                 }
             }
             disposed = true;
@@ -173,130 +346,5 @@ namespace OpenTK.Platform.X11
         }
 
         #endregion
-
-        #region public void CreateContext(X11GLContext shareContext, bool direct)
-
-        public void CreateContext(X11GLContext shareContext, bool direct)
-        {
-            Trace.WriteLine("Creating opengl context.");
-            Trace.Indent();
-
-            IntPtr shareHandle = shareContext != null ? shareContext.Handle : IntPtr.Zero;
-            Trace.WriteLine(
-                shareHandle == IntPtr.Zero ?
-                "Context is not shared." :
-                String.Format("Context is shared with context: {0}", shareHandle)
-            );
-            Trace.WriteLine(
-                direct ?
-                "Context is direct." :
-                "Context is indirect."
-            );
-            x11context = Glx.CreateContext(
-                windowInfo.Display,
-                visual,
-                shareHandle,
-                direct
-            );
-            Trace.WriteLine(String.Format("New opengl context created. (id: {0})", x11context));
-            Trace.Unindent();
-
-            //MakeCurrent();
-        }
-
-        #endregion
-
-        #region public void CreateVisual()
-
-        public void CreateVisual()
-        {
-            Trace.WriteLine("Creating visual.");
-            Trace.Indent();
-
-            ColorDepth color = new ColorDepth(24);
-            int depthBits = 16;
-
-            // Create the Visual
-            List<int> visualAttributes = new List<int>();
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
-            visualAttributes.Add((int)color.Red);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
-            visualAttributes.Add((int)color.Green);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
-            visualAttributes.Add((int)color.Blue);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            visualAttributes.Add((int)color.Alpha);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            visualAttributes.Add((int)depthBits);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
-            
-            /*
-            List<int> visualAttributes = new List<int>();
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RGBA);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.RED_SIZE);
-            visualAttributes.Add((int)mode.Color.Red);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.GREEN_SIZE);
-            visualAttributes.Add((int)mode.Color.Green);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.BLUE_SIZE);
-            visualAttributes.Add((int)mode.Color.Blue);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.ALPHA_SIZE);
-            visualAttributes.Add((int)mode.Color.Alpha);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DEPTH_SIZE);
-            visualAttributes.Add((int)depthBits);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.DOUBLEBUFFER);
-            visualAttributes.Add((int)Glx.Enums.GLXAttribute.NONE);
-            */
-            Trace.Write(
-                String.Format(
-                    "Requesting visual: {0} ({1}{2}{3}{4})... ",
-                    mode.ToString(),
-                    mode.Color.Red,
-                    mode.Color.Green,
-                    mode.Color.Blue,
-                    mode.Color.Alpha
-                )
-            );
-
-            visual = Glx.ChooseVisual(windowInfo.Display, windowInfo.Screen, visualAttributes.ToArray());
-            if (visual == IntPtr.Zero)
-            {
-                throw new Exception("Requested visual not available.");
-            }
-            visualInfo = (VisualInfo)Marshal.PtrToStructure(visual, typeof(VisualInfo));
-
-            Trace.WriteLine(String.Format("done! (id: {0})", x11context));
-            Trace.Unindent();
-        }
-
-        #endregion
-
-        public IntPtr XVisual
-        {
-            get { return this.visual; }
-        }
-
-        public VisualInfo XVisualInfo
-        {
-            get { return this.visualInfo; }
-        }
-
-        public IntPtr XColormap
-        {
-            get { return colormap; }
-        }
-
-        public IntPtr Handle
-        {
-            get { return this.x11context; }
-        }
-/*
-        public IntPtr ContainingWindow
-        {
-            get { return windowInfo.Window; }
-            internal set { windowInfo.Window = value; }
-        }
-*/
     }
 }

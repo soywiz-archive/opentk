@@ -1,296 +1,358 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
- * See license.txt for license info
+/* Licensed under the MIT/X11 license.
+ * Copyright (c) 2006-2008 the OpenTK Team.
+ * This notice may not be removed from any source distribution.
+ * See license.txt for licensing detailed licensing details.
  */
 #endregion
-
-#region --- Using Directives ---
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 using OpenTK.Platform;
-
-#endregion
+using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL;
+using System.Diagnostics;
 
 namespace OpenTK
 {
-    // TODO: Document the GLControl class.
-
     /// <summary>
-    /// 
+    /// Defines a UserControl with OpenGL rendering capabilities.
     /// </summary>
-    public partial class GLControl : UserControl, IGLControl
+    public partial class GLControl : UserControl
     {
-        #region --- Private Fields ---
+        IGraphicsContext context;
+        IGLControl implementation;
+        GraphicsMode format;
+        IWindowInfo window_info;
 
-        private bool fullscreen;
-        private IGLControl glControl;
-
-        #endregion
-
-        #region --- Contructors ---
+        #region --- Constructor ---
 
         /// <summary>
         /// Constructs a new GLControl.
         /// </summary>
         public GLControl()
-            :this(new DisplayMode())
-        {
-        }
+            : this(GraphicsMode.Default)
+        { }
 
+        /// <summary>This method is obsolete and will be removed in future versions.</summary>
+        /// <param name="mode">Obsolete.</param>
+        [Obsolete]
         public GLControl(DisplayMode mode)
+            : this(mode.ToGraphicsMode())
+        { }
+
+        /// <summary>
+        /// Constructs a new GLControl with the specified GraphicsMode.
+        /// </summary>
+        /// <param name="mode">The OpenTK.Graphics.GraphicsMode of the control.</param>
+        public GLControl(GraphicsMode mode)
         {
+            SetStyle(ControlStyles.Opaque, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            DoubleBuffered = false;
+
             InitializeComponent();
 
-            System.Diagnostics.Debug.Listeners.Clear();
-            System.Diagnostics.Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
-            System.Diagnostics.Debug.AutoFlush = true;
-            System.Diagnostics.Trace.Listeners.Clear();
-            System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-            System.Diagnostics.Trace.AutoFlush = true;
-            Trace.AutoFlush = true;
+            this.format = mode;
 
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT ||
-                Environment.OSVersion.Platform == PlatformID.Win32Windows)
+            // On Windows, you first need to create the window, then set the pixel format.
+            // On X11, you first need to select the visual, then create the window.
+            // On OSX, ???
+            // Right now, pixel formats/visuals are selected during context creation. In the future,
+            // it would be better to decouple selection from context creation, which will allow us
+            // to clean up this hacky code. The best option is to do this along with multisampling
+            // support.
+            if (DesignMode)
+                implementation = new Platform.Dummy.DummyGLControl();
+            else if (Configuration.RunningOnWindows)
+                implementation = new Platform.Windows.WinGLControl(mode, this);
+            else if (Configuration.RunningOnX11)
+                implementation = new Platform.X11.X11GLControl(mode, this);
+            else if (Configuration.RunningOnOSX)
+                throw new PlatformNotSupportedException("Refer to http://www.opentk.com for more information.");
+
+            this.CreateControl();
+        }
+
+        #endregion
+
+        #region --- Protected Methods ---
+
+        /// <summary>Raises the HandleCreated event.</summary>
+        /// <param name="e">Not used.</param>
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            this.Context = implementation.CreateContext();
+
+            this.window_info = implementation.WindowInfo;
+            this.MakeCurrent();
+            ((IGraphicsContextInternal)this.Context).LoadAll();
+        }
+
+        /// <summary>Raises the HandleDestroyed event.</summary>
+        /// <param name="e">Not used.</param>
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            base.OnHandleDestroyed(e);
+            if (this.Context != null)
             {
-                glControl = new OpenTK.Platform.Windows.WinGLControl(this, Width, Height, false);
+                this.Context.Dispose();
+                this.Context = null;
             }
-            else if (Environment.OSVersion.Platform == PlatformID.Unix ||
-                     Environment.OSVersion.Platform == (PlatformID)128)
-                    // some older versions of Mono reported 128.
-            {
-                glControl =  new OpenTK.Platform.X11.X11GLControl(this, Width, Height, false);
-            }
-            else
-            {
-                throw new PlatformNotSupportedException(
-                    "Your operating system is not currently supported. We are sorry for the inconvenience."
-                );
-            }
+            this.window_info = null;
+        }
 
-            glControl.Context.MakeCurrent();
-            /*
-            Context.MakeCurrent();
-
-            //GL.ReloadFunctions();
-
-            if (width > 0)
-                this.Width = width;
-            if (height > 0)
-                this.Height = height;
-            */
-            if (fullscreen)
-                this.Fullscreen = true;
-            
-            this.SetStyle(ControlStyles.UserPaint, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+        /// <summary>
+        /// Raises the System.Windows.Forms.Control.Paint event.
+        /// </summary>
+        /// <param name="e">A System.Windows.Forms.PaintEventArgs that contains the event data.</param>
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            if (DesignMode)
+                e.Graphics.Clear(BackColor);
+            base.OnPaint(e);
         }
 
         #endregion
 
         #region --- Public Methods ---
 
+        #region public void SwapBuffers()
+
         /// <summary>
-        /// Swaps the front and back buffers, and presents the rendered scene to the screen.
+        /// Swaps the front and back buffers, presenting the rendered scene to the screen.
         /// </summary>
         public void SwapBuffers()
         {
             Context.SwapBuffers();
         }
 
+        #endregion
+
+        #region public void MakeCurrent()
+
         /// <summary>
-        /// Makes the underlying GLContext of this GLControl current. All OpenGL commands issued
-        /// from this point are interpreted by this GLContext.
+        /// Makes the underlying this GLControl current in the calling thread.
+        /// All OpenGL commands issued are hereafter interpreted by this GLControl.
         /// </summary>
         public void MakeCurrent()
         {
-            Context.MakeCurrent();
+            this.Context.MakeCurrent(this.window_info);
         }
 
         #endregion
 
-        #region --- Public Properties ---
-
+        #region public void CreateContext()
+        
         /// <summary>
-        /// Gets the AspectRatio of the control this GLContext object
-        /// renders to. This is usually used in a call to Glu.Perspective.
+        /// Creates a GraphicsContext and attaches it to this GLControl.
         /// </summary>
-        public double AspectRatio
+        public void CreateContext()
         {
-            get
-            {
-                return this.Width / (double)this.Height;
-            }
-        }
+            if (context != null) throw new InvalidOperationException("GLControl already contains an OpenGL context.");
+            if (format == null) format = GraphicsMode.Default;
 
-        /// <summary>
-        /// Gets or sets the display mode of the control.
-        /// </summary>
-        public bool Fullscreen
-        {
-            get
+            if (!this.DesignMode)
             {
-                return fullscreen;
-            }
-            set
-            {
-                if (!fullscreen && value)
+                // Note: Mono's implementation of Windows.Forms on X11 does not allow the context to
+                // have a different colordepth from the parent window.
+                //context = new GraphicsContext(format, helper.WindowInfo);
+                if (Configuration.RunningOnX11)
                 {
-                    //fullscreen = this.SetFullscreenResolution(this.Width, this.Height);
-                }
-                else if (fullscreen && !value)
-                {
+                    //OpenTK.Platform.X11.X11WindowInfo info = 
+                    //    (context as IGraphicsContextInternal).Info as OpenTK.Platform.X11.X11WindowInfo;
+                    //IntPtr visual = info.VisualInfo.visual;
+                    //IntPtr colormap = OpenTK.Platform.X11.API.CreateColormap(info.Display, info.RootWindow, visual, 0);
+                    //IntPtr visual = ((OpenTK.Platform.X11.X11WindowInfo)helper.WindowInfo).VisualInfo.visual;
+                    //IntPtr colormap = OpenTK.Platform.X11.API.CreateColormap(info.Display, info.RootWindow, visual, 0);
+
+                    //Type xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
+                    //if (xplatui == null)
+                    //    throw new PlatformNotSupportedException(
+                    //        "System.Windows.Forms.XplatUIX11 missing. Unsupported platform or Mono runtime version, aborting.");
+
+                    //xplatui.GetField("CustomVisual",
+                    //                 System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                    //    .SetValue(null, visual);
+                    
+                    //xplatui.GetField("CustomColormap",
+                    //                 System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)
+                    //    .SetValue(null, colormap);
+
+                    //Debug.Print("Mono/X11 System.Windows.Forms custom visual and colormap installed succesfully.");
                 }
             }
+            else
+                context = new Platform.Dummy.DummyGLContext(format);
+
+            this.MakeCurrent();
+            (context as IGraphicsContextInternal).LoadAll();
         }
 
         #endregion
 
-        #region --- IGLControl Members ---
+        #region public void DestroyContext()
 
-        public event CreateEvent Create;
+        /// <summary>
+        /// Destroys the GraphicsContext attached to this GLControl.
+        /// </summary>
+        /// <exception cref="NullReferenceException">Occurs when no GraphicsContext is attached.</exception>
+        public void DestroyContext()
+        {
+            Context.Dispose();
+            Context = null;
+        }
+
+        #endregion
 
         #region public bool IsIdle
 
         /// <summary>
-        /// Gets the idle status of the control.
+        /// Gets a value indicating whether the current thread contains pending system messages.
         /// </summary>
+        [Browsable(false)]
         public bool IsIdle
         {
-            get { return glControl.IsIdle; }
+            get { return implementation.IsIdle; }
         }
 
         #endregion
 
-        #region public IGLContext Context
+        #region public IGraphicsContext Context
 
         /// <summary>
-        /// Gets the opengl context associated with this control.
+        /// Gets an interface to the underlying GraphicsContext used by this GLControl.
         /// </summary>
-        public IGLContext Context
+        [Browsable(false)]
+        public IGraphicsContext Context
         {
-            get { return glControl.Context; }
+            get { return context; }
+            private set { context = value; }
         }
 
         #endregion
 
-        #region DisplayMode changes
+        #region public float AspectRatio
 
         /// <summary>
-        /// Selects the fullscreen DisplayMode closest to the DisplayMode requested.
+        /// Gets the aspect ratio of this GLControl.
         /// </summary>
-        /// <param name="mode">
-        /// The fullscreen DisplayMode to match, or null to get the current screen DisplayMode.
-        /// </param>
-        /// <returns>The DisplayMode closest to the requested one, or null if no DisplayModes are available.</returns>
-        /// <remarks>
-        /// <see cref="SetDisplayMode">SetDisplayMode</see>
-        /// </remarks>
-        public DisplayMode SelectDisplayMode(DisplayMode mode)
+        [Description("The aspect ratio of the client area of this GLControl.")]
+        public float AspectRatio
         {
-            throw new NotImplementedException();
-            //return glWindow.SelectDisplayMode(mode);
-        }
-
-        /// <summary>
-        /// Selects the fullscreen DisplayMode closest to the DisplayMode requested, accoriding to the specified
-        /// parameters.
-        /// </summary>
-        /// <param name="mode">
-        /// The fullscreen DisplayMode to match, or null to get the current screen DisplayMode.
-        /// </param>
-        /// <param name="options">
-        /// The DisplayModeMatchOptions flags that indicate how to search for the requested DisplayMode.
-        /// </param>
-        /// <returns>
-        /// The DisplayMode closest to the requested one, or null if no DisplayModes are available or
-        /// DisplayModeMatchOptions.ExactMatch was passed.
-        /// </returns>
-        /// <remarks>
-        /// <see cref="SetDisplayMode">SetDisplayMode</see>
-        /// </remarks>
-        public DisplayMode SelectDisplayMode(DisplayMode mode, DisplayModeMatchOptions options)
-        {
-            throw new NotImplementedException();
-            //return glWindow.SelectDisplayMode(mode, options);
-        }
-
-        /// <summary>
-        /// Sets the requested DisplayMode.
-        /// </summary>
-        /// <param name="mode">
-        /// The fulscreen DisplayMode to set. Passing null will return the application to windowed
-        ///  mode.
-        /// </param>
-        /// <remarks>
-        /// Use SelectDisplayMode to select one of the available fullscreen modes.
-        /// <para>
-        /// If the mode requested is not available, this function will throw a
-        ///  <exception cref="DisplayModeNotAvailable">DisplayModeNotAvailable</exception> exception.
-        /// </para>
-        /// <para>
-        /// Pass null to return to windowed mode. The previous desktop DisplayMode will be automatically reset by this
-        /// function. This function cannot be used to permanently change the user's desktop DisplayMode.
-        /// </para>
-        /// <see cref="SelectDisplayMode(DisplayMode mode)">SelectDisplayMode</see>
-        /// <seealso cref="DisplayModeNotAvailable">DisplayModeNotAvailable exception</seealso>
-        /// </remarks>
-        public void SetDisplayMode(DisplayMode mode)
-        {
-            throw new NotImplementedException();
-            //glWindow.SetDisplayMode(mode);
-        }
-
-        #endregion
-
-        public void ProcessEvents()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        #endregion
-
-        #region --- IResizable Members ---
-
-        public new event ResizeEvent Resize;
-
-        #endregion
-
-        #region --- IDisposable Members ---
-
-        protected override void DestroyHandle()
-        {
-            base.DestroyHandle();
-
-            glControl.Dispose();
-        }
-
-        /*
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool manuallyCalled)
-        {
-            if (manuallyCalled)
+            get
             {
-                glWindow.Dispose();
+                return this.ClientSize.Width / (float)this.ClientSize.Height;
             }
         }
 
-        ~GLControl()
+        #endregion
+
+        #region public bool VSync
+
+        /// <summary>
+        /// Gets or sets a value indicating whether vsync is active for this GLControl.
+        /// </summary>
+        [Description("Indicates whether GLControl updates are synced to the monitor's refresh.")]
+        public bool VSync
         {
-            this.Dispose(false);
+            get
+            {
+                if (Context != null)
+                    return Context.VSync;
+                return false;
+            }
+            set
+            {
+                if (Context != null)
+                    Context.VSync = value;
+            }
         }
-        */
+
+        #endregion
+
+        #region public GraphicsMode GraphicsMode
+
+        /// <summary>
+        /// Gets the GraphicsMode of the GraphicsContext attached to this GLControl.
+        /// </summary>
+        /// <remarks>
+        /// To change the GraphicsMode, you must destroy and recreate the GLControl.
+        /// </remarks>
+        public GraphicsMode GraphicsMode
+        {
+            get { return (Context as IGraphicsContextInternal).GraphicsMode; }
+        }
+
+        #endregion
+
+        #region public Bitmap GrabScreenshot()
+
+        /// <summary>Grabs a screenshot of the frontbuffer contents.</summary>
+        /// <returns>A System.Drawing.Bitmap, containing the contents of the frontbuffer.</returns>
+        /// <exception cref="GraphicsContextException">
+        /// Occurs when no OpenTK.Graphics.GraphicsContext is current in the calling thread.
+        /// </exception>
+        public Bitmap GrabScreenshot()
+        {
+            Bitmap bmp = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+            System.Drawing.Imaging.BitmapData data = 
+                bmp.LockBits(this.ClientRectangle, System.Drawing.Imaging.ImageLockMode.WriteOnly,
+                             System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            GL.ReadPixels(0, 0, this.ClientSize.Width, this.ClientSize.Height, PixelFormat.Bgr, PixelType.UnsignedByte,
+                          data.Scan0);
+            bmp.UnlockBits(data);
+            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            return bmp;
+        }
+
+        #endregion
+
         #endregion
     }
+
+    #region internal interface IPlatformIdle
+#if false
+    internal interface IPlatformIdle
+    {
+        bool IsIdle { get; }
+    }
+
+    internal class X11PlatformIdle : IPlatformIdle
+    {
+        object get_lock = new object();
+        IntPtr display;
+
+        public X11PlatformIdle(WindowInfo info)
+        {
+            display = new OpenTK.Platform.X11.WindowInfo(info).Display;//((OpenTK.Platform.X11.WindowInfo)info).Display;
+        }
+
+        #region IPlatformIdle Members
+
+        public bool IsIdle
+        {
+            get
+            {
+                lock (get_lock)
+                {
+                    return OpenTK.Platform.X11.Functions.XPending(display) == 0;
+                }
+            }
+        }
+
+        #endregion
+    }
+#endif
+
+    #endregion
 }

@@ -25,46 +25,29 @@ Generic Todos:
 
 Bind:
 * Get ready for OpenGL 3.0 (Long Peaks).
-* Fix problems reported on the Tao Framework forums.
+* Implement Glx bindings.
 
 
-OpenTK.OpenGL todos:
+OpenTK.Graphics todos:
 * Improve call performance for functions that use GCHandles.
-+ Inline XML documentation.
-+ Add complete Wgl, Glx, Agl and Glu bindings.
-+ Get rid of the "object" overloads in favour of generics.
+* Inline XML documentation.
 
 
 OpenTK.Platform:
 * GLContext class:
-	+ Add more constructors.
+	+ FSAA support.
 	+ Add native support for the MacOS X platform (now goes through X).
 * GLControl class:
-	+ Improve the interface. Add more constructors.
-* GameWindow class:
-	+ Add input support.
+	+ Improve the designer interface.
 
 
 OpenTK.Input todos:
-* Make Key class non-static. Static means all GameWindows share the same input!
-* Complete the Key class.
-* Implement mouse input.
-+ Implement other input devices.
-
-
-OpenTK.Timing todos:
-+ Start implementing the Timer module.
++ Implement Joystick input.
 
 
 Examples:
-+ Add comments were needed.
 + Add more Tutorials and WinForms examples.
 
 
-OpenTK.Math todos:
-+ Start implementing the Math module.
-
-
-OpenTK.OpenAL todos:
-+ Start researching the OpenAL module.
-+ Take a look at the OpenALDotNet wrapper.
+OpenTK.Audio todos:
++ Ogg loader.

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 #endregion
 
@@ -22,12 +23,17 @@ namespace OpenTK.Build
         static string SourcePath;
         static string ToolPath = "Build";
         static string PrebuildPath = Path.Combine(ToolPath, "Prebuild.exe");
-        static string BinPath = "Binaries";
-        static string ExePath = Path.Combine(BinPath, "Exe");
-        static string LibPath = Path.Combine(BinPath, "Libraries");
-        static string ExamplePath = Path.Combine(BinPath, "Examples");
+        static string BinPath;
+        static string ExePath;
+        static string LibPath;
+        static string ExamplePath;
+        static string DataSourcePath;
+        static string DataPath;
 
         static string PrebuildXml = Path.Combine(ToolPath, "Prebuild.xml");
+
+        static Regex DataFiles = new Regex(@"^.*\.(bmp|png|jpg|txt|glsl|wav|ogg)$",
+                                           RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         enum BuildMode
         {
@@ -43,6 +49,7 @@ namespace OpenTK.Build
             Mono,
             VS2005,
             SharpDevelop,
+            SharpDevelop2,
             MonoDevelop,
             Clean,
             DistClean,
@@ -67,6 +74,7 @@ namespace OpenTK.Build
                 Directory.GetCurrentDirectory().LastIndexOf("Build"));
             Directory.SetCurrentDirectory(RootPath);
             SourcePath = Path.Combine(RootPath, "Source");
+            DataSourcePath = Path.Combine(SourcePath, Path.Combine("Examples", "Data"));
 
             // Workaroung for nant on x64 windows (safe for other platforms too, as this affects
             // only the current process).
@@ -108,6 +116,12 @@ namespace OpenTK.Build
                             target = BuildTarget.MonoDevelop;
                             break;
 
+                        case "sharpdev2":
+                        case "sharpdevelop2":
+                        case "sd2":
+                            target = BuildTarget.SharpDevelop2;
+                            break;
+                           
                         case "sharpdev":
                         case "sharpdevelop":
                         case "sd":
@@ -138,15 +152,11 @@ namespace OpenTK.Build
                     }
                 }
 
-                ExePath = Path.Combine(
-                    BinPath,
-                    Path.Combine(mode == BuildMode.Debug ? "Debug" : "Release", "Exe"));
-                LibPath = Path.Combine(
-                    BinPath,
-                    Path.Combine(mode == BuildMode.Debug ? "Debug" : "Release", "Libraries"));
-                ExamplePath = Path.Combine(
-                    BinPath,
-                    Path.Combine(mode == BuildMode.Debug ? "Debug" : "Release", "Examples"));
+                BinPath = Path.Combine("Binaries", mode == BuildMode.Debug ? "Debug" : "Release");
+                ExePath = Path.Combine(BinPath, "Exe");
+                LibPath = Path.Combine(BinPath, "Libraries");
+                ExamplePath = Path.Combine(BinPath, "Examples");
+                DataPath = Path.Combine(ExamplePath, "Data");
 
                 switch (target)
                 {
@@ -177,7 +187,12 @@ namespace OpenTK.Build
 
                     case BuildTarget.SharpDevelop:
                         Console.WriteLine("Creating SharpDevelop project files");
-                        ExecuteProcess(PrebuildPath, "/target monodev /file " + PrebuildXml);
+                        ExecuteProcess(PrebuildPath, "/target sharpdev /file " + PrebuildXml);
+                        break;
+                        
+                    case BuildTarget.SharpDevelop2:
+                        Console.WriteLine("Creating SharpDevelop project files");
+                        ExecuteProcess(PrebuildPath, "/target sharpdev2 /file " + PrebuildXml);
                         break;
 
                     case BuildTarget.VS2005:
@@ -238,9 +253,12 @@ namespace OpenTK.Build
             Directory.CreateDirectory(ExePath);
             Directory.CreateDirectory(LibPath);
             Directory.CreateDirectory(ExamplePath);
+            Directory.CreateDirectory(DataPath);
 
             // Move the libraries and the config files.
             FindFiles(SourcePath, "*.dll", dll_matches);
+            FindFiles(SourcePath, "OpenTK.pdb", dll_matches);
+            FindFiles(SourcePath, "OpenTK.dll.mdb", dll_matches);
             foreach (string m in dll_matches)
             {
                 File.Delete(Path.Combine(LibPath, Path.GetFileName(m)));
@@ -260,11 +278,16 @@ namespace OpenTK.Build
 
             // Then the examples.
             FindFiles(Path.Combine(SourcePath, "Examples"), "*.exe", example_matches);
+            FindFiles(SourcePath, "Examples.pdb", example_matches);
+            FindFiles(SourcePath, "Examples.exe.mdb", example_matches);
             foreach (string m in example_matches)
             {
                 File.Delete(Path.Combine(ExamplePath, Path.GetFileName(m)));
                 File.Move(m, Path.Combine(ExamplePath, Path.GetFileName(m)));
             }
+
+            // Copy example data.
+            FileCopy(DataSourcePath, DataPath, DataFiles);
 
             // Then the rest of the exes.
             FindFiles(SourcePath, "*.exe", exe_matches);
@@ -314,35 +337,43 @@ namespace OpenTK.Build
         {
             using (Process p = new Process())
             {
-                ProcessStartInfo sinfo = new ProcessStartInfo();
-                if (Environment.OSVersion.Platform == PlatformID.Unix && !path.ToLower().Contains("nant"))
+                try
                 {
-                    sinfo.FileName = "mono";
-                    sinfo.Arguments = path + " " + args;
+                    ProcessStartInfo sinfo = new ProcessStartInfo();
+                    if (Environment.OSVersion.Platform == PlatformID.Unix && !path.ToLower().Contains("nant"))
+                    {
+                        sinfo.FileName = "mono";
+                        sinfo.Arguments = path + " " + args;
+                    }
+                    else
+                    {
+                        sinfo.FileName = path;
+                        sinfo.Arguments = args;
+                    }
+
+                    sinfo.WorkingDirectory = RootPath;
+                    sinfo.CreateNoWindow = true;
+                    sinfo.RedirectStandardOutput = true;
+                    sinfo.UseShellExecute = false;
+                    p.StartInfo = sinfo;
+                    p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
+                    p.Start();
+                    p.BeginOutputReadLine();
+                    //StreamReader sr = p.StandardOutput;
+                    //while (!p.HasExited)
+                    //{
+                    //    Console.WriteLine(sr.ReadLine());
+                    //    Console.Out.Flush();
+                    //}
+
+                    p.WaitForExit();
                 }
-                else
+                catch (Exception)
                 {
-                    sinfo.FileName = path;
-                    sinfo.Arguments = args;
+                    Console.WriteLine("Failed to execute process: {0}", p.ProcessName);
                 }
-
-                sinfo.WorkingDirectory = RootPath;
-                sinfo.CreateNoWindow = true;
-                sinfo.RedirectStandardOutput = true;
-                sinfo.UseShellExecute = false;
-                p.StartInfo = sinfo;
-                p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
-                p.Start();
-                p.BeginOutputReadLine();
-                //StreamReader sr = p.StandardOutput;
-                //while (!p.HasExited)
-                //{
-                //    Console.WriteLine(sr.ReadLine());
-                //    Console.Out.Flush();
-                //}
-
-                p.WaitForExit();
             }
+
         }
 
         static void p_OutputDataReceived(object sender, DataReceivedEventArgs e)
@@ -354,5 +385,34 @@ namespace OpenTK.Build
                 Console.WriteLine(e.Data.TrimEnd('\n'));
             }
         }
+
+        static void FileCopy(string srcdir, string destdir, Regex match)
+        {
+            //DirectoryInfo dir;
+            //FileInfo[] files;
+            //DirectoryInfo[] dirs;
+            //string tmppath;
+
+            //determine if the destination directory exists, if not create it
+            if (!Directory.Exists(destdir))
+                Directory.CreateDirectory(destdir);
+
+            if (!Directory.Exists(srcdir))
+                throw new ArgumentException("source dir doesn't exist -> " + srcdir);
+
+            string[] files = Directory.GetFiles(srcdir);
+            foreach (string f in files)
+                //if (Path.GetExtension(f).ToLower() == ext.ToLower())
+                if (match.IsMatch(Path.GetExtension(f)))
+                    File.Copy(f, Path.Combine(destdir, Path.GetFileName(f)), true);
+
+            foreach (string dir in Directory.GetDirectories(srcdir))
+            {
+                string name = dir.Substring(dir.LastIndexOf(Path.DirectorySeparatorChar)+1);
+                if (!name.StartsWith("."))
+                    FileCopy(dir, Path.Combine(destdir, name), match);
+            }
+        }
     }
 }
+

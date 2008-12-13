@@ -1,130 +1,52 @@
 ﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
- * Contributions from Erik Ylvisaker
- * See license.txt for license info
+/* Licensed under the MIT/X11 license.
+ * Copyright (c) 2006-2008 the OpenTK Team.
+ * This notice may not be removed from any source distribution.
+ * See license.txt for licensing detailed licensing details.
  */
 #endregion
-
-#region --- Using directives ---
 
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-#endregion
+using OpenTK.Graphics;
 
 namespace OpenTK.Platform.Windows
 {
-    sealed class WinGLControl : OpenTK.Platform.IGLControl
+    class WinGLControl : IGLControl
     {
-        private WinGLContext glContext;
-        private bool fullscreen;
-        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+        MSG msg = new MSG();
+        GraphicsMode mode;
+        Control control;
 
-        private bool disposed;
-
-        #region --- Constructors ---
-
-        public WinGLControl(Control c, int width, int height, bool fullscreen)
+        internal WinGLControl(GraphicsMode mode, Control control)
         {
-            glContext = new WinGLContext(
-                c.Handle,
-                new DisplayMode(
-                    width, height,
-                    new ColorDepth(32),
-                    16, 0, 0, 2,
-                    fullscreen,
-                    false,
-                    false,
-                    0.0f
-                )
-            );
+            this.mode = mode;
+            this.control = control;
         }
 
-        #endregion
+        #region --- IGLControl Members ---
 
-        #region --- IGLControl membmers ---
-
-        public event CreateEvent Create;
-
-        #region public void ProcessEvents()
-
-        private API.Message msg;
-        public void ProcessEvents()
+        public GraphicsContext CreateContext()
         {
-            throw new Exception("The method or operation is not implemented.");
+            WinWindowInfo window = new WinWindowInfo(control.Handle, null);
+            return new GraphicsContext(mode, window);
         }
-
-        #endregion
-        
-        #region public bool IsIdle
 
         public bool IsIdle
         {
-            get
-            {
-                return !API.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
-            }
+            get { return !OpenTK.Platform.Windows.Functions.PeekMessage(ref msg, IntPtr.Zero, 0, 0, 0); }
         }
 
-        #endregion
-
-        #region public OpenTK.Platform.IGLContext Context
-
-        public OpenTK.Platform.IGLContext Context
-        {
-            get { return glContext; }
-        }
-
-        #endregion
-
-        #region public bool Fullscreen
-
-        public bool Fullscreen
+        public IWindowInfo WindowInfo
         {
             get
             {
-                return fullscreen;
+                // This method forces the creation of the control. Beware of this side-effect!
+                return new WinWindowInfo(control.Handle, null);
             }
-            set
-            {
-                throw new NotImplementedException();
-                fullscreen = true;
-            }
-        }
-
-        #endregion
-
-        #endregion
-
-        #region --- IDisposable Members ---
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-
-        }
-
-        private void Dispose(bool calledManually)
-        {
-            if (!disposed)
-            {
-                // Clean unmanaged resources here:
-
-                if (calledManually)
-                {
-                    // Safe to clean managed resources
-                    glContext.Dispose();
-                }
-                disposed = true;
-            }
-        }
-
-        ~WinGLControl()
-        {
-            Dispose(false);
         }
 
         #endregion

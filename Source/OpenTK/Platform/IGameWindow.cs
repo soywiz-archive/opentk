@@ -1,24 +1,41 @@
-﻿using System;
+﻿#region --- License ---
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-using OpenTK.Input;
-
 namespace OpenTK.Platform
 {
-    interface IGameWindow : IDisposable
+    interface IGameWindow : INativeGLWindow
     {
         void Run();
 
-        void RenderFrame();
-        void UpdateFrame();
+        void OnRenderFrame(RenderFrameEventArgs e);
+        void OnUpdateFrame(UpdateFrameEventArgs e);
+        void OnLoad(EventArgs e);
+        void Exit();
 
-        event UpdateFrameEvent UpdateFrameNotify;
-        event RenderFrameEvent RenderFrameNotify;
+        void SwapBuffers();
 
-        IKeyboard Key { get; }
+        event UpdateFrameEvent UpdateFrame;
+        event RenderFrameEvent RenderFrame;
+        event LoadEvent Load;
+        event UnloadEvent Unload;
+
+        bool IsExiting { get; }
+        //IList<OpenTK.Input.Keyboard> Keyboard { get; }
+        //IList<OpenTK.Input.Mouse> Mouse { get; }
+
+        OpenTK.Input.KeyboardDevice Keyboard { get; }
+        OpenTK.Input.MouseDevice Mouse { get; }
     }
 
-    public delegate void UpdateFrameEvent(EventArgs e);
-    public delegate void RenderFrameEvent(EventArgs e);
+    public delegate void UpdateFrameEvent(GameWindow sender, UpdateFrameEventArgs e);
+    public delegate void RenderFrameEvent(GameWindow sender, RenderFrameEventArgs e);
+    public delegate void LoadEvent(GameWindow sender, EventArgs e);
+    public delegate void UnloadEvent(GameWindow sender, EventArgs e);
 }

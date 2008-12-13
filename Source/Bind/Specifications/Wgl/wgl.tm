@@ -14,11 +14,17 @@ HPBUFFEREXT,*,*,    HPBUFFEREXT,*,*
 INT32,*,*,          INT32,*,*
 INT64,*,*,          INT64,*,*
 LPVOID,*,*,         LPVOID,*,*
-String,*,*,         const char *,*,*
+#String,*,*,         const char *,*,*
 UINT,*,*,           UINT,*,*
 USHORT,*,*,         USHORT,*,*
 VOID,*,*,           VOID,*,*
 VoidPointer,*,*,    void*,*,*
 float,*,*,          float,*,*
 int,*,*,            int,*,*
-void,*,*,           *,*,*
+#void,*,*,           *,*,*
+PIXELFORMATDESCRIPTOR,*,*,    PIXELFORMATDESCRIPTOR,*,*
+LAYERPLANEDESCRIPTOR,*,*,    LAYERPLANEDESCRIPTOR,*,*
+GLYPHMETRICSFLOAT,*,*,        GLYPHMETRICSFLOAT,*,*
+COLORREF,*,*,            Int32,*,*
+LPCSTR,*,*,              String,*,*
+PROC,*,*,				 IntPtr,*,*

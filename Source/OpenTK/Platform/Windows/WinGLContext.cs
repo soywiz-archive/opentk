@@ -5,138 +5,254 @@
  */
 #endregion
 
+#region --- Using Directives ---
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
-
-using OpenTK.OpenGL;
 using System.Diagnostics;
 
+using OpenTK.Graphics.OpenGL;
+using OpenTK.Graphics;
+
+#endregion
 
 namespace OpenTK.Platform.Windows
 {
-    public sealed class WinGLContext : OpenTK.Platform.IGLContext, IDisposable
+    /// <summary>
+    /// Provides methods to create and control an opengl context on the Windows platform.
+    /// This class supports OpenTK, and is not intended for use by OpenTK programs.
+    /// </summary>
+    internal sealed class WinGLContext : IGraphicsContext, IGraphicsContextInternal//, IGLContextCreationHack
     {
-        private IntPtr deviceContext;
-        private IntPtr renderContext;
-        static private IntPtr opengl32Handle;
-        static private readonly string opengl32Name = "OPENGL32.DLL";
-        private IntPtr windowHandle;
+        //IntPtr deviceContext;
+        WinWindowInfo currentWindow;
+        ContextHandle renderContext;
+        static IntPtr opengl32Handle;
+        const string opengl32Name = "OPENGL32.DLL";
+        //WinWindowInfo windowInfo = new WinWindowInfo();
 
-        private bool disposed;
+        GraphicsMode format;
+        //DisplayMode mode = null;
+        bool vsync_supported;
+
+        bool disposed;
 
         #region --- Contructors ---
 
-        public WinGLContext(IntPtr windowHandle)
-            : this(windowHandle, new DisplayMode(640, 480, new ColorDepth(32), 16, 0, 0, 2, false, false, false, 0.0f))
+        static WinGLContext()
         {
+            // Set the GetCurrentContext implementation.
+            // TODO: Does this belong here?
+            if (GraphicsContext.GetCurrentContext == null)
+                GraphicsContext.GetCurrentContext = WinGLContext.GetCurrentContext;
+
+            // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
+            if (opengl32Handle == IntPtr.Zero)
+            {
+                opengl32Handle = Functions.LoadLibrary(opengl32Name);
+                if (opengl32Handle == IntPtr.Zero)
+                    throw new ApplicationException(String.Format("LoadLibrary(\"{0}\") call failed with code {1}",
+                                                                 opengl32Name, Marshal.GetLastWin32Error()));
+                Debug.WriteLine(String.Format("Loaded opengl32.dll: {0}", opengl32Handle));
+            }
         }
 
-        public WinGLContext(IntPtr windowHandle, DisplayMode mode)
+        public WinGLContext(GraphicsMode format, IWindowInfo window, IGraphicsContext sharedContext)
         {
-            Trace.WriteLine(String.Format("Creating opengl context (driver: {0})", this.ToString()));
-            Trace.Indent();
+            if (window == null) throw new ArgumentNullException("window", "Must point to a valid window.");
 
-            this.windowHandle = windowHandle;
-            Trace.WriteLine(String.Format("Window handle: {0}", windowHandle));
+            currentWindow = (WinWindowInfo)window;
+            if (currentWindow.WindowHandle == IntPtr.Zero) throw new ArgumentException("window", "Must be a valid window.");
 
-            PrepareContext(mode);
+            this.format = format;
 
-            CreateContext();
+            Debug.Print("OpenGL will be bound to handle: {0}", currentWindow.WindowHandle);
 
-            Trace.Unindent();
+            Debug.Write("Setting pixel format... ");
+            this.SetGraphicsModePFD(format, (WinWindowInfo)window);
+
+            // Do not rely on OpenTK.Platform.Windows.Wgl - the context is not ready yet,
+            // and Wgl extensions will fail to load.
+            Debug.Write("Creating render context... ");
+            renderContext = new ContextHandle(Wgl.Imports.CreateContext(currentWindow.DeviceContext));
+            if (renderContext == ContextHandle.Zero)
+                renderContext = new ContextHandle(Wgl.Imports.CreateContext(currentWindow.DeviceContext));
+            if (renderContext == ContextHandle.Zero)
+                throw new GraphicsContextException(String.Format("Context creation failed. Wgl.CreateContext() error: {0}.",
+                                                                 Marshal.GetLastWin32Error()));
+
+            Debug.WriteLine(String.Format("done! (id: {0})", renderContext));
+
+            if (sharedContext != null)
+            {
+                Debug.Print("Sharing state with context {0}", sharedContext.ToString());
+                Wgl.Imports.ShareLists((sharedContext as IGraphicsContextInternal).Context.Handle, renderContext.Handle);
+            }
+        }
+
+        public WinGLContext(IWindowInfo window)
+        {
+            if (window == null) throw new ArgumentNullException("window");
+
+            renderContext = new ContextHandle(Wgl.GetCurrentContext());
+            if (renderContext == ContextHandle.Zero)
+                throw new InvalidOperationException("No OpenGL context is current in the calling thread.");
+
+            currentWindow = (WinWindowInfo)window;
         }
 
         #endregion
 
+        #region --- IGraphicsContext Members ---
+
+        #region public void CreateContext()
+
         public void CreateContext()
         {
-            Trace.Write("Creating render context... ");
-            renderContext = Wgl.CreateContext(deviceContext);
-            Trace.WriteLine(String.Format("done! (id: {0})", renderContext));
+            throw new NotSupportedException();
+            //this.CreateContext(true, null);
         }
 
-        public void PrepareContext(DisplayMode mode)
+        #endregion
+
+        #region public void CreateContext(bool direct)
+
+        public void CreateContext(bool direct)
         {
-            // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
-            if (opengl32Handle == IntPtr.Zero)
-            {
-                opengl32Handle = API.LoadLibrary(opengl32Name);
-                if (opengl32Handle == IntPtr.Zero)
-                {
-                    //System.Diagnostics.Debug.WriteLine("LoadLibrary({0}) set error code: {1}. Will not load extensions.", _dll_name, error_code);
-                    throw new ApplicationException(
-                        String.Format(
-                            "LoadLibrary(\"{0}\") call failed with code {1}",
-                            opengl32Name,
-                            Marshal.GetLastWin32Error()
-                        )
-                    );
-                }
-                Trace.WriteLine(String.Format("Loaded opengl32.dll: {0}", opengl32Handle));
-            }
-
-            deviceContext = API.GetDC(windowHandle);
-            Trace.WriteLine(String.Format("Device context: {0}", deviceContext));
-
-            Trace.Write("Setting pixel format... ");
-            API.PixelFormatDescriptor pixelFormat = new API.PixelFormatDescriptor();
-
-            pixelFormat.ColorBits = (byte)(mode.Color.Red + mode.Color.Green + mode.Color.Blue);
-            pixelFormat.RedBits = (byte)mode.Color.Red;
-            pixelFormat.GreenBits = (byte)mode.Color.Green;
-            pixelFormat.BlueBits = (byte)mode.Color.Blue;
-            pixelFormat.AlphaBits = (byte)mode.Color.Alpha;
-            /*
-            if (accum != null)
-            {
-                pixelFormat.AccumBits = (byte)(accum.Red + accum.Green + accum.Blue);
-                pixelFormat.AccumRedBits = (byte)accum.Red;
-                pixelFormat.AccumGreenBits = (byte)accum.Green;
-                pixelFormat.AccumBlueBits = (byte)accum.Blue;
-                pixelFormat.AccumAlphaBits = (byte)accum.Alpha;
-            }
-            */
-            pixelFormat.DepthBits = (byte)mode.DepthBits;
-            pixelFormat.StencilBits = (byte)mode.StencilBits;
-
-            if (mode.DepthBits <= 0)
-            {
-                pixelFormat.Flags |= API.PixelFormatDescriptorFlags.DEPTH_DONTCARE;
-            }
-
-            if (mode.Stereo)
-            {
-                pixelFormat.Flags |= API.PixelFormatDescriptorFlags.STEREO;
-            }
-
-            if (mode.Buffers > 1)
-            {
-                pixelFormat.Flags |= API.PixelFormatDescriptorFlags.DOUBLEBUFFER;
-            }
-
-            // TODO: More elaborate mode setting, using DescribePixelFormat.
-
-            int pixel = API.ChoosePixelFormat(deviceContext, pixelFormat);
-
-            if (pixel == 0)
-            {
-                throw new ApplicationException("The requested pixel format is not supported by the hardware configuration.");
-            }
-
-            API.SetPixelFormat(deviceContext, pixel, pixelFormat);
-
-            Trace.WriteLine(String.Format("done! (format: {0})", pixel));
+            throw new NotSupportedException();
+            //this.CreateContext(direct, null);
         }
 
-        #region --- IGLContext Members ---
+        #endregion
+
+        #region public void CreateContext(bool direct, IGraphicsContext source)
+
+        public void CreateContext(bool direct, IGraphicsContext source)
+        {
+            throw new NotSupportedException();
+        }
+
+        #endregion
 
         #region public void SwapBuffers()
 
         public void SwapBuffers()
         {
-            API.SwapBuffers(deviceContext);
+
+            Functions.SwapBuffers(currentWindow.DeviceContext);
+        }
+
+        #endregion
+
+        #region public void MakeCurrent(IWindowInfo window)
+
+        public void MakeCurrent(IWindowInfo window)
+        {
+            bool success;
+
+            if (window != null)
+            {
+                if (((WinWindowInfo)window).WindowHandle == IntPtr.Zero)
+                    throw new ArgumentException("window", "Must point to a valid window.");
+                
+                currentWindow = (WinWindowInfo)window;
+                success = Wgl.Imports.MakeCurrent(((WinWindowInfo)window).DeviceContext, this.renderContext.Handle);
+            }
+            else
+                success = Wgl.Imports.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
+
+            if (!success)
+                throw new GraphicsContextException(String.Format(
+                    "Failed to make context {0} current. Error: {1}", this, Marshal.GetLastWin32Error()));
+
+        }
+
+	    #endregion
+
+        #region public bool IsCurrent
+
+        public bool IsCurrent
+        {
+            get { return Wgl.GetCurrentContext() == this.renderContext.Handle; }
+            /*
+            set
+            {
+                if (value)
+                    Wgl.MakeCurrent(this.deviceContext, this.renderContext);
+                else
+                    Wgl.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
+            }
+            */
+
+        }
+
+        #endregion
+
+        #region public bool VSync
+
+        /// <summary>
+        /// Gets or sets a System.Boolean indicating whether SwapBuffer calls are synced to the screen refresh rate.
+        /// </summary>
+        public bool VSync
+        {
+            get
+            {
+                return vsync_supported && Wgl.Ext.GetSwapInterval() != 0;
+            }
+            set
+            {
+                if (vsync_supported)
+                    Wgl.Ext.SwapInterval(value ? 1 : 0);
+            }
+        }
+
+        #endregion
+
+        public event DestroyEvent<IGraphicsContext> Destroy;
+
+        #endregion
+
+        #region --- IGLContextInternal Members ---
+
+        #region void LoadAll()
+
+        void IGraphicsContextInternal.LoadAll()
+        {
+            Wgl.LoadAll();
+            GL.LoadAll();
+            Glu.LoadAll();
+
+            vsync_supported = Wgl.Arb.SupportsExtension(this, "WGL_EXT_swap_control") &&
+                Wgl.Load("wglGetSwapIntervalEXT") && Wgl.Load("wglSwapIntervalEXT");
+        }
+
+        #endregion
+
+        #region ContextHandle IGLContextInternal.Context
+
+        ContextHandle IGraphicsContextInternal.Context
+        {
+            get { return renderContext; }
+        }
+
+        #endregion
+
+        #region IWindowInfo IGLContextInternal.Info
+        /*
+        IWindowInfo IGraphicsContextInternal.Info
+        {
+            get { return (IWindowInfo)windowInfo; }
+        }
+        */
+        #endregion
+
+        #region GraphicsMode IGLContextInternal.GraphicsMode
+
+        GraphicsMode IGraphicsContextInternal.GraphicsMode
+        {
+            get { return format; }
         }
 
         #endregion
@@ -145,70 +261,98 @@ namespace OpenTK.Platform.Windows
 
         public IntPtr GetAddress(string function_string)
         {
-            return Wgl.GetProcAddress(function_string);
+            return Wgl.Imports.GetProcAddress(function_string);
         }
 
         #endregion
 
-        #region public void MakeCurrent()
-        
-        public void MakeCurrent()
+        #region void IGLContextInternal.RegisterForDisposal(IDisposable resource)
+
+        void IGraphicsContextInternal.RegisterForDisposal(IDisposable resource)
         {
-            Wgl.MakeCurrent(deviceContext, renderContext);
+            throw new NotSupportedException("Use OpenTK.GraphicsContext instead.");
         }
 
-	    #endregion
+        #endregion
 
-        #region public DisplayMode[] GetDisplayModes()
+        #region void IGLContextInternal.DisposeResources()
 
-        public IEnumerable<DisplayMode> GetDisplayModes()
+        void IGraphicsContextInternal.DisposeResources()
         {
-            List<DisplayMode> modes = new List<DisplayMode>();
-            bool done = false;
-            int index = 0;
+            throw new NotSupportedException("Use OpenTK.GraphicsContext instead.");
+        }
 
-            while (!done)
+        #endregion
+
+        #endregion
+
+        #region --- Private Methods ---
+
+        #region void SetGraphicsModePFD(GraphicsMode format, WinWindowInfo window)
+
+        void SetGraphicsModePFD(GraphicsMode mode, WinWindowInfo window)
+        {
+            if (mode.Index == IntPtr.Zero) throw new ArgumentException(
+                "mode", "The Index (pixel format) of the GraphicsMode is not set.");
+            if (window == null) throw new ArgumentNullException("window", "Must point to a valid window.");
+
+            PixelFormatDescriptor pfd = new PixelFormatDescriptor();
+            Functions.DescribePixelFormat(window.DeviceContext, (int)mode.Index,
+                API.PixelFormatDescriptorSize, ref pfd);
+            Debug.WriteLine(mode.Index.ToString());
+            if (!Functions.SetPixelFormat(window.DeviceContext, (int)mode.Index, ref pfd))
+                throw new GraphicsContextException(String.Format(
+                    "Requested GraphicsMode not available. SetPixelFormat error: {0}", Marshal.GetLastWin32Error()));
+        }
+        #endregion
+
+        #region void SetGraphicsModeARB(GraphicsMode format, IWindowInfo window)
+
+        void SetGraphicsModeARB(GraphicsMode format, IWindowInfo window)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #endregion
+
+        #region --- Internal Methods ---
+
+        #region internal IntPtr DeviceContext
+
+        internal IntPtr DeviceContext
+        {
+            get
             {
-                API.DeviceMode currentMode = new API.DeviceMode();
-                IntPtr handle = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(API.DeviceMode)));
-                Marshal.StructureToPtr(currentMode, handle, true);
-
-                done = (API.EnumDisplaySettings(null, index++, handle) != 0) ? false : true;
-                int error = Marshal.GetLastWin32Error();
-
-                Marshal.PtrToStructure(handle, currentMode);
-                Marshal.FreeHGlobal(handle);
-
-                if (error != 0)
-                {
-                    Console.WriteLine("Error: {0}", error);
-                    continue;
-                }
-                if (done)
-                    break;
-
-                //DisplayMode mode = new DisplayMode(currentMode.PelsWidth, currentMode.PelsHeight);
-                DisplayMode mode = new DisplayMode(
-                    currentMode.PelsWidth,
-                    currentMode.PelsHeight,
-                    new ColorDepth(currentMode.BitsPerPel),
-                    0,
-                    0,
-                    0,
-                    0,
-                    false,
-                    false,
-                    false,
-                    currentMode.DisplayFrequency
-                );
-
-                modes.Add(mode);
+                if (currentWindow != null)
+                    return currentWindow.DeviceContext;
+                return IntPtr.Zero;
             }
+        }
 
-            return modes.ToArray();
+
+        #endregion
+
+        #region static ContextHandle GetCurrentContext()
+
+        static ContextHandle GetCurrentContext()
+        {
+            return new ContextHandle(Wgl.GetCurrentContext());
         }
 
         #endregion
+
+        #endregion
+
+        #region --- Overrides ---
+
+        /// <summary>Returns a System.String describing this OpenGL context.</summary>
+        /// <returns>A System.String describing this OpenGL context.</returns>
+        public override string ToString()
+        {
+            return (this as IGraphicsContextInternal).Context.ToString();
+        }
 
         #endregion
 
@@ -216,7 +360,7 @@ namespace OpenTK.Platform.Windows
 
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -224,10 +368,7 @@ namespace OpenTK.Platform.Windows
         {
             if (!disposed)
             {
-                // Clean unmanaged resources here:
-                Wgl.DeleteContext(renderContext);
-                API.ReleaseDC(windowHandle, deviceContext);
-                API.FreeLibrary(opengl32Handle);
+                DestroyContext();
 
                 if (calledManually)
                 {
@@ -242,31 +383,56 @@ namespace OpenTK.Platform.Windows
             Dispose(false);
         }
 
-        #region public void ReleaseResources()
+        #region private void DestroyContext()
 
-        private void ReleaseResources()
+        private void DestroyContext()
         {
-            if (renderContext != IntPtr.Zero)
+            if (Destroy != null)
+                Destroy(this, EventArgs.Empty);
+
+            if (renderContext != ContextHandle.Zero)
             {
-                if (!Wgl.DeleteContext(renderContext))
+                try
                 {
-                    throw new ApplicationException(
-                        "Could not destroy the OpenGL render context. Error: " + Marshal.GetLastWin32Error()
-                    );
+                    if (!Wgl.Imports.MakeCurrent(IntPtr.Zero, IntPtr.Zero))
+                        Debug.Print("Failed to make OpenGL context {0} non current. Error: {1}",
+                            renderContext.ToString(), Marshal.GetLastWin32Error());
+
+                    if (!Wgl.Imports.DeleteContext(renderContext.Handle))
+                        Debug.Print("Failed to destroy OpenGL context {0}. Error: {1}",
+                            renderContext.ToString(), Marshal.GetLastWin32Error());
                 }
-                renderContext = IntPtr.Zero;
+                catch (AccessViolationException e)
+                {
+                    Debug.WriteLine("An access violation occured while destroying the OpenGL context. Please report at http://www.opentk.com.");
+                    Debug.Indent();
+                    Debug.Print("Marshal.GetLastWin32Error(): {0}", Marshal.GetLastWin32Error().ToString());
+                    Debug.WriteLine(e.ToString());
+                    Debug.Unindent();
+                }
+                renderContext = ContextHandle.Zero;
             }
 
+            //if (deviceContext != IntPtr.Zero)
+            //{
+            //    if (!Functions.ReleaseDC(this.windowInfo.Handle, deviceContext))
+            //    {
+            //        //throw new ApplicationException("Could not release device context. Error: " + Marshal.GetLastWin32Error());
+            //        //Debug.Print("Could not destroy the device context. Error: {0}", Marshal.GetLastWin32Error());
+            //    }
+            //}
+
+            /*
             if (opengl32Handle != IntPtr.Zero)
             {
-                if (!API.FreeLibrary(opengl32Handle))
+                if (!Functions.FreeLibrary(opengl32Handle))
                 {
-                    throw new ApplicationException(
-                        "FreeLibray call failed ('opengl32.dll'), Error: " + Marshal.GetLastWin32Error()
-                    );
+                    //throw new ApplicationException("FreeLibray call failed ('opengl32.dll'), Error: " + Marshal.GetLastWin32Error());
+                    //Debug.Print("Could not release {0}. Error: {1}", opengl32Name, Marshal.GetLastWin32Error());
                 }
                 opengl32Handle = IntPtr.Zero;
             }
+            */
         }
 
         #endregion

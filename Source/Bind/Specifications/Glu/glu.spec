@@ -24,7 +24,11 @@
 # OpenGL(R) version 1.2.1 Sample Implementation published by SGI, but has
 # not been independently verified as being compliant with the OpenGL(R)
 # version 1.2.1 Specification.
-
+###############################################################################
+#
+# Edited by StApostol. Revision 1
+#
+###############################################################################
 param: retval retained
 version: 1.0
 
@@ -165,11 +169,12 @@ EndTrim(nurb)
 
 ErrorString(error)
 	return		String
-	param		error		ErrorCode in value
+# Revision 1
+	param		error		GluErrorCode in value	# ErrorCode (clashes with OpenGL enum)
 
 GetString(name)
 	return		String
-	param		name		StringName in value
+	param		name		GluStringName in value
 
 GetNurbsProperty(nurb, property, data)
 	return		void
@@ -180,7 +185,7 @@ GetNurbsProperty(nurb, property, data)
 GetTessProperty(tess, which, data)
 	return		void
 	param		tess		TesselatorObj in value
-	param		which		TessProperty in value
+	param		which		TessParameter in value		# TessProperty in value
 	param		data		Float64Pointer out value
 
 LoadSamplingMatrices(nurb, model, perspective, view)
@@ -216,6 +221,7 @@ NextContour(tess, type)
 	param		tess		TesselatorObj in value
 	param		type		TessContour in value
 
+# Edited for OpenTK
 NurbsCallback(nurb, which, CallBackFunc)
 	return		void
 	param		nurb		NurbsObj in value
@@ -314,6 +320,7 @@ PwlCurve(nurb, count, data, stride, type)
 	param		stride		Int32 in value
 	param		type		NurbsTrim in value
 
+# Edited for OpenTK
 QuadricCallback(quad, which, CallBackFunc)
 	return		void
 	param		quad		QuadricObj in value
@@ -335,10 +342,11 @@ QuadricOrientation(quad, orientation)
 	param		quad		QuadricObj in value
 	param		orientation	QuadricOrientation in value
 
+# Revision 1
 QuadricTexture(quad, texture)
 	return		void
 	param		quad		QuadricObj in value
-	param		texture		Boolean in value
+	param		texture		bool in value # Boolean in value
 
 ScaleImage(format, wIn, hIn, typeIn, dataIn, wOut, hOut, typeOut, dataOut)
 	return		Int32
@@ -368,6 +376,7 @@ TessBeginPolygon(tess, data)
 	param		tess		TesselatorObj in value
 	param		data		VoidPointer in value
 
+# Edited for OpenTK -- safety reasons
 TessCallback(tess, which, CallBackFunc)
 	return		void
 	param		tess		TesselatorObj in value
@@ -392,19 +401,21 @@ TessNormal(tess, valueX, valueY, valueZ)
 TessProperty(tess, which, data)
 	return		void
 	param		tess		TesselatorObj in value
-	param		which		TessProperty in value
+	param		which		TessParameter in value		# TessProperty in value
 	param		data		Float64 in value
 
+# Edited for OpenTK
 TessVertex(tess, location, data)
 	return		void
 	param		tess		TesselatorObj in value
-	param		location	Float64 out array [3]
+	param		location	Float64 in array [3] # Float64 out array [3]
 	param		data		VoidPointer in value
 
+# Edited for OpenTK
 TexFilterFuncSGI(target, filtertype, parms, n, weights)
 	return		Int32 out value
 	param		target		TextureTarget in value
-	param		filtertype	Filter4TypeSGIS in value
+	param		filtertype	SGIS_texture_filter4 in value		# Filter4TypeSGIS in value
 	param		parms		Float32 in array [2]
 	param		n		Int32 in value
 	param		weights		Float32Pointer out value

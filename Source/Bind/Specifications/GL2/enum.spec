@@ -171,6 +171,24 @@ Extensions define:
 
 ###############################################################################
 
+###############################################################################
+#
+# Edited by Stefanos Apostolopoulos for OpenTK. Revision 3
+#
+###############################################################################
+
+StencilFace enum:
+	use DrawBufferMode FRONT
+	use DrawBufferMode BACK
+	use DrawBufferMode FRONT_AND_BACK
+
+DrawElementsType enum:
+	use DataType UNSIGNED_BYTE
+	use DataType UNSIGNED_SHORT
+	use DataType UNSIGNED_INT
+
+###############################################################################
+
 AttribMask enum:
 	CURRENT_BIT					= 0x00000001
 	POINT_BIT					= 0x00000002
@@ -272,15 +290,18 @@ AlphaFunction enum:
 
 ###############################################################################
 
+# Edited for OpenTK
 BlendingFactorDest enum:
 	ZERO						= 0
-	ONE						= 1
+	ONE							= 1
 	SRC_COLOR					= 0x0300
-	ONE_MINUS_SRC_COLOR				= 0x0301
+	ONE_MINUS_SRC_COLOR			= 0x0301
+	DST_COLOR					= 0x0306
+	ONE_MINUS_DST_COLOR			= 0x0307
 	SRC_ALPHA					= 0x0302
-	ONE_MINUS_SRC_ALPHA				= 0x0303
+	ONE_MINUS_SRC_ALPHA			= 0x0303
 	DST_ALPHA					= 0x0304
-	ONE_MINUS_DST_ALPHA				= 0x0305
+	ONE_MINUS_DST_ALPHA			= 0x0305
 	use EXT_blend_color CONSTANT_COLOR_EXT
 	use EXT_blend_color ONE_MINUS_CONSTANT_COLOR_EXT
 	use EXT_blend_color CONSTANT_ALPHA_EXT
@@ -288,16 +309,19 @@ BlendingFactorDest enum:
 
 ###############################################################################
 
+# Edited for OpenTK
 BlendingFactorSrc enum:
 	use BlendingFactorDest ZERO
 	use BlendingFactorDest ONE
-	DST_COLOR					= 0x0306
-	ONE_MINUS_DST_COLOR				= 0x0307
-	SRC_ALPHA_SATURATE				= 0x0308
+	use BlendingFactorDest SRC_COLOR
+	use BlendingFactorDest ONE_MINUS_SRC_COLOR
+	use BlendingFactorDest DST_COLOR
+	use BlendingFactorDest ONE_MINUS_DST_COLOR
 	use BlendingFactorDest SRC_ALPHA
 	use BlendingFactorDest ONE_MINUS_SRC_ALPHA
 	use BlendingFactorDest DST_ALPHA
 	use BlendingFactorDest ONE_MINUS_DST_ALPHA
+	SRC_ALPHA_SATURATE				= 0x0308
 	use EXT_blend_color CONSTANT_COLOR_EXT
 	use EXT_blend_color ONE_MINUS_CONSTANT_COLOR_EXT
 	use EXT_blend_color CONSTANT_ALPHA_EXT
@@ -493,7 +517,12 @@ EnableCap enum:
 	use EXT_rescale_normal RESCALE_NORMAL_EXT
 	use EXT_shared_texture_palette SHARED_TEXTURE_PALETTE_EXT
 	use EXT_texture3D TEXTURE_3D_EXT
-	use SGIS_multisample MULTISAMPLE_SGIS
+	
+	# Revision 1
+	use VERSION_1_3 MULTISAMPLE
+	
+	#use SGIS_multisample MULTISAMPLE_SGIS
+	
 	use SGIS_multisample SAMPLE_ALPHA_TO_MASK_SGIS
 	use SGIS_multisample SAMPLE_ALPHA_TO_ONE_SGIS
 	use SGIS_multisample SAMPLE_MASK_SGIS
@@ -715,12 +744,12 @@ GetPName enum:
 	LINE_STIPPLE					= 0x0B24 # 1 I
 	LINE_STIPPLE_PATTERN				= 0x0B25 # 1 I
 	LINE_STIPPLE_REPEAT				= 0x0B26 # 1 I
-	use VERSION_1_2 SMOOTH_POINT_SIZE_RANGE
-	use VERSION_1_2 SMOOTH_POINT_SIZE_GRANULARITY
-	use VERSION_1_2 SMOOTH_LINE_WIDTH_RANGE
-	use VERSION_1_2 SMOOTH_LINE_WIDTH_GRANULARITY
-	use VERSION_1_2 ALIASED_POINT_SIZE_RANGE
-	use VERSION_1_2 ALIASED_LINE_WIDTH_RANGE
+#	use VERSION_1_2 SMOOTH_POINT_SIZE_RANGE
+#	use VERSION_1_2 SMOOTH_POINT_SIZE_GRANULARITY
+#	use VERSION_1_2 SMOOTH_LINE_WIDTH_RANGE
+#	use VERSION_1_2 SMOOTH_LINE_WIDTH_GRANULARITY
+#	use VERSION_1_2 ALIASED_POINT_SIZE_RANGE
+#	use VERSION_1_2 ALIASED_LINE_WIDTH_RANGE
 
 	LIST_MODE					= 0x0B30 # 1 I
 	MAX_LIST_NESTING				= 0x0B31 # 1 I
@@ -991,7 +1020,7 @@ GetPName enum:
 #	 use ARB_transpose_matrix TRANSPOSE_TEXTURE_MATRIX_ARB
 #	 use ARB_transpose_matrix TRANSPOSE_COLOR_MATRIX_ARB
 
-	use VERSION_1_2 LIGHT_MODEL_COLOR_CONTROL
+#	use VERSION_1_2 LIGHT_MODEL_COLOR_CONTROL
 
 	use EXT_blend_color BLEND_COLOR_EXT
 
@@ -1164,6 +1193,10 @@ GetPName enum:
 	use SGI_color_table POST_COLOR_MATRIX_COLOR_TABLE_SGI
 
 	use SGI_texture_color_table TEXTURE_COLOR_TABLE_SGI
+	
+	# Revision 1
+	use VERSION_1_3 SAMPLES
+	use VERSION_1_3 SAMPLE_BUFFERS
 
 ###############################################################################
 
@@ -1221,6 +1254,9 @@ GetTextureParameter enum:
 	use SGIX_texture_lod_bias TEXTURE_LOD_BIAS_R_SGIX
 	use SGIX_texture_scale_bias POST_TEXTURE_FILTER_BIAS_SGIX
 	use SGIX_texture_scale_bias POST_TEXTURE_FILTER_SCALE_SGIX
+	
+# Revision 2
+	use VERSION_1_3 TEXTURE_COMPRESSED
 
 ###############################################################################
 
@@ -1273,8 +1309,8 @@ LightEnvParameterSGIX enum:
 ###############################################################################
 
 LightModelColorControl enum:
-	use VERSION_1_2 SINGLE_COLOR
-	use VERSION_1_2 SEPARATE_SPECULAR_COLOR
+#	use VERSION_1_2 SINGLE_COLOR
+#	use VERSION_1_2 SEPARATE_SPECULAR_COLOR
 
 ###############################################################################
 
@@ -1282,7 +1318,7 @@ LightModelParameter enum:
 	use GetPName LIGHT_MODEL_AMBIENT
 	use GetPName LIGHT_MODEL_LOCAL_VIEWER
 	use GetPName LIGHT_MODEL_TWO_SIDE
-	use VERSION_1_2 LIGHT_MODEL_COLOR_CONTROL
+#	use VERSION_1_2 LIGHT_MODEL_COLOR_CONTROL
 
 ###############################################################################
 
@@ -1406,9 +1442,15 @@ MaterialParameter enum:
 	SHININESS					= 0x1601
 	AMBIENT_AND_DIFFUSE				= 0x1602
 	COLOR_INDEXES					= 0x1603
-	use LightProperty AMBIENT
-	use LightProperty DIFFUSE
-	use LightProperty SPECULAR
+	
+	# Revision 1
+	use LightParameter AMBIENT
+	use LightParameter DIFFUSE
+	use LightParameter SPECULAR
+	
+	#use LightProperty AMBIENT
+	#use LightProperty DIFFUSE
+	#use LightProperty SPECULAR
 
 ###############################################################################
 
@@ -1719,6 +1761,7 @@ TextureCoordName enum:
 TextureEnvMode enum:
 	MODULATE					= 0x2100
 	DECAL						= 0x2101
+	REPLACE						= 0x1e01
 	use GetPName BLEND
 	use EXT_texture REPLACE_EXT
 	use AccumOp ADD
@@ -1846,14 +1889,23 @@ TextureTarget enum:
 	use SGIS_texture_lod TEXTURE_MAX_LOD_SGIS
 	use SGIS_texture_lod TEXTURE_BASE_LEVEL_SGIS
 	use SGIS_texture_lod TEXTURE_MAX_LEVEL_SGIS
+	
+	# Revision 1
+	use ARB_texture_rectangle TEXTURE_RECTANGLE_ARB
+	use NV_texture_rectangle TEXTURE_RECTANGLE_NV
 
 ###############################################################################
 
 TextureWrapMode enum:
 	CLAMP						= 0x2900
 	REPEAT						= 0x2901
-	use SGIS_texture_border_clamp CLAMP_TO_BORDER_SGIS
-	use SGIS_texture_edge_clamp CLAMP_TO_EDGE_SGIS
+	
+	# Revision 1
+	# use SGIS_texture_border_clamp CLAMP_TO_BORDER_SGIS
+	# use SGIS_texture_edge_clamp CLAMP_TO_EDGE_SGIS
+	
+	# use VERSION_1_3 CLAMP_TO_BORDER
+	# use VERSION_1_2 CLAMP_TO_EDGE
 
 ###############################################################################
 
@@ -1927,6 +1979,17 @@ PixelInternalFormat enum:
 	use SGIX_icc_texture LUMINANCE16_ICC_SGIX
 	use SGIX_icc_texture INTENSITY16_ICC_SGIX
 	use SGIX_icc_texture LUMINANCE16_ALPHA8_ICC_SGIX
+
+	# Revision 2
+	ONE = 1
+	TWO = 2
+	THREE = 3
+	FOUR = 4
+	use PixelFormat ALPHA
+	use PixelFormat LUMINANCE
+	use PixelFormat LUMINANCE_ALPHA
+	use PixelFormat RGB
+	use PixelFormat RGBA
 
 ###############################################################################
 
@@ -3422,19 +3485,21 @@ SGIX_resample enum:
 ###############################################################################
 
 # Incomplete extension, not in enumext.spec
-# SGIX_icc_texture enum:
-#	RGB_ICC_SGIX					= 0x8460
-#	RGBA_ICC_SGIX					= 0x8461
-#	ALPHA_ICC_SGIX					= 0x8462
-#	LUMINANCE_ICC_SGIX				= 0x8463
-#	INTENSITY_ICC_SGIX				= 0x8464
-#	LUMINANCE_ALPHA_ICC_SGIX			= 0x8465
-#	R5_G6_B5_ICC_SGIX				= 0x8466
-#	R5_G6_B5_A8_ICC_SGIX				= 0x8467
-#	ALPHA16_ICC_SGIX				= 0x8468
-#	LUMINANCE16_ICC_SGIX				= 0x8469
-#	INTENSITY16_ICC_SGIX				= 0x846A
-#	LUMINANCE16_ALPHA8_ICC_SGIX			= 0x846B
+
+# Revision 1
+SGIX_icc_texture enum:
+	RGB_ICC_SGIX					= 0x8460
+	RGBA_ICC_SGIX					= 0x8461
+	ALPHA_ICC_SGIX					= 0x8462
+	LUMINANCE_ICC_SGIX				= 0x8463
+	INTENSITY_ICC_SGIX				= 0x8464
+	LUMINANCE_ALPHA_ICC_SGIX			= 0x8465
+	R5_G6_B5_ICC_SGIX				= 0x8466
+	R5_G6_B5_A8_ICC_SGIX				= 0x8467
+	ALPHA16_ICC_SGIX				= 0x8468
+	LUMINANCE16_ICC_SGIX				= 0x8469
+	INTENSITY16_ICC_SGIX				= 0x846A
+	LUMINANCE16_ALPHA8_ICC_SGIX			= 0x846B
 
 ###############################################################################
 
@@ -3443,13 +3508,13 @@ SGIX_resample enum:
 ###############################################################################
 
 # SMOOTH_* enums are new names for pre-1.2 enums.
-VERSION_1_2 enum:
-	SMOOTH_POINT_SIZE_RANGE				= 0x0B12 # 2 F
-	SMOOTH_POINT_SIZE_GRANULARITY			= 0x0B13 # 1 F
-	SMOOTH_LINE_WIDTH_RANGE				= 0x0B22 # 2 F
-	SMOOTH_LINE_WIDTH_GRANULARITY			= 0x0B23 # 1 F
-	ALIASED_POINT_SIZE_RANGE			= 0x846D # 2 F
-	ALIASED_LINE_WIDTH_RANGE			= 0x846E # 2 F
+#VERSION_1_2 enum:
+#	SMOOTH_POINT_SIZE_RANGE				= 0x0B12 # 2 F
+#	SMOOTH_POINT_SIZE_GRANULARITY			= 0x0B13 # 1 F
+#	SMOOTH_LINE_WIDTH_RANGE				= 0x0B22 # 2 F
+#	SMOOTH_LINE_WIDTH_GRANULARITY			= 0x0B23 # 1 F
+#	ALIASED_POINT_SIZE_RANGE			= 0x846D # 2 F
+#	ALIASED_LINE_WIDTH_RANGE			= 0x846E # 2 F
 
 ###############################################################################
 

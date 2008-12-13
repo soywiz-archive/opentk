@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("OpenTK.OpenGL.Bind")]
-[assembly: AssemblyCopyright("Copyright ©  2006-2007 Stefanos Apostolopoulos")]
+[assembly: AssemblyCopyright("Copyright ©  2006-2008 the OpenTK team")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.9.7.2")]
-[assembly: AssemblyFileVersion("0.9.7.2")]
+[assembly: AssemblyVersion("0.9.9.4")]
+[assembly: AssemblyFileVersion("0.9.9.4")]

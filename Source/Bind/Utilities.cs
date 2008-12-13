@@ -1,8 +1,15 @@
-﻿using System;
+﻿#region --- License ---
+/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
+ * See license.txt for license info
+ */
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Bind.Structures;
+using System.Text.RegularExpressions;
 
 namespace Bind
 {
@@ -38,6 +45,10 @@ namespace Bind
         /// </summary>
         PointerParameter,
         /// <summary>
+        /// Function that takes a reference to a struct.
+        /// </summary>
+        ReferenceParameter,
+        /// <summary>
         /// Function returns string - needs manual marshalling through IntPtr to prevent the managed GC
         /// from freeing memory allocated on the unmanaged side (e.g. glGetString).
         /// </summary>
@@ -56,7 +67,10 @@ namespace Bind
 
     public static class Utilities
     {
-        public static char[] Separators = { ' ', '\n', ',', '(', ')', ';', '#' };
+        public static readonly char[] Separators = { ' ', '\n', ',', '(', ')', ';', '#' };
+        public static readonly Regex Extensions = new Regex(
+            "(ARB|EXT|ATI|NV|SUNX|SUN|SGIS|SGIX|SGI|MESA|3DFX|IBM|GREMEDY|HP|INTEL|PGI|INGR|APPLE|OML|I3D)",
+            RegexOptions.Compiled);
 
         #region internal StreamReader OpenSpecFile(string file)
 
@@ -179,26 +193,29 @@ namespace Bind
 
         internal static string GetGL2Extension(string name)
         {
-            if (name.EndsWith("ARB")) { return "ARB"; }
-            if (name.EndsWith("EXT")) { return "EXT"; }
-            if (name.EndsWith("ATI")) { return "ATI"; }
-            if (name.EndsWith("ATIX")) { return "ATIX"; }
+            name = name.ToUpper();
+            if (name.EndsWith("TEXT")) { return ""; }
+            if (name.EndsWith("ARB")) { return "Arb"; }
+            if (name.EndsWith("EXT")) { return "Ext"; }
+            if (name.EndsWith("ATI")) { return "Ati"; }
+            if (name.EndsWith("ATIX")) { return "Atix"; }
             if (name.EndsWith("NV")) { return "NV"; }
-            if (name.EndsWith("SUN")) { return "SUN"; }
-            if (name.EndsWith("SUNX")) { return "SUNX"; }
-            if (name.EndsWith("SGI")) { return "SGI"; }
-            if (name.EndsWith("SGIS")) { return "SGIS"; }
-            if (name.EndsWith("SGIX")) { return "SGIX"; }
-            if (name.EndsWith("MESA")) { return "MESA"; }
-            if (name.EndsWith("G3DFX")) { return "G3DFX"; }
-            if (name.EndsWith("IBM")) { return "IBM"; }
-            if (name.EndsWith("GREMEDY")) { return "GREMEDY"; }
+            if (name.EndsWith("SUN")) { return "Sun"; }
+            if (name.EndsWith("SUNX")) { return "Sunx"; }
+            if (name.EndsWith("SGI")) { return "Sgi"; }
+            if (name.EndsWith("SGIS")) { return "Sgis"; }
+            if (name.EndsWith("SGIX")) { return "Sgix"; }
+            if (name.EndsWith("MESA")) { return "Mesa"; }
+            if (name.EndsWith("3DFX")) { return "3dfx"; }
+            if (name.EndsWith("INTEL")) { return "Intel"; }
+            if (name.EndsWith("IBM")) { return "Ibm"; }
+            if (name.EndsWith("GREMEDY")) { return "Gremedy"; }
             if (name.EndsWith("HP")) { return "HP"; }
-            if (name.EndsWith("PGI")) { return "PGI"; }
-            if (name.EndsWith("INGR")) { return "INGR"; }
-            if (name.EndsWith("APPLE")) { return "APPLE"; }
-            if (name.EndsWith("OML")) { return "OML"; }
-            if (name.EndsWith("I3D")) { return "I3D"; }
+            if (name.EndsWith("PGI")) { return "Pgi"; }
+            if (name.EndsWith("INGR")) { return "Ingr"; }
+            if (name.EndsWith("APPLE")) { return "Apple"; }
+            if (name.EndsWith("OML")) { return "Oml"; }
+            if (name.EndsWith("I3D")) { return "I3d"; }
             return "";
         }
 
@@ -232,9 +249,13 @@ namespace Bind
 
         #endregion
 
+        #region internal static string StripGL2Extension(string p)
+        
         internal static string StripGL2Extension(string p)
         {
             return p.Substring(0, p.Length - GetGL2Extension(p).Length);
         }
+        
+        #endregion
     }
 }
