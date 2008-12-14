@@ -74,7 +74,7 @@ namespace Bind
         public static string ImportsClass = "Imports";
 
         // TODO: Remove legacy for for 0.3.15.
-        public static Legacy Compatibility = Legacy.NoDropMultipleTokens;
+        public static Legacy Compatibility; // = Legacy.NoDropMultipleTokens;
 
         /// <summary>
         /// The name of the C# enum which holds every single OpenGL enum (for compatibility purposes).
