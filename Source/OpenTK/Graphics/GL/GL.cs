@@ -15175,268 +15175,6 @@ namespace OpenTK.Graphics
             return Delegates.glIsVertexArray((UInt32)array);
         }
 
-        public static 
-        void PolygonOffsetEXT(Single factor, Single bias)
-        {
-            Delegates.glPolygonOffsetEXT((Single)factor, (Single)bias);
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        bool AreTexturesResidentEXT(Int32 n, UInt32[] textures, [Out] bool[] residences)
-        {
-            unsafe
-            {
-                fixed (UInt32* textures_ptr = textures)
-                fixed (bool* residences_ptr = residences)
-                {
-                    return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
-                }
-            }
-        }
-
-        public static 
-        bool AreTexturesResidentEXT(Int32 n, Int32[] textures, [Out] bool[] residences)
-        {
-            unsafe
-            {
-                fixed (Int32* textures_ptr = textures)
-                fixed (bool* residences_ptr = residences)
-                {
-                    return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
-                }
-            }
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        bool AreTexturesResidentEXT(Int32 n, ref UInt32 textures, [Out] out bool residences)
-        {
-            unsafe
-            {
-                fixed (UInt32* textures_ptr = &textures)
-                fixed (bool* residences_ptr = &residences)
-                {
-                    bool retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
-                    residences = *residences_ptr;
-                    return retval;
-                }
-            }
-        }
-
-        public static 
-        bool AreTexturesResidentEXT(Int32 n, ref Int32 textures, [Out] out bool residences)
-        {
-            unsafe
-            {
-                fixed (Int32* textures_ptr = &textures)
-                fixed (bool* residences_ptr = &residences)
-                {
-                    bool retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
-                    residences = *residences_ptr;
-                    return retval;
-                }
-            }
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe bool AreTexturesResidentEXT(Int32 n, UInt32* textures, [Out] bool* residences)
-        {
-            return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures, (bool*)residences);
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        unsafe bool AreTexturesResidentEXT(Int32 n, Int32* textures, [Out] bool* residences)
-        {
-            return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures, (bool*)residences);
-        }
-
-        public static 
-        void ArrayElementEXT(Int32 i)
-        {
-            Delegates.glArrayElementEXT((Int32)i);
-        }
-
-        public static 
-        void TextureLightEXT(OpenTK.Graphics.All pname)
-        {
-            Delegates.glTextureLightEXT((OpenTK.Graphics.All)pname);
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void InsertComponentEXT(UInt32 res, UInt32 src, UInt32 num)
-        {
-            Delegates.glInsertComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
-        }
-
-        public static 
-        void InsertComponentEXT(Int32 res, Int32 src, Int32 num)
-        {
-            Delegates.glInsertComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void ExtractComponentEXT(UInt32 res, UInt32 src, UInt32 num)
-        {
-            Delegates.glExtractComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
-        }
-
-        public static 
-        void ExtractComponentEXT(Int32 res, Int32 src, Int32 num)
-        {
-            Delegates.glExtractComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void SetInvariantEXT(UInt32 id, OpenTK.Graphics.All type, IntPtr addr)
-        {
-            unsafe
-            {
-                Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
-            }
-        }
-
-        public static 
-        void SetInvariantEXT(Int32 id, OpenTK.Graphics.All type, IntPtr addr)
-        {
-            unsafe
-            {
-                Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
-            }
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void SetInvariantEXT(UInt32 id, OpenTK.Graphics.All type, [In, Out] object addr)
-        {
-            unsafe
-            {
-                System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
-                try
-                {
-                    Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    addr_ptr.Free();
-                }
-            }
-        }
-
-        public static 
-        void SetInvariantEXT(Int32 id, OpenTK.Graphics.All type, [In, Out] object addr)
-        {
-            unsafe
-            {
-                System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
-                try
-                {
-                    Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    addr_ptr.Free();
-                }
-            }
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void SetLocalConstantEXT(UInt32 id, OpenTK.Graphics.All type, IntPtr addr)
-        {
-            unsafe
-            {
-                Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
-            }
-        }
-
-        public static 
-        void SetLocalConstantEXT(Int32 id, OpenTK.Graphics.All type, IntPtr addr)
-        {
-            unsafe
-            {
-                Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
-            }
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void SetLocalConstantEXT(UInt32 id, OpenTK.Graphics.All type, [In, Out] object addr)
-        {
-            unsafe
-            {
-                System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
-                try
-                {
-                    Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    addr_ptr.Free();
-                }
-            }
-        }
-
-        public static 
-        void SetLocalConstantEXT(Int32 id, OpenTK.Graphics.All type, [In, Out] object addr)
-        {
-            unsafe
-            {
-                System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
-                try
-                {
-                    Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    addr_ptr.Free();
-                }
-            }
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        IntPtr GetUniformOffsetEXT(UInt32 program, Int32 location)
-        {
-            return Delegates.glGetUniformOffsetEXT((UInt32)program, (Int32)location);
-        }
-
-        public static 
-        IntPtr GetUniformOffsetEXT(Int32 program, Int32 location)
-        {
-            return Delegates.glGetUniformOffsetEXT((UInt32)program, (Int32)location);
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void BindBufferOffsetEXT(OpenTK.Graphics.All target, UInt32 index, UInt32 buffer, IntPtr offset)
-        {
-            Delegates.glBindBufferOffsetEXT((OpenTK.Graphics.All)target, (UInt32)index, (UInt32)buffer, (IntPtr)offset);
-        }
-
-        public static 
-        void BindBufferOffsetEXT(OpenTK.Graphics.All target, Int32 index, Int32 buffer, IntPtr offset)
-        {
-            Delegates.glBindBufferOffsetEXT((OpenTK.Graphics.All)target, (UInt32)index, (UInt32)buffer, (IntPtr)offset);
-        }
-
-        public static 
-        void ClientAttribDefaultEXT(OpenTK.Graphics.ClientAttribMask mask)
-        {
-            Delegates.glClientAttribDefaultEXT((OpenTK.Graphics.ClientAttribMask)mask);
-        }
-
-        public static 
-        void PushClientAttribDefaultEXT(OpenTK.Graphics.ClientAttribMask mask)
-        {
-            Delegates.glPushClientAttribDefaultEXT((OpenTK.Graphics.ClientAttribMask)mask);
-        }
-
         public static partial class NV
         {
             public static 
@@ -29359,6 +29097,12 @@ namespace OpenTK.Graphics
             }
 
             public static 
+            void PolygonOffset(Single factor, Single bias)
+            {
+                Delegates.glPolygonOffsetEXT((Single)factor, (Single)bias);
+            }
+
+            public static 
             void TexImage3D(OpenTK.Graphics.TextureTarget target, Int32 level, OpenTK.Graphics.PixelInternalFormat internalformat, Int32 width, Int32 height, Int32 depth, Int32 border, OpenTK.Graphics.PixelFormat format, OpenTK.Graphics.PixelType type, IntPtr pixels)
             {
                 unsafe
@@ -29984,6 +29728,78 @@ namespace OpenTK.Graphics
 
             [System.CLSCompliant(false)]
             public static 
+            bool AreTexturesResident(Int32 n, UInt32[] textures, [Out] bool[] residences)
+            {
+                unsafe
+                {
+                    fixed (UInt32* textures_ptr = textures)
+                    fixed (bool* residences_ptr = residences)
+                    {
+                        return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
+                    }
+                }
+            }
+
+            public static 
+            bool AreTexturesResident(Int32 n, Int32[] textures, [Out] bool[] residences)
+            {
+                unsafe
+                {
+                    fixed (Int32* textures_ptr = textures)
+                    fixed (bool* residences_ptr = residences)
+                    {
+                        return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
+                    }
+                }
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            bool AreTexturesResident(Int32 n, ref UInt32 textures, [Out] out bool residences)
+            {
+                unsafe
+                {
+                    fixed (UInt32* textures_ptr = &textures)
+                    fixed (bool* residences_ptr = &residences)
+                    {
+                        bool retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
+                        residences = *residences_ptr;
+                        return retval;
+                    }
+                }
+            }
+
+            public static 
+            bool AreTexturesResident(Int32 n, ref Int32 textures, [Out] out bool residences)
+            {
+                unsafe
+                {
+                    fixed (Int32* textures_ptr = &textures)
+                    fixed (bool* residences_ptr = &residences)
+                    {
+                        bool retval = Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures_ptr, (bool*)residences_ptr);
+                        residences = *residences_ptr;
+                        return retval;
+                    }
+                }
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe bool AreTexturesResident(Int32 n, UInt32* textures, [Out] bool* residences)
+            {
+                return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures, (bool*)residences);
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            unsafe bool AreTexturesResident(Int32 n, Int32* textures, [Out] bool* residences)
+            {
+                return Delegates.glAreTexturesResidentEXT((Int32)n, (UInt32*)textures, (bool*)residences);
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
             void BindTexture(OpenTK.Graphics.TextureTarget target, UInt32 texture)
             {
                 Delegates.glBindTextureEXT((OpenTK.Graphics.TextureTarget)target, (UInt32)texture);
@@ -30204,6 +30020,12 @@ namespace OpenTK.Graphics
             unsafe void PrioritizeTextures(Int32 n, Int32* textures, Single* priorities)
             {
                 Delegates.glPrioritizeTexturesEXT((Int32)n, (UInt32*)textures, (Single*)priorities);
+            }
+
+            public static 
+            void ArrayElement(Int32 i)
+            {
+                Delegates.glArrayElementEXT((Int32)i);
             }
 
             public static 
@@ -30736,6 +30558,12 @@ namespace OpenTK.Graphics
             void ApplyTexture(OpenTK.Graphics.All mode)
             {
                 Delegates.glApplyTextureEXT((OpenTK.Graphics.All)mode);
+            }
+
+            public static 
+            void TextureLight(OpenTK.Graphics.All pname)
+            {
+                Delegates.glTextureLightEXT((OpenTK.Graphics.All)pname);
             }
 
             public static 
@@ -32077,6 +31905,32 @@ namespace OpenTK.Graphics
 
             [System.CLSCompliant(false)]
             public static 
+            void InsertComponent(UInt32 res, UInt32 src, UInt32 num)
+            {
+                Delegates.glInsertComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
+            }
+
+            public static 
+            void InsertComponent(Int32 res, Int32 src, Int32 num)
+            {
+                Delegates.glInsertComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            void ExtractComponent(UInt32 res, UInt32 src, UInt32 num)
+            {
+                Delegates.glExtractComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
+            }
+
+            public static 
+            void ExtractComponent(Int32 res, Int32 src, Int32 num)
+            {
+                Delegates.glExtractComponentEXT((UInt32)res, (UInt32)src, (UInt32)num);
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
             Int32 GenSymbol(OpenTK.Graphics.All datatype, OpenTK.Graphics.All storagetype, OpenTK.Graphics.All range, UInt32 components)
             {
                 return Delegates.glGenSymbolsEXT((OpenTK.Graphics.All)datatype, (OpenTK.Graphics.All)storagetype, (OpenTK.Graphics.All)range, (UInt32)components);
@@ -32086,6 +31940,114 @@ namespace OpenTK.Graphics
             Int32 GenSymbol(OpenTK.Graphics.All datatype, OpenTK.Graphics.All storagetype, OpenTK.Graphics.All range, Int32 components)
             {
                 return Delegates.glGenSymbolsEXT((OpenTK.Graphics.All)datatype, (OpenTK.Graphics.All)storagetype, (OpenTK.Graphics.All)range, (UInt32)components);
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            void SetInvariant(UInt32 id, OpenTK.Graphics.All type, IntPtr addr)
+            {
+                unsafe
+                {
+                    Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
+                }
+            }
+
+            public static 
+            void SetInvariant(Int32 id, OpenTK.Graphics.All type, IntPtr addr)
+            {
+                unsafe
+                {
+                    Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
+                }
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            void SetInvariant(UInt32 id, OpenTK.Graphics.All type, [In, Out] object addr)
+            {
+                unsafe
+                {
+                    System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
+                    try
+                    {
+                        Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
+                    }
+                    finally
+                    {
+                        addr_ptr.Free();
+                    }
+                }
+            }
+
+            public static 
+            void SetInvariant(Int32 id, OpenTK.Graphics.All type, [In, Out] object addr)
+            {
+                unsafe
+                {
+                    System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
+                    try
+                    {
+                        Delegates.glSetInvariantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
+                    }
+                    finally
+                    {
+                        addr_ptr.Free();
+                    }
+                }
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            void SetLocalConstant(UInt32 id, OpenTK.Graphics.All type, IntPtr addr)
+            {
+                unsafe
+                {
+                    Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
+                }
+            }
+
+            public static 
+            void SetLocalConstant(Int32 id, OpenTK.Graphics.All type, IntPtr addr)
+            {
+                unsafe
+                {
+                    Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr);
+                }
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
+            void SetLocalConstant(UInt32 id, OpenTK.Graphics.All type, [In, Out] object addr)
+            {
+                unsafe
+                {
+                    System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
+                    try
+                    {
+                        Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
+                    }
+                    finally
+                    {
+                        addr_ptr.Free();
+                    }
+                }
+            }
+
+            public static 
+            void SetLocalConstant(Int32 id, OpenTK.Graphics.All type, [In, Out] object addr)
+            {
+                unsafe
+                {
+                    System.Runtime.InteropServices.GCHandle addr_ptr = System.Runtime.InteropServices.GCHandle.Alloc(addr, System.Runtime.InteropServices.GCHandleType.Pinned);
+                    try
+                    {
+                        Delegates.glSetLocalConstantEXT((UInt32)id, (OpenTK.Graphics.All)type, (IntPtr)addr_ptr.AddrOfPinnedObject());
+                    }
+                    finally
+                    {
+                        addr_ptr.Free();
+                    }
+                }
             }
 
             [System.CLSCompliant(false)]
@@ -35552,6 +35514,19 @@ namespace OpenTK.Graphics
 
             [System.CLSCompliant(false)]
             public static 
+            IntPtr GetUniformOffset(UInt32 program, Int32 location)
+            {
+                return Delegates.glGetUniformOffsetEXT((UInt32)program, (Int32)location);
+            }
+
+            public static 
+            IntPtr GetUniformOffset(Int32 program, Int32 location)
+            {
+                return Delegates.glGetUniformOffsetEXT((UInt32)program, (Int32)location);
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
             void TexParameterIv(OpenTK.Graphics.TextureTarget target, OpenTK.Graphics.TextureParameterName pname, UInt32[] @params)
             {
                 unsafe
@@ -35720,6 +35695,19 @@ namespace OpenTK.Graphics
 
             [System.CLSCompliant(false)]
             public static 
+            void BindBufferOffset(OpenTK.Graphics.All target, UInt32 index, UInt32 buffer, IntPtr offset)
+            {
+                Delegates.glBindBufferOffsetEXT((OpenTK.Graphics.All)target, (UInt32)index, (UInt32)buffer, (IntPtr)offset);
+            }
+
+            public static 
+            void BindBufferOffset(OpenTK.Graphics.All target, Int32 index, Int32 buffer, IntPtr offset)
+            {
+                Delegates.glBindBufferOffsetEXT((OpenTK.Graphics.All)target, (UInt32)index, (UInt32)buffer, (IntPtr)offset);
+            }
+
+            [System.CLSCompliant(false)]
+            public static 
             void BindBufferBase(OpenTK.Graphics.All target, UInt32 index, UInt32 buffer)
             {
                 Delegates.glBindBufferBaseEXT((OpenTK.Graphics.All)target, (UInt32)index, (UInt32)buffer);
@@ -35859,6 +35847,18 @@ namespace OpenTK.Graphics
             unsafe void GetTransformFeedbackVarying(Int32 program, Int32 index, [Out] Int32* location)
             {
                 Delegates.glGetTransformFeedbackVaryingEXT((UInt32)program, (UInt32)index, (Int32*)location);
+            }
+
+            public static 
+            void ClientAttribDefault(OpenTK.Graphics.ClientAttribMask mask)
+            {
+                Delegates.glClientAttribDefaultEXT((OpenTK.Graphics.ClientAttribMask)mask);
+            }
+
+            public static 
+            void PushClientAttribDefault(OpenTK.Graphics.ClientAttribMask mask)
+            {
+                Delegates.glPushClientAttribDefaultEXT((OpenTK.Graphics.ClientAttribMask)mask);
             }
 
             public static 

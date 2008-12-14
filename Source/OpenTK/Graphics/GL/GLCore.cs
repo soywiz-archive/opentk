@@ -2012,42 +2012,6 @@ namespace OpenTK.Graphics
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glIsVertexArray", ExactSpelling = true)]
             internal extern static bool IsVertexArray(UInt32 array);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glPolygonOffsetEXT", ExactSpelling = true)]
-            internal extern static void PolygonOffsetEXT(Single factor, Single bias);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glAreTexturesResidentEXT", ExactSpelling = true)]
-            internal extern static unsafe bool AreTexturesResidentEXT(Int32 n, UInt32* textures, [Out] bool* residences);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glArrayElementEXT", ExactSpelling = true)]
-            internal extern static void ArrayElementEXT(Int32 i);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glTextureLightEXT", ExactSpelling = true)]
-            internal extern static void TextureLightEXT(OpenTK.Graphics.All pname);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glInsertComponentEXT", ExactSpelling = true)]
-            internal extern static void InsertComponentEXT(UInt32 res, UInt32 src, UInt32 num);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glExtractComponentEXT", ExactSpelling = true)]
-            internal extern static void ExtractComponentEXT(UInt32 res, UInt32 src, UInt32 num);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glSetInvariantEXT", ExactSpelling = true)]
-            internal extern static void SetInvariantEXT(UInt32 id, OpenTK.Graphics.All type, IntPtr addr);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glSetLocalConstantEXT", ExactSpelling = true)]
-            internal extern static void SetLocalConstantEXT(UInt32 id, OpenTK.Graphics.All type, IntPtr addr);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glGetUniformOffsetEXT", ExactSpelling = true)]
-            internal extern static IntPtr GetUniformOffsetEXT(UInt32 program, Int32 location);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glBindBufferOffsetEXT", ExactSpelling = true)]
-            internal extern static void BindBufferOffsetEXT(OpenTK.Graphics.All target, UInt32 index, UInt32 buffer, IntPtr offset);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glClientAttribDefaultEXT", ExactSpelling = true)]
-            internal extern static void ClientAttribDefaultEXT(OpenTK.Graphics.ClientAttribMask mask);
-            [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glPushClientAttribDefaultEXT", ExactSpelling = true)]
-            internal extern static void PushClientAttribDefaultEXT(OpenTK.Graphics.ClientAttribMask mask);
         }
     }
 }

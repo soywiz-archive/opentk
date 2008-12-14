@@ -314,7 +314,6 @@ namespace OpenTK.Graphics
         MinmaxExt = ((int)0X802e),
         PolygonOffsetFill = ((int)0X8037),
         RescaleNormal = ((int)0X803a),
-        RescaleNormalExt = ((int)0X803a),
         Texture3DExt = ((int)0X806f),
         VertexArray = ((int)0X8074),
         NormalArray = ((int)0X8075),
@@ -325,11 +324,8 @@ namespace OpenTK.Graphics
         InterlaceSgix = ((int)0X8094),
         Multisample = ((int)0X809d),
         SampleAlphaToCoverage = ((int)0X809e),
-        SampleAlphaToMaskSgis = ((int)0X809e),
         SampleAlphaToOne = ((int)0X809f),
-        SampleAlphaToOneSgis = ((int)0X809f),
         SampleCoverage = ((int)0X80a0),
-        SampleMaskSgis = ((int)0X80a0),
         TextureColorTableSgi = ((int)0X80bc),
         ColorTableSgi = ((int)0X80D0),
         PostConvolutionColorTableSgi = ((int)0X80D1),
@@ -752,7 +748,6 @@ namespace OpenTK.Graphics
         Light6 = ((int)0X4006),
         Light7 = ((int)0X4007),
         BlendColorExt = ((int)0X8005),
-        BlendEquationExt = ((int)0X8009),
         BlendEquationRgb = ((int)0X8009),
         PackCmykHintExt = ((int)0X800e),
         UnpackCmykHintExt = ((int)0X800f),
@@ -775,7 +770,6 @@ namespace OpenTK.Graphics
         RescaleNormalExt = ((int)0X803a),
         TextureBinding1D = ((int)0X8068),
         TextureBinding2D = ((int)0X8069),
-        Texture3DBindingExt = ((int)0X806a),
         TextureBinding3D = ((int)0X806a),
         PackSkipImagesExt = ((int)0X806b),
         PackImageHeightExt = ((int)0X806c),
@@ -783,7 +777,6 @@ namespace OpenTK.Graphics
         UnpackImageHeightExt = ((int)0X806e),
         Texture3DExt = ((int)0X806f),
         Max3DTextureSize = ((int)0X8073),
-        Max3DTextureSizeExt = ((int)0X8073),
         VertexArray = ((int)0X8074),
         NormalArray = ((int)0X8075),
         ColorArray = ((int)0X8076),
@@ -815,19 +808,12 @@ namespace OpenTK.Graphics
         Multisample = ((int)0X809d),
         MultisampleSgis = ((int)0X809D),
         SampleAlphaToCoverage = ((int)0X809e),
-        SampleAlphaToMaskSgis = ((int)0X809e),
         SampleAlphaToOne = ((int)0X809f),
-        SampleAlphaToOneSgis = ((int)0X809f),
         SampleCoverage = ((int)0X80a0),
-        SampleMaskSgis = ((int)0X80a0),
         SampleBuffers = ((int)0X80a8),
-        SampleBuffersSgis = ((int)0X80a8),
         Samples = ((int)0X80a9),
-        SamplesSgis = ((int)0X80a9),
         SampleCoverageValue = ((int)0X80aa),
-        SampleMaskValueSgis = ((int)0X80aa),
         SampleCoverageInvert = ((int)0X80ab),
-        SampleMaskInvertSgis = ((int)0X80ab),
         SamplePatternSgis = ((int)0X80ac),
         ColorMatrixSgi = ((int)0X80b1),
         ColorMatrixStackDepthSgi = ((int)0X80b2),
@@ -851,12 +837,8 @@ namespace OpenTK.Graphics
         MaxElementsVertices = ((int)0X80e8),
         MaxElementsIndices = ((int)0X80e9),
         PointSizeMin = ((int)0X8126),
-        PointSizeMinSgis = ((int)0X8126),
         PointSizeMax = ((int)0X8127),
-        PointSizeMaxSgis = ((int)0X8127),
         PointFadeThresholdSize = ((int)0X8128),
-        PointFadeThresholdSizeSgis = ((int)0X8128),
-        DistanceAttenuationSgis = ((int)0X8129),
         PointDistanceAttenuation = ((int)0X8129),
         FogFuncPointsSgis = ((int)0X812b),
         MaxFogFuncPointsSgis = ((int)0X812c),
@@ -893,7 +875,6 @@ namespace OpenTK.Graphics
         FramezoomFactorSgix = ((int)0X818c),
         MaxFramezoomFactorSgix = ((int)0X818D),
         GenerateMipmapHint = ((int)0X8192),
-        GenerateMipmapHintSgis = ((int)0X8192),
         DeformationsMaskSgix = ((int)0X8196),
         FogOffsetSgix = ((int)0X8198),
         FogOffsetValueSgix = ((int)0X8199),
@@ -1031,9 +1012,7 @@ namespace OpenTK.Graphics
         TexturePriority = ((int)0X8066),
         TextureResident = ((int)0X8067),
         TextureDepth = ((int)0X8071),
-        TextureDepthExt = ((int)0X8071),
         TextureWrapR = ((int)0X8072),
-        TextureWrapRExt = ((int)0X8072),
         DetailTextureLevelSgis = ((int)0X809a),
         DetailTextureModeSgis = ((int)0X809b),
         DetailTextureFuncPointsSgis = ((int)0X809c),
@@ -1044,11 +1023,8 @@ namespace OpenTK.Graphics
         Texture4DsizeSgis = ((int)0X8136),
         TextureWrapQSgis = ((int)0X8137),
         TextureMinLod = ((int)0X813a),
-        TextureMinLodSgis = ((int)0X813a),
         TextureMaxLod = ((int)0X813b),
-        TextureMaxLodSgis = ((int)0X813b),
         TextureBaseLevel = ((int)0X813c),
-        TextureBaseLevelSgis = ((int)0X813c),
         TextureMaxLevel = ((int)0X813d),
         TextureMaxLevelSgis = ((int)0X813D),
         TextureFilter4SizeSgis = ((int)0X8147),
@@ -1064,7 +1040,6 @@ namespace OpenTK.Graphics
         TextureLodBiasTSgix = ((int)0X818f),
         TextureLodBiasRSgix = ((int)0X8190),
         GenerateMipmap = ((int)0X8191),
-        GenerateMipmapSgis = ((int)0X8191),
         TextureCompareSgix = ((int)0X819a),
         TextureCompareOperatorSgix = ((int)0X819b),
         TextureLequalRSgix = ((int)0X819c),
@@ -1098,7 +1073,6 @@ namespace OpenTK.Graphics
         UnpackCmykHintExt = ((int)0X800f),
         TextureMultiBufferHintSgix = ((int)0X812e),
         GenerateMipmapHint = ((int)0X8192),
-        GenerateMipmapHintSgis = ((int)0X8192),
         ConvolutionHintSgix = ((int)0X8316),
         VertexPreclipHintSgix = ((int)0X83ef),
         TextureCompressionHint = ((int)0X84ef),
@@ -1177,7 +1151,6 @@ namespace OpenTK.Graphics
         Gl3Bytes = ((int)0X1408),
         Gl4Bytes = ((int)0X1409),
         Double = ((int)0X140a),
-        DoubleExt = ((int)0X140a),
     }
 
     public enum ListNameType
@@ -1359,13 +1332,10 @@ namespace OpenTK.Graphics
         PackSkipPixels = ((int)0X0D04),
         PackAlignment = ((int)0X0D05),
         PackSkipImages = ((int)0X806b),
-        PackSkipImagesExt = ((int)0X806b),
         PackImageHeight = ((int)0X806c),
-        PackImageHeightExt = ((int)0X806c),
         UnpackSkipImages = ((int)0X806d),
         UnpackSkipImagesExt = ((int)0X806D),
         UnpackImageHeight = ((int)0X806e),
-        UnpackImageHeightExt = ((int)0X806e),
         PackSkipVolumesSgis = ((int)0X8130),
         PackImageDepthSgis = ((int)0X8131),
         UnpackSkipVolumesSgis = ((int)0X8132),
@@ -1461,15 +1431,10 @@ namespace OpenTK.Graphics
         HalfFloat = ((int)0X140b),
         Bitmap = ((int)0X1a00),
         UnsignedByte332 = ((int)0X8032),
-        UnsignedByte332Ext = ((int)0X8032),
         UnsignedShort4444 = ((int)0X8033),
-        UnsignedShort4444Ext = ((int)0X8033),
         UnsignedShort5551 = ((int)0X8034),
-        UnsignedShort5551Ext = ((int)0X8034),
         UnsignedInt8888 = ((int)0X8035),
-        UnsignedInt8888Ext = ((int)0X8035),
         UnsignedInt1010102 = ((int)0X8036),
-        UnsignedInt1010102Ext = ((int)0X8036),
         UnsignedByte233Reversed = ((int)0X8362),
         UnsignedShort565 = ((int)0X8363),
         UnsignedShort565Reversed = ((int)0X8364),
@@ -1704,10 +1669,8 @@ namespace OpenTK.Graphics
         TexturePriority = ((int)0X8066),
         TextureDepth = ((int)0X8071),
         TextureWrapR = ((int)0X8072),
-        TextureWrapRExt = ((int)0X8072),
         DetailTextureLevelSgis = ((int)0X809a),
         DetailTextureModeSgis = ((int)0X809b),
-        ShadowAmbientSgix = ((int)0X80bf),
         TextureCompareFailValue = ((int)0X80bf),
         DualTextureSelectSgis = ((int)0X8124),
         QuadTextureSelectSgis = ((int)0X8125),
@@ -1730,7 +1693,6 @@ namespace OpenTK.Graphics
         TextureLodBiasTSgix = ((int)0X818f),
         TextureLodBiasRSgix = ((int)0X8190),
         GenerateMipmap = ((int)0X8191),
-        GenerateMipmapSgis = ((int)0X8191),
         TextureCompareSgix = ((int)0X819a),
         TextureCompareOperatorSgix = ((int)0X819b),
         TextureMaxClampSSgix = ((int)0X8369),
@@ -1748,9 +1710,7 @@ namespace OpenTK.Graphics
         ProxyTexture1D = ((int)0X8063),
         ProxyTexture2D = ((int)0X8064),
         Texture3D = ((int)0X806f),
-        Texture3DExt = ((int)0X806f),
         ProxyTexture3D = ((int)0X8070),
-        ProxyTexture3DExt = ((int)0X8070),
         DetailTexture2DSgis = ((int)0X8095),
         Texture4DSgis = ((int)0X8134),
         ProxyTexture4DSgis = ((int)0X8135),
@@ -1759,7 +1719,6 @@ namespace OpenTK.Graphics
         TextureBaseLevelSgis = ((int)0X813c),
         TextureMaxLevelSgis = ((int)0X813D),
         TextureRectangleArb = ((int)0X84f5),
-        TextureRectangleNv = ((int)0X84f5),
         TextureCubeMap = ((int)0X8513),
         TextureBindingCubeMap = ((int)0X8514),
         TextureCubeMapPositiveX = ((int)0X8515),
@@ -1843,11 +1802,8 @@ namespace OpenTK.Graphics
         QuadIntensity4Sgis = ((int)0X8122),
         QuadIntensity8Sgis = ((int)0X8123),
         DepthComponent16 = ((int)0X81a5),
-        DepthComponent16Sgix = ((int)0X81a5),
         DepthComponent24 = ((int)0X81a6),
-        DepthComponent24Sgix = ((int)0X81a6),
         DepthComponent32 = ((int)0X81a7),
-        DepthComponent32Sgix = ((int)0X81a7),
         RgbIccSgix = ((int)0X8460),
         RgbaIccSgix = ((int)0X8461),
         AlphaIccSgix = ((int)0X8462),
@@ -1952,35 +1908,24 @@ namespace OpenTK.Graphics
     public enum ExtBlendColor
     {
         ConstantColor = ((int)0X8001),
-        ConstantColorExt = ((int)0X8001),
         OneMinusConstantColor = ((int)0X8002),
-        OneMinusConstantColorExt = ((int)0X8002),
         ConstantAlpha = ((int)0X8003),
-        ConstantAlphaExt = ((int)0X8003),
         OneMinusConstantAlpha = ((int)0X8004),
-        OneMinusConstantAlphaExt = ((int)0X8004),
         BlendColor = ((int)0X8005),
-        BlendColorExt = ((int)0X8005),
     }
 
     public enum ExtBlendMinmax
     {
         FuncAdd = ((int)0X8006),
-        FuncAddExt = ((int)0X8006),
         Min = ((int)0X8007),
-        MinExt = ((int)0X8007),
         Max = ((int)0X8008),
-        MaxExt = ((int)0X8008),
         BlendEquation = ((int)0X8009),
-        BlendEquationExt = ((int)0X8009),
     }
 
     public enum ExtBlendSubtract
     {
         FuncSubtract = ((int)0X800a),
-        FuncSubtractExt = ((int)0X800a),
         FuncReverseSubtract = ((int)0X800b),
-        FuncReverseSubtractExt = ((int)0X800b),
     }
 
     public enum ExtCmyka
@@ -1994,105 +1939,59 @@ namespace OpenTK.Graphics
     public enum ExtConvolution
     {
         Convolution1D = ((int)0X8010),
-        Convolution1DExt = ((int)0X8010),
         Convolution2D = ((int)0X8011),
-        Convolution2DExt = ((int)0X8011),
         Separable2D = ((int)0X8012),
-        Separable2DExt = ((int)0X8012),
         ConvolutionBorderMode = ((int)0X8013),
-        ConvolutionBorderModeExt = ((int)0X8013),
         ConvolutionFilterScale = ((int)0X8014),
-        ConvolutionFilterScaleExt = ((int)0X8014),
         ConvolutionFilterBias = ((int)0X8015),
-        ConvolutionFilterBiasExt = ((int)0X8015),
         Reduce = ((int)0X8016),
-        ReduceExt = ((int)0X8016),
         ConvolutionFormat = ((int)0X8017),
-        ConvolutionFormatExt = ((int)0X8017),
         ConvolutionWidth = ((int)0X8018),
-        ConvolutionWidthExt = ((int)0X8018),
         ConvolutionHeight = ((int)0X8019),
-        ConvolutionHeightExt = ((int)0X8019),
         MaxConvolutionWidth = ((int)0X801a),
-        MaxConvolutionWidthExt = ((int)0X801a),
         MaxConvolutionHeight = ((int)0X801b),
-        MaxConvolutionHeightExt = ((int)0X801b),
         PostConvolutionRedScale = ((int)0X801c),
-        PostConvolutionRedScaleExt = ((int)0X801c),
         PostConvolutionGreenScale = ((int)0X801d),
-        PostConvolutionGreenScaleExt = ((int)0X801d),
         PostConvolutionBlueScale = ((int)0X801e),
-        PostConvolutionBlueScaleExt = ((int)0X801e),
         PostConvolutionAlphaScale = ((int)0X801f),
-        PostConvolutionAlphaScaleExt = ((int)0X801f),
         PostConvolutionRedBias = ((int)0X8020),
-        PostConvolutionRedBiasExt = ((int)0X8020),
         PostConvolutionGreenBias = ((int)0X8021),
-        PostConvolutionGreenBiasExt = ((int)0X8021),
         PostConvolutionBlueBias = ((int)0X8022),
-        PostConvolutionBlueBiasExt = ((int)0X8022),
         PostConvolutionAlphaBias = ((int)0X8023),
-        PostConvolutionAlphaBiasExt = ((int)0X8023),
     }
 
     public enum ExtHistogram
     {
         Histogram = ((int)0X8024),
-        HistogramExt = ((int)0X8024),
         ProxyHistogram = ((int)0X8025),
-        ProxyHistogramExt = ((int)0X8025),
         HistogramWidth = ((int)0X8026),
-        HistogramWidthExt = ((int)0X8026),
         HistogramFormat = ((int)0X8027),
-        HistogramFormatExt = ((int)0X8027),
         HistogramRedSize = ((int)0X8028),
-        HistogramRedSizeExt = ((int)0X8028),
         HistogramGreenSize = ((int)0X8029),
-        HistogramGreenSizeExt = ((int)0X8029),
         HistogramBlueSize = ((int)0X802a),
-        HistogramBlueSizeExt = ((int)0X802a),
         HistogramAlphaSize = ((int)0X802b),
-        HistogramAlphaSizeExt = ((int)0X802b),
         HistogramLuminanceSize = ((int)0X802c),
-        HistogramLuminanceSizeExt = ((int)0X802c),
         HistogramSink = ((int)0X802d),
-        HistogramSinkExt = ((int)0X802d),
         Minmax = ((int)0X802e),
-        MinmaxExt = ((int)0X802e),
         MinmaxFormat = ((int)0X802f),
-        MinmaxFormatExt = ((int)0X802f),
         MinmaxSink = ((int)0X8030),
-        MinmaxSinkExt = ((int)0X8030),
         TableTooLarge = ((int)0X8031),
-        TableTooLargeExt = ((int)0X8031),
     }
 
     public enum ExtPackedPixels
     {
         UnsignedByte332 = ((int)0X8032),
-        UnsignedByte332Ext = ((int)0X8032),
         UnsignedShort4444 = ((int)0X8033),
-        UnsignedShort4444Ext = ((int)0X8033),
         UnsignedShort5551 = ((int)0X8034),
-        UnsignedShort5551Ext = ((int)0X8034),
         UnsignedInt8888 = ((int)0X8035),
-        UnsignedInt8888Ext = ((int)0X8035),
         UnsignedInt1010102 = ((int)0X8036),
-        UnsignedInt1010102Ext = ((int)0X8036),
         UnsignedByte233Rev = ((int)0X8362),
-        UnsignedByte233RevExt = ((int)0X8362),
         UnsignedShort565 = ((int)0X8363),
-        UnsignedShort565Ext = ((int)0X8363),
         UnsignedShort565Rev = ((int)0X8364),
-        UnsignedShort565RevExt = ((int)0X8364),
         UnsignedShort4444Rev = ((int)0X8365),
-        UnsignedShort4444RevExt = ((int)0X8365),
         UnsignedShort1555Rev = ((int)0X8366),
-        UnsignedShort1555RevExt = ((int)0X8366),
         UnsignedInt8888Rev = ((int)0X8367),
-        UnsignedInt8888RevExt = ((int)0X8367),
         UnsignedInt2101010Rev = ((int)0X8368),
-        UnsignedInt2101010RevExt = ((int)0X8368),
     }
 
     public enum ExtPolygonOffset
@@ -2105,7 +2004,6 @@ namespace OpenTK.Graphics
     public enum ExtRescaleNormal
     {
         RescaleNormal = ((int)0X803a),
-        RescaleNormalExt = ((int)0X803a),
     }
 
     public enum ExtTexture
@@ -2167,23 +2065,14 @@ namespace OpenTK.Graphics
     public enum ExtTexture3D
     {
         PackSkipImages = ((int)0X806b),
-        PackSkipImagesExt = ((int)0X806b),
         PackImageHeight = ((int)0X806c),
-        PackImageHeightExt = ((int)0X806c),
         UnpackSkipImages = ((int)0X806d),
-        UnpackSkipImagesExt = ((int)0X806d),
         UnpackImageHeight = ((int)0X806e),
-        UnpackImageHeightExt = ((int)0X806e),
         Texture3D = ((int)0X806f),
-        Texture3DExt = ((int)0X806f),
         ProxyTexture3D = ((int)0X8070),
-        ProxyTexture3DExt = ((int)0X8070),
         TextureDepth = ((int)0X8071),
-        TextureDepthExt = ((int)0X8071),
         TextureWrapR = ((int)0X8072),
-        TextureWrapRExt = ((int)0X8072),
         Max3DTextureSize = ((int)0X8073),
-        Max3DTextureSizeExt = ((int)0X8073),
     }
 
     public enum ExtVertexArray
@@ -2243,21 +2132,13 @@ namespace OpenTK.Graphics
     {
         MultisampleBitArb = ((int)0X20000000),
         Multisample = ((int)0X809d),
-        MultisampleArb = ((int)0X809d),
         SampleAlphaToCoverage = ((int)0X809e),
-        SampleAlphaToCoverageArb = ((int)0X809e),
         SampleAlphaToOne = ((int)0X809f),
-        SampleAlphaToOneArb = ((int)0X809f),
         SampleCoverage = ((int)0X80a0),
-        SampleCoverageArb = ((int)0X80a0),
         SampleBuffers = ((int)0X80a8),
-        SampleBuffersArb = ((int)0X80a8),
         Samples = ((int)0X80a9),
-        SamplesArb = ((int)0X80a9),
         SampleCoverageValue = ((int)0X80aa),
-        SampleCoverageValueArb = ((int)0X80aa),
         SampleCoverageInvert = ((int)0X80ab),
-        SampleCoverageInvertArb = ((int)0X80ab),
     }
 
     public enum SgisMultisample
@@ -2291,27 +2172,16 @@ namespace OpenTK.Graphics
     public enum SgiColorMatrix
     {
         ColorMatrix = ((int)0X80b1),
-        ColorMatrixSgi = ((int)0X80b1),
         ColorMatrixStackDepth = ((int)0X80b2),
-        ColorMatrixStackDepthSgi = ((int)0X80b2),
         MaxColorMatrixStackDepth = ((int)0X80b3),
-        MaxColorMatrixStackDepthSgi = ((int)0X80b3),
         PostColorMatrixRedScale = ((int)0X80b4),
-        PostColorMatrixRedScaleSgi = ((int)0X80b4),
         PostColorMatrixGreenScale = ((int)0X80b5),
-        PostColorMatrixGreenScaleSgi = ((int)0X80b5),
         PostColorMatrixBlueScale = ((int)0X80b6),
-        PostColorMatrixBlueScaleSgi = ((int)0X80b6),
         PostColorMatrixAlphaScale = ((int)0X80b7),
-        PostColorMatrixAlphaScaleSgi = ((int)0X80b7),
         PostColorMatrixRedBias = ((int)0X80b8),
-        PostColorMatrixRedBiasSgi = ((int)0X80b8),
         PostColorMatrixGreenBias = ((int)0X80b9),
-        PostColorMatrixGreenBiasSgi = ((int)0X80b9),
         PostColorMatrixBlueBias = ((int)0X80ba),
-        PostColorMatrixBlueBiasSgi = ((int)0X80ba),
         PostColorMatrixAlphaBias = ((int)0X80bb),
-        PostColorMatrixAlphaBiasSgi = ((int)0X80bb),
     }
 
     public enum SgiTextureColorTable
@@ -2333,45 +2203,27 @@ namespace OpenTK.Graphics
     public enum SgiColorTable
     {
         ColorTable = ((int)0X80d0),
-        ColorTableSgi = ((int)0X80d0),
         PostConvolutionColorTable = ((int)0X80d1),
-        PostConvolutionColorTableSgi = ((int)0X80d1),
         PostColorMatrixColorTable = ((int)0X80d2),
-        PostColorMatrixColorTableSgi = ((int)0X80d2),
         ProxyColorTable = ((int)0X80d3),
-        ProxyColorTableSgi = ((int)0X80d3),
         ProxyPostConvolutionColorTable = ((int)0X80d4),
-        ProxyPostConvolutionColorTableSgi = ((int)0X80d4),
         ProxyPostColorMatrixColorTable = ((int)0X80d5),
-        ProxyPostColorMatrixColorTableSgi = ((int)0X80d5),
         ColorTableScale = ((int)0X80d6),
-        ColorTableScaleSgi = ((int)0X80d6),
         ColorTableBias = ((int)0X80d7),
-        ColorTableBiasSgi = ((int)0X80d7),
         ColorTableFormat = ((int)0X80d8),
-        ColorTableFormatSgi = ((int)0X80d8),
         ColorTableWidth = ((int)0X80d9),
-        ColorTableWidthSgi = ((int)0X80d9),
         ColorTableRedSize = ((int)0X80da),
-        ColorTableRedSizeSgi = ((int)0X80da),
         ColorTableGreenSize = ((int)0X80db),
-        ColorTableGreenSizeSgi = ((int)0X80db),
         ColorTableBlueSize = ((int)0X80dc),
-        ColorTableBlueSizeSgi = ((int)0X80dc),
         ColorTableAlphaSize = ((int)0X80dd),
-        ColorTableAlphaSizeSgi = ((int)0X80dd),
         ColorTableLuminanceSize = ((int)0X80de),
-        ColorTableLuminanceSizeSgi = ((int)0X80de),
         ColorTableIntensitySize = ((int)0X80df),
-        ColorTableIntensitySizeSgi = ((int)0X80df),
     }
 
     public enum ExtBgra
     {
         Bgr = ((int)0X80e0),
-        BgrExt = ((int)0X80e0),
         Bgra = ((int)0X80e1),
-        BgraExt = ((int)0X80e1),
     }
 
     public enum Version12
@@ -2409,21 +2261,9 @@ namespace OpenTK.Graphics
     public enum SgisPointParameters
     {
         PointSizeMin = ((int)0X8126),
-        PointSizeMinArb = ((int)0X8126),
-        PointSizeMinExt = ((int)0X8126),
-        PointSizeMinSgis = ((int)0X8126),
         PointSizeMax = ((int)0X8127),
-        PointSizeMaxArb = ((int)0X8127),
-        PointSizeMaxExt = ((int)0X8127),
-        PointSizeMaxSgis = ((int)0X8127),
         PointFadeThresholdSize = ((int)0X8128),
-        PointFadeThresholdSizeArb = ((int)0X8128),
-        PointFadeThresholdSizeExt = ((int)0X8128),
-        PointFadeThresholdSizeSgis = ((int)0X8128),
-        DistanceAttenuationExt = ((int)0X8129),
-        DistanceAttenuationSgis = ((int)0X8129),
         PointDistanceAttenuation = ((int)0X8129),
-        PointDistanceAttenuationArb = ((int)0X8129),
     }
 
     public enum SgisFogFunction
@@ -2436,8 +2276,6 @@ namespace OpenTK.Graphics
     public enum SgisTextureBorderClamp
     {
         ClampToBorder = ((int)0X812d),
-        ClampToBorderArb = ((int)0X812d),
-        ClampToBorderSgis = ((int)0X812d),
     }
 
     public enum SgixTextureMultiBuffer
@@ -2448,7 +2286,6 @@ namespace OpenTK.Graphics
     public enum SgisTextureEdgeClamp
     {
         ClampToEdge = ((int)0X812f),
-        ClampToEdgeSgis = ((int)0X812f),
     }
 
     public enum SgisTexture4D
@@ -2474,13 +2311,9 @@ namespace OpenTK.Graphics
     public enum SgisTextureLod
     {
         TextureMinLod = ((int)0X813a),
-        TextureMinLodSgis = ((int)0X813a),
         TextureMaxLod = ((int)0X813b),
-        TextureMaxLodSgis = ((int)0X813b),
         TextureBaseLevel = ((int)0X813c),
-        TextureBaseLevelSgis = ((int)0X813c),
         TextureMaxLevel = ((int)0X813d),
-        TextureMaxLevelSgis = ((int)0X813d),
     }
 
     public enum SgixPixelTiles
@@ -2516,11 +2349,8 @@ namespace OpenTK.Graphics
     {
         IgnoreBorderHp = ((int)0X8150),
         ConstantBorder = ((int)0X8151),
-        ConstantBorderHp = ((int)0X8151),
         ReplicateBorder = ((int)0X8153),
-        ReplicateBorderHp = ((int)0X8153),
         ConvolutionBorderColor = ((int)0X8154),
-        ConvolutionBorderColorHp = ((int)0X8154),
     }
 
     public enum SgixClipmap
@@ -2602,9 +2432,7 @@ namespace OpenTK.Graphics
     public enum SgisGenerateMipmap
     {
         GenerateMipmap = ((int)0X8191),
-        GenerateMipmapSgis = ((int)0X8191),
         GenerateMipmapHint = ((int)0X8192),
-        GenerateMipmapHintSgis = ((int)0X8192),
         GeometryDeformationSgix = ((int)0X8194),
         TextureDeformationSgix = ((int)0X8195),
         DeformationsMaskSgix = ((int)0X8196),
@@ -2628,11 +2456,8 @@ namespace OpenTK.Graphics
     public enum SgixDepthTexture
     {
         DepthComponent16 = ((int)0X81a5),
-        DepthComponent16Sgix = ((int)0X81a5),
         DepthComponent24 = ((int)0X81a6),
-        DepthComponent24Sgix = ((int)0X81a6),
         DepthComponent32 = ((int)0X81a7),
-        DepthComponent32Sgix = ((int)0X81a7),
     }
 
     public enum SgixYcrcb
@@ -2661,11 +2486,8 @@ namespace OpenTK.Graphics
     public enum ExtSeparateSpecularColor
     {
         LightModelColorControl = ((int)0X81f8),
-        LightModelColorControlExt = ((int)0X81f8),
         SingleColor = ((int)0X81f9),
-        SingleColorExt = ((int)0X81f9),
         SeparateSpecularColor = ((int)0X81fa),
-        SeparateSpecularColorExt = ((int)0X81fa),
     }
 
     public enum ExtSharedTexturePalette
