@@ -13026,9 +13026,9 @@ namespace OpenTK.Graphics
         }
 
         public static 
-        void ClampColor(OpenTK.Graphics.All target, OpenTK.Graphics.All clamp)
+        void ClampColor(OpenTK.Graphics.ClampColorTarget target, OpenTK.Graphics.ClampColorMode clamp)
         {
-            Delegates.glClampColor((OpenTK.Graphics.All)target, (OpenTK.Graphics.All)clamp);
+            Delegates.glClampColor((OpenTK.Graphics.ClampColorTarget)target, (OpenTK.Graphics.ClampColorMode)clamp);
         }
 
         [System.CLSCompliant(false)]

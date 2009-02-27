@@ -940,6 +940,7 @@ namespace OpenTK.Graphics
         StencilBackFail = ((int)0X8801),
         StencilBackPassDepthFail = ((int)0X8802),
         StencilBackPassDepthPass = ((int)0X8803),
+        RgbaFloatMode = ((int)0X8820),
         MaxDrawBuffers = ((int)0X8824),
         DrawBuffer0 = ((int)0X8825),
         DrawBuffer1 = ((int)0X8826),
@@ -976,6 +977,9 @@ namespace OpenTK.Graphics
         VertexAttribArrayBufferBinding = ((int)0X889f),
         PixelPackBufferBinding = ((int)0X88ed),
         PixelUnpackBufferBinding = ((int)0X88ef),
+        ClampVertexColor = ((int)0X891a),
+        ClampFragmentColor = ((int)0X891b),
+        ClampReadColor = ((int)0X891c),
         MaxFragmentUniformComponents = ((int)0X8b49),
         MaxVertexUniformComponents = ((int)0X8b4a),
         MaxVaryingFloats = ((int)0X8b4b),
@@ -4890,6 +4894,7 @@ namespace OpenTK.Graphics
         LuminanceFloat16Ati = ((int)0X881e),
         LuminanceAlpha16fArb = ((int)0X881f),
         LuminanceAlphaFloat16Ati = ((int)0X881f),
+        RgbaFloatMode = ((int)0X8820),
         RgbaFloatModeArb = ((int)0X8820),
         TypeRgbaFloatAti = ((int)0X8820),
         MaxDrawBuffers = ((int)0X8824),
@@ -6050,10 +6055,6 @@ namespace OpenTK.Graphics
         MaxArrayTextureLayers = ((int)0X88ff),
         MinProgramTexelOffset = ((int)0X8904),
         MaxProgramTexelOffset = ((int)0X8905),
-        ClampVertexColor = ((int)0X891a),
-        ClampFragmentColor = ((int)0X891b),
-        ClampReadColor = ((int)0X891c),
-        FixedOnly = ((int)0X891d),
         MaxVaryingComponents = ((int)0X8b4b),
         TextureRedType = ((int)0X8c10),
         TextureGreenType = ((int)0X8c11),
@@ -9383,6 +9384,20 @@ namespace OpenTK.Graphics
     public enum TextureEnvModePointSprite
     {
         False = ((int)0),
+        True = ((int)1),
+    }
+
+    public enum ClampColorTarget
+    {
+        ClampVertexColor = ((int)0X891a),
+        ClampFragmentColor = ((int)0X891b),
+        ClampReadColor = ((int)0X891c),
+    }
+
+    public enum ClampColorMode
+    {
+        False = ((int)0),
+        FixedOnly = ((int)0X891d),
         True = ((int)1),
     }
 

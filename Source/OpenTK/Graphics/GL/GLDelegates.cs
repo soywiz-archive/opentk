@@ -1796,7 +1796,7 @@ namespace OpenTK.Graphics
             internal unsafe delegate void GetTransformFeedbackVarying(UInt32 program, UInt32 index, [Out] Int32* location);
             internal unsafe static GetTransformFeedbackVarying glGetTransformFeedbackVarying;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void ClampColor(OpenTK.Graphics.All target, OpenTK.Graphics.All clamp);
+            internal delegate void ClampColor(OpenTK.Graphics.ClampColorTarget target, OpenTK.Graphics.ClampColorMode clamp);
             internal static ClampColor glClampColor;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate void BeginConditionalRender(UInt32 id, OpenTK.Graphics.All mode);

@@ -7265,8 +7265,8 @@ GetTransformFeedbackVarying(program, index, location)
 
 ClampColor(target, clamp)
 	return		void
-	param		target		ClampColorTargetARB in value
-	param		clamp		ClampColorModeARB in value
+	param		target		ClampColorTarget in value # ClampColorTargetARB in value
+	param		clamp		ClampColorMode in value # ClampColorModeARB in value
 	category	VERSION_3_0
 	version		3.0
 	extension
