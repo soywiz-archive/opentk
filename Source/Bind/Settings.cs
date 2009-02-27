@@ -18,7 +18,7 @@ namespace Bind
 
         public const string DefaultInputPath = "..\\..\\..\\Source\\Bind\\Specifications";
         public const string DefaultOutputPath = "..\\..\\..\\Source\\OpenTK\\OpenGL\\Bindings";
-        public const string DefaultOutputNamespace = "OpenTK.Graphics.OpenGL";
+        public const string DefaultOutputNamespace = "OpenTK.Graphics";
 
         public static string GLClass = "GL";        // Needed by Glu for the AuxEnumsClass. Can be set through -gl:"xxx".
         public static string OutputClass = "GL";    // The real output class. Can be set through -class:"xxx".
