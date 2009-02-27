@@ -557,26 +557,26 @@ VERSION_3_0 enum:
 	SEPARATE_ATTRIBS				= 0x8C8D
 	TRANSFORM_FEEDBACK_BUFFER			= 0x8C8E
 	TRANSFORM_FEEDBACK_BUFFER_BINDING		= 0x8C8F
-	RGBA32UI					= 0x8D70
-	RGB32UI						= 0x8D71
-	RGBA16UI					= 0x8D76
-	RGB16UI						= 0x8D77
-	RGBA8UI						= 0x8D7C
-	RGB8UI						= 0x8D7D
-	RGBA32I						= 0x8D82
-	RGB32I						= 0x8D83
-	RGBA16I						= 0x8D88
-	RGB16I						= 0x8D89
-	RGBA8I						= 0x8D8E
-	RGB8I						= 0x8D8F
-	RED_INTEGER					= 0x8D94
-	GREEN_INTEGER					= 0x8D95
-	BLUE_INTEGER					= 0x8D96
-	ALPHA_INTEGER					= 0x8D97
-	RGB_INTEGER					= 0x8D98
-	RGBA_INTEGER					= 0x8D99
-	BGR_INTEGER					= 0x8D9A
-	BGRA_INTEGER					= 0x8D9B
+#	RGBA32UI					= 0x8D70
+#	RGB32UI						= 0x8D71
+#	RGBA16UI					= 0x8D76
+#	RGB16UI						= 0x8D77
+#	RGBA8UI						= 0x8D7C
+#	RGB8UI						= 0x8D7D
+#	RGBA32I						= 0x8D82
+#	RGB32I						= 0x8D83
+#	RGBA16I						= 0x8D88
+#	RGB16I						= 0x8D89
+#	RGBA8I						= 0x8D8E
+#	RGB8I						= 0x8D8F
+#	RED_INTEGER					= 0x8D94
+#	GREEN_INTEGER					= 0x8D95
+#	BLUE_INTEGER					= 0x8D96
+#	ALPHA_INTEGER					= 0x8D97
+#	RGB_INTEGER					= 0x8D98
+#	RGBA_INTEGER					= 0x8D99
+#	BGR_INTEGER					= 0x8D9A
+#	BGRA_INTEGER					= 0x8D9B
 	SAMPLER_1D_ARRAY				= 0x8DC0
 	SAMPLER_2D_ARRAY				= 0x8DC1
 	SAMPLER_1D_ARRAY_SHADOW				= 0x8DC3
@@ -602,9 +602,9 @@ VERSION_3_0 enum:
 	QUERY_BY_REGION_WAIT				= 0x8E15
 	QUERY_BY_REGION_NO_WAIT				= 0x8E16
 passthru: /* Reuse tokens from ARB_depth_buffer_float */
-	use ARB_depth_buffer_float	    DEPTH_COMPONENT32F
-	use ARB_depth_buffer_float	    DEPTH32F_STENCIL8
-	use ARB_depth_buffer_float	    FLOAT_32_UNSIGNED_INT_24_8_REV
+#	use ARB_depth_buffer_float	    DEPTH_COMPONENT32F
+#	use ARB_depth_buffer_float	    DEPTH32F_STENCIL8
+#	use ARB_depth_buffer_float	    FLOAT_32_UNSIGNED_INT_24_8_REV
 passthru: /* Reuse tokens from ARB_framebuffer_object */
 	use ARB_framebuffer_object	    INVALID_FRAMEBUFFER_OPERATION
 	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING
@@ -5991,3 +5991,31 @@ PixelInternalFormat enum:
 	R11F_G11F_B10F = 0x8C3A
 	UNSIGNED_INT_10F_11F_11F_REV = 0x8C3B	# This is not in the pdf?
 	RGB9_E5 = 0x8C3D
+	DEPTH_COMPONENT32F = 0x8CAC
+	DEPTH32F_STENCIL8 = 0x8CAD
+	FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8DAD
+	
+# Promoted from EXT_texture_integer
+PixelInternalFormat enum:
+	RGBA32UI					= 0x8D70
+	RGB32UI						= 0x8D71
+	RGBA16UI					= 0x8D76
+	RGB16UI						= 0x8D77
+	RGBA8UI						= 0x8D7C
+	RGB8UI						= 0x8D7D
+	RGBA32I						= 0x8D82
+	RGB32I						= 0x8D83
+	RGBA16I						= 0x8D88
+	RGB16I						= 0x8D89
+	RGBA8I						= 0x8D8E
+	RGB8I							= 0x8D8F
+
+PixelFormat enum:
+	RED_INTEGER				= 0x8D94
+	GREEN_INTEGER		= 0x8D95
+	BLUE_INTEGER			= 0x8D96
+	ALPHA_INTEGER		= 0x8D97
+	RGB_INTEGER				= 0x8D98
+	RGBA_INTEGER			= 0x8D99
+	BGR_INTEGER				= 0x8D9A
+	BGRA_INTEGER			= 0x8D9B
