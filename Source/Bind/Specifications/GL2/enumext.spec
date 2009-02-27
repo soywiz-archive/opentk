@@ -5991,9 +5991,9 @@ PixelInternalFormat enum:
 	R11F_G11F_B10F = 0x8C3A
 	UNSIGNED_INT_10F_11F_11F_REV = 0x8C3B	# This is not in the pdf?
 	RGB9_E5 = 0x8C3D
-	DEPTH_COMPONENT32F = 0x8CAC
-	DEPTH32F_STENCIL8 = 0x8CAD
-	FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8DAD
+	use ARB_depth_buffer_float	    DEPTH_COMPONENT32F
+	use ARB_depth_buffer_float	    DEPTH32F_STENCIL8
+	use ARB_depth_buffer_float	    FLOAT_32_UNSIGNED_INT_24_8_REV
 	
 # Promoted from EXT_texture_integer
 PixelInternalFormat enum:
