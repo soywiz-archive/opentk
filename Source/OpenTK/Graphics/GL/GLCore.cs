@@ -1945,10 +1945,10 @@ namespace OpenTK.Graphics
             internal extern static unsafe void GenRenderbuffers(Int32 n, [Out] UInt32* renderbuffers);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glRenderbufferStorage", ExactSpelling = true)]
-            internal extern static void RenderbufferStorage(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All internalformat, Int32 width, Int32 height);
+            internal extern static void RenderbufferStorage(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferStorage internalformat, Int32 width, Int32 height);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glGetRenderbufferParameteriv", ExactSpelling = true)]
-            internal extern static unsafe void GetRenderbufferParameteriv(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All pname, [Out] Int32* @params);
+            internal extern static unsafe void GetRenderbufferParameteriv(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferParameterName pname, [Out] Int32* @params);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glIsFramebuffer", ExactSpelling = true)]
             internal extern static bool IsFramebuffer(UInt32 framebuffer);
@@ -1963,31 +1963,31 @@ namespace OpenTK.Graphics
             internal extern static unsafe void GenFramebuffers(Int32 n, [Out] UInt32* framebuffers);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glCheckFramebufferStatus", ExactSpelling = true)]
-            internal extern static OpenTK.Graphics.All CheckFramebufferStatus(OpenTK.Graphics.FramebufferTarget target);
+            internal extern static OpenTK.Graphics.FramebufferErrorCode CheckFramebufferStatus(OpenTK.Graphics.FramebufferTarget target);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glFramebufferTexture1D", ExactSpelling = true)]
-            internal extern static void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level);
+            internal extern static void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glFramebufferTexture2D", ExactSpelling = true)]
-            internal extern static void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level);
+            internal extern static void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glFramebufferTexture3D", ExactSpelling = true)]
-            internal extern static void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level, Int32 zoffset);
+            internal extern static void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level, Int32 zoffset);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glFramebufferRenderbuffer", ExactSpelling = true)]
             internal extern static void FramebufferRenderbuffer(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.RenderbufferTarget renderbuffertarget, UInt32 renderbuffer);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glGetFramebufferAttachmentParameteriv", ExactSpelling = true)]
-            internal extern static unsafe void GetFramebufferAttachmentParameteriv(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All pname, [Out] Int32* @params);
+            internal extern static unsafe void GetFramebufferAttachmentParameteriv(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.FramebufferParameterName pname, [Out] Int32* @params);
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glGenerateMipmap", ExactSpelling = true)]
-            internal extern static void GenerateMipmap(OpenTK.Graphics.All target);
+            [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glGenerate", ExactSpelling = true)]
+            internal extern static void Generate(OpenTK.Graphics.GenerateMipmapTarget target);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glBlitFramebuffer", ExactSpelling = true)]
-            internal extern static void BlitFramebuffer(Int32 srcX0, Int32 srcY0, Int32 srcX1, Int32 srcY1, Int32 dstX0, Int32 dstY0, Int32 dstX1, Int32 dstY1, OpenTK.Graphics.ClearBufferMask mask, OpenTK.Graphics.All filter);
+            internal extern static void BlitFramebuffer(Int32 srcX0, Int32 srcY0, Int32 srcX1, Int32 srcY1, Int32 dstX0, Int32 dstY0, Int32 dstX1, Int32 dstY1, OpenTK.Graphics.ClearBufferMask mask, OpenTK.Graphics.BlitFramebufferFilter filter);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glRenderbufferStorageMultisample", ExactSpelling = true)]
-            internal extern static void RenderbufferStorageMultisample(OpenTK.Graphics.All target, Int32 samples, OpenTK.Graphics.All internalformat, Int32 width, Int32 height);
+            internal extern static void RenderbufferStorageMultisample(OpenTK.Graphics.RenderbufferTarget target, Int32 samples, OpenTK.Graphics.RenderbufferStorage internalformat, Int32 width, Int32 height);
             [System.Security.SuppressUnmanagedCodeSecurity()]
             [System.Runtime.InteropServices.DllImport(GL.Library, EntryPoint = "glFramebufferTextureLayer", ExactSpelling = true)]
             internal extern static void FramebufferTextureLayer(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, UInt32 texture, Int32 level, Int32 layer);

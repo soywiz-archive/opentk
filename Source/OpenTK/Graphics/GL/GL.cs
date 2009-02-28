@@ -14673,31 +14673,31 @@ namespace OpenTK.Graphics
         }
 
         public static 
-        void RenderbufferStorage(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All internalformat, Int32 width, Int32 height)
+        void RenderbufferStorage(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferStorage internalformat, Int32 width, Int32 height)
         {
-            Delegates.glRenderbufferStorage((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.All)internalformat, (Int32)width, (Int32)height);
+            Delegates.glRenderbufferStorage((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.RenderbufferStorage)internalformat, (Int32)width, (Int32)height);
         }
 
         public static 
-        void GetRenderbufferParameter(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All pname, [Out] Int32[] @params)
+        void GetRenderbufferParameter(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferParameterName pname, [Out] Int32[] @params)
         {
             unsafe
             {
                 fixed (Int32* @params_ptr = @params)
                 {
-                    Delegates.glGetRenderbufferParameteriv((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.All)pname, (Int32*)@params_ptr);
+                    Delegates.glGetRenderbufferParameteriv((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.RenderbufferParameterName)pname, (Int32*)@params_ptr);
                 }
             }
         }
 
         public static 
-        void GetRenderbufferParameter(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All pname, [Out] out Int32 @params)
+        void GetRenderbufferParameter(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferParameterName pname, [Out] out Int32 @params)
         {
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
                 {
-                    Delegates.glGetRenderbufferParameteriv((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.All)pname, (Int32*)@params_ptr);
+                    Delegates.glGetRenderbufferParameteriv((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.RenderbufferParameterName)pname, (Int32*)@params_ptr);
                     @params = *@params_ptr;
                 }
             }
@@ -14705,9 +14705,9 @@ namespace OpenTK.Graphics
 
         [System.CLSCompliant(false)]
         public static 
-        unsafe void GetRenderbufferParameter(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All pname, [Out] Int32* @params)
+        unsafe void GetRenderbufferParameter(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferParameterName pname, [Out] Int32* @params)
         {
-            Delegates.glGetRenderbufferParameteriv((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.All)pname, (Int32*)@params);
+            Delegates.glGetRenderbufferParameteriv((OpenTK.Graphics.RenderbufferTarget)target, (OpenTK.Graphics.RenderbufferParameterName)pname, (Int32*)@params);
         }
 
         [System.CLSCompliant(false)]
@@ -14867,48 +14867,48 @@ namespace OpenTK.Graphics
         }
 
         public static 
-        OpenTK.Graphics.All CheckFramebufferStatus(OpenTK.Graphics.FramebufferTarget target)
+        OpenTK.Graphics.FramebufferErrorCode CheckFramebufferStatus(OpenTK.Graphics.FramebufferTarget target)
         {
             return Delegates.glCheckFramebufferStatus((OpenTK.Graphics.FramebufferTarget)target);
         }
 
         [System.CLSCompliant(false)]
         public static 
-        void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level)
+        void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level)
         {
-            Delegates.glFramebufferTexture1D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)textarget, (UInt32)texture, (Int32)level);
+            Delegates.glFramebufferTexture1D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.TextureTarget)textarget, (UInt32)texture, (Int32)level);
         }
 
         public static 
-        void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, Int32 texture, Int32 level)
+        void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, Int32 texture, Int32 level)
         {
-            Delegates.glFramebufferTexture1D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)textarget, (UInt32)texture, (Int32)level);
-        }
-
-        [System.CLSCompliant(false)]
-        public static 
-        void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level)
-        {
-            Delegates.glFramebufferTexture2D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)textarget, (UInt32)texture, (Int32)level);
-        }
-
-        public static 
-        void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, Int32 texture, Int32 level)
-        {
-            Delegates.glFramebufferTexture2D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)textarget, (UInt32)texture, (Int32)level);
+            Delegates.glFramebufferTexture1D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.TextureTarget)textarget, (UInt32)texture, (Int32)level);
         }
 
         [System.CLSCompliant(false)]
         public static 
-        void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level, Int32 zoffset)
+        void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level)
         {
-            Delegates.glFramebufferTexture3D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)textarget, (UInt32)texture, (Int32)level, (Int32)zoffset);
+            Delegates.glFramebufferTexture2D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.TextureTarget)textarget, (UInt32)texture, (Int32)level);
         }
 
         public static 
-        void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, Int32 texture, Int32 level, Int32 zoffset)
+        void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, Int32 texture, Int32 level)
         {
-            Delegates.glFramebufferTexture3D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)textarget, (UInt32)texture, (Int32)level, (Int32)zoffset);
+            Delegates.glFramebufferTexture2D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.TextureTarget)textarget, (UInt32)texture, (Int32)level);
+        }
+
+        [System.CLSCompliant(false)]
+        public static 
+        void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level, Int32 zoffset)
+        {
+            Delegates.glFramebufferTexture3D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.TextureTarget)textarget, (UInt32)texture, (Int32)level, (Int32)zoffset);
+        }
+
+        public static 
+        void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, Int32 texture, Int32 level, Int32 zoffset)
+        {
+            Delegates.glFramebufferTexture3D((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.TextureTarget)textarget, (UInt32)texture, (Int32)level, (Int32)zoffset);
         }
 
         [System.CLSCompliant(false)]
@@ -14925,25 +14925,25 @@ namespace OpenTK.Graphics
         }
 
         public static 
-        void GetFramebufferAttachmentParameter(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All pname, [Out] Int32[] @params)
+        void GetFramebufferAttachmentParameter(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.FramebufferParameterName pname, [Out] Int32[] @params)
         {
             unsafe
             {
                 fixed (Int32* @params_ptr = @params)
                 {
-                    Delegates.glGetFramebufferAttachmentParameteriv((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)pname, (Int32*)@params_ptr);
+                    Delegates.glGetFramebufferAttachmentParameteriv((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.FramebufferParameterName)pname, (Int32*)@params_ptr);
                 }
             }
         }
 
         public static 
-        void GetFramebufferAttachmentParameter(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All pname, [Out] out Int32 @params)
+        void GetFramebufferAttachmentParameter(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.FramebufferParameterName pname, [Out] out Int32 @params)
         {
             unsafe
             {
                 fixed (Int32* @params_ptr = &@params)
                 {
-                    Delegates.glGetFramebufferAttachmentParameteriv((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)pname, (Int32*)@params_ptr);
+                    Delegates.glGetFramebufferAttachmentParameteriv((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.FramebufferParameterName)pname, (Int32*)@params_ptr);
                     @params = *@params_ptr;
                 }
             }
@@ -14951,27 +14951,27 @@ namespace OpenTK.Graphics
 
         [System.CLSCompliant(false)]
         public static 
-        unsafe void GetFramebufferAttachmentParameter(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All pname, [Out] Int32* @params)
+        unsafe void GetFramebufferAttachmentParameter(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.FramebufferParameterName pname, [Out] Int32* @params)
         {
-            Delegates.glGetFramebufferAttachmentParameteriv((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.All)pname, (Int32*)@params);
+            Delegates.glGetFramebufferAttachmentParameteriv((OpenTK.Graphics.FramebufferTarget)target, (OpenTK.Graphics.FramebufferAttachment)attachment, (OpenTK.Graphics.FramebufferParameterName)pname, (Int32*)@params);
         }
 
         public static 
-        void GenerateMipmap(OpenTK.Graphics.All target)
+        void Generate(OpenTK.Graphics.GenerateMipmapTarget target)
         {
-            Delegates.glGenerateMipmap((OpenTK.Graphics.All)target);
+            Delegates.glGenerate((OpenTK.Graphics.GenerateMipmapTarget)target);
         }
 
         public static 
-        void BlitFramebuffer(Int32 srcX0, Int32 srcY0, Int32 srcX1, Int32 srcY1, Int32 dstX0, Int32 dstY0, Int32 dstX1, Int32 dstY1, OpenTK.Graphics.ClearBufferMask mask, OpenTK.Graphics.All filter)
+        void BlitFramebuffer(Int32 srcX0, Int32 srcY0, Int32 srcX1, Int32 srcY1, Int32 dstX0, Int32 dstY0, Int32 dstX1, Int32 dstY1, OpenTK.Graphics.ClearBufferMask mask, OpenTK.Graphics.BlitFramebufferFilter filter)
         {
-            Delegates.glBlitFramebuffer((Int32)srcX0, (Int32)srcY0, (Int32)srcX1, (Int32)srcY1, (Int32)dstX0, (Int32)dstY0, (Int32)dstX1, (Int32)dstY1, (OpenTK.Graphics.ClearBufferMask)mask, (OpenTK.Graphics.All)filter);
+            Delegates.glBlitFramebuffer((Int32)srcX0, (Int32)srcY0, (Int32)srcX1, (Int32)srcY1, (Int32)dstX0, (Int32)dstY0, (Int32)dstX1, (Int32)dstY1, (OpenTK.Graphics.ClearBufferMask)mask, (OpenTK.Graphics.BlitFramebufferFilter)filter);
         }
 
         public static 
-        void RenderbufferStorageMultisample(OpenTK.Graphics.All target, Int32 samples, OpenTK.Graphics.All internalformat, Int32 width, Int32 height)
+        void RenderbufferStorageMultisample(OpenTK.Graphics.RenderbufferTarget target, Int32 samples, OpenTK.Graphics.RenderbufferStorage internalformat, Int32 width, Int32 height)
         {
-            Delegates.glRenderbufferStorageMultisample((OpenTK.Graphics.All)target, (Int32)samples, (OpenTK.Graphics.All)internalformat, (Int32)width, (Int32)height);
+            Delegates.glRenderbufferStorageMultisample((OpenTK.Graphics.RenderbufferTarget)target, (Int32)samples, (OpenTK.Graphics.RenderbufferStorage)internalformat, (Int32)width, (Int32)height);
         }
 
         [System.CLSCompliant(false)]

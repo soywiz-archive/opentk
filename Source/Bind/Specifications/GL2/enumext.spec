@@ -488,7 +488,7 @@ ARB_imaging enum:
 
 ###############################################################################
 #
-# OpenGL 3.0 enums
+# OpenGL 3.0 enums (edited for OpenTK)
 #
 ###############################################################################
 
@@ -538,10 +538,10 @@ VERSION_3_0 enum:
 #	TEXTURE_BINDING_1D_ARRAY			= 0x8C1C
 #	TEXTURE_BINDING_2D_ARRAY			= 0x8C1D
 #	R11F_G11F_B10F					= 0x8C3A
-#	UNSIGNED_INT_10F_11F_11F_REV			= 0x8C3B
+	UNSIGNED_INT_10F_11F_11F_REV			= 0x8C3B
 #	RGB9_E5						= 0x8C3D
 	UNSIGNED_INT_5_9_9_9_REV			= 0x8C3E
-	TEXTURE_SHARED_SIZE				= 0x8C3F
+#	TEXTURE_SHARED_SIZE				= 0x8C3F
 	TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH		= 0x8C76
 	TRANSFORM_FEEDBACK_BUFFER_MODE			= 0x8C7F
 	MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS	= 0x8C80
@@ -606,86 +606,86 @@ passthru: /* Reuse tokens from ARB_depth_buffer_float */
 #	use ARB_depth_buffer_float	    DEPTH32F_STENCIL8
 #	use ARB_depth_buffer_float	    FLOAT_32_UNSIGNED_INT_24_8_REV
 passthru: /* Reuse tokens from ARB_framebuffer_object */
-	use ARB_framebuffer_object	    INVALID_FRAMEBUFFER_OPERATION
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_RED_SIZE
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_GREEN_SIZE
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_BLUE_SIZE
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE
-	use ARB_framebuffer_object	    FRAMEBUFFER_DEFAULT
-	use ARB_framebuffer_object	    FRAMEBUFFER_UNDEFINED
-	use ARB_framebuffer_object	    DEPTH_STENCIL_ATTACHMENT
-	use ARB_framebuffer_object	    INDEX
-	use ARB_framebuffer_object	    MAX_RENDERBUFFER_SIZE
-	use ARB_framebuffer_object	    DEPTH_STENCIL
-	use ARB_framebuffer_object	    UNSIGNED_INT_24_8
-	use ARB_framebuffer_object	    DEPTH24_STENCIL8
-	use ARB_framebuffer_object	    TEXTURE_STENCIL_SIZE
-	use ARB_framebuffer_object	    TEXTURE_RED_TYPE
-	use ARB_framebuffer_object	    TEXTURE_GREEN_TYPE
-	use ARB_framebuffer_object	    TEXTURE_BLUE_TYPE
-	use ARB_framebuffer_object	    TEXTURE_ALPHA_TYPE
-	use ARB_framebuffer_object	    TEXTURE_LUMINANCE_TYPE
-	use ARB_framebuffer_object	    TEXTURE_INTENSITY_TYPE
-	use ARB_framebuffer_object	    TEXTURE_DEPTH_TYPE
-	use ARB_framebuffer_object	    UNSIGNED_NORMALIZED
-	use ARB_framebuffer_object	    FRAMEBUFFER_BINDING
-	use ARB_framebuffer_object	    DRAW_FRAMEBUFFER_BINDING
-	use ARB_framebuffer_object	    RENDERBUFFER_BINDING
-	use ARB_framebuffer_object	    READ_FRAMEBUFFER
-	use ARB_framebuffer_object	    DRAW_FRAMEBUFFER
-	use ARB_framebuffer_object	    READ_FRAMEBUFFER_BINDING
-	use ARB_framebuffer_object	    RENDERBUFFER_SAMPLES
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_OBJECT_NAME
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL
-	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE
+#	use ARB_framebuffer_object	    INVALID_FRAMEBUFFER_OPERATION
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_RED_SIZE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_GREEN_SIZE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_BLUE_SIZE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_DEFAULT
+#	use ARB_framebuffer_object	    FRAMEBUFFER_UNDEFINED
+#	use ARB_framebuffer_object	    DEPTH_STENCIL_ATTACHMENT
+#	use ARB_framebuffer_object	    INDEX
+#	use ARB_framebuffer_object	    MAX_RENDERBUFFER_SIZE
+#	use ARB_framebuffer_object	    DEPTH_STENCIL
+#	use ARB_framebuffer_object	    UNSIGNED_INT_24_8
+#	use ARB_framebuffer_object	    DEPTH24_STENCIL8
+#	use ARB_framebuffer_object	    TEXTURE_STENCIL_SIZE
+#	use ARB_framebuffer_object	    TEXTURE_RED_TYPE
+#	use ARB_framebuffer_object	    TEXTURE_GREEN_TYPE
+#	use ARB_framebuffer_object	    TEXTURE_BLUE_TYPE
+#	use ARB_framebuffer_object	    TEXTURE_ALPHA_TYPE
+#	use ARB_framebuffer_object	    TEXTURE_LUMINANCE_TYPE
+#	use ARB_framebuffer_object	    TEXTURE_INTENSITY_TYPE
+#	use ARB_framebuffer_object	    TEXTURE_DEPTH_TYPE
+#	use ARB_framebuffer_object	    UNSIGNED_NORMALIZED
+#	use ARB_framebuffer_object	    FRAMEBUFFER_BINDING
+#	use ARB_framebuffer_object	    DRAW_FRAMEBUFFER_BINDING
+#	use ARB_framebuffer_object	    RENDERBUFFER_BINDING
+#	use ARB_framebuffer_object	    READ_FRAMEBUFFER
+#	use ARB_framebuffer_object	    DRAW_FRAMEBUFFER
+#	use ARB_framebuffer_object	    READ_FRAMEBUFFER_BINDING
+#	use ARB_framebuffer_object	    RENDERBUFFER_SAMPLES
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_OBJECT_NAME
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL
+#	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE
 #	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER
-	use ARB_framebuffer_object	    FRAMEBUFFER_COMPLETE
-	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_ATTACHMENT
-	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT
-	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER
-	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_READ_BUFFER
-	use ARB_framebuffer_object	    FRAMEBUFFER_UNSUPPORTED
-	use ARB_framebuffer_object	    MAX_COLOR_ATTACHMENTS
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT0
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT1
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT2
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT3
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT4
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT5
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT6
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT7
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT8
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT9
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT10
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT11
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT12
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT13
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT14
-	use ARB_framebuffer_object	    COLOR_ATTACHMENT15
-	use ARB_framebuffer_object	    DEPTH_ATTACHMENT
-	use ARB_framebuffer_object	    STENCIL_ATTACHMENT
-	use ARB_framebuffer_object	    FRAMEBUFFER
-	use ARB_framebuffer_object	    RENDERBUFFER
-	use ARB_framebuffer_object	    RENDERBUFFER_WIDTH
-	use ARB_framebuffer_object	    RENDERBUFFER_HEIGHT
-	use ARB_framebuffer_object	    RENDERBUFFER_INTERNAL_FORMAT
-	use ARB_framebuffer_object	    STENCIL_INDEX1
-	use ARB_framebuffer_object	    STENCIL_INDEX4
-	use ARB_framebuffer_object	    STENCIL_INDEX8
-	use ARB_framebuffer_object	    STENCIL_INDEX16
-	use ARB_framebuffer_object	    RENDERBUFFER_RED_SIZE
-	use ARB_framebuffer_object	    RENDERBUFFER_GREEN_SIZE
-	use ARB_framebuffer_object	    RENDERBUFFER_BLUE_SIZE
-	use ARB_framebuffer_object	    RENDERBUFFER_ALPHA_SIZE
-	use ARB_framebuffer_object	    RENDERBUFFER_DEPTH_SIZE
-	use ARB_framebuffer_object	    RENDERBUFFER_STENCIL_SIZE
-	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_MULTISAMPLE
-	use ARB_framebuffer_object	    MAX_SAMPLES
+#	use ARB_framebuffer_object	    FRAMEBUFFER_COMPLETE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_ATTACHMENT
+#	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT
+#	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER
+#	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_READ_BUFFER
+#	use ARB_framebuffer_object	    FRAMEBUFFER_UNSUPPORTED
+#	use ARB_framebuffer_object	    MAX_COLOR_ATTACHMENTS
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT0
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT1
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT2
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT3
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT4
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT5
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT6
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT7
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT8
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT9
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT10
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT11
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT12
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT13
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT14
+#	use ARB_framebuffer_object	    COLOR_ATTACHMENT15
+#	use ARB_framebuffer_object	    DEPTH_ATTACHMENT
+#	use ARB_framebuffer_object	    STENCIL_ATTACHMENT
+#	use ARB_framebuffer_object	    FRAMEBUFFER
+#	use ARB_framebuffer_object	    RENDERBUFFER
+#	use ARB_framebuffer_object	    RENDERBUFFER_WIDTH
+#	use ARB_framebuffer_object	    RENDERBUFFER_HEIGHT
+#	use ARB_framebuffer_object	    RENDERBUFFER_INTERNAL_FORMAT
+#	use ARB_framebuffer_object	    STENCIL_INDEX1
+#	use ARB_framebuffer_object	    STENCIL_INDEX4
+#	use ARB_framebuffer_object	    STENCIL_INDEX8
+#	use ARB_framebuffer_object	    STENCIL_INDEX16
+#	use ARB_framebuffer_object	    RENDERBUFFER_RED_SIZE
+#	use ARB_framebuffer_object	    RENDERBUFFER_GREEN_SIZE
+#	use ARB_framebuffer_object	    RENDERBUFFER_BLUE_SIZE
+#	use ARB_framebuffer_object	    RENDERBUFFER_ALPHA_SIZE
+#	use ARB_framebuffer_object	    RENDERBUFFER_DEPTH_SIZE
+#	use ARB_framebuffer_object	    RENDERBUFFER_STENCIL_SIZE
+#	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_MULTISAMPLE
+#	use ARB_framebuffer_object	    MAX_SAMPLES
 passthru: /* Reuse tokens from ARB_framebuffer_sRGB */
 	use ARB_framebuffer_sRGB	    FRAMEBUFFER_SRGB
 passthru: /* Reuse tokens from ARB_half_float_vertex */
@@ -5989,7 +5989,6 @@ PixelInternalFormat enum:
 	RGBA16F = 0x881A
 	RGB16F = 0x881B
 	R11F_G11F_B10F = 0x8C3A
-	UNSIGNED_INT_10F_11F_11F_REV = 0x8C3B	# This is not in the pdf?
 	RGB9_E5 = 0x8C3D
 	use ARB_depth_buffer_float	    DEPTH_COMPONENT32F
 	use ARB_depth_buffer_float	    DEPTH32F_STENCIL8
@@ -6080,4 +6079,193 @@ ActiveUniformType enum:
 	SAMPLER_1D_ARRAY_SHADOW			= 0x8DC3
 	SAMPLER_2D_ARRAY_SHADOW			= 0x8DC4
 
+# Promoted from ARB_framebuffer_object
+BlitFramebufferFilter enum:
+	use TextureMagFilter LINEAR
+	use TextureMagFilter NEAREST
+
+FramebufferTarget enum:
+	use ARB_framebuffer_object	    READ_FRAMEBUFFER
+	use ARB_framebuffer_object	    DRAW_FRAMEBUFFER
+	use ARB_framebuffer_object	    FRAMEBUFFER
+	
+FramebufferParameterName enum:
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_RED_SIZE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_GREEN_SIZE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_BLUE_SIZE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_OBJECT_NAME
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE
+	use ARB_framebuffer_object	    FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER
+
+FramebufferAttachment enum:
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT0
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT1
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT2
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT3
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT4
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT5
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT6
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT7
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT8
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT9
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT10
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT11
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT12
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT13
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT14
+	use ARB_framebuffer_object	    COLOR_ATTACHMENT15
+	use ARB_framebuffer_object	    DEPTH_ATTACHMENT
+	use ARB_framebuffer_object	    STENCIL_ATTACHMENT
+	use ARB_framebuffer_object	    DEPTH_STENCIL_ATTACHMENT
+
+FramebufferAttachmentObjectType enum:
+	NONE													= 0
+	use ARB_framebuffer_object	    FRAMEBUFFER_DEFAULT
+	use MatrixMode								TEXTURE
+	use ARB_framebuffer_object	    RENDERBUFFER	
+
+FramebufferAttachmentComponentType enum:
+	use DataType									FLOAT
+	use DataType									INT
+	use ARB_framebuffer_object	    UNSIGNED_NORMALIZED
+	use ARB_framebuffer_object	    INDEX
+
+FramebufferErrorCode enum:
+	use ARB_framebuffer_object	    FRAMEBUFFER_COMPLETE
+	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_ATTACHMENT
+	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT
+	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER
+	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_READ_BUFFER
+	use ARB_framebuffer_object	    FRAMEBUFFER_UNSUPPORTED	
+	use ARB_framebuffer_object	    FRAMEBUFFER_INCOMPLETE_MULTISAMPLE
+	use ARB_framebuffer_object	    FRAMEBUFFER_UNDEFINED
+
+RenderbufferTarget enum:
+	use ARB_framebuffer_object	    RENDERBUFFER
+
+RenderbufferParameterName enum:
+	use ARB_framebuffer_object	    RENDERBUFFER_SAMPLES
+	use ARB_framebuffer_object	    RENDERBUFFER_WIDTH
+	use ARB_framebuffer_object	    RENDERBUFFER_HEIGHT
+	use ARB_framebuffer_object	    RENDERBUFFER_INTERNAL_FORMAT
+	use ARB_framebuffer_object	    RENDERBUFFER_RED_SIZE
+	use ARB_framebuffer_object	    RENDERBUFFER_GREEN_SIZE
+	use ARB_framebuffer_object	    RENDERBUFFER_BLUE_SIZE
+	use ARB_framebuffer_object	    RENDERBUFFER_ALPHA_SIZE
+	use ARB_framebuffer_object	    RENDERBUFFER_DEPTH_SIZE
+	use ARB_framebuffer_object	    RENDERBUFFER_STENCIL_SIZE
+
+RenderbufferStorage enum:
+	use PixelInternalFormat ALPHA4
+	use PixelInternalFormat ALPHA8
+	use PixelInternalFormat ALPHA12
+	use PixelInternalFormat ALPHA16
+	use PixelInternalFormat R8
+	use PixelInternalFormat R16
+	use PixelInternalFormat RG8
+	use PixelInternalFormat RG16
+	use PixelInternalFormat R3_G3_B2
+	use PixelInternalFormat RGB4
+	use PixelInternalFormat RGB5
+	use PixelInternalFormat RGB8
+	use PixelInternalFormat RGB10
+	use PixelInternalFormat RGB12
+	use PixelInternalFormat RGB16
+	use PixelInternalFormat RGBA2
+	use PixelInternalFormat RGBA4
+	use PixelInternalFormat RGB5 A1
+	use PixelInternalFormat RGBA8
+	use PixelInternalFormat RGB10_A2
+	use PixelInternalFormat RGBA12
+	use PixelInternalFormat RGBA16
+	use PixelInternalFormat SRGB8
+	use PixelInternalFormat SRGB8_ALPHA8
+	use PixelInternalFormat R16F
+	use PixelInternalFormat RG16F
+	use PixelInternalFormat RGB16F
+	use PixelInternalFormat RGBA16F
+	use PixelInternalFormat R32F
+	use PixelInternalFormat RG32F
+	use PixelInternalFormat RGB32F
+	use PixelInternalFormat RGBA32F
+	use PixelInternalFormat R11F_G11F_B10F
+	use PixelInternalFormat RGB9_E5
+	use PixelInternalFormat R8I
+	use PixelInternalFormat R8UI
+	use PixelInternalFormat R16I
+	use PixelInternalFormat R16UI
+	use PixelInternalFormat R32I
+	use PixelInternalFormat R32UI
+	use PixelInternalFormat RG8I
+	use PixelInternalFormat RG8UI
+	use PixelInternalFormat RG16I
+	use PixelInternalFormat RG16UI
+	use PixelInternalFormat RG32I
+	use PixelInternalFormat RG32UI
+	use PixelInternalFormat RGB8I
+	use PixelInternalFormat RGB8UI
+	use PixelInternalFormat RGB16I
+	use PixelInternalFormat RGB16UI
+	use PixelInternalFormat RGB32I
+	use PixelInternalFormat RGB32UI
+	use PixelInternalFormat RGBA8I
+	use PixelInternalFormat RGBA8UI
+	use PixelInternalFormat RGBA16I
+	use PixelInternalFormat RGBA16UI
+	use PixelInternalFormat RGBA32I
+	use PixelInternalFormat RGBA32UI
+
+	use PixelInternalFormat DEPTH_COMPONENT16
+	use PixelInternalFormat DEPTH_COMPONENT24
+	use PixelInternalFormat DEPTH_COMPONENT32
+	use PixelInternalFormat DEPTH_COMPONENT32F
+	use PixelInternalFormat DEPTH24_STENCIL8
+	use PixelInternalFormat DEPTH32F_STENCIL8
+
+	use ARB_framebuffer_object STENCIL_INDEX1
+	use ARB_framebuffer_object	STENCIL_INDEX4
+	use ARB_framebuffer_object	STENCIL_INDEX8
+	use ARB_framebuffer_object	STENCIL_INDEX16
+
+GetPName enum:
+	use ARB_framebuffer_object	    MAX_SAMPLES
+	use ARB_framebuffer_object	    MAX_COLOR_ATTACHMENTS
+	use ARB_framebuffer_object	    FRAMEBUFFER_BINDING
+	use ARB_framebuffer_object	    DRAW_FRAMEBUFFER_BINDING
+	use ARB_framebuffer_object	    READ_FRAMEBUFFER_BINDING	
+	use ARB_framebuffer_object	    RENDERBUFFER_BINDING
+	use ARB_framebuffer_object	    MAX_RENDERBUFFER_SIZE
+
+ErrorCode enum:
+	use ARB_framebuffer_object	    INVALID_FRAMEBUFFER_OPERATION
+
+PixelFormat enum:
+	use ARB_framebuffer_object	    DEPTH_STENCIL
+
+PixelInternalFormat enum:
+	use ARB_framebuffer_object	    DEPTH_STENCIL
+	use ARB_framebuffer_object	    DEPTH24_STENCIL8
+
+PixelType enum:
+	use ARB_framebuffer_object	    UNSIGNED_INT_24_8
+
+GetTextureParameter enum:
+	TEXTURE_SHARED_SIZE			= 0x8C3F
+	use ARB_framebuffer_object	    TEXTURE_STENCIL_SIZE
+	use ARB_framebuffer_object	    TEXTURE_RED_TYPE
+	use ARB_framebuffer_object	    TEXTURE_GREEN_TYPE
+	use ARB_framebuffer_object	    TEXTURE_BLUE_TYPE
+	use ARB_framebuffer_object	    TEXTURE_ALPHA_TYPE
+	use ARB_framebuffer_object	    TEXTURE_LUMINANCE_TYPE
+	use ARB_framebuffer_object	    TEXTURE_INTENSITY_TYPE
+	use ARB_framebuffer_object	    TEXTURE_DEPTH_TYPE
+	
 # End (don't remove, or the last token may be missed!)

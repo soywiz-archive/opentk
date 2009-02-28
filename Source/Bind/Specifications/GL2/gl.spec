@@ -10782,7 +10782,7 @@ GenRenderbuffers(n, renderbuffers)
 RenderbufferStorage(target, internalformat, width, height)
 	return		void
 	param		target		RenderbufferTarget in value
-	param		internalformat	GLenum in value
+	param		internalformat	RenderbufferStorage in value # GLenum in value
 	param		width		SizeI in value
 	param		height		SizeI in value
 	category	ARB_framebuffer_object
@@ -10796,7 +10796,7 @@ RenderbufferStorage(target, internalformat, width, height)
 GetRenderbufferParameteriv(target, pname, params)
 	return		void
 	param		target		RenderbufferTarget in value
-	param		pname		GLenum in value
+	param		pname		RenderbufferParameterName in value # GLenum in value
 	param		params		Int32 out array [COMPSIZE(pname)]
 	category	ARB_framebuffer_object
 	dlflags		notlistable
@@ -10856,7 +10856,7 @@ GenFramebuffers(n, framebuffers)
 	offset		?
 
 CheckFramebufferStatus(target)
-	return		GLenum
+	return		FramebufferErrorCode # GLenum
 	param		target		FramebufferTarget in value
 	category	ARB_framebuffer_object
 	version		3.0
@@ -10870,7 +10870,7 @@ FramebufferTexture1D(target, attachment, textarget, texture, level)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		textarget	GLenum in value
+	param		textarget	TextureTarget in value # GLenum in value
 	param		texture		UInt32 in value
 	param		level		Int32 in value
 	category	ARB_framebuffer_object
@@ -10885,7 +10885,7 @@ FramebufferTexture2D(target, attachment, textarget, texture, level)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		textarget	GLenum in value
+	param		textarget	TextureTarget in value # GLenum in value
 	param		texture		UInt32 in value
 	param		level		Int32 in value
 	category	ARB_framebuffer_object
@@ -10900,7 +10900,7 @@ FramebufferTexture3D(target, attachment, textarget, texture, level, zoffset)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		textarget	GLenum in value
+	param		textarget	TextureTarget in value # GLenum in value
 	param		texture		UInt32 in value
 	param		level		Int32 in value
 	param		zoffset		Int32 in value
@@ -10930,7 +10930,7 @@ GetFramebufferAttachmentParameteriv(target, attachment, pname, params)
 	return		void
 	param		target		FramebufferTarget in value
 	param		attachment	FramebufferAttachment in value
-	param		pname		GLenum in value
+	param		pname		FramebufferParameterName in value # GLenum in value
 	param		params		Int32 out array [COMPSIZE(pname)]
 	category	ARB_framebuffer_object
 	dlflags		notlistable
@@ -10942,9 +10942,9 @@ GetFramebufferAttachmentParameteriv(target, attachment, pname, params)
 	glsopcode	?
 	offset		?
 
-GenerateMipmap(target)
+Generate(target)
 	return		void
-	param		target		GLenum in value
+	param		target		GenerateMipmapTarget in value # GLenum in value
 	category	ARB_framebuffer_object
 	version		3.0
 	extension
@@ -10965,7 +10965,7 @@ BlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, fi
 	param		dstX1		Int32 in value
 	param		dstY1		Int32 in value
 	param		mask		ClearBufferMask in value
-	param		filter		GLenum in value
+	param		filter		BlitFramebufferFilter in value # GLenum in value
 	category	ARB_framebuffer_object
 	version		3.0
 	glxropcode	4330
@@ -10975,9 +10975,9 @@ BlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, fi
 # Promoted from EXT_framebuffer_multisample
 RenderbufferStorageMultisample(target, samples, internalformat, width, height)
 	return		void
-	param		target		GLenum in value
+	param		target	RenderbufferTarget in value #	GLenum in value
 	param		samples		SizeI in value
-	param		internalformat	GLenum in value
+	param		internalformat	RenderbufferStorage in value # GLenum in value
 	param		width		SizeI in value
 	param		height		SizeI in value
 	category	ARB_framebuffer_object

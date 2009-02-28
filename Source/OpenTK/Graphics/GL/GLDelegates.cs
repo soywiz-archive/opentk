@@ -2564,10 +2564,10 @@ namespace OpenTK.Graphics
             internal unsafe delegate void GenRenderbuffers(Int32 n, [Out] UInt32* renderbuffers);
             internal unsafe static GenRenderbuffers glGenRenderbuffers;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void RenderbufferStorage(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All internalformat, Int32 width, Int32 height);
+            internal delegate void RenderbufferStorage(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferStorage internalformat, Int32 width, Int32 height);
             internal static RenderbufferStorage glRenderbufferStorage;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void GetRenderbufferParameteriv(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.All pname, [Out] Int32* @params);
+            internal unsafe delegate void GetRenderbufferParameteriv(OpenTK.Graphics.RenderbufferTarget target, OpenTK.Graphics.RenderbufferParameterName pname, [Out] Int32* @params);
             internal unsafe static GetRenderbufferParameteriv glGetRenderbufferParameteriv;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate bool IsFramebuffer(UInt32 framebuffer);
@@ -2582,31 +2582,31 @@ namespace OpenTK.Graphics
             internal unsafe delegate void GenFramebuffers(Int32 n, [Out] UInt32* framebuffers);
             internal unsafe static GenFramebuffers glGenFramebuffers;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate OpenTK.Graphics.All CheckFramebufferStatus(OpenTK.Graphics.FramebufferTarget target);
+            internal delegate OpenTK.Graphics.FramebufferErrorCode CheckFramebufferStatus(OpenTK.Graphics.FramebufferTarget target);
             internal static CheckFramebufferStatus glCheckFramebufferStatus;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level);
+            internal delegate void FramebufferTexture1D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level);
             internal static FramebufferTexture1D glFramebufferTexture1D;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level);
+            internal delegate void FramebufferTexture2D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level);
             internal static FramebufferTexture2D glFramebufferTexture2D;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All textarget, UInt32 texture, Int32 level, Int32 zoffset);
+            internal delegate void FramebufferTexture3D(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.TextureTarget textarget, UInt32 texture, Int32 level, Int32 zoffset);
             internal static FramebufferTexture3D glFramebufferTexture3D;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate void FramebufferRenderbuffer(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.RenderbufferTarget renderbuffertarget, UInt32 renderbuffer);
             internal static FramebufferRenderbuffer glFramebufferRenderbuffer;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal unsafe delegate void GetFramebufferAttachmentParameteriv(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.All pname, [Out] Int32* @params);
+            internal unsafe delegate void GetFramebufferAttachmentParameteriv(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, OpenTK.Graphics.FramebufferParameterName pname, [Out] Int32* @params);
             internal unsafe static GetFramebufferAttachmentParameteriv glGetFramebufferAttachmentParameteriv;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void GenerateMipmap(OpenTK.Graphics.All target);
-            internal static GenerateMipmap glGenerateMipmap;
+            internal delegate void Generate(OpenTK.Graphics.GenerateMipmapTarget target);
+            internal static Generate glGenerate;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void BlitFramebuffer(Int32 srcX0, Int32 srcY0, Int32 srcX1, Int32 srcY1, Int32 dstX0, Int32 dstY0, Int32 dstX1, Int32 dstY1, OpenTK.Graphics.ClearBufferMask mask, OpenTK.Graphics.All filter);
+            internal delegate void BlitFramebuffer(Int32 srcX0, Int32 srcY0, Int32 srcX1, Int32 srcY1, Int32 dstX0, Int32 dstY0, Int32 dstX1, Int32 dstY1, OpenTK.Graphics.ClearBufferMask mask, OpenTK.Graphics.BlitFramebufferFilter filter);
             internal static BlitFramebuffer glBlitFramebuffer;
             [System.Security.SuppressUnmanagedCodeSecurity()]
-            internal delegate void RenderbufferStorageMultisample(OpenTK.Graphics.All target, Int32 samples, OpenTK.Graphics.All internalformat, Int32 width, Int32 height);
+            internal delegate void RenderbufferStorageMultisample(OpenTK.Graphics.RenderbufferTarget target, Int32 samples, OpenTK.Graphics.RenderbufferStorage internalformat, Int32 width, Int32 height);
             internal static RenderbufferStorageMultisample glRenderbufferStorageMultisample;
             [System.Security.SuppressUnmanagedCodeSecurity()]
             internal delegate void FramebufferTextureLayer(OpenTK.Graphics.FramebufferTarget target, OpenTK.Graphics.FramebufferAttachment attachment, UInt32 texture, Int32 level, Int32 layer);
