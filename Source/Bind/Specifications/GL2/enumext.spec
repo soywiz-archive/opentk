@@ -703,28 +703,28 @@ passthru: /* Reuse tokens from ARB_texture_compression_rgtc */
 	use ARB_texture_compression_rgtc    COMPRESSED_RG_RGTC2
 	use ARB_texture_compression_rgtc    COMPRESSED_SIGNED_RG_RGTC2
 passthru: /* Reuse tokens from ARB_texture_rg */
-	use ARB_texture_rg		    RG
-	use ARB_texture_rg		    RG_INTEGER
-	use ARB_texture_rg		    R8
-	use ARB_texture_rg		    R16
-	use ARB_texture_rg		    RG8
-	use ARB_texture_rg		    RG16
-	use ARB_texture_rg		    R16F
-	use ARB_texture_rg		    R32F
-	use ARB_texture_rg		    RG16F
-	use ARB_texture_rg		    RG32F
-	use ARB_texture_rg		    R8I
-	use ARB_texture_rg		    R8UI
-	use ARB_texture_rg		    R16I
-	use ARB_texture_rg		    R16UI
-	use ARB_texture_rg		    R32I
-	use ARB_texture_rg		    R32UI
-	use ARB_texture_rg		    RG8I
-	use ARB_texture_rg		    RG8UI
-	use ARB_texture_rg		    RG16I
-	use ARB_texture_rg		    RG16UI
-	use ARB_texture_rg		    RG32I
-	use ARB_texture_rg		    RG32UI
+#	use ARB_texture_rg		    RG
+#	use ARB_texture_rg		    RG_INTEGER
+#	use ARB_texture_rg		    R8
+#	use ARB_texture_rg		    R16
+#	use ARB_texture_rg		    RG8
+#	use ARB_texture_rg		    RG16
+#	use ARB_texture_rg		    R16F
+#	use ARB_texture_rg		    R32F
+#	use ARB_texture_rg		    RG16F
+#	use ARB_texture_rg		    RG32F
+#	use ARB_texture_rg		    R8I
+#	use ARB_texture_rg		    R8UI
+#	use ARB_texture_rg		    R16I
+#	use ARB_texture_rg		    R16UI
+#	use ARB_texture_rg		    R32I
+#	use ARB_texture_rg		    R32UI
+#	use ARB_texture_rg		    RG8I
+#	use ARB_texture_rg		    RG8UI
+#	use ARB_texture_rg		    RG16I
+#	use ARB_texture_rg		    RG16UI
+#	use ARB_texture_rg		    RG32I
+#	use ARB_texture_rg		    RG32UI
 passthru: /* Reuse tokens from ARB_vertex_array_object */
 	use ARB_vertex_array_object	    VERTEX_ARRAY_BINDING
 
@@ -6019,3 +6019,34 @@ PixelFormat enum:
 	RGBA_INTEGER			= 0x8D99
 	BGR_INTEGER				= 0x8D9A
 	BGRA_INTEGER			= 0x8D9B
+	
+# Promoted from ARB_texture_rg
+PixelInternalFormat enum:
+	use ARB_texture_rg		    R8
+	use ARB_texture_rg		    R16
+	use ARB_texture_rg		    RG8
+	use ARB_texture_rg		    RG16
+	use ARB_texture_rg		    R16F
+	use ARB_texture_rg		    R32F
+	use ARB_texture_rg		    RG16F
+	use ARB_texture_rg		    RG32F
+	use ARB_texture_rg		    R8I
+	use ARB_texture_rg		    R8UI
+	use ARB_texture_rg		    R16I
+	use ARB_texture_rg		    R16UI
+	use ARB_texture_rg		    R32I
+	use ARB_texture_rg		    R32UI
+	use ARB_texture_rg		    RG8I
+	use ARB_texture_rg		    RG8UI
+	use ARB_texture_rg		    RG16I
+	use ARB_texture_rg		    RG16UI
+	use ARB_texture_rg		    RG32I
+	use ARB_texture_rg		    RG32UI
+
+PixelFormat enum:
+	use ARB_texture_rg		    RG
+	use ARB_texture_rg		    RG_INTEGER
+
+TextureParameterName enum:
+	RED = 0x1903
+
