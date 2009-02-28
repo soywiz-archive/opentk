@@ -977,6 +977,7 @@ namespace OpenTK.Graphics
         VertexAttribArrayBufferBinding = ((int)0X889f),
         PixelPackBufferBinding = ((int)0X88ed),
         PixelUnpackBufferBinding = ((int)0X88ef),
+        MaxArrayTextureLayers = ((int)0X88ff),
         ClampVertexColor = ((int)0X891a),
         ClampFragmentColor = ((int)0X891b),
         ClampReadColor = ((int)0X891c),
@@ -987,6 +988,8 @@ namespace OpenTK.Graphics
         MaxCombinedTextureImageUnits = ((int)0X8b4d),
         FragmentShaderDerivativeHint = ((int)0X8b8b),
         CurrentProgram = ((int)0X8b8d),
+        TextureBinding1DArray = ((int)0X8c1c),
+        TextureBinding2DArray = ((int)0X8c1d),
         StencilBackRef = ((int)0X8ca3),
         StencilBackValueMask = ((int)0X8ca4),
         StencilBackWritemask = ((int)0X8ca5),
@@ -1750,6 +1753,10 @@ namespace OpenTK.Graphics
         TextureCubeMapPositiveZ = ((int)0X8519),
         TextureCubeMapNegativeZ = ((int)0X851a),
         ProxyTextureCubeMap = ((int)0X851b),
+        Texture1DArray = ((int)0X8c18),
+        ProxyTexture1DArray = ((int)0X8c19),
+        Texture2DArray = ((int)0X8c1a),
+        ProxyTexture2DArray = ((int)0X8c1b),
     }
 
     public enum TextureWrapMode
@@ -6086,11 +6093,9 @@ namespace OpenTK.Graphics
         DepthStencil = ((int)0X84f9),
         UnsignedInt248 = ((int)0X84fa),
         VertexArrayBinding = ((int)0X85b5),
-        CompareRefToTexture = ((int)0X884e),
         Depth24Stencil8 = ((int)0X88f0),
         TextureStencilSize = ((int)0X88f1),
         VertexAttribArrayInteger = ((int)0X88fd),
-        MaxArrayTextureLayers = ((int)0X88ff),
         MinProgramTexelOffset = ((int)0X8904),
         MaxProgramTexelOffset = ((int)0X8905),
         MaxVaryingComponents = ((int)0X8b4b),
@@ -6102,12 +6107,6 @@ namespace OpenTK.Graphics
         TextureIntensityType = ((int)0X8c15),
         TextureDepthType = ((int)0X8c16),
         UnsignedNormalized = ((int)0X8c17),
-        Texture1DArray = ((int)0X8c18),
-        ProxyTexture1DArray = ((int)0X8c19),
-        Texture2DArray = ((int)0X8c1a),
-        ProxyTexture2DArray = ((int)0X8c1b),
-        TextureBinding1DArray = ((int)0X8c1c),
-        TextureBinding2DArray = ((int)0X8c1d),
         UnsignedInt5999Rev = ((int)0X8c3e),
         TextureSharedSize = ((int)0X8c3f),
         TransformFeedbackVaryingMaxLength = ((int)0X8c76),
@@ -6136,7 +6135,6 @@ namespace OpenTK.Graphics
         FramebufferAttachmentObjectName = ((int)0X8cd1),
         FramebufferAttachmentTextureLevel = ((int)0X8cd2),
         FramebufferAttachmentTextureCubeMapFace = ((int)0X8cd3),
-        FramebufferAttachmentTextureLayer = ((int)0X8cd4),
         FramebufferComplete = ((int)0X8cd5),
         FramebufferIncompleteAttachment = ((int)0X8cd6),
         FramebufferIncompleteMissingAttachment = ((int)0X8cd7),
@@ -6180,10 +6178,6 @@ namespace OpenTK.Graphics
         FramebufferIncompleteMultisample = ((int)0X8D56),
         MaxSamples = ((int)0X8D57),
         FramebufferSrgb = ((int)0X8Db9),
-        Sampler1DArray = ((int)0X8dc0),
-        Sampler2DArray = ((int)0X8dc1),
-        Sampler1DArrayShadow = ((int)0X8dc3),
-        Sampler2DArrayShadow = ((int)0X8dc4),
         SamplerCubeShadow = ((int)0X8dc5),
         UnsignedIntVec2 = ((int)0X8dc6),
         UnsignedIntVec3 = ((int)0X8dc7),
@@ -9196,6 +9190,7 @@ namespace OpenTK.Graphics
 
     public enum TextureCompareMode
     {
+        CompareRefToTexture = ((int)0X884e),
         CompareRToTexture = ((int)0X884e),
     }
 
@@ -9308,6 +9303,10 @@ namespace OpenTK.Graphics
         FloatMat3x4 = ((int)0X8b68),
         FloatMat4x2 = ((int)0X8b69),
         FloatMat4x3 = ((int)0X8b6a),
+        Sampler1DArray = ((int)0X8dc0),
+        Sampler2DArray = ((int)0X8dc1),
+        Sampler1DArrayShadow = ((int)0X8dc3),
+        Sampler2DArrayShadow = ((int)0X8dc4),
     }
 
     public enum ActiveAttribType
