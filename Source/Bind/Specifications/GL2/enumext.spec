@@ -507,8 +507,8 @@ VERSION_3_0 enum:
 	CONTEXT_FLAGS					= 0x821E
 	DEPTH_BUFFER					= 0x8223
 	STENCIL_BUFFER					= 0x8224
-	COMPRESSED_RED					= 0x8225
-	COMPRESSED_RG					= 0x8226
+#	COMPRESSED_RED					= 0x8225
+#	COMPRESSED_RG					= 0x8226
 	CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT		= 0x0001
 #	RGBA32F						= 0x8814
 #	RGB32F						= 0x8815
@@ -698,10 +698,10 @@ passthru: /* Reuse tokens from ARB_map_buffer_range */
 	use ARB_map_buffer_range	    MAP_FLUSH_EXPLICIT_BIT
 	use ARB_map_buffer_range	    MAP_UNSYNCHRONIZED_BIT
 passthru: /* Reuse tokens from ARB_texture_compression_rgtc */
-	use ARB_texture_compression_rgtc    COMPRESSED_RED_RGTC1
-	use ARB_texture_compression_rgtc    COMPRESSED_SIGNED_RED_RGTC1
-	use ARB_texture_compression_rgtc    COMPRESSED_RG_RGTC2
-	use ARB_texture_compression_rgtc    COMPRESSED_SIGNED_RG_RGTC2
+#	use ARB_texture_compression_rgtc    COMPRESSED_RED_RGTC1
+#	use ARB_texture_compression_rgtc    COMPRESSED_SIGNED_RED_RGTC1
+#	use ARB_texture_compression_rgtc    COMPRESSED_RG_RGTC2
+#	use ARB_texture_compression_rgtc    COMPRESSED_SIGNED_RG_RGTC2
 passthru: /* Reuse tokens from ARB_texture_rg */
 #	use ARB_texture_rg		    RG
 #	use ARB_texture_rg		    RG_INTEGER
@@ -6050,3 +6050,13 @@ PixelFormat enum:
 TextureParameterName enum:
 	RED = 0x1903
 
+# Promoted from ARB_texture_compression_rgtc
+PixelInternalFormat enum:
+	use ARB_texture_compression_rgtc    COMPRESSED_RED_RGTC1
+	use ARB_texture_compression_rgtc    COMPRESSED_SIGNED_RED_RGTC1
+	use ARB_texture_compression_rgtc    COMPRESSED_RG_RGTC2
+	use ARB_texture_compression_rgtc    COMPRESSED_SIGNED_RG_RGTC2
+	COMPRESSED_RED			= 0x8225
+	COMPRESSED_RG				= 0x8226
+
+# End
