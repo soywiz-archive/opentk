@@ -36,46 +36,46 @@ namespace OpenTK.Math
     {
         #region Fields
 
-		/// <summary>
-		/// Top row of the matrix
-		/// </summary>
-		public Vector4 Row0;
-		/// <summary>
-		/// 2nd row of the matrix
-		/// </summary>
-		public Vector4 Row1;
-		/// <summary>
-		/// 3rd row of the matrix
-		/// </summary>
-		public Vector4 Row2;
-		/// <summary>
-		/// Bottom row of the matrix
-		/// </summary>
-		public Vector4 Row3;
+        /// <summary>
+        /// Top row of the matrix
+        /// </summary>
+        public Vector4 Row0;
+        /// <summary>
+        /// 2nd row of the matrix
+        /// </summary>
+        public Vector4 Row1;
+        /// <summary>
+        /// 3rd row of the matrix
+        /// </summary>
+        public Vector4 Row2;
+        /// <summary>
+        /// Bottom row of the matrix
+        /// </summary>
+        public Vector4 Row3;
  
-		/// <summary>
-		/// The identity matrix
-		/// </summary>
-		public static Matrix4 Identity = new Matrix4(Vector4.UnitX, Vector4.UnitY, Vector4.UnitZ, Vector4.UnitW);
+        /// <summary>
+        /// The identity matrix
+        /// </summary>
+        public static Matrix4 Identity = new Matrix4(Vector4.UnitX, Vector4.UnitY, Vector4.UnitZ, Vector4.UnitW);
 
         #endregion
 
         #region Constructors
 
-		/// <summary>
-		/// Construct a new matrix from 4 vectors representing each row
-		/// </summary>
-		/// <param name="row0">Top row of the matrix</param>
-		/// <param name="row1">2nd row of the matrix</param>
-		/// <param name="row2">3rd row of the matrix</param>
-		/// <param name="row3">Bottom row of the matrix</param>
-		public Matrix4(Vector4 row0, Vector4 row1, Vector4 row2, Vector4 row3)
-		{
-			Row0 = row0;
-			Row1 = row1;
-			Row2 = row2;
-			Row3 = row3;
-		}
+        /// <summary>
+        /// Construct a new matrix from 4 vectors representing each row
+        /// </summary>
+        /// <param name="row0">Top row of the matrix</param>
+        /// <param name="row1">2nd row of the matrix</param>
+        /// <param name="row2">3rd row of the matrix</param>
+        /// <param name="row3">Bottom row of the matrix</param>
+        public Matrix4(Vector4 row0, Vector4 row1, Vector4 row2, Vector4 row3)
+        {
+            Row0 = row0;
+            Row1 = row1;
+            Row2 = row2;
+            Row3 = row3;
+        }
 
         #endregion
 
@@ -131,6 +131,23 @@ namespace OpenTK.Math
         {
             get { return new Vector4(Row0.W, Row1.W, Row2.W, Row3.W); }
         }
+
+        public float M11 { get { return Row0.X; } set { Row0.X = value; } }
+        public float M12 { get { return Row0.Y; } set { Row0.Y = value; } }
+        public float M13 { get { return Row0.Z; } set { Row0.Z = value; } }
+        public float M14 { get { return Row0.W; } set { Row0.W = value; } }
+        public float M21 { get { return Row1.X; } set { Row1.X = value; } }
+        public float M22 { get { return Row1.Y; } set { Row1.Y = value; } }
+        public float M23 { get { return Row1.Z; } set { Row1.Z = value; } }
+        public float M24 { get { return Row1.W; } set { Row1.W = value; } }
+        public float M31 { get { return Row2.X; } set { Row2.X = value; } }
+        public float M32 { get { return Row2.Y; } set { Row2.Y = value; } }
+        public float M33 { get { return Row2.Z; } set { Row2.Z = value; } }
+        public float M34 { get { return Row2.W; } set { Row2.W = value; } }
+        public float M41 { get { return Row3.X; } set { Row3.X = value; } }
+        public float M42 { get { return Row3.Y; } set { Row3.Y = value; } }
+        public float M43 { get { return Row3.Z; } set { Row3.Z = value; } }
+        public float M44 { get { return Row3.W; } set { Row3.W = value; } }
 
         #endregion
 
@@ -386,13 +403,50 @@ namespace OpenTK.Math
 
         #endregion
 
-        #region Multiply Functions
+        #region Add
 
         /// <summary>
-        /// Post multiply this matrix by another matrix
+        /// Adds the specified Matrix4 instances.
         /// </summary>
-        /// <param name="right">The matrix to multiply</param>
-        /// <returns>A new Matrix44 that is the result of the multiplication</returns>
+        /// <param name="left">The first instance to add.
+        /// A <see cref="Matrix4"/>
+        /// </param>
+        /// <param name="right">The second instance to add.
+        /// A <see cref="Matrix4"/>
+        /// </param>
+        /// <returns>A new instance containing the result of the addition.
+        /// A <see cref="Matrix4"/>
+        /// </returns>
+        public static Matrix4 Add(Matrix4 left, Matrix4 right)
+        {
+            Add(ref left, ref right, out left);
+            return left;
+        }
+
+        /// <summary>
+        /// Adds the specified Matrix4 instances.
+        /// </summary>
+        /// <param name="left">The first instance to add.
+        /// A <see cref="Matrix4"/>
+        /// </param>
+        /// <param name="right">The second instance to add.
+        /// A <see cref="Matrix4"/>
+        /// </param>
+        /// <param name="result">The result of the addition.
+        /// A <see cref="Matrix4"/>
+        /// </param>
+        public static void Add(ref Matrix4 left, ref Matrix4 right, out Matrix4 result)
+        {
+            result.Row0 = left.Row0 + right.Row0;
+            result.Row1 = left.Row1 + right.Row1;
+            result.Row2 = left.Row2 + right.Row2;
+            result.Row3 = left.Row3 + right.Row3;
+        }
+        
+        #endregion
+
+        #region Multiply Functions
+
         public static Matrix4 Mult(Matrix4 left, Matrix4 right)
         {
             Vector4 col0 = right.Column0;
@@ -407,6 +461,7 @@ namespace OpenTK.Math
             return left;
         }
 
+        
         public static void Mult(ref Matrix4 left, ref Matrix4 right, out Matrix4 result)
         {
             Vector4 col0 = right.Column0;
@@ -438,9 +493,9 @@ namespace OpenTK.Math
 
             // convert the matrix to an array for easy looping
             float[,] inverse = {{mat.Row0.X, mat.Row0.Y, mat.Row0.Z, mat.Row0.W}, 
-								{mat.Row1.X, mat.Row1.Y, mat.Row1.Z, mat.Row1.W}, 
-								{mat.Row2.X, mat.Row2.Y, mat.Row2.Z, mat.Row2.W}, 
-								{mat.Row3.X, mat.Row3.Y, mat.Row3.Z, mat.Row3.W} };
+                                {mat.Row1.X, mat.Row1.Y, mat.Row1.Z, mat.Row1.W}, 
+                                {mat.Row2.X, mat.Row2.Y, mat.Row2.Z, mat.Row2.W}, 
+                                {mat.Row3.X, mat.Row3.Y, mat.Row3.Z, mat.Row3.W} };
             int icol = 0;
             int irow = 0;
             for (int i = 0; i < 4; i++)
@@ -566,6 +621,25 @@ namespace OpenTK.Math
         #endregion
 
         #region Operators
+
+        /// <summary>
+        /// Adds the specified Matrix4 instances.
+        /// </summary>
+        /// <param name="left">The first instance to add.
+        /// A <see cref="Matrix4"/>
+        /// </param>
+        /// <param name="right">The second instance to add.
+        /// A <see cref="Matrix4"/>
+        /// </param>
+        /// <returns>A new instance containing the result of the addition.
+        /// A <see cref="Matrix4"/>
+        /// </returns>
+        public static Matrix4 operator +(Matrix4 left, Matrix4 right)
+        {
+            Matrix4 result;
+            Matrix4.Add(ref left, ref right, out result);
+            return result;
+        }
 
         /// <summary>
         /// Matrix multiplication

@@ -28,52 +28,61 @@ using System.Xml.Serialization;
 
 namespace OpenTK.Math
 {
-	/// <summary>
+    /// <summary>
     /// Represents a 3D vector using three single-precision floating-point numbers.
     /// </summary>
     /// <remarks>
     /// The Vector3 structure is suitable for interoperation with unmanaged code requiring three consecutive floats.
     /// </remarks>
     [Serializable]
-	[StructLayout(LayoutKind.Sequential)]
-	public struct Vector3 : IEquatable<Vector3>
-	{
-		#region Fields
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Vector3 : IEquatable<Vector3>
+    {
+        #region Fields
 
-		/// <summary>
-		/// The X component of the Vector3.
-		/// </summary>
-		public float X;
+        /// <summary>
+        /// The X component of the Vector3.
+        /// </summary>
+        public float X;
 
-		/// <summary>
-		/// The Y component of the Vector3.
-		/// </summary>
-		public float Y;
+        /// <summary>
+        /// The Y component of the Vector3.
+        /// </summary>
+        public float Y;
 
-		/// <summary>
-		/// The Z component of the Vector3.
-		/// </summary>
-		public float Z;
+        /// <summary>
+        /// The Z component of the Vector3.
+        /// </summary>
+        public float Z;
 
         #endregion
 
-		#region Constructors
-
-		/// <summary>
-		/// Constructs a new Vector3.
-		/// </summary>
-		/// <param name="x">The x component of the Vector3.</param>
-		/// <param name="y">The y component of the Vector3.</param>
-		/// <param name="z">The z component of the Vector3.</param>
-		public Vector3(float x, float y, float z)
-		{
-			X = x;
-			Y = y;
-			Z = z;
-		}
+        #region Constructors
 
         /// <summary>
-        /// Constructs a new Vector3 from the given Vector2.
+        /// Constructs a new Vector3 instance.
+        /// </summary>
+        /// <param name="x">The x component of the Vector3.</param>
+        /// <param name="y">The y component of the Vector3.</param>
+        /// <param name="z">The z component of the Vector3.</param>
+        public Vector3(float x, float y, float z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+
+        /// <summary>
+        /// Constructs a new Vector3 instance.
+        /// </summary>
+        /// <param name="value">The value to initialize the Vector3 with.</param>
+        public Vector3(float value)
+        {
+            X = Y = Z = value;
+        }
+        
+        /// <summary>
+        /// Constructs a new Vector3 instance from the specified Vector2 instance.
         /// </summary>
         /// <param name="v">The Vector2 to copy components from.</param>
         public Vector3(Vector2 v)
@@ -84,7 +93,7 @@ namespace OpenTK.Math
         }
 
         /// <summary>
-        /// Constructs a new Vector3 from the given Vector3.
+        /// Constructs a new Vector3 instance from the specified Vector3 instance.
         /// </summary>
         /// <param name="v">The Vector3 to copy components from.</param>
         public Vector3(Vector3 v)
@@ -95,7 +104,7 @@ namespace OpenTK.Math
         }
 
         /// <summary>
-        /// Constructs a new Vector3 from the given Vector4.
+        /// Constructs a new Vector3 instance from the specified Vector4 instance.
         /// </summary>
         /// <param name="v">The Vector4 to copy components from.</param>
         public Vector3(Vector4 v)
@@ -317,6 +326,36 @@ namespace OpenTK.Math
         #region Fields
 
         /// <summary>
+        /// Defines a unit-length Vector3 that points to the right.
+        /// </summary>
+        public static readonly Vector3 Right = new Vector3(1, 0, 0);
+
+        /// <summary>
+        /// Defines a unit-length Vector3 that points to the left.
+        /// </summary>
+        public static readonly Vector3 Left = new Vector3(-1, 0, 0);
+
+        /// <summary>
+        /// Defines a unit-length Vector3 that points up.
+        /// </summary>
+        public static readonly Vector3 Up = new Vector3(0, 1, 0);
+
+        /// <summary>
+        /// Defines a unit-length Vector3 that points down.
+        /// </summary>
+        public static readonly Vector3 Down = new Vector3(0, -1, 0);
+
+        /// <summary>
+        /// /// Defines a unit-length Vector3 that points forward.
+        /// </summary>
+        public static readonly Vector3 Forward = new Vector3(0, 0, -1);
+
+        /// <summary>
+        /// Defines a unit-length Vector3 that points backwards.
+        /// </summary>
+        public static readonly Vector3 Backward = new Vector3(0, 0, 1);
+        
+        /// <summary>
         /// Defines a unit-length Vector3 that points towards the X-axis.
         /// </summary>
         public static readonly Vector3 UnitX = new Vector3(1, 0, 0);
@@ -382,6 +421,7 @@ namespace OpenTK.Math
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <returns>Result of subtraction</returns>
+        [Obsolete("Use Subtract instead")]
         public static Vector3 Sub(Vector3 a, Vector3 b)
         {
             a.X -= b.X;
@@ -396,6 +436,7 @@ namespace OpenTK.Math
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <param name="result">Result of subtraction</param>
+        [Obsolete("Use Subtract instead")]
         public static void Sub(ref Vector3 a, ref Vector3 b, out Vector3 result)
         {
             result.X = a.X - b.X;
@@ -405,7 +446,38 @@ namespace OpenTK.Math
 
         #endregion
 
-        #region Mult
+        #region Subtract
+
+        /// <summary>
+        /// Subtract one Vector from another
+        /// </summary>
+        /// <param name="a">First operand</param>
+        /// <param name="b">Second operand</param>
+        /// <returns>Result of subtraction</returns>
+        public static Vector3 Subtract(Vector3 a, Vector3 b)
+        {
+            a.X -= b.X;
+            a.Y -= b.Y;
+            a.Z -= b.Z;
+            return a;
+        }
+
+        /// <summary>
+        /// Subtract one Vector from another
+        /// </summary>
+        /// <param name="a">First operand</param>
+        /// <param name="b">Second operand</param>
+        /// <param name="result">Result of subtraction</param>
+        public static void Subtract(ref Vector3 a, ref Vector3 b, out Vector3 result)
+        {
+            result.X = a.X - b.X;
+            result.Y = a.Y - b.Y;
+            result.Z = a.Z - b.Z;
+        }
+
+        #endregion
+
+        #region Multiply
 
         /// <summary>
         /// Multiply a vector and a scalar
@@ -413,6 +485,7 @@ namespace OpenTK.Math
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <returns>Result of the multiplication</returns>
+        [Obsolete("Use Multiply instead")]
         public static Vector3 Mult(Vector3 a, float f)
         {
             a.X *= f;
@@ -427,6 +500,7 @@ namespace OpenTK.Math
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <param name="result">Result of the multiplication</param>
+        [Obsolete("Use Multiply instead")]
         public static void Mult(ref Vector3 a, float f, out Vector3 result)
         {
             result.X = a.X * f;
@@ -434,6 +508,33 @@ namespace OpenTK.Math
             result.Z = a.Z * f;
         }
 
+        /// <summary>
+        /// Multiply a vector and a scalar
+        /// </summary>
+        /// <param name="a">Vector operand</param>
+        /// <param name="f">Scalar operand</param>
+        /// <returns>Result of the multiplication</returns>
+        public static Vector3 Multiply(Vector3 a, float f)
+        {
+            a.X *= f;
+            a.Y *= f;
+            a.Z *= f;
+            return a;
+        }
+
+        /// <summary>
+        /// Multiply a vector and a scalar
+        /// </summary>
+        /// <param name="a">Vector operand</param>
+        /// <param name="f">Scalar operand</param>
+        /// <param name="result">Result of the multiplication</param>
+        public static void Multiply(ref Vector3 a, float f, out Vector3 result)
+        {
+            result.X = a.X * f;
+            result.Y = a.Y * f;
+            result.Z = a.Z * f;
+        }
+        
         #endregion
 
         #region Div
@@ -469,7 +570,38 @@ namespace OpenTK.Math
 
         #endregion
 
-        #region ComponentMin
+        #region Distance
+        
+        public static float Distance(Vector3 vector1, Vector3 vector2)
+        {
+            float result;
+            DistanceSquared(ref vector1, ref vector2, out result);
+            return (float)System.Math.Sqrt(result);
+        }
+
+        public static void Distance(ref Vector3 vector1, ref Vector3 vector2, out float result)
+        {
+            DistanceSquared(ref vector1, ref vector2, out result);
+            result = (float)System.Math.Sqrt(result);
+        }
+
+        public static float DistanceSquared(Vector3 vector1, Vector3 vector2)
+        {
+            float result;
+            DistanceSquared(ref vector1, ref vector2, out result);
+            return result;
+        }
+
+        public static void DistanceSquared(ref Vector3 vector1, ref Vector3 vector2, out float result)
+        {
+            result = (vector1.X - vector2.X) * (vector1.X - vector2.X) +
+                     (vector1.Y - vector2.Y) * (vector1.Y - vector2.Y) +
+                     (vector1.Z - vector2.Z) * (vector1.Z - vector2.Z);
+        }
+
+        #endregion
+
+        #region Min
 
         /// <summary>
         /// Calculate the component-wise minimum of two vectors
@@ -477,7 +609,7 @@ namespace OpenTK.Math
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <returns>The component-wise minimum</returns>
-        public static Vector3 ComponentMin(Vector3 a, Vector3 b)
+        public static Vector3 Min(Vector3 a, Vector3 b)
         {
             a.X = a.X < b.X ? a.X : b.X;
             a.Y = a.Y < b.Y ? a.Y : b.Y;
@@ -491,7 +623,7 @@ namespace OpenTK.Math
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <param name="result">The component-wise minimum</param>
-        public static void ComponentMin(ref Vector3 a, ref Vector3 b, out Vector3 result)
+        public static void Min(ref Vector3 a, ref Vector3 b, out Vector3 result)
         {
             result.X = a.X < b.X ? a.X : b.X;
             result.Y = a.Y < b.Y ? a.Y : b.Y;
@@ -500,7 +632,7 @@ namespace OpenTK.Math
 
         #endregion
 
-        #region ComponentMax
+        #region Max
 
         /// <summary>
         /// Calculate the component-wise maximum of two vectors
@@ -508,7 +640,7 @@ namespace OpenTK.Math
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <returns>The component-wise maximum</returns>
-        public static Vector3 ComponentMax(Vector3 a, Vector3 b)
+        public static Vector3 Max(Vector3 a, Vector3 b)
         {
             a.X = a.X > b.X ? a.X : b.X;
             a.Y = a.Y > b.Y ? a.Y : b.Y;
@@ -522,7 +654,7 @@ namespace OpenTK.Math
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <param name="result">The component-wise maximum</param>
-        public static void ComponentMax(ref Vector3 a, ref Vector3 b, out Vector3 result)
+        public static void Max(ref Vector3 a, ref Vector3 b, out Vector3 result)
         {
             result.X = a.X > b.X ? a.X : b.X;
             result.Y = a.Y > b.Y ? a.Y : b.Y;
@@ -531,6 +663,7 @@ namespace OpenTK.Math
 
         #endregion
 
+/*
         #region Min
 
         /// <summary>
@@ -560,6 +693,7 @@ namespace OpenTK.Math
         }
 
         #endregion
+*/
 
         #region Clamp
 
@@ -1021,52 +1155,52 @@ namespace OpenTK.Math
 
         public static Vector3 operator +(Vector3 left, Vector3 right)
         {
-			left.X += right.X;
-			left.Y += right.Y;
-			left.Z += right.Z;
-			return left;
+            left.X += right.X;
+            left.Y += right.Y;
+            left.Z += right.Z;
+            return left;
         }
 
         public static Vector3 operator -(Vector3 left, Vector3 right)
         {
-			left.X -= right.X;
-			left.Y -= right.Y;
-			left.Z -= right.Z;
-			return left;
+            left.X -= right.X;
+            left.Y -= right.Y;
+            left.Z -= right.Z;
+            return left;
         }
 
-		public static Vector3 operator -(Vector3 vec)
-		{
-			vec.X = -vec.X;
-			vec.Y = -vec.Y;
-			vec.Z = -vec.Z;
-			return vec;
-		}
+        public static Vector3 operator -(Vector3 vec)
+        {
+            vec.X = -vec.X;
+            vec.Y = -vec.Y;
+            vec.Z = -vec.Z;
+            return vec;
+        }
 
-		public static Vector3 operator *(Vector3 vec, float f)
-		{
-			vec.X *= f;
-			vec.Y *= f;
-			vec.Z *= f;
-			return vec;
-		}
+        public static Vector3 operator *(Vector3 vec, float f)
+        {
+            vec.X *= f;
+            vec.Y *= f;
+            vec.Z *= f;
+            return vec;
+        }
 
-		public static Vector3 operator *(float f, Vector3 vec)
-		{
-			vec.X *= f;
-			vec.Y *= f;
-			vec.Z *= f;
-			return vec;
-		}
+        public static Vector3 operator *(float f, Vector3 vec)
+        {
+            vec.X *= f;
+            vec.Y *= f;
+            vec.Z *= f;
+            return vec;
+        }
 
-		public static Vector3 operator /(Vector3 vec, float f)
-		{
-			float mult = 1.0f / f;
-			vec.X *= mult;
-			vec.Y *= mult;
-			vec.Z *= mult;
-			return vec;
-		}
+        public static Vector3 operator /(Vector3 vec, float f)
+        {
+            float mult = 1.0f / f;
+            vec.X *= mult;
+            vec.Y *= mult;
+            vec.Z *= mult;
+            return vec;
+        }
 
         public static bool operator ==(Vector3 left, Vector3 right)
         {
@@ -1085,15 +1219,15 @@ namespace OpenTK.Math
         #region public override string ToString()
 
         /// <summary>
-		/// Returns a System.String that represents the current Vector3.
-		/// </summary>
-		/// <returns></returns>
-		public override string ToString()
+        /// Returns a System.String that represents the current Vector3.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
         {
             return String.Format("({0}, {1}, {2})", X, Y, Z);
-		}
+        }
 
-		#endregion
+        #endregion
 
         #region public override int GetHashCode()
 
