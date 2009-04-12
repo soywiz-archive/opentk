@@ -22,7 +22,7 @@ namespace Examples.Tutorial
     /// Demonstrates the GameWindow class.
     /// </summary>
     [Example("Simple Window", ExampleCategory.Tutorial, 1)]
-    public class T01_Simple_Window : GameWindow
+    public class T01_Simple_Window : GameWindow2
     {
         public T01_Simple_Window() : base(800, 600)
         {
@@ -51,12 +51,8 @@ namespace Examples.Tutorial
         #endregion
 
         #region OnLoad
-
-        /// <summary>
-        /// Setup OpenGL and load resources here.
-        /// </summary>
-        /// <param name="e">Not used.</param>
-        public override void OnLoad(EventArgs e)
+        
+        protected override void OnLoad(EventArgs e)
         {
             GL.ClearColor(Color.MidnightBlue);
         }
@@ -85,12 +81,7 @@ namespace Examples.Tutorial
 
         #region OnUpdateFrame
 
-        /// <summary>
-        /// Add your game logic here.
-        /// </summary>
-        /// <param name="e">Contains timing information.</param>
-        /// <remarks>There is no need to call the base implementation.</remarks>
-        public override void OnUpdateFrame(UpdateFrameEventArgs e)
+        protected override void OnUpdateFrame(FrameEventArgs e)
         {
             // Nothing to do!
         }
@@ -104,7 +95,7 @@ namespace Examples.Tutorial
         /// </summary>
         /// <param name="e">Contains timing information.</param>
         /// <remarks>There is no need to call the base implementation.</remarks>
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 

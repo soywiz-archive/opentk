@@ -658,8 +658,7 @@ namespace OpenTK
 
             if (MustResize)
             {
-                resizeEventArgs.Width = glWindow.Width;
-                resizeEventArgs.Height = glWindow.Height;
+                resizeEventArgs.Size = new System.Drawing.Size(glWindow.Width, glWindow.Height);
                 OnResizeInternal(resizeEventArgs);
             }
         }
@@ -755,8 +754,8 @@ namespace OpenTK
             Debug.Print("Firing internal load event.");
             if (MustResize)
             {
-                resizeEventArgs.Width = glWindow.Width;
-                resizeEventArgs.Height = glWindow.Height;
+                resizeEventArgs.Size = new System.Drawing.Size(glWindow.Width, glWindow.Height);
+                resizeEventArgs.Viewport = new System.Drawing.Rectangle(System.Drawing.Point.Empty, resizeEventArgs.Size);
                 OnResizeInternal(resizeEventArgs);
             }
 
@@ -1537,6 +1536,8 @@ Alternatively, you can disable the ""Just my code"" debugging mode (""Tools->Opt
     [Flags]
     public enum GameWindowFlags
     {
+        /// <summary>Specifies the default GameWindow flags.</summary>
+        Default = 0,
         /// <summary>Indicates that the GameWindow should cover the whole screen.</summary>
         Fullscreen = 1,
     }

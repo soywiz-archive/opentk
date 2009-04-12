@@ -36,6 +36,11 @@ using OpenTK.Input;
             return new WinGraphicsMode();
         }
 
+        public OpenTK.Input.IInputDriver CreateInputDriver()
+        {
+            return new WinAsyncInput();
+        }
+
         #endregion
     }
 }

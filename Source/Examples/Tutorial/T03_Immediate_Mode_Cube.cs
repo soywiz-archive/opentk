@@ -10,13 +10,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Threading;
 using System.Drawing;
 
 using OpenTK;
 using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
 
 #endregion
 
@@ -26,30 +24,45 @@ namespace Examples.Tutorial
     /// Demonstrates immediate mode rendering. Example is incomplete, and will probably go away in the future.
     /// </summary>
     [Example("Immediate mode", ExampleCategory.Tutorial, 2)]
-    public class T03_Immediate_Mode_Cube : GameWindow
+    public class T03_Immediate_Mode_Cube : GameWindow2
     {
         #region --- Fields ---
 
-        float rotation_speed = 3.0f;
+        readonly float RotationSpeed = 90.0f;   // degrees per second
         float angle;
 
         #endregion
 
         #region --- Constructor ---
 
-        public T03_Immediate_Mode_Cube() : base(800, 600, new GraphicsMode(16, 16))
+        public T03_Immediate_Mode_Cube() : base(800, 600)
 		{ } 
 
 		#endregion	
 		
         #region OnLoad
 
-        public override void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(e);
-
             GL.ClearColor(Color.MidnightBlue);
             GL.Enable(EnableCap.DepthTest);
+
+            Keyboard.KeyUp += delegate(OpenTK.Input.KeyboardDevice sender, OpenTK.Input.Key key)
+            {
+                switch (key)
+                {
+                    case OpenTK.Input.Key.Escape:
+                        this.Exit();
+                        break;
+
+                    case OpenTK.Input.Key.F11:
+                        if (WindowState == WindowState.Fullscreen)
+                            WindowState = WindowState.Normal;
+                        else
+                            WindowState = WindowState.Fullscreen;
+                        break;
+                }
+            };
         }
 
         #endregion
@@ -78,32 +91,12 @@ namespace Examples.Tutorial
 
         #endregion
 
-        #region OnUpdateFrame
-
-        /// <summary>
-        /// Prepares the next frame for rendering.
-        /// </summary>
-        /// <remarks>
-        /// Place your control logic here. This is the place to respond to user input,
-        /// update object positions etc.
-        /// </remarks>
-        public override void OnUpdateFrame(UpdateFrameEventArgs e)
-        {
-            if (Keyboard[OpenTK.Input.Key.Escape])
-            {
-                this.Exit();
-                return;
-            }
-        }
-
-        #endregion
-
         #region OnRenderFrame
 
         /// <summary>
         /// Place your rendering code here.
         /// </summary>
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
@@ -112,8 +105,8 @@ namespace Examples.Tutorial
             Glu.LookAt(0.0, 5.0, 5.0,
                        0.0, 0.0, 0.0,
                        0.0, 1.0, 0.0);
-            
-            angle += rotation_speed * (float)e.ScaleFactor;
+
+            angle += (float)(RotationSpeed * e.Time);
             GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
 
             DrawCube();
@@ -184,7 +177,7 @@ namespace Examples.Tutorial
                 // Get the title and category  of this example using reflection.
                 ExampleAttribute info = ((ExampleAttribute)example.GetType().GetCustomAttributes(false)[0]);
                 example.Title = String.Format("OpenTK | {0} {1}: {2}", info.Category, info.Difficulty, info.Title);
-                example.Run(30.0, 0.0);
+                example.Run();
             }
         }
 

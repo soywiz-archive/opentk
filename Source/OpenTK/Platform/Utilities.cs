@@ -158,7 +158,7 @@ namespace OpenTK.Platform
 
             Delegate old = f.GetValue(null) as Delegate;
             Delegate @new = LoadDelegate(f.Name, f.FieldType);
-            if (old.Target != @new.Target)
+            if (!(old == null && @new == null) && (old.Target != @new.Target))
             {
                 f.SetValue(null, @new);
                 FieldInfo rebuildExtensionList = type.GetField("rebuildExtensionList", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);

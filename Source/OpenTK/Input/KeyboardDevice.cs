@@ -1,7 +1,28 @@
-﻿#region --- License ---
-/* Copyright (c) 2007 Stefanos Apostolopoulos
- * See license.txt for license info
- */
+﻿#region License
+//
+// The Open Toolkit Library License
+//
+// Copyright (c) 2006 - 2009 the Open Toolkit library.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights to 
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+// the Software, and to permit persons to whom the Software is furnished to do
+// so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+// OTHER DEALINGS IN THE SOFTWARE.
+//
 #endregion
 
 #region --- Using directives ---
@@ -21,11 +42,13 @@ namespace OpenTK.Input
     public sealed class KeyboardDevice : IInputDevice
     {
         //private IKeyboard keyboard;
-        private bool[] keys = new bool[(int)Key.MaxKeys];
+        private bool[] keys = new bool[Enum.GetValues(typeof(Key)).Length];
         private string description;
         private int numKeys, numFKeys, numLeds;
         private IntPtr devID;
         private bool repeat;
+
+        static readonly int KeyCount = Enum.GetValues(typeof(Key)).Length;
 
         #region --- Constructors ---
 
@@ -183,7 +206,7 @@ namespace OpenTK.Input
 
         internal void ClearKeys()
         {
-            for (int i = 0; i < (int)Key.MaxKeys; i++)
+            for (int i = 0; i < KeyCount; i++)
                 if (this[(Key)i])       // Make sure KeyUp events are *not* raised for keys that are up, even if key repeat is on.
                     this[(Key)i] = false;
         }
@@ -334,7 +357,7 @@ namespace OpenTK.Input
         Slash,
         BackSlash,
 
-        MaxKeys
+        Unknown
     }
 
     #endregion

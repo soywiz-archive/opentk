@@ -35,6 +35,11 @@ namespace OpenTK.Platform.MacOS
             return new MacOSGraphicsMode();
         }
 
+        public OpenTK.Input.IInputDriver CreateInputDriver()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

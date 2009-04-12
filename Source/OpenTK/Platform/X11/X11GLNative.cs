@@ -343,8 +343,8 @@ namespace OpenTK.Platform.X11
                         {
                             Debug.WriteLine(String.Format("ConfigureNotify: {0}x{1}", e.ConfigureEvent.width, e.ConfigureEvent.height));
 
-                            resizeEventArgs.Width = e.ConfigureEvent.width;
-                            resizeEventArgs.Height = e.ConfigureEvent.height;
+                            resizeEventArgs.Size = new System.Drawing.Size(e.ConfigureEvent.width, e.ConfigureEvent.height);
+                            resizeEventArgs.Viewport = new System.Drawing.Rectangle(System.Drawing.Point.Empty, resizeEventArgs.Size);
                             this.OnResize(resizeEventArgs);
                         }
                         break;

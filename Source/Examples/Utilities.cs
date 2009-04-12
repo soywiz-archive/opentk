@@ -29,6 +29,12 @@ namespace Examples
             return (int)((c.A << 24) | (c.B << 16) | (c.G << 8) | c.R);
         }
 
+        public static void SetWindowTitle(OpenTK.Platform.INativeWindow window)
+        {
+            ExampleAttribute info = GetExampleAttribute(window.GetType());
+            window.Title = String.Format("OpenTK | {0} {1}: {2}", info.Category, info.Difficulty, info.Title);
+        }
+
         public static void SetWindowTitle(GameWindow window)
         {
             ExampleAttribute info = GetExampleAttribute(window.GetType());
