@@ -4,9 +4,23 @@ using System.Text;
 
 namespace OpenTK.Compute
 {
-    public struct DeviceId
+    public struct DeviceId : IEquatable<DeviceId>
     {
-        IntPtr handle;
+        readonly IntPtr Handle;
+
+        internal DeviceId(IntPtr handle)
+        {
+            Handle = handle;
+        }
+
+        #region IEquatable<DeviceId> Members
+
+        public bool Equals(DeviceId instance)
+        {
+            return Handle == instance.Handle;
+        }
+        
+        #endregion
     }
 
     public struct Context
