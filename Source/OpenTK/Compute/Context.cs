@@ -48,5 +48,39 @@ namespace OpenTK.Compute
             //    *err = error;
             //}
         }
+
+        static class UnsafeNativeMethods
+        {
+//            typedef void (*logging_fn)(const char *, const void *, size_t, const void *);
+//  
+//            extern CL_API_ENTRY cl_context CL_API_CALL
+//            clCreateContext(cl_context_properties * /* properties */,
+//                            cl_uint                 /* num_devices */,
+//                            const cl_device_id *    /* devices */,
+//                            logging_fn              /* pfn_notify */,
+//                            void *                  /* user_data */,
+//                            cl_int *                /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
+//            
+//            extern CL_API_ENTRY cl_context CL_API_CALL
+//            clCreateContextFromType(cl_context_properties * /* properties */,
+//                                    cl_device_type          /* device_type */,
+//                                    logging_fn              /* pfn_notify */,
+//                                    void *                  /* user_data */,
+//                                    cl_int *                /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
+//            
+//            extern CL_API_ENTRY cl_int CL_API_CALL
+//            clRetainContext(cl_context /* context */) CL_API_SUFFIX__VERSION_1_0;
+//            
+//            extern CL_API_ENTRY cl_int CL_API_CALL
+//            clReleaseContext(cl_context /* context */) CL_API_SUFFIX__VERSION_1_0;
+//            
+//            extern CL_API_ENTRY cl_int CL_API_CALL
+//            clGetContextInfo(cl_context         /* context */, 
+//                             cl_context_info    /* param_name */, 
+//                             size_t             /* param_value_size */, 
+//                             void *             /* param_value */, 
+//                             size_t *           /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
+
+        }
     }
 }

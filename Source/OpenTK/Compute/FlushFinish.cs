@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -26,67 +26,20 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenTK.Compute
 {
-    public struct DeviceId : IEquatable<DeviceId>
+    public sealed class FlushFinish
     {
-        readonly IntPtr Handle;
-
-        internal DeviceId(IntPtr handle)
-        {
-            Handle = handle;
-        }
-
-        #region IEquatable<DeviceId> Members
-
-        public bool Equals(DeviceId instance)
-        {
-            return Handle == instance.Handle;
-        }
         
-        #endregion
-    }
+        static class UnsafeNativeMethods
+        {
+//            extern CL_API_ENTRY cl_int CL_API_CALL
+//clFlush(cl_command_queue /* command_queue */) CL_API_SUFFIX__VERSION_1_0;
+//
+//extern CL_API_ENTRY cl_int CL_API_CALL
+//clFinish(cl_command_queue /* command_queue */) CL_API_SUFFIX__VERSION_1_0;
 
-    public struct ContextId
-    {
-        IntPtr handle;
-    }
-
-    public struct ContextProperty
-    {
-        IntPtr property;
-    }
-
-    public struct CommandQueueId
-    {
-        IntPtr handle;
-    }
-
-    public struct MemoryId
-    {
-        IntPtr handle;
-    }
-
-    public struct ProgramId
-    {
-        IntPtr handle;
-    }
-
-    public struct KernelId
-    {
-        IntPtr handle;
-    }
-
-    public struct EventId
-    {
-        IntPtr handle;
-    }
-
-    public struct SamplerId
-    {
-        IntPtr handle;
+        }
     }
 }

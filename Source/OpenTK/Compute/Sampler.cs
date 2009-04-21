@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -26,67 +26,32 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenTK.Compute
 {
-    public struct DeviceId : IEquatable<DeviceId>
+    public sealed class Sampler
     {
-        readonly IntPtr Handle;
-
-        internal DeviceId(IntPtr handle)
+        static class UnsafeNativeMethods
         {
-            Handle = handle;
+//            extern CL_API_ENTRY cl_sampler CL_API_CALL
+//clCreateSampler(cl_context          /* context */,
+//                cl_bool             /* normalized_coords */, 
+//                cl_addressing_mode  /* addressing_mode */, 
+//                cl_filter_mode      /* filter_mode */,
+//                cl_int *            /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
+//
+//extern CL_API_ENTRY cl_int CL_API_CALL
+//clRetainSampler(cl_sampler /* sampler */) CL_API_SUFFIX__VERSION_1_0;
+//
+//extern CL_API_ENTRY cl_int CL_API_CALL
+//clReleaseSampler(cl_sampler /* sampler */) CL_API_SUFFIX__VERSION_1_0;
+//
+//extern CL_API_ENTRY cl_int CL_API_CALL
+//clGetSamplerInfo(cl_sampler         /* sampler */,
+//                 cl_sampler_info    /* param_name */,
+//                 size_t             /* param_value_size */,
+//                 void *             /* param_value */,
+//                 size_t *           /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
         }
-
-        #region IEquatable<DeviceId> Members
-
-        public bool Equals(DeviceId instance)
-        {
-            return Handle == instance.Handle;
-        }
-        
-        #endregion
-    }
-
-    public struct ContextId
-    {
-        IntPtr handle;
-    }
-
-    public struct ContextProperty
-    {
-        IntPtr property;
-    }
-
-    public struct CommandQueueId
-    {
-        IntPtr handle;
-    }
-
-    public struct MemoryId
-    {
-        IntPtr handle;
-    }
-
-    public struct ProgramId
-    {
-        IntPtr handle;
-    }
-
-    public struct KernelId
-    {
-        IntPtr handle;
-    }
-
-    public struct EventId
-    {
-        IntPtr handle;
-    }
-
-    public struct SamplerId
-    {
-        IntPtr handle;
     }
 }
