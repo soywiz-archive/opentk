@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -27,66 +27,26 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OpenTK.Compute
 {
-    public struct DeviceId : IEquatable<DeviceId>
+    public sealed class Context
     {
-        readonly IntPtr Handle;
-
-        internal DeviceId(IntPtr handle)
+        public Context(IEnumerable<Device> devices,
+            ref ContextProperty properties,
+            object data,
+            out ErrorCode error)
         {
-            Handle = handle;
+            error = ErrorCode.Success;
+            //object_ = ::clCreateContext(
+            //    properties, (cl_uint) devices.size(),
+            //    (cl_device_id*) &devices.front(),
+            //    notifyFptr, data, &error);
+    
+            //detail::errHandler(error, __CREATE_CONTEXT_FROM_TYPE_ERR);
+            //if (err != NULL) {
+            //    *err = error;
+            //}
         }
-
-        #region IEquatable<DeviceId> Members
-
-        public bool Equals(DeviceId instance)
-        {
-            return Handle == instance.Handle;
-        }
-        
-        #endregion
-    }
-
-    public struct ContextId
-    {
-        IntPtr handle;
-    }
-
-    public struct ContextProperty
-    {
-        IntPtr property;
-    }
-
-    public struct CommandQueue
-    {
-        IntPtr handle;
-    }
-
-    public struct Memory
-    {
-        IntPtr handle;
-    }
-
-    public struct Program
-    {
-        IntPtr handle;
-    }
-
-    public struct Kernel
-    {
-        IntPtr handle;
-    }
-
-    public struct Event
-    {
-        IntPtr handle;
-    }
-
-    public struct Sampler
-    {
-        IntPtr handle;
     }
 }
