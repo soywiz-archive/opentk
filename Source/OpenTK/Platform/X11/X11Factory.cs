@@ -64,7 +64,7 @@ namespace OpenTK.Platform.X11
 
         public OpenTK.Input.IInputDriver CreateInputDriver()
         {
-            throw new NotImplementedException();
+            return new X11InputAsync();
         }
 
         #endregion
