@@ -61,11 +61,11 @@ namespace OpenTK.Platform.X11
             dummy_mice_list.Add(mouse);
 
             // Init keyboard
-            API.DisplayKeycodes(window.Display, ref firstKeyCode, ref lastKeyCode);
+            API.DisplayKeycodes(window.Display, out firstKeyCode, out lastKeyCode);
             Debug.Print("First keycode: {0}, last {1}", firstKeyCode, lastKeyCode);
 
             IntPtr keysym_ptr = API.GetKeyboardMapping(window.Display, (byte)firstKeyCode,
-                lastKeyCode - firstKeyCode + 1, ref keysyms_per_keycode);
+                lastKeyCode - firstKeyCode + 1, out keysyms_per_keycode);
             Debug.Print("{0} keysyms per keycode.", keysyms_per_keycode);
 
             keysyms = new IntPtr[(lastKeyCode - firstKeyCode + 1) * keysyms_per_keycode];

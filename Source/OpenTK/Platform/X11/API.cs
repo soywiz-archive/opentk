@@ -297,7 +297,7 @@ namespace OpenTK.Platform.X11
         /// </remarks>
         [DllImport(_dll_name, EntryPoint = "XGetKeyboardMapping")]
         public static extern KeySym GetKeyboardMapping(Display display, KeyCode first_keycode, int keycode_count,
-            ref int keysyms_per_keycode_return);
+            out int keysyms_per_keycode_return);
 
         /// <summary>
         /// The XDisplayKeycodes() function returns the min-keycodes and max-keycodes supported by the specified display.
@@ -307,7 +307,8 @@ namespace OpenTK.Platform.X11
         /// <param name="max_keycodes_return">Returns the maximum number of KeyCodes.</param>
         /// <remarks> The minimum number of KeyCodes returned is never less than 8, and the maximum number of KeyCodes returned is never greater than 255. Not all KeyCodes in this range are required to have corresponding keys.</remarks>
         [DllImport(_dll_name, EntryPoint = "XDisplayKeycodes")]
-        public static extern void DisplayKeycodes(Display display, ref int min_keycodes_return, ref int max_keycodes_return);
+        public static extern void DisplayKeycodes(Display display, out int min_keycodes_return,
+            out int max_keycodes_return);
 
         #endregion
 
