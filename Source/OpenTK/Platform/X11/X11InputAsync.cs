@@ -27,6 +27,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using OpenTK.Input;
 
 namespace OpenTK.Platform.X11
@@ -39,8 +41,12 @@ namespace OpenTK.Platform.X11
         readonly IList<MouseDevice> mouse_list;
         readonly X11Joystick joystick_driver = new X11Joystick();
 
-        readonly byte[] key_states = new byte[256];
+        // Bitfield of key states (see http://tronche.com/gui/x/xlib/input/XQueryKeymap.html)
+        readonly byte[] key_states = new byte[32];
         readonly X11KeyMap key_map = new X11KeyMap();
+
+        readonly Dictionary<XKey, byte> symbol_map;
+        readonly XKey[] reverse_symbol_map;
 
         bool disposed;
 
@@ -61,15 +67,73 @@ namespace OpenTK.Platform.X11
             List<MouseDevice> mlist = new List<MouseDevice>();
             mlist.Add(mouse);
             mouse_list = mlist.AsReadOnly();
+
+            GetKeyboardMap(out symbol_map, out reverse_symbol_map);
         }
 
+        #endregion
+
+        #region Private Members
+
+        static void GetKeyboardMap(out Dictionary<XKey, byte> symbolMap, out XKey[] revSymbolMap)
+        {
+            int minkey, maxkey;
+            API.DisplayKeycodes(API.DefaultDisplay, out minkey, out maxkey);
+            
+            int keysyms_per_keycode;
+            int count = maxkey - minkey + 1;
+            IntPtr kmap_ptr = API.GetKeyboardMapping(API.DefaultDisplay, (byte)minkey, count, out keysyms_per_keycode);
+            int[] kmap = new int[keysyms_per_keycode * count];
+            Marshal.Copy(kmap_ptr, kmap, 0, count * keysyms_per_keycode); 
+            Functions.XFree(kmap_ptr);
+            
+            symbolMap = new Dictionary<XKey, byte>();
+            revSymbolMap = new XKey[256];
+
+            for (int i = 0; i < count * keysyms_per_keycode; i++)
+            {
+                byte keyCode = (byte)(i / keysyms_per_keycode + minkey);
+                int keySym = kmap[i];
+                if(keySym == 0)
+                    continue;
+                if ((System.Enum.IsDefined(typeof(XKey), keySym)))
+                {
+                    XKey symbol = (XKey)keySym;
+                    if (!symbolMap.ContainsKey(symbol))
+                        symbolMap[symbol] = keyCode;
+                if (revSymbolMap[keyCode] == 0)
+                   revSymbolMap[keyCode] = symbol;
+                }
+            }
+            
+            foreach(XKey sym in Enum.GetValues(typeof(XKey)))
+                if (!symbolMap.ContainsKey(sym))
+                    symbolMap[sym] = 0;
+        }
+
+                
         #endregion
         
         #region IInputDriver Members
 
         public void Poll()
         {
+            joystick_driver.Poll();
 
+            Functions.XQueryKeymap(API.DefaultDisplay, key_states);
+            foreach (XKey key in Enum.GetValues(typeof(XKey)))
+            {
+                if (!key_map.ContainsKey(key))
+                    continue;
+
+                byte code = symbol_map[key];
+                Key opentk_key = key_map[key];
+
+                // Each key code is a *bit* offset in the key_states array.
+                // First we take the byte that contains the desired bit (byte = key_states[code >> 3])
+                // Then we isolated the desired bit by and-ing with the desired offset (byte & (1 << (code % 8))
+                Keyboard[0][opentk_key] = (key_states[(code >> 3)] & (1 << (code % 8))) != 0;
+            }
         }
 
         #endregion
