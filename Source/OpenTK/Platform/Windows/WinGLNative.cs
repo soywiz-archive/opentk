@@ -48,11 +48,7 @@ namespace OpenTK.Platform.Windows
         private Size window_size = new Size();
         //private Rectangle borders = new Rectangle();
 
-        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
-
-        /// <summary>
-        /// For use in PeekMessage.
-        /// </summary>
+        // For use in PeekMessage.
         private MSG myGoodMsg = new MSG();
 
         private int left_border, right_border, top_border, bottom_border;

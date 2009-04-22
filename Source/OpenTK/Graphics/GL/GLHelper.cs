@@ -333,14 +333,14 @@ namespace OpenTK.Graphics
 
         #endregion
 
-        #region static bool SupportsFunction(MethodInfo function)
+        #region public static bool SupportsFunction(MethodInfo function)
 
         /// <summary>
         /// Checks if a given OpenGL function is supported by the current context.
         /// </summary>
         /// <param name="function">The System.Reflection.MethodInfo for the OpenGL function.</param>
         /// <returns>True if the function is supported, false otherwise.</returns>
-        static bool SupportsFunction(MethodInfo function)
+        public static bool SupportsFunction(MethodInfo function)
         {
             if (function == null)
                 throw new ArgumentNullException("function");

@@ -385,8 +385,8 @@ namespace OpenTK.Audio
 
         #region GenSources()
 
-        [DllImport(AL.Lib, EntryPoint = "alGenSources", ExactSpelling = true, CallingConvention = AL.Style), SuppressUnmanagedCodeSecurity()]
-        unsafe private static extern void GenSourcesPrivate(int n, [Out] uint* sources);
+        //[DllImport(AL.Lib, EntryPoint = "alGenSources", ExactSpelling = true, CallingConvention = AL.Style), SuppressUnmanagedCodeSecurity()]
+        //unsafe private static extern void GenSources(int n, [Out] uint* sources);
         // AL_API void AL_APIENTRY alGenSources( ALsizei n, ALuint* Sources );
 
         /// <summary>This function generates one or more sources. References to sources are uint values, which are used wherever a source reference is needed (in calls such as AL.DeleteSources and AL.Source with parameter ALSourcei).</summary>

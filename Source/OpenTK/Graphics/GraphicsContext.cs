@@ -347,10 +347,6 @@ namespace OpenTK.Graphics
             {
                 available_contexts.Add((this as IGraphicsContextInternal).Context, new WeakReference(this));
             }
-
-            //OpenTK.Graphics.OpenGL.GL.Clear(OpenTK.Graphics.OpenGL.ClearBufferMask.ColorBufferBit);
-            //if (StaticGetCurrentContext == null)
-            //    StaticGetCurrentContext = implementation.GetCurrentContext;
         }
 
         /// <summary>
