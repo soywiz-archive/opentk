@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using OpenTK.Graphics;
 
@@ -49,6 +50,8 @@ namespace OpenTK.Platform
         EventHandler<EventArgs> event_idle = delegate(object sender, EventArgs e) { };
 
         ResizeEventArgs resize_args = new ResizeEventArgs();
+
+        int owning_thread_id;
 
         bool exiting, disposed;
 
@@ -255,6 +258,12 @@ namespace OpenTK.Platform
             }
         }
 
+        bool INativeWindow.Visible
+        {
+            get { return this.Visible; }
+            set { this.Visible = value; }
+        }
+
         #endregion
 
         #region Context
@@ -270,22 +279,24 @@ namespace OpenTK.Platform
             set { SetClientSizeCore(value.Width, value.Height); }
         }
 
-        #endregion
-
-        #region Methods
-
         void INativeWindow.Run()
         {
+            if (Application.MessageLoop)
+                throw new InvalidOperationException("A message loop already exists in the calling thread.");
+
+            owning_thread_id = Thread.CurrentThread.ManagedThreadId;
+            
             Application.Idle += delegate(object sender, EventArgs e)
             {
+                if (Thread.CurrentThread.ManagedThreadId != owning_thread_id)
+                    return;
+
                 while (IsIdle && !exiting)
                     event_idle(this, EventArgs.Empty);
             };
 
-            //if (!Application.MessageLoop)
-            //    Application.Run(this);
-            //else
-            ShowDialog();
+            
+            Application.Run(this);
         }
 
         void INativeWindow.Close()
@@ -402,6 +413,8 @@ namespace OpenTK.Platform
         {
             IntPtr handle;
 
+            public event EventHandler<EventArgs> Idle = delegate { };
+
             public EventFilter(IntPtr handle)
             {
                 this.handle = handle;
@@ -433,6 +446,11 @@ namespace OpenTK.Platform
                     case WM_XBUTTONDOWN:
                     case WM_XBUTTONUP:
                         return true;
+
+                    //case WM_ENTERIDLE:
+                    //    Idle(this, EventArgs.Empty);
+                    //    return false;
+                    
                     default: return false;
                 }
             }
@@ -441,6 +459,7 @@ namespace OpenTK.Platform
             const int WM_KEYUP = 0x0101;
             const int WM_SYSKEYDOWN = 0x0104;
             const int WM_SYSKEYUP = 0x0105;
+            const int WM_ENTERIDLE = 0x0121;
             const int WM_MOUSEMOVE = 0x0200;
             const int WM_LBUTTONDOWN = 0x0201;
             const int WM_LBUTTONUP = 0x0202;

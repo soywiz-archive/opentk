@@ -31,9 +31,12 @@ using System.Text;
 
 namespace OpenTK
 {
-    interface IGameWindow2
+    public interface IGameWindow2 : Platform.INativeWindow
     {
         event EventHandler<FrameEventArgs> UpdateFrame;
         event EventHandler<FrameEventArgs> RenderFrame;
+
+        VSyncMode VSync { get; set; }
+        void SwapBuffers();
     }
 }

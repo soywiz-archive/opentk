@@ -55,9 +55,11 @@ namespace OpenTK.Platform
         Icon Icon { get; set; }
         WindowBorder WindowBorder { get; set; }
         WindowState WindowState { get; set; }
+        bool Visible { get; set; }
 
+        // Todo: Separate the IGraphicsContext from the INativeWindow.
         IGraphicsContext Context { get; }
-
+        
         void Run();
         void Close();
     }

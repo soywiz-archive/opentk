@@ -45,6 +45,11 @@ namespace OpenTK
 
         FrameEventArgs render_args = new FrameEventArgs(), update_args = new FrameEventArgs();
 
+        VSyncMode vsync_mode;
+
+        // 0.9.x-dev compatibility
+        bool exists = true;
+
         #endregion
 
         #region Constructors
@@ -64,6 +69,11 @@ namespace OpenTK
             GameWindowFlags.Default, 1, 0, GraphicsContextFlags.Default, DisplayDevice.Default)
         { }
 
+        public GameWindow2(int width, int height, GraphicsMode mode, string title)
+            : this(title, Point.Empty, Size.Empty, new Size(width, height), GraphicsMode.Default,
+            GameWindowFlags.Default, 1, 0, GraphicsContextFlags.Default, DisplayDevice.Default)
+        { }
+
         public GameWindow2(string title, Point location, Size size, Size clientSize, GraphicsMode mode,
             GameWindowFlags options, int major, int minor, GraphicsContextFlags flags, DisplayDevice device)
             : base(title, location, size, clientSize, mode, major, minor, flags, device)
@@ -77,6 +87,9 @@ namespace OpenTK
             VSync = VSyncMode.On;
 
             input = Platform.Factory.CreateInputDriver();
+
+            // 0.9.x-dev compatibility.
+            Closed += delegate { exists = false; };
         }
 
         #endregion
@@ -86,6 +99,17 @@ namespace OpenTK
         public event EventHandler<FrameEventArgs> UpdateFrame = delegate(object sender, FrameEventArgs e) { };
 
         public event EventHandler<FrameEventArgs> RenderFrame = delegate(object sender, FrameEventArgs e) { };
+
+        public VSyncMode VSync
+        {
+            get { return vsync_mode; }
+            set { vsync_mode = value; }
+        }
+
+        public void SwapBuffers()
+        {
+            Context.SwapBuffers();
+        }
 
         #endregion
 
@@ -166,10 +190,6 @@ namespace OpenTK
             scheduler.Sleep();
         }
 
-        #endregion
-
-        #region Protected Members
-
         protected virtual void OnRenderFrameInternal(FrameEventArgs e)
         {
             OnRenderFrame(e);
@@ -207,6 +227,12 @@ namespace OpenTK
         public void Run(double updateFrequency, double renderFrequency)
         {
             Run(updateFrequency);
+        }
+
+        [Obsolete("Hook the Closed event instead.")]
+        public bool Exists
+        {
+            get { return exists; }
         }
 
         #endregion

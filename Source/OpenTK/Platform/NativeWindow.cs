@@ -67,6 +67,10 @@ namespace OpenTK.Platform
 
         #endregion
 
+        #region IWindowInfo Members
+
+        #endregion
+
         #region INativeWindow Members
 
         public event EventHandler<EventArgs> Load = delegate(object sender, EventArgs e) { };
@@ -103,14 +107,28 @@ namespace OpenTK.Platform
             set { implementation.Size = new Size(implementation.Width, value); }
         }
 
-        public WindowState WindowState { get { return implementation.WindowState; } set { implementation.WindowState = value; } }
-
-        public WindowBorder WindowBorder { get { return implementation.WindowBorder; } set { implementation.WindowBorder = value; } }
-
         public Icon Icon
         {
             get { return implementation.Icon; }
             set { implementation.Icon = value; }
+        }
+
+        public WindowState WindowState
+        {
+            get { return implementation.WindowState; }
+            set { implementation.WindowState = value; }
+        }
+
+        public WindowBorder WindowBorder
+        {
+            get { return implementation.WindowBorder; }
+            set { implementation.WindowBorder = value; }
+        }
+
+        public bool Visible
+        {
+            get { return implementation.Visible; }
+            set { implementation.Visible = value; }
         }
 
         public IGraphicsContext Context
@@ -118,28 +136,17 @@ namespace OpenTK.Platform
             get { return implementation.Context; }
         }
 
-        public void Close()
-        {
-            implementation.Close();
-        }
-
         public virtual void Run()
         {
             implementation.Run();
         }
 
-        public void SwapBuffers()
+        public void Close()
         {
-            implementation.Context.SwapBuffers();
+            implementation.Close();
         }
 
         public string Title { get { return implementation.Title; } set { implementation.Title = value; } }
-
-        public VSyncMode VSync
-        {
-            get { return implementation.Context.VSync ? VSyncMode.On : VSyncMode.Off; }
-            set { implementation.Context.VSync = value == VSyncMode.Off ? false : true; }
-        }
 
         #endregion
 
