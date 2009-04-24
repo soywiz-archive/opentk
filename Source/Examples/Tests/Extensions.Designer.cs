@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.SupportedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,12 +45,6 @@
             this.TextBoxSupport = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // dataGridView1
             // 
@@ -216,7 +209,6 @@
 
         #endregion
 
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label LabelVendor;
         private System.Windows.Forms.Label LabelRenderer;
