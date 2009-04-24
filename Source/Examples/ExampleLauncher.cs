@@ -154,9 +154,12 @@ namespace Examples
 
                     Debug.Print("Launching example: {0}", example.ToString());
                     this.Visible = false;
-					Application.DoEvents();
+                    Application.DoEvents();
 
-                    example.GetMethod("Main").Invoke(null, null);
+                    //example.GetMethod("Main").Invoke(null, null);
+                    Thread t = new Thread((ThreadStart)delegate { example.GetMethod("Main").Invoke(null, null); });
+                    t.Start();
+                    t.Join();
 
                     GC.Collect();
                     GC.WaitForPendingFinalizers();

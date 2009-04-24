@@ -29,7 +29,7 @@ namespace Examples.Tests
         #region Fields
 
         Thread thread;
-        GameWindow hidden;
+        GameWindow2 hidden;
         bool start;
         Dictionary<IntPtr, ListBox> keyboardListBoxes = new Dictionary<IntPtr, ListBox>(4);
 
@@ -48,27 +48,27 @@ namespace Examples.Tests
 
         void LaunchGameWindow()
         {
-            hidden = new GameWindow(320, 240, GraphicsMode.Default, "OpenTK | Hidden input window");
+            hidden = new GameWindow2(320, 240, GraphicsMode.Default, "OpenTK | Hidden input window");
             hidden.Load += hidden_Load;
             hidden.Unload += hidden_Unload;
-            hidden.RenderFrame += new OpenTK.RenderFrameEvent(hidden_RenderFrame);
+            hidden.RenderFrame += hidden_RenderFrame;
             hidden.Run(60.0, 0.0);
         }
 
-        void hidden_RenderFrame(GameWindow sender, RenderFrameEventArgs e)
+        void hidden_RenderFrame(object sender, FrameEventArgs e)
         {
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-            sender.SwapBuffers();
+            //GL.Clear(ClearBufferMask.ColorBufferBit);
+            (sender as GameWindow2).SwapBuffers();
         }
 
-        void hidden_Load(GameWindow sender, EventArgs e)
+        void hidden_Load(object sender, EventArgs e)
         {
             hidden.VSync = VSyncMode.On;
             start = true;
             GL.ClearColor(Color.Black);
         }
 
-        void hidden_Unload(GameWindow sender, EventArgs e)
+        void hidden_Unload(object sender, EventArgs e)
         {
             this.BeginInvoke(on_hidden_unload, sender, e, this);
         }
@@ -302,7 +302,7 @@ namespace Examples.Tests
                 // Get the title and category of this example using reflection.
                 ExampleAttribute info = ((ExampleAttribute)example.GetType().GetCustomAttributes(false)[0]);
                 example.Text = String.Format("OpenTK | {0} {1}: {2}", info.Category, info.Difficulty, info.Title);
-                example.ShowDialog();
+                Application.Run(example);
             }
         }
 
