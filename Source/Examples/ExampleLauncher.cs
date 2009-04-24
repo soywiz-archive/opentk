@@ -156,8 +156,8 @@ namespace Examples
                     this.Visible = false;
                     Application.DoEvents();
 
-                    //example.GetMethod("Main").Invoke(null, null);
                     Thread t = new Thread((ThreadStart)delegate { example.GetMethod("Main").Invoke(null, null); });
+                    t.IsBackground = true;
                     t.Start();
                     t.Join();
 
