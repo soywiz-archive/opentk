@@ -73,11 +73,11 @@ namespace Examples.Tutorial
 
         #region OnResize override
 
-        protected override void OnResize(ResizeEventArgs e)
+        protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
 
-            double ratio = e.Width / (double)e.Height;
+            double ratio = Width / (double)Height;
 
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();

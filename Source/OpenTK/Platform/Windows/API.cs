@@ -56,6 +56,8 @@ namespace OpenTK.Platform.Windows
     using WNDPROC = System.IntPtr;
     using LPDEVMODE = DeviceMode;
 
+    using HRESULT = System.IntPtr;
+
     #endregion
 
     /// <summary>
@@ -130,7 +132,10 @@ namespace OpenTK.Platform.Windows
         /// Found Winuser.h, user32.dll
         /// </remarks>
         [DllImport("user32.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
-        internal static extern BOOL AdjustWindowRect([In, Out] ref RECT lpRect, WindowStyle dwStyle, BOOL bMenu);
+        internal static extern BOOL AdjustWindowRect([In, Out] ref Rectangle lpRect, WindowStyle dwStyle, BOOL bMenu);
+
+        [DllImport("user32.dll", EntryPoint = "AdjustWindowRectEx", CallingConvention = CallingConvention.StdCall, SetLastError = true), SuppressUnmanagedCodeSecurity]
+        internal static extern bool AdjustWindowRectEx(ref Rectangle lpRect, WindowStyle dwStyle, bool bMenu, ExtendedWindowStyle dwExStyle);
 
         #endregion
 
@@ -243,21 +248,21 @@ namespace OpenTK.Platform.Windows
 
         #region GetWindowLong
 
-        internal static IntPtr GetWindowLong(IntPtr handle, GetWindowLongOffsets index)
+        internal static UIntPtr GetWindowLong(IntPtr handle, GetWindowLongOffsets index)
         {
             if (IntPtr.Size == 4)
-                return (IntPtr)GetWindowLongInternal(handle, index);
+                return (UIntPtr)GetWindowLongInternal(handle, index);
 
             return GetWindowLongPtrInternal(handle, index);
         }
 
         [SuppressUnmanagedCodeSecurity]
         [DllImport("user32.dll", SetLastError = true, EntryPoint="GetWindowLong")]
-        static extern LONG GetWindowLongInternal(HWND hWnd, GetWindowLongOffsets nIndex);
+        static extern ULONG GetWindowLongInternal(HWND hWnd, GetWindowLongOffsets nIndex);
 
         [SuppressUnmanagedCodeSecurity]
         [DllImport("user32.dll", SetLastError = true, EntryPoint = "GetWindowLongPtr")]
-        static extern LONG_PTR GetWindowLongPtrInternal(HWND hWnd, GetWindowLongOffsets nIndex);
+        static extern UIntPtr GetWindowLongPtrInternal(HWND hWnd, GetWindowLongOffsets nIndex);
 
         #endregion
 
@@ -425,6 +430,13 @@ namespace OpenTK.Platform.Windows
         /// <returns></returns>
         [DllImport("user32.dll")]
         internal static extern IntPtr GetDC(IntPtr hwnd);
+
+        #endregion
+
+        #region GetWindowDC
+
+        [DllImport("user32.dll")]
+        internal static extern IntPtr GetWindowDC(IntPtr hwnd);
 
         #endregion
 
@@ -672,7 +684,24 @@ namespace OpenTK.Platform.Windows
         /// </returns>
         /// <remarks>In conformance with conventions for the RECT structure, the bottom-right coordinates of the returned rectangle are exclusive. In other words, the pixel at (right, bottom) lies immediately outside the rectangle.</remarks>
         [DllImport("user32.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
-        internal extern static BOOL GetClientRect(HWND windowHandle, out RECT clientRectangle);
+        internal extern static BOOL GetClientRect(HWND windowHandle, out Rectangle clientRectangle);
+
+        #endregion
+
+        #region GetWindowRect
+
+        /// <summary>
+        /// The GetWindowRect function retrieves the dimensions of the bounding rectangle of the specified window. The dimensions are given in screen coordinates that are relative to the upper-left corner of the screen.
+        /// </summary>
+        /// <param name="windowHandle">Handle to the window whose client coordinates are to be retrieved.</param>
+        /// <param name="windowRectangle"> Pointer to a structure that receives the screen coordinates of the upper-left and lower-right corners of the window.</param>
+        /// <returns>
+        /// <para>If the function succeeds, the return value is nonzero.</para>
+        /// <para>If the function fails, the return value is zero. To get extended error information, call GetLastError.</para>
+        /// </returns>
+        /// <remarks>In conformance with conventions for the RECT structure, the bottom-right coordinates of the returned rectangle are exclusive. In other words, the pixel at (right, bottom) lies immediately outside the rectangle.</remarks>
+        [DllImport("user32.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
+        internal extern static BOOL GetWindowRect(HWND windowHandle, out Rectangle windowRectangle);
 
         #endregion
 
@@ -680,6 +709,13 @@ namespace OpenTK.Platform.Windows
 
         [DllImport("user32.dll"), SuppressUnmanagedCodeSecurity]
         internal static extern BOOL GetWindowInfo(HWND hwnd, ref WindowInfo wi);
+
+        #endregion
+
+        #region DwmGetWindowAttribute
+
+        [DllImport("dwmapi.dll")]
+        unsafe public static extern HRESULT DwmGetWindowAttribute(HWND hwnd, DwmWindowAttribute dwAttribute, void* pvAttribute, DWORD cbAttribute);
 
         #endregion
 
@@ -726,12 +762,12 @@ namespace OpenTK.Platform.Windows
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern BOOL EnumDisplaySettings([MarshalAs(UnmanagedType.LPStr)] string device_name,
-            int graphics_mode, [Out] DeviceMode device_mode);
+            int graphics_mode, [In, Out] DeviceMode device_mode);
 
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern BOOL EnumDisplaySettings([MarshalAs(UnmanagedType.LPStr)] string device_name,
-             DisplayModeSettingsEnum graphics_mode, [Out] DeviceMode device_mode);
+             DisplayModeSettingsEnum graphics_mode, [In, Out] DeviceMode device_mode);
 
         #endregion
 
@@ -739,7 +775,14 @@ namespace OpenTK.Platform.Windows
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern BOOL EnumDisplaySettingsEx([MarshalAs(UnmanagedType.LPStr)] LPCTSTR lpszDeviceName, DisplayModeSettingsEnum iModeNum,
-            [Out] DeviceMode lpDevMode, DWORD dwFlags);
+            [In, Out] DeviceMode lpDevMode, DWORD dwFlags);
+
+        #endregion
+
+        #region GetMonitorInfo
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern BOOL GetMonitorInfo(IntPtr hMonitor, ref MonitorInfo lpmi);
 
         #endregion
 
@@ -1629,14 +1672,18 @@ namespace OpenTK.Platform.Windows
         internal short DriverExtra;
         internal int Fields;
 
-        internal short Orientation;
-        internal short PaperSize;
-        internal short PaperLength;
-        internal short PaperWidth;
-        internal short Scale;
-        internal short Copies;
-        internal short DefaultSource;
-        internal short PrintQuality;
+        //internal short Orientation;
+        //internal short PaperSize;
+        //internal short PaperLength;
+        //internal short PaperWidth;
+        //internal short Scale;
+        //internal short Copies;
+        //internal short DefaultSource;
+        //internal short PrintQuality;
+
+        internal POINT Position;
+        internal DWORD DisplayOrientation;
+        internal DWORD DisplayFixedOutput;
 
         internal short Color;
         internal short Duplex;
@@ -1695,7 +1742,7 @@ namespace OpenTK.Platform.Windows
     [StructLayout(LayoutKind.Sequential)]
     internal class WindowClass
     {
-        internal WindowClassStyle style = WindowClassStyle.VRedraw | WindowClassStyle.HRedraw | WindowClassStyle.OwnDC;
+        internal ClassStyle style = ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.OwnDC;
         [MarshalAs(UnmanagedType.FunctionPtr)]
         internal WindowProcedureEventHandler WindowProcedure;
         internal int ClassExtraBytes;
@@ -2394,6 +2441,31 @@ namespace OpenTK.Platform.Windows
         {
             return String.Format("({0},{1})-({2},{3})", left, top, right, bottom);
         }
+
+        internal System.Drawing.Rectangle ToRectangle()
+        {
+            return System.Drawing.Rectangle.FromLTRB(left, top, right, bottom);
+        }
+
+        internal static Rectangle From(System.Drawing.Rectangle value)
+        {
+            Rectangle rect = new Rectangle();
+            rect.left = value.Left;
+            rect.right = value.Right;
+            rect.top = value.Top;
+            rect.bottom = value.Bottom;
+            return rect;
+        }
+
+        internal static Rectangle From(System.Drawing.Size value)
+        {
+            Rectangle rect = new Rectangle();
+            rect.left = 0;
+            rect.right = value.Width;
+            rect.top = 0;
+            rect.bottom = value.Height;
+            return rect;
+        }
     }
 
     #endregion
@@ -2450,12 +2522,52 @@ namespace OpenTK.Platform.Windows
 
     #endregion
 
+    #region MonitorInfo
+
+    struct MonitorInfo
+    {
+        public DWORD Size;
+        public RECT Monitor;
+        public RECT Work;
+        public DWORD Flags;
+
+        public static readonly int SizeInBytes = Marshal.SizeOf(default(MonitorInfo));
+    }
+
+    #endregion
+
+    #region NcCalculateSize
+
+    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    internal struct NcCalculateSize
+    {
+        public Rectangle NewBounds;
+        public Rectangle OldBounds;
+        public Rectangle OldClientRectangle;
+        unsafe public WindowPosition* Position;
+    }
+
+    #endregion
+
     #endregion
 
     #region --- Enums ---
 
-    #region 
-    
+    #region SizeMessage
+
+    internal enum SizeMessage
+    {
+        MAXHIDE = 4,
+        MAXIMIZED = 2,
+        MAXSHOW = 3,
+        MINIMIZED = 1,
+        RESTORED = 0
+    }
+
+    #endregion
+
+    #region NcCalcSizeOptions
+
     internal enum NcCalcSizeOptions
     {
         ALIGNTOP = 0x10,
@@ -2516,13 +2628,13 @@ namespace OpenTK.Platform.Windows
 
     #endregion
 
-    #region internal enum WindowStyle : int
+    #region internal enum WindowStyle : uint
 
     [Flags]
-    internal enum WindowStyle : int
+    internal enum WindowStyle : uint
     {
         Overlapped = 0x00000000,
-        Popup = unchecked((int)0x80000000),
+        Popup = 0x80000000,
         Child = 0x40000000,
         Minimize = 0x20000000,
         Visible = 0x10000000,
@@ -2556,10 +2668,10 @@ namespace OpenTK.Platform.Windows
 
     #endregion
 
-    #region internal enum ExtendedWindowStyle : int
+    #region internal enum ExtendedWindowStyle : uint
 
     [Flags]
-    internal enum ExtendedWindowStyle : int
+    internal enum ExtendedWindowStyle : uint
     {
         DialogModalFrame = 0x00000001,
         NoParentNotify = 0x00000004,
@@ -2675,9 +2787,9 @@ namespace OpenTK.Platform.Windows
 
     #endregion
 
-    #region WindowClassStyle enum
+    #region ClassStyle enum
     [Flags]
-    internal enum WindowClassStyle
+    internal enum ClassStyle
     {
         //None            = 0x0000,
         VRedraw = 0x0001,
@@ -3637,6 +3749,27 @@ namespace OpenTK.Platform.Windows
         /// <summary>Windows NT/2000/XP: uCode is a scan code and is translated into a virtual-key code that distinguishes between left- and right-hand keys. If there is no translation, the function returns 0.</summary>
         ScanCodeToVirtualKeyExtended = 3,
         VirtualKeyToScanCodeExtended = 4,
+    }
+
+    #endregion
+
+    #region DwmWindowAttribute
+
+    enum DwmWindowAttribute
+    {
+        NCRENDERING_ENABLED = 1,
+        NCRENDERING_POLICY,
+        TRANSITIONS_FORCEDISABLED,
+        ALLOW_NCPAINT,
+        CAPTION_BUTTON_BOUNDS,
+        NONCLIENT_RTL_LAYOUT,
+        FORCE_ICONIC_REPRESENTATION,
+        FLIP3D_POLICY,
+        EXTENDED_FRAME_BOUNDS,
+        HAS_ICONIC_BITMAP,
+        DISALLOW_PEEK,
+        EXCLUDED_FROM_PEEK,
+        LAST
     }
 
     #endregion

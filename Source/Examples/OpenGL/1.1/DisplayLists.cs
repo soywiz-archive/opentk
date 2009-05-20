@@ -95,7 +95,7 @@ namespace Examples.Tutorial
 
         #region OnResize
 
-        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
+        protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
 

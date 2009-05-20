@@ -63,13 +63,11 @@ namespace Examples.Tutorial
         /// <remarks>
         /// You want the OpenGL viewport to match the window. This is the place to do it!
         /// </remarks>
-        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
+        protected override void OnResize(EventArgs e)
         {
-            base.OnResize(e);
-
             GL.Viewport(0, 0, Width, Height);
 
-            double aspect_ratio = e.Width / (double)e.Height;
+            double aspect_ratio = Width / (double)Height;
 
             GL.MatrixMode(MatrixMode.Projection);
             if (Keyboard[OpenTK.Input.Key.Space])

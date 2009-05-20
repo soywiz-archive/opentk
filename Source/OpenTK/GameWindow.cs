@@ -1,23 +1,39 @@
-﻿#region --- License ---
-/* Licensed under the MIT/X11 license.
- * Copyright (c) 2006-2008 the OpenTK Team.
- * This notice may not be removed from any source distribution.
- * See license.txt for licensing details.
- */
+﻿#region License
+//
+// The Open Toolkit Library License
+//
+// Copyright (c) 2006 - 2009 the Open Toolkit library.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights to 
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+// the Software, and to permit persons to whom the Software is furnished to do
+// so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+// OTHER DEALINGS IN THE SOFTWARE.
+//
 #endregion
 
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
-
-using OpenTK.Platform;
-using OpenTK.Input;
-using OpenTK.Graphics.OpenGL;
-using OpenTK.Graphics.OpenGL.Enums;
 using OpenTK.Graphics;
-using System.ComponentModel;
+using OpenTK.Input;
+using OpenTK.Platform;
+using System.Drawing;
 
 namespace OpenTK
 {
@@ -53,11 +69,11 @@ namespace OpenTK
     /// parameters that
     /// specify the logic update rate, and the render update rate.
     /// </remarks>
-    public class GameWindow : IDisposable/* : IGameWindow*/
+    public class GameWindow : INativeWindow
     {
         #region --- Fields ---
 
-        INativeGLWindow glWindow;
+        INativeWindow glWindow;
         //DisplayMode mode;
 
         ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
@@ -156,7 +172,7 @@ namespace OpenTK
 
         #region public GameWindow(int width, int height, GraphicsMode mode, string title, GameWindowFlags options, DisplayDevice device, int major, int minor, GraphicsContextFlags flags)
 
-        /// <summary>Constructs a new GameWindow with the specified attributes.</summary>
+                /// <summary>Constructs a new GameWindow with the specified attributes.</summary>
         /// <param name="width">The width of the GameWindow in pixels.</param>
         /// <param name="height">The height of the GameWindow in pixels.</param>
         /// <param name="mode">The OpenTK.Graphics.GraphicsMode of the GameWindow.</param>
@@ -168,42 +184,74 @@ namespace OpenTK
         /// <param name="flags">The GraphicsContextFlags version for the OpenGL GraphicsContext.</param>
         public GameWindow(int width, int height, GraphicsMode mode, string title, GameWindowFlags options, DisplayDevice device,
             int major, int minor, GraphicsContextFlags flags)
+            : this(width, height, mode, title, options, device, major, minor, flags, null)
+        { }
+
+        #endregion
+
+        #region public GameWindow(int width, int height, GraphicsMode mode, string title, GameWindowFlags options, DisplayDevice device, int major, int minor, GraphicsContextFlags flags, IGraphicsContext sharedContext)
+
+        /// <summary>Constructs a new GameWindow with the specified attributes.</summary>
+        /// <param name="width">The width of the GameWindow in pixels.</param>
+        /// <param name="height">The height of the GameWindow in pixels.</param>
+        /// <param name="mode">The OpenTK.Graphics.GraphicsMode of the GameWindow.</param>
+        /// <param name="title">The title of the GameWindow.</param>
+        /// <param name="options">GameWindow options regarding window appearance and behavior.</param>
+        /// <param name="device">The OpenTK.Graphics.DisplayDevice to construct the GameWindow in.</param>
+        /// <param name="major">The major version for the OpenGL GraphicsContext.</param>
+        /// <param name="minor">The minor version for the OpenGL GraphicsContext.</param>
+        /// <param name="flags">The GraphicsContextFlags version for the OpenGL GraphicsContext.</param>
+        /// <param name="sharedContext">An IGraphicsContext to share resources with.</param>
+        public GameWindow(int width, int height, GraphicsMode mode, string title, GameWindowFlags options, DisplayDevice device,
+            int major, int minor, GraphicsContextFlags flags, IGraphicsContext sharedContext)
         {
-            if (width <= 0) throw new ArgumentOutOfRangeException("width", "Must be greater than zero.");
-            if (height <= 0) throw new ArgumentOutOfRangeException("width", "Must be greater than zero.");
+            if (width <= 0)
+                throw new ArgumentOutOfRangeException("width", "Must be greater than zero.");
+            if (height <= 0)
+                throw new ArgumentOutOfRangeException("height", "Must be greater than zero.");
             if (mode == null)
                 mode = GraphicsMode.Default;
             if (device == null)
                 device = DisplayDevice.Default;
 
-            glWindow = Platform.Factory.CreateNativeGLWindow();
-            glWindow.Destroy += glWindow_Destroy;
-
             try
             {
-                glWindow.CreateWindow(width, height, mode, major, minor, flags, out glContext);
+                Rectangle window_bounds = new Rectangle();
+                window_bounds.X = device.Bounds.Left + (device.Bounds.Width - width) / 2;
+                window_bounds.Y = device.Bounds.Top + (device.Bounds.Height - height) / 2;
+                window_bounds.Width = width;
+                window_bounds.Height = height;
+                glWindow = Platform.Factory.Default.CreateNativeWindow(
+                    window_bounds.X, window_bounds.Y,
+                    window_bounds.Width, window_bounds.Height,
+                    title, options, device);
+
+                glContext = new GraphicsContext(mode, glWindow.WindowInfo, major, minor, flags);
                 glContext.MakeCurrent(this.WindowInfo);
                 (glContext as IGraphicsContextInternal).LoadAll();
+
+                this.Title = title;
+
+                if ((options & GameWindowFlags.Fullscreen) != 0)
+                {
+                    device.ChangeResolution(width, height, mode.ColorFormat.BitsPerPixel, 0);
+                    this.WindowState = WindowState.Fullscreen;
+                }
+
+                this.VSync = VSyncMode.On;
+                
+                //glWindow.Move += delegate(object sender, EventArgs e) { OnMoveInternal(e); };
+                glWindow.Resize += delegate(object sender, EventArgs e) { OnResizeInternal(e); };
+                glWindow.Closing += delegate(object sender, CancelEventArgs e) { OnClosingInternal(e); };
+                glWindow.Closed += delegate(object sender, EventArgs e) { OnClosedInternal(e); };
+                glWindow.WindowInfoChanged += delegate(object sender, EventArgs e) { OnWindowInfoChangedInternal(e); };
             }
-            //catch (GraphicsContextException e)
             catch (Exception e)
             {
                 Debug.Print(e.ToString());
-                glWindow.DestroyWindow();
+                glWindow.Dispose();
                 throw;
             }
-
-            this.Title = title;
-
-            if ((options & GameWindowFlags.Fullscreen) != 0)
-            {
-                device.ChangeResolution(width, height, mode.ColorFormat.BitsPerPixel, 0);
-                this.WindowState = WindowState.Fullscreen;
-                //throw new NotImplementedException();
-            }
-
-            this.VSync = VSyncMode.On; //VSyncMode.Adaptive;
-            glWindow.Resize += delegate(object sender, ResizeEventArgs e) { OnResizeInternal(e); };
         }
 
         #endregion
@@ -234,16 +282,6 @@ namespace OpenTK
 
         #region --- Private Methods ---
 
-        #region void glWindow_Destroy(object sender, EventArgs e)
-
-        void glWindow_Destroy(object sender, EventArgs e)
-        {
-            glWindow.Destroy -= glWindow_Destroy;
-            ExitAsync();
-        }
-
-        #endregion
-
         #region void ExitInternal()
 
         // Stops the main loop, if one exists.
@@ -260,17 +298,12 @@ namespace OpenTK
         // Gracefully exits the GameWindow. May be called from any thread.
         void ExitAsync()
         {
-            if (disposed)
-                throw new ObjectDisposedException("GameWindow");
-
-            UpdateFrame += CallExitInternal;
-        }
-
-        // Used in ExitAsync() to ensure ExitInternal() is called from the main thread.
-        void CallExitInternal(GameWindow sender, UpdateFrameEventArgs e)
-        {
-            UpdateFrame -= CallExitInternal;
-            sender.ExitInternal();
+            HasMainLoop = false;
+            isExiting = true;
+            //UpdateFrame += delegate
+            //{
+            //    ExitInternal();
+            //};
         }
 
         #endregion
@@ -296,6 +329,133 @@ namespace OpenTK
 
         #endregion
 
+        #region OnResizeInternal
+
+        // Calls OnResize and raises the Resize event.
+        void OnResizeInternal(EventArgs e)
+        {
+            if (disposed)
+                throw new ObjectDisposedException(this.GetType().Name);
+
+            if (!this.Exists || this.IsExiting)
+                return;
+
+            OnResize(e);
+
+            if (Resize != null)
+                Resize(this, e);
+        }
+
+        #endregion
+
+        #region OnClosingInternal
+
+        void OnClosingInternal(CancelEventArgs e)
+        {
+            OnClosing(e);
+
+            if (Closing != null)
+                Closing(this, e);
+
+            if (!e.Cancel)
+                ExitAsync();
+        }
+
+        #endregion
+
+        #region OnClosedInternal
+
+        void OnClosedInternal(EventArgs e)
+        {
+            OnClosed(e);
+
+            if (Closed != null)
+                Closed(this, e);
+        }
+
+        #endregion
+
+        #region OnWindowInfoChangedInternal
+
+        void OnWindowInfoChangedInternal(EventArgs e)
+        {
+            glContext.MakeCurrent(WindowInfo);
+
+            OnWindowInfoChanged(e);
+        }
+
+        #endregion
+
+        #region OnUpdateFrameInternal
+
+        private void OnUpdateFrameInternal(UpdateFrameEventArgs e)
+        {
+            if (disposed)
+                throw new ObjectDisposedException(this.GetType().Name);
+
+            if (!this.Exists || this.IsExiting)
+                return;
+
+            if (UpdateFrame != null)
+                UpdateFrame(this, e);
+
+            OnUpdateFrame(e);
+        }
+
+        #endregion
+
+        #region OnRenderFrameInternal
+
+        private void OnRenderFrameInternal(RenderFrameEventArgs e)
+        {
+            if (disposed)
+                throw new ObjectDisposedException(this.GetType().Name);
+
+            if (!this.Exists || this.IsExiting)
+                return;
+
+            if (RenderFrame != null)
+                RenderFrame(this, e);
+
+            OnRenderFrame(e);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region --- Protected Members ---
+
+        /// <summary>
+        /// Called when the GameWindow is resized.
+        /// </summary>
+        /// <param name="e">Not used.</param>
+        protected virtual void OnResize(EventArgs e)
+        { }
+
+        /// <summary>
+        /// Called when the GameWindow is about to close.
+        /// </summary>
+        /// <param name="e">
+        /// The <see cref="System.ComponentModel.CancelEventArgs" /> for this event.
+        /// Set e.Cancel to true in order to stop the GameWindow from closing.</param>
+        protected virtual void OnClosing(CancelEventArgs e)
+        { }
+
+        /// <summary>
+        /// Called when the GameWindow has closed.
+        /// </summary>
+        /// <param name="e">Not used.</param>
+        protected virtual void OnClosed(EventArgs e)
+        { }
+
+        /// <summary>
+        /// Called when the WindowInfo for this GameWindow has changed.
+        /// </summary>
+        /// <param name="e">Not used.</param>
+        protected virtual void OnWindowInfoChanged(EventArgs e)
+        { }
+
         #endregion
 
         #region --- Public Members ---
@@ -314,15 +474,17 @@ namespace OpenTK
             lock (exit_lock)
             {
                 if (disposed)
-                    throw new ObjectDisposedException("GameWindow");
+                    throw new ObjectDisposedException(this.GetType().Name);
 
                 if (!IsExiting && Exists)
                 {
                     CancelEventArgs e = new CancelEventArgs();
-                    Closing(this, e);
+                    OnClosingInternal(e);
                     if (e.Cancel)
                         return;
-            
+
+                    isExiting = true;
+                    
                     if (HasMainLoop)
                     {
                         if (main_loop_thread_id == Thread.CurrentThread.ManagedThreadId)
@@ -336,33 +498,6 @@ namespace OpenTK
 
         #endregion
 
-        #region public bool IsIdle
-
-        /// <summary>
-        /// Gets a value indicating whether the current GameWindow is idle.
-        /// If true, the OnUpdateFrame and OnRenderFrame functions should be called.
-        /// </summary>
-        public bool IsIdle
-        {
-            get { if (disposed) throw new ObjectDisposedException("GameWindow"); return glWindow.IsIdle; }
-        }
-
-        #endregion
-
-        #region public bool Fullscreen
-
-        ///// <summary>
-        ///// TODO: This property is not implemented.
-        ///// Gets or sets a value indicating whether the GameWindow is in fullscrren mode.
-        ///// </summary>
-        //public bool Fullscreen
-        //{
-        //    get { if (disposed) throw new ObjectDisposedException("GameWindow"); return glWindow.Fullscreen; }
-        //    set { if (disposed) throw new ObjectDisposedException("GameWindow"); glWindow.Fullscreen = value; }
-        //}
-
-        #endregion
-
         #region public IGraphicsContext Context
 
         /// <summary>
@@ -372,7 +507,8 @@ namespace OpenTK
         {
             get
             {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
                 return glContext;
             }
         }
@@ -400,12 +536,12 @@ namespace OpenTK
         {
             get
             {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
+                if (disposed) throw new ObjectDisposedException(this.GetType().Name);
                 return glWindow.Title;
             }
             set
             {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
+                if (disposed) throw new ObjectDisposedException(this.GetType().Name);
                 glWindow.Title = value;
             }
         }
@@ -451,7 +587,7 @@ namespace OpenTK
         /// <see cref="Run(double, double)"/>
         public void Run()
         {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
+            if (disposed) throw new ObjectDisposedException(this.GetType().Name);
             Run(0.0, 0.0);
         }
 
@@ -466,7 +602,7 @@ namespace OpenTK
         /// <see cref="Run(double, double)"/>
         public void Run(double updateFrequency)
         {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
+            if (disposed) throw new ObjectDisposedException(this.GetType().Name);
             Run(updateFrequency, 0.0);
         }
 
@@ -482,7 +618,7 @@ namespace OpenTK
         public void Run(double updates_per_second, double frames_per_second)
         {
             if (disposed)
-                throw new ObjectDisposedException("GameWindow");
+                throw new ObjectDisposedException(this.GetType().Name);
 
             try
             {
@@ -526,12 +662,13 @@ namespace OpenTK
                 //update_watch.Reset();       // We don't want to affect the first UpdateFrame!
 
                 OnLoadInternal(EventArgs.Empty);
+                OnResizeInternal(EventArgs.Empty);
 
                 //Debug.Print("Elevating priority.");
                 //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
 
                 Debug.Print("Entering main loop.");
-                while (!isExiting)
+                while (!IsExiting && HasMainLoop)
                 {
                     ProcessEvents();
 
@@ -625,12 +762,14 @@ namespace OpenTK
 
                 if (Exists)
                 {
+                    glWindow.Dispose();
+                    while (this.Exists)
+                        this.ProcessEvents();
+                    glWindow = null;
+
                     glContext.Dispose();
                     glContext = null;
-                    glWindow.DestroyWindow();
                 }
-                while (this.Exists)
-                    this.ProcessEvents();
             }
         }
 
@@ -651,9 +790,9 @@ namespace OpenTK
         /// </remarks>
         public void ProcessEvents()
         {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
-            if (!isExiting)
-                glWindow.InputDriver.Poll();
+            if (disposed)
+                throw new ObjectDisposedException(this.GetType().Name);
+            
             glWindow.ProcessEvents();
 
             if (MustResize)
@@ -667,19 +806,6 @@ namespace OpenTK
         #endregion
 
         #region OnRenderFrame(RenderFrameEventArgs e)
-
-        /// <summary>
-        /// Raises the RenderFrame event, and calls the public function.
-        /// </summary>
-        /// <param name="e"></param>
-        private void OnRenderFrameInternal(RenderFrameEventArgs e)
-        {
-            if (RenderFrame != null)
-                RenderFrame(this, e);
-
-            // Call the user's override.
-            OnRenderFrame(e);
-        }
 
         /// <summary>
         /// Override in derived classes to render a frame.
@@ -702,24 +828,6 @@ namespace OpenTK
 
         #region OnUpdateFrame(UpdateFrameEventArgs e)
 
-        private void OnUpdateFrameInternal(UpdateFrameEventArgs e)
-        {
-            if (!this.Exists && !this.IsExiting)
-            {
-                //Debug.Print("WARNING: UpdateFrame event raised without a valid render window. This may indicate a programming error. Creating render window.");
-                //mode = new DisplayMode(640, 480);
-                //this.CreateWindow(mode);
-                throw new InvalidOperationException("Cannot enter game loop without a render window");
-            }
-
-            if (UpdateFrame != null)
-            {
-                UpdateFrame(this, e);
-            }
-
-            OnUpdateFrame(e);
-        }
-
         /// <summary>
         /// Override in derived classes to update a frame.
         /// </summary>
@@ -740,11 +848,6 @@ namespace OpenTK
         #endregion
 
         #region OnLoad(EventArgs e)
-
-        /// <summary>
-        /// Occurs after establishing an OpenGL context, but before entering the main loop.
-        /// </summary>
-        public event LoadEvent Load;
 
         /// <summary>
         /// Raises the Load event, and calls the user's OnLoad override.
@@ -788,11 +891,6 @@ namespace OpenTK
         #region OnUnload(EventArgs e)
 
         /// <summary>
-        /// Occurs after after calling GameWindow.Exit, but before destroying the OpenGL context.
-        /// </summary>
-        public event UnloadEvent Unload;
-
-        /// <summary>
         /// Raises the Unload event, and calls the user's OnUnload override.
         /// </summary>
         /// <param name="e"></param>
@@ -828,7 +926,12 @@ namespace OpenTK
         /// </summary>
         public bool IsExiting
         {
-            get { if (disposed) throw new ObjectDisposedException("GameWindow"); return isExiting; }
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+                return isExiting;
+            }
         }
 
         #endregion
@@ -838,12 +941,13 @@ namespace OpenTK
         /// <summary>
         /// Gets the primary Keyboard device, or null if no Keyboard exists.
         /// </summary>
+        [Obsolete]
         public KeyboardDevice Keyboard
         {
             get
             {
-                if (glWindow.InputDriver.Keyboard.Count > 0)
-                    return glWindow.InputDriver.Keyboard[0];
+                if ((glWindow as INativeGLWindow).InputDriver.Keyboard.Count > 0)
+                    return (glWindow as INativeGLWindow).InputDriver.Keyboard[0];
                 else
                     return null;
             }
@@ -856,12 +960,13 @@ namespace OpenTK
         /// <summary>
         /// Gets the primary Mouse device, or null if no Mouse exists.
         /// </summary>
+        [Obsolete]
         public MouseDevice Mouse
         {
             get
             {
-                if (glWindow.InputDriver.Mouse.Count > 0)
-                    return glWindow.InputDriver.Mouse[0];
+                if ((glWindow as INativeGLWindow).InputDriver.Mouse.Count > 0)
+                    return (glWindow as INativeGLWindow).InputDriver.Mouse[0];
                 else
                     return null;
             }
@@ -874,9 +979,10 @@ namespace OpenTK
         /// <summary>
         /// Gets a readonly IList containing all available OpenTK.Input.JoystickDevices.
         /// </summary>
+        [Obsolete]
         public IList<JoystickDevice> Joysticks
         {
-            get { return glWindow.InputDriver.Joysticks; }
+            get { return (glWindow as INativeGLWindow).InputDriver.Joysticks; }
         }
 
         #endregion
@@ -957,6 +1063,299 @@ namespace OpenTK
                 glWindow.WindowBorder = value;
             }
         }
+
+        #endregion
+
+        #endregion
+
+        #region --- INativeWindow Members ---
+
+        #region Icon
+
+        /// <summary>
+        /// Gets or sets the System.Drawing.Icon for this GameWindow.
+        /// </summary>
+        public Icon Icon
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Icon;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Icon = value;
+            }
+        }
+
+        #endregion
+
+        #region Focused
+
+        /// <summary>
+        /// Gets or sets a System.Boolean that indicates whether this GameWindow is in focus.
+        /// </summary>
+        public bool Focused
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Focused;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Focused = value;
+            }
+        }
+
+        #endregion
+
+        #region Visible
+
+        /// <summary>
+        /// Gets or sets a System.Boolean that indicates whether this GameWindow is visible.
+        /// </summary>
+        public bool Visible
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Visible;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Visible = value;
+            }
+        }
+
+        #endregion
+
+        public Point Location
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Size Size
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int X
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Rectangle ClientRectangle
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Size ClientSize
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Rectangle Bounds
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        #region Width
+
+        /// <summary>
+        /// Gets or sets the width of this GameWindow.
+        /// This is the total width, which includes the borders and titlebar of the window (if any).
+        /// </summary>
+        public int Width
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Width;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Width = value;
+            }
+        }
+
+        #endregion
+
+        #region Height
+
+        /// <summary>
+        /// Gets or sets the height of this GameWindow.
+        /// This is the total height, which includes the borders and titlebar of the window (if any).
+        /// </summary>
+        public int Height
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Height;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Height = value;
+            }
+        }
+
+        #endregion
+
+        #region Close
+
+        public void Close()
+        {
+            Exit();
+        }
+
+        #endregion
+
+        #region PointToClient
+
+        /// <summary>
+        /// Converts the screen coordinates of a specified point on the screen to client-area coordinates.
+        /// </summary>
+        /// <param name="point">A System.Drawing.Point structure that specifies the screen coordinates to be converted</param>
+        /// <returns>The client-area coordinates of the point. The new coordinates are relative to the upper-left corner of the GameWindow's client area.</returns>
+        public System.Drawing.Point PointToClient(System.Drawing.Point point)
+        {
+            point = glWindow.PointToClient(point);
+
+            return point;
+        }
+
+        #endregion
+
+        #region PointToScreen
+
+        /// <summary>
+        /// Converts the client-area coordinates of a specified point to screen coordinates.
+        /// </summary>
+        /// <param name="p">A System.Drawing.Point structure that specifies the client-area coordinates to be converted</param>
+        /// <returns>The screen coordinates of the point, relative to the upper-left corner of the screen. Note, a screen-coordinate point that is above the window's client area has a negative y-coordinate. Similarly, a screen coordinate to the left of a client area has a negative x-coordinate.</returns>
+        public System.Drawing.Point PointToScreen(System.Drawing.Point p)
+        {
+            // Here we use the fact that PointToClient just translates the point, and PointToScreen
+            // should perform the inverse operation.
+            System.Drawing.Point trans = PointToClient(System.Drawing.Point.Empty);
+            p.X -= trans.X;
+            p.Y -= trans.Y;
+            return p;
+        }
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler<EventArgs> Idle;
+
+        /// <summary>
+        /// Occurs after establishing a GraphicsContext, but before entering the main loop.
+        /// </summary>
+        public event EventHandler<EventArgs> Load;
+
+        /// <summary>
+        /// Occurs after closing the GameWindow, but before destroying the GraphicsContext.
+        /// </summary>
+        public event EventHandler<EventArgs> Unload;
+
+        public event EventHandler<EventArgs> Move;
+
+        public event EventHandler<EventArgs> Resize;
+
+        public event EventHandler<EventArgs> Closed;
+
+        public event EventHandler<EventArgs> Disposed;
+
+        public event EventHandler<EventArgs> IconChanged;
+
+        public event EventHandler<EventArgs> TitleChanged;
+
+        public event EventHandler<EventArgs> ClientSizeChanged;
+
+        public event EventHandler<EventArgs> VisibleChanged;
+
+        public event EventHandler<EventArgs> WindowInfoChanged;
 
         #endregion
 
@@ -1213,173 +1612,6 @@ namespace OpenTK
         }
 
         #endregion
-
-        #endregion
-
-        #region --- IResizable Members ---
-
-        #region public int Width, Height
-
-        /// <summary>
-        /// Gets or sets the Width of the GameWindow's rendering area, in pixels.
-        /// </summary>
-        public int Width
-        {
-            get { if (disposed) throw new ObjectDisposedException("GameWindow"); return width; }
-            set
-            {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
-                if (value == this.Width)
-                {
-                    return;
-                }
-                else if (value > 0)
-                {
-                    glWindow.Width = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(
-                        "Width",
-                        value,
-                        "Width must be greater than 0"
-                    );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the Height of the GameWindow's rendering area, in pixels.
-        /// </summary>
-        public int Height
-        {
-            get { if (disposed) throw new ObjectDisposedException("GameWindow"); return height; }
-            set
-            {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
-                if (value == this.Height)
-                {
-                    return;
-                }
-                else if (value > 0)
-                {
-                    glWindow.Height = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(
-                        "Height",
-                        value,
-                        "Height must be greater than 0"
-                    );
-                }
-            }
-        }
-
-        #endregion
-
-        #region public event ResizeEvent Resize;
-
-        /// <summary>
-        /// Occurs when the GameWindow is resized. Derived classes should override the OnResize method for better performance.
-        /// </summary>
-        public event ResizeEvent Resize;
-
-        /// <summary>
-        /// Raises the Resize event.
-        /// </summary>
-        /// <param name="e">Contains information about the Resize event.</param>
-        private void OnResizeInternal(ResizeEventArgs e)
-        {
-            Debug.Print("Firing internal resize event: {0}.", e.ToString());
-
-            this.width = e.Width;
-            this.height = e.Height;
-
-            if (this.Resize != null)
-                this.Resize(this, e);
-
-            OnResize(e);
-        }
-
-        /// <summary>
-        /// Override in derived classes to respond to the Resize events.
-        /// </summary>
-        /// <param name="e">Contains information about the Resize event.</param>
-        protected virtual void OnResize(ResizeEventArgs e)
-        {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
-        }
-
-        #endregion
-
-        /*
-        /// <summary>
-        /// Gets the Top coordinate of the GameWindow's rendering area, in pixel coordinates relative to the GameWindow's top left point.
-        /// </summary>
-        public int Top
-        {
-            get { return glWindow.Top; }
-        }
-
-        /// <summary>
-        /// /// Gets the Bottom coordinate of the GameWindow's rendering area, in pixel coordinates relative to the GameWindow's top left point.
-        /// </summary>
-        public int Bottom
-        {
-            get { return glWindow.Bottom; }
-        }
-
-        /// <summary>
-        /// Gets the Left coordinate of the GameWindow's rendering area, in pixel coordinates relative to the GameWindow's top left point.
-        /// </summary>
-        public int Left
-        {
-            get { return glWindow.Left; }
-        }
-
-        /// <summary>
-        /// Gets the Right coordinate of the GameWindow's rendering area, in pixel coordinates relative to the GameWindow's top left point.
-        /// </summary>
-        public int Right
-        {
-            get { return glWindow.Right; }
-        }
-        */
-        #endregion
-
-        #region PointToClient
-
-        /// <summary>
-        /// Converts the screen coordinates of a specified point on the screen to client-area coordinates.
-        /// </summary>
-        /// <param name="point">A System.Drawing.Point structure that specifies the screen coordinates to be converted</param>
-        /// <returns>The client-area coordinates of the point. The new coordinates are relative to the upper-left corner of the GameWindow's client area.</returns>
-        public System.Drawing.Point PointToClient(System.Drawing.Point point)
-        {
-            point = glWindow.PointToClient(point);
-
-            return point;
-        }
-
-        #endregion
-
-        #region PointToScreen
-
-        /// <summary>
-        /// Converts the client-area coordinates of a specified point to screen coordinates.
-        /// </summary>
-        /// <param name="p">A System.Drawing.Point structure that specifies the client-area coordinates to be converted</param>
-        /// <returns>The screen coordinates of the point, relative to the upper-left corner of the screen. Note, a screen-coordinate point that is above the window's client area has a negative y-coordinate. Similarly, a screen coordinate to the left of a client area has a negative x-coordinate.</returns>
-        public System.Drawing.Point PointToScreen(System.Drawing.Point p)
-        {
-			// Here we use the fact that PointToClient just translates the point, and PointToScreen
-			// should perform the inverse operation.
-			System.Drawing.Point trans = PointToClient(System.Drawing.Point.Empty);
-			p.X -= trans.X;
-			p.Y -= trans.Y;
-			return p;
-        }
 
         #endregion
 

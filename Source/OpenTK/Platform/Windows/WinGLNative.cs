@@ -1,23 +1,38 @@
-﻿#region --- License ---
-/* Copyright (c) 2007 Stefanos Apostolopoulos
- * See license.txt for license info
- */
+﻿#region License
+//
+// The Open Toolkit Library License
+//
+// Copyright (c) 2006 - 2009 the Open Toolkit library.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights to 
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+// the Software, and to permit persons to whom the Software is furnished to do
+// so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+// OTHER DEALINGS IN THE SOFTWARE.
+//
 #endregion
-
-#region --- Using directives ---
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using System.Diagnostics;
-using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
-using OpenTK.Graphics;
 using System.Drawing;
-
-#endregion
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows.Forms;
+using OpenTK.Graphics;
+using OpenTK.Input;
 
 namespace OpenTK.Platform.Windows
 {
@@ -25,7 +40,7 @@ namespace OpenTK.Platform.Windows
     /// Drives GameWindow on Windows.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
     /// </summary>
-    internal sealed class WinGLNative : System.Windows.Forms.NativeWindow, INativeGLWindow
+    internal sealed class WinGLNative : System.Windows.Forms.NativeWindow, INativeGLWindow, INativeWindow
     {
         #region --- Fields ---
 
@@ -33,42 +48,48 @@ namespace OpenTK.Platform.Windows
 
         private bool visible = true;
         private bool disposed;
-        private bool isExiting;
         private bool exists;
         private WinWindowInfo window;
         private WindowBorder windowBorder = WindowBorder.Resizable, previous_window_border;
         private WindowState windowState = WindowState.Normal;
 
-        private int top, bottom, left, right;
-        //private int width = 0, height = 0;
-        private Rectangle previous_client_area;
+        private System.Drawing.Rectangle previous_client_area;
 
-        private Point position = new Point();
-        private Rectangle client_rectangle = new Rectangle();
-        private Size window_size = new Size();
-        //private Rectangle borders = new Rectangle();
+        private System.Drawing.Rectangle bounds = new System.Drawing.Rectangle();
+        private System.Drawing.Rectangle client_rectangle = new System.Drawing.Rectangle();
 
         private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
 
-        /// <summary>
-        /// For use in PeekMessage.
-        /// </summary>
+        // For use in PeekMessage.
         private MSG myGoodMsg = new MSG();
 
-        private int left_border, right_border, top_border, bottom_border;
+        private static readonly ClassStyle ClassStyle =
+            ClassStyle.OwnDC | ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.Ime;
 
         #endregion
 
         #region --- Contructors ---
 
-        /// <internal />
-        /// <summary>
-        /// Constructs a new WinGLNative class. Call CreateWindow to create the
-        /// actual render window.
-        /// </summary>
-        internal WinGLNative()
+        public WinGLNative(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
         {
-            Debug.Print("Native window driver: {0}", this.ToString());
+            CreateParams cp = new CreateParams();
+            cp.ClassStyle = (int)ClassStyle;
+                
+            cp.Style =
+                (int)WindowStyle.Visible | (int)WindowStyle.ClipChildren |
+                (int)WindowStyle.ClipSiblings | (int)WindowStyle.OverlappedWindow;
+            //cp.ExStyle = 
+
+            // Keep in mind that some construction code runs in WM_CREATE,
+            // which is raised CreateHandle()
+            Rectangle rect = new Rectangle();
+            rect.left = x; rect.top = y; rect.right = x + width; rect.bottom = y + height;
+            Functions.AdjustWindowRect(ref rect, (WindowStyle)cp.Style, false);
+            cp.X = rect.left;
+            cp.Y = rect.top;
+            cp.Width = rect.Width;
+            cp.Height = rect.Height;
+            CreateHandle(cp);
         }
 
         #endregion
@@ -90,18 +111,50 @@ namespace OpenTK.Platform.Windows
 
                 case WindowMessage.NCCALCSIZE:
                     // Need to update the client rectangle, because it has the wrong size on Vista with Aero enabled.
+                    //if (m.WParam == new IntPtr(1))
+                    //{
+                    //    unsafe
+                    //    {
+                    //        NcCalculateSize* nc_calc_size = (NcCalculateSize*)m.LParam;
+                    //        //nc_calc_size->NewBounds = nc_calc_size->OldBounds;
+                    //        //nc_calc_size->OldBounds = nc_calc_size->NewBounds;
+                    //        //client_rectangle = rect.OldClientRectangle;
+                    //    }
+
+                    //    m.Result = new IntPtr((int)(NcCalcSizeOptions.ALIGNTOP | NcCalcSizeOptions.ALIGNLEFT/* | NcCalcSizeOptions.REDRAW*/));
+                    //}
                     break;
 
                 case WindowMessage.WINDOWPOSCHANGED:
-                    WindowPosition pos = (WindowPosition)Marshal.PtrToStructure(m.LParam, typeof(WindowPosition));
-                    position.X = pos.x;
-                    position.Y = pos.y;
+                    unsafe
+                    {
+                        WindowPosition* pos = (WindowPosition*)m.LParam;
+                        bounds.X = pos->x;
+                        bounds.Y = pos->y;
+                        bounds.Width = pos->cx;
+                        bounds.Height = pos->cy;
 
-                    window_size.Width = pos.cx;
-                    window_size.Height = pos.cy;
+                        // This code returns the *window* rectangle, not the *client* rectangle.
+                        //int aero_enabled;
+                        //Functions.DwmGetWindowAttribute(Handle, DwmWindowAttribute.NCRENDERING_ENABLED, (void*)&aero_enabled, sizeof(int));
+                        //if (aero_enabled != 0)
+                        //{
+                        //    Rectangle rect;
+                        //    Functions.DwmGetWindowAttribute(Handle, DwmWindowAttribute.EXTENDED_FRAME_BOUNDS, (void*)&rect, sizeof(System.Drawing.Rectangle));
+                        //    client_rectangle = rect.ToRectangle();
+                        //    client_rectangle.X = 0;
+                        //    client_rectangle.Y = 0;
+                        //}
+                        //else
+                        {
+                            Rectangle rect;
+                            Functions.GetClientRect(Handle, out rect);
+                            client_rectangle = rect.ToRectangle();
+                        }
+                    }
 
-                    Functions.GetClientRect(Handle, out client_rectangle);
-
+                    if (Resize != null)
+                        Resize(this, EventArgs.Empty);
                     break;
 
                 case WindowMessage.STYLECHANGED:
@@ -112,18 +165,21 @@ namespace OpenTK.Platform.Windows
                         windowBorder = WindowBorder.Resizable;
                     else if ((style & ~(WindowStyle.ThickFrame | WindowStyle.MaximizeBox)) != 0)
                         windowBorder = WindowBorder.Fixed;
+
+                    //ClientRectangle = ClientRectangle;
                     break;
 
                 case WindowMessage.SIZE:
-                    long state = m.WParam.ToInt64();
+                    SizeMessage state = (SizeMessage)m.WParam.ToInt64();
                     switch (state)
                     {
-                        case 0: windowState = WindowState.Normal; break;
-                        case 1: windowState = WindowState.Minimized; break;
-                        case 2:
+                        case SizeMessage.RESTORED: windowState = WindowState.Normal; break;
+                        case SizeMessage.MINIMIZED: windowState = WindowState.Minimized; break;
+                        case SizeMessage.MAXIMIZED:
                             windowState = WindowBorder == WindowBorder.Hidden ? WindowState.Fullscreen : WindowState.Maximized;
                             break;
                     }
+
                     break;
 
                 //case WindowMessage.MOUSELEAVE:
@@ -136,39 +192,249 @@ namespace OpenTK.Platform.Windows
 
                 case WindowMessage.CREATE:
                     // Set the window width and height:
-                    pos = (WindowPosition)Marshal.PtrToStructure(m.LParam, typeof(WindowPosition));
-                    position.X = pos.x;
-                    position.Y = pos.y;
-
-                    window_size.Width = pos.cx;
-                    window_size.Height = pos.cy;
+                    CreateStruct cs = (CreateStruct)Marshal.PtrToStructure(m.LParam, typeof(CreateStruct));
+                    bounds.X = cs.x;
+                    bounds.Y = cs.y;
+                    bounds.Width = cs.cx;
+                    bounds.Height = cs.cy;
 
                     // Raise the Create event
                     this.OnCreate(EventArgs.Empty);
                     return;
 
                 case WindowMessage.CLOSE:
-                    //this.DestroyWindow();
-                    this.OnDestroy(EventArgs.Empty);
+                    System.ComponentModel.CancelEventArgs e = new System.ComponentModel.CancelEventArgs();
+                    
+                    if (Closing != null)
+                        Closing(this, e);
+
+                    if (!e.Cancel)
+                    {
+                        if (Unload != null)
+                            Unload(this, e);
+
+                        DestroyWindow();
+                        break;
+                    }
+
                     return;
-                    //break;
 
                 case WindowMessage.DESTROY:
-                    //this.OnDestroy(EventArgs.Empty);
                     exists = false;
-                    isExiting = true;
+                    
+                    if (Closed != null)
+                        Closed(this, EventArgs.Empty);
+                    
                     break;
-
-                case WindowMessage.QUIT:
-                    isExiting = true;
-                    //this.Dispose();
-                    //Debug.WriteLine("Application quit.");
-                    return;
             }
 
-            //DefWndProc(ref m);
             base.WndProc(ref m);
         }
+
+        #endregion
+
+        #endregion
+
+        #region --- INativeWindow Members ---
+
+        #region Bounds
+
+        public System.Drawing.Rectangle Bounds
+        {
+            get { return bounds; }
+            set
+            {
+                // Note: the bounds variable is updated when the resize/move message arrives.
+                Functions.SetWindowPos(Handle, IntPtr.Zero, value.X, value.Y, value.Width, value.Height, 0);
+            }
+        }
+
+        #endregion
+
+        #region Location
+
+        public Point Location
+        {
+            get { return Bounds.Location; }
+            set
+            {
+                // Note: the bounds variable is updated when the resize/move message arrives.
+                Functions.SetWindowPos(Handle, IntPtr.Zero, value.X, value.Y, 0, 0, SetWindowPosFlags.NOSIZE);
+            }
+        }
+
+        #endregion
+
+        #region Size
+
+        public Size Size
+        {
+            get { return Bounds.Size; }
+            set
+            {
+                // Note: the bounds variable is updated when the resize/move message arrives.
+                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, value.Width, value.Height, SetWindowPosFlags.NOMOVE);
+            }
+        }
+
+        #endregion
+
+        #region ClientRectangle
+
+        public System.Drawing.Rectangle ClientRectangle
+        {
+            get { return client_rectangle; }
+            set
+            {
+                //WindowStyle style = (WindowStyle)(ulong)Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
+                //ExtendedWindowStyle exstyle = (ExtendedWindowStyle)(ulong)Functions.GetWindowLong(Handle, GetWindowLongOffsets.EXSTYLE);
+                //Rectangle rect = Rectangle.From(value);
+
+                //if (!Functions.AdjustWindowRectEx(ref rect, style, false, exstyle))
+                //{
+                //    Size = new Size(value.Width, value.Height);
+                //    return;
+                //}
+
+                //Size = new Size(rect.Width, rect.Height);
+            }
+        }
+
+        #endregion
+
+        #region ClientSize
+
+        public Size ClientSize
+        {
+            get
+            {
+                return ClientRectangle.Size;
+            }
+            set
+            {
+                WindowStyle style = (WindowStyle)Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
+                Rectangle rect = Rectangle.From(value);
+                Functions.AdjustWindowRect(ref rect, style, false);
+                Size = new Size(rect.Width, rect.Height);
+            }
+        }
+
+        #endregion
+
+        #region Width
+
+        public int Width
+        {
+            get { return ClientRectangle.Width; }
+            set { ClientRectangle = new System.Drawing.Rectangle(Location, new Size(value, Height)); }
+        }
+
+        #endregion
+
+        #region Height
+
+        public int Height
+        {
+            get { return ClientRectangle.Height; }
+            set { ClientRectangle = new System.Drawing.Rectangle(Location, new Size(Width, value)); }
+        }
+
+        #endregion
+
+        #region X
+
+        public int X
+        {
+            get { return ClientRectangle.X; }
+            set { ClientRectangle = new System.Drawing.Rectangle(new Point(value, Y), Size); }
+        }
+
+        #endregion
+
+        #region Y
+
+        public int Y
+        {
+            get { return ClientRectangle.Y; }
+            set { ClientRectangle = new System.Drawing.Rectangle(new Point(X, value), Size); }
+        }
+
+        #endregion
+
+        #region Icon
+
+        public Icon Icon
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion
+
+        #region Focused
+
+        public bool Focused
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion
+
+        #region Exists
+
+        public bool Exists { get { return exists; } }
+
+        #endregion
+
+        #region Close
+
+        public void Close()
+        {
+            DestroyWindow();
+        }
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler<EventArgs> Idle;
+
+        public event EventHandler<EventArgs> Load;
+
+        public event EventHandler<EventArgs> Unload;
+
+        public event EventHandler<EventArgs> Move;
+
+        public event EventHandler<EventArgs> Resize;
+
+        public event EventHandler<System.ComponentModel.CancelEventArgs> Closing;
+
+        public event EventHandler<EventArgs> Closed;
+
+        public event EventHandler<EventArgs> Disposed;
+
+        public event EventHandler<EventArgs> IconChanged;
+
+        public event EventHandler<EventArgs> TitleChanged;
+
+        public event EventHandler<EventArgs> ClientSizeChanged;
+
+        public event EventHandler<EventArgs> VisibleChanged;
+
+        public event EventHandler<EventArgs> WindowInfoChanged;
 
         #endregion
 
@@ -206,27 +472,6 @@ namespace OpenTK.Platform.Windows
             {
                 return driver;
             }
-        }
-
-        #endregion
-
-        #region public bool Exists
-
-        /// <summary>
-        /// Returns true if a render window/context exists.
-        /// </summary>
-        public bool Exists
-        {
-            get { return exists; }
-        }
-
-        #endregion
-
-        #region public bool IsExiting
-
-        public bool IsExiting
-        {
-            get { return isExiting; }
         }
 
         #endregion
@@ -311,70 +556,10 @@ namespace OpenTK.Platform.Windows
 
         #region public void CreateWindow(int width, int height, GraphicsMode mode, out IGraphicsContext context)
 
-        public void CreateWindow(int width, int height, GraphicsMode mode, int major, int minor, GraphicsContextFlags flags, out IGraphicsContext context)
+        public void CreateWindow(int width, int height, GraphicsMode mode, int major, int minor, GraphicsContextFlags flags,
+            out IGraphicsContext context)
         {
-            Debug.Print("Creating native window.");
-            Debug.Indent();
-            //Debug.Print("GraphicsMode: {0}", format.ToString());
-
-            CreateParams cp = new CreateParams();
-            cp.ClassStyle =
-                (int)WindowClassStyle.OwnDC |
-                (int)WindowClassStyle.VRedraw |
-                (int)WindowClassStyle.HRedraw |
-                (int)WindowClassStyle.Ime;
-            cp.Style =
-                (int)WindowStyle.Visible |
-                (int)WindowStyle.ClipChildren |
-                (int)WindowStyle.ClipSiblings |
-                (int)WindowStyle.OverlappedWindow;
-
-            Rectangle rect = new Rectangle();
-            rect.top = rect.left = 0;
-            rect.bottom = height;
-            rect.right = width;
-            Functions.AdjustWindowRect(ref rect, WindowStyle.OverlappedWindow, false);
-
-            // Not used
-            Top = 0;
-            Left = 0;
-            Right = width;
-            Bottom = height;
-            // --------
-
-            top_border = -rect.top;
-            left_border = -rect.left;
-            bottom_border = rect.bottom - height;
-            right_border = rect.right - width;
-
-            //cp.Width = rect.right - rect.left;
-            //cp.Height = rect.bottom - rect.top;
-            //cp.Caption = "OpenTK Game Window";
-
-            // Keep in mind that some construction code runs in WM_CREATE,
-            // which is raised CreateHandle()
-            CreateHandle(cp);
-
-            if (this.Handle != IntPtr.Zero)
-            {
-                Debug.WriteLine("Window creation succesful.");
-                //context.Info = new OpenTK.Platform.WindowInfo(this);
-                //context.CreateContext();
-                //Debug.WriteLine("Context creation successful.");
-                exists = true;
-            }
-            else throw new ApplicationException(String.Format(
-                    "Could not create native window and/or context. Handle: {0}",
-                    this.Handle));
-
-            Functions.SetWindowPos(this.Handle, IntPtr.Zero, Left, Top, rect.right - rect.left,
-                                   rect.bottom - rect.top, SetWindowPosFlags.SHOWWINDOW);
-
-            context = new GraphicsContext(mode, window, major, minor, flags);
-
-            Cursor.Current = Cursors.Default;
-
-            Debug.Unindent();
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -386,6 +571,7 @@ namespace OpenTK.Platform.Windows
         public void OnCreate(EventArgs e)
         {
             this.window = new WinWindowInfo(Handle, null);
+            exists = true;
 
             //driver = new WinRawInput(this.window);    // Disabled until the mouse issues are resolved.
             driver = new WMInput(this.window);
@@ -417,18 +603,9 @@ namespace OpenTK.Platform.Windows
         public void OnDestroy(EventArgs e)
         {
             Debug.Print("Destroy event fired from window: {0}", window.ToString());
+
             if (this.Destroy != null)
                 this.Destroy(this, e);
-            /*
-            if (this.Handle != IntPtr.Zero)
-            {
-                Debug.Print("Window handle {0} destroyed.", this.Handle);
-                //this.DestroyHandle(); // Destroyed automatically by DefWndProc
-                //this.Dispose();
-                exists = false;
-            }
-            */
-            //API.PostQuitMessage(0);
         }
 
         public event DestroyEvent Destroy;
@@ -471,10 +648,9 @@ namespace OpenTK.Platform.Windows
                 if (WindowState == value)
                     return;
 
-                IntPtr style = Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
+                UIntPtr style = Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
                 ShowWindowCommand command = (ShowWindowCommand)0;
-                SetWindowPosFlags flags = SetWindowPosFlags.NOREPOSITION;
-                int new_width = 0, new_height = 0;
+                SetWindowPosFlags flags = SetWindowPosFlags.NOREPOSITION | SetWindowPosFlags.NOMOVE;
 
                 switch (value)
                 {
@@ -485,8 +661,7 @@ namespace OpenTK.Platform.Windows
                         if (WindowState == WindowState.Fullscreen || WindowState == WindowState.Maximized)
                             WindowBorder = previous_window_border;
 
-                        new_width = previous_client_area.Width;
-                        new_height = previous_client_area.Height;
+                        ClientRectangle = previous_client_area;
                         break;
 
                     case WindowState.Minimized:
@@ -499,7 +674,7 @@ namespace OpenTK.Platform.Windows
                         if (WindowState == WindowState.Normal || WindowState == WindowState.Minimized)
                         {
                             // Get the normal size of the window, so we can set it when reverting from fullscreen/maximized to normal.
-                            previous_client_area = new Rectangle(window_size.Width, window_size.Height);
+                            previous_client_area = ClientRectangle;
                             previous_window_border = WindowBorder;
                         }
 
@@ -515,7 +690,7 @@ namespace OpenTK.Platform.Windows
                 }
 
                 Functions.ShowWindow(Handle, command);
-                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, new_width, new_height, flags);
+                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, 0, 0, flags);
 
                 //windowState = value;
             }
@@ -545,8 +720,8 @@ namespace OpenTK.Platform.Windows
                         break;
 
                     case WindowBorder.Fixed:
-                        style |= WindowStyle.OverlappedWindow & ~(WindowStyle.ThickFrame | WindowStyle.MaximizeBox |
-                                                                  WindowStyle.SizeBox);
+                        style |= WindowStyle.OverlappedWindow &
+                            ~(WindowStyle.ThickFrame | WindowStyle.MaximizeBox | WindowStyle.SizeBox);
                         break;
 
                     case WindowBorder.Hidden:
@@ -554,101 +729,41 @@ namespace OpenTK.Platform.Windows
                         break;
                 }
 
+                //Size current_size = ClientSize;
+
                 Functions.SetWindowLong(Handle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
-                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, 0, 0,
-                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER | SetWindowPosFlags.NOACTIVATE |
-                    SetWindowPosFlags.FRAMECHANGED | SetWindowPosFlags.SHOWWINDOW | SetWindowPosFlags.DRAWFRAME);
+                Functions.SetWindowPos(Handle, IntPtr.Zero, Bounds.X, Bounds.Y, Bounds.Width, Bounds.Height,
+                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER |
+                    SetWindowPosFlags.FRAMECHANGED | SetWindowPosFlags.SHOWWINDOW);
 
-                //windowBorder = value;
+                // Make sure the client rectangle does not change when changing the border style.
+                //ClientSize = current_size;
+
+                //CreateParams cp = new CreateParams();
+                //cp.Caption = this.Title;
+                //cp.X = X;
+                //cp.Y = Y;
+                //cp.Width = Width;
+                //cp.Height = Height;
+                //cp.Style = (int)style;
+                //cp.ExStyle = unchecked((int)(uint)Functions.GetWindowLong(Handle, GetWindowLongOffsets.EXSTYLE));
+                //cp.ClassStyle = (int)ClassStyle;
+                //base.DestroyHandle();
+                //base.CreateHandle(cp);
             }
         }
 
-        #endregion
-
-        #endregion
-
-        #region --- IResizable Members ---
-
-        #region public int Width
-
-        /// <summary>Gets a System.Int32 containing the Width of this GameWindow.</summary>
-        public int Width
+        protected override void OnHandleChange()
         {
-            get
-            {
-                return client_rectangle.Width;
-            }
-            set
-            {
-                if (value <= 0) throw new ArgumentOutOfRangeException("Window width must be higher than zero.");
-                //if (WindowState == WindowState.Fullscreen || WindowState == WindowState.Maximized)
-                //    throw new InvalidOperationException("Cannot resize a fullscreen or maximized window.");
-                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, value, Height, SetWindowPosFlags.NOMOVE);
-            }
-        }
+            base.OnHandleChange();
 
-        #endregion
+            if (window != null)
+                window.Dispose();
+            
+            window = new WinWindowInfo(Handle, null);
 
-        #region public int Height
-
-        /// <summary>Gets a System.Int32 containing the Heights of this GameWindow.</summary>
-        public int Height
-        {
-            get
-            {
-                return client_rectangle.Height;
-            }
-            set
-            {
-                if (value <= 0) throw new ArgumentOutOfRangeException("Window height must be higher than zero.");
-                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, Width, value, SetWindowPosFlags.NOMOVE);
-            }
-        }
-
-        #endregion
-
-        #region public void OnResize
-
-        public event ResizeEvent Resize;
-
-        public void OnResize(ResizeEventArgs e)
-        {
-            if (Resize != null)
-                Resize(this, e);
-
-            throw new NotImplementedException("Use GameWindow.OnResize instead.");
-            //this.width = e.Width;
-            //this.height = e.Height;
-            //if (this.Resize != null)
-            //    this.Resize(this, e);
-        }
-
-        #endregion
-
-        #region Top, Bottom, Left and Right
-
-        public int Top
-        {
-            get { return top; }
-            private set { top = value; }
-        }
-
-        public int Bottom
-        {
-            get { return bottom; }
-            private set { bottom = value; }
-        }
-
-        public int Left
-        {
-            get { return left; }
-            private set { left = value; }
-        }
-
-        public int Right
-        {
-            get { return right; }
-            private set { right = value; }
+            if (WindowInfoChanged != null)
+                WindowInfoChanged(this, EventArgs.Empty);
         }
 
         #endregion
@@ -660,29 +775,35 @@ namespace OpenTK.Platform.Windows
         public void Dispose()
         {
             this.Dispose(true);
-            //GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
 
         private void Dispose(bool calledManually)
         {
             if (!disposed)
             {
-                // Clean unmanaged resources here:
-
                 if (calledManually)
                 {
                     // Safe to clean managed resources
-                    //base.DestroyHandle();
+                    if (Exists)
+                        DestroyWindow();
+
+                    WindowInfo.Dispose();
                 }
+                else
+                {
+                    Debug.Print("[Warning] INativeWindow leaked ({0}). Did you forget to call INativeWindow.Dispose()?", this);
+                }
+
                 disposed = true;
             }
         }
-        /*
+
         ~WinGLNative()
         {
             Dispose(false);
         }
-        */
+
         #endregion
     }
 

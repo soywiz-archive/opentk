@@ -135,7 +135,7 @@ namespace Examples
 
         #region OnResize
 
-        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
+        protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
             GL.MatrixMode(MatrixMode.Projection);

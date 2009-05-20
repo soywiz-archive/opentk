@@ -211,7 +211,7 @@ namespace Examples.Tutorial
         /// </summary>
         /// <param name="e">Contains information on the new GameWindow size.</param>
         /// <remarks>There is no need to call the base implementation.</remarks>
-        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
+        protected override void OnResize(EventArgs e)
         {
             // Magic numbers so the fractal almost fits inside the window.
             // If changing this, also change the -1.6f offset in the fragment shader accordingly.

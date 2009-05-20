@@ -19,12 +19,14 @@ namespace Examples
 
         public override void Write(string message)
         {
-            _target.Invoke(_invokeWrite, new object[] { message });
+            if (_target.Created)
+                _target.Invoke(_invokeWrite, new object[] { message });
         }
 
         public override void WriteLine(string message)
         {
-            _target.Invoke(_invokeWrite, new object[] { message + Environment.NewLine });
+            if (_target.Created)
+                _target.Invoke(_invokeWrite, new object[] { message + Environment.NewLine });
         }
 
         private delegate void StringSendDelegate(string message);
@@ -32,7 +34,8 @@ namespace Examples
         {
             // No need to lock text box as this function will only 
             // ever be executed from the UI thread
-            _target.Text += message;
+            if (_target.Created)
+                _target.Text += message;
         }
     }
 }

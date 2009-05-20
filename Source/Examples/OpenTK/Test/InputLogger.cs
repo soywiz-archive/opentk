@@ -61,14 +61,14 @@ namespace Examples.Tests
             sender.SwapBuffers();
         }
 
-        void hidden_Load(GameWindow sender, EventArgs e)
+        void hidden_Load(object sender, EventArgs e)
         {
             hidden.VSync = VSyncMode.On;
             start = true;
             GL.ClearColor(Color.Black);
         }
 
-        void hidden_Unload(GameWindow sender, EventArgs e)
+        void hidden_Unload(object sender, EventArgs e)
         {
             this.BeginInvoke(on_hidden_unload, sender, e, this);
         }

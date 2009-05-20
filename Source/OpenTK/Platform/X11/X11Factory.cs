@@ -15,6 +15,11 @@ namespace OpenTK.Platform.X11
             return new X11GLNative();
         }
 
+        public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
+        {
+            throw new NotImplementedException();
+        }
+
         public IGLControl CreateGLControl(GraphicsMode mode, GLControl owner)
         {
             return new X11GLControl(mode, owner);
