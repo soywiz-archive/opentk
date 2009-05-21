@@ -173,8 +173,8 @@ namespace OpenTK.Platform.Windows
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         internal static extern IntPtr CreateWindowEx(
             ExtendedWindowStyle ExStyle,
-            UIntPtr ClassAtom,
-            [MarshalAs(UnmanagedType.LPTStr)] string WindowName,
+            IntPtr ClassAtom,
+            IntPtr WindowName,
             WindowStyle Style,
             int X, int Y,
             int Width, int Height,
@@ -211,7 +211,7 @@ namespace OpenTK.Platform.Windows
         internal static extern short UnregisterClass([MarshalAs(UnmanagedType.LPTStr)] LPCTSTR className, IntPtr instance);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        internal static extern short UnregisterClass(UIntPtr className, IntPtr instance);
+        internal static extern short UnregisterClass(IntPtr className, IntPtr instance);
 
         #endregion
 
@@ -636,8 +636,8 @@ namespace OpenTK.Platform.Windows
         /// <para>The SetWindowText function does not expand tab characters (ASCII code 0x09). Tab characters are displayed as vertical bar (|) characters. </para>
         /// <para>Windows 95/98/Me: SetWindowTextW is supported by the Microsoft Layer for Unicode (MSLU). To use this, you must add certain files to your application, as outlined in Microsoft Layer for Unicode on Windows 95/98/Me Systems .</para>
         /// </remarks>
-        [DllImport("user32.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
-        internal static extern BOOL SetWindowText(HWND hWnd, LPCTSTR lpString);
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern BOOL SetWindowText(HWND hWnd, [MarshalAs(UnmanagedType.LPTStr)] string lpString);
 
         #endregion
 
@@ -658,9 +658,8 @@ namespace OpenTK.Platform.Windows
         /// <para>To retrieve the text of a control in another process, send a WM_GETTEXT message directly instead of calling GetWindowText.</para>
         /// <para>Windows 95/98/Me: GetWindowTextW is supported by the Microsoft Layer for Unicode (MSLU). To use this, you must add certain files to your application, as outlined in Microsoft Layer for Unicode on Windows 95/98/Me</para>
         /// </remarks>
-        [DllImport("user32.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
-        internal static extern int GetWindowText(HWND hWnd,
-            [MarshalAs(UnmanagedType.LPTStr), Out] StringBuilder lpString, int nMaxCount);
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern int GetWindowText(HWND hWnd, [MarshalAs(UnmanagedType.LPTStr), In, Out] StringBuilder lpString, int nMaxCount);
 
         #endregion
 
@@ -772,39 +771,39 @@ namespace OpenTK.Platform.Windows
 
         #region ChangeDisplaySettingsEx
 
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern LONG ChangeDisplaySettingsEx(LPCTSTR lpszDeviceName, LPDEVMODE lpDevMode,
-            HWND hwnd, ChangeDisplaySettingsEnum dwflags, LPVOID lParam);
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern LONG ChangeDisplaySettingsEx([MarshalAs(UnmanagedType.LPTStr)] LPCTSTR lpszDeviceName,
+            LPDEVMODE lpDevMode, HWND hwnd, ChangeDisplaySettingsEnum dwflags, LPVOID lParam);
 
         #endregion
 
         #region EnumDisplayDevices
 
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true, CharSet=CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern BOOL EnumDisplayDevices([MarshalAs(UnmanagedType.LPStr)] LPCTSTR lpDevice,
+        public static extern BOOL EnumDisplayDevices([MarshalAs(UnmanagedType.LPTStr)] LPCTSTR lpDevice,
             DWORD iDevNum, [In, Out] WindowsDisplayDevice lpDisplayDevice, DWORD dwFlags);
 
         #endregion
 
         #region EnumDisplaySettings
 
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern BOOL EnumDisplaySettings([MarshalAs(UnmanagedType.LPStr)] string device_name,
+        internal static extern BOOL EnumDisplaySettings([MarshalAs(UnmanagedType.LPTStr)] string device_name,
             int graphics_mode, [In, Out] DeviceMode device_mode);
 
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern BOOL EnumDisplaySettings([MarshalAs(UnmanagedType.LPStr)] string device_name,
+        internal static extern BOOL EnumDisplaySettings([MarshalAs(UnmanagedType.LPTStr)] string device_name,
              DisplayModeSettingsEnum graphics_mode, [In, Out] DeviceMode device_mode);
 
         #endregion
 
         #region EnumDisplaySettingsEx
 
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern BOOL EnumDisplaySettingsEx([MarshalAs(UnmanagedType.LPStr)] LPCTSTR lpszDeviceName, DisplayModeSettingsEnum iModeNum,
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern BOOL EnumDisplaySettingsEx([MarshalAs(UnmanagedType.LPTStr)] LPCTSTR lpszDeviceName, DisplayModeSettingsEnum iModeNum,
             [In, Out] DeviceMode lpDevMode, DWORD dwFlags);
 
         #endregion
@@ -1697,7 +1696,7 @@ namespace OpenTK.Platform.Windows
     #endif 
     } DEVMODE; 
     */
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     internal class DeviceMode
     {
         internal DeviceMode()
@@ -1756,7 +1755,7 @@ namespace OpenTK.Platform.Windows
     /// <summary>
     /// The DISPLAY_DEVICE structure receives information about the display device specified by the iDevNum parameter of the EnumDisplayDevices function.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     internal class WindowsDisplayDevice
     {
         internal WindowsDisplayDevice()
@@ -1819,10 +1818,8 @@ namespace OpenTK.Platform.Windows
         public HICON Icon;
         public HCURSOR Cursor;
         public HBRUSH Background;
-        [MarshalAs(UnmanagedType.LPTStr)]
-        public LPCTSTR MenuName;
-        [MarshalAs(UnmanagedType.LPTStr)]
-        public LPCTSTR ClassName;
+        public IntPtr MenuName;
+        public IntPtr ClassName;
         public HICON IconSm;
 
         public static uint SizeInBytes = (uint)Marshal.SizeOf(default(ExtendedWindowClass));

@@ -28,6 +28,9 @@ namespace OpenTK
         Rectangle ClientRectangle { get; set; }
         Size ClientSize { get; set; }
 
+        [Obsolete]
+        OpenTK.Input.IInputDriver InputDriver { get; }
+
         void Close();
         void ProcessEvents();
         Point PointToClient(Point point);

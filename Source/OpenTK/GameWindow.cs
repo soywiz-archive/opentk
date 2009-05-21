@@ -230,8 +230,6 @@ namespace OpenTK
                 glContext.MakeCurrent(this.WindowInfo);
                 (glContext as IGraphicsContextInternal).LoadAll();
 
-                this.Title = title;
-
                 if ((options & GameWindowFlags.Fullscreen) != 0)
                 {
                     device.ChangeResolution(width, height, mode.ColorFormat.BitsPerPixel, 0);
@@ -947,8 +945,8 @@ namespace OpenTK
         {
             get
             {
-                if ((glWindow as INativeGLWindow).InputDriver.Keyboard.Count > 0)
-                    return (glWindow as INativeGLWindow).InputDriver.Keyboard[0];
+                if (InputDriver.Keyboard.Count > 0)
+                    return InputDriver.Keyboard[0];
                 else
                     return null;
             }
@@ -966,8 +964,8 @@ namespace OpenTK
         {
             get
             {
-                if ((glWindow as INativeGLWindow).InputDriver.Mouse.Count > 0)
-                    return (glWindow as INativeGLWindow).InputDriver.Mouse[0];
+                if (InputDriver.Mouse.Count > 0)
+                    return InputDriver.Mouse[0];
                 else
                     return null;
             }
@@ -983,7 +981,7 @@ namespace OpenTK
         [Obsolete]
         public IList<JoystickDevice> Joysticks
         {
-            get { return (glWindow as INativeGLWindow).InputDriver.Joysticks; }
+            get { return InputDriver.Joysticks; }
         }
 
         #endregion
@@ -1277,6 +1275,22 @@ namespace OpenTK
                     throw new ObjectDisposedException(this.GetType().Name);
 
                 glWindow.Height = value;
+            }
+        }
+
+        #endregion
+
+        #region InputDriver
+
+        [Obsolete]
+        public IInputDriver InputDriver
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.InputDriver;
             }
         }
 

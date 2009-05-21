@@ -402,7 +402,8 @@ namespace OpenTK.Platform.Windows
                 }
                 else
                 {
-                    Debug.Print("[Warning] OpenGL context {0} leaked. Did you forget to call IGraphicsContext.Dispose()?", renderContext.Handle);
+                    Debug.Print("[Warning] OpenGL context {0} leaked. Did you forget to call IGraphicsContext.Dispose()?",
+                        renderContext.Handle);
                 }
                 disposed = true;
             }

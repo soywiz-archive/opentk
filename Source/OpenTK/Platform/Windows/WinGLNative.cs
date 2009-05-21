@@ -30,7 +30,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Forms;
 using OpenTK.Graphics;
 using OpenTK.Input;
 
@@ -45,8 +44,8 @@ namespace OpenTK.Platform.Windows
         #region --- Fields ---
 
         readonly IntPtr Instance = Marshal.GetHINSTANCE(typeof(WinGLNative).Module);
-        readonly string ClassName = "OpenTK.INativeWindow" + WindowCount++.ToString();
-        WindowProcedure WindowProcedureDelegate;
+        readonly IntPtr ClassName = Marshal.StringToHGlobalUni("OpenTK.INativeWindow" + WindowCount++.ToString());
+        readonly WindowProcedure WindowProcedureDelegate;
 
         IInputDriver driver;
 
@@ -100,38 +99,30 @@ namespace OpenTK.Platform.Windows
             wc.Size = ExtendedWindowClass.SizeInBytes;
             wc.Style = ClassStyle;
             wc.Instance = Instance;
-            //wc.WndProc = Marshal.GetFunctionPointerForDelegate(WindowProcedureDelegate);
             wc.WndProc = WindowProcedureDelegate;
             wc.ClassName = ClassName;
             //wc.Background = Functions.GetStockObject(5);
             ushort atom = Functions.RegisterClassEx(ref wc);
 
             if (atom == 0)
-                throw new Exception(String.Format("Failed to register window class. Error: {0}", Marshal.GetLastWin32Error()));
+                throw new PlatformException(String.Format("Failed to register window class. Error: {0}", Marshal.GetLastWin32Error()));
 
-            wc = new ExtendedWindowClass();
-            wc.Size = ExtendedWindowClass.SizeInBytes;
-            //if (!Functions.GetClassInfoEx(Instance, ClassName, ref wc))
-            //{
-            //}
-
-            IntPtr handle = IntPtr.Zero;
-
-            // Todo: Is this necessary? C strings are null terminated.
-            // Maybe we should add an overload to handle the marshaling automatically?
-            handle = Functions.CreateWindowEx(
-               ex_style, ClassName, title, style,
-               rect.left, rect.right, rect.Width, rect.Height,
+            // Create the actual window
+            IntPtr handle = Functions.CreateWindowEx(
+               ex_style, ClassName, IntPtr.Zero, style,
+               rect.left, rect.top, rect.Width, rect.Height,
                IntPtr.Zero, IntPtr.Zero, Instance, IntPtr.Zero);
-            // Todo: make exception more specific.
-
+            
             if (handle == IntPtr.Zero)
-                throw new Exception(String.Format("Failed to create window. Error: {0}", Marshal.GetLastWin32Error()));
+                throw new PlatformException(String.Format("Failed to create window. Error: {0}", Marshal.GetLastWin32Error()));
 
             window = new WinWindowInfo(handle, null);
+            driver = new WMInput(window);
 
-            Location = new Point(x, y);
-            ClientSize = new Size(width, height);
+            //Location = new Point(x, y);
+            //ClientSize = new Size(width, height);
+            //Title = title;
+            exists = true;
         }
 
         #endregion
@@ -173,7 +164,7 @@ namespace OpenTK.Platform.Windows
                         bounds.Height = pos->cy;
 
                         Rectangle rect;
-                        Functions.GetClientRect(window.WindowHandle, out rect);
+                        Functions.GetClientRect(handle, out rect);
                         client_rectangle = rect.ToRectangle();
                     }
 
@@ -182,7 +173,7 @@ namespace OpenTK.Platform.Windows
                     break;
 
                 case WindowMessage.STYLECHANGED:
-                    WindowStyle style = (WindowStyle)(long)Functions.GetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE);
+                    WindowStyle style = (WindowStyle)(long)Functions.GetWindowLong(handle, GetWindowLongOffsets.STYLE);
                     if ((style & WindowStyle.Popup) != 0)
                         windowBorder = WindowBorder.Hidden;
                     else if ((style & WindowStyle.ThickFrame) != 0)
@@ -222,9 +213,7 @@ namespace OpenTK.Platform.Windows
                     bounds.Width = cs.cx;
                     bounds.Height = cs.cy;
 
-                    // Raise the Create event
-                    this.OnCreate(EventArgs.Empty);
-                    return IntPtr.Zero;
+                    break;
 
                 case WindowMessage.CLOSE:
                     System.ComponentModel.CancelEventArgs e = new System.ComponentModel.CancelEventArgs();
@@ -245,7 +234,12 @@ namespace OpenTK.Platform.Windows
 
                 case WindowMessage.DESTROY:
                     exists = false;
-                    
+
+                    Functions.UnregisterClass(ClassName, Instance);
+                    Marshal.FreeHGlobal(ClassName);
+                    window.Dispose();
+                    //window = null;
+
                     if (Closed != null)
                         Closed(this, EventArgs.Empty);
                     
@@ -481,8 +475,8 @@ namespace OpenTK.Platform.Windows
                         "An error happened while processing the message queue. Windows error: {0}",
                         Marshal.GetLastWin32Error()));
                 }
+
                 Functions.DispatchMessage(ref msg);
-                //WndProc(ref msg);
             }
         }
 
@@ -515,25 +509,23 @@ namespace OpenTK.Platform.Windows
 
         #region public string Text
 
+        StringBuilder sb_title = new StringBuilder(256);
         public string Title
         {
             get
             {
-                StringBuilder title = new StringBuilder(256);
-                Functions.GetWindowText(window.WindowHandle, title, title.Capacity);
-                return title.ToString();
+                sb_title.Remove(0, sb_title.Length);
+                Functions.GetWindowText(window.WindowHandle, sb_title, sb_title.MaxCapacity);
+                return sb_title.ToString();
             }
             set
             {
-#if DEBUG
                 bool ret = Functions.SetWindowText(window.WindowHandle, value);
+                
                 if (ret)
-                    Debug.Print("Window {0} title changed to {1}.", window.WindowHandle, value);
+                    Debug.Print("Window {0} title changed to '{1}'.", window.WindowHandle, Title);
                 else
-                    Debug.Print("Window {0} title failed to change to {1}.", window.WindowHandle, value);
-#else
-                Functions.SetWindowText(window.WindowHandle, value);
-#endif
+                    Debug.Print("Window {0} title failed to change to '{1}'.", window.WindowHandle, Title);
             }
         }
 
@@ -587,26 +579,6 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region OnCreate
-
-        public event CreateEvent Create;
-
-        public void OnCreate(EventArgs e)
-        {
-            this.window = new WinWindowInfo(window.WindowHandle, null);
-            exists = true;
-
-            //driver = new WinRawInput(this.window);    // Disabled until the mouse issues are resolved.
-            driver = new WMInput(this.window);
-
-            Debug.Print("Window created: {0}", window);
-
-            if (this.Create != null)
-                this.Create(this, e);
-        }
-
-        #endregion
-
         #region private void DestroyWindow()
 
         /// <summary>
@@ -614,9 +586,12 @@ namespace OpenTK.Platform.Windows
         /// </summary>
         public void DestroyWindow()
         {
-            Debug.Print("Destroying window: {0}", window.ToString());
-            //Functions.PostMessage(this.Handle, WindowMessage.DESTROY, IntPtr.Zero, IntPtr.Zero);
-            
+            if (Exists)
+            {
+                Debug.Print("Destroying window: {0}", window.ToString());
+                Functions.DestroyWindow(window.WindowHandle);
+                exists = false;
+            }
         }
 
         #endregion
@@ -794,12 +769,7 @@ namespace OpenTK.Platform.Windows
                 if (calledManually)
                 {
                     // Safe to clean managed resources
-                    if (Exists)
-                    {
-                        window.Dispose();
-                        Functions.DestroyWindow(window.WindowHandle);
-                        Functions.UnregisterClass(ClassName, Instance);
-                    }
+                    DestroyWindow();
                 }
                 else
                 {
