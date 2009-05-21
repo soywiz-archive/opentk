@@ -249,7 +249,8 @@ namespace OpenTK
             catch (Exception e)
             {
                 Debug.Print(e.ToString());
-                glWindow.Dispose();
+                if (glWindow != null)
+                    glWindow.Dispose();
                 throw;
             }
         }

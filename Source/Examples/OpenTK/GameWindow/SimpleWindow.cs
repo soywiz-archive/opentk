@@ -26,7 +26,7 @@ namespace Examples.Tutorial
     {
         public SimpleWindow() : base(800, 600)
         {
-            Keyboard.KeyDown += new OpenTK.Input.KeyDownEvent(Keyboard_KeyDown);
+            //Keyboard.KeyDown += new OpenTK.Input.KeyDownEvent(Keyboard_KeyDown);
         }
 
         #region Keyboard_KeyDown

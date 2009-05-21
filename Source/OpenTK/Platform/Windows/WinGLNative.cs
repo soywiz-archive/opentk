@@ -40,31 +40,37 @@ namespace OpenTK.Platform.Windows
     /// Drives GameWindow on Windows.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
     /// </summary>
-    internal sealed class WinGLNative : System.Windows.Forms.NativeWindow, INativeGLWindow, INativeWindow
+    internal sealed class WinGLNative : INativeWindow
     {
         #region --- Fields ---
 
-        private IInputDriver driver;
+        readonly IntPtr Instance = Marshal.GetHINSTANCE(typeof(WinGLNative).Module);
+        readonly string ClassName = "OpenTK.INativeWindow" + WindowCount++.ToString();
+        WindowProcedure WindowProcedureDelegate;
 
-        private bool visible = true;
-        private bool disposed;
-        private bool exists;
-        private WinWindowInfo window;
-        private WindowBorder windowBorder = WindowBorder.Resizable, previous_window_border;
-        private WindowState windowState = WindowState.Normal;
+        IInputDriver driver;
 
-        private System.Drawing.Rectangle previous_client_area;
+        bool visible = true;
+        bool disposed;
+        bool exists;
+        WinWindowInfo window;
+        WindowBorder windowBorder = WindowBorder.Resizable, previous_window_border;
+        WindowState windowState = WindowState.Normal;
 
-        private System.Drawing.Rectangle bounds = new System.Drawing.Rectangle();
-        private System.Drawing.Rectangle client_rectangle = new System.Drawing.Rectangle();
+        System.Drawing.Rectangle previous_client_area;
 
-        private ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
+        System.Drawing.Rectangle bounds = new System.Drawing.Rectangle();
+        System.Drawing.Rectangle client_rectangle = new System.Drawing.Rectangle();
 
-        // For use in PeekMessage.
-        private MSG myGoodMsg = new MSG();
+        ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
 
-        private static readonly ClassStyle ClassStyle =
+        static readonly ClassStyle ClassStyle =
             ClassStyle.OwnDC | ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.Ime;
+
+        static int WindowCount = 0; // Used to create unique window class names.
+
+        IntPtr DefaultWindowProcedure =
+            Marshal.GetFunctionPointerForDelegate(new WindowProcedure(Functions.DefWindowProc));
 
         #endregion
 
@@ -72,39 +78,71 @@ namespace OpenTK.Platform.Windows
 
         public WinGLNative(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
         {
-            CreateParams cp = new CreateParams();
-            cp.ClassStyle = (int)ClassStyle;
-                
-            cp.Style =
-                (int)WindowStyle.Visible | (int)WindowStyle.ClipChildren |
-                (int)WindowStyle.ClipSiblings | (int)WindowStyle.OverlappedWindow;
-            //cp.ExStyle = 
+            // Use win32 to create the native window.
+            // Keep in mind that some construction code runs in the WM_CREATE message handler.
 
-            // Keep in mind that some construction code runs in WM_CREATE,
-            // which is raised CreateHandle()
+            WindowStyle style = WindowStyle.Visible | WindowStyle.ClipChildren |
+                WindowStyle.ClipSiblings | WindowStyle.OverlappedWindow;
+
+            ExtendedWindowStyle ex_style = ExtendedWindowStyle.OverlappedWindow;
+
+            // Find out the final window rectangle, after the WM has added its chrome (titlebar, sidebars etc).
             Rectangle rect = new Rectangle();
             rect.left = x; rect.top = y; rect.right = x + width; rect.bottom = y + height;
-            Functions.AdjustWindowRect(ref rect, (WindowStyle)cp.Style, false);
-            cp.X = rect.left;
-            cp.Y = rect.top;
-            cp.Width = rect.Width;
-            cp.Height = rect.Height;
-            CreateHandle(cp);
+            Functions.AdjustWindowRectEx(ref rect, style, false, ex_style);
+
+            // This is the main window procedure callback (called WndProc in the win32 world).
+            WindowProcedureDelegate = WindowProcedure;
+
+            // Create the window class that we will use for this window.
+            // The current approach is to register a new class for each WinNativeWindow we create.
+            ExtendedWindowClass wc = new ExtendedWindowClass();
+            wc.Size = ExtendedWindowClass.SizeInBytes;
+            wc.Style = ClassStyle;
+            wc.Instance = Instance;
+            //wc.WndProc = Marshal.GetFunctionPointerForDelegate(WindowProcedureDelegate);
+            wc.WndProc = WindowProcedureDelegate;
+            wc.ClassName = ClassName;
+            //wc.Background = Functions.GetStockObject(5);
+            ushort atom = Functions.RegisterClassEx(ref wc);
+
+            if (atom == 0)
+                throw new Exception(String.Format("Failed to register window class. Error: {0}", Marshal.GetLastWin32Error()));
+
+            wc = new ExtendedWindowClass();
+            wc.Size = ExtendedWindowClass.SizeInBytes;
+            //if (!Functions.GetClassInfoEx(Instance, ClassName, ref wc))
+            //{
+            //}
+
+            IntPtr handle = IntPtr.Zero;
+
+            // Todo: Is this necessary? C strings are null terminated.
+            // Maybe we should add an overload to handle the marshaling automatically?
+            handle = Functions.CreateWindowEx(
+               ex_style, ClassName, title, style,
+               rect.left, rect.right, rect.Width, rect.Height,
+               IntPtr.Zero, IntPtr.Zero, Instance, IntPtr.Zero);
+            // Todo: make exception more specific.
+
+            if (handle == IntPtr.Zero)
+                throw new Exception(String.Format("Failed to create window. Error: {0}", Marshal.GetLastWin32Error()));
+
+            window = new WinWindowInfo(handle, null);
+
+            Location = new Point(x, y);
+            ClientSize = new Size(width, height);
         }
 
         #endregion
 
         #region --- Protected Members ---
 
-        #region protected override void WndProc(ref Message m)
+        #region WindowProcedure
 
-        /// <summary>
-        /// Processes incoming WM_* messages.
-        /// </summary>
-        /// <param name="m">Reference to the incoming Windows Message.</param>
-        protected override void WndProc(ref Message m)
+        IntPtr WindowProcedure(IntPtr handle, WindowMessage message, IntPtr wParam, IntPtr lParam)
         {
-            switch ((WindowMessage)m.Msg)
+            switch (message)
             {
                 case WindowMessage.ACTIVATE:
                     break;
@@ -128,29 +166,15 @@ namespace OpenTK.Platform.Windows
                 case WindowMessage.WINDOWPOSCHANGED:
                     unsafe
                     {
-                        WindowPosition* pos = (WindowPosition*)m.LParam;
+                        WindowPosition* pos = (WindowPosition*)lParam;
                         bounds.X = pos->x;
                         bounds.Y = pos->y;
                         bounds.Width = pos->cx;
                         bounds.Height = pos->cy;
 
-                        // This code returns the *window* rectangle, not the *client* rectangle.
-                        //int aero_enabled;
-                        //Functions.DwmGetWindowAttribute(Handle, DwmWindowAttribute.NCRENDERING_ENABLED, (void*)&aero_enabled, sizeof(int));
-                        //if (aero_enabled != 0)
-                        //{
-                        //    Rectangle rect;
-                        //    Functions.DwmGetWindowAttribute(Handle, DwmWindowAttribute.EXTENDED_FRAME_BOUNDS, (void*)&rect, sizeof(System.Drawing.Rectangle));
-                        //    client_rectangle = rect.ToRectangle();
-                        //    client_rectangle.X = 0;
-                        //    client_rectangle.Y = 0;
-                        //}
-                        //else
-                        {
-                            Rectangle rect;
-                            Functions.GetClientRect(Handle, out rect);
-                            client_rectangle = rect.ToRectangle();
-                        }
+                        Rectangle rect;
+                        Functions.GetClientRect(window.WindowHandle, out rect);
+                        client_rectangle = rect.ToRectangle();
                     }
 
                     if (Resize != null)
@@ -158,7 +182,7 @@ namespace OpenTK.Platform.Windows
                     break;
 
                 case WindowMessage.STYLECHANGED:
-                    WindowStyle style = (WindowStyle)(long)Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
+                    WindowStyle style = (WindowStyle)(long)Functions.GetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE);
                     if ((style & WindowStyle.Popup) != 0)
                         windowBorder = WindowBorder.Hidden;
                     else if ((style & WindowStyle.ThickFrame) != 0)
@@ -170,7 +194,7 @@ namespace OpenTK.Platform.Windows
                     break;
 
                 case WindowMessage.SIZE:
-                    SizeMessage state = (SizeMessage)m.WParam.ToInt64();
+                    SizeMessage state = (SizeMessage)wParam.ToInt64();
                     switch (state)
                     {
                         case SizeMessage.RESTORED: windowState = WindowState.Normal; break;
@@ -192,7 +216,7 @@ namespace OpenTK.Platform.Windows
 
                 case WindowMessage.CREATE:
                     // Set the window width and height:
-                    CreateStruct cs = (CreateStruct)Marshal.PtrToStructure(m.LParam, typeof(CreateStruct));
+                    CreateStruct cs = (CreateStruct)Marshal.PtrToStructure(lParam, typeof(CreateStruct));
                     bounds.X = cs.x;
                     bounds.Y = cs.y;
                     bounds.Width = cs.cx;
@@ -200,7 +224,7 @@ namespace OpenTK.Platform.Windows
 
                     // Raise the Create event
                     this.OnCreate(EventArgs.Empty);
-                    return;
+                    return IntPtr.Zero;
 
                 case WindowMessage.CLOSE:
                     System.ComponentModel.CancelEventArgs e = new System.ComponentModel.CancelEventArgs();
@@ -217,7 +241,7 @@ namespace OpenTK.Platform.Windows
                         break;
                     }
 
-                    return;
+                    return IntPtr.Zero;
 
                 case WindowMessage.DESTROY:
                     exists = false;
@@ -228,7 +252,7 @@ namespace OpenTK.Platform.Windows
                     break;
             }
 
-            base.WndProc(ref m);
+            return Functions.DefWindowProc(handle, message, wParam, lParam);
         }
 
         #endregion
@@ -245,7 +269,7 @@ namespace OpenTK.Platform.Windows
             set
             {
                 // Note: the bounds variable is updated when the resize/move message arrives.
-                Functions.SetWindowPos(Handle, IntPtr.Zero, value.X, value.Y, value.Width, value.Height, 0);
+                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, value.X, value.Y, value.Width, value.Height, 0);
             }
         }
 
@@ -259,7 +283,7 @@ namespace OpenTK.Platform.Windows
             set
             {
                 // Note: the bounds variable is updated when the resize/move message arrives.
-                Functions.SetWindowPos(Handle, IntPtr.Zero, value.X, value.Y, 0, 0, SetWindowPosFlags.NOSIZE);
+                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, value.X, value.Y, 0, 0, SetWindowPosFlags.NOSIZE);
             }
         }
 
@@ -273,7 +297,7 @@ namespace OpenTK.Platform.Windows
             set
             {
                 // Note: the bounds variable is updated when the resize/move message arrives.
-                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, value.Width, value.Height, SetWindowPosFlags.NOMOVE);
+                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, value.Width, value.Height, SetWindowPosFlags.NOMOVE);
             }
         }
 
@@ -312,7 +336,7 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
-                WindowStyle style = (WindowStyle)Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
+                WindowStyle style = (WindowStyle)Functions.GetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE);
                 Rectangle rect = Rectangle.From(value);
                 Functions.AdjustWindowRect(ref rect, style, false);
                 Size = new Size(rect.Width, rect.Height);
@@ -450,7 +474,7 @@ namespace OpenTK.Platform.Windows
         {
             while (!IsIdle)
             {
-                ret = Functions.GetMessage(ref msg, Handle, 0, 0);
+                ret = Functions.GetMessage(ref msg, window.WindowHandle, 0, 0);
                 if (ret == -1)
                 {
                     throw new ApplicationException(String.Format(
@@ -482,9 +506,8 @@ namespace OpenTK.Platform.Windows
         {
             get
             {
-                //return !API.PeekMessage(out msg, IntPtr.Zero, 0, 0, 0);
-                return !Functions.PeekMessage(ref myGoodMsg, this.Handle, 0, 0, 0);
-                //return API.GetQueueStatus(API.QueueStatusFlags.ALLEVENTS) == 0;
+                MSG message = new MSG();
+                return !Functions.PeekMessage(ref message, window.WindowHandle, 0, 0, 0);
             }
         }
 
@@ -531,12 +554,12 @@ namespace OpenTK.Platform.Windows
             {
                 if (value && !Visible)
                 {
-                    Functions.ShowWindow(Handle, ShowWindowCommand.SHOWNORMAL);
+                    Functions.ShowWindow(window.WindowHandle, ShowWindowCommand.SHOWNORMAL);
                     visible = true;
                 }
                 else if (!value && Visible)
                 {
-                    Functions.ShowWindow(Handle, ShowWindowCommand.HIDE);
+                    Functions.ShowWindow(window.WindowHandle, ShowWindowCommand.HIDE);
                     visible = false;
                 }
             }
@@ -570,7 +593,7 @@ namespace OpenTK.Platform.Windows
 
         public void OnCreate(EventArgs e)
         {
-            this.window = new WinWindowInfo(Handle, null);
+            this.window = new WinWindowInfo(window.WindowHandle, null);
             exists = true;
 
             //driver = new WinRawInput(this.window);    // Disabled until the mouse issues are resolved.
@@ -593,7 +616,7 @@ namespace OpenTK.Platform.Windows
         {
             Debug.Print("Destroying window: {0}", window.ToString());
             //Functions.PostMessage(this.Handle, WindowMessage.DESTROY, IntPtr.Zero, IntPtr.Zero);
-            Functions.DestroyWindow(this.Handle);
+            
         }
 
         #endregion
@@ -616,7 +639,7 @@ namespace OpenTK.Platform.Windows
 
         public Point PointToClient(Point point)
         {
-            if (!Functions.ScreenToClient(this.Handle, ref point))
+            if (!Functions.ScreenToClient(window.WindowHandle, ref point))
                 throw new InvalidOperationException(String.Format(
                     "Could not convert point {0} from client to screen coordinates. Windows error: {1}",
                     point.ToString(), Marshal.GetLastWin32Error()));
@@ -648,7 +671,7 @@ namespace OpenTK.Platform.Windows
                 if (WindowState == value)
                     return;
 
-                UIntPtr style = Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
+                UIntPtr style = Functions.GetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE);
                 ShowWindowCommand command = (ShowWindowCommand)0;
                 SetWindowPosFlags flags = SetWindowPosFlags.NOREPOSITION | SetWindowPosFlags.NOMOVE;
 
@@ -689,8 +712,8 @@ namespace OpenTK.Platform.Windows
                         break;
                 }
 
-                Functions.ShowWindow(Handle, command);
-                Functions.SetWindowPos(Handle, IntPtr.Zero, 0, 0, 0, 0, flags);
+                Functions.ShowWindow(window.WindowHandle, command);
+                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, 0, 0, flags);
 
                 //windowState = value;
             }
@@ -731,36 +754,22 @@ namespace OpenTK.Platform.Windows
 
                 //Size current_size = ClientSize;
 
-                Functions.SetWindowLong(Handle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
-                Functions.SetWindowPos(Handle, IntPtr.Zero, Bounds.X, Bounds.Y, Bounds.Width, Bounds.Height,
+                Functions.SetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
+                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, Bounds.X, Bounds.Y, Bounds.Width, Bounds.Height,
                     SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER |
                     SetWindowPosFlags.FRAMECHANGED | SetWindowPosFlags.SHOWWINDOW);
 
                 // Make sure the client rectangle does not change when changing the border style.
                 //ClientSize = current_size;
-
-                //CreateParams cp = new CreateParams();
-                //cp.Caption = this.Title;
-                //cp.X = X;
-                //cp.Y = Y;
-                //cp.Width = Width;
-                //cp.Height = Height;
-                //cp.Style = (int)style;
-                //cp.ExStyle = unchecked((int)(uint)Functions.GetWindowLong(Handle, GetWindowLongOffsets.EXSTYLE));
-                //cp.ClassStyle = (int)ClassStyle;
-                //base.DestroyHandle();
-                //base.CreateHandle(cp);
             }
         }
 
-        protected override void OnHandleChange()
+        void OnHandleChange()
         {
-            base.OnHandleChange();
-
             if (window != null)
                 window.Dispose();
             
-            window = new WinWindowInfo(Handle, null);
+            window = new WinWindowInfo(window.WindowHandle, null);
 
             if (WindowInfoChanged != null)
                 WindowInfoChanged(this, EventArgs.Empty);
@@ -778,7 +787,7 @@ namespace OpenTK.Platform.Windows
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool calledManually)
+        void Dispose(bool calledManually)
         {
             if (!disposed)
             {
@@ -786,9 +795,11 @@ namespace OpenTK.Platform.Windows
                 {
                     // Safe to clean managed resources
                     if (Exists)
-                        DestroyWindow();
-
-                    WindowInfo.Dispose();
+                    {
+                        window.Dispose();
+                        Functions.DestroyWindow(window.WindowHandle);
+                        Functions.UnregisterClass(ClassName, Instance);
+                    }
                 }
                 else
                 {
@@ -806,26 +817,4 @@ namespace OpenTK.Platform.Windows
 
         #endregion
     }
-
-    #region class WindowHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
-
-    /*
-    class WindowHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
-    {
-        protected override bool ReleaseHandle()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public override bool IsInvalid
-        {
-            get
-            {
-                return base.IsInvalid;
-            }
-        }
-    }
-    */
-
-    #endregion
 }

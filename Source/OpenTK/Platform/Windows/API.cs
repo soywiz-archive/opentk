@@ -28,6 +28,9 @@ namespace OpenTK.Platform.Windows
     using HWND = System.IntPtr;
     using HINSTANCE = System.IntPtr;
     using HMENU = System.IntPtr;
+    using HICON = System.IntPtr;
+    using HBRUSH = System.IntPtr;
+    using HCURSOR = System.IntPtr;
 
     using LRESULT = System.IntPtr;
     using LPVOID = System.IntPtr;
@@ -143,16 +146,16 @@ namespace OpenTK.Platform.Windows
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         internal static extern IntPtr CreateWindowEx(
-            [In]ExtendedWindowStyle ExStyle,
-            [In]string className,
-            [In]string windowName,
-            [In]WindowStyle Style,
-            [In]int X, int Y,
-            [In]int Width, int Height,
-            [In]IntPtr HandleToParentWindow,
-            [In]IntPtr Menu,
-            [In]IntPtr Instance,
-            [In]IntPtr Param);
+            ExtendedWindowStyle ExStyle,
+            [MarshalAs(UnmanagedType.LPTStr)] string className,
+            [MarshalAs(UnmanagedType.LPTStr)] string windowName,
+            WindowStyle Style,
+            int X, int Y,
+            int Width, int Height,
+            IntPtr HandleToParentWindow,
+            IntPtr Menu,
+            IntPtr Instance,
+            IntPtr Param);
         /*
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern int CreateWindowEx(
@@ -170,8 +173,8 @@ namespace OpenTK.Platform.Windows
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         internal static extern IntPtr CreateWindowEx(
             ExtendedWindowStyle ExStyle,
-            IntPtr ClassName,
-            IntPtr WindowName,
+            UIntPtr ClassAtom,
+            [MarshalAs(UnmanagedType.LPTStr)] string WindowName,
             WindowStyle Style,
             int X, int Y,
             int Width, int Height,
@@ -190,50 +193,60 @@ namespace OpenTK.Platform.Windows
 
         #region RegisterClass
 
-        [DllImport("user32.dll", SetLastError = true)]
-        internal static extern short RegisterClass(WindowClass window_class);
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern ushort RegisterClass(ref WindowClass window_class);
+
+        #endregion
+
+        #region RegisterClassEx
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern ushort RegisterClassEx(ref ExtendedWindowClass window_class);
 
         #endregion
 
         #region UnregisterClass
 
-        [DllImport("user32.dll", SetLastError = true)]
-        internal static extern short UnregisterClass(string className, IntPtr instance);
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern short UnregisterClass([MarshalAs(UnmanagedType.LPTStr)] LPCTSTR className, IntPtr instance);
 
-        [DllImport("user32.dll", SetLastError = true)]
-        internal static extern short UnregisterClass(IntPtr className, IntPtr instance);
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern short UnregisterClass(UIntPtr className, IntPtr instance);
 
         #endregion
 
-        [CLSCompliant(false)]
-        [SuppressUnmanagedCodeSecurity]
-        [DllImport("user32.dll", SetLastError = true)]
-        internal static extern LRESULT CallWindowProc(
-            WNDPROC lpPrevWndFunc,
-            HWND hWnd,
-            UINT Msg,
-            WPARAM wParam,
-            LPARAM lParam
-        );
+        #region GetClassInfoEx
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern BOOL GetClassInfoEx(HINSTANCE hinst,
+            [MarshalAs(UnmanagedType.LPTStr)] LPCTSTR lpszClass, ref ExtendedWindowClass lpwcx);
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        internal static extern BOOL GetClassInfoEx(HINSTANCE hinst, UIntPtr lpszClass, ref ExtendedWindowClass lpwcx);
+
+        #endregion
 
         [SuppressUnmanagedCodeSecurity]
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern LRESULT CallWindowProc(
-            WNDPROC lpPrevWndFunc,
-            HWND hWnd,
-            INT Msg,
-            WPARAM wParam,
-            LPARAM lParam
-        );
+        internal static extern LRESULT CallWindowProc(WNDPROC lpPrevWndFunc, HWND hWnd, WindowMessage Msg,
+            WPARAM wParam, LPARAM lParam);
 
         #region SetWindowLong
 
-        internal static IntPtr SetWindowLong(IntPtr handle, GetWindowLongOffsets index, IntPtr newValue)
+        internal static IntPtr SetWindowLong(IntPtr handle, GetWindowLongOffsets item, IntPtr newValue)
         {
             if (IntPtr.Size == 4)
-                return (IntPtr)SetWindowLong(handle, index, (LONG)newValue);
+                return (IntPtr)SetWindowLong(handle, item, newValue);
 
-            return SetWindowLongPtr(handle, index, newValue);
+            return SetWindowLongPtr(handle, GetWindowLongOffsets.WNDPROC, newValue);
+        }
+
+        internal static IntPtr SetWindowLong(IntPtr handle, WindowProcedure newValue)
+        {
+            if (IntPtr.Size == 4)
+                return (IntPtr)SetWindowLong(handle, GetWindowLongOffsets.WNDPROC, newValue);
+
+            return SetWindowLongPtr(handle, GetWindowLongOffsets.WNDPROC, newValue);
         }
 
         [SuppressUnmanagedCodeSecurity]
@@ -243,6 +256,16 @@ namespace OpenTK.Platform.Windows
         [SuppressUnmanagedCodeSecurity]
         [DllImport("user32.dll", SetLastError = true)]
         static extern LONG_PTR SetWindowLongPtr(HWND hWnd, GetWindowLongOffsets nIndex, LONG_PTR dwNewLong);
+
+        [SuppressUnmanagedCodeSecurity]
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern LONG SetWindowLong(HWND hWnd, GetWindowLongOffsets nIndex,
+            [MarshalAs(UnmanagedType.FunctionPtr)]WindowProcedure dwNewLong);
+
+        [SuppressUnmanagedCodeSecurity]
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern LONG_PTR SetWindowLongPtr(HWND hWnd, GetWindowLongOffsets nIndex,
+            [MarshalAs(UnmanagedType.FunctionPtr)]WindowProcedure dwNewLong);
 
         #endregion
 
@@ -369,6 +392,13 @@ namespace OpenTK.Platform.Windows
         [System.Security.SuppressUnmanagedCodeSecurity]
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         internal static extern DWORD GetQueueStatus([MarshalAs(UnmanagedType.U4)] QueueStatusFlags flags);
+
+        #endregion
+
+        #region DefWindowProc
+
+        [DllImport("User32.dll")]
+        public extern static IntPtr DefWindowProc(HWND hWnd, WindowMessage msg, IntPtr wParam, IntPtr lParam);
 
         #endregion
 
@@ -1283,6 +1313,17 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        #region GDI functions
+
+        #region GetStockObject
+
+        [DllImport("gdi32.dll", SetLastError = true)]
+        internal static extern IntPtr GetStockObject(int index);
+
+        #endregion
+
+        #endregion
+
         #endregion
     }
 
@@ -1740,11 +1781,11 @@ namespace OpenTK.Platform.Windows
 
     #region WindowClass
     [StructLayout(LayoutKind.Sequential)]
-    internal class WindowClass
+    internal struct WindowClass
     {
-        internal ClassStyle style = ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.OwnDC;
+        internal ClassStyle Style;
         [MarshalAs(UnmanagedType.FunctionPtr)]
-        internal WindowProcedureEventHandler WindowProcedure;
+        internal WindowProcedure WindowProcedure;
         internal int ClassExtraBytes;
         internal int WindowExtraBytes;
         //[MarshalAs(UnmanagedType.
@@ -1754,10 +1795,39 @@ namespace OpenTK.Platform.Windows
         internal IntPtr BackgroundBrush;
         //[MarshalAs(UnmanagedType.LPStr)]
         internal IntPtr MenuName;
-        //[MarshalAs(UnmanagedType.LPStr)]
-        internal IntPtr ClassName;
+        [MarshalAs(UnmanagedType.LPTStr)]
+        internal string ClassName;
         //internal string ClassName;
+
+        internal static int SizeInBytes = Marshal.SizeOf(default(WindowClass));
     }
+    #endregion
+
+    #region ExtendedWindowClass
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    struct ExtendedWindowClass
+    {
+        public UINT Size;
+        public ClassStyle Style;
+        //public WNDPROC WndProc;
+        [MarshalAs(UnmanagedType.FunctionPtr)]
+        public WindowProcedure WndProc;
+        public int cbClsExtra;
+        public int cbWndExtra;
+        public HINSTANCE Instance;
+        public HICON Icon;
+        public HCURSOR Cursor;
+        public HBRUSH Background;
+        [MarshalAs(UnmanagedType.LPTStr)]
+        public LPCTSTR MenuName;
+        [MarshalAs(UnmanagedType.LPTStr)]
+        public LPCTSTR ClassName;
+        public HICON IconSm;
+
+        public static uint SizeInBytes = (uint)Marshal.SizeOf(default(ExtendedWindowClass));
+    }
+
     #endregion
 
     #region internal struct MinMaxInfo
@@ -1768,11 +1838,11 @@ namespace OpenTK.Platform.Windows
     [StructLayout(LayoutKind.Sequential)]
     internal struct MINMAXINFO
     {
-        System.Drawing.Point ptReserved;
-        System.Drawing.Point ptMaxSize;
-        System.Drawing.Point ptMaxPosition;
-        System.Drawing.Point ptMinTrackSize;
-        System.Drawing.Point ptMaxTrackSize;
+        System.Drawing.Point Reserved;
+        public System.Drawing.Size MaxSize;
+        public System.Drawing.Point MaxPosition;
+        public System.Drawing.Size MinTrackSize;
+        public System.Drawing.Size MaxTrackSize;
     }
 
     #endregion
@@ -3344,7 +3414,7 @@ namespace OpenTK.Platform.Windows
 
     #region WindowMessage
 
-    internal enum WindowMessage
+    internal enum WindowMessage : uint
     {
         NULL = 0x0000,
         CREATE = 0x0001,
@@ -3778,20 +3848,7 @@ namespace OpenTK.Platform.Windows
 
     #region --- Callbacks ---
 
-    internal delegate void WindowProcedure(ref System.Windows.Forms.Message msg);
-
-        [UnmanagedFunctionPointerAttribute(CallingConvention.Winapi)]
-        internal delegate void WindowProcedureEventHandler(object sender, WindowProcedureEventArgs e);
-
-        internal class WindowProcedureEventArgs : EventArgs
-        {
-            private System.Windows.Forms.Message msg;
-            internal System.Windows.Forms.Message Message
-            {
-                get { return msg; }
-                set { msg = value; }
-            }
-        }
+    internal delegate IntPtr WindowProcedure(IntPtr handle, WindowMessage message, IntPtr wParam, IntPtr lParam);
 
     #region Message
 
