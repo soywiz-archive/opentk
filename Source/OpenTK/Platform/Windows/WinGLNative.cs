@@ -32,6 +32,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using OpenTK.Graphics;
 using OpenTK.Input;
+using System.Collections.Generic;
 
 namespace OpenTK.Platform.Windows
 {
@@ -39,20 +40,19 @@ namespace OpenTK.Platform.Windows
     /// Drives GameWindow on Windows.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
     /// </summary>
-    internal sealed class WinGLNative : INativeWindow
+    internal sealed class WinGLNative : INativeWindow, IInputDriver
     {
-        #region --- Fields ---
+        #region Fields
 
         readonly IntPtr Instance = Marshal.GetHINSTANCE(typeof(WinGLNative).Module);
         readonly IntPtr ClassName = Marshal.StringToHGlobalUni("OpenTK.INativeWindow" + WindowCount++.ToString());
         readonly WindowProcedure WindowProcedureDelegate;
 
-        IInputDriver driver;
-
+        bool class_registered;
         bool visible = true;
         bool disposed;
         bool exists;
-        WinWindowInfo window;
+        WinWindowInfo window, child_window;
         WindowBorder windowBorder = WindowBorder.Resizable, previous_window_border;
         WindowState windowState = WindowState.Normal;
 
@@ -71,68 +71,58 @@ namespace OpenTK.Platform.Windows
         IntPtr DefaultWindowProcedure =
             Marshal.GetFunctionPointerForDelegate(new WindowProcedure(Functions.DefWindowProc));
 
+        // Used for IInputDriver implementation
+        WinMMJoystick joystick_driver = new WinMMJoystick();
+        KeyboardDevice keyboard = new KeyboardDevice();
+        MouseDevice mouse = new MouseDevice();
+        IList<KeyboardDevice> keyboards = new List<KeyboardDevice>(1);
+        IList<MouseDevice> mice = new List<MouseDevice>(1);
+        internal static readonly WinKeyMap KeyMap = new WinKeyMap();
+        const long ExtendedBit = 1 << 24;           // Used to distinguish left and right control, alt and enter keys.
+        static readonly uint ShiftRightScanCode = Functions.MapVirtualKey(VirtualKeys.RSHIFT, 0);         // Used to distinguish left and right shift keys.
+
         #endregion
 
-        #region --- Contructors ---
+        #region Contructors
 
         public WinGLNative(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
         {
-            // Use win32 to create the native window.
-            // Keep in mind that some construction code runs in the WM_CREATE message handler.
-
-            WindowStyle style = WindowStyle.Visible | WindowStyle.ClipChildren |
-                WindowStyle.ClipSiblings | WindowStyle.OverlappedWindow;
-
-            ExtendedWindowStyle ex_style = ExtendedWindowStyle.OverlappedWindow;
-
-            // Find out the final window rectangle, after the WM has added its chrome (titlebar, sidebars etc).
-            Rectangle rect = new Rectangle();
-            rect.left = x; rect.top = y; rect.right = x + width; rect.bottom = y + height;
-            Functions.AdjustWindowRectEx(ref rect, style, false, ex_style);
-
-            // This is the main window procedure callback (called WndProc in the win32 world).
+            // This is the main window procedure callback. We need the callback in order to create the window, so
+            // don't move it below the CreateWindow calls.
             WindowProcedureDelegate = WindowProcedure;
 
-            // Create the window class that we will use for this window.
-            // The current approach is to register a new class for each WinNativeWindow we create.
-            ExtendedWindowClass wc = new ExtendedWindowClass();
-            wc.Size = ExtendedWindowClass.SizeInBytes;
-            wc.Style = ClassStyle;
-            wc.Instance = Instance;
-            wc.WndProc = WindowProcedureDelegate;
-            wc.ClassName = ClassName;
-            //wc.Background = Functions.GetStockObject(5);
-            ushort atom = Functions.RegisterClassEx(ref wc);
+            // To avoid issues with Ati drivers on Windows 6+ with compositing enabled, the context will not be
+            // bound to the top-level window, but rather to a child window docked in the parent.
+            window = new WinWindowInfo(
+                CreateWindow(x, y, width, height, title, options, device, IntPtr.Zero), null);
+            child_window = new WinWindowInfo(
+                CreateWindow(0, 0, ClientSize.Width, ClientSize.Height, title, options, device, window.WindowHandle), window);
 
-            if (atom == 0)
-                throw new PlatformException(String.Format("Failed to register window class. Error: {0}", Marshal.GetLastWin32Error()));
-
-            // Create the actual window
-            IntPtr handle = Functions.CreateWindowEx(
-               ex_style, ClassName, IntPtr.Zero, style,
-               rect.left, rect.top, rect.Width, rect.Height,
-               IntPtr.Zero, IntPtr.Zero, Instance, IntPtr.Zero);
-            
-            if (handle == IntPtr.Zero)
-                throw new PlatformException(String.Format("Failed to create window. Error: {0}", Marshal.GetLastWin32Error()));
-
-            window = new WinWindowInfo(handle, null);
-            driver = new WMInput(window);
-
-            //Location = new Point(x, y);
-            //ClientSize = new Size(width, height);
-            //Title = title;
             exists = true;
+
+            keyboard.Description = "Standard Windows keyboard";
+            keyboard.NumberOfFunctionKeys = 12;
+            keyboard.NumberOfKeys = 101;
+            keyboard.NumberOfLeds = 3;
+
+            mouse.Description = "Standard Windows mouse";
+            mouse.NumberOfButtons = 3;
+            mouse.NumberOfWheels = 1;
+
+            keyboards.Add(keyboard);
+            mice.Add(mouse);
         }
 
         #endregion
 
-        #region --- Protected Members ---
+        #region Private Members
 
         #region WindowProcedure
 
         IntPtr WindowProcedure(IntPtr handle, WindowMessage message, IntPtr wParam, IntPtr lParam)
         {
+            bool mouse_about_to_enter = false;
+
             switch (message)
             {
                 case WindowMessage.ACTIVATE:
@@ -154,10 +144,14 @@ namespace OpenTK.Platform.Windows
                     //}
                     break;
 
+                case WindowMessage.ERASEBKGND:
+                    return new IntPtr(1);
+
                 case WindowMessage.WINDOWPOSCHANGED:
                     unsafe
                     {
                         WindowPosition* pos = (WindowPosition*)lParam;
+
                         bounds.X = pos->x;
                         bounds.Y = pos->y;
                         bounds.Width = pos->cx;
@@ -166,10 +160,17 @@ namespace OpenTK.Platform.Windows
                         Rectangle rect;
                         Functions.GetClientRect(handle, out rect);
                         client_rectangle = rect.ToRectangle();
-                    }
 
-                    if (Resize != null)
-                        Resize(this, EventArgs.Empty);
+                        if (pos->hwnd == window.WindowHandle)
+                        {
+                            Functions.SetWindowPos(child_window.WindowHandle, IntPtr.Zero, 0, 0, ClientRectangle.Width, ClientRectangle.Height,
+                                SetWindowPosFlags.NOZORDER | SetWindowPosFlags.NOOWNERZORDER |
+                                SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOSENDCHANGING);
+                        }
+
+                        if (Resize != null)
+                            Resize(this, EventArgs.Empty);
+                    }
                     break;
 
                 case WindowMessage.STYLECHANGED:
@@ -181,7 +182,6 @@ namespace OpenTK.Platform.Windows
                     else if ((style & ~(WindowStyle.ThickFrame | WindowStyle.MaximizeBox)) != 0)
                         windowBorder = WindowBorder.Fixed;
 
-                    //ClientRectangle = ClientRectangle;
                     break;
 
                 case WindowMessage.SIZE:
@@ -204,6 +204,148 @@ namespace OpenTK.Platform.Windows
                 //case WindowMessage.MOUSE_ENTER:
                 //    Cursor.Current = Cursors.Default;
                 //    break;
+
+                #region Input events
+
+                // Mouse events:
+                case WindowMessage.NCMOUSEMOVE:
+                    mouse_about_to_enter = true;   // Used to simulate a mouse enter event.
+                    break;
+
+                case WindowMessage.MOUSEMOVE:
+                    mouse.Position = new System.Drawing.Point(
+                                                        (int)(lParam.ToInt32() & 0x0000FFFF),
+                                                        (int)(lParam.ToInt32() & 0xFFFF0000) >> 16);
+                    if (mouse_about_to_enter)
+                    {
+                        //Cursor.Current = Cursors.Default;
+                        mouse_about_to_enter = false;
+                    }
+                    break;
+
+                case WindowMessage.MOUSEWHEEL:
+                    // This is due to inconsistent behavior of the WParam value on 64bit arch, whese
+                    // wparam = 0xffffffffff880000 or wparam = 0x00000000ff100000
+                    mouse.Wheel += (int)((long)msg.WParam << 32 >> 48) / 120;
+                    break;
+
+                case WindowMessage.LBUTTONDOWN:
+                    mouse[MouseButton.Left] = true;
+                    break;
+
+                case WindowMessage.MBUTTONDOWN:
+                    mouse[MouseButton.Middle] = true;
+                    break;
+
+                case WindowMessage.RBUTTONDOWN:
+                    mouse[MouseButton.Right] = true;
+                    break;
+
+                case WindowMessage.XBUTTONDOWN:
+                    mouse[((wParam.ToInt32() & 0xFFFF0000) >> 16) != (int)MouseKeys.XButton1 ? MouseButton.Button1 : MouseButton.Button2] = true;
+                    break;
+
+                case WindowMessage.LBUTTONUP:
+                    mouse[MouseButton.Left] = false;
+                    break;
+
+                case WindowMessage.MBUTTONUP:
+                    mouse[MouseButton.Middle] = false;
+                    break;
+
+                case WindowMessage.RBUTTONUP:
+                    mouse[MouseButton.Right] = false;
+                    break;
+
+                case WindowMessage.XBUTTONUP:
+                    // TODO: Is this correct?
+                    mouse[((wParam.ToInt32() & 0xFFFF0000) >> 16) != (int)MouseKeys.XButton1 ? MouseButton.Button1 : MouseButton.Button2] = false;
+                    break;
+
+                // Keyboard events:
+                case WindowMessage.KEYDOWN:
+                case WindowMessage.KEYUP:
+                case WindowMessage.SYSKEYDOWN:
+                case WindowMessage.SYSKEYUP:
+                    bool pressed =
+                        message == WindowMessage.KEYDOWN ||
+                        message == WindowMessage.SYSKEYDOWN;
+
+                    // Shift/Control/Alt behave strangely when e.g. ShiftRight is held down and ShiftLeft is pressed
+                    // and released. It looks like neither key is released in this case, or that the wrong key is
+                    // released in the case of Control and Alt.
+                    // To combat this, we are going to release both keys when either is released. Hacky, but should work.
+                    // Win95 does not distinguish left/right key constants (GetAsyncKeyState returns 0).
+                    // In this case, both keys will be reported as pressed.
+
+                    bool extended = (msg.LParam.ToInt64() & ExtendedBit) != 0;
+                    switch ((VirtualKeys)wParam)
+                    {
+                        case VirtualKeys.SHIFT:
+                            // The behavior of this key is very strange. Unlike Control and Alt, there is no extended bit
+                            // to distinguish between left and right keys. Moreover, pressing both keys and releasing one
+                            // may result in both keys being held down (but not always).
+                            // The only reliably way to solve this was reported by BlueMonkMN at the forums: we should
+                            // check the scancodes. It looks like GLFW does the same thing, so it should be reliable.
+
+                            // TODO: Not 100% reliable, when both keys are pressed at once.
+                            if (ShiftRightScanCode != 0)
+                            {
+                                unchecked
+                                {
+                                    if (((lParam.ToInt32() >> 16) & 0xFF) == ShiftRightScanCode)
+                                        keyboard[Input.Key.ShiftRight] = pressed;
+                                    else
+                                        keyboard[Input.Key.ShiftLeft] = pressed;
+                                }
+                            }
+                            else
+                            {
+                                // Should only fall here on Windows 9x and NT4.0-
+                                keyboard[Input.Key.ShiftLeft] = pressed;
+                            }
+                            break;
+
+                        case VirtualKeys.CONTROL:
+                            if (extended)
+                                keyboard[Input.Key.ControlRight] = pressed;
+                            else
+                                keyboard[Input.Key.ControlLeft] = pressed;
+                            break;
+
+                        case VirtualKeys.MENU:
+                            if (extended)
+                                keyboard[Input.Key.AltRight] = pressed;
+                            else
+                                keyboard[Input.Key.AltLeft] = pressed;
+                            break;
+
+                        case VirtualKeys.RETURN:
+                            if (extended)
+                                keyboard[Key.KeypadEnter] = pressed;
+                            else
+                                keyboard[Key.Enter] = pressed;
+                            break;
+
+                        default:
+                            if (!WMInput.KeyMap.ContainsKey((VirtualKeys)msg.WParam))
+                            {
+                                Debug.Print("Virtual key {0} ({1}) not mapped.", (VirtualKeys)msg.WParam, (int)msg.WParam);
+                                break;
+                            }
+                            else
+                            {
+                                keyboard[WMInput.KeyMap[(VirtualKeys)msg.WParam]] = pressed;
+                            }
+                            break;
+                    }
+                    break;
+
+                case WindowMessage.KILLFOCUS:
+                    keyboard.ClearKeys();
+                    break;
+
+                #endregion
 
                 case WindowMessage.CREATE:
                     // Set the window width and height:
@@ -251,9 +393,92 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        #region IsIdle
+
+       bool IsIdle
+        {
+            get
+            {
+                MSG message = new MSG();
+                return !Functions.PeekMessage(ref message, window.WindowHandle, 0, 0, 0);
+            }
+        }
+
         #endregion
 
-        #region --- INativeWindow Members ---
+        #region CreateWindow
+
+        IntPtr CreateWindow(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device, IntPtr parentHandle)
+        {
+            // Use win32 to create the native window.
+            // Keep in mind that some construction code runs in the WM_CREATE message handler.
+
+            WindowStyle style =
+                WindowStyle.Visible | WindowStyle.ClipChildren |
+                WindowStyle.ClipSiblings |
+                (parentHandle == IntPtr.Zero ? WindowStyle.OverlappedWindow : WindowStyle.Child);
+
+            ExtendedWindowStyle ex_style =
+                (parentHandle == IntPtr.Zero ? ExtendedWindowStyle.OverlappedWindow : 0);
+
+            // Find out the final window rectangle, after the WM has added its chrome (titlebar, sidebars etc).
+            Rectangle rect = new Rectangle();
+            rect.left = x; rect.top = y; rect.right = x + width; rect.bottom = y + height;
+            Functions.AdjustWindowRectEx(ref rect, style, false, ex_style);
+
+            // Create the window class that we will use for this window.
+            // The current approach is to register a new class for each top-level WinGLWindow we create.
+            if (!class_registered)
+            {
+                ExtendedWindowClass wc = new ExtendedWindowClass();
+                wc.Size = ExtendedWindowClass.SizeInBytes;
+                wc.Style = ClassStyle;
+                wc.Instance = Instance;
+                wc.WndProc = WindowProcedureDelegate;
+                wc.ClassName = ClassName;
+                //wc.Background = Functions.GetStockObject(5);
+                ushort atom = Functions.RegisterClassEx(ref wc);
+
+                if (atom == 0)
+                    throw new PlatformException(String.Format("Failed to register window class. Error: {0}", Marshal.GetLastWin32Error()));
+
+                class_registered = true;
+            }
+
+            // Create the actual window
+            IntPtr handle = Functions.CreateWindowEx(
+                ex_style, ClassName, IntPtr.Zero, style,
+                rect.left, rect.top, rect.Width, rect.Height,
+                parentHandle, IntPtr.Zero, Instance, IntPtr.Zero);
+
+            if (handle == IntPtr.Zero)
+                throw new PlatformException(String.Format("Failed to create window. Error: {0}", Marshal.GetLastWin32Error()));
+
+            return handle;
+        }
+
+        #endregion
+
+        #region DestroyWindow
+
+        /// <summary>
+        /// Starts the teardown sequence for the current window.
+        /// </summary>
+        void DestroyWindow()
+        {
+            if (Exists)
+            {
+                Debug.Print("Destroying window: {0}", window.ToString());
+                Functions.DestroyWindow(window.WindowHandle);
+                exists = false;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region INativeWindow Members
 
         #region Bounds
 
@@ -411,103 +636,7 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region Exists
-
-        public bool Exists { get { return exists; } }
-
-        #endregion
-
-        #region Close
-
-        public void Close()
-        {
-            DestroyWindow();
-        }
-
-        #endregion
-
-        #region Events
-
-        public event EventHandler<EventArgs> Idle;
-
-        public event EventHandler<EventArgs> Load;
-
-        public event EventHandler<EventArgs> Unload;
-
-        public event EventHandler<EventArgs> Move;
-
-        public event EventHandler<EventArgs> Resize;
-
-        public event EventHandler<System.ComponentModel.CancelEventArgs> Closing;
-
-        public event EventHandler<EventArgs> Closed;
-
-        public event EventHandler<EventArgs> Disposed;
-
-        public event EventHandler<EventArgs> IconChanged;
-
-        public event EventHandler<EventArgs> TitleChanged;
-
-        public event EventHandler<EventArgs> ClientSizeChanged;
-
-        public event EventHandler<EventArgs> VisibleChanged;
-
-        public event EventHandler<EventArgs> WindowInfoChanged;
-
-        #endregion
-
-        #endregion
-
-        #region --- INativeGLWindow Members ---
-
-        #region public void ProcessEvents()
-
-        private int ret;
-        MSG msg;
-        public void ProcessEvents()
-        {
-            while (!IsIdle)
-            {
-                ret = Functions.GetMessage(ref msg, window.WindowHandle, 0, 0);
-                if (ret == -1)
-                {
-                    throw new ApplicationException(String.Format(
-                        "An error happened while processing the message queue. Windows error: {0}",
-                        Marshal.GetLastWin32Error()));
-                }
-
-                Functions.DispatchMessage(ref msg);
-            }
-        }
-
-        #endregion
-
-        #region public IInputDriver InputDriver
-
-        public IInputDriver InputDriver
-        {
-            get
-            {
-                return driver;
-            }
-        }
-
-        #endregion
-
-        #region public bool IsIdle
-
-        public bool IsIdle
-        {
-            get
-            {
-                MSG message = new MSG();
-                return !Functions.PeekMessage(ref message, window.WindowHandle, 0, 0, 0);
-            }
-        }
-
-        #endregion
-
-        #region public string Text
+        #region Title
 
         StringBuilder sb_title = new StringBuilder(256);
         public string Title
@@ -521,7 +650,7 @@ namespace OpenTK.Platform.Windows
             set
             {
                 bool ret = Functions.SetWindowText(window.WindowHandle, value);
-                
+
                 if (ret)
                     Debug.Print("Window {0} title changed to '{1}'.", window.WindowHandle, Title);
                 else
@@ -531,7 +660,7 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region public bool Visible
+        #region Visible
 
         /// <summary>
         /// TODO
@@ -559,76 +688,17 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region public IWindowInfo WindowInfo
+        #region Exists
 
-        public IWindowInfo WindowInfo
-        {
-            get { return window; }
-            //private set { window = value as WindowInfo; }
-        }
+        public bool Exists { get { return exists; } }
 
         #endregion
 
-        #region public void CreateWindow(int width, int height, GraphicsMode mode, out IGraphicsContext context)
+        #region Close
 
-        public void CreateWindow(int width, int height, GraphicsMode mode, int major, int minor, GraphicsContextFlags flags,
-            out IGraphicsContext context)
+        public void Close()
         {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region private void DestroyWindow()
-
-        /// <summary>
-        /// Starts the teardown sequence for the current window.
-        /// </summary>
-        public void DestroyWindow()
-        {
-            if (Exists)
-            {
-                Debug.Print("Destroying window: {0}", window.ToString());
-                Functions.DestroyWindow(window.WindowHandle);
-                exists = false;
-            }
-        }
-
-        #endregion
-
-        #region OnDestroy
-
-        public void OnDestroy(EventArgs e)
-        {
-            Debug.Print("Destroy event fired from window: {0}", window.ToString());
-
-            if (this.Destroy != null)
-                this.Destroy(this, e);
-        }
-
-        public event DestroyEvent Destroy;
-
-        #endregion
-
-        #region PointToClient
-
-        public Point PointToClient(Point point)
-        {
-            if (!Functions.ScreenToClient(window.WindowHandle, ref point))
-                throw new InvalidOperationException(String.Format(
-                    "Could not convert point {0} from client to screen coordinates. Windows error: {1}",
-                    point.ToString(), Marshal.GetLastWin32Error()));
-
-            return point;
-        }
-
-        #endregion
-
-        #region PointToScreen
-
-        public Point PointToScreen(Point p)
-        {
-            throw new NotImplementedException();
+            DestroyWindow();
         }
 
         #endregion
@@ -639,7 +709,7 @@ namespace OpenTK.Platform.Windows
         {
             get
             {
-                return windowState;   
+                return windowState;
             }
             set
             {
@@ -697,7 +767,7 @@ namespace OpenTK.Platform.Windows
         #endregion
 
         #region public WindowBorder WindowBorder
-        
+
         public WindowBorder WindowBorder
         {
             get
@@ -739,22 +809,158 @@ namespace OpenTK.Platform.Windows
             }
         }
 
-        void OnHandleChange()
-        {
-            if (window != null)
-                window.Dispose();
-            
-            window = new WinWindowInfo(window.WindowHandle, null);
+        #endregion
 
-            if (WindowInfoChanged != null)
-                WindowInfoChanged(this, EventArgs.Empty);
+        #region PointToClient
+
+        public Point PointToClient(Point point)
+        {
+            if (!Functions.ScreenToClient(window.WindowHandle, ref point))
+                throw new InvalidOperationException(String.Format(
+                    "Could not convert point {0} from client to screen coordinates. Windows error: {1}",
+                    point.ToString(), Marshal.GetLastWin32Error()));
+
+            return point;
         }
 
         #endregion
 
+        #region PointToScreen
+
+        public Point PointToScreen(Point p)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
-        #region --- IDisposable Members ---
+        #region Events
+
+        public event EventHandler<EventArgs> Idle;
+
+        public event EventHandler<EventArgs> Load;
+
+        public event EventHandler<EventArgs> Unload;
+
+        public event EventHandler<EventArgs> Move;
+
+        public event EventHandler<EventArgs> Resize;
+
+        public event EventHandler<System.ComponentModel.CancelEventArgs> Closing;
+
+        public event EventHandler<EventArgs> Closed;
+
+        public event EventHandler<EventArgs> Disposed;
+
+        public event EventHandler<EventArgs> IconChanged;
+
+        public event EventHandler<EventArgs> TitleChanged;
+
+        public event EventHandler<EventArgs> ClientSizeChanged;
+
+        public event EventHandler<EventArgs> VisibleChanged;
+
+        public event EventHandler<EventArgs> WindowInfoChanged;
+
+        #endregion
+
+        #endregion
+
+        #region INativeGLWindow Members
+
+        #region public void ProcessEvents()
+
+        private int ret;
+        MSG msg;
+        public void ProcessEvents()
+        {
+            while (!IsIdle)
+            {
+                ret = Functions.GetMessage(ref msg, window.WindowHandle, 0, 0);
+                if (ret == -1)
+                {
+                    throw new PlatformException(String.Format(
+                        "An error happened while processing the message queue. Windows error: {0}",
+                        Marshal.GetLastWin32Error()));
+                }
+
+                Functions.DispatchMessage(ref msg);
+            }
+        }
+
+        #endregion
+
+        #region public IInputDriver InputDriver
+
+        public IInputDriver InputDriver
+        {
+            get { return this; }
+        }
+
+        #endregion
+
+        #region public IWindowInfo WindowInfo
+
+        public IWindowInfo WindowInfo
+        {
+            get { return child_window; }
+        }
+
+        #endregion
+
+        #region OnDestroy
+
+        public void OnDestroy(EventArgs e)
+        {
+            Debug.Print("Destroy event fired from window: {0}", window.ToString());
+
+            if (this.Destroy != null)
+                this.Destroy(this, e);
+        }
+
+        public event DestroyEvent Destroy;
+
+        #endregion
+
+        #endregion
+
+        #region IInputDriver Members
+
+        public void Poll()
+        {
+            joystick_driver.Poll();
+        }
+
+        #endregion
+
+        #region IKeyboardDriver Members
+
+        public IList<KeyboardDevice> Keyboard
+        {
+            get { return keyboards; }
+        }
+
+        #endregion
+
+        #region IMouseDriver Members
+
+        public IList<MouseDevice> Mouse
+        {
+            get { return mice; }
+        }
+
+        #endregion
+
+        #region IJoystickDriver Members
+
+        public IList<JoystickDevice> Joysticks
+        {
+            get { return joystick_driver.Joysticks; }
+        }
+
+        #endregion
+
+        #region IDisposable Members
 
         public void Dispose()
         {
