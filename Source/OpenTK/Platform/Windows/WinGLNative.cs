@@ -44,6 +44,9 @@ namespace OpenTK.Platform.Windows
     {
         #region Fields
 
+        readonly static ExtendedWindowStyle ParentStyleEx = ExtendedWindowStyle.WindowEdge;
+        readonly static ExtendedWindowStyle ChildStyleEx = 0;
+
         readonly IntPtr Instance = Marshal.GetHINSTANCE(typeof(WinGLNative).Module);
         readonly IntPtr ClassName = Marshal.StringToHGlobalUni("OpenTK.INativeWindow" + WindowCount++.ToString());
         readonly WindowProcedure WindowProcedureDelegate;
@@ -435,7 +438,7 @@ namespace OpenTK.Platform.Windows
                 WindowStyle.Child | WindowStyle.ClipSiblings);
 
             ExtendedWindowStyle ex_style =
-                (parentHandle == IntPtr.Zero ? ExtendedWindowStyle.WindowEdge : 0);
+                (parentHandle == IntPtr.Zero ? ParentStyleEx : ChildStyleEx);
 
             // Find out the final window rectangle, after the WM has added its chrome (titlebar, sidebars etc).
             Rectangle rect = new Rectangle();
@@ -739,51 +742,42 @@ namespace OpenTK.Platform.Windows
                 if (WindowState == value)
                     return;
 
-                UIntPtr style = Functions.GetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE);
-                ShowWindowCommand command = (ShowWindowCommand)0;
-                SetWindowPosFlags flags = SetWindowPosFlags.NOREPOSITION | SetWindowPosFlags.NOMOVE;
+                ShowWindowCommand command = 0;
 
                 switch (value)
                 {
                     case WindowState.Normal:
                         command = ShowWindowCommand.RESTORE;
-                        flags |= SetWindowPosFlags.SHOWWINDOW | SetWindowPosFlags.FRAMECHANGED;
-
-                        if (WindowState == WindowState.Fullscreen || WindowState == WindowState.Maximized)
+                        if (WindowBorder == WindowBorder.Hidden && previous_window_border != WindowBorder.Hidden)
                             WindowBorder = previous_window_border;
-
-                        ClientRectangle = previous_client_area;
-                        break;
-
-                    case WindowState.Minimized:
-                        command = ShowWindowCommand.SHOWMINIMIZED;
-                        flags |= SetWindowPosFlags.NOSIZE;
                         break;
 
                     case WindowState.Maximized:
+                        command = ShowWindowCommand.MAXIMIZE;
+                        if (WindowBorder == WindowBorder.Hidden && previous_window_border != WindowBorder.Hidden)
+                            WindowBorder = previous_window_border;
+                        break;
+
+                    case WindowState.Minimized:
+                        command = ShowWindowCommand.MINIMIZE;
+                        break;
+
                     case WindowState.Fullscreen:
-                        if (WindowState == WindowState.Normal || WindowState == WindowState.Minimized)
-                        {
-                            // Get the normal size of the window, so we can set it when reverting from fullscreen/maximized to normal.
-                            previous_client_area = ClientRectangle;
-                            previous_window_border = WindowBorder;
-                        }
-
-                        command = ShowWindowCommand.SHOWMAXIMIZED;
-                        flags |= SetWindowPosFlags.SHOWWINDOW | SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.NOSIZE;
-
-                        if (value == WindowState.Fullscreen)
-                            this.WindowBorder = WindowBorder.Hidden;
-                        else
-                            this.WindowBorder = previous_window_border;
-
+                        // We achieve fullscreen by hiding the window border and maximizing the window.
+                        // We have to 'trick' maximize above to not restore the border, by making it think
+                        // previous_window_border == Hidden.
+                        // After the trick, we store the 'real' previous border, to allow state changes to work
+                        // as expected.
+                        WindowBorder temp = WindowBorder;
+                        previous_window_border = WindowBorder.Hidden;
+                        WindowBorder = WindowBorder.Hidden;
+                        WindowState = WindowState.Maximized;
+                        previous_window_border = temp;
                         break;
                 }
 
-                Functions.ShowWindow(window.WindowHandle, command);
-                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, 0, 0, flags);
-
-                //windowState = value;
+                if (command != 0)
+                    Functions.ShowWindow(window.WindowHandle, command);
             }
         }
 
@@ -820,11 +814,15 @@ namespace OpenTK.Platform.Windows
                         break;
                 }
 
+                // Make sure client size doesn't change when changing the border style.
+                Size client_size = ClientSize;
+                Rectangle rect = Rectangle.From(client_size);
+                Functions.AdjustWindowRectEx(ref rect, style, false, ParentStyleEx);
+                
                 Functions.SetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
-
-                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, Bounds.Width, Bounds.Height,
-                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER |
-                    /*SetWindowPosFlags.DRAWFRAME |*/ SetWindowPosFlags.FRAMECHANGED |
+                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, rect.Width, rect.Height,
+                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOZORDER |
+                    SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.FRAMECHANGED |
                     SetWindowPosFlags.SHOWWINDOW);
             }
         }

@@ -3764,7 +3764,7 @@ namespace OpenTK.Platform.Windows
         /// Activates and displays a window. If the window is minimized or maximized, the system restores it to its original size and position. An application should specify this flag when displaying the window for the first time.
         /// </summary>
         SHOWNORMAL      = 1,
-        //NORMAL          = 1,
+        NORMAL          = 1,
         /// <summary>
         /// Activates the window and displays it as a minimized window.
         /// </summary>
@@ -3773,7 +3773,7 @@ namespace OpenTK.Platform.Windows
         /// Activates the window and displays it as a maximized window.
         /// </summary>
         SHOWMAXIMIZED   = 3,
-        //MAXIMIZE        = 3,
+        MAXIMIZE        = 3,
         /// <summary>
         /// Displays the window as a minimized window. This value is similar to SW_SHOWMINIMIZED, except the window is not activated.
         /// </summary>
