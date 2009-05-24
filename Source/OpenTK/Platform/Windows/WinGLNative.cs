@@ -180,7 +180,7 @@ namespace OpenTK.Platform.Windows
                     {
                         if (wParam.ToInt64() == (long)GWL.STYLE)
                         {
-                            WindowStyle style = ((StyleStruct*)lParam)->Old;
+                            WindowStyle style = ((StyleStruct*)lParam)->New;
                             if ((style & WindowStyle.Popup) != 0)
                                 windowBorder = WindowBorder.Hidden;
                             else if ((style & WindowStyle.ThickFrame) != 0)
@@ -429,12 +429,13 @@ namespace OpenTK.Platform.Windows
             // Keep in mind that some construction code runs in the WM_CREATE message handler.
 
             WindowStyle style =
-                WindowStyle.Visible | WindowStyle.ClipChildren |
-                WindowStyle.ClipSiblings |
-                (parentHandle == IntPtr.Zero ? WindowStyle.OverlappedWindow : WindowStyle.Child);
+                WindowStyle.Visible |
+                (parentHandle == IntPtr.Zero ?
+                WindowStyle.OverlappedWindow | WindowStyle.ClipChildren :
+                WindowStyle.Child | WindowStyle.ClipSiblings);
 
             ExtendedWindowStyle ex_style =
-                (parentHandle == IntPtr.Zero ? ExtendedWindowStyle.OverlappedWindow : 0);
+                (parentHandle == IntPtr.Zero ? ExtendedWindowStyle.WindowEdge : 0);
 
             // Find out the final window rectangle, after the WM has added its chrome (titlebar, sidebars etc).
             Rectangle rect = new Rectangle();
@@ -819,17 +820,12 @@ namespace OpenTK.Platform.Windows
                         break;
                 }
 
-                //Size current_size = ClientSize;
-
                 Functions.SetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
 
                 Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, Bounds.Width, Bounds.Height,
-                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOZORDER |
-                    SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.FRAMECHANGED |
+                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER |
+                    /*SetWindowPosFlags.DRAWFRAME |*/ SetWindowPosFlags.FRAMECHANGED |
                     SetWindowPosFlags.SHOWWINDOW);
-
-                // Make sure the client rectangle does not change when changing the border style.
-                //ClientSize = current_size;
             }
         }
 
@@ -908,7 +904,7 @@ namespace OpenTK.Platform.Windows
                         Marshal.GetLastWin32Error()));
                 }
 
-                //Functions.TranslateMessage(ref msg);
+                Functions.TranslateMessage(ref msg);
                 Functions.DispatchMessage(ref msg);
             }
         }
