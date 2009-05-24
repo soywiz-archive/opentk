@@ -125,6 +125,8 @@ namespace OpenTK.Platform.Windows
 
             switch (message)
             {
+                #region Size / Move events
+
                 case WindowMessage.ACTIVATE:
                     break;
 
@@ -174,13 +176,19 @@ namespace OpenTK.Platform.Windows
                     break;
 
                 case WindowMessage.STYLECHANGED:
-                    WindowStyle style = (WindowStyle)(long)Functions.GetWindowLong(handle, GetWindowLongOffsets.STYLE);
-                    if ((style & WindowStyle.Popup) != 0)
-                        windowBorder = WindowBorder.Hidden;
-                    else if ((style & WindowStyle.ThickFrame) != 0)
-                        windowBorder = WindowBorder.Resizable;
-                    else if ((style & ~(WindowStyle.ThickFrame | WindowStyle.MaximizeBox)) != 0)
-                        windowBorder = WindowBorder.Fixed;
+                    unsafe
+                    {
+                        if (wParam.ToInt64() == (long)GWL.STYLE)
+                        {
+                            WindowStyle style = ((StyleStruct*)lParam)->Old;
+                            if ((style & WindowStyle.Popup) != 0)
+                                windowBorder = WindowBorder.Hidden;
+                            else if ((style & WindowStyle.ThickFrame) != 0)
+                                windowBorder = WindowBorder.Resizable;
+                            else if ((style & ~(WindowStyle.ThickFrame | WindowStyle.MaximizeBox)) != 0)
+                                windowBorder = WindowBorder.Fixed;
+                        }
+                    }
 
                     break;
 
@@ -197,6 +205,10 @@ namespace OpenTK.Platform.Windows
 
                     break;
 
+                #endregion
+
+                #region Input events
+
                 //case WindowMessage.MOUSELEAVE:
                 //    Cursor.Current = Cursors.Default;
                 //    break;
@@ -204,8 +216,6 @@ namespace OpenTK.Platform.Windows
                 //case WindowMessage.MOUSE_ENTER:
                 //    Cursor.Current = Cursors.Default;
                 //    break;
-
-                #region Input events
 
                 // Mouse events:
                 case WindowMessage.NCMOUSEMOVE:
@@ -226,7 +236,7 @@ namespace OpenTK.Platform.Windows
                 case WindowMessage.MOUSEWHEEL:
                     // This is due to inconsistent behavior of the WParam value on 64bit arch, whese
                     // wparam = 0xffffffffff880000 or wparam = 0x00000000ff100000
-                    mouse.Wheel += (int)((long)msg.WParam << 32 >> 48) / 120;
+                    mouse.Wheel += (int)((long)wParam << 32 >> 48) / 120;
                     break;
 
                 case WindowMessage.LBUTTONDOWN:
@@ -278,7 +288,7 @@ namespace OpenTK.Platform.Windows
                     // Win95 does not distinguish left/right key constants (GetAsyncKeyState returns 0).
                     // In this case, both keys will be reported as pressed.
 
-                    bool extended = (msg.LParam.ToInt64() & ExtendedBit) != 0;
+                    bool extended = (lParam.ToInt64() & ExtendedBit) != 0;
                     switch ((VirtualKeys)wParam)
                     {
                         case VirtualKeys.SHIFT:
@@ -293,7 +303,7 @@ namespace OpenTK.Platform.Windows
                             {
                                 unchecked
                                 {
-                                    if (((lParam.ToInt32() >> 16) & 0xFF) == ShiftRightScanCode)
+                                    if (((lParam.ToInt64() >> 16) & 0xFF) == ShiftRightScanCode)
                                         keyboard[Input.Key.ShiftRight] = pressed;
                                     else
                                         keyboard[Input.Key.ShiftLeft] = pressed;
@@ -304,40 +314,40 @@ namespace OpenTK.Platform.Windows
                                 // Should only fall here on Windows 9x and NT4.0-
                                 keyboard[Input.Key.ShiftLeft] = pressed;
                             }
-                            break;
+                            return IntPtr.Zero;
 
                         case VirtualKeys.CONTROL:
                             if (extended)
                                 keyboard[Input.Key.ControlRight] = pressed;
                             else
                                 keyboard[Input.Key.ControlLeft] = pressed;
-                            break;
+                            return IntPtr.Zero;
 
                         case VirtualKeys.MENU:
                             if (extended)
                                 keyboard[Input.Key.AltRight] = pressed;
                             else
                                 keyboard[Input.Key.AltLeft] = pressed;
-                            break;
+                            return IntPtr.Zero;
 
                         case VirtualKeys.RETURN:
                             if (extended)
                                 keyboard[Key.KeypadEnter] = pressed;
                             else
                                 keyboard[Key.Enter] = pressed;
-                            break;
+                            return IntPtr.Zero;
 
                         default:
-                            if (!WMInput.KeyMap.ContainsKey((VirtualKeys)msg.WParam))
+                            if (!WMInput.KeyMap.ContainsKey((VirtualKeys)wParam))
                             {
-                                Debug.Print("Virtual key {0} ({1}) not mapped.", (VirtualKeys)msg.WParam, (int)msg.WParam);
+                                Debug.Print("Virtual key {0} ({1}) not mapped.", (VirtualKeys)wParam, (int)lParam);
                                 break;
                             }
                             else
                             {
-                                keyboard[WMInput.KeyMap[(VirtualKeys)msg.WParam]] = pressed;
+                                keyboard[WMInput.KeyMap[(VirtualKeys)wParam]] = pressed;
                             }
-                            break;
+                            return IntPtr.Zero;
                     }
                     break;
 
@@ -346,6 +356,8 @@ namespace OpenTK.Platform.Windows
                     break;
 
                 #endregion
+
+                #region Creation / Destruction events
 
                 case WindowMessage.CREATE:
                     // Set the window width and height:
@@ -380,12 +392,15 @@ namespace OpenTK.Platform.Windows
                     Functions.UnregisterClass(ClassName, Instance);
                     Marshal.FreeHGlobal(ClassName);
                     window.Dispose();
+                    child_window.Dispose();
                     //window = null;
 
                     if (Closed != null)
                         Closed(this, EventArgs.Empty);
                     
                     break;
+
+                #endregion
             }
 
             return Functions.DefWindowProc(handle, message, wParam, lParam);
@@ -526,7 +541,14 @@ namespace OpenTK.Platform.Windows
 
         public System.Drawing.Rectangle ClientRectangle
         {
-            get { return client_rectangle; }
+            get
+            {
+                if (client_rectangle.Width == 0)
+                    client_rectangle.Width = 1;
+                if (client_rectangle.Height == 0)
+                    client_rectangle.Height = 1;
+                return client_rectangle;
+            }
             set
             {
                 //WindowStyle style = (WindowStyle)(ulong)Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
@@ -800,9 +822,11 @@ namespace OpenTK.Platform.Windows
                 //Size current_size = ClientSize;
 
                 Functions.SetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
-                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, Bounds.X, Bounds.Y, Bounds.Width, Bounds.Height,
-                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER |
-                    SetWindowPosFlags.FRAMECHANGED | SetWindowPosFlags.SHOWWINDOW);
+
+                Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, Bounds.Width, Bounds.Height,
+                    SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOZORDER |
+                    SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.FRAMECHANGED |
+                    SetWindowPosFlags.SHOWWINDOW);
 
                 // Make sure the client rectangle does not change when changing the border style.
                 //ClientSize = current_size;
@@ -884,6 +908,7 @@ namespace OpenTK.Platform.Windows
                         Marshal.GetLastWin32Error()));
                 }
 
+                //Functions.TranslateMessage(ref msg);
                 Functions.DispatchMessage(ref msg);
             }
         }

@@ -226,43 +226,72 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        #region CallWindowProc
+
+#if RELEASE
         [SuppressUnmanagedCodeSecurity]
+#endif
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern LRESULT CallWindowProc(WNDPROC lpPrevWndFunc, HWND hWnd, WindowMessage Msg,
             WPARAM wParam, LPARAM lParam);
 
+        #endregion
+
         #region SetWindowLong
 
+        // SetWindowLongPtr does not exist on x86 platforms (it's a macro that resolves to SetWindowLong).
+        // We need to detect if we are on x86 or x64 at runtime and call the correct function
+        // (SetWindowLongPtr on x64 or SetWindowLong on x86). Fun!
         internal static IntPtr SetWindowLong(IntPtr handle, GetWindowLongOffsets item, IntPtr newValue)
         {
-            if (IntPtr.Size == 4)
-                return (IntPtr)SetWindowLong(handle, item, newValue);
+            // SetWindowPos defines its error condition as an IntPtr.Zero retval and a non-0 GetLastError.
+            // We need to SetLastError(0) to ensure we are not detecting on older error condition (from another function).
 
-            return SetWindowLongPtr(handle, GetWindowLongOffsets.WNDPROC, newValue);
+            IntPtr retval = IntPtr.Zero;
+            SetLastError(0);
+
+            if (IntPtr.Size == 4)
+                retval = new IntPtr(SetWindowLong(handle, item, newValue.ToInt32()));
+            else
+                retval = SetWindowLongPtr(handle, item, newValue);
+
+            if (retval == IntPtr.Zero)
+            {
+                int error = Marshal.GetLastWin32Error();
+                if (error != 0)
+                    throw new PlatformException(String.Format("Failed to modify window border. Error: {0}", error));
+            }
+
+            return retval;
         }
 
         internal static IntPtr SetWindowLong(IntPtr handle, WindowProcedure newValue)
         {
-            if (IntPtr.Size == 4)
-                return (IntPtr)SetWindowLong(handle, GetWindowLongOffsets.WNDPROC, newValue);
-
-            return SetWindowLongPtr(handle, GetWindowLongOffsets.WNDPROC, newValue);
+            return SetWindowLong(handle, GetWindowLongOffsets.WNDPROC, Marshal.GetFunctionPointerForDelegate(newValue));
         }
 
+#if RELASE
         [SuppressUnmanagedCodeSecurity]
+#endif
         [DllImport("user32.dll", SetLastError = true)]
         static extern LONG SetWindowLong(HWND hWnd, GetWindowLongOffsets nIndex, LONG dwNewLong);
 
+#if RELASE
         [SuppressUnmanagedCodeSecurity]
+#endif
         [DllImport("user32.dll", SetLastError = true)]
         static extern LONG_PTR SetWindowLongPtr(HWND hWnd, GetWindowLongOffsets nIndex, LONG_PTR dwNewLong);
 
+#if RELASE
         [SuppressUnmanagedCodeSecurity]
+#endif
         [DllImport("user32.dll", SetLastError = true)]
         static extern LONG SetWindowLong(HWND hWnd, GetWindowLongOffsets nIndex,
             [MarshalAs(UnmanagedType.FunctionPtr)]WindowProcedure dwNewLong);
 
+#if RELASE
         [SuppressUnmanagedCodeSecurity]
+#endif
         [DllImport("user32.dll", SetLastError = true)]
         static extern LONG_PTR SetWindowLongPtr(HWND hWnd, GetWindowLongOffsets nIndex,
             [MarshalAs(UnmanagedType.FunctionPtr)]WindowProcedure dwNewLong);
@@ -358,9 +387,21 @@ namespace OpenTK.Platform.Windows
 
         #region DispatchMessage
 
+#if RELEASE
         [System.Security.SuppressUnmanagedCodeSecurity]
+#endif
         [DllImport("User32.dll"), CLSCompliant(false)]
         internal static extern LRESULT DispatchMessage(ref MSG msg);
+
+        #endregion
+
+        #region TranslateMessage
+
+#if RELEASE
+        [System.Security.SuppressUnmanagedCodeSecurity]
+#endif
+        [DllImport("User32.dll"), CLSCompliant(false)]
+        internal static extern BOOL TranslateMessage(ref MSG lpMsg);
 
         #endregion
 
@@ -534,6 +575,13 @@ namespace OpenTK.Platform.Windows
         #endregion
 
         #region DLL handling
+
+        #region SetLastError
+
+        [DllImport("kernel32.dll")]
+        internal static extern void SetLastError(DWORD dwErrCode);
+
+        #endregion
 
         #region GetModuleHandle
 
@@ -1511,6 +1559,26 @@ namespace OpenTK.Platform.Windows
 
     #endregion
 
+    #region StyleStruct
+
+    struct StyleStruct
+    {
+        public WindowStyle Old;
+        public WindowStyle New;
+    }
+
+    #endregion
+
+    #region ExtendedStyleStruct
+
+    struct ExtendedStyleStruct
+    {
+        public ExtendedWindowStyle Old;
+        public ExtendedWindowStyle New;
+    }
+
+    #endregion
+
     #region PixelFormatDescriptor
 
     /// <summary>
@@ -2440,30 +2508,6 @@ namespace OpenTK.Platform.Windows
 
     #region GetWindowLongOffsets
 
-    /// <summary>
-    /// Window field offsets for GetWindowLong() and GetWindowLongPtr().
-    /// </summary>
-    internal static class GWL
-    {
-        private static bool x64;
-        static GWL()
-        {
-            unsafe
-            {
-                x64 = sizeof(void*) == 8;
-            }
-
-        }
-
-        internal static readonly int WNDPROC       = (-4);
-        internal static readonly int HINSTANCE     = (-6);
-        internal static readonly int HWNDPARENT    = (-8);
-        internal static readonly int STYLE         = (-16);
-        internal static readonly int EXSTYLE       = (-20);
-        internal static readonly int USERDATA      = (-21);
-        internal static readonly int ID            = (-12);
-    }
-
     #endregion
 
     #region Rectangle
@@ -2619,6 +2663,24 @@ namespace OpenTK.Platform.Windows
     #endregion
 
     #region --- Enums ---
+
+    #region GetWindowLongOffset
+
+    /// <summary>
+    /// Window field offsets for GetWindowLong() and GetWindowLongPtr().
+    /// </summary>
+    enum GWL
+    {
+        WNDPROC = (-4),
+        HINSTANCE = (-6),
+        HWNDPARENT = (-8),
+        STYLE = (-16),
+        EXSTYLE = (-20),
+        USERDATA = (-21),
+        ID = (-12),
+    }
+
+    #endregion
 
     #region SizeMessage
 
