@@ -389,7 +389,7 @@ namespace OpenTK.Platform.Windows
                     if (!e.Cancel)
                     {
                         if (Unload != null)
-                            Unload(this, e);
+                            Unload(this, EventArgs.Empty);
 
                         DestroyWindow();
                         break;
