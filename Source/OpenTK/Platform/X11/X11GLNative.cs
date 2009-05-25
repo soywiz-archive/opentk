@@ -94,6 +94,7 @@ namespace OpenTK.Platform.X11
         Rectangle bounds, client_rectangle;
         int border_width;
         Icon icon;
+        bool has_focus;
 
         // Used for event loop.
         XEvent e = new XEvent();
@@ -148,7 +149,7 @@ namespace OpenTK.Platform.X11
                 attributes.colormap = Functions.XCreateColormap(window.Display, window.RootWindow, window.VisualInfo.visual, 0/*AllocNone*/);
                 window.EventMask = EventMask.StructureNotifyMask | EventMask.SubstructureNotifyMask | EventMask.ExposureMask |
                                    EventMask.KeyReleaseMask | EventMask.KeyPressMask |
-                                   EventMask.PointerMotionMask | // Bad! EventMask.PointerMotionHintMask |
+                                   EventMask.PointerMotionMask | EventMask.FocusChangeMask |
                                    EventMask.ButtonPressMask | EventMask.ButtonReleaseMask;
                 attributes.event_mask = (IntPtr)window.EventMask;
 
@@ -471,11 +472,7 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                return has_focus;
             }
         }
 
@@ -610,6 +607,14 @@ namespace OpenTK.Platform.X11
                     case XEventName.ButtonRelease:
                         //Functions.XPutBackEvent(window.Display, ref e);
                         driver.ProcessEvent(ref e);
+                        break;
+
+                    case XEventName.FocusIn:
+                        has_focus = true;
+                        break;
+
+                    case XEventName.FocusOut:
+                        has_focus = false;
                         break;
 
                     default:

@@ -995,12 +995,20 @@ namespace OpenTK
         {
             get
             {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
+                if (disposed)
+                    throw new ObjectDisposedException("GameWindow");
+                
+                GraphicsContext.Assert();
+
                 return vsync;
             }
             set
             {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
+                if (disposed)
+                    throw new ObjectDisposedException("GameWindow");
+                
+                GraphicsContext.Assert();
+                
                 if (value == VSyncMode.Off)
                     Context.VSync = false;
                 else
@@ -1021,7 +1029,9 @@ namespace OpenTK
         /// <remarks>Calling this function is equivalent to calling Context.SwapBuffers()</remarks>
         public void SwapBuffers()
         {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
+            if (disposed)
+                throw new ObjectDisposedException("GameWindow");
+
             this.Context.SwapBuffers();
         }
 
@@ -1097,7 +1107,7 @@ namespace OpenTK
         #region Focused
 
         /// <summary>
-        /// Gets or sets a System.Boolean that indicates whether this GameWindow is in focus.
+        /// Gets a System.Boolean that indicates whether this GameWindow has input focus.
         /// </summary>
         public bool Focused
         {
@@ -1107,13 +1117,6 @@ namespace OpenTK
                     throw new ObjectDisposedException(this.GetType().Name);
 
                 return glWindow.Focused;
-            }
-            set
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                glWindow.Focused = value;
             }
         }
 

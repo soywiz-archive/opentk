@@ -11,7 +11,7 @@ namespace OpenTK
     {
         Icon Icon { get; set; }
         string Title { get; set; }
-        bool Focused { get; set; }
+        bool Focused { get; }
         bool Visible { get; set; }
         bool Exists { get; }
         IWindowInfo WindowInfo { get; }
