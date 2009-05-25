@@ -1147,7 +1147,7 @@ namespace OpenTK.Graphics
 
         #endregion
 
-        #region Get[Float|Double|Integere]
+        #region Get[Float|Double]
 
         public static void GetFloat(GetPName pname, out Vector2 vector)
         {
