@@ -490,90 +490,7 @@ namespace OpenTK.Platform.X11
 
         public void CreateWindow(int width, int height, GraphicsMode mode, int major, int minor, GraphicsContextFlags flags, out IGraphicsContext context)
         {
-            if (width <= 0) throw new ArgumentOutOfRangeException("width", "Must be higher than zero.");
-            if (height <= 0) throw new ArgumentOutOfRangeException("height", "Must be higher than zero.");
-            if (exists) throw new InvalidOperationException("A render window already exists.");
-
-            XVisualInfo info = new XVisualInfo();
-
-            Debug.Indent();
-            
-            lock (API.Lock)
-            {
-                info.visualid = mode.Index;
-                int dummy;
-                window.VisualInfo = (XVisualInfo)Marshal.PtrToStructure(
-                    Functions.XGetVisualInfo(window.Display, XVisualInfoMask.ID, ref info, out dummy), typeof(XVisualInfo));
-
-                // Create a window on this display using the visual above
-                Debug.Write("Opening render window... ");
-
-                XSetWindowAttributes attributes = new XSetWindowAttributes();
-                attributes.background_pixel = IntPtr.Zero;
-                attributes.border_pixel = IntPtr.Zero;
-                attributes.colormap = Functions.XCreateColormap(window.Display, window.RootWindow, window.VisualInfo.visual, 0/*AllocNone*/);
-                window.EventMask = EventMask.StructureNotifyMask | EventMask.SubstructureNotifyMask | EventMask.ExposureMask |
-                                   EventMask.KeyReleaseMask | EventMask.KeyPressMask |
-                                   EventMask.PointerMotionMask | // Bad! EventMask.PointerMotionHintMask |
-                                   EventMask.ButtonPressMask | EventMask.ButtonReleaseMask;
-                attributes.event_mask = (IntPtr)window.EventMask;
-
-                uint mask = (uint)SetWindowValuemask.ColorMap | (uint)SetWindowValuemask.EventMask |
-                    (uint)SetWindowValuemask.BackPixel | (uint)SetWindowValuemask.BorderPixel;
-
-                window.WindowHandle = Functions.XCreateWindow(window.Display, window.RootWindow,
-                    0, 0, width, height, 0, window.VisualInfo.depth/*(int)CreateWindowArgs.CopyFromParent*/,
-                    (int)CreateWindowArgs.InputOutput, window.VisualInfo.visual, (UIntPtr)mask, ref attributes);
-
-                if (window.WindowHandle == IntPtr.Zero)
-                    throw new ApplicationException("XCreateWindow call failed (returned 0).");
-
-                //XVisualInfo vis = window.VisualInfo;
-                //Glx.CreateContext(window.Display, ref vis, IntPtr.Zero, true);
-            }
-            context = new GraphicsContext(mode, window, major, minor, flags);
-
-            // Set the window hints
-            SetWindowMinMax(_min_width, _min_height, -1, -1);            
-            
-            XSizeHints hints = new XSizeHints();
-            hints.x = 0;
-            hints.y = 0;
-            hints.width = width;
-            hints.height = height;
-            hints.flags = (IntPtr)(XSizeHintsFlags.USSize);// | XSizeHintsFlags.USPosition);
-            lock (API.Lock)
-            {
-                Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
-
-                // Register for window destroy notification
-                Functions.XSetWMProtocols(window.Display, window.WindowHandle, new IntPtr[] { _atom_wm_destroy }, 1);
-            }
-            bounds.X = bounds.Y = 0;
-            bounds.Width = Width;
-            bounds.Height = Height;
-
-            //XTextProperty text = new XTextProperty();
-            //text.value = "OpenTK Game Window";
-            //text.format = 8;
-            //Functions.XSetWMName(window.Display, window.Handle, ref text);
-            //Functions.XSetWMProperties(display, window, name, name, 0,  /*None*/ null, 0, hints);
-
-            lock (API.Lock)
-            {
-                API.MapRaised(window.Display, window.WindowHandle);
-            }
-            mapped = true;
-
-            driver = new X11Input(window);
-            
-            Debug.WriteLine(String.Format("X11GLNative window created successfully (id: {0}).", Handle));
-            Debug.Unindent();
-
-            this.width = width;
-            this.height = height;
-            
-            exists = true;
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -621,18 +538,35 @@ namespace OpenTK.Platform.X11
                         exists = false;
                         isExiting = true;
                         Debug.Print("X11 window {0} destroyed.", e.DestroyWindowEvent.window);
+                        window.Dispose();
                         window.WindowHandle = IntPtr.Zero;
                         return;
 
                     case XEventName.ConfigureNotify:
-                        // If the window size changed, raise the C# Resize event.
-                        if (e.ConfigureEvent.width != width || e.ConfigureEvent.height != height)
-                        {
-                            Debug.WriteLine(String.Format("ConfigureNotify: {0}x{1}", e.ConfigureEvent.width, e.ConfigureEvent.height));
+                        Debug.WriteLine(String.Format("ConfigureNotify: {0}x{1}", e.ConfigureEvent.width, e.ConfigureEvent.height));
 
-                            resizeEventArgs.Width = e.ConfigureEvent.width;
-                            resizeEventArgs.Height = e.ConfigureEvent.height;
-                            this.OnResize(resizeEventArgs);
+                        Point new_location = new Point(e.ConfigureEvent.x, e.ConfigureEvent.y);
+                        if (Location != new_location)
+                        {
+                            bounds.Location = new_location;
+                            if (Move != null)
+                                Move(this, EventArgs.Empty);
+                        }
+
+                        // Note: width and height denote the internal (client) size.
+                        // To get the external (window) size, we need to add the border size.
+                        Size new_size = new Size(e.ConfigureEvent.width, e.ConfigureEvent.height);
+                        if (ClientSize != new_size)
+                        {
+                            bounds.Size = new_size;
+                            bounds.Width += e.ConfigureEvent.border_width;
+                            bounds.Height += e.ConfigureEvent.border_width;
+
+                            // Todo: Get the real client rectangle.
+                            client_rectangle.Size = new_size;
+                        
+                            if (this.Resize != null)
+                                Resize(this, EventArgs.Empty);
                         }
                         break;
 
@@ -1083,18 +1017,6 @@ namespace OpenTK.Platform.X11
 
         #endregion
         
-        #endregion
-
-        #region public event ResizeEvent Resize
-
-        private void OnResize(EventArgs e)
-        {
-            if (this.Resize != null)
-            {
-                this.Resize(this, e);
-            }
-        }
-
         #endregion
 
         #region --- IDisposable Members ---

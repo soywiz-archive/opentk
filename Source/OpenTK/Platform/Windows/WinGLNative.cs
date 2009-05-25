@@ -64,8 +64,6 @@ namespace OpenTK.Platform.Windows
         System.Drawing.Rectangle bounds = new System.Drawing.Rectangle();
         System.Drawing.Rectangle client_rectangle = new System.Drawing.Rectangle();
 
-        ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
-
         static readonly ClassStyle ClassStyle =
             ClassStyle.OwnDC | ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.Ime;
 
@@ -157,24 +155,34 @@ namespace OpenTK.Platform.Windows
                     {
                         WindowPosition* pos = (WindowPosition*)lParam;
 
-                        bounds.X = pos->x;
-                        bounds.Y = pos->y;
-                        bounds.Width = pos->cx;
-                        bounds.Height = pos->cy;
-
-                        Rectangle rect;
-                        Functions.GetClientRect(handle, out rect);
-                        client_rectangle = rect.ToRectangle();
-
-                        if (window != null && pos->hwnd == window.WindowHandle)
+                        Point new_location = new Point(pos->x, pos->y);
+                        if (Location != new_location)
                         {
-                            Functions.SetWindowPos(child_window.WindowHandle, IntPtr.Zero, 0, 0, ClientRectangle.Width, ClientRectangle.Height,
-                                SetWindowPosFlags.NOZORDER | SetWindowPosFlags.NOOWNERZORDER |
-                                SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOSENDCHANGING);
+                            bounds.Location = new_location;
+                            if (Move != null)
+                                Move(this, EventArgs.Empty);
                         }
 
-                        if (Resize != null)
-                            Resize(this, EventArgs.Empty);
+                        Size new_size = new Size(pos->cx, pos->cy);
+                        if (Size != new_size)
+                        {
+                            bounds.Width = pos->cx;
+                            bounds.Height = pos->cy;
+    
+                            Rectangle rect;
+                            Functions.GetClientRect(handle, out rect);
+                            client_rectangle = rect.ToRectangle();
+    
+                            if (window != null && pos->hwnd == window.WindowHandle)
+                            {
+                                Functions.SetWindowPos(child_window.WindowHandle, IntPtr.Zero, 0, 0, ClientRectangle.Width, ClientRectangle.Height,
+                                    SetWindowPosFlags.NOZORDER | SetWindowPosFlags.NOOWNERZORDER |
+                                    SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOSENDCHANGING);
+                            }
+    
+                            if (Resize != null)
+                                Resize(this, EventArgs.Empty);
+                        }
                     }
                     break;
 
