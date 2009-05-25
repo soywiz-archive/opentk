@@ -166,7 +166,7 @@ namespace OpenTK.Platform.Windows
                         Functions.GetClientRect(handle, out rect);
                         client_rectangle = rect.ToRectangle();
 
-                        if (pos->hwnd == window.WindowHandle)
+                        if (window != null && pos->hwnd == window.WindowHandle)
                         {
                             Functions.SetWindowPos(child_window.WindowHandle, IntPtr.Zero, 0, 0, ClientRectangle.Width, ClientRectangle.Height,
                                 SetWindowPosFlags.NOZORDER | SetWindowPosFlags.NOOWNERZORDER |
