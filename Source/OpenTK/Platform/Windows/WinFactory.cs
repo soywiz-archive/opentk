@@ -60,7 +60,7 @@ using OpenTK.Input;
 
         public IGraphicsContext CreateGLContext(GraphicsMode mode, IWindowInfo window, IGraphicsContext shareContext, bool directRendering, int major, int minor, GraphicsContextFlags flags)
         {
-            return new WinGLContext(mode, window, shareContext, major, minor, flags);
+            return new WinGLContext(mode, (WinWindowInfo)window, shareContext, major, minor, flags);
         }
 
         public IGraphicsMode CreateGraphicsMode()
