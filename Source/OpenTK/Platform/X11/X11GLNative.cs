@@ -162,20 +162,17 @@ namespace OpenTK.Platform.X11
 
                 if (window.WindowHandle == IntPtr.Zero)
                     throw new ApplicationException("XCreateWindow call failed (returned 0).");
-
-                //XVisualInfo vis = window.VisualInfo;
-                //Glx.CreateContext(window.Display, ref vis, IntPtr.Zero, true);
             }
 
             // Set the window hints
             SetWindowMinMax(_min_width, _min_height, -1, -1);            
             
             XSizeHints hints = new XSizeHints();
-            hints.x = 0;
-            hints.y = 0;
+            hints.x = device.Bounds.X + width / 2;
+            hints.y = device.Bounds.Y + height / 2;
             hints.width = width;
             hints.height = height;
-            hints.flags = (IntPtr)(XSizeHintsFlags.USSize);// | XSizeHintsFlags.USPosition);
+            hints.flags = (IntPtr)(XSizeHintsFlags.USSize | XSizeHintsFlags.USPosition);
             lock (API.Lock)
             {
                 Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
@@ -183,9 +180,9 @@ namespace OpenTK.Platform.X11
                 // Register for window destroy notification
                 Functions.XSetWMProtocols(window.Display, window.WindowHandle, new IntPtr[] { _atom_wm_destroy }, 1);
             }
-            bounds.X = bounds.Y = 0;
-            bounds.Width = Width;
-            bounds.Height = Height;
+            //bounds.X = bounds.Y = 0;
+            //bounds.Width = Width;
+            //bounds.Height = Height;
 
             //XTextProperty text = new XTextProperty();
             //text.value = "OpenTK Game Window";
@@ -986,7 +983,7 @@ namespace OpenTK.Platform.X11
                         break;
 
                     case OpenTK.WindowState.Minimized:
-                        // FIXME multiscreen support
+                        // Todo: multiscreen support
                         Functions.XIconifyWindow(window.Display, window.WindowHandle, window.Screen);
                         
                         break;
@@ -994,7 +991,7 @@ namespace OpenTK.Platform.X11
                     case OpenTK.WindowState.Fullscreen:
                         //_previous_window_border = this.WindowBorder;
                         //this.WindowBorder = WindowBorder.Hidden;
-                         Functions.SendNetWMMessage(window, _atom_net_wm_state, _atom_add,
+                        Functions.SendNetWMMessage(window, _atom_net_wm_state, _atom_add,
                                                   _atom_net_wm_state_fullscreen, IntPtr.Zero);
                         Functions.XRaiseWindow(window.Display, window.WindowHandle);
                         
@@ -1069,26 +1066,33 @@ namespace OpenTK.Platform.X11
         {
             if (!disposed)
             {
-                if (window != null && window.WindowHandle != IntPtr.Zero)
-                {
-                    try
-                    {
-                        Functions.XLockDisplay(window.Display);
-                        Functions.XDestroyWindow(window.Display, window.WindowHandle);
-                    }
-                    finally
-                    {
-                        Functions.XUnlockDisplay(window.Display);
-                    }
-
-                    while (Exists)
-                        ProcessEvents();
-                    window.Dispose();
-                    window = null;
-                }
-
                 if (manuallyCalled)
                 {
+                    if (window != null && window.WindowHandle != IntPtr.Zero)
+                    {
+                        try
+                        {
+                            Functions.XLockDisplay(window.Display);
+                            Functions.XDestroyWindow(window.Display, window.WindowHandle);
+                        }
+                        finally
+                        {
+                            Functions.XUnlockDisplay(window.Display);
+                        }
+    
+                        while (Exists)
+                            ProcessEvents();
+
+                        if (GraphicsContext.CurrentContext != null)
+                            GraphicsContext.CurrentContext.MakeCurrent(null);
+                        
+                        window.Dispose();
+                        window = null;
+                    }
+                }
+                else
+                {
+                    Debug.Print("[Warning] {0} leaked.", this.GetType().Name);
                 }
                 disposed = true;
             }

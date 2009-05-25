@@ -238,7 +238,7 @@ namespace OpenTK
 
                 this.VSync = VSyncMode.On;
                 
-                //glWindow.Move += delegate(object sender, EventArgs e) { OnMoveInternal(e); };
+                glWindow.Move += delegate(object sender, EventArgs e) { OnMoveInternal(e); };
                 glWindow.Resize += delegate(object sender, EventArgs e) { OnResizeInternal(e); };
                 glWindow.Closing += delegate(object sender, CancelEventArgs e) { OnClosingInternal(e); };
                 glWindow.Closed += delegate(object sender, EventArgs e) { OnClosedInternal(e); };
@@ -326,6 +326,25 @@ namespace OpenTK
             set { hasMainLoop = value; }
         }
 
+        #endregion
+
+        #region OnMoveInternal
+
+        // Calls OnMove and raises the Move event.
+        void OnMoveInternal(EventArgs e)
+        {
+            if (disposed)
+                throw new ObjectDisposedException(this.GetType().Name);
+
+            if (!this.Exists || this.IsExiting)
+                return;
+
+            OnMove(e);
+
+            if (Move != null)
+                Move(this, e);
+        }
+        
         #endregion
 
         #region OnResizeInternal
@@ -425,6 +444,13 @@ namespace OpenTK
 
         #region --- Protected Members ---
 
+        /// <summary>
+        /// Called when the GameWindow is moved.
+        /// </summary>
+        /// <param name="e">Not used.</param>
+        protected virtual void OnMove(EventArgs e)
+        { }
+        
         /// <summary>
         /// Called when the GameWindow is resized.
         /// </summary>
@@ -761,13 +787,13 @@ namespace OpenTK
 
                 if (Exists)
                 {
+                    glContext.Dispose();
+                    glContext = null;
+                    
                     glWindow.Dispose();
                     while (this.Exists)
                         this.ProcessEvents();
                     glWindow = null;
-
-                    glContext.Dispose();
-                    glContext = null;
                 }
             }
         }
