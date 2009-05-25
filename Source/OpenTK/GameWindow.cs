@@ -1173,87 +1173,156 @@ namespace OpenTK
 
         #endregion
 
+        /// <summary>
+        /// Gets or sets a System.Drawing.Point that defines the coordinates of this window on the desktop.
+        /// </summary>
         public Point Location
         {
             get
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Location;
             }
             set
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Location = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets a System.Drawing.Size that defines the size of this window.
+        /// Size is the external size of the window, which includes the titlebar and borders (if any).
+        /// </summary>
         public Size Size
         {
             get
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Size;
             }
             set
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Size = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the X coordinate of the window on the desktop.
+        /// </summary>
         public int X
         {
             get
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.X;
             }
             set
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.X = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the Y coordinate of the window on the desktop.
+        /// </summary>
         public int Y
         {
             get
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Y;
             }
             set
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Y = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets a System.Drawing.Rectangle that defines the client area of this instance.
+        /// The client area is the internal area of the window, without the titlebar and borders (if any).
+        /// The value uses client coordinates.
+        /// </summary>
         public Rectangle ClientRectangle
         {
             get
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.ClientRectangle;
             }
             set
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.ClientRectangle = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets a System.Drawing.Size that defines the size of the client area of this instance.
+        /// The client area is the internal area of the window, without the titlebar and borders (if any).
+        /// </summary>
         public Size ClientSize
         {
             get
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name); 
+                
+                return glWindow.ClientSize;
             }
             set
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.ClientSize = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets a System.Drawing.Rectangle that defines the bounds of this instance.
+        /// The bounds define the total area of the window, including the titlebar and borders (if any).
+        /// The value uses screen coordinates.
+        /// </summary>
         public Rectangle Bounds
         {
             get
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Bounds;
             }
             set
             {
-                throw new NotImplementedException();
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Bounds = value;
             }
         }
 
