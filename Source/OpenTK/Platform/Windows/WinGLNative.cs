@@ -48,7 +48,7 @@ namespace OpenTK.Platform.Windows
         readonly static ExtendedWindowStyle ChildStyleEx = 0;
 
         readonly IntPtr Instance = Marshal.GetHINSTANCE(typeof(WinGLNative).Module);
-        readonly IntPtr ClassName = Marshal.StringToHGlobalUni("OpenTK.INativeWindow" + WindowCount++.ToString());
+        readonly IntPtr ClassName = Marshal.StringToHGlobalAuto("OpenTK.INativeWindow" + WindowCount++.ToString());
         readonly WindowProcedure WindowProcedureDelegate;
 
         bool class_registered;
@@ -393,10 +393,9 @@ namespace OpenTK.Platform.Windows
                     exists = false;
 
                     Functions.UnregisterClass(ClassName, Instance);
-                    Marshal.FreeHGlobal(ClassName);
+                    //Marshal.FreeHGlobal(ClassName);
                     window.Dispose();
                     child_window.Dispose();
-                    //window = null;
 
                     if (Closed != null)
                         Closed(this, EventArgs.Empty);
