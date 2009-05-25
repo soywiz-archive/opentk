@@ -817,12 +817,16 @@ namespace OpenTK.Platform.Windows
                 Size client_size = ClientSize;
                 Rectangle rect = Rectangle.From(client_size);
                 Functions.AdjustWindowRectEx(ref rect, style, false, ParentStyleEx);
-                
+
+                // This avoids leaving garbage on the background window.
+                Visible = false;
+
                 Functions.SetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
                 Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, rect.Width, rect.Height,
                     SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOZORDER |
-                    SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.FRAMECHANGED |
-                    SetWindowPosFlags.SHOWWINDOW);
+                    SetWindowPosFlags.FRAMECHANGED);
+
+                Visible = true;
             }
         }
 
