@@ -1147,7 +1147,7 @@ namespace OpenTK.Graphics
 
         #endregion
 
-        #region Get[Float|Double]
+        #region Get[Float|Double|Integere]
 
         public static void GetFloat(GetPName pname, out Vector2 vector)
         {
@@ -1219,6 +1219,25 @@ namespace OpenTK.Graphics
                 fixed (Matrix4d* ptr = &matrix)
                     GetFloat(pname, (float*)ptr);
             }
+        }
+
+        #endregion
+
+        #region Viewport
+
+        public static void Viewport(System.Drawing.Size size)
+        {
+            GL.Viewport(0, 0, size.Width, size.Height);
+        }
+
+        public static void Viewport(System.Drawing.Point location, System.Drawing.Size size)
+        {
+            GL.Viewport(location.X, location.Y, size.Width, size.Height);
+        }
+
+        public static void Viewport(System.Drawing.Rectangle rectangle)
+        {
+            GL.Viewport(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
         }
 
         #endregion
