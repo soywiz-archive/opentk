@@ -154,34 +154,33 @@ namespace OpenTK.Platform.Windows
                     unsafe
                     {
                         WindowPosition* pos = (WindowPosition*)lParam;
-
-                        Point new_location = new Point(pos->x, pos->y);
-                        if (Location != new_location)
+                        if (window != null && pos->hwnd == window.WindowHandle)
                         {
-                            bounds.Location = new_location;
-                            if (Move != null)
-                                Move(this, EventArgs.Empty);
-                        }
-
-                        Size new_size = new Size(pos->cx, pos->cy);
-                        if (Size != new_size)
-                        {
-                            bounds.Width = pos->cx;
-                            bounds.Height = pos->cy;
-    
-                            Rectangle rect;
-                            Functions.GetClientRect(handle, out rect);
-                            client_rectangle = rect.ToRectangle();
-    
-                            if (window != null && pos->hwnd == window.WindowHandle)
+                            Point new_location = new Point(pos->x, pos->y);
+                            if (Location != new_location)
                             {
+                                bounds.Location = new_location;
+                                if (Move != null)
+                                    Move(this, EventArgs.Empty);
+                            }
+
+                            Size new_size = new Size(pos->cx, pos->cy);
+                            if (Size != new_size)
+                            {
+                                bounds.Width = pos->cx;
+                                bounds.Height = pos->cy;
+
+                                Rectangle rect;
+                                Functions.GetClientRect(handle, out rect);
+                                client_rectangle = rect.ToRectangle();
+
                                 Functions.SetWindowPos(child_window.WindowHandle, IntPtr.Zero, 0, 0, ClientRectangle.Width, ClientRectangle.Height,
                                     SetWindowPosFlags.NOZORDER | SetWindowPosFlags.NOOWNERZORDER |
                                     SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOSENDCHANGING);
+
+                                if (Resize != null)
+                                    Resize(this, EventArgs.Empty);
                             }
-    
-                            if (Resize != null)
-                                Resize(this, EventArgs.Empty);
                         }
                     }
                     break;
@@ -371,13 +370,18 @@ namespace OpenTK.Platform.Windows
                 #region Creation / Destruction events
 
                 case WindowMessage.CREATE:
-                    // Set the window width and height:
                     CreateStruct cs = (CreateStruct)Marshal.PtrToStructure(lParam, typeof(CreateStruct));
-                    bounds.X = cs.x;
-                    bounds.Y = cs.y;
-                    bounds.Width = cs.cx;
-                    bounds.Height = cs.cy;
+                    if (cs.hwndParent == IntPtr.Zero)
+                    {
+                        bounds.X = cs.x;
+                        bounds.Y = cs.y;
+                        bounds.Width = cs.cx;
+                        bounds.Height = cs.cy;
 
+                        Rectangle rect;
+                        Functions.GetClientRect(handle, out rect);
+                        client_rectangle = rect.ToRectangle();
+                    }
                     break;
 
                 case WindowMessage.CLOSE:
@@ -562,17 +566,7 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
-                //WindowStyle style = (WindowStyle)(ulong)Functions.GetWindowLong(Handle, GetWindowLongOffsets.STYLE);
-                //ExtendedWindowStyle exstyle = (ExtendedWindowStyle)(ulong)Functions.GetWindowLong(Handle, GetWindowLongOffsets.EXSTYLE);
-                //Rectangle rect = Rectangle.From(value);
-
-                //if (!Functions.AdjustWindowRectEx(ref rect, style, false, exstyle))
-                //{
-                //    Size = new Size(value.Width, value.Height);
-                //    return;
-                //}
-
-                //Size = new Size(rect.Width, rect.Height);
+                Size = value.Size;
             }
         }
 

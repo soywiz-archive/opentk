@@ -87,7 +87,6 @@ namespace OpenTK
         // TODO: Implement these:
         double update_time, render_time;//, event_time;
         //bool allow_sleep = true;    // If true, GameWindow will call Timer.Sleep() if there is enough time.
-        int width, height;
         VSyncMode vsync;
 
         //InputDriver input_driver;
@@ -819,13 +818,6 @@ namespace OpenTK
                 throw new ObjectDisposedException(this.GetType().Name);
             
             glWindow.ProcessEvents();
-
-            if (MustResize)
-            {
-                resizeEventArgs.Width = glWindow.Width;
-                resizeEventArgs.Height = glWindow.Height;
-                OnResizeInternal(resizeEventArgs);
-            }
         }
 
         #endregion
