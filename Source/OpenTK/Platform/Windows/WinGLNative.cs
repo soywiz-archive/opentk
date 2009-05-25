@@ -463,9 +463,9 @@ namespace OpenTK.Platform.Windows
                 class_registered = true;
             }
 
-            // Create the actual window
+            IntPtr window_name = Marshal.StringToHGlobalAuto(title);
             IntPtr handle = Functions.CreateWindowEx(
-                ex_style, ClassName, IntPtr.Zero, style,
+                ex_style, ClassName, window_name, style,
                 rect.left, rect.top, rect.Width, rect.Height,
                 parentHandle, IntPtr.Zero, Instance, IntPtr.Zero);
 

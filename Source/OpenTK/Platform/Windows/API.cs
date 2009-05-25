@@ -438,7 +438,7 @@ namespace OpenTK.Platform.Windows
 
         #region DefWindowProc
 
-        [DllImport("User32.dll")]
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public extern static IntPtr DefWindowProc(HWND hWnd, WindowMessage msg, IntPtr wParam, IntPtr lParam);
 
         #endregion
