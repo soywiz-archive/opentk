@@ -63,6 +63,7 @@ namespace OpenTK.Platform.X11
         const string KDE_WM_ATOM = "KWM_WIN_DECORATION";
         const string KDE_NET_WM_ATOM = "_KDE_NET_WM_WINDOW_TYPE";
         const string ICCM_WM_ATOM = "_NET_WM_WINDOW_TYPE";
+        const string ICON_NET_ATOM = "_NET_WM_ICON";
 
         // The Atom class from Mono might be useful to avoid calling XInternAtom by hand (somewhat error prone). 
         IntPtr _atom_wm_destroy;        
@@ -77,6 +78,10 @@ namespace OpenTK.Platform.X11
         IntPtr _atom_net_wm_action_resize;
         IntPtr _atom_net_wm_action_maximize_horizontally;
         IntPtr _atom_net_wm_action_maximize_vertically;
+
+        IntPtr _atom_net_wm_icon;
+
+        readonly IntPtr _atom_xa_cardinal = new IntPtr(6);
         
         //IntPtr _atom_motif_wm_hints;
         //IntPtr _atom_kde_wm_hints;
@@ -86,11 +91,9 @@ namespace OpenTK.Platform.X11
         static readonly IntPtr _atom_add = (IntPtr)1;
         static readonly IntPtr _atom_toggle = (IntPtr)2;
         
-        // Number of pending events.
-        //int pending = 0;
-
         Rectangle bounds, client_rectangle;
         int border_width;
+        Icon icon;
 
         // Used for event loop.
         XEvent e = new XEvent();
@@ -273,6 +276,9 @@ namespace OpenTK.Platform.X11
                 Functions.XInternAtom(window.Display, "_NET_WM_ACTION_MAXIMIZE_HORZ", false);
             _atom_net_wm_action_maximize_vertically =
                 Functions.XInternAtom(window.Display, "_NET_WM_ACTION_MAXIMIZE_VERT", false);
+
+            _atom_net_wm_icon =
+                Functions.XInternAtom(window.Display,"_NEW_WM_ICON", false);
             
 //            string[] atom_names = new string[]
 //            {
@@ -421,11 +427,39 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                throw new NotImplementedException();
+                return icon;
             }
             set
             {
-                throw new NotImplementedException();
+                if (value == null)
+                {
+                    Functions.XDeleteProperty(window.Display, window.WindowHandle, _atom_net_wm_icon);
+                }
+                else
+                {
+                    Bitmap bitmap;
+                    int size;
+                    IntPtr[] data;
+                    int index;
+    
+                    bitmap = icon.ToBitmap();
+                    index = 0;
+                    size = bitmap.Width * bitmap.Height + 2;
+                    data = new IntPtr[size];
+    
+                    data[index++] = (IntPtr)bitmap.Width;
+                    data[index++] = (IntPtr)bitmap.Height;
+    
+                    for (int y = 0; y < bitmap.Height; y++)
+                        for (int x = 0; x < bitmap.Width; x++)
+                            data[index++] = (IntPtr)bitmap.GetPixel(x, y).ToArgb();
+    
+                    Functions.XChangeProperty(window.Display, window.WindowHandle,
+                                  _atom_net_wm_icon, _atom_xa_cardinal, 32,
+                                  PropertyMode.Replace, data, size);
+                }
+
+                icon = value;
             }
         }
 
@@ -733,7 +767,6 @@ namespace OpenTK.Platform.X11
         {
             get
             {
-                //return true;
                 return mapped;
             }
             set
@@ -833,9 +866,17 @@ namespace OpenTK.Platform.X11
 
         #region PointToScreen
 
-        public Point PointToScreen(Point p)
+        public Point PointToScreen(Point point)
         {
-            throw new NotImplementedException();
+            int ox, oy;
+            IntPtr child;
+
+            Functions.XTranslateCoordinates(window.Display, window.WindowHandle, window.RootWindow, point.X, point.Y, out ox, out oy, out child);
+
+            point.X = ox;
+            point.Y = oy;
+
+            return point;
         }
 
         #endregion
