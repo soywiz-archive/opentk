@@ -43,7 +43,7 @@ using OpenTK.Input;
             throw new NotSupportedException();
         }
 
-        public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
+        public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
             return new WinGLNative(x, y, width, height, title, options, device);
         }

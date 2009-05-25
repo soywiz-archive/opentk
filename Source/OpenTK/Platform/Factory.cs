@@ -70,9 +70,9 @@ namespace OpenTK.Platform
         }
 
         public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title,
-            GameWindowFlags options, DisplayDevice device)
+            GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
-            return implementation.CreateNativeWindow(x, y, width, height, title, options, device);
+            return implementation.CreateNativeWindow(x, y, width, height, title, mode, options, device);
         }
 
         public IGLControl CreateGLControl(GraphicsMode mode, GLControl owner)
@@ -104,7 +104,7 @@ namespace OpenTK.Platform
                 throw new PlatformNotSupportedException("Please, refer to http://www.opentk.com for more information.");
             }
 
-            public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
+            public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
             {
                 throw new PlatformNotSupportedException("Please, refer to http://www.opentk.com for more information.");
             }

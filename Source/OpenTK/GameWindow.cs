@@ -224,7 +224,7 @@ namespace OpenTK
                 glWindow = Platform.Factory.Default.CreateNativeWindow(
                     window_bounds.X, window_bounds.Y,
                     window_bounds.Width, window_bounds.Height,
-                    title, options, device);
+                    title, mode, options, device);
 
                 glContext = new GraphicsContext(mode, glWindow.WindowInfo, major, minor, flags);
                 glContext.MakeCurrent(this.WindowInfo);

@@ -1,24 +1,39 @@
-﻿#region --- License ---
-/* Licensed under the MIT/X11 license.
- * Copyright (c) 2006-2008 the OpenTK Team.
- * This notice may not be removed from any source distribution.
- * See license.txt for licensing detailed licensing details.
- */
+﻿#region License
+//
+// The Open Toolkit Library License
+//
+// Copyright (c) 2006 - 2009 the Open Toolkit library.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights to 
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+// the Software, and to permit persons to whom the Software is furnished to do
+// so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+// OTHER DEALINGS IN THE SOFTWARE.
+//
 #endregion
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Reflection;
-using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
-using OpenTK.Platform.Windows;
-using OpenTK.Graphics;
 using System.Drawing;
-
-//using OpenTK.Graphics.OpenGL;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+using OpenTK.Graphics;
+using OpenTK.Input;
 
 namespace OpenTK.Platform.X11
 {
@@ -26,7 +41,7 @@ namespace OpenTK.Platform.X11
     /// Drives GameWindow on X11.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
     /// </summary>
-    internal sealed class X11GLNative : INativeGLWindow, IDisposable
+    internal sealed class X11GLNative : INativeWindow, INativeGLWindow, IDisposable
     {
         // TODO: Disable screensaver.
         // TODO: What happens if we can't disable decorations through motif?
@@ -73,6 +88,7 @@ namespace OpenTK.Platform.X11
         // Number of pending events.
         //int pending = 0;
 
+        Rectangle bounds, client_rectangle;
         int width, height;
         int top, bottom, left, right;
 
@@ -102,6 +118,97 @@ namespace OpenTK.Platform.X11
         #endregion
 
         #region --- Constructors ---
+
+        public X11GLNative(int x, int y, int width, int height, string title,
+            GraphicsMode mode,GameWindowFlags options, DisplayDevice device)
+            : this()
+        {
+            if (width <= 0)
+                throw new ArgumentOutOfRangeException("width", "Must be higher than zero.");
+            if (height <= 0)
+                throw new ArgumentOutOfRangeException("height", "Must be higher than zero.");
+
+            XVisualInfo info = new XVisualInfo();
+
+            Debug.Indent();
+            
+            lock (API.Lock)
+            {
+                info.visualid = mode.Index;
+                int dummy;
+                window.VisualInfo = (XVisualInfo)Marshal.PtrToStructure(
+                    Functions.XGetVisualInfo(window.Display, XVisualInfoMask.ID, ref info, out dummy), typeof(XVisualInfo));
+
+                // Create a window on this display using the visual above
+                Debug.Write("Opening render window... ");
+
+                XSetWindowAttributes attributes = new XSetWindowAttributes();
+                attributes.background_pixel = IntPtr.Zero;
+                attributes.border_pixel = IntPtr.Zero;
+                attributes.colormap = Functions.XCreateColormap(window.Display, window.RootWindow, window.VisualInfo.visual, 0/*AllocNone*/);
+                window.EventMask = EventMask.StructureNotifyMask | EventMask.SubstructureNotifyMask | EventMask.ExposureMask |
+                                   EventMask.KeyReleaseMask | EventMask.KeyPressMask |
+                                   EventMask.PointerMotionMask | // Bad! EventMask.PointerMotionHintMask |
+                                   EventMask.ButtonPressMask | EventMask.ButtonReleaseMask;
+                attributes.event_mask = (IntPtr)window.EventMask;
+
+                uint mask = (uint)SetWindowValuemask.ColorMap | (uint)SetWindowValuemask.EventMask |
+                    (uint)SetWindowValuemask.BackPixel | (uint)SetWindowValuemask.BorderPixel;
+
+                window.WindowHandle = Functions.XCreateWindow(window.Display, window.RootWindow,
+                    0, 0, width, height, 0, window.VisualInfo.depth/*(int)CreateWindowArgs.CopyFromParent*/,
+                    (int)CreateWindowArgs.InputOutput, window.VisualInfo.visual, (UIntPtr)mask, ref attributes);
+
+                if (window.WindowHandle == IntPtr.Zero)
+                    throw new ApplicationException("XCreateWindow call failed (returned 0).");
+
+                //XVisualInfo vis = window.VisualInfo;
+                //Glx.CreateContext(window.Display, ref vis, IntPtr.Zero, true);
+            }
+
+            // Set the window hints
+            SetWindowMinMax(_min_width, _min_height, -1, -1);            
+            
+            XSizeHints hints = new XSizeHints();
+            hints.x = 0;
+            hints.y = 0;
+            hints.width = width;
+            hints.height = height;
+            hints.flags = (IntPtr)(XSizeHintsFlags.USSize);// | XSizeHintsFlags.USPosition);
+            lock (API.Lock)
+            {
+                Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
+
+                // Register for window destroy notification
+                Functions.XSetWMProtocols(window.Display, window.WindowHandle, new IntPtr[] { _atom_wm_destroy }, 1);
+            }
+            bounds.X = bounds.Y = 0;
+            bounds.Width = Width;
+            bounds.Height = Height;
+
+            //XTextProperty text = new XTextProperty();
+            //text.value = "OpenTK Game Window";
+            //text.format = 8;
+            //Functions.XSetWMName(window.Display, window.Handle, ref text);
+            //Functions.XSetWMProperties(display, window, name, name, 0,  /*None*/ null, 0, hints);
+
+            lock (API.Lock)
+            {
+                API.MapRaised(window.Display, window.WindowHandle);
+            }
+            mapped = true;
+
+            driver = new X11Input(window);
+            
+            Debug.WriteLine(String.Format("X11GLNative window created successfully (id: {0}).", Handle));
+            Debug.Unindent();
+
+            this.width = width;
+            this.height = height;
+            
+            exists = true;
+        }
+
 
         /// <summary>
         /// Constructs and initializes a new X11GLNative window.
@@ -155,6 +262,8 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        #region Private Members
+        
         #region private void RegisterAtoms()
 
         /// <summary>
@@ -195,6 +304,183 @@ namespace OpenTK.Platform.X11
 //            //WMTitle = atoms[offset++];
 //            //UTF8String = atoms[offset++];
         }
+
+        #endregion
+
+        #endregion
+
+        #region INativeWindow Members
+
+        #region Bounds
+
+        public System.Drawing.Rectangle Bounds
+        {
+            get { return bounds; }
+            set
+            {
+            }
+        }
+
+        #endregion
+
+        #region Location
+
+        public Point Location
+        {
+            get { return Bounds.Location; }
+            set
+            {
+            }
+        }
+
+        #endregion
+
+        #region Size
+
+        public Size Size
+        {
+            get { return Bounds.Size; }
+            set
+            {
+            }
+        }
+
+        #endregion
+
+        #region ClientRectangle
+
+        public System.Drawing.Rectangle ClientRectangle
+        {
+            get
+            {
+                if (client_rectangle.Width == 0)
+                    client_rectangle.Width = 1;
+                if (client_rectangle.Height == 0)
+                    client_rectangle.Height = 1;
+                return client_rectangle;
+            }
+            set
+            {
+            }
+        }
+
+        #endregion
+
+        #region ClientSize
+
+        public Size ClientSize
+        {
+            get
+            {
+                return ClientRectangle.Size;
+            }
+            set
+            {}
+        }
+
+        #endregion
+
+        #region Width
+
+        public int Width
+        {
+            get { return ClientRectangle.Width; }
+            set { ClientRectangle = new System.Drawing.Rectangle(Location, new Size(value, Height)); }
+        }
+
+        #endregion
+
+        #region Height
+
+        public int Height
+        {
+            get { return ClientRectangle.Height; }
+            set { ClientRectangle = new System.Drawing.Rectangle(Location, new Size(Width, value)); }
+        }
+
+        #endregion
+
+        #region X
+
+        public int X
+        {
+            get { return ClientRectangle.X; }
+            set { ClientRectangle = new System.Drawing.Rectangle(new Point(value, Y), Size); }
+        }
+
+        #endregion
+
+        #region Y
+
+        public int Y
+        {
+            get { return ClientRectangle.Y; }
+            set { ClientRectangle = new System.Drawing.Rectangle(new Point(X, value), Size); }
+        }
+
+        #endregion
+
+        #region Icon
+
+        public Icon Icon
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion
+
+        #region Focused
+
+        public bool Focused
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler<EventArgs> Idle;
+
+        public event EventHandler<EventArgs> Load;
+
+        public event EventHandler<EventArgs> Unload;
+
+        public event EventHandler<EventArgs> Move;
+
+        public event EventHandler<EventArgs> Resize;
+
+        public event EventHandler<System.ComponentModel.CancelEventArgs> Closing;
+
+        public event EventHandler<EventArgs> Closed;
+
+        public event EventHandler<EventArgs> Disposed;
+
+        public event EventHandler<EventArgs> IconChanged;
+
+        public event EventHandler<EventArgs> TitleChanged;
+
+        public event EventHandler<EventArgs> ClientSizeChanged;
+
+        public event EventHandler<EventArgs> VisibleChanged;
+
+        public event EventHandler<EventArgs> WindowInfoChanged;
+
+        #endregion
 
         #endregion
 
@@ -263,9 +549,9 @@ namespace OpenTK.Platform.X11
                 // Register for window destroy notification
                 Functions.XSetWMProtocols(window.Display, window.WindowHandle, new IntPtr[] { _atom_wm_destroy }, 1);
             }
-            Top = Left = 0;
-            Right = Width;
-            Bottom = Height;
+            bounds.X = bounds.Y = 0;
+            bounds.Width = Width;
+            bounds.Height = Height;
 
             //XTextProperty text = new XTextProperty();
             //text.value = "OpenTK Game Window";
@@ -568,6 +854,8 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        public void Close() { Exit(); }
+
         #region public void Exit()
 
         public void Exit()
@@ -797,104 +1085,14 @@ namespace OpenTK.Platform.X11
         
         #endregion
 
-        #region --- IResizable Members ---
-
-        #region public int Width
-
-        public int Width
-        {
-            get
-            {
-                return width;
-            }
-            set
-            {/*
-                // Clear event struct
-                //Array.Clear(xresize.pad, 0, xresize.pad.Length);
-                // Set requested parameters
-                xresize.ResizeRequest.type = EventType.ResizeRequest;
-                xresize.ResizeRequest.display = this.display;
-                xresize.ResizeRequest.width = value;
-                xresize.ResizeRequest.height = mode.Width;
-                API.SendEvent(
-                    this.display,
-                    this.window,
-                    false,
-                    EventMask.StructureNotifyMask,
-                    ref xresize
-                );*/
-            }
-        }
-
-        #endregion
-
-        #region public int Height
-
-        public int Height
-        {
-            get
-            {
-                return height;
-            }
-            set
-            {/*
-                // Clear event struct
-                //Array.Clear(xresize.pad, 0, xresize.pad.Length);
-                // Set requested parameters
-                xresize.ResizeRequest.type = EventType.ResizeRequest;
-                xresize.ResizeRequest.display = this.display;
-                xresize.ResizeRequest.width = mode.Width;
-                xresize.ResizeRequest.height = value;
-                API.SendEvent(
-                    this.display,
-                    this.window,
-                    false,
-                    EventMask.StructureNotifyMask,
-                    ref xresize
-                );*/
-            }
-        }
-
-        #endregion
-
         #region public event ResizeEvent Resize
 
-        public event ResizeEvent Resize;
-
-        private void OnResize(ResizeEventArgs e)
+        private void OnResize(EventArgs e)
         {
-            width = e.Width;
-            height = e.Height;
             if (this.Resize != null)
             {
                 this.Resize(this, e);
             }
-        }
-
-        #endregion
-
-        public int Top
-        {
-            get { return top; }
-            private set { top = value; }
-        }
-
-        public int Bottom
-        {
-            get { return bottom; }
-            private set { bottom = value; }
-        }
-
-        public int Left
-        {
-            get { return left; }
-            private set { left = value; }
-        }
-
-        public int Right
-        {
-            get { return right; }
-            private set { right = value; }
         }
 
         #endregion

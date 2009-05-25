@@ -15,7 +15,7 @@ namespace OpenTK.Platform.MacOS
             return new CarbonGLNative();
         }
 
-        public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
+        public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
             throw new NotImplementedException();
         }
