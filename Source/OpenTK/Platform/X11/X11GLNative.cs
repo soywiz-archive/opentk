@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
@@ -213,18 +214,6 @@ namespace OpenTK.Platform.X11
             {
                 Debug.Print("Creating X11GLNative window.");
                 Debug.Indent();
-
-                //Utilities.ThrowOnX11Error = true; // Not very reliable
-
-                // We *cannot* reuse the display connection of System.Windows.Forms (Windows.Forms eat our events).
-                // TODO: Multiple screens.
-                //Type xplatui = Type.GetType("System.Windows.Forms.XplatUIX11, System.Windows.Forms");
-                //window.Display = (IntPtr)xplatui.GetField("DisplayHandle",
-                //    System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null);
-                //window.RootWindow = (IntPtr)xplatui.GetField("RootWindow",
-                //    System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null);
-                //window.Screen = (int)xplatui.GetField("ScreenNo",
-                //    System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null);
 
                 // Open a display connection to the X server, and obtain the screen and root window.
                 window.Display = API.DefaultDisplay;
@@ -506,7 +495,9 @@ namespace OpenTK.Platform.X11
         public void ProcessEvents()
         {
             // Process all pending events
-
+            if (!exists || window == null)
+                return;
+            
             while (Functions.XCheckWindowEvent(window.Display, window.WindowHandle, window.EventMask, ref e) ||
                    Functions.XCheckTypedWindowEvent(window.Display, window.WindowHandle, XEventName.ClientMessage, ref e))
             {
@@ -523,19 +514,32 @@ namespace OpenTK.Platform.X11
 
                     case XEventName.ClientMessage:
                         if (e.ClientMessageEvent.ptr1 == _atom_wm_destroy)
-                            this.OnDestroy(EventArgs.Empty);
-                        else
-                            Debug.Print("Niar");
+                        {
+                            CancelEventArgs ce = new CancelEventArgs();
+                            if (Closing != null)
+                                Closing(this, ce);
+
+                            if (!ce.Cancel)
+                            {
+                                isExiting = true;
+                                
+                                if (Unload != null)
+                                    Unload(this, EventArgs.Empty);
+        
+                                Functions.XDestroyWindow(window.Display, window.WindowHandle);
+                                break;
+                            }
+                        }
                         
                         break;
 
                     case XEventName.DestroyNotify:
                         exists = false;
-                        isExiting = true;
-                        Debug.Print("X11 window {0} destroyed.", e.DestroyWindowEvent.window);
-                        window.Dispose();
-                        window.WindowHandle = IntPtr.Zero;
-                        return;
+
+                        if (Closed != null)
+                            Closed(this, EventArgs.Empty);
+                        
+                        break;
 
                     case XEventName.ConfigureNotify:
                         border_width = e.ConfigureEvent.border_width;
@@ -779,7 +783,10 @@ namespace OpenTK.Platform.X11
 
         public void Exit()
         {
-            this.DestroyWindow();
+            XEvent ev = new XEvent();
+            ev.ClientMessageEvent.ptr1 = _atom_wm_destroy;
+            Functions.XSendEvent(window.Display, window.WindowHandle, false,
+                new IntPtr((int)EventMask.NoEventMask), ref ev);
         }
 
         #endregion
@@ -1028,6 +1035,9 @@ namespace OpenTK.Platform.X11
                         Functions.XUnlockDisplay(window.Display);
                     }
 
+                    while (Exists)
+                        ProcessEvents();
+                    window.Dispose();
                     window = null;
                 }
 
