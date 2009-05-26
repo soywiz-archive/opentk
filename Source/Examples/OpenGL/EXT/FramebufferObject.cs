@@ -230,7 +230,7 @@ namespace Examples.Tutorial
             base.OnResize(e);
         }
 
-        public override void OnUpdateFrame(UpdateFrameEventArgs e)
+        protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
 
@@ -244,7 +244,7 @@ namespace Examples.Tutorial
                 this.Exit();
         }
 
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             

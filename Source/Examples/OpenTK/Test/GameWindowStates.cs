@@ -114,7 +114,7 @@ namespace Examples.Tests
             GL.Viewport(0, 0, Width, Height);
         }
 
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 

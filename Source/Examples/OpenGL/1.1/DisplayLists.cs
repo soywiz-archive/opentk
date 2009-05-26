@@ -111,7 +111,7 @@ namespace Examples.Tutorial
 
         #region OnUpdateFrame
 
-        public override void OnUpdateFrame(UpdateFrameEventArgs e)
+        protected override void OnUpdateFrame(FrameEventArgs e)
         {
             if (Keyboard[OpenTK.Input.Key.Escape])
             {
@@ -123,7 +123,7 @@ namespace Examples.Tutorial
 
         #region OnRenderFrame
 
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();

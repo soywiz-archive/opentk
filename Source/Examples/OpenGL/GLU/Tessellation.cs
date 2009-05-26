@@ -246,7 +246,7 @@ namespace Examples
 
         #region OnRenderFrame
 
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 

@@ -237,7 +237,7 @@ namespace Examples.Tutorial
         /// </summary>
         /// <param name="e">Contains timing information.</param>
         /// <remarks>There is no need to call the base implementation.</remarks>
-        public override void OnUpdateFrame(UpdateFrameEventArgs e)
+        protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
 
@@ -256,7 +256,7 @@ namespace Examples.Tutorial
         /// </summary>
         /// <param name="e">Contains timing information.</param>
         /// <remarks>There is no need to call the base implementation.</remarks>
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             //this.Title = "FPS: " + 1 / e.Time;
             GL.Clear(ClearBufferMask.ColorBufferBit);

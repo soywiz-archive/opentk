@@ -69,14 +69,12 @@ namespace OpenTK
     /// parameters that
     /// specify the logic update rate, and the render update rate.
     /// </remarks>
-    public class GameWindow : INativeWindow
+    public class GameWindow : IGameWindow
     {
         #region --- Fields ---
 
         INativeWindow glWindow;
         //DisplayMode mode;
-
-        ResizeEventArgs resizeEventArgs = new ResizeEventArgs();
 
         bool isExiting = false;
         bool hasMainLoop;
@@ -405,7 +403,7 @@ namespace OpenTK
 
         #region OnUpdateFrameInternal
 
-        private void OnUpdateFrameInternal(UpdateFrameEventArgs e)
+        private void OnUpdateFrameInternal(FrameEventArgs e)
         {
             if (disposed)
                 throw new ObjectDisposedException(this.GetType().Name);
@@ -423,7 +421,7 @@ namespace OpenTK
 
         #region OnRenderFrameInternal
 
-        private void OnRenderFrameInternal(RenderFrameEventArgs e)
+        private void OnRenderFrameInternal(FrameEventArgs e)
         {
             if (disposed)
                 throw new ObjectDisposedException(this.GetType().Name);
@@ -606,9 +604,9 @@ namespace OpenTK
         #region public void Run()
 
         /// <summary>
-        /// Enters the game loop of the GameWindow updating and rendering at the maximum possible frequency.
+        /// Enters the game loop of the GameWindow using the maximum update rate.
         /// </summary>
-        /// <see cref="Run(double, double)"/>
+        /// <seealso cref="Run(double)"/>
         public void Run()
         {
             if (disposed) throw new ObjectDisposedException(this.GetType().Name);
@@ -620,14 +618,15 @@ namespace OpenTK
         #region public void Run(double updateFrequency)
 
         /// <summary>
-        /// Enters the game loop of the GameWindow updating the specified update frequency, while maintaining the
+        /// Enters the game loop of the GameWindow using the specified update rate.
         /// maximum possible render frequency.
         /// </summary>
-        /// <see cref="Run(double, double)"/>
-        public void Run(double updateFrequency)
+        public void Run(double updateRate)
         {
-            if (disposed) throw new ObjectDisposedException(this.GetType().Name);
-            Run(updateFrequency, 0.0);
+            if (disposed)
+                throw new ObjectDisposedException(this.GetType().Name);
+            
+            Run(updateRate, 0.0);
         }
 
         #endregion
@@ -663,33 +662,14 @@ namespace OpenTK
                 Stopwatch update_watch = new Stopwatch(), render_watch = new Stopwatch();
                 double time, next_render = 0.0, next_update = 0.0, update_time_counter = 0.0;
                 int num_updates = 0;
-                UpdateFrameEventArgs update_args = new UpdateFrameEventArgs();
-                RenderFrameEventArgs render_args = new RenderFrameEventArgs();
+                FrameEventArgs update_args = new FrameEventArgs();
+                FrameEventArgs render_args = new FrameEventArgs();
 
                 update_watch.Reset();
                 render_watch.Reset();
 
-                //double sleep_granularity;      // In seconds.
-
-                //GC.Collect(2);
-                //GC.WaitForPendingFinalizers();
-                //GC.Collect(2);
-
-                // Find the minimum granularity of the Thread.Sleep() function.
-                // TODO: Disabled - see comment on Thread.Sleep() problems below.
-                //update_watch.Start();
-                //const int test_times = 5;
-                //for (int i = test_times; --i > 0; )
-                //    Thread.Sleep(1);
-                //update_watch.Stop();
-                //sleep_granularity = System.Math.Round(1000.0 * update_watch.Elapsed.TotalSeconds / test_times, MidpointRounding.AwayFromZero) / 1000.0;
-                //update_watch.Reset();       // We don't want to affect the first UpdateFrame!
-
                 OnLoadInternal(EventArgs.Empty);
                 OnResizeInternal(EventArgs.Empty);
-
-                //Debug.Print("Elevating priority.");
-                //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
 
                 Debug.Print("Entering main loop.");
                 while (!IsExiting && HasMainLoop)
@@ -712,10 +692,12 @@ namespace OpenTK
                         update_watch.Reset();
                         update_watch.Start();
 
-                        update_args.Time = time;
-                        OnUpdateFrameInternal(update_args);
-                        update_time = update_watch.Elapsed.TotalSeconds;
-
+                        if (time > 0)
+                        {
+                            update_args.Time = time;
+                            OnUpdateFrameInternal(update_args);
+                            update_time = update_watch.Elapsed.TotalSeconds;
+                        }
                         if (TargetUpdateFrequency == 0.0)
                             break;
 
@@ -758,19 +740,13 @@ namespace OpenTK
                         render_watch.Reset();
                         render_watch.Start();
 
-                        render_period = render_args.Time = time;
-                        render_args.ScaleFactor = RenderPeriod / UpdatePeriod;
-                        OnRenderFrameInternal(render_args);
-                        render_time = render_watch.Elapsed.TotalSeconds;
+                        if (time > 0)
+                        {
+                            render_period = render_args.Time = time;
+                            OnRenderFrameInternal(render_args);
+                            render_time = render_watch.Elapsed.TotalSeconds;
+                        }
                     }
-
-                    // Yield CPU time, if the Thread.Sleep() granularity allows it.
-                    // TODO: Disabled because it does not work reliably enough on all systems.
-                    // Enable vsync as a workaround.
-                    //if (AllowSleep && next_render > sleep_granularity && next_update > sleep_granularity)
-                    //{
-                    //    Thread.Sleep((int)(1000.0 * System.Math.Min(next_render - sleep_granularity, next_update - sleep_granularity)));
-                    //}
                 }
             }
             catch (GameWindowExitException)
@@ -822,7 +798,7 @@ namespace OpenTK
 
         #endregion
 
-        #region OnRenderFrame(RenderFrameEventArgs e)
+        #region OnRenderFrame
 
         /// <summary>
         /// Override in derived classes to render a frame.
@@ -831,19 +807,18 @@ namespace OpenTK
         /// <remarks>
         /// The base implementation (base.OnRenderFrame) is empty, there is no need to call it.
         /// </remarks>
-        public virtual void OnRenderFrame(RenderFrameEventArgs e)
+        protected virtual void OnRenderFrame(FrameEventArgs e)
         {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
         }
 
         /// <summary>
-        /// Occurs when it is time to render the next frame.
+        /// Occurs when it is time to render a frame.
         /// </summary>
-        public event RenderFrameEvent RenderFrame;
+        public event EventHandler<FrameEventArgs> RenderFrame;
 
         #endregion
 
-        #region OnUpdateFrame(UpdateFrameEventArgs e)
+        #region OnUpdateFrame
 
         /// <summary>
         /// Override in derived classes to update a frame.
@@ -852,19 +827,18 @@ namespace OpenTK
         /// <remarks>
         /// The base implementation (base.OnUpdateFrame) is empty, there is no need to call it.
         /// </remarks>
-        public virtual void OnUpdateFrame(UpdateFrameEventArgs e)
+        protected virtual void OnUpdateFrame(FrameEventArgs e)
         {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
         }
 
         /// <summary>
-        /// Occurs when it is time to update the next frame.
+        /// Occurs when it is time to update a frame.
         /// </summary>
-        public event UpdateFrameEvent UpdateFrame;
+        public event EventHandler<FrameEventArgs> UpdateFrame;
 
         #endregion
 
-        #region OnLoad(EventArgs e)
+        #region OnLoad
 
         /// <summary>
         /// Raises the Load event, and calls the user's OnLoad override.
@@ -872,24 +846,14 @@ namespace OpenTK
         /// <param name="e"></param>
         private void OnLoadInternal(EventArgs e)
         {
-            Debug.Print("Firing internal load event.");
-            if (MustResize)
-            {
-                resizeEventArgs.Width = glWindow.Width;
-                resizeEventArgs.Height = glWindow.Height;
-                OnResizeInternal(resizeEventArgs);
-            }
-
+            Debug.Print("{0}.Load", this.GetType().Name);
             Debug.WriteLine(String.Format("OpenGL driver information: {0}, {1}, {2}",
                 GL.GetString(StringName.Renderer),
                 GL.GetString(StringName.Vendor),
                 GL.GetString(StringName.Version)));
 
-            if (this.Load != null)
-            {
-                this.Load(this, e);
-            }
-
+            OnResizeInternal(EventArgs.Empty);
+            Load(this, e);
             OnLoad(e);
         }
 
@@ -905,7 +869,7 @@ namespace OpenTK
 
         #endregion
 
-        #region OnUnload(EventArgs e)
+        #region OnUnload
 
         /// <summary>
         /// Raises the Unload event, and calls the user's OnUnload override.
@@ -1038,17 +1002,30 @@ namespace OpenTK
 
         #endregion
 
+        #region MakeCurrent
+
+        /// <summary>
+        /// Makes the GraphicsContext current on the calling thread.
+        /// </summary>
+        public void MakeCurrent()
+        {
+            if (disposed)
+                throw new ObjectDisposedException(this.GetType().Name);
+
+            Context.MakeCurrent(WindowInfo);
+        }
+        
+        #endregion
+
         #region public void SwapBuffers()
 
         /// <summary>
         /// Swaps the front and back buffer, presenting the rendered scene to the user.
-        /// Only useful in double- or triple-buffered formats.
         /// </summary>
-        /// <remarks>Calling this function is equivalent to calling Context.SwapBuffers()</remarks>
         public void SwapBuffers()
         {
             if (disposed)
-                throw new ObjectDisposedException("GameWindow");
+                throw new ObjectDisposedException(this.GetType().Name);
 
             this.Context.SwapBuffers();
         }

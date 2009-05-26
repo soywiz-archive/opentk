@@ -93,7 +93,7 @@ namespace Examples.Tutorial
         /// Place your control logic here. This is the place to respond to user input,
         /// update object positions etc.
         /// </remarks>
-        public override void OnUpdateFrame(UpdateFrameEventArgs e)
+        protected override void OnUpdateFrame(FrameEventArgs e)
         {
             if (Keyboard[OpenTK.Input.Key.Escape])
             {
@@ -109,7 +109,7 @@ namespace Examples.Tutorial
         /// <summary>
         /// Place your rendering code here.
         /// </summary>
-        public override void OnRenderFrame(RenderFrameEventArgs e)
+        protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
@@ -119,7 +119,7 @@ namespace Examples.Tutorial
                        0.0, 0.0, 0.0,
                        0.0, 1.0, 0.0);
             
-            angle += rotation_speed * (float)e.ScaleFactor;
+            angle += rotation_speed * (float)e.Time;
             GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
 
             DrawCube();

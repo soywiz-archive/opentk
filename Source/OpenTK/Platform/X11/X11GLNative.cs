@@ -94,6 +94,7 @@ namespace OpenTK.Platform.X11
         int border_width;
         Icon icon;
         bool has_focus;
+        bool visible;
 
         // Used for event loop.
         XEvent e = new XEvent();
@@ -168,7 +169,6 @@ namespace OpenTK.Platform.X11
 
                 API.MapRaised(window.Display, window.WindowHandle);
             }
-            mapped = true;
 
             driver = new X11Input(window);
             
@@ -528,8 +528,24 @@ namespace OpenTK.Platform.X11
                 switch (e.type)
                 {
                     case XEventName.MapNotify:
-                        Debug.WriteLine("Window mapped.");
+                        {
+                            bool previous_visible = visible;
+                            visible = true;
+                            if (visible != previous_visible)
+                                if (VisibleChanged != null)
+                                    VisibleChanged(this, EventArgs.Empty);
+                        }
                         return;
+
+                    case XEventName.UnmapNotify:
+                        {
+                            bool previous_visible = visible;
+                            visible = false;
+                            if (visible != previous_visible)
+                                if (VisibleChanged != null)
+                                    VisibleChanged(this, EventArgs.Empty);
+                        }
+                        break;
 
                     case XEventName.CreateNotify:
                         // A child was was created - nothing to do
@@ -602,13 +618,25 @@ namespace OpenTK.Platform.X11
                         break;
 
                     case XEventName.FocusIn:
-                        has_focus = true;
+                        {
+                            bool previous_focus = has_focus;
+                            has_focus = true;
+                            if (has_focus != previous_focus)
+                                if (FocusedChanged != null)
+                                    FocusedChanged(this, EventArgs.Empty);
+                        }
                         break;
 
                     case XEventName.FocusOut:
-                        has_focus = false;
+                        {
+                            bool previous_focus = has_focus;
+                            has_focus = false;
+                            if (has_focus != previous_focus)
+                                if (FocusedChanged != null)
+                                    FocusedChanged(this, EventArgs.Empty);
+                        }
                         break;
-
+                       
                     default:
                         //Debug.WriteLine(String.Format("{0} event was not handled", e.type));
                         break;
@@ -798,8 +826,6 @@ namespace OpenTK.Platform.X11
 
         #region Events
 
-        public event EventHandler<EventArgs> Idle;
-
         public event EventHandler<EventArgs> Load;
 
         public event EventHandler<EventArgs> Unload;
@@ -818,11 +844,7 @@ namespace OpenTK.Platform.X11
 
         public event EventHandler<EventArgs> TitleChanged;
 
-        public event EventHandler<EventArgs> ClientSizeChanged;
-
         public event EventHandler<EventArgs> VisibleChanged;
-
-        public event EventHandler<EventArgs> WindowInfoChanged;
 
         public event EventHandler<EventArgs> FocusedChanged;
 
@@ -973,24 +995,21 @@ namespace OpenTK.Platform.X11
 
         #region public bool Visible
 
-        bool mapped;
         public bool Visible
         {
             get
             {
-                return mapped;
+                return visible;
             }
             set
             {
-                if (value && !mapped)
+                if (value && !visible)
                 {
                     Functions.XMapWindow(window.Display, window.WindowHandle);
-                    mapped = true;
                 }
-                else if (!value && mapped)
+                else if (!value && visible)
                 {
                     Functions.XUnmapWindow(window.Display, window.WindowHandle);
-                    mapped = false;
                 }
             }
         }
