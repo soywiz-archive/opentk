@@ -824,6 +824,8 @@ namespace OpenTK.Platform.X11
 
         public event EventHandler<EventArgs> WindowInfoChanged;
 
+        public event EventHandler<EventArgs> FocusedChanged;
+
         #endregion
 
         #endregion

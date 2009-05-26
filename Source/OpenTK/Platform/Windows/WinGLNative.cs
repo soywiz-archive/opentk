@@ -905,6 +905,8 @@ namespace OpenTK.Platform.Windows
 
         public event EventHandler<EventArgs> WindowInfoChanged;
 
+        public event EventHandler<EventArgs> FocusedChanged;
+
         #endregion
 
         #endregion

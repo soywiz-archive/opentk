@@ -950,6 +950,8 @@ namespace OpenTK.Platform.MacOS
 
         public event EventHandler<EventArgs> WindowInfoChanged;
 
+        public event EventHandler<EventArgs> FocusedChanged;
+
         #endregion
     }
 }

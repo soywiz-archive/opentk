@@ -241,7 +241,7 @@ namespace OpenTK
                 glWindow.Resize += delegate(object sender, EventArgs e) { OnResizeInternal(e); };
                 glWindow.Closing += delegate(object sender, CancelEventArgs e) { OnClosingInternal(e); };
                 glWindow.Closed += delegate(object sender, EventArgs e) { OnClosedInternal(e); };
-                glWindow.WindowInfoChanged += delegate(object sender, EventArgs e) { OnWindowInfoChangedInternal(e); };
+                //glWindow.WindowInfoChanged += delegate(object sender, EventArgs e) { OnWindowInfoChangedInternal(e); };
             }
             catch (Exception e)
             {
@@ -1165,140 +1165,11 @@ namespace OpenTK
 
         #endregion
 
-        /// <summary>
-        /// Gets or sets a System.Drawing.Point that defines the coordinates of this window on the desktop.
-        /// </summary>
-        public Point Location
-        {
-            get
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                return glWindow.Location;
-            }
-            set
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                glWindow.Location = value;
-            }
-        }
+        #region Bounds
 
         /// <summary>
-        /// Gets or sets a System.Drawing.Size that defines the size of this window.
-        /// Size is the external size of the window, which includes the titlebar and borders (if any).
-        /// </summary>
-        public Size Size
-        {
-            get
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                return glWindow.Size;
-            }
-            set
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                glWindow.Size = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the X coordinate of the window on the desktop.
-        /// </summary>
-        public int X
-        {
-            get
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                return glWindow.X;
-            }
-            set
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                glWindow.X = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the Y coordinate of the window on the desktop.
-        /// </summary>
-        public int Y
-        {
-            get
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                return glWindow.Y;
-            }
-            set
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                glWindow.Y = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a System.Drawing.Rectangle that defines the client area of this instance.
-        /// The client area is the internal area of the window, without the titlebar and borders (if any).
-        /// The value uses client coordinates.
-        /// </summary>
-        public Rectangle ClientRectangle
-        {
-            get
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                return glWindow.ClientRectangle;
-            }
-            set
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                glWindow.ClientRectangle = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a System.Drawing.Size that defines the size of the client area of this instance.
-        /// The client area is the internal area of the window, without the titlebar and borders (if any).
-        /// </summary>
-        public Size ClientSize
-        {
-            get
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name); 
-                
-                return glWindow.ClientSize;
-            }
-            set
-            {
-                if (disposed)
-                    throw new ObjectDisposedException(this.GetType().Name);
-
-                glWindow.ClientSize = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a System.Drawing.Rectangle that defines the bounds of this instance.
-        /// The bounds define the total area of the window, including the titlebar and borders (if any).
-        /// The value uses screen coordinates.
+        /// Gets or sets a <see cref="System.Drawing.Rectangle"/> structure the contains the external bounds of this window, in screen coordinates.
+        /// External bounds include the title bar, borders and drawing area of the window.
         /// </summary>
         public Rectangle Bounds
         {
@@ -1318,11 +1189,112 @@ namespace OpenTK
             }
         }
 
+        #endregion
+
+        #region Location
+        
+        /// <summary>
+        /// Gets or sets a <see cref="System.Drawing.Point"> structure that contains the location of this window on the desktop.
+        /// </summary>
+        public Point Location
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Location;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Location = value;
+            }
+        }
+
+        #endregion
+
+        #region Size
+        
+        /// <summary>
+        /// Gets or sets a <see cref="System.Drawing.Size"> structure that contains the external size of this window.
+        /// </summary>
+        public Size Size
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Size;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Size = value;
+            }
+        }
+
+        #endregion
+
+        #region X
+
+        /// <summary>
+        /// Gets or sets the horizontal location of this window on the desktop.
+        /// </summary>
+        public int X
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.X;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.X = value;
+            }
+        }
+
+        #endregion
+
+        #region Y
+
+        /// <summary>
+        /// Gets or sets the vertical location of this window on the desktop.
+        /// </summary>
+        public int Y
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.Y;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.Y = value;
+            }
+        }
+
+        #endregion
+
         #region Width
 
         /// <summary>
-        /// Gets or sets the width of this GameWindow.
-        /// This is the total width, which includes the borders and titlebar of the window (if any).
+        /// Gets or sets the external width of this window.
         /// </summary>
         public int Width
         {
@@ -1347,8 +1319,7 @@ namespace OpenTK
         #region Height
 
         /// <summary>
-        /// Gets or sets the height of this GameWindow.
-        /// This is the total height, which includes the borders and titlebar of the window (if any).
+        /// Gets or sets the external height of this window.
         /// </summary>
         public int Height
         {
@@ -1365,6 +1336,57 @@ namespace OpenTK
                     throw new ObjectDisposedException(this.GetType().Name);
 
                 glWindow.Height = value;
+            }
+        }
+
+        #endregion
+
+        #region ClientRectangle
+
+        /// <summary>
+        /// Gets or sets a <see cref="System.Drawing.Rectangle"/> structure that contains the internal bounds of this window, in client coordinates.
+        /// The internal bounds include the drawing area of the window, but exclude the titlebar and window borders.
+        /// </summary>
+        public Rectangle ClientRectangle
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                return glWindow.ClientRectangle;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.ClientRectangle = value;
+            }
+        }
+
+        #endregion
+
+        #region ClientSize
+        
+        /// <summary>
+        /// Gets or sets a <see cref="System.Drawing.Size"/> structure that contains the internal size this window.
+        /// </summary>
+        public Size ClientSize
+        {
+            get
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name); 
+                
+                return glWindow.ClientSize;
+            }
+            set
+            {
+                if (disposed)
+                    throw new ObjectDisposedException(this.GetType().Name);
+
+                glWindow.ClientSize = value;
             }
         }
 
@@ -1398,15 +1420,17 @@ namespace OpenTK
         #region PointToClient
 
         /// <summary>
-        /// Converts the screen coordinates of a specified point on the screen to client-area coordinates.
+        /// Transforms the specified point from screen to client coordinates. 
         /// </summary>
-        /// <param name="point">A System.Drawing.Point structure that specifies the screen coordinates to be converted</param>
-        /// <returns>The client-area coordinates of the point. The new coordinates are relative to the upper-left corner of the GameWindow's client area.</returns>
+        /// <param name="point">
+        /// A <see cref="System.Drawing.Point"/> to transform.
+        /// </param>
+        /// <returns>
+        /// The point transformed to client coordinates.
+        /// </returns>
         public System.Drawing.Point PointToClient(System.Drawing.Point point)
         {
-            point = glWindow.PointToClient(point);
-
-            return point;
+            return glWindow.PointToClient(point);
         }
 
         #endregion
@@ -1414,10 +1438,14 @@ namespace OpenTK
         #region PointToScreen
 
         /// <summary>
-        /// Converts the client-area coordinates of a specified point to screen coordinates.
+        /// Transforms the specified point from client to screen coordinates. 
         /// </summary>
-        /// <param name="p">A System.Drawing.Point structure that specifies the client-area coordinates to be converted</param>
-        /// <returns>The screen coordinates of the point, relative to the upper-left corner of the screen. Note, a screen-coordinate point that is above the window's client area has a negative y-coordinate. Similarly, a screen coordinate to the left of a client area has a negative x-coordinate.</returns>
+        /// <param name="point">
+        /// A <see cref="System.Drawing.Point"/> to transform.
+        /// </param>
+        /// <returns>
+        /// The point transformed to screen coordinates.
+        /// </returns>
         public System.Drawing.Point PointToScreen(System.Drawing.Point p)
         {
             // Here we use the fact that PointToClient just translates the point, and PointToScreen
@@ -1432,46 +1460,62 @@ namespace OpenTK
 
         #region Events
 
-        public event EventHandler<EventArgs> Idle;
+        /// <summary>
+        /// Occurs before the window is displayed for the first time.
+        /// </summary>
+        public event EventHandler<EventArgs> Load = delegate { };
 
         /// <summary>
-        /// Occurs after establishing a GraphicsContext, but before entering the main loop.
+        /// Occurs before the window is destroyed. 
         /// </summary>
-        public event EventHandler<EventArgs> Load;
+        public event EventHandler<EventArgs> Unload = delegate { };
 
         /// <summary>
-        /// Occurs after closing the GameWindow, but before destroying the GraphicsContext.
+        /// Occurs whenever the window is moved. 
         /// </summary>
-        public event EventHandler<EventArgs> Unload;
+        public event EventHandler<EventArgs> Move = delegate { };
 
-        public event EventHandler<EventArgs> Move;
+        /// <summary>
+        /// Occurs whenever the window is resized. 
+        /// </summary>
+        public event EventHandler<EventArgs> Resize = delegate { };
 
-        public event EventHandler<EventArgs> Resize;
+       /// <summary>
+        /// Occurs when the window is about to close. 
+        /// </summary>
+        public event EventHandler<CancelEventArgs> Closing = delegate { };
 
-        public event EventHandler<EventArgs> Closed;
+        /// <summary>
+        /// Occurs after the window has closed. 
+        /// </summary>
+        public event EventHandler<EventArgs> Closed = delegate { };
 
-        public event EventHandler<EventArgs> Disposed;
+        /// <summary>
+        /// Occurs when the window is disposed. 
+        /// </summary>
+        public event EventHandler<EventArgs> Disposed = delegate { };
 
-        public event EventHandler<EventArgs> IconChanged;
+        /// <summary>
+        /// Occurs when the <see cref="Icon"/> property of the window changes. 
+        /// </summary>
+        public event EventHandler<EventArgs> IconChanged = delegate { };
 
-        public event EventHandler<EventArgs> TitleChanged;
+        /// <summary>
+        /// Occurs when the <see cref="Title"/> property of the window changes.
+        /// </summary>
+        public event EventHandler<EventArgs> TitleChanged = delegate { };
 
-        public event EventHandler<EventArgs> ClientSizeChanged;
+        /// <summary>
+        /// Occurs when the <see cref="Visible"/> property of the window changes.
+        /// </summary>
+        public event EventHandler<EventArgs> VisibleChanged = delegate { };
 
-        public event EventHandler<EventArgs> VisibleChanged;
-
-        public event EventHandler<EventArgs> WindowInfoChanged;
+        /// <summary>
+        /// Occurs when the <see cref="Focused"/> property of the window changes.
+        /// </summary>
+        public event EventHandler<EventArgs> FocusedChanged = delegate { };
 
         #endregion
-
-        #endregion
-
-        #region --- Events ---
-
-        /// <summary>
-        /// Occurs when the GameWindow is about to close.
-        /// </summary>
-        public event EventHandler<CancelEventArgs> Closing = delegate(object sender, CancelEventArgs e) { };
 
         #endregion
 
