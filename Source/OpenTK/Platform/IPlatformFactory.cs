@@ -35,9 +35,6 @@ namespace OpenTK.Platform
 {
     interface IPlatformFactory
     {
-        [Obsolete]
-        INativeGLWindow CreateGLNative();
-
         INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device);
 
         IGLControl CreateGLControl(GraphicsMode mode, GLControl owner);

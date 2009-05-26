@@ -64,11 +64,6 @@ namespace OpenTK.Platform
 
         #region IPlatformFactory Members
 
-        public INativeGLWindow CreateGLNative()
-        {
-            return implementation.CreateGLNative();
-        }
-
         public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title,
             GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
