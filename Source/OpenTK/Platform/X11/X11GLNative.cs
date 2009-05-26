@@ -42,14 +42,13 @@ namespace OpenTK.Platform.X11
     /// Drives GameWindow on X11.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
     /// </summary>
-    internal sealed class X11GLNative : INativeWindow, INativeGLWindow, IDisposable
+    internal sealed class X11GLNative : INativeWindow, IDisposable
     {
         // TODO: Disable screensaver.
         // TODO: What happens if we can't disable decorations through motif?
         // TODO: Mouse/keyboard grabbing/wrapping.
-        // TODO: PointToWindow, PointToScreen
 
-        #region --- Fields ---
+        #region Fields
         
         const int _min_width = 30, _min_height = 30;
 
@@ -103,22 +102,11 @@ namespace OpenTK.Platform.X11
         bool exists;
         bool isExiting;
 
-        // XAtoms for window properties
-        //static IntPtr WMTitle;      // The title of the GameWindow.
-        //static IntPtr UTF8String;   // No idea.
-
-        // Fields used for fullscreen mode changes.
-        //int pre_fullscreen_width, pre_fullscreen_height;
-        //bool fullscreen = false;
-
         bool _decorations_hidden = false;        
         
-        //OpenTK.WindowState _window_state, _previous_window_state;
-        //OpenTK.WindowBorder _window_border, _previous_window_border;
-
         #endregion
 
-        #region --- Constructors ---
+        #region Constructors
 
         public X11GLNative(int x, int y, int width, int height, string title,
             GraphicsMode mode,GameWindowFlags options, DisplayDevice device)
@@ -189,7 +177,6 @@ namespace OpenTK.Platform.X11
 
             exists = true;
         }
-
 
         /// <summary>
         /// Constructs and initializes a new X11GLNative window.
@@ -279,9 +266,357 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        #region SetWindowMinMax
+
+        void SetWindowMinMax(short min_width, short min_height, short max_width, short max_height)
+        {
+            IntPtr dummy;
+            XSizeHints hints = new XSizeHints();
+
+            Functions.XGetWMNormalHints(window.Display, window.WindowHandle, ref hints, out dummy);
+
+            if (min_width > 0 || min_height > 0)
+            {
+                hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMinSize);
+                hints.min_width = min_width;
+                hints.min_height = min_height;
+            }
+            else
+                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMinSize);
+
+            if (max_width > 0 || max_height > 0)
+            {
+                hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMaxSize);
+                hints.max_width = max_width;
+                hints.max_height = max_height;
+            }
+            else
+                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMaxSize);
+
+
+            if (hints.flags != IntPtr.Zero)
+            {
+                // The Metacity team has decided that they won't care about this when clicking the maximize
+                // icon, will maximize the window to fill the screen/parent no matter what.
+                // http://bugzilla.ximian.com/show_bug.cgi?id=80021
+                Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
+            }
+        }
+
+        #endregion
+
+        #region IsWindowBorderResizable
+
+        bool IsWindowBorderResizable
+        {
+            get
+            {
+                IntPtr actual_atom;
+                int actual_format;
+                IntPtr nitems;
+                IntPtr bytes_after;
+                IntPtr prop = IntPtr.Zero;
+                IntPtr atom;
+                //XWindowAttributes attributes;                
+                
+                Functions.XGetWindowProperty(window.Display, window.WindowHandle,
+                                             _atom_net_wm_allowed_actions, IntPtr.Zero, new IntPtr(256), false,
+                                             IntPtr.Zero, out actual_atom, out actual_format, out nitems,
+                                             out bytes_after, ref prop);
+                if ((long)nitems > 0 && prop != IntPtr.Zero)
+                {
+                    for (int i = 0; i < (long)nitems; i++)
+                    {
+                        atom = (IntPtr)Marshal.ReadIntPtr(prop, i * IntPtr.Size);
+                        
+                        if (atom == _atom_net_wm_action_resize)
+                            return true;
+                    }
+                    Functions.XFree(prop);
+                }
+                    
+                return false;
+            }
+        }
+
+        #endregion
+                
+        #region bool IsWindowBorderHidden
+                
+        bool IsWindowBorderHidden
+        {
+            get
+            {                
+                //IntPtr actual_atom;
+                //int actual_format;
+                //IntPtr nitems;
+                //IntPtr bytes_after;
+                IntPtr prop = IntPtr.Zero;
+                //IntPtr atom;
+                //XWindowAttributes attributes;
+
+                // Test if decorations have been disabled through Motif.
+                IntPtr motif_hints_atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
+                if (motif_hints_atom != IntPtr.Zero)
+                {
+                    // TODO: How to check if MotifWMHints decorations have been really disabled?
+                    if (_decorations_hidden)
+                        return true;
+                }
+
+                // Some WMs remove decorations when the transient_for hint is set. Most new ones do not (but those
+                // should obey the Motif hint). Anyway, if this hint is set, we say the decorations have been remove
+                // although there is a slight chance this is not the case.
+                IntPtr transient_for_parent;                
+                Functions.XGetTransientForHint(window.Display, window.WindowHandle, out transient_for_parent);
+                if (transient_for_parent != IntPtr.Zero)
+                    return true;
+                
+                return false;
+            }
+        }
+                
+        #endregion
+
+        #region void DisableWindowDecorations()
+
+        void DisableWindowDecorations()
+        {
+            if (DisableMotifDecorations())
+            {
+                Debug.Print("Removed decorations through motif.");
+                _decorations_hidden = true;
+            }
+
+            // Functions.XSetTransientForHint(this.window.Display, this.Handle, this.window.RootWindow);
+            
+            // Some WMs remove decorations when this hint is set. Doesn't hurt to try.
+            Functions.XSetTransientForHint(this.window.Display, this.Handle, this.window.RootWindow);
+
+            if (_decorations_hidden)
+            {
+                Functions.XUnmapWindow(this.window.Display, this.Handle);
+                Functions.XMapWindow(this.window.Display, this.Handle);
+            }
+        }
+
+        #region bool DisableMotifDecorations()
+
+        bool DisableMotifDecorations()
+        {
+            IntPtr atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
+            if (atom != IntPtr.Zero)
+            {
+                //Functions.XGetWindowProperty(window.Display, window.WindowHandle, atom, IntPtr.Zero, IntPtr.Zero, false,
+                                             
+                MotifWmHints hints = new MotifWmHints();
+                hints.flags = (IntPtr)MotifFlags.Decorations;
+                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
+                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region bool DisableGnomeDecorations()
+
+        bool DisableGnomeDecorations()
+        {
+            IntPtr atom = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_HINTS, true);
+            if (atom != IntPtr.Zero)
+            {
+                IntPtr hints = IntPtr.Zero;
+                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
+                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
+                return true;
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region void EnableWindowDecorations()
+
+        void EnableWindowDecorations()
+        {
+            if (EnableMotifDecorations())
+            {
+                Debug.Print("Activated decorations through motif.");
+                _decorations_hidden = false;
+            }
+
+            //if (EnableGnomeDecorations()) { Debug.Print("Activated decorations through gnome."); activated = true; }
+
+            Functions.XSetTransientForHint(this.window.Display, this.Handle, IntPtr.Zero);
+
+            if (!_decorations_hidden)
+            {
+                Functions.XUnmapWindow(this.window.Display, this.Handle);
+                Functions.XMapWindow(this.window.Display, this.Handle);
+            }
+        }
+
+        #region bool EnableMotifDecorations()
+
+        bool EnableMotifDecorations()
+        {
+            IntPtr atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
+            if (atom != IntPtr.Zero)
+            {
+                //Functions.XDeleteProperty(this.window.Display, this.Handle, atom);
+                MotifWmHints hints = new MotifWmHints();
+                hints.flags = (IntPtr)MotifFlags.Decorations;
+                hints.decorations = (IntPtr)MotifDecorations.All;
+                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
+                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
+                
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region bool EnableGnomeDecorations()
+
+        bool EnableGnomeDecorations()
+        {
+            // Restore window layer.
+            //XEvent xev = new XEvent();
+            //xev.ClientMessageEvent.window = this.window.Handle;
+            //xev.ClientMessageEvent.type = XEventName.ClientMessage;
+            //xev.ClientMessageEvent.message_type = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_LAYER, false);
+            //xev.ClientMessageEvent.format = 32;
+            //xev.ClientMessageEvent.ptr1 = (IntPtr)WindowLayer.AboveDock;
+            //Functions.XSendEvent(this.window.Display, this.window.RootWindow, false, (IntPtr)EventMask.SubstructureNotifyMask, ref xev);
+            
+            IntPtr atom = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_HINTS, true);
+            if (atom != IntPtr.Zero)
+            {
+                Functions.XDeleteProperty(this.window.Display, this.Handle, atom);
+                return true;
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region INativeWindow Members
+
+                #region ProcessEvents
+
+        public void ProcessEvents()
+        {
+            // Process all pending events
+            if (!exists || window == null)
+                return;
+            
+            while (Functions.XCheckWindowEvent(window.Display, window.WindowHandle, window.EventMask, ref e) ||
+                   Functions.XCheckTypedWindowEvent(window.Display, window.WindowHandle, XEventName.ClientMessage, ref e))
+            {
+                // Respond to the event e
+                switch (e.type)
+                {
+                    case XEventName.MapNotify:
+                        Debug.WriteLine("Window mapped.");
+                        return;
+
+                    case XEventName.CreateNotify:
+                        // A child was was created - nothing to do
+                        break;
+
+                    case XEventName.ClientMessage:
+                        if (e.ClientMessageEvent.ptr1 == _atom_wm_destroy)
+                        {
+                            CancelEventArgs ce = new CancelEventArgs();
+                            if (Closing != null)
+                                Closing(this, ce);
+
+                            if (!ce.Cancel)
+                            {
+                                isExiting = true;
+                                
+                                if (Unload != null)
+                                    Unload(this, EventArgs.Empty);
+        
+                                Functions.XDestroyWindow(window.Display, window.WindowHandle);
+                                break;
+                            }
+                        }
+                        
+                        break;
+
+                    case XEventName.DestroyNotify:
+                        exists = false;
+
+                        if (Closed != null)
+                            Closed(this, EventArgs.Empty);
+                        
+                        break;
+
+                    case XEventName.ConfigureNotify:
+                        border_width = e.ConfigureEvent.border_width;
+                        
+                        Point new_location = new Point(e.ConfigureEvent.x, e.ConfigureEvent.y);
+                        if (Location != new_location)
+                        {
+                            bounds.Location = new_location;
+                            if (Move != null)
+                                Move(this, EventArgs.Empty);
+                        }
+
+                        // Note: width and height denote the internal (client) size.
+                        // To get the external (window) size, we need to add the border size.
+                        Size new_size = new Size(e.ConfigureEvent.width, e.ConfigureEvent.height);
+                        if (ClientSize != new_size)
+                        {
+                            bounds.Size = new_size;
+                            bounds.Width += e.ConfigureEvent.border_width;
+                            bounds.Height += e.ConfigureEvent.border_width;
+
+                            // Todo: Get the real client rectangle.
+                            client_rectangle.Size = new_size;
+                        
+                            if (this.Resize != null)
+                                Resize(this, EventArgs.Empty);
+                        }
+                        break;
+
+                    case XEventName.KeyPress:
+                    case XEventName.KeyRelease:
+                    case XEventName.MotionNotify:
+                    case XEventName.ButtonPress:
+                    case XEventName.ButtonRelease:
+                        //Functions.XPutBackEvent(window.Display, ref e);
+                        driver.ProcessEvent(ref e);
+                        break;
+
+                    case XEventName.FocusIn:
+                        has_focus = true;
+                        break;
+
+                    case XEventName.FocusOut:
+                        has_focus = false;
+                        break;
+
+                    default:
+                        //Debug.WriteLine(String.Format("{0} event was not handled", e.type));
+                        break;
+                }
+            }
+        }
+
+        #endregion
 
         #region Bounds
 
@@ -494,120 +829,6 @@ namespace OpenTK.Platform.X11
         #endregion
 
         #region --- INativeGLWindow Members ---
-
-        #region CreateWindow
-
-        public void CreateWindow(int width, int height, GraphicsMode mode, int major, int minor, GraphicsContextFlags flags, out IGraphicsContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region public void ProcessEvents()
-
-        public void ProcessEvents()
-        {
-            // Process all pending events
-            if (!exists || window == null)
-                return;
-            
-            while (Functions.XCheckWindowEvent(window.Display, window.WindowHandle, window.EventMask, ref e) ||
-                   Functions.XCheckTypedWindowEvent(window.Display, window.WindowHandle, XEventName.ClientMessage, ref e))
-            {
-                // Respond to the event e
-                switch (e.type)
-                {
-                    case XEventName.MapNotify:
-                        Debug.WriteLine("Window mapped.");
-                        return;
-
-                    case XEventName.CreateNotify:
-                        // A child was was created - nothing to do
-                        break;
-
-                    case XEventName.ClientMessage:
-                        if (e.ClientMessageEvent.ptr1 == _atom_wm_destroy)
-                        {
-                            CancelEventArgs ce = new CancelEventArgs();
-                            if (Closing != null)
-                                Closing(this, ce);
-
-                            if (!ce.Cancel)
-                            {
-                                isExiting = true;
-                                
-                                if (Unload != null)
-                                    Unload(this, EventArgs.Empty);
-        
-                                Functions.XDestroyWindow(window.Display, window.WindowHandle);
-                                break;
-                            }
-                        }
-                        
-                        break;
-
-                    case XEventName.DestroyNotify:
-                        exists = false;
-
-                        if (Closed != null)
-                            Closed(this, EventArgs.Empty);
-                        
-                        break;
-
-                    case XEventName.ConfigureNotify:
-                        border_width = e.ConfigureEvent.border_width;
-                        
-                        Point new_location = new Point(e.ConfigureEvent.x, e.ConfigureEvent.y);
-                        if (Location != new_location)
-                        {
-                            bounds.Location = new_location;
-                            if (Move != null)
-                                Move(this, EventArgs.Empty);
-                        }
-
-                        // Note: width and height denote the internal (client) size.
-                        // To get the external (window) size, we need to add the border size.
-                        Size new_size = new Size(e.ConfigureEvent.width, e.ConfigureEvent.height);
-                        if (ClientSize != new_size)
-                        {
-                            bounds.Size = new_size;
-                            bounds.Width += e.ConfigureEvent.border_width;
-                            bounds.Height += e.ConfigureEvent.border_width;
-
-                            // Todo: Get the real client rectangle.
-                            client_rectangle.Size = new_size;
-                        
-                            if (this.Resize != null)
-                                Resize(this, EventArgs.Empty);
-                        }
-                        break;
-
-                    case XEventName.KeyPress:
-                    case XEventName.KeyRelease:
-                    case XEventName.MotionNotify:
-                    case XEventName.ButtonPress:
-                    case XEventName.ButtonRelease:
-                        //Functions.XPutBackEvent(window.Display, ref e);
-                        driver.ProcessEvent(ref e);
-                        break;
-
-                    case XEventName.FocusIn:
-                        has_focus = true;
-                        break;
-
-                    case XEventName.FocusOut:
-                        has_focus = false;
-                        break;
-
-                    default:
-                        //Debug.WriteLine(String.Format("{0} event was not handled", e.type));
-                        break;
-                }
-            }
-        }
-
-        #endregion
 
         #region public IInputDriver InputDriver
 
@@ -1040,7 +1261,7 @@ namespace OpenTK.Platform.X11
         
         #endregion
 
-        #region --- IDisposable Members ---
+        #region IDisposable Members
 
         public void Dispose()
         {
@@ -1088,245 +1309,6 @@ namespace OpenTK.Platform.X11
         {
             this.Dispose(false);
         }
-
-        #endregion
-
-        #region --- Private Methods ---
-
-        void SetWindowMinMax(short min_width, short min_height, short max_width, short max_height)
-        {
-            IntPtr dummy;
-            XSizeHints hints = new XSizeHints();
-
-            Functions.XGetWMNormalHints(window.Display, window.WindowHandle, ref hints, out dummy);
-
-            if (min_width > 0 || min_height > 0)
-            {
-                hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMinSize);
-                hints.min_width = min_width;
-                hints.min_height = min_height;
-            }
-            else
-                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMinSize);
-
-            if (max_width > 0 || max_height > 0)
-            {
-                hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMaxSize);
-                hints.max_width = max_width;
-                hints.max_height = max_height;
-            }
-            else
-                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMaxSize);
-
-
-            if (hints.flags != IntPtr.Zero)
-            {
-                // The Metacity team has decided that they won't care about this when clicking the maximize
-                // icon, will maximize the window to fill the screen/parent no matter what.
-                // http://bugzilla.ximian.com/show_bug.cgi?id=80021
-                Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
-            }
-        }
-
-        bool IsWindowBorderResizable
-        {
-            get
-            {
-                IntPtr actual_atom;
-                int actual_format;
-                IntPtr nitems;
-                IntPtr bytes_after;
-                IntPtr prop = IntPtr.Zero;
-                IntPtr atom;
-                //XWindowAttributes attributes;                
-                
-                Functions.XGetWindowProperty(window.Display, window.WindowHandle,
-                                             _atom_net_wm_allowed_actions, IntPtr.Zero, new IntPtr(256), false,
-                                             IntPtr.Zero, out actual_atom, out actual_format, out nitems,
-                                             out bytes_after, ref prop);
-                if ((long)nitems > 0 && prop != IntPtr.Zero)
-                {
-                    for (int i = 0; i < (long)nitems; i++)
-                    {
-                        atom = (IntPtr)Marshal.ReadIntPtr(prop, i * IntPtr.Size);
-                        
-                        if (atom == _atom_net_wm_action_resize)
-                            return true;
-                    }
-                    Functions.XFree(prop);
-                }
-                    
-                return false;
-            }
-        }
-                
-        #region bool IsWindowBorderHidden
-                
-        bool IsWindowBorderHidden
-        {
-            get
-            {                
-                //IntPtr actual_atom;
-                //int actual_format;
-                //IntPtr nitems;
-                //IntPtr bytes_after;
-                IntPtr prop = IntPtr.Zero;
-                //IntPtr atom;
-                //XWindowAttributes attributes;
-
-                // Test if decorations have been disabled through Motif.
-                IntPtr motif_hints_atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
-                if (motif_hints_atom != IntPtr.Zero)
-                {
-                    // TODO: How to check if MotifWMHints decorations have been really disabled?
-                    if (_decorations_hidden)
-                        return true;
-                }
-
-                // Some WMs remove decorations when the transient_for hint is set. Most new ones do not (but those
-                // should obey the Motif hint). Anyway, if this hint is set, we say the decorations have been remove
-                // although there is a slight chance this is not the case.
-                IntPtr transient_for_parent;                
-                Functions.XGetTransientForHint(window.Display, window.WindowHandle, out transient_for_parent);
-                if (transient_for_parent != IntPtr.Zero)
-                    return true;
-                
-                return false;
-            }
-        }
-                
-        #endregion
-
-        #region void DisableWindowDecorations()
-
-        void DisableWindowDecorations()
-        {
-            if (DisableMotifDecorations())
-            {
-                Debug.Print("Removed decorations through motif.");
-                _decorations_hidden = true;
-            }
-
-            // Functions.XSetTransientForHint(this.window.Display, this.Handle, this.window.RootWindow);
-            
-            // Some WMs remove decorations when this hint is set. Doesn't hurt to try.
-            Functions.XSetTransientForHint(this.window.Display, this.Handle, this.window.RootWindow);
-
-            if (_decorations_hidden)
-            {
-                Functions.XUnmapWindow(this.window.Display, this.Handle);
-                Functions.XMapWindow(this.window.Display, this.Handle);
-            }
-        }
-
-        #region bool DisableMotifDecorations()
-
-        bool DisableMotifDecorations()
-        {
-            IntPtr atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
-            if (atom != IntPtr.Zero)
-            {
-                //Functions.XGetWindowProperty(window.Display, window.WindowHandle, atom, IntPtr.Zero, IntPtr.Zero, false,
-                                             
-                MotifWmHints hints = new MotifWmHints();
-                hints.flags = (IntPtr)MotifFlags.Decorations;
-                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
-                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
-                return true;
-            }
-            return false;
-        }
-
-        #endregion
-
-        #region bool DisableGnomeDecorations()
-
-        bool DisableGnomeDecorations()
-        {
-            IntPtr atom = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_HINTS, true);
-            if (atom != IntPtr.Zero)
-            {
-                IntPtr hints = IntPtr.Zero;
-                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
-                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
-                return true;
-            }
-
-            return false;
-        }
-
-        #endregion
-
-        #endregion
-
-        #region void EnableWindowDecorations()
-
-        void EnableWindowDecorations()
-        {
-            if (EnableMotifDecorations())
-            {
-                Debug.Print("Activated decorations through motif.");
-                _decorations_hidden = false;
-            }
-
-            //if (EnableGnomeDecorations()) { Debug.Print("Activated decorations through gnome."); activated = true; }
-
-            Functions.XSetTransientForHint(this.window.Display, this.Handle, IntPtr.Zero);
-
-            if (!_decorations_hidden)
-            {
-                Functions.XUnmapWindow(this.window.Display, this.Handle);
-                Functions.XMapWindow(this.window.Display, this.Handle);
-            }
-        }
-
-        #region bool EnableMotifDecorations()
-
-        bool EnableMotifDecorations()
-        {
-            IntPtr atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
-            if (atom != IntPtr.Zero)
-            {
-                //Functions.XDeleteProperty(this.window.Display, this.Handle, atom);
-                MotifWmHints hints = new MotifWmHints();
-                hints.flags = (IntPtr)MotifFlags.Decorations;
-                hints.decorations = (IntPtr)MotifDecorations.All;
-                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
-                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
-                
-                return true;
-            }
-            return false;
-        }
-
-        #endregion
-
-        #region bool EnableGnomeDecorations()
-
-        bool EnableGnomeDecorations()
-        {
-            // Restore window layer.
-            //XEvent xev = new XEvent();
-            //xev.ClientMessageEvent.window = this.window.Handle;
-            //xev.ClientMessageEvent.type = XEventName.ClientMessage;
-            //xev.ClientMessageEvent.message_type = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_LAYER, false);
-            //xev.ClientMessageEvent.format = 32;
-            //xev.ClientMessageEvent.ptr1 = (IntPtr)WindowLayer.AboveDock;
-            //Functions.XSendEvent(this.window.Display, this.window.RootWindow, false, (IntPtr)EventMask.SubstructureNotifyMask, ref xev);
-            
-            IntPtr atom = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_HINTS, true);
-            if (atom != IntPtr.Zero)
-            {
-                Functions.XDeleteProperty(this.window.Display, this.Handle, atom);
-                return true;
-            }
-
-            return false;
-        }
-
-        #endregion
-
-        #endregion
 
         #endregion
     }

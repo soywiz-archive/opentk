@@ -10,11 +10,6 @@ namespace OpenTK.Platform.X11
     {
         #region IPlatformFactory Members
 
-        public INativeGLWindow CreateGLNative()
-        {
-            return new X11GLNative();
-        }
-
         public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
             return new X11GLNative(x, y, width, height, title, mode, options, device);
