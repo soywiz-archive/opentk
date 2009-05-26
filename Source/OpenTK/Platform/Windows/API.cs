@@ -363,6 +363,13 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        #region SendMessage
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        internal static extern LRESULT SendMessage(HWND hWnd, WindowMessage Msg, WPARAM wParam, LPARAM lParam);
+
+        #endregion
+
         #region PostMessage
 
         [CLSCompliant(false)]
@@ -793,6 +800,13 @@ namespace OpenTK.Platform.Windows
 
         [DllImport("dwmapi.dll")]
         unsafe public static extern HRESULT DwmGetWindowAttribute(HWND hwnd, DwmWindowAttribute dwAttribute, void* pvAttribute, DWORD cbAttribute);
+
+        #endregion
+
+        #region GetFocus
+
+        [DllImport("user32.dll")]
+        public static extern HWND GetFocus();
 
         #endregion
 

@@ -63,6 +63,7 @@ namespace OpenTK.Platform.Windows
 
         System.Drawing.Rectangle bounds = new System.Drawing.Rectangle();
         System.Drawing.Rectangle client_rectangle = new System.Drawing.Rectangle();
+        Icon icon;
 
         static readonly ClassStyle ClassStyle =
             ClassStyle.OwnDC | ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.Ime;
@@ -384,6 +385,27 @@ namespace OpenTK.Platform.Windows
                     }
                     break;
 
+                case WindowMessage.GETICON:
+                    if (icon != null)
+                    {
+                        icon.Dispose();
+                        icon = null;
+                    }
+
+                    if (lParam != IntPtr.Zero)
+                    {
+                        icon = Icon.FromHandle(lParam);
+                    }
+                    else
+                    {
+                        IntPtr icon_handle = Functions.DefWindowProc(handle, message, wParam, lParam);
+                        if (icon_handle != IntPtr.Zero)
+                            icon = Icon.FromHandle(icon_handle);
+                        return icon_handle;
+                    }
+
+                    break;
+
                 case WindowMessage.CLOSE:
                     System.ComponentModel.CancelEventArgs e = new System.ComponentModel.CancelEventArgs();
                     
@@ -637,11 +659,12 @@ namespace OpenTK.Platform.Windows
         {
             get
             {
-                throw new NotImplementedException();
+                return icon;
             }
             set
             {
-                throw new NotImplementedException();
+                Functions.SendMessage(window.WindowHandle, WindowMessage.SETICON, (IntPtr)1, icon == null ? IntPtr.Zero : value.Handle);
+                icon = value;
             }
         }
 
@@ -653,11 +676,10 @@ namespace OpenTK.Platform.Windows
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                IntPtr focus = Functions.GetFocus();
+                return
+                    (window != null && focus == window.WindowHandle) ||
+                    (child_window != null && focus == child_window.WindowHandle);
             }
         }
 
