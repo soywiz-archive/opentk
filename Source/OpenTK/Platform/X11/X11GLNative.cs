@@ -157,7 +157,7 @@ namespace OpenTK.Platform.X11
                     (uint)SetWindowValuemask.BackPixel | (uint)SetWindowValuemask.BorderPixel;
 
                 window.WindowHandle = Functions.XCreateWindow(window.Display, window.RootWindow,
-                    0, 0, width, height, 0, window.VisualInfo.depth/*(int)CreateWindowArgs.CopyFromParent*/,
+                    x, y, width, height, 0, window.VisualInfo.depth/*(int)CreateWindowArgs.CopyFromParent*/,
                     (int)CreateWindowArgs.InputOutput, window.VisualInfo.visual, (UIntPtr)mask, ref attributes);
 
                 if (window.WindowHandle == IntPtr.Zero)
@@ -168,30 +168,16 @@ namespace OpenTK.Platform.X11
             SetWindowMinMax(_min_width, _min_height, -1, -1);            
             
             XSizeHints hints = new XSizeHints();
-            hints.x = device.Bounds.X + width / 2;
-            hints.y = device.Bounds.Y + height / 2;
-            hints.width = width;
-            hints.height = height;
-            hints.flags = (IntPtr)(XSizeHintsFlags.USSize | XSizeHintsFlags.USPosition);
+            hints.base_width = width;
+            hints.base_height = height;
+            hints.flags = (IntPtr)(XSizeHintsFlags.PSize | XSizeHintsFlags.PPosition);
             lock (API.Lock)
             {
                 Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
 
                 // Register for window destroy notification
                 Functions.XSetWMProtocols(window.Display, window.WindowHandle, new IntPtr[] { _atom_wm_destroy }, 1);
-            }
-            //bounds.X = bounds.Y = 0;
-            //bounds.Width = Width;
-            //bounds.Height = Height;
 
-            //XTextProperty text = new XTextProperty();
-            //text.value = "OpenTK Game Window";
-            //text.format = 8;
-            //Functions.XSetWMName(window.Display, window.Handle, ref text);
-            //Functions.XSetWMProperties(display, window, name, name, 0,  /*None*/ null, 0, hints);
-
-            lock (API.Lock)
-            {
                 API.MapRaised(window.Display, window.WindowHandle);
             }
             mapped = true;
