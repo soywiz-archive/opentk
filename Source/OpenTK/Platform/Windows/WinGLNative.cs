@@ -59,8 +59,6 @@ namespace OpenTK.Platform.Windows
         WindowBorder windowBorder = WindowBorder.Resizable, previous_window_border;
         WindowState windowState = WindowState.Normal;
 
-        System.Drawing.Rectangle previous_client_area;
-
         System.Drawing.Rectangle bounds = new System.Drawing.Rectangle();
         System.Drawing.Rectangle client_rectangle = new System.Drawing.Rectangle();
         Icon icon;
