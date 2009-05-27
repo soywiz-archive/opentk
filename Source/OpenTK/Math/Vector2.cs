@@ -27,9 +27,7 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Math
 {
-    /// <summary>
-    /// Represents a 2D vector.
-    /// </summary>
+    /// <summary>Represents a 2D vector using two single-precision floating-point numbers.</summary>
     /// <remarks>
     /// The Vector2 structure is suitable for interoperation with unmanaged code requiring two consecutive floats.
     /// </remarks>
@@ -103,12 +101,79 @@ namespace OpenTK.Math
 
         #region Instance
 
+        #region public void Add()
+
+        /// <summary>Add the Vector passed as parameter to this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        public void Add( Vector2 right )
+        {
+            this.X += right.X;
+            this.Y += right.Y;
+        }
+
+        /// <summary>Add the Vector passed as parameter to this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        [CLSCompliant(false)]
+        public void Add( ref Vector2 right )
+        {
+            this.X += right.X;
+            this.Y += right.Y;
+        }
+
+        #endregion public void Add()
+
+        #region public void Sub()
+
+        /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        public void Sub( Vector2 right )
+        {
+            this.X -= right.X;
+            this.Y -= right.Y;
+        }
+
+        /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        [CLSCompliant(false)]
+        public void Sub( ref Vector2 right )
+        {
+            this.X -= right.X;
+            this.Y -= right.Y;
+        }
+
+        #endregion public void Sub()
+
+        #region public void Mult()
+
+        /// <summary>Multiply this instance by a scalar.</summary>
+        /// <param name="f">Scalar operand.</param>
+        public void Mult( float f )
+        {
+            this.X *= f;
+            this.Y *= f;
+        }
+
+        #endregion public void Mult()
+
+        #region public void Div()
+
+        /// <summary>Divide this instance by a scalar.</summary>
+        /// <param name="f">Scalar operand.</param>
+        public void Div( float f )
+        {
+            float mult = 1.0f / f;
+            this.X *= mult;
+            this.Y *= mult;
+        }
+
+        #endregion public void Div()
+
         #region public float Length
 
         /// <summary>
         /// Gets the length (magnitude) of the vector.
         /// </summary>
-        /// <see cref="FastLength"/>
+        /// <see cref="LengthFast"/>
         /// <seealso cref="LengthSquared"/>
         public float Length
         {
@@ -131,7 +196,6 @@ namespace OpenTK.Math
         /// </remarks>
         /// <see cref="Length"/>
         /// <seealso cref="LengthSquared"/>
-        /// <seealso cref="OpenTK.Math.FastSqrt"/>
         public float LengthFast
         {
 			get
@@ -152,7 +216,7 @@ namespace OpenTK.Math
         /// for comparisons.
         /// </remarks>
         /// <see cref="Length"/>
-        /// <seealso cref="FastLength"/>
+        /// <seealso cref="LengthFast"/>
         public float LengthSquared
         {
 			get
@@ -221,7 +285,7 @@ namespace OpenTK.Math
 
         #endregion
 
-        #region public void Scale(float sx, float sy)
+        #region public void Scale()
 
         /// <summary>
         /// Scales the current Vector2 by the given amounts.
@@ -234,7 +298,24 @@ namespace OpenTK.Math
 			this.Y = Y * sy;
         }
 
-        #endregion
+        /// <summary>Scales this instance by the given parameter.</summary>
+        /// <param name="scale">The scaling of the individual components.</param>
+        public void Scale( Vector2 scale )
+        {
+            this.X *= scale.X;
+            this.Y *= scale.Y;
+        }
+
+        /// <summary>Scales this instance by the given parameter.</summary>
+        /// <param name="scale">The scaling of the individual components.</param>
+        [CLSCompliant(false)]
+        public void Scale( ref Vector2 scale )
+        {
+            this.X *= scale.X;
+            this.Y *= scale.Y;
+        }
+
+        #endregion public void Scale()
 
         #endregion
 
@@ -562,7 +643,7 @@ namespace OpenTK.Math
         #region Dot
 
         /// <summary>
-        /// Caclulate the dot (scalar) product of two vectors
+        /// Calculate the dot (scalar) product of two vectors
         /// </summary>
         /// <param name="left">First operand</param>
         /// <param name="right">Second operand</param>
@@ -570,6 +651,17 @@ namespace OpenTK.Math
         public static float Dot(Vector2 left, Vector2 right)
         {
             return left.X * right.X + left.Y * right.Y;
+        }
+
+        /// <summary>
+        /// Calculate the dot (scalar) product of two vectors
+        /// </summary>
+        /// <param name="left">First operand</param>
+        /// <param name="right">Second operand</param>
+        /// <param name="result">The dot product of the two inputs</param>
+        public static void Dot( ref Vector2 left, ref Vector2 right, out float result )
+        {
+            result = left.X * right.X + left.Y * right.Y;
         }
 
         #endregion
@@ -581,13 +673,26 @@ namespace OpenTK.Math
         /// </summary>
         /// <param name="a">First input vector</param>
         /// <param name="b">Second input vector</param>
-        /// <param name="blend">The blend factor</param>
+        /// <param name="blend">The blend factor. a when blend=0, b when blend=1.</param>
         /// <returns>a when blend=0, b when blend=1, and a linear combination otherwise</returns>
         public static Vector2 Lerp(Vector2 a, Vector2 b, float blend)
         {
             a.X = blend * (b.X - a.X) + a.X;
             a.Y = blend * (b.Y - a.Y) + a.Y;
             return a;
+        }
+
+        /// <summary>
+        /// Returns a new Vector that is the linear blend of the 2 given Vectors
+        /// </summary>
+        /// <param name="a">First input vector</param>
+        /// <param name="b">Second input vector</param>
+        /// <param name="blend">The blend factor. a when blend=0, b when blend=1.</param>
+        /// <param name="result">a when blend=0, b when blend=1, and a linear combination otherwise</param>
+        public static void Lerp( ref Vector2 a, ref Vector2 b, float blend, out Vector2 result )
+        {
+            result.X = blend * ( b.X - a.X ) + a.X;
+            result.Y = blend * ( b.Y - a.Y ) + a.Y;
         }
 
         #endregion
@@ -606,6 +711,28 @@ namespace OpenTK.Math
         public static Vector2 BaryCentric(Vector2 a, Vector2 b, Vector2 c, float u, float v)
         {
             return a + u * (b - a) + v * (c - a);
+        }
+
+        /// <summary>Interpolate 3 Vectors using Barycentric coordinates</summary>
+        /// <param name="a">First input Vector.</param>
+        /// <param name="b">Second input Vector.</param>
+        /// <param name="c">Third input Vector.</param>
+        /// <param name="u">First Barycentric Coordinate.</param>
+        /// <param name="v">Second Barycentric Coordinate.</param>
+        /// <param name="result">Output Vector. a when u=v=0, b when u=1,v=0, c when u=0,v=1, and a linear combination of a,b,c otherwise</param>
+        public static void BaryCentric( ref Vector2 a, ref Vector2 b, ref Vector2 c, float u, float v, out Vector2 result )
+        {
+            result = a; // copy
+
+            Vector2 temp = b; // copy
+            temp.Sub( ref a );
+            temp.Mult( u );
+            result.Add( ref temp );
+
+            temp = c; // copy
+            temp.Sub( ref a );
+            temp.Mult( v );
+            result.Add( ref temp );
         }
 
         #endregion
@@ -721,7 +848,7 @@ namespace OpenTK.Math
         #region IEquatable<Vector2> Members
 
         /// <summary>Indicates whether the current vector is equal to another vector.</summary>
-        /// <param name="vector">A vector to compare with this vector.</param>
+        /// <param name="other">A vector to compare with this vector.</param>
         /// <returns>true if the current vector is equal to the vector parameter; otherwise, false.</returns>
         public bool Equals(Vector2 other)
         {

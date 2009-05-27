@@ -24,49 +24,53 @@ SOFTWARE.
 
 using System;
 using System.Runtime.InteropServices;
+using System.Xml.Serialization;
 
 namespace OpenTK.Math
 {
-	/// <summary>
-	/// Represents a three-dimensional vector.
-	/// </summary>
+    /// <summary>
+    /// Represents a 3D vector using three single-precision floating-point numbers.
+    /// </summary>
+    /// <remarks>
+    /// The Vector3 structure is suitable for interoperation with unmanaged code requiring three consecutive floats.
+    /// </remarks>
     [Serializable]
-	[StructLayout(LayoutKind.Sequential)]
-	public struct Vector3 : IEquatable<Vector3>
-	{
-		#region Fields
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Vector3 : IEquatable<Vector3>
+    {
+        #region Fields
 
-		/// <summary>
-		/// The X component of the Vector3.
-		/// </summary>
-		public float X;
+        /// <summary>
+        /// The X component of the Vector3.
+        /// </summary>
+        public float X;
 
-		/// <summary>
-		/// The Y component of the Vector3.
-		/// </summary>
-		public float Y;
+        /// <summary>
+        /// The Y component of the Vector3.
+        /// </summary>
+        public float Y;
 
-		/// <summary>
-		/// The Z component of the Vector3.
-		/// </summary>
-		public float Z;
+        /// <summary>
+        /// The Z component of the Vector3.
+        /// </summary>
+        public float Z;
 
         #endregion
 
-		#region Constructors
+        #region Constructors
 
-		/// <summary>
-		/// Constructs a new Vector3.
-		/// </summary>
-		/// <param name="x">The x component of the Vector3.</param>
-		/// <param name="y">The y component of the Vector3.</param>
-		/// <param name="z">The z component of the Vector3.</param>
-		public Vector3(float x, float y, float z)
-		{
-			X = x;
-			Y = y;
-			Z = z;
-		}
+        /// <summary>
+        /// Constructs a new Vector3.
+        /// </summary>
+        /// <param name="x">The x component of the Vector3.</param>
+        /// <param name="y">The y component of the Vector3.</param>
+        /// <param name="z">The z component of the Vector3.</param>
+        public Vector3(float x, float y, float z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
 
         /// <summary>
         /// Constructs a new Vector3 from the given Vector2.
@@ -107,12 +111,85 @@ namespace OpenTK.Math
 
         #region Instance
 
+        #region public void Add()
+
+        /// <summary>Add the Vector passed as parameter to this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        public void Add(Vector3 right)
+        {
+            this.X += right.X;
+            this.Y += right.Y;
+            this.Z += right.Z;
+        }
+
+        /// <summary>Add the Vector passed as parameter to this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        [CLSCompliant(false)]
+        public void Add(ref Vector3 right)
+        {
+            this.X += right.X;
+            this.Y += right.Y;
+            this.Z += right.Z;
+        }
+
+        #endregion public void Add()
+
+        #region public void Sub()
+
+        /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        public void Sub(Vector3 right)
+        {
+            this.X -= right.X;
+            this.Y -= right.Y;
+            this.Z -= right.Z;
+        }
+
+        /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
+        /// <param name="right">Right operand. This parameter is only read from.</param>
+        [CLSCompliant(false)]
+        public void Sub(ref Vector3 right)
+        {
+            this.X -= right.X;
+            this.Y -= right.Y;
+            this.Z -= right.Z;
+        }
+
+        #endregion public void Sub()
+
+        #region public void Mult()
+
+        /// <summary>Multiply this instance by a scalar.</summary>
+        /// <param name="f">Scalar operand.</param>
+        public void Mult(float f)
+        {
+            this.X *= f;
+            this.Y *= f;
+            this.Z *= f;
+        }
+
+        #endregion public void Mult()
+
+        #region public void Div()
+
+        /// <summary>Divide this instance by a scalar.</summary>
+        /// <param name="f">Scalar operand.</param>
+        public void Div(float f)
+        {
+            float mult = 1.0f / f;
+            this.X *= mult;
+            this.Y *= mult;
+            this.Z *= mult;
+        }
+
+        #endregion public void Div()
+
         #region public float Length
 
         /// <summary>
         /// Gets the length (magnitude) of the vector.
         /// </summary>
-        /// <see cref="FastLength"/>
+        /// <see cref="LengthFast"/>
         /// <seealso cref="LengthSquared"/>
         public float Length
         {
@@ -135,7 +212,6 @@ namespace OpenTK.Math
         /// </remarks>
         /// <see cref="Length"/>
         /// <seealso cref="LengthSquared"/>
-        /// <seealso cref="OpenTK.Math.FastSqrt"/>
         public float LengthFast
         {
             get
@@ -156,7 +232,7 @@ namespace OpenTK.Math
         /// for comparisons.
         /// </remarks>
         /// <see cref="Length"/>
-        /// <seealso cref="FastLength"/>
+        /// <seealso cref="LengthFast"/>
         public float LengthSquared
         {
             get
@@ -197,7 +273,7 @@ namespace OpenTK.Math
 
         #endregion
 
-        #region public void Scale(float sx, float sy, float sz)
+        #region public void Scale()
 
         /// <summary>
         /// Scales the current Vector3 by the given amounts.
@@ -212,7 +288,26 @@ namespace OpenTK.Math
             this.Z = Z * sz;
         }
 
-        #endregion
+        /// <summary>Scales this instance by the given parameter.</summary>
+        /// <param name="scale">The scaling of the individual components.</param>
+        public void Scale(Vector3 scale)
+        {
+            this.X *= scale.X;
+            this.Y *= scale.Y;
+            this.Z *= scale.Z;
+        }
+
+        /// <summary>Scales this instance by the given parameter.</summary>
+        /// <param name="scale">The scaling of the individual components.</param>
+        [CLSCompliant(false)]
+        public void Scale(ref Vector3 scale)
+        {
+            this.X *= scale.X;
+            this.Y *= scale.Y;
+            this.Z *= scale.Z;
+        }
+
+        #endregion public void Scale()
 
         #endregion
 
@@ -563,7 +658,7 @@ namespace OpenTK.Math
         #region Dot
 
         /// <summary>
-        /// Caclulate the dot (scalar) product of two vectors
+        /// Calculate the dot (scalar) product of two vectors
         /// </summary>
         /// <param name="left">First operand</param>
         /// <param name="right">Second operand</param>
@@ -571,6 +666,17 @@ namespace OpenTK.Math
         public static float Dot(Vector3 left, Vector3 right)
         {
             return left.X * right.X + left.Y * right.Y + left.Z * right.Z;
+        }
+
+        /// <summary>
+        /// Calculate the dot (scalar) product of two vectors
+        /// </summary>
+        /// <param name="left">First operand</param>
+        /// <param name="right">Second operand</param>
+        /// <param name="result">The dot product of the two inputs</param>
+        public static void Dot(ref Vector3 left, ref Vector3 right, out float result)
+        {
+            result = left.X * right.X + left.Y * right.Y + left.Z * right.Z;
         }
 
         #endregion
@@ -585,14 +691,9 @@ namespace OpenTK.Math
         /// <returns>The cross product of the two inputs</returns>
         public static Vector3 Cross(Vector3 left, Vector3 right)
         {
-            float
-                x = left.Y * right.Z - left.Z * right.Y,
-                y = left.Z * right.X - left.X * right.Z,
-                z = left.X * right.Y - left.Y * right.X;
-            left.X = x;
-            left.Y = y;
-            left.Z = z;
-            return left;
+            return new Vector3(left.Y * right.Z - left.Z * right.Y,
+                               left.Z * right.X - left.X * right.Z,
+                               left.X * right.Y - left.Y * right.X);
         }
 
         /// <summary>
@@ -618,7 +719,7 @@ namespace OpenTK.Math
         /// </summary>
         /// <param name="a">First input vector</param>
         /// <param name="b">Second input vector</param>
-        /// <param name="blend">The blend factor</param>
+        /// <param name="blend">The blend factor. a when blend=0, b when blend=1.</param>
         /// <returns>a when blend=0, b when blend=1, and a linear combination otherwise</returns>
         public static Vector3 Lerp(Vector3 a, Vector3 b, float blend)
         {
@@ -626,6 +727,20 @@ namespace OpenTK.Math
             a.Y = blend * (b.Y - a.Y) + a.Y;
             a.Z = blend * (b.Z - a.Z) + a.Z;
             return a;
+        }
+
+        /// <summary>
+        /// Returns a new Vector that is the linear blend of the 2 given Vectors
+        /// </summary>
+        /// <param name="a">First input vector</param>
+        /// <param name="b">Second input vector</param>
+        /// <param name="blend">The blend factor. a when blend=0, b when blend=1.</param>
+        /// <param name="result">a when blend=0, b when blend=1, and a linear combination otherwise</param>
+        public static void Lerp(ref Vector3 a, ref Vector3 b, float blend, out Vector3 result)
+        {
+            result.X = blend * (b.X - a.X) + a.X;
+            result.Y = blend * (b.Y - a.Y) + a.Y;
+            result.Z = blend * (b.Z - a.Z) + a.Z;
         }
 
         #endregion
@@ -646,12 +761,33 @@ namespace OpenTK.Math
             return a + u * (b - a) + v * (c - a);
         }
 
+        /// <summary>Interpolate 3 Vectors using Barycentric coordinates</summary>
+        /// <param name="a">First input Vector.</param>
+        /// <param name="b">Second input Vector.</param>
+        /// <param name="c">Third input Vector.</param>
+        /// <param name="u">First Barycentric Coordinate.</param>
+        /// <param name="v">Second Barycentric Coordinate.</param>
+        /// <param name="result">Output Vector. a when u=v=0, b when u=1,v=0, c when u=0,v=1, and a linear combination of a,b,c otherwise</param>
+        public static void BaryCentric(ref Vector3 a, ref Vector3 b, ref Vector3 c, float u, float v, out Vector3 result)
+        {
+            result = a; // copy
+
+            Vector3 temp = b; // copy
+            temp.Sub(ref a);
+            temp.Mult(u);
+            result.Add(ref temp);
+
+            temp = c; // copy
+            temp.Sub(ref a);
+            temp.Mult(v);
+            result.Add(ref temp);
+        }
+
         #endregion
 
         #region Transform
 
-        /// <summary>
-        /// Transform a direction vector by the given Matrix
+        /// <summary>Transform a direction vector by the given Matrix
         /// Assumes the matrix has a bottom row of (0,0,0,1), that is the translation part is ignored.
         /// </summary>
         /// <param name="vec">The vector to transform</param>
@@ -666,9 +802,28 @@ namespace OpenTK.Math
             return v;
         }
 
-        /// <summary>
-        /// Transform a Normal by the given Matrix
+        /// <summary>Transform a direction vector by the given Matrix
+        /// Assumes the matrix has a bottom row of (0,0,0,1), that is the translation part is ignored.
         /// </summary>
+        /// <param name="vec">The vector to transform</param>
+        /// <param name="mat">The desired transformation</param>
+        /// <param name="result">The transformed vector</param>
+        public static void TransformVector(ref Vector3 vec, ref Matrix4 mat, out Vector3 result)
+        {
+            result.X = vec.X * mat.Row0.X +
+                       vec.Y * mat.Row1.X +
+                       vec.Z * mat.Row2.X;
+
+            result.Y = vec.X * mat.Row0.Y +
+                       vec.Y * mat.Row1.Y +
+                       vec.Z * mat.Row2.Y;
+
+            result.Z = vec.X * mat.Row0.Z +
+                       vec.Y * mat.Row1.Z +
+                       vec.Z * mat.Row2.Z;
+        }
+
+        /// <summary>Transform a Normal by the given Matrix</summary>
         /// <remarks>
         /// This calculates the inverse of the given matrix, use TransformNormalInverse if you
         /// already have the inverse to avoid this extra calculation
@@ -682,15 +837,27 @@ namespace OpenTK.Math
             return TransformNormalInverse(norm, mat);
         }
 
-        /// <summary>
-        /// Transform a Normal by the (transpose of the) given Matrix
-        /// </summary>
+        /// <summary>Transform a Normal by the given Matrix</summary>
+        /// <remarks>
+        /// This calculates the inverse of the given matrix, use TransformNormalInverse if you
+        /// already have the inverse to avoid this extra calculation
+        /// </remarks>
+        /// <param name="norm">The normal to transform</param>
+        /// <param name="mat">The desired transformation</param>
+        /// <param name="result">The transformed normal</param>
+        public static void TransformNormal(ref Vector3 norm, ref Matrix4 mat, out Vector3 result)
+        {
+            Matrix4 Inverse = Matrix4.Invert(mat);
+            Vector3.TransformNormalInverse(ref norm, ref Inverse, out result);
+        }
+
+        /// <summary>Transform a Normal by the (transpose of the) given Matrix</summary>
         /// <remarks>
         /// This version doesn't calculate the inverse matrix.
         /// Use this version if you already have the inverse of the desired transform to hand
         /// </remarks>
         /// <param name="norm">The normal to transform</param>
-        /// <param name="mat">The inverse of the desired transformation</param>
+        /// <param name="invMat">The inverse of the desired transformation</param>
         /// <returns>The transformed normal</returns>
         public static Vector3 TransformNormalInverse(Vector3 norm, Matrix4 invMat)
         {
@@ -701,9 +868,30 @@ namespace OpenTK.Math
             return n;
         }
 
-        /// <summary>
-        /// Transform a Position by the given Matrix
-        /// </summary>
+        /// <summary>Transform a Normal by the (transpose of the) given Matrix</summary>
+        /// <remarks>
+        /// This version doesn't calculate the inverse matrix.
+        /// Use this version if you already have the inverse of the desired transform to hand
+        /// </remarks>
+        /// <param name="norm">The normal to transform</param>
+        /// <param name="invMat">The inverse of the desired transformation</param>
+        /// <param name="result">The transformed normal</param>
+        public static void TransformNormalInverse(ref Vector3 norm, ref Matrix4 invMat, out Vector3 result)
+        {
+            result.X = norm.X * invMat.Row0.X +
+                       norm.Y * invMat.Row0.Y +
+                       norm.Z * invMat.Row0.Z;
+
+            result.Y = norm.X * invMat.Row1.X +
+                       norm.Y * invMat.Row1.Y +
+                       norm.Z * invMat.Row1.Z;
+
+            result.Z = norm.X * invMat.Row2.X +
+                       norm.Y * invMat.Row2.Y +
+                       norm.Z * invMat.Row2.Z;
+        }
+
+        /// <summary>Transform a Position by the given Matrix</summary>
         /// <param name="pos">The position to transform</param>
         /// <param name="mat">The desired transformation</param>
         /// <returns>The transformed position</returns>
@@ -716,10 +904,30 @@ namespace OpenTK.Math
             return p;
         }
 
-        /// <summary>
-        /// Transform a Vector by the given Matrix
-        /// </summary>
-        /// <param name="pos">The vector to transform</param>
+        /// <summary>Transform a Position by the given Matrix</summary>
+        /// <param name="pos">The position to transform</param>
+        /// <param name="mat">The desired transformation</param>
+        /// <param name="result">The transformed position</param>
+        public static void TransformPosition(ref Vector3 pos, ref Matrix4 mat, out Vector3 result)
+        {
+            result.X = pos.X * mat.Row0.X +
+                       pos.Y * mat.Row1.X +
+                       pos.Z * mat.Row2.X +
+                       mat.Row3.X;
+
+            result.Y = pos.X * mat.Row0.Y +
+                       pos.Y * mat.Row1.Y +
+                       pos.Z * mat.Row2.Y +
+                       mat.Row3.Y;
+
+            result.Z = pos.X * mat.Row0.Z +
+                       pos.Y * mat.Row1.Z +
+                       pos.Z * mat.Row2.Z +
+                       mat.Row3.Z;
+        }
+
+        /// <summary>Transform a Vector by the given Matrix</summary>
+        /// <param name="vec">The vector to transform</param>
         /// <param name="mat">The desired transformation</param>
         /// <returns>The transformed vector</returns>
         public static Vector4 Transform(Vector3 vec, Matrix4 mat)
@@ -733,16 +941,37 @@ namespace OpenTK.Math
             return result;
         }
 
-        /// <summary>
-        /// Transform a Vector3 by the given Matrix, and project the resulting Vector4 back to a Vector3
-        /// </summary>
-        /// <param name="pos">The vector to transform</param>
+        /// <summary>Transform a Vector by the given Matrix</summary>
+        /// <param name="vec">The vector to transform</param>
+        /// <param name="mat">The desired transformation</param>
+        /// <param name="result">The transformed vector</param>
+        public static void Transform(ref Vector3 vec, ref Matrix4 mat, out Vector4 result)
+        {
+            Vector4 v4 = new Vector4(vec.X, vec.Y, vec.Z, 1.0f);
+            Vector4.Transform(ref v4, ref mat, out result);
+        }
+
+        /// <summary>Transform a Vector3 by the given Matrix, and project the resulting Vector4 back to a Vector3</summary>
+        /// <param name="vec">The vector to transform</param>
         /// <param name="mat">The desired transformation</param>
         /// <returns>The transformed vector</returns>
         public static Vector3 TransformPerspective(Vector3 vec, Matrix4 mat)
         {
             Vector4 h = Transform(vec, mat);
             return new Vector3(h.X / h.W, h.Y / h.W, h.Z / h.W);
+        }
+
+        /// <summary>Transform a Vector3 by the given Matrix, and project the resulting Vector4 back to a Vector3</summary>
+        /// <param name="vec">The vector to transform</param>
+        /// <param name="mat">The desired transformation</param>
+        /// <param name="result">The transformed vector</param>
+        public static void TransformPerspective(ref Vector3 vec, ref Matrix4 mat, out Vector3 result)
+        {
+            Vector4 h;
+            Vector3.Transform(ref vec, ref mat, out h);
+            result.X = h.X / h.W;
+            result.Y = h.Y / h.W;
+            result.Z = h.Z / h.W;
         }
 
         #endregion
@@ -761,7 +990,29 @@ namespace OpenTK.Math
             return (float)System.Math.Acos((Vector3.Dot(first, second)) / (first.Length * second.Length));
         }
 
+        /// <summary>Calculates the angle (in radians) between two vectors.</summary>
+        /// <param name="first">The first vector.</param>
+        /// <param name="second">The second vector.</param>
+        /// <param name="result">Angle (in radians) between the vectors.</param>
+        /// <remarks>Note that the returned angle is never bigger than the constant Pi.</remarks>
+        public static void CalculateAngle(ref Vector3 first, ref Vector3 second, out float result)
+        {
+            float temp;
+            Vector3.Dot(ref first, ref second, out temp);
+            result = (float)System.Math.Acos(temp / (first.Length * second.Length));
+        }
+
         #endregion
+
+        #endregion
+
+        #region Swizzle
+
+        /// <summary>
+        /// Gets or sets an OpenTK.Math.Vector2 with the X and Y components of this instance.
+        /// </summary>
+        [XmlIgnore]
+        public Vector2 Xy { get { return new Vector2(X, Y); } set { X = value.X; Y = value.Y; } }
 
         #endregion
 
@@ -769,52 +1020,52 @@ namespace OpenTK.Math
 
         public static Vector3 operator +(Vector3 left, Vector3 right)
         {
-			left.X += right.X;
-			left.Y += right.Y;
-			left.Z += right.Z;
-			return left;
+            left.X += right.X;
+            left.Y += right.Y;
+            left.Z += right.Z;
+            return left;
         }
 
         public static Vector3 operator -(Vector3 left, Vector3 right)
         {
-			left.X -= right.X;
-			left.Y -= right.Y;
-			left.Z -= right.Z;
-			return left;
+            left.X -= right.X;
+            left.Y -= right.Y;
+            left.Z -= right.Z;
+            return left;
         }
 
-		public static Vector3 operator -(Vector3 vec)
-		{
-			vec.X = -vec.X;
-			vec.Y = -vec.Y;
-			vec.Z = -vec.Z;
-			return vec;
-		}
+        public static Vector3 operator -(Vector3 vec)
+        {
+            vec.X = -vec.X;
+            vec.Y = -vec.Y;
+            vec.Z = -vec.Z;
+            return vec;
+        }
 
-		public static Vector3 operator *(Vector3 vec, float f)
-		{
-			vec.X *= f;
-			vec.Y *= f;
-			vec.Z *= f;
-			return vec;
-		}
+        public static Vector3 operator *(Vector3 vec, float f)
+        {
+            vec.X *= f;
+            vec.Y *= f;
+            vec.Z *= f;
+            return vec;
+        }
 
-		public static Vector3 operator *(float f, Vector3 vec)
-		{
-			vec.X *= f;
-			vec.Y *= f;
-			vec.Z *= f;
-			return vec;
-		}
+        public static Vector3 operator *(float f, Vector3 vec)
+        {
+            vec.X *= f;
+            vec.Y *= f;
+            vec.Z *= f;
+            return vec;
+        }
 
-		public static Vector3 operator /(Vector3 vec, float f)
-		{
-			float mult = 1.0f / f;
-			vec.X *= mult;
-			vec.Y *= mult;
-			vec.Z *= mult;
-			return vec;
-		}
+        public static Vector3 operator /(Vector3 vec, float f)
+        {
+            float mult = 1.0f / f;
+            vec.X *= mult;
+            vec.Y *= mult;
+            vec.Z *= mult;
+            return vec;
+        }
 
         public static bool operator ==(Vector3 left, Vector3 right)
         {
@@ -833,15 +1084,15 @@ namespace OpenTK.Math
         #region public override string ToString()
 
         /// <summary>
-		/// Returns a System.String that represents the current Vector3.
-		/// </summary>
-		/// <returns></returns>
-		public override string ToString()
+        /// Returns a System.String that represents the current Vector3.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
         {
             return String.Format("({0}, {1}, {2})", X, Y, Z);
-		}
+        }
 
-		#endregion
+        #endregion
 
         #region public override int GetHashCode()
 
@@ -880,7 +1131,7 @@ namespace OpenTK.Math
         #region IEquatable<Vector3> Members
 
         /// <summary>Indicates whether the current vector is equal to another vector.</summary>
-        /// <param name="vector">A vector to compare with this vector.</param>
+        /// <param name="other">A vector to compare with this vector.</param>
         /// <returns>true if the current vector is equal to the vector parameter; otherwise, false.</returns>
         public bool Equals(Vector3 other)
         {

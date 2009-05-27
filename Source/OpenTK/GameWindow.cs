@@ -17,6 +17,7 @@ using OpenTK.Input;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Graphics.OpenGL.Enums;
 using OpenTK.Graphics;
+using System.ComponentModel;
 
 namespace OpenTK
 {
@@ -66,7 +67,7 @@ namespace OpenTK
         bool disposed;
 
         double update_period, render_period;
-        double target_update_period, target_render_period, target_render_period_doubled;
+        double target_update_period, target_render_period;
         // TODO: Implement these:
         double update_time, render_time;//, event_time;
         //bool allow_sleep = true;    // If true, GameWindow will call Timer.Sleep() if there is enough time.
@@ -76,6 +77,9 @@ namespace OpenTK
         //InputDriver input_driver;
 
         IGraphicsContext glContext;
+
+        int main_loop_thread_id;
+        object exit_lock = new object();
 
         #endregion
 
@@ -145,6 +149,25 @@ namespace OpenTK
         /// <param name="options">GameWindow options regarding window appearance and behavior.</param>
         /// <param name="device">The OpenTK.Graphics.DisplayDevice to construct the GameWindow in.</param>
         public GameWindow(int width, int height, GraphicsMode mode, string title, GameWindowFlags options, DisplayDevice device)
+            : this(width, height, mode, title, options, device, 1, 0, GraphicsContextFlags.Default)
+        { }
+
+        #endregion
+
+        #region public GameWindow(int width, int height, GraphicsMode mode, string title, GameWindowFlags options, DisplayDevice device, int major, int minor, GraphicsContextFlags flags)
+
+        /// <summary>Constructs a new GameWindow with the specified attributes.</summary>
+        /// <param name="width">The width of the GameWindow in pixels.</param>
+        /// <param name="height">The height of the GameWindow in pixels.</param>
+        /// <param name="mode">The OpenTK.Graphics.GraphicsMode of the GameWindow.</param>
+        /// <param name="title">The title of the GameWindow.</param>
+        /// <param name="options">GameWindow options regarding window appearance and behavior.</param>
+        /// <param name="device">The OpenTK.Graphics.DisplayDevice to construct the GameWindow in.</param>
+        /// <param name="major">The major version for the OpenGL GraphicsContext.</param>
+        /// <param name="minor">The minor version for the OpenGL GraphicsContext.</param>
+        /// <param name="flags">The GraphicsContextFlags version for the OpenGL GraphicsContext.</param>
+        public GameWindow(int width, int height, GraphicsMode mode, string title, GameWindowFlags options, DisplayDevice device,
+            int major, int minor, GraphicsContextFlags flags)
         {
             if (width <= 0) throw new ArgumentOutOfRangeException("width", "Must be greater than zero.");
             if (height <= 0) throw new ArgumentOutOfRangeException("width", "Must be greater than zero.");
@@ -153,19 +176,12 @@ namespace OpenTK
             if (device == null)
                 device = DisplayDevice.Default;
 
-            if (Configuration.RunningOnWindows)
-                glWindow = new OpenTK.Platform.Windows.WinGLNative();
-            else if (Configuration.RunningOnX11)
-                glWindow = new OpenTK.Platform.X11.X11GLNative();
-            else
-                throw new PlatformNotSupportedException(
-                    "Your platform is not supported currently. Please, refer to http://www.opentk.com for more information.");
-
+            glWindow = Platform.Factory.CreateNativeGLWindow();
             glWindow.Destroy += glWindow_Destroy;
 
             try
             {
-                glWindow.CreateWindow(width, height, mode, out glContext);
+                glWindow.CreateWindow(width, height, mode, major, minor, flags, out glContext);
                 glContext.MakeCurrent(this.WindowInfo);
                 (glContext as IGraphicsContextInternal).LoadAll();
             }
@@ -176,21 +192,23 @@ namespace OpenTK
                 glWindow.DestroyWindow();
                 throw;
             }
-            
+
             this.Title = title;
-            
+
             if ((options & GameWindowFlags.Fullscreen) != 0)
             {
                 device.ChangeResolution(width, height, mode.ColorFormat.BitsPerPixel, 0);
-                //this.Fullscreen = true;
-                throw new NotImplementedException();
+                this.WindowState = WindowState.Fullscreen;
+                //throw new NotImplementedException();
             }
-            
-            this.VSync = VSyncMode.On; //VSyncMode.Adaptive;
 
+            this.VSync = VSyncMode.On; //VSyncMode.Adaptive;
+            glWindow.Resize += delegate(object sender, ResizeEventArgs e) { OnResizeInternal(e); };
         }
 
         #endregion
+ 
+        #region Obsolete
 
         /// <summary>
         /// Constructs a new GameWindow, and opens a render window with the specified DisplayMode.
@@ -212,6 +230,8 @@ namespace OpenTK
 
         #endregion
 
+        #endregion
+
         #region --- Private Methods ---
 
         #region void glWindow_Destroy(object sender, EventArgs e)
@@ -219,26 +239,41 @@ namespace OpenTK
         void glWindow_Destroy(object sender, EventArgs e)
         {
             glWindow.Destroy -= glWindow_Destroy;
-            this.Exit();
+            ExitAsync();
         }
 
         #endregion
 
         #region void ExitInternal()
 
-        /// <internal />
-        /// <summary>Stops the main loop.</summary>
+        // Stops the main loop, if one exists.
         void ExitInternal()
         {
-            //Debug.Print("Firing GameWindowExitException");  
-            throw new GameWindowExitException();
+            if (HasMainLoop)
+            {
+                throw new GameWindowExitException();
+            }
         }
 
+        #region void ExitAsync()
+
+        // Gracefully exits the GameWindow. May be called from any thread.
+        void ExitAsync()
+        {
+            if (disposed)
+                throw new ObjectDisposedException("GameWindow");
+
+            UpdateFrame += CallExitInternal;
+        }
+
+        // Used in ExitAsync() to ensure ExitInternal() is called from the main thread.
         void CallExitInternal(GameWindow sender, UpdateFrameEventArgs e)
         {
             UpdateFrame -= CallExitInternal;
             sender.ExitInternal();
         }
+
+        #endregion
 
         #endregion
 
@@ -268,44 +303,35 @@ namespace OpenTK
         #region public virtual void Exit()
 
         /// <summary>
-        /// Gracefully exits the GameWindow. May only be called from the thread where the GameWindow was created.
-        /// </summary>
-        /// <remarks>
-        /// <para>Override if you want to provide yor own exit sequence.</para>
-        /// <para>If you override this method, place a call to base.Exit(), to ensure
-        /// proper OpenTK shutdown.</para>
-        /// </remarks>
-        public virtual void Exit()
-        {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
-            //glWindow.DestroyWindow();
-            //while (glWindow.Exists)
-            //    glWindow.ProcessEvents();
-            if (HasMainLoop)
-                ExitAsync();
-            else
-                ExitInternal();
-            //isExiting = true;
-            //UpdateFrame += CallExitInternal;
-        }
-
-        #endregion
-
-        #region public virtual void ExitAsync()
-
-        /// <summary>
         /// Gracefully exits the GameWindow. May be called from any thread.
         /// </summary>
         /// <remarks>
-        /// <para>Override if you want to provide yor own exit sequence.</para>
-        /// <para>If you override this method, place a call to base.ExitAsync(), to ensure
-        /// proper OpenTK shutdown.</para>
+        /// <para>Override if you are not using <see cref="GameWindow.Run()"/>.</para>
+        /// <para>If you override this method, place a call to base.Exit(), to ensure proper OpenTK shutdown.</para>
         /// </remarks>
-        public virtual void ExitAsync()
+        public virtual void Exit()
         {
-            //isExiting = true;
-            if (disposed) throw new ObjectDisposedException("GameWindow");
-            UpdateFrame += CallExitInternal;
+            lock (exit_lock)
+            {
+                if (disposed)
+                    throw new ObjectDisposedException("GameWindow");
+
+                if (!IsExiting && Exists)
+                {
+                    CancelEventArgs e = new CancelEventArgs();
+                    Closing(this, e);
+                    if (e.Cancel)
+                        return;
+            
+                    if (HasMainLoop)
+                    {
+                        if (main_loop_thread_id == Thread.CurrentThread.ManagedThreadId)
+                            ExitInternal();
+                        else
+                            ExitAsync();
+                    }
+                }
+            }
         }
 
         #endregion
@@ -325,10 +351,10 @@ namespace OpenTK
 
         #region public bool Fullscreen
 
-        /// <summary>
-        /// TODO: This property is not implemented.
-        /// Gets or sets a value indicating whether the GameWindow is in fullscrren mode.
-        /// </summary>
+        ///// <summary>
+        ///// TODO: This property is not implemented.
+        ///// Gets or sets a value indicating whether the GameWindow is in fullscrren mode.
+        ///// </summary>
         //public bool Fullscreen
         //{
         //    get { if (disposed) throw new ObjectDisposedException("GameWindow"); return glWindow.Fullscreen; }
@@ -417,31 +443,12 @@ namespace OpenTK
 
         #endregion
 
-#if false
-
-        #region public IInputDriver InputDriver
-
-        /// <summary>
-        /// Gets an interface to the InputDriver used to obtain Keyboard, Mouse and Joystick input.
-        /// </summary>
-        public IInputDriver InputDriver
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        #endregion
-
-#endif
-
         #region public void Run()
 
         /// <summary>
         /// Enters the game loop of the GameWindow updating and rendering at the maximum possible frequency.
         /// </summary>
-        /// <see cref="public virtual void Run(double update_frequency, double render_frequency)"/>
+        /// <see cref="Run(double, double)"/>
         public void Run()
         {
             if (disposed) throw new ObjectDisposedException("GameWindow");
@@ -456,7 +463,7 @@ namespace OpenTK
         /// Enters the game loop of the GameWindow updating the specified update frequency, while maintaining the
         /// maximum possible render frequency.
         /// </summary>
-        /// <see cref="public virtual void Run(double updateFrequency, double renderFrequency)"/>
+        /// <see cref="Run(double, double)"/>
         public void Run(double updateFrequency)
         {
             if (disposed) throw new ObjectDisposedException("GameWindow");
@@ -474,13 +481,21 @@ namespace OpenTK
         /// <param name="frames_per_second">The frequency of RenderFrame events.</param>
         public void Run(double updates_per_second, double frames_per_second)
         {
-            if (disposed) throw new ObjectDisposedException("GameWindow");
+            if (disposed)
+                throw new ObjectDisposedException("GameWindow");
+
             try
             {
+                // Necessary to be here, otherwise Exit() wouldn't work correctly when called inside OnLoad().
+                hasMainLoop = true;
+                main_loop_thread_id = Thread.CurrentThread.ManagedThreadId;
+                
                 if (updates_per_second < 0.0 || updates_per_second > 200.0)
-                    throw new ArgumentOutOfRangeException("updates_per_second", updates_per_second, "Parameter should be inside the range [0.0, 200.0]");
+                    throw new ArgumentOutOfRangeException("updates_per_second", updates_per_second,
+                                                          "Parameter should be inside the range [0.0, 200.0]");
                 if (frames_per_second < 0.0 || frames_per_second > 200.0)
-                    throw new ArgumentOutOfRangeException("frames_per_second", frames_per_second, "Parameter should be inside the range [0.0, 200.0]");
+                    throw new ArgumentOutOfRangeException("frames_per_second", frames_per_second,
+                                                          "Parameter should be inside the range [0.0, 200.0]");
 
                 TargetUpdateFrequency = updates_per_second;
                 TargetRenderFrequency = frames_per_second;
@@ -510,21 +525,12 @@ namespace OpenTK
                 //sleep_granularity = System.Math.Round(1000.0 * update_watch.Elapsed.TotalSeconds / test_times, MidpointRounding.AwayFromZero) / 1000.0;
                 //update_watch.Reset();       // We don't want to affect the first UpdateFrame!
 
-                try
-                {
-                    OnLoadInternal(EventArgs.Empty);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(String.Format("OnLoad failed: {0}", e.ToString()));
-                    return;
-                }
+                OnLoadInternal(EventArgs.Empty);
 
                 //Debug.Print("Elevating priority.");
                 //Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
 
                 Debug.Print("Entering main loop.");
-                hasMainLoop = true;
                 while (!isExiting)
                 {
                     ProcessEvents();
@@ -836,12 +842,6 @@ namespace OpenTK
         {
             get
             {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
-                //if (input_driver.Keyboard.Count > 0)
-                //    return input_driver.Keyboard[0];
-                //else
-                //    return null;
-                
                 if (glWindow.InputDriver.Keyboard.Count > 0)
                     return glWindow.InputDriver.Keyboard[0];
                 else
@@ -860,17 +860,23 @@ namespace OpenTK
         {
             get
             {
-                if (disposed) throw new ObjectDisposedException("GameWindow");
-                //if (input_driver.Mouse.Count > 0)
-                //    return input_driver.Mouse[0];
-                //else
-                //    return null;
-
                 if (glWindow.InputDriver.Mouse.Count > 0)
                     return glWindow.InputDriver.Mouse[0];
                 else
                     return null;
             }
+        }
+
+        #endregion
+
+        #region public IList<JoystickDevice> Joysticks
+
+        /// <summary>
+        /// Gets a readonly IList containing all available OpenTK.Input.JoystickDevices.
+        /// </summary>
+        public IList<JoystickDevice> Joysticks
+        {
+            get { return glWindow.InputDriver.Joysticks; }
         }
 
         #endregion
@@ -956,6 +962,15 @@ namespace OpenTK
 
         #endregion
 
+        #region --- Events ---
+
+        /// <summary>
+        /// Occurs when the GameWindow is about to close.
+        /// </summary>
+        public event EventHandler<CancelEventArgs> Closing = delegate(object sender, CancelEventArgs e) { };
+
+        #endregion
+
         #region --- GameWindow Timing ---
 
         // TODO: Disabled because it is not reliable enough. Use vsync as a workaround.
@@ -975,6 +990,7 @@ namespace OpenTK
         /// <summary>
         /// Gets or sets a double representing the target render period, in seconds.
         /// </summary>
+        /// <remarks>
         /// <para>A value of 0.0 indicates that RenderFrame events are generated at the maximum possible frequency (i.e. only limited by the hardware's capabilities).</para>
         /// <para>Values lower than 0.005 seconds (200Hz) are clamped to 0.0. Values higher than 1.0 seconds (1Hz) are clamped to 1.0.</para>
         /// </remarks>
@@ -990,12 +1006,11 @@ namespace OpenTK
                 if (disposed) throw new ObjectDisposedException("GameWindow");
                 if (value <= 0.005)
                 {
-                    target_render_period = target_render_period_doubled = 0.0;
+                    target_render_period = 0.0;
                 }
                 else if (value <= 1.0)
                 {
                     target_render_period = value;
-                    target_render_period_doubled = 2.0 * target_render_period;
                 }
                 else Debug.Print("Target render period clamped to 1.0 seconds.");
             }
@@ -1268,11 +1283,7 @@ namespace OpenTK
         /// <summary>
         /// Occurs when the GameWindow is resized. Derived classes should override the OnResize method for better performance.
         /// </summary>
-        public event ResizeEvent Resize
-        {
-            add { if (disposed) throw new ObjectDisposedException("GameWindow"); glWindow.Resize += value; }
-            remove { if (disposed) throw new ObjectDisposedException("GameWindow"); glWindow.Resize -= value; }
-        }
+        public event ResizeEvent Resize;
 
         /// <summary>
         /// Raises the Resize event.
@@ -1285,8 +1296,8 @@ namespace OpenTK
             this.width = e.Width;
             this.height = e.Height;
 
-            //if (this.Resize != null)
-            //    this.Resize(this, e);
+            if (this.Resize != null)
+                this.Resize(this, e);
 
             OnResize(e);
         }
@@ -1336,18 +1347,19 @@ namespace OpenTK
         }
         */
         #endregion
-#if false       // TODO: 0.9.2 (Linux support missing)
+
         #region PointToClient
 
         /// <summary>
         /// Converts the screen coordinates of a specified point on the screen to client-area coordinates.
         /// </summary>
-        /// <param name="p">A System.Drawing.Point structure that specifies the screen coordinates to be converted</param>
+        /// <param name="point">A System.Drawing.Point structure that specifies the screen coordinates to be converted</param>
         /// <returns>The client-area coordinates of the point. The new coordinates are relative to the upper-left corner of the GameWindow's client area.</returns>
-        public System.Drawing.Point PointToClient(System.Drawing.Point p)
+        public System.Drawing.Point PointToClient(System.Drawing.Point point)
         {
-            glWindow.PointToClient(ref p);
-            return p;
+            point = glWindow.PointToClient(point);
+
+            return point;
         }
 
         #endregion
@@ -1361,12 +1373,16 @@ namespace OpenTK
         /// <returns>The screen coordinates of the point, relative to the upper-left corner of the screen. Note, a screen-coordinate point that is above the window's client area has a negative y-coordinate. Similarly, a screen coordinate to the left of a client area has a negative x-coordinate.</returns>
         public System.Drawing.Point PointToScreen(System.Drawing.Point p)
         {
-            glWindow.PointToScreen(ref p);
-            return p;
+			// Here we use the fact that PointToClient just translates the point, and PointToScreen
+			// should perform the inverse operation.
+			System.Drawing.Point trans = PointToClient(System.Drawing.Point.Empty);
+			p.X -= trans.X;
+			p.Y -= trans.Y;
+			return p;
         }
 
         #endregion
-#endif
+
         #region --- IDisposable Members ---
 
         /// <summary>

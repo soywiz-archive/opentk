@@ -76,7 +76,10 @@ namespace Bind
 
         internal static StreamReader OpenSpecFile(string folder, string file)
         {
+            Console.WriteLine(folder);
+            Console.WriteLine(file);
             string path = Path.Combine(folder, file);
+            Console.WriteLine(path);
             return new StreamReader(path);
         }
 
@@ -194,7 +197,7 @@ namespace Bind
         internal static string GetGL2Extension(string name)
         {
             name = name.ToUpper();
-            if (name.EndsWith("TEXT")) { return ""; }
+            //if (name.EndsWith("TEXT")) { return ""; }
             if (name.EndsWith("ARB")) { return "Arb"; }
             if (name.EndsWith("EXT")) { return "Ext"; }
             if (name.EndsWith("ATI")) { return "Ati"; }

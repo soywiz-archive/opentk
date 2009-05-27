@@ -26,11 +26,13 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace OpenTK.Math
 {
-
-    /// <summary>4-component Vector of the Half type. Occupies 8 Byte total.</summary>
+    /// <summary>
+    /// 4-component Vector of the Half type. Occupies 8 Byte total.
+    /// </summary>
     [Serializable, StructLayout(LayoutKind.Sequential)]
     public struct Vector4h : ISerializable, IEquatable<Vector4h>
     {
@@ -206,6 +208,22 @@ namespace OpenTK.Math
 
         #endregion Constructors
 
+        #region Swizzle
+
+        /// <summary>
+        /// Gets or sets an OpenTK.Math.Vector2h with the X and Y components of this instance.
+        /// </summary>
+        [XmlIgnore]
+        public Vector2h Xy { get { return new Vector2h(X, Y); } set { X = value.X; Y = value.Y; } }
+
+        /// <summary>
+        /// Gets or sets an OpenTK.Math.Vector3h with the X, Y and Z components of this instance.
+        /// </summary>
+        [XmlIgnore]
+        public Vector3h Xyz { get { return new Vector3h(X, Y, Z); } set { X = value.X; Y = value.Y; Z = value.Z; } }
+
+        #endregion
+
         #region Half -> Single
 
         /// <summary>
@@ -220,7 +238,6 @@ namespace OpenTK.Math
         /// <summary>
         /// Returns this Half4 instance's contents as Vector4d.
         /// </summary>
-        /// <param name="v">OpenTK.Math.Vector4d</param>
         public Vector4d ToVector4d()
         {
             return new Vector4d(X, Y, Z, W);

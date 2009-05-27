@@ -22,6 +22,7 @@ namespace Bind.Structures
         internal static DelegateCollection Delegates;
 
         private static bool delegatesLoaded;
+        bool? cls_compliance_overriden;
         
         #region internal static void Initialize(string glSpec, string glSpecExt)
         
@@ -44,6 +45,8 @@ namespace Bind.Structures
                         }
                     }
                 }
+                Console.WriteLine("Marking CLS compliance for wrappers.");
+                MarkCLSCompliance(Function.Wrappers);
                 delegatesLoaded = true;
             }
         }
@@ -80,6 +83,9 @@ namespace Bind.Structures
         {
             get
             {
+                if (cls_compliance_overriden != null)
+                    return (bool)cls_compliance_overriden;
+
                 if (Unsafe)
                     return false;
 
@@ -93,6 +99,10 @@ namespace Bind.Structures
                 }
                 return true;
             }
+            set
+            {
+                cls_compliance_overriden = value;
+            }
         }
 
         #endregion
@@ -104,7 +114,7 @@ namespace Bind.Structures
         public string Category
         {
             get { return _category; }
-            set { _category = value; }
+            set { _category = Enum.TranslateName(value); }
         }
 
         #endregion
@@ -341,24 +351,65 @@ namespace Bind.Structures
 
         #region --- Wrapper Creation ---
 
-        #region public IEnumerable<Function> CreateWrappers()
+        #region MarkCLSCompliance
 
-        public void CreateWrappers()
+        static void MarkCLSCompliance(FunctionCollection collection)
         {
-            if (this.Name.Contains("ReadPixels"))
+            foreach (List<Function> wrappers in Function.Wrappers.Values)
             {
-            }
+            restart:
+                for (int i = 0; i < wrappers.Count; i++)
+                {
+                    for (int j = i + 1; j < wrappers.Count; j++)
+                    {
+                        if (wrappers[i].TrimmedName == wrappers[j].TrimmedName && wrappers[i].Parameters.Count == wrappers[j].Parameters.Count)
+                        {
+                            bool function_i_is_problematic = false;
+                            bool function_j_is_problematic = false;
 
+                            int k;
+                            for (k = 0; k < wrappers[i].Parameters.Count; k++)
+                            {
+                                if (wrappers[i].Parameters[k].CurrentType != wrappers[j].Parameters[k].CurrentType)
+                                    break;
+
+                                if (wrappers[i].Parameters[k].DiffersOnlyOnReference(wrappers[j].Parameters[k]))
+                                    if (wrappers[i].Parameters[k].Reference)
+                                        function_i_is_problematic = true;
+                                    else
+                                        function_j_is_problematic = true;
+                            }
+
+                            if (k == wrappers[i].Parameters.Count)
+                            {
+                                if (function_i_is_problematic)
+                                    wrappers.RemoveAt(i);
+                                //wrappers[i].CLSCompliant = false;
+                                if (function_j_is_problematic)
+                                    wrappers.RemoveAt(j);
+                                //wrappers[j].CLSCompliant = false;
+
+                                if (function_i_is_problematic || function_j_is_problematic)
+                                    goto restart;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region CreateWrappers
+
+        void CreateWrappers()
+        {
             List<Function> wrappers = new List<Function>();
             if (!NeedsWrapper)
             {
                 // No special wrapper needed - just call this delegate:
                 Function f = new Function(this);
-
-                if (f.ReturnType.CurrentType.ToLower().Contains("void"))
-                    f.Body.Add(String.Format("{0};", f.CallString()));
-                else
-                    f.Body.Add(String.Format("return {0};", f.CallString()));
+                f.CreateBody(false);
 
                 wrappers.Add(f);
             }
@@ -366,10 +417,7 @@ namespace Bind.Structures
             {
                 Function f = new Function(this);
                 f.WrapReturnType();
-                if ((Settings.Compatibility & Settings.Legacy.GenerateAllPermutations) == Settings.Legacy.None)
-                    f.WrapParameters(wrappers);
-                else
-                    f.WrapParametersComplete(wrappers);
+                f.WrapParameters(wrappers);
             }
 
             // If the function is not CLS-compliant (e.g. it contains unsigned parameters)
@@ -379,22 +427,13 @@ namespace Bind.Structures
             foreach (Function f in wrappers)
             {
                 Bind.Structures.Function.Wrappers.AddChecked(f);
-                //Bind.Structures.Function.Wrappers.Add(f);
 
                 if (!f.CLSCompliant)
                 {
                     Function cls = new Function(f);
 
                     cls.Body.Clear();
-                    if (!cls.NeedsWrapper)
-                    {
-                        cls.Body.Add((f.ReturnType.CurrentType != "void" ? "return " + this.CallString() : this.CallString()) + ";");
-                    }
-                    else
-                    {
-                        cls.CreateBody(true);
-                        //cls.Body.AddRange(this.CreateBody(cls, true));
-                    }
+                    cls.CreateBody(true);
 
                     bool somethingChanged = false;
                     for (int i = 0; i < f.Parameters.Count; i++)
@@ -465,22 +504,6 @@ namespace Bind.Structures
                     ReturnType.CurrentType = "int";
             }
 
-            if (ReturnType.CurrentType.ToLower().Contains("bool"))
-            {
-                // TODO: Is the translation to 'int' needed 100%? It breaks WGL.
-                /*
-                if (Settings.Compatibility == Settings.Legacy.Tao)
-                {
-                    ReturnType.CurrentType = "int";
-                }
-                else
-                {
-                }
-                */
-
-                //ReturnType.WrapperType = WrapperTypes.ReturnsBool;
-            }
-
             ReturnType.CurrentType = ReturnType.GetCLSCompliantType();
         }
 
@@ -509,9 +532,6 @@ namespace Bind.Structures
 
         internal void Translate()
         {
-            if (Name.Contains("GetError"))
-            {
-            }
             TranslateReturnType();
             TranslateParameters();
 

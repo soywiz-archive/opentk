@@ -1,4 +1,4 @@
-﻿#region --- License ---
+#region --- License ---
 /* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
@@ -76,20 +76,20 @@ namespace OpenTK.Platform
             // than with reflection, but the first time is more significant.
 
             int supported = 0;
-            Type extensions_class = type.GetNestedType("Delegates", BindingFlags.Static | BindingFlags.NonPublic);
+            Type extensions_class = type.GetNestedType("Delegates", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
             if (extensions_class == null)
                 throw new InvalidOperationException("The specified type does not have any loadable extensions.");
 
-            FieldInfo[] delegates = extensions_class.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
+            FieldInfo[] delegates = extensions_class.GetFields(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
             if (delegates == null)
                 throw new InvalidOperationException("The specified type does not have any loadable extensions.");
 
-            MethodInfo load_delegate_method_info = type.GetMethod("LoadDelegate", BindingFlags.Static | BindingFlags.NonPublic);
+            MethodInfo load_delegate_method_info = type.GetMethod("LoadDelegate", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
             if (load_delegate_method_info == null)
                 throw new InvalidOperationException(type.ToString() + " does not contain a static LoadDelegate method.");
             LoadDelegateFunction LoadDelegate = (LoadDelegateFunction)Delegate.CreateDelegate(
                 typeof(LoadDelegateFunction), load_delegate_method_info);
-                
+
             Debug.Write("Load extensions for " + type.ToString() + "... ");
 
             System.Diagnostics.Stopwatch time = new System.Diagnostics.Stopwatch();
@@ -105,7 +105,7 @@ namespace OpenTK.Platform
                 f.SetValue(null, d);
             }
 
-            FieldInfo rebuildExtensionList = type.GetField("rebuildExtensionList", BindingFlags.Static | BindingFlags.NonPublic);
+            FieldInfo rebuildExtensionList = type.GetField("rebuildExtensionList", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
             if (rebuildExtensionList != null)
                 rebuildExtensionList.SetValue(null, true);
 
@@ -116,7 +116,7 @@ namespace OpenTK.Platform
 
         #endregion
 
-        #region internal static void LoadExtension()
+        #region internal static bool TryLoadExtension(Type type, string extension)
 
         /// <internal />
         /// <summary>Loads the specified extension for the specified class. This function is intended
@@ -134,7 +134,7 @@ namespace OpenTK.Platform
         /// </remarks>
         internal static bool TryLoadExtension(Type type, string extension)
         {
-            Type extensions_class = type.GetNestedType("Delegates", BindingFlags.Static | BindingFlags.NonPublic);
+            Type extensions_class = type.GetNestedType("Delegates", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
             if (extensions_class == null)
             {
                 Debug.Print(type.ToString(), " does not contain extensions.");
@@ -142,14 +142,14 @@ namespace OpenTK.Platform
             }
 
             LoadDelegateFunction LoadDelegate = (LoadDelegateFunction)Delegate.CreateDelegate(typeof(LoadDelegateFunction),
-                type.GetMethod("LoadDelegate", BindingFlags.Static | BindingFlags.NonPublic));
+                type.GetMethod("LoadDelegate", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public));
             if (LoadDelegate == null)
             {
                 Debug.Print(type.ToString(), " does not contain a static LoadDelegate method.");
                 return false;
             }
 
-            FieldInfo f = extensions_class.GetField(extension, BindingFlags.Static | BindingFlags.NonPublic);
+            FieldInfo f = extensions_class.GetField(extension, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
             if (f == null)
             {
                 Debug.Print("Extension \"", extension, "\" not found in ", type.ToString());
@@ -158,10 +158,10 @@ namespace OpenTK.Platform
 
             Delegate old = f.GetValue(null) as Delegate;
             Delegate @new = LoadDelegate(f.Name, f.FieldType);
-            if (old.Target != @new.Target)
+            if ((old != null ? old.Target : null) != (@new != null ? @new.Target : null))
             {
                 f.SetValue(null, @new);
-                FieldInfo rebuildExtensionList = type.GetField("rebuildExtensionList", BindingFlags.Static | BindingFlags.NonPublic);
+                FieldInfo rebuildExtensionList = type.GetField("rebuildExtensionList", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
                 if (rebuildExtensionList != null)
                     rebuildExtensionList.SetValue(null, true);
             }
@@ -214,42 +214,72 @@ namespace OpenTK.Platform
 
         #endregion
 
-        #region --- Creating an Graphics Context ---
-        #region --- CreateWindowInfo ---
-		
-		/// <summary>
-		/// Creates GraphicsContext and IWindowInfo objects for a WinForms control.
-		/// </summary>
+        #region --- Creating a Graphics Context ---
+
+        /// <summary>
+        /// Creates a Graphics context and for a window or control.
+        /// </summary>
+        /// <param name="mode"></param>
+        ///
+        /// <param name="major">Major version number of OpenGL context to create.</param>
+        /// <param name="minor">Minor version number of OpenGL context to create.</param>
+        /// <param name="flags"></param>
+        /// <param name="context"></param>
+        /// <param name="info"></param>
+        public static Graphics.GraphicsContext CreateGraphicsContext(
+            Graphics.GraphicsMode mode, IWindowInfo info,
+            int major, int minor, OpenTK.Graphics.GraphicsContextFlags flags)
+        {
+            Graphics.GraphicsContext context = new Graphics.GraphicsContext(mode, info, major, minor, flags);
+            context.MakeCurrent(info);
+
+            (context as OpenTK.Graphics.IGraphicsContextInternal).LoadAll();
+
+            return context;
+        }
+
+        /// <summary>
+        /// Creates GraphicsContext and IWindowInfo objects for a WinForms control.
+        /// </summary>
         /// <param name="cntrl"></param>
         /// <param name="context"></param>
         /// <param name="info"></param>
         /// <param name="mode"></param>
-		public static void CreateGraphicsContext(Graphics.GraphicsMode mode, Control cntrl, out Graphics.GraphicsContext context, out IWindowInfo info)
-		{
-			CreateGraphicsContext(mode, cntrl.Handle, out context, out info);	
-		}
-		/// <summary>
-		/// Creates GraphicsContext and IWindowInfo objects for a WinForms control.
-		/// </summary>
+		[Obsolete("Create the IWindowInfo object first by calling CreateWindowInfo, then use the CreateGraphicsContext overload which takes major, minor and flags parameters.")]
+        public static void CreateGraphicsContext(Graphics.GraphicsMode mode, Control cntrl,
+            out Graphics.GraphicsContext context, out IWindowInfo info)
+        {
+            CreateGraphicsContext(mode, cntrl.Handle, out context, out info);
+        }
+
+        /// <summary>
+        /// Creates GraphicsContext and IWindowInfo objects for a WinForms control.
+        /// </summary>
         /// <param name="cntrlHandle"></param>
         /// <param name="context"></param>
         /// <param name="info"></param>
         /// <param name="mode"></param>
-		public static void CreateGraphicsContext(Graphics.GraphicsMode mode, IntPtr cntrlHandle, out Graphics.GraphicsContext context, out IWindowInfo info)
-		{
-			info = CreateWindowInfo(mode, cntrlHandle);
-            
+		[Obsolete("Create the IWindowInfo object first by calling CreateWindowInfo, then use the CreateGraphicsContext overload which takes major, minor and flags parameters.")]
+		public static void CreateGraphicsContext(Graphics.GraphicsMode mode, IntPtr cntrlHandle,
+            out Graphics.GraphicsContext context, out IWindowInfo info)
+        {
+            info = CreateWindowInfo(mode, cntrlHandle);
+
             context = new Graphics.GraphicsContext(mode, info);
             context.MakeCurrent(info);
 
-            (context as OpenTK.Graphics.IGraphicsContextInternal).LoadAll();			
-		}
+            (context as OpenTK.Graphics.IGraphicsContextInternal).LoadAll();
+        }
+
+        #region --- CreateWindowInfo ---
+
         /// <summary>
         /// Creates an object which implements the IWindowInfo interface for the platform
         /// currently running on.  This will create a handle for the control, so it is not
         /// recommended that this be called in the constructor of a custom control.
         /// </summary>
-        /// <param name="cntrl"></param>
+        /// <param name="mode">The desired GraphicsMode for this window.</param>
+        /// <param name="cntrl">A <see cref="System.Windows.Forms.Control"/> to get the IWindowInfo from.</param>
         /// <returns></returns>
         public static IWindowInfo CreateWindowInfo(Graphics.GraphicsMode mode, Control cntrl)
         {
@@ -259,13 +289,14 @@ namespace OpenTK.Platform
         /// Creates an object which implements the IWindowInfo interface for the platform
         /// currently running on.  
         /// </summary>
+        /// <param name="mode">The desired GraphicsMode for this window.</param>
         /// <param name="controlHandle">The handle to the control, obtained from Control.Handle.</param>
         /// <returns></returns>
         public static IWindowInfo CreateWindowInfo(Graphics.GraphicsMode mode, IntPtr controlHandle)
         {
             if (Configuration.RunningOnWindows) return CreateWinWindowInfo(controlHandle);
             else if (Configuration.RunningOnX11) return CreateX11WindowInfo(mode, controlHandle);
-            else if (Configuration.RunningOnOSX) return CreateOSXWindowInfo(controlHandle);
+            else if (Configuration.RunningOnMacOS) return CreateMacOSCarbonWindowInfo(controlHandle);
             else
                 throw new PlatformNotSupportedException("Refer to http://www.opentk.com for more information.");
         }
@@ -294,12 +325,12 @@ namespace OpenTK.Platform
             info.visualid = mode.Index;
             int dummy;
             window.VisualInfo = (Platform.X11.XVisualInfo)Marshal.PtrToStructure(
-                Platform.X11.Functions.XGetVisualInfo(window.Display, Platform.X11.XVisualInfoMask.ID, 
+                Platform.X11.Functions.XGetVisualInfo(window.Display, Platform.X11.XVisualInfoMask.ID,
                                          ref info, out dummy), typeof(Platform.X11.XVisualInfo));
 
             // set the X11 colormap.
             SetStaticFieldValue(xplatui, "CustomVisual", window.VisualInfo.visual);
-            SetStaticFieldValue(xplatui, "CustomColormap", 
+            SetStaticFieldValue(xplatui, "CustomColormap",
                 Platform.X11.Functions.XCreateColormap(window.Display, window.RootWindow, window.VisualInfo.visual, 0));
 
             return window;
@@ -316,9 +347,9 @@ namespace OpenTK.Platform
         #endregion
         #region --- Mac OS X Platform-specific implementation ---
 
-        private static IWindowInfo CreateOSXWindowInfo(IntPtr controlHandle)
+        private static IWindowInfo CreateMacOSCarbonWindowInfo(IntPtr controlHandle)
         {
-            throw new PlatformNotSupportedException("Refer to http://www.opentk.com for more information.");
+            return new OpenTK.Platform.MacOS.CarbonWindowInfo(controlHandle, false, true);
         }
 
         #endregion

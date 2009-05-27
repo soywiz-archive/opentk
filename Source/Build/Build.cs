@@ -61,95 +61,96 @@ namespace OpenTK.Build
 
         static void PrintUsage()
         {
-            Console.WriteLine("Usage: Build.exe BuildMode BuildTarget");
+            Console.WriteLine("Usage: Build.exe BuildTarget [BuildMode]");
+            Console.WriteLine("\tBuildTarget: vs (recommended) or one of clean/distclean/mono/net");
             Console.WriteLine("\tBuildMode: debug/release");
-            Console.WriteLine("\tBuildTarget: mono/net/monodev/sharpdev/vs2005 or clean/distclean/svnclean");
         }
 
         static void Main(string[] args)
         {
-            RootPath = Directory.GetCurrentDirectory();
-            RootPath = RootPath.Substring(
-                0,
-                Directory.GetCurrentDirectory().LastIndexOf("Build"));
+            if (args.Length == 0)
+            {
+                PrintUsage();
+
+                args = new string[2];
+                Console.Write("Select build target: ");
+                args[0] = Console.ReadLine();
+                if (args[0] == String.Empty)
+                    args[0] = "vs";
+
+                Console.Write("Select build mode (optional): ");
+                args[1] = Console.ReadLine();
+                if (args[0] == String.Empty)
+                    args[0] = "release";
+            }
+
+            RootPath = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
             Directory.SetCurrentDirectory(RootPath);
             SourcePath = Path.Combine(RootPath, "Source");
             DataSourcePath = Path.Combine(SourcePath, Path.Combine("Examples", "Data"));
 
-            // Workaroung for nant on x64 windows (safe for other platforms too, as this affects
-            // only the current process).
+            // Workaroung for nant on x64 windows (safe for other platforms too, as this affects only the current process).
             Environment.SetEnvironmentVariable("CommonProgramFiles(x86)", String.Empty, EnvironmentVariableTarget.Process);
             Environment.SetEnvironmentVariable("ProgramFiles(x86)", String.Empty, EnvironmentVariableTarget.Process);
 
-            if (args.Length == 0)
+            foreach (string s in args)
             {
-                PrintUsage();
-            }
-            else
-            {
-                foreach (string s in args)
+                string arg = s.ToLower();
+                switch (arg)
                 {
-                    string arg = s.ToLower();
-                    switch (arg)
-                    {
-                        case "debug":
-                        case "d":
-                            mode = BuildMode.Debug;
-                            break;
+                    case "debug":
+                    case "d":
+                        mode = BuildMode.Debug;
+                        break;
 
-                        case "release":
-                        case "r":
-                            mode = BuildMode.Release;
-                            break;
+                    case "release":
+                    case "r":
+                        mode = BuildMode.Release;
+                        break;
 
-                        case "mono":
-                            target = BuildTarget.Mono;
-                            break;
+                    case "mono":
+                        target = BuildTarget.Mono;
+                        break;
 
-                        case "net":
-                            target = BuildTarget.Net;
-                            break;
+                    case "net":
+                        target = BuildTarget.Net;
+                        break;
 
-                        case "monodev":
-                        case "monodevelop":
-                        case "md":
-                            target = BuildTarget.MonoDevelop;
-                            break;
+                    case "monodev":
+                    case "monodevelop":
+                    case "md":
+                        target = BuildTarget.MonoDevelop;
+                        break;
 
-                        case "sharpdev2":
-                        case "sharpdevelop2":
-                        case "sd2":
-                            target = BuildTarget.SharpDevelop2;
-                            break;
-                           
-                        case "sharpdev":
-                        case "sharpdevelop":
-                        case "sd":
-                            target = BuildTarget.SharpDevelop;
-                            break;
+                    case "sharpdev2":
+                    case "sharpdevelop2":
+                    case "sd2":
+                        target = BuildTarget.SharpDevelop2;
+                        break;
 
-                        case "vs2005":
-                        case "vs":
-                            target = BuildTarget.VS2005;
-                            break;
+                    case "sharpdev":
+                    case "sharpdevelop":
+                    case "sd":
+                        target = BuildTarget.SharpDevelop;
+                        break;
 
-                        case "clean":
-                            target = BuildTarget.Clean;
-                            break;
-                        
-                        case "svnclean":
-                            target = BuildTarget.SVNClean;
-                            break;
+                    case "vs2005":
+                    case "vs":
+                        target = BuildTarget.VS2005;
+                        break;
 
-                        case "distclean":
-                            target = BuildTarget.DistClean;
-                            break;
+                    case "clean":
+                        target = BuildTarget.Clean;
+                        break;
 
-                        default:
-                            Console.WriteLine("Unknown command: {0}", s);
-                            PrintUsage();
-                            return;
-                    }
+                    case "distclean":
+                        target = BuildTarget.DistClean;
+                        break;
+
+                    default:
+                        Console.WriteLine("Unknown command: {0}", s);
+                        PrintUsage();
+                        return;
                 }
 
                 BinPath = Path.Combine("Binaries", mode == BuildMode.Debug ? "Debug" : "Release");

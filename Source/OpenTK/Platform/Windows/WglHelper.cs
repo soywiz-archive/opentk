@@ -134,18 +134,22 @@ namespace OpenTK.Platform.Windows
             /// <summary>
             /// Checks if a Wgl extension is supported by the given context.
             /// </summary>
-            /// <param name="deviceContext">The device context.</param>
+            /// <param name="context">The device context.</param>
             /// <param name="ext">The extension to check.</param>
             /// <returns>True if the extension is supported by the given context, false otherwise</returns>
             public static bool SupportsExtension(WinGLContext context, string ext)
             {
                 if (Wgl.Delegates.wglGetExtensionsStringARB != null)
                 {
-                    if (extensions == null || rebuildExtensionList)
+                    if (rebuildExtensionList)
                     {
-                        extensions = Wgl.Arb.GetExtensionsString(context.DeviceContext).Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                        Array.Sort(extensions);
                         rebuildExtensionList = false;
+
+                        extensions = Wgl.Arb.GetExtensionsString(context.DeviceContext).Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                        if (extensions == null || extensions.Length == 0)
+                            return false;
+
+                        Array.Sort(extensions);
                     }
 
                     return Array.BinarySearch(extensions, ext) != -1;

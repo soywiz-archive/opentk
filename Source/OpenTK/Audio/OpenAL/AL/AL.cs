@@ -444,10 +444,10 @@ namespace OpenTK.Audio
 
         /// <summary>This function generates one source only. References to sources are uint values, which are used wherever a source reference is needed (in calls such as AL.DeleteSources and AL.Source with parameter ALSourcei).</summary>
         /// <param name="source">Pointer to an uint value which will store the name of the new source.</param>
-        [CLSCompliant( false )]
-        public static void GenSource( out uint source )
+        [CLSCompliant(false)]
+        public static void GenSource(out uint source)
         {
-            GenSources( 1, out source );
+            GenSources(1, out source);
         }
 
         #endregion GenSources()
@@ -499,7 +499,7 @@ namespace OpenTK.Audio
         /// <summary>This function deletes one source only.</summary>
         /// <param name="source">Pointer to a source name identifying the source to be deleted.</param>
         [CLSCompliant(false)]
-        public static void DeleteSource( ref uint source)
+        public static void DeleteSource(ref uint source)
         {
             DeleteSources(1, ref source);
         }
@@ -1180,7 +1180,7 @@ namespace OpenTK.Audio
         }
 
         /// <summary>This function queues a set of buffers on a source. All buffers attached to a source will be played in sequence, and the number of processed buffers can be detected using AL.GetSource with parameter ALGetSourcei.BuffersProcessed. When first created, a source will be of type ALSourceType.Undetermined. A successful AL.SourceQueueBuffers call will change the source type to ALSourceType.Streaming.</summary>
-        /// <param name="sid">The name of the source to queue buffers onto.</param>
+        /// <param name="source">The name of the source to queue buffers onto.</param>
         /// <param name="buffer">The name of the buffer to be queued.</param>
         public static void SourceQueueBuffer(int source, int buffer)
         {
@@ -1315,11 +1315,11 @@ namespace OpenTK.Audio
         }
 
         /// <summary>This function generates one buffer only, which contain audio data (see AL.BufferData). References to buffers are uint values, which are used wherever a buffer reference is needed (in calls such as AL.DeleteBuffers, AL.Source with parameter ALSourcei, AL.SourceQueueBuffers, and AL.SourceUnqueueBuffers).</summary>
-        /// <param name="buffers">Pointer to an uint value which will store the names of the new buffer.</param>
-        [CLSCompliant( false )]
-        public static void GenBuffer( out uint buffer )
+        /// <param name="buffer">Pointer to an uint value which will store the names of the new buffer.</param>
+        [CLSCompliant(false)]
+        public static void GenBuffer(out uint buffer)
         {
-            GenBuffers( 1, out buffer );
+            GenBuffers(1, out buffer);
         }
 
         #endregion GenBuffers
@@ -1349,7 +1349,7 @@ namespace OpenTK.Audio
         public static extern void DeleteBuffers(int n, [In] ref int buffers);
 
         /// <summary>This function deletes one buffer only, freeing the resources used by the buffer. Buffers which are attached to a source can not be deleted. See AL.Source (ALSourcei) and AL.SourceUnqueueBuffers for information on how to detach a buffer from a source.</summary>
-        /// <param name="buffer">Pointer to a buffer name identifying the buffer to be deleted.</param>
+        /// <param name="buffers">Pointer to a buffer name identifying the buffer to be deleted.</param>
         [CLSCompliant(false)]
         public static void DeleteBuffers(uint[] buffers)
         {
@@ -1359,7 +1359,6 @@ namespace OpenTK.Audio
         }
 
         /// <summary>This function deletes one or more buffers, freeing the resources used by the buffer. Buffers which are attached to a source can not be deleted. See AL.Source (ALSourcei) and AL.SourceUnqueueBuffers for information on how to detach a buffer from a source.</summary>
-        /// <param name="n">The number of buffers to be deleted.</param>
         /// <param name="buffers">Pointer to an array of buffer names identifying the buffers to be deleted.</param>
         [CLSCompliant(true)]
         public static void DeleteBuffers(int[] buffers)
@@ -1372,7 +1371,7 @@ namespace OpenTK.Audio
         /// <summary>This function deletes one buffer only, freeing the resources used by the buffer. Buffers which are attached to a source can not be deleted. See AL.Source (ALSourcei) and AL.SourceUnqueueBuffers for information on how to detach a buffer from a source.</summary>
         /// <param name="buffer">Pointer to a buffer name identifying the buffer to be deleted.</param>
         [CLSCompliant(false)]
-        public static void DeleteBuffer( ref uint buffer)
+        public static void DeleteBuffer(ref uint buffer)
         {
             DeleteBuffers(1, ref buffer);
         }
@@ -1380,7 +1379,7 @@ namespace OpenTK.Audio
         /// <summary>This function deletes one buffer only, freeing the resources used by the buffer. Buffers which are attached to a source can not be deleted. See AL.Source (ALSourcei) and AL.SourceUnqueueBuffers for information on how to detach a buffer from a source.</summary>
         /// <param name="buffer">Pointer to a buffer name identifying the buffer to be deleted.</param>
         [CLSCompliant(true)]
-        public static void DeleteBuffer( int buffer)
+        public static void DeleteBuffer(int buffer)
         {
             DeleteBuffers(1, ref buffer);
         }
@@ -1390,14 +1389,14 @@ namespace OpenTK.Audio
         #region IsBuffer
 
         /// <summary>This function tests if a buffer name is valid, returning True if valid, False if not.</summary>
-        /// <param name="bid">A buffer Handle previously allocated with <see cref="AL.GenBuffers"/>.</param>
+        /// <param name="bid">A buffer Handle previously allocated with <see cref="GenBuffers(int)"/>.</param>
         /// <returns>Success.</returns>
         [CLSCompliant(false), DllImport(AL.Lib, EntryPoint = "alIsBuffer", ExactSpelling = true, CallingConvention = AL.Style), SuppressUnmanagedCodeSecurity()]
         public static extern bool IsBuffer(uint bid);
         // AL_API ALboolean AL_APIENTRY alIsBuffer( ALuint bid );
 
         /// <summary>This function tests if a buffer name is valid, returning True if valid, False if not.</summary>
-        /// <param name="bid">A buffer Handle previously allocated with <see cref="AL.GenBuffers"/>.</param>
+        /// <param name="bid">A buffer Handle previously allocated with <see cref="GenBuffers(int)"/>.</param>
         /// <returns>Success.</returns>
         [CLSCompliant(true)]
         public static bool IsBuffer(int bid)
@@ -1417,7 +1416,7 @@ namespace OpenTK.Audio
         /// <param name="size">The size of the audio buffer in bytes.</param>
         /// <param name="freq">The frequency of the audio buffer.</param>
         [CLSCompliant(false), DllImport(AL.Lib, EntryPoint = "alBufferData", ExactSpelling = true, CallingConvention = AL.Style), SuppressUnmanagedCodeSecurity()]
-        public static extern void BufferData(uint bid, ALFormat format, IntPtr data, int size, int freq);
+        public static extern void BufferData(uint bid, ALFormat format, IntPtr buffer, int size, int freq);
         // AL_API void AL_APIENTRY alBufferData( ALuint bid, ALenum format, const ALvoid* buffer, ALsizei size, ALsizei freq );
 
         /// <summary>This function fills a buffer with audio buffer. All the pre-defined formats are PCM buffer, but this function may be used by extensions to load other buffer types as well.</summary>
@@ -1427,28 +1426,28 @@ namespace OpenTK.Audio
         /// <param name="size">The size of the audio buffer in bytes.</param>
         /// <param name="freq">The frequency of the audio buffer.</param>
         [CLSCompliant(true)]
-        public static void BufferData(int bid, ALFormat format, IntPtr data, int size, int freq)
+        public static void BufferData(int bid, ALFormat format, IntPtr buffer, int size, int freq)
         {
-            BufferData((uint)bid, format, data, size, freq);
+            BufferData((uint)bid, format, buffer, size, freq);
         }
 
         /// <summary>This function fills a buffer with audio buffer (PCM format).</summary>
         /// <param name="bid">Buffer Handle/Name to be filled with buffer.</param>
         /// <param name="buffer">A SoundData object containing the buffer to upload.</param>
         [CLSCompliant(false)]
-        public static void BufferData(uint bid, SoundData data)
+        public static void BufferData(uint bid, SoundData buffer)
         {
             unsafe
             {
-                fixed (byte* data_ptr = &data.Data[0])
-                    BufferData(bid, data.SoundFormat.SampleFormatAsOpenALFormat, (IntPtr)data_ptr, data.Data.Length,
-                               data.SoundFormat.SampleRate);
+                fixed (byte* data_ptr = &buffer.Data[0])
+                    BufferData(bid, buffer.SoundFormat.SampleFormatAsOpenALFormat, (IntPtr)data_ptr, buffer.Data.Length,
+                               buffer.SoundFormat.SampleRate);
             }
         }
 
         /// <summary>This function fills a buffer with audio buffer (PCM format).</summary>
         /// <param name="bid">Buffer Handle/Name to be filled with buffer.</param>
-        /// <param name="buffer">A SoundData object containing the buffer to upload.</param>
+        /// <param name="data">A SoundData object containing the buffer to upload.</param>
         public static void BufferData(int bid, SoundData data)
         {
             unsafe
@@ -1583,51 +1582,51 @@ namespace OpenTK.Audio
         /// <summary>(Helper) Returns Source state information.</summary>
         /// <param name="sid">The source to be queried.</param>
         /// <returns>state information from OpenAL.</returns>
-        [CLSCompliant( false )]
-        public static ALSourceState GetSourceState( uint sid )
+        [CLSCompliant(false)]
+        public static ALSourceState GetSourceState(uint sid)
         {
             int temp;
-            AL.GetSource( sid, ALGetSourcei.SourceState, out temp );
-            return (ALSourceState) temp;
+            AL.GetSource(sid, ALGetSourcei.SourceState, out temp);
+            return (ALSourceState)temp;
         }
 
         /// <summary>(Helper) Returns Source state information.</summary>
         /// <param name="sid">The source to be queried.</param>
         /// <returns>state information from OpenAL.</returns>
-        [CLSCompliant( true )]
-        public static ALSourceState GetSourceState( int sid )
+        [CLSCompliant(true)]
+        public static ALSourceState GetSourceState(int sid)
         {
             int temp;
-            AL.GetSource( sid, ALGetSourcei.SourceState, out temp );
-            return (ALSourceState) temp;
+            AL.GetSource(sid, ALGetSourcei.SourceState, out temp);
+            return (ALSourceState)temp;
         }
 
         /// <summary>(Helper) Returns Source type information.</summary>
         /// <param name="sid">The source to be queried.</param>
         /// <returns>type information from OpenAL.</returns>
-        [CLSCompliant( false )]
-        public static ALSourceType GetSourceType( uint sid )
+        [CLSCompliant(false)]
+        public static ALSourceType GetSourceType(uint sid)
         {
             int temp;
-            AL.GetSource( sid, ALGetSourcei.SourceType, out temp );
-            return (ALSourceType) temp;
+            AL.GetSource(sid, ALGetSourcei.SourceType, out temp);
+            return (ALSourceType)temp;
         }
 
         /// <summary>(Helper) Returns Source type information.</summary>
         /// <param name="sid">The source to be queried.</param>
         /// <returns>type information from OpenAL.</returns>
-        [CLSCompliant( true )]
-        public static ALSourceType GetSourceType( int sid )
+        [CLSCompliant(true)]
+        public static ALSourceType GetSourceType(int sid)
         {
             int temp;
-            AL.GetSource( sid, ALGetSourcei.SourceType, out temp );
-            return (ALSourceType) temp;
+            AL.GetSource(sid, ALGetSourcei.SourceType, out temp);
+            return (ALSourceType)temp;
         }
 
-        [CLSCompliant( true )]
-        public static ALDistanceModel GetDistanceModel( )
+        [CLSCompliant(true)]
+        public static ALDistanceModel GetDistanceModel()
         {
-            return (ALDistanceModel) AL.Get( ALGetInteger.DistanceModel );
+            return (ALDistanceModel)AL.Get(ALGetInteger.DistanceModel);
         }
 
         #endregion Helpers

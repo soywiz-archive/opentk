@@ -30,8 +30,10 @@ namespace OpenTK
         IGLControl implementation;
         GraphicsMode format;
         IWindowInfo window_info;
+        int major, minor;
+        GraphicsContextFlags flags;
 
-        #region --- Constructor ---
+        #region --- Constructors ---
 
         /// <summary>
         /// Constructs a new GLControl.
@@ -40,18 +42,22 @@ namespace OpenTK
             : this(GraphicsMode.Default)
         { }
 
-        /// <summary>This method is obsolete and will be removed in future versions.</summary>
-        /// <param name="mode">Obsolete.</param>
-        [Obsolete]
-        public GLControl(DisplayMode mode)
-            : this(mode.ToGraphicsMode())
+        /// <summary>
+        /// Constructs a new GLControl with the specified GraphicsMode.
+        /// </summary>
+        /// <param name="mode">The OpenTK.Graphics.GraphicsMode of the control.</param>
+        public GLControl(GraphicsMode mode)
+            : this(mode, 1, 0, GraphicsContextFlags.Default)
         { }
 
         /// <summary>
         /// Constructs a new GLControl with the specified GraphicsMode.
         /// </summary>
         /// <param name="mode">The OpenTK.Graphics.GraphicsMode of the control.</param>
-        public GLControl(GraphicsMode mode)
+        /// <param name="major">The major version for the OpenGL GraphicsContext.</param>
+        /// <param name="minor">The minor version for the OpenGL GraphicsContext.</param>
+        /// <param name="flags">The GraphicsContextFlags for the OpenGL GraphicsContext.</param>
+        public GLControl(GraphicsMode mode, int major, int minor, GraphicsContextFlags flags)
         {
             SetStyle(ControlStyles.Opaque, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -61,25 +67,35 @@ namespace OpenTK
             InitializeComponent();
 
             this.format = mode;
+            this.major = major;
+            this.minor = minor;
+            this.flags = flags;
 
             // On Windows, you first need to create the window, then set the pixel format.
             // On X11, you first need to select the visual, then create the window.
-            // On OSX, ???
+            // On OSX, the pixel format needs to be selected before the GL context.
             // Right now, pixel formats/visuals are selected during context creation. In the future,
             // it would be better to decouple selection from context creation, which will allow us
             // to clean up this hacky code. The best option is to do this along with multisampling
             // support.
             if (DesignMode)
                 implementation = new Platform.Dummy.DummyGLControl();
-            else if (Configuration.RunningOnWindows)
-                implementation = new Platform.Windows.WinGLControl(mode, this);
-            else if (Configuration.RunningOnX11)
-                implementation = new Platform.X11.X11GLControl(mode, this);
-            else if (Configuration.RunningOnOSX)
-                throw new PlatformNotSupportedException("Refer to http://www.opentk.com for more information.");
+            else
+                implementation = Platform.Factory.CreateGLControl(mode, this);
 
             this.CreateControl();
         }
+
+        #region Obsolete
+
+        /// <summary>This method is obsolete and will be removed in future versions.</summary>
+        /// <param name="mode">Obsolete.</param>v
+        [Obsolete]
+        public GLControl(DisplayMode mode)
+            : this(mode.ToGraphicsMode())
+        { }
+
+        #endregion
 
         #endregion
 
@@ -91,7 +107,7 @@ namespace OpenTK
         {
             base.OnHandleCreated(e);
 
-            this.Context = implementation.CreateContext();
+            this.Context = implementation.CreateContext(major, minor, flags);
 
             this.window_info = implementation.WindowInfo;
             this.MakeCurrent();
@@ -108,6 +124,7 @@ namespace OpenTK
                 this.Context.Dispose();
                 this.Context = null;
             }
+            this.window_info.Dispose();
             this.window_info = null;
         }
 
@@ -119,7 +136,32 @@ namespace OpenTK
         {
             if (DesignMode)
                 e.Graphics.Clear(BackColor);
+
             base.OnPaint(e);
+        }
+
+        /// <summary>
+        /// Raises the Resize event.
+        /// </summary>
+        /// <param name="e">A System.EventArgs that contains the event data.</param>
+        protected override void OnResize(EventArgs e)
+        {
+            if (context != null)
+                context.Update(window_info);
+
+            base.OnResize(e);
+        }
+
+        /// <summary>
+        /// Raises the ParentChanged event.
+        /// </summary>
+        /// <param name="e">A System.EventArgs that contains the event data.</param>
+        protected override void OnParentChanged(EventArgs e)
+        {
+            if (context != null)
+                context.Update(window_info);
+
+            base.OnParentChanged(e);
         }
 
         #endregion
@@ -290,7 +332,7 @@ namespace OpenTK
         /// </remarks>
         public GraphicsMode GraphicsMode
         {
-            get { return (Context as IGraphicsContextInternal).GraphicsMode; }
+            get { return Context.GraphicsMode; }
         }
 
         #endregion

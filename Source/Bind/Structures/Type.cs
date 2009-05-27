@@ -60,12 +60,13 @@ namespace Bind.Structures
                 this.Array = t.Array;
                 this.Pointer = t.Pointer;
                 this.Reference = t.Reference;
+                this.ElementCount = t.ElementCount;
             }
         }
         
         #endregion
 
-        #region public string Type
+        #region public string CurrentType
 
         string type;
         /// <summary>
@@ -125,7 +126,7 @@ namespace Bind.Structures
 
         #endregion
 
-        #region public bool Array
+        #region public int Array
 
         int array;
 
@@ -133,6 +134,19 @@ namespace Bind.Structures
         {
             get { return array; }
             set { array = value > 0 ? value : 0; }
+        }
+
+        #endregion
+
+        #region public int ElementCount
+
+        int element_count;
+
+        // If the type is an array and ElementCount > 0, then ElemenCount defines the expected array length.
+        public int ElementCount
+        {
+            get { return element_count; }
+            set { element_count = value > 0 ? value : 0; }
         }
 
         #endregion
@@ -183,6 +197,18 @@ namespace Bind.Structures
 
         #endregion
 
+        #region public bool Unsigned
+
+        public bool Unsigned
+        {
+            get
+            {
+                return (CurrentType.Contains("UInt") || CurrentType.Contains("Byte"));
+            }
+        }
+
+        #endregion
+
         #region public WrapperTypes WrapperType
 
         private WrapperTypes _wrapper_type = WrapperTypes.None;
@@ -191,30 +217,6 @@ namespace Bind.Structures
         {
             get { return _wrapper_type; }
             set { _wrapper_type = value; }
-        }
-
-        #endregion
-
-        #region public string GetFullType()
-
-        public string GetFullType(Dictionary<string, string> CSTypes, bool compliant)
-        {
-            //if (Pointer && ((Settings.Compatibility & Settings.Legacy.NoPublicUnsafeFunctions) != Settings.Legacy.None))
-            //    return "IntPtr";
-
-            if (!compliant)
-            {
-                return
-                    CurrentType +
-                    (Pointer ? "*" : "") +
-                    (Array > 0 ? "[]" : "");
-            }
-
-            return
-                GetCLSCompliantType() +
-                (Pointer ? "*" : "") +
-                (Array > 0 ? "[]" : "");
-
         }
 
         #endregion

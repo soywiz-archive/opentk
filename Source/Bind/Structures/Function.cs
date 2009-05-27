@@ -14,9 +14,11 @@ namespace Bind.Structures
 {
     public class Function : Delegate, IEquatable<Function>
     {
+        #region Static Members
+
         internal static FunctionCollection Wrappers;
 
-        private static bool loaded;
+        static bool loaded;
         
         #region internal static void Initialize()
         
@@ -31,37 +33,52 @@ namespace Bind.Structures
         
         #endregion
 
-        static Regex endings = new Regex(@"((([df]|u?[isb])v?)|v)", RegexOptions.Compiled | RegexOptions.RightToLeft);
-        static Regex endingsNotToTrim = new Regex("(ib|[tdrey]s|[eE]n[vd]|bled|Flagv|Tess|Status|Pixels)", RegexOptions.Compiled | RegexOptions.RightToLeft);
+        static Regex endings = new Regex(@"((([df]|u?[isb])_?v?)|v)", RegexOptions.Compiled | RegexOptions.RightToLeft);
+        static Regex endingsNotToTrim = new Regex("(ib|[tdrey]s|[eE]n[vd]|bled|Flagv|Tess|Status|Pixels|Instanced|Indexed|Varyings)", RegexOptions.Compiled | RegexOptions.RightToLeft);
 
-        /// <summary>
-        /// Add a trailing v to functions matching this regex. Used to differntiate between overloads taking both
-        /// a 'type' and a 'ref type' (such overloads are not CLS Compliant).
-        /// </summary>
-        /// <remarks>
-        /// The default Regex matches no functions. Create a new Regex in Bind.Generator classes to override the default behavior. 
-        /// </remarks>
+        // Add a trailing v to functions matching this regex. Used to differntiate between overloads taking both
+        // a 'type' and a 'ref type' (such overloads are not CLS Compliant).
+        // The default Regex matches no functions. Create a new Regex in Bind.Generator classes to override the default behavior. 
         internal static Regex endingsAddV = new Regex("^0", RegexOptions.Compiled);
+
+        #endregion
+
+        #region Fields
+
+        Delegate wrapped_delegate;
+        int index;
+
+        #endregion
         
         #region --- Constructors ---
-
-        public Function()
-            : base()
-        {
-            Body = new FunctionBody();
-        }
 
         public Function(Delegate d)
             : base(d)
         {
-            if (d is Function)
-                this.Body = new FunctionBody((d as Function).Body);
-            else
-                this.Body = new FunctionBody();
-            this.Name = d.Name;
+            Name = d.Name;
+            Body = new FunctionBody();
+            WrappedDelegate = d;
+        }
+
+        public Function(Function f)
+            : this((Delegate)f)
+        {
+            this.Body = new FunctionBody(f.Body);
         }
 
         #endregion
+
+        #region public Delegate WrappedDelegate
+
+        public Delegate WrappedDelegate
+        {
+            get { return wrapped_delegate; }
+            set { wrapped_delegate = value; }
+        }
+
+        #endregion
+
+        #region public void TurnVoidPointersToIntPtr()
 
         public void TurnVoidPointersToIntPtr()
         {
@@ -74,6 +91,8 @@ namespace Bind.Structures
                 }
             }
         }
+
+        #endregion
 
         #region public override bool Unsafe
 
@@ -134,9 +153,6 @@ namespace Bind.Structures
                 {
                     TrimmedName = Utilities.StripGL2Extension(value);
 
-                    //if (Name.Contains("BooleanIndexed"))
-                    {
-                    }
                     Match m = endingsNotToTrim.Match(TrimmedName);
                     if ((m.Index + m.Length) != TrimmedName.Length)
                     {
@@ -182,10 +198,34 @@ namespace Bind.Structures
                 sb.Append(Settings.FunctionPrefix);
             }
             sb.Append(!String.IsNullOrEmpty(TrimmedName) ? TrimmedName : Name);
-            sb.Append(Parameters.ToString(false));
+            
+            if (Parameters.HasGenericParameters)
+            {
+                sb.Append("<");
+                foreach (Parameter p in Parameters)
+                {
+                    if (p.Generic)
+                    {
+                        sb.Append(p.CurrentType);
+                        sb.Append(",");
+                    }
+                }
+                sb.Remove(sb.Length - 1, 1);
+                sb.Append(">");
+            }
+            sb.AppendLine(Parameters.ToString(false));
+            if (Parameters.HasGenericParameters)
+            {
+                foreach (Parameter p in Parameters)
+                {
+                    if (p.Generic)
+                        sb.AppendLine(String.Format("    where {0} : struct", p.CurrentType));
+                }
+                
+            }
+
             if (Body.Count > 0)
             {
-                sb.AppendLine();
                 sb.Append(Body.ToString());
             }
 
@@ -212,16 +252,12 @@ namespace Bind.Structures
         {
             Function f;
 
-            if (this.Name.Contains("TessVertex"))
-            {
-            }
-
             if (Parameters.HasPointerParameters)
             {
                 // Array overloads
                 foreach (Parameter p in this.Parameters)
                 {
-                    if (p.WrapperType == WrapperTypes.ArrayParameter)
+                    if (p.WrapperType == WrapperTypes.ArrayParameter && p.ElementCount != 1)
                     {
                         p.Reference = false;
                         p.Array = 1;
@@ -276,145 +312,10 @@ namespace Bind.Structures
 
         #endregion
 
-        #region public void WrapParametersComplete(List<Function> wrappers)
-
-        static int index = 0;
-
-        /// <summary>
-        /// Adds to the wrapper list all possible wrapper permutations for every possible parameter combination.
-        /// "void Delegates.f(IntPtr p, IntPtr q)" where p and q are pointers to void arrays needs the following wrappers:
-        /// "void f(IntPtr p, IntPtr q)"
-        /// "void f(IntPtr p, object q)"
-        /// "void f(object p, IntPtr q)"
-        /// "void f(object p, object q)"
-        /// </summary>
-        /// <param name="wrappers"></param>
-        public void WrapParametersComplete(List<Function> wrappers)
-        {
-            if (index == 0)
-            {
-                //if (this.Parameters.HasPointerParameters)
-                {
-                    Function f = new Function(this);
-                    f.CreateBody(false);
-                    wrappers.Add(f);
-                }
-                //else
-                //{
-                //    if (this.Body.Count == 0)
-                //        wrappers.Add(DefaultWrapper(this));
-                //    else
-                //        wrappers.Add(this);
-                //    return;
-                //}
-            }
-            
-            if (index >= 0 && index < this.Parameters.Count)
-            {
-                Function f;
-
-                switch (this.Parameters[index].WrapperType)
-                {
-                    case WrapperTypes.None:
-                        // No wrapper needed, visit the next parameter
-                        ++index;
-                        WrapParametersComplete(wrappers);
-                        --index;
-                        break;
-
-                    case WrapperTypes.ArrayParameter:
-                        // Recurse to the last parameter
-                        ++index;
-                        WrapParametersComplete(wrappers);
-                        --index;
-
-                        // On stack rewind, create array wrappers
-                        f = new Function(this);
-                        f.Parameters[index].Reference = false;
-                        f.Parameters[index].Array = 1;
-                        f.Parameters[index].Pointer = false;
-                        f.CreateBody(false);
-                        wrappers.Add(f);
-
-                        // Recurse to the last parameter again, keeping the Array wrappers
-                        ++index;
-                        f.WrapParametersComplete(wrappers);
-                        --index;
-
-                        // On stack rewind create reference wrappers.
-                        f = new Function(this);
-                        f.Parameters[index].Reference = true;
-                        f.Parameters[index].Array = 0;
-                        f.Parameters[index].Pointer = false;
-                        f.CreateBody(false);
-                        wrappers.Add(f);
-
-                        // Keeping the current reference wrapper, revisit all other parameters.
-                        ++index;
-                        f.WrapParametersComplete(wrappers);
-                        --index;
-
-                        break;
-
-                    case WrapperTypes.GenericParameter:
-                        // Recurse to the last parameter
-                        ++index;
-                        WrapParametersComplete(wrappers);
-                        --index;
-
-                        // On stack rewind, create object wrappers
-                        f = new Function(this);
-                        f.Parameters[index].Reference = false;
-                        f.Parameters[index].Array = 0;
-                        f.Parameters[index].Pointer = false;
-                        f.Parameters[index].CurrentType = "object";
-                        f.Parameters[index].Flow = Parameter.FlowDirection.Undefined;
-
-                        f.CreateBody(false);
-                        wrappers.Add(f);
-
-                        // Keeping the current Object wrapper, visit all other parameters once more
-                        ++index;
-                        f.WrapParametersComplete(wrappers);
-                        --index;
-
-                        break;
-
-                    //case WrapperTypes.ReferenceParameter:
-                    //    // Recurse to the last parameter
-                    //    ++index;
-                    //    WrapParameters(this, wrappers);
-                    //    --index;
-
-                    //    // On stack rewind, create reference wrappers
-                    //    f = new this(this);
-                    //    f.Parameters[index].Reference = true;
-                    //    f.Parameters[index].Array = 0;
-                    //    f.Parameters[index].Pointer = false;
-                    //    f.Body = CreateBody(f, false);
-                    //    //f = ReferenceWrapper(new this(this), index);
-                    //    wrappers.Add(f);
-
-                    //    // Keeping the current Object wrapper, visit all other parameters once more
-                    //    ++index;
-                    //    WrapParameters(f, wrappers);
-                    //    --index;
-
-                    //    break;
-                }
-            }
-        }
-
-        #endregion
-
         #region public void WrapVoidPointers(List<Function> wrappers)
 
         public void WrapVoidPointers(List<Function> wrappers)
         {
-            if (this.Name.Contains("TessVertex"))
-            {
-            }
-
             if (index >= 0 && index < Parameters.Count)
             {
                 if (Parameters[index].WrapperType == WrapperTypes.GenericParameter)
@@ -424,23 +325,46 @@ namespace Bind.Structures
                     WrapVoidPointers(wrappers);
                     --index;
 
-                    // On stack rewind, create object wrappers
-                    Parameters[index].Reference = false;
+                    // On stack rewind, create generic wrappers
+                    Parameters[index].Reference = true;
                     Parameters[index].Array = 0;
                     Parameters[index].Pointer = false;
-                    Parameters[index].CurrentType = "object";
+                    Parameters[index].Generic = true;
+                    Parameters[index].CurrentType = "T" + index.ToString();
                     Parameters[index].Flow = Parameter.FlowDirection.Undefined;
                     Parameters.Rebuild = true;
                     CreateBody(false);
-                    wrappers.Add(this);
+                    wrappers.Add(new Function(this));
 
-                    // Keeping the current Object wrapper, visit all other parameters once more
-                    ++index;
-                    //if ((Settings.Compatibility & Settings.Legacy.GenerateAllPermutations) == Settings.Legacy.None)
-                    //    WrapParameters(wrappers);
-                    //else
-                    //    WrapParametersComplete(wrappers);
-                    --index;
+                    Parameters[index].Reference = false;
+                    Parameters[index].Array = 1;
+                    Parameters[index].Pointer = false;
+                    Parameters[index].Generic = true;
+                    Parameters[index].CurrentType = "T" + index.ToString();
+                    Parameters[index].Flow = Parameter.FlowDirection.Undefined;
+                    Parameters.Rebuild = true;
+                    CreateBody(false);
+                    wrappers.Add(new Function(this));
+
+                    Parameters[index].Reference = false;
+                    Parameters[index].Array = 2;
+                    Parameters[index].Pointer = false;
+                    Parameters[index].Generic = true;
+                    Parameters[index].CurrentType = "T" + index.ToString();
+                    Parameters[index].Flow = Parameter.FlowDirection.Undefined;
+                    Parameters.Rebuild = true;
+                    CreateBody(false);
+                    wrappers.Add(new Function(this));
+
+                    Parameters[index].Reference = false;
+                    Parameters[index].Array = 3;
+                    Parameters[index].Pointer = false;
+                    Parameters[index].Generic = true;
+                    Parameters[index].CurrentType = "T" + index.ToString();
+                    Parameters[index].Flow = Parameter.FlowDirection.Undefined;
+                    Parameters.Rebuild = true;
+                    CreateBody(false);
+                    wrappers.Add(new Function(this));
                 }
                 else
                 {
@@ -470,13 +394,17 @@ namespace Bind.Structures
 
         #region public void CreateBody(bool wantCLSCompliance)
 
-        static List<string> handle_statements = new List<string>();
-        static List<string> handle_release_statements = new List<string>();
-        static List<string> fixed_statements = new List<string>();
-        static List<string> assign_statements = new List<string>();
+        readonly List<string> handle_statements = new List<string>();
+        readonly List<string> handle_release_statements = new List<string>();
+        readonly List<string> fixed_statements = new List<string>();
+        readonly List<string> assign_statements = new List<string>();
 
         public void CreateBody(bool wantCLSCompliance)
         {
+            if (this.Name.Contains("NewList"))
+            {
+            }
+
             Function f = new Function(this);
 
             f.Body.Clear();
@@ -484,10 +412,6 @@ namespace Bind.Structures
             handle_release_statements.Clear();
             fixed_statements.Clear();
             assign_statements.Clear();
-
-            if (f.Name == "TessVertex")
-            { 
-            }
 
             // Obtain pointers by pinning the parameters
             foreach (Parameter p in f.Parameters)
@@ -499,8 +423,8 @@ namespace Bind.Structures
                         // Use GCHandle to obtain pointer to generic parameters and 'fixed' for arrays.
                         // This is because fixed can only take the address of fields, not managed objects.
                         handle_statements.Add(String.Format(
-                            "{0} {1}_ptr = {0}.Alloc({1}, System.Runtime.InteropServices.GCHandleType.Pinned);",
-                            "System.Runtime.InteropServices.GCHandle", p.Name));
+                            "{0} {1}_ptr = {0}.Alloc({1}, GCHandleType.Pinned);",
+                            "GCHandle", p.Name));
 
                         handle_release_statements.Add(String.Format("{0}_ptr.Free();", p.Name));
 
@@ -539,7 +463,21 @@ namespace Bind.Structures
                 }
             }
 
-            if (!f.Unsafe || fixed_statements.Count > 0)
+            // Automatic OpenGL error checking.
+            // See OpenTK.Graphics.ErrorHelper for more information.
+            // Make sure that no error checking is added to the GetError function,
+            // as that would cause infinite recursion!
+            if (f.TrimmedName != "GetError")
+            {
+                f.Body.Add("#if DEBUG");
+                f.Body.Add("using (new ErrorHelper(GraphicsContext.CurrentContext))");
+                f.Body.Add("{");
+                if (f.TrimmedName == "Begin")
+                    f.Body.Add("GraphicsContext.CurrentContext.EnterBeginRegion();");
+                f.Body.Add("#endif");
+            }
+
+            if (!f.Unsafe && fixed_statements.Count > 0)
             {
                 f.Body.Add("unsafe");
                 f.Body.Add("{");
@@ -567,7 +505,7 @@ namespace Bind.Structures
                 if (f.ReturnType.CurrentType.ToLower().Contains("void"))
                     f.Body.Add(String.Format("{0};", f.CallString()));
                 else if (ReturnType.CurrentType.ToLower().Contains("string"))
-                    f.Body.Add(String.Format("{0} {1} = System.Runtime.InteropServices.Marshal.PtrToStringAnsi({2});",
+                    f.Body.Add(String.Format("{0} {1} = Marshal.PtrToStringAnsi({2});",
                         ReturnType.CurrentType, "retval", CallString()));
                 else
                     f.Body.Add(String.Format("{0} {1} = {2};", f.ReturnType.CurrentType, "retval", f.CallString()));
@@ -609,7 +547,7 @@ namespace Bind.Structures
                 f.Body.Add("}");
             }
 
-            if (!f.Unsafe || fixed_statements.Count > 0)
+            if (!f.Unsafe && fixed_statements.Count > 0)
             {
                 f.Body.Unindent();
                 f.Body.Add("}");
@@ -619,6 +557,15 @@ namespace Bind.Structures
             {
                 f.Body.Unindent();
                 f.Body.Add("}");
+            }
+
+            if (f.TrimmedName != "GetError")
+            {
+                f.Body.Add("#if DEBUG");
+                if (f.TrimmedName == "End")
+                    f.Body.Add("GraphicsContext.CurrentContext.ExitBeginRegion();");
+                f.Body.Add("}");
+                f.Body.Add("#endif");
             }
 
             this.Body = f.Body;
@@ -717,13 +664,12 @@ namespace Bind.Structures
         }
 
         /// <summary>
-        /// Adds the function to the collection, if a function with the same
-        /// name and parameters doesn't already exist.
+        /// Adds the function to the collection, if a function with the same name and parameters doesn't already exist.
         /// </summary>
         /// <param name="f">The Function to add.</param>
         public void AddChecked(Function f)
         {
-            if (f.Name.Contains("Bitmap"))
+            if (f.Name.Contains("Color3ub"))
             {
             }
 
@@ -736,9 +682,9 @@ namespace Bind.Structures
                 }
                 else
                 {
-                    if (unsignedFunctions.IsMatch(Utilities.StripGL2Extension(f.Name)))// &&
-                        //!unsignedFunctions.IsMatch(
-                        //    Utilities.StripGL2Extension(Bind.Structures.Function.Wrappers[f.Extension][index].Name)))
+                    Function existing = Bind.Structures.Function.Wrappers[f.Extension][index];
+                    if ((existing.Parameters.HasUnsignedParameters && !unsignedFunctions.IsMatch(existing.Name) && unsignedFunctions.IsMatch(f.Name)) ||
+                        (!existing.Parameters.HasUnsignedParameters && unsignedFunctions.IsMatch(existing.Name) && !unsignedFunctions.IsMatch(f.Name)))
                     {
                         Bind.Structures.Function.Wrappers[f.Extension].RemoveAt(index);
                         Bind.Structures.Function.Wrappers[f.Extension].Add(f);

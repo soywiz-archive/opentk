@@ -63,11 +63,11 @@ namespace OpenTK.Math
         #region Constructors
 
 		/// <summary>
-		/// Construct a new matrix from 4 vectors representing each row.
+		/// Constructs a new instance.
 		/// </summary>
 		/// <param name="row0">Top row of the matrix</param>
-		/// <param name="row1">2nd row of the matrix</param>
-		/// <param name="row2">3rd row of the matrix</param>
+		/// <param name="row1">Second row of the matrix</param>
+		/// <param name="row2">Third row of the matrix</param>
 		/// <param name="row3">Bottom row of the matrix</param>
 		public Matrix4d(Vector4d row0, Vector4d row1, Vector4d row2, Vector4d row3)
 		{
@@ -76,6 +76,37 @@ namespace OpenTK.Math
 			Row2 = row2;
 			Row3 = row3;
 		}
+
+        /// <summary>
+        /// Constructs a new instance.
+        /// </summary>
+        /// <param name="m00">First item of the first row.</param>
+        /// <param name="m01">Second item of the first row.</param>
+        /// <param name="m02">Third item of the first row.</param>
+        /// <param name="m03">Fourth item of the first row.</param>
+        /// <param name="m10">First item of the second row.</param>
+        /// <param name="m11">Second item of the second row.</param>
+        /// <param name="m12">Third item of the second row.</param>
+        /// <param name="m13">Fourth item of the second row.</param>
+        /// <param name="m20">First item of the third row.</param>
+        /// <param name="m21">Second item of the third row.</param>
+        /// <param name="m22">Third item of the third row.</param>
+        /// <param name="m23">First item of the third row.</param>
+        /// <param name="m30">Fourth item of the fourth row.</param>
+        /// <param name="m31">Second item of the fourth row.</param>
+        /// <param name="m32">Third item of the fourth row.</param>
+        /// <param name="m33">Fourth item of the fourth row.</param>
+        public Matrix4d(
+            float m00, float m01, float m02, float m03,
+            float m10, float m11, float m12, float m13,
+            float m20, float m21, float m22, float m23,
+            float m30, float m31, float m32, float m33)
+        {
+            Row0 = new Vector4d(m00, m01, m02, m03);
+            Row1 = new Vector4d(m10, m11, m12, m13);
+            Row2 = new Vector4d(m20, m21, m22, m23);
+            Row3 = new Vector4d(m30, m31, m32, m33);
+        }
 
         #endregion
 
@@ -423,8 +454,9 @@ namespace OpenTK.Math
         /// <summary>
         /// Post multiply this matrix by another matrix
         /// </summary>
-        /// <param name="right">The matrix to multiply</param>
-        /// <returns>A new Matrix44 that is the result of the multiplication</returns>
+        /// <param name="left">The left operand of the multiplication.</param>
+        /// <param name="right">The right operand of the multiplication.</param>
+        /// <returns>A new instance that is the result of the multiplication</returns>
         public static Matrix4d Mult(Matrix4d left, Matrix4d right)
         {
             Vector4d  col0 = right.Column0;
@@ -585,6 +617,7 @@ namespace OpenTK.Math
         /// Calculate the transpose of the given matrix
         /// </summary>
         /// <param name="mat">The matrix to transpose</param>
+        /// <param name="result">The result of the calculation</param>
         public static void Transpose(ref Matrix4d mat, out Matrix4d result)
         {
             result.Row0 = mat.Column0;
@@ -674,7 +707,7 @@ namespace OpenTK.Math
         #region IEquatable<Matrix4d> Members
 
         /// <summary>Indicates whether the current matrix is equal to another matrix.</summary>
-        /// <param name="matrix">An matrix to compare with this matrix.</param>
+        /// <param name="other">An matrix to compare with this matrix.</param>
         /// <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
         public bool Equals(Matrix4d other)
         {

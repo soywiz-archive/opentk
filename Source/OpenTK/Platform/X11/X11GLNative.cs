@@ -16,6 +16,7 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using OpenTK.Platform.Windows;
 using OpenTK.Graphics;
+using System.Drawing;
 
 //using OpenTK.Graphics.OpenGL;
 
@@ -199,9 +200,9 @@ namespace OpenTK.Platform.X11
 
         #region --- INativeGLWindow Members ---
 
-        #region public void CreateWindow(int width, int height, GraphicsMode mode, out IGraphicsContext context)
+        #region CreateWindow
 
-        public void CreateWindow(int width, int height, GraphicsMode mode, out IGraphicsContext context)
+        public void CreateWindow(int width, int height, GraphicsMode mode, int major, int minor, GraphicsContextFlags flags, out IGraphicsContext context)
         {
             if (width <= 0) throw new ArgumentOutOfRangeException("width", "Must be higher than zero.");
             if (height <= 0) throw new ArgumentOutOfRangeException("height", "Must be higher than zero.");
@@ -244,7 +245,7 @@ namespace OpenTK.Platform.X11
                 //XVisualInfo vis = window.VisualInfo;
                 //Glx.CreateContext(window.Display, ref vis, IntPtr.Zero, true);
             }
-            context = new GraphicsContext(mode, window);
+            context = new GraphicsContext(mode, window, major, minor, flags);
 
             // Set the window hints
             SetWindowMinMax(_min_width, _min_height, -1, -1);            
@@ -272,31 +273,19 @@ namespace OpenTK.Platform.X11
             //Functions.XSetWMName(window.Display, window.Handle, ref text);
             //Functions.XSetWMProperties(display, window, name, name, 0,  /*None*/ null, 0, hints);
 
-            Debug.Print("done! (id: {0})", window.WindowHandle);
-
             lock (API.Lock)
             {
                 API.MapRaised(window.Display, window.WindowHandle);
             }
             mapped = true;
 
-            //context.CreateContext(true, null);
-
             driver = new X11Input(window);
             
-            // HACK: This seems to reduce thread issues on Linux, due to race conditions.
-            // It does *not* solve the root cause, which is unknown at this point.
-            //
-            // What I suspect happens, is that either the glXChooseContext or glXCreateContext functions are called
-            // before the window is ready - or maybe before the window size is set which renders the viewport invalid?
-            // (can this happen?) or that there are pending events that somehow botch context creation up (seems like
-            // the fglrx driver is spawning a new thread, or waiting on something?)
-            // This issue *must* be resolved before the 1.0 release.            
-            // Note that this has the side effect that sometimes, a resize event is missed.
-            //Functions.XSync(window.Display, true);
-            
-            Debug.WriteLine("X11GLNative window created successfully!");
+            Debug.WriteLine(String.Format("X11GLNative window created successfully (id: {0}).", Handle));
             Debug.Unindent();
+
+            this.width = width;
+            this.height = height;
             
             exists = true;
         }
@@ -613,21 +602,24 @@ namespace OpenTK.Platform.X11
 
         #region PointToClient
 
-        public void PointToClient(ref System.Drawing.Point p)
+        public Point PointToClient(Point point)
         {
-            /*
-            if (!Functions.ScreenToClient(this.Handle, p))
-                throw new InvalidOperationException(String.Format(
-                    "Could not convert point {0} from client to screen coordinates. Windows error: {1}",
-                    p.ToString(), Marshal.GetLastWin32Error()));
-            */
+            int ox, oy;
+            IntPtr child;
+
+            Functions.XTranslateCoordinates(window.Display, window.RootWindow, window.WindowHandle, point.X, point.Y, out ox, out oy, out child);
+
+            point.X = ox;
+            point.Y = oy;
+
+            return point;
         }
 
         #endregion
 
         #region PointToScreen
 
-        public void PointToScreen(ref System.Drawing.Point p)
+        public Point PointToScreen(Point p)
         {
             throw new NotImplementedException();
         }
@@ -804,41 +796,6 @@ namespace OpenTK.Platform.X11
         #endregion
         
         #endregion
-        
-        void SetWindowMinMax(short min_width, short min_height, short max_width, short max_height)
-        {
-            IntPtr dummy;
-        	XSizeHints hints = new XSizeHints();
-
-        	Functions.XGetWMNormalHints(window.Display, window.WindowHandle, ref hints, out dummy);
-            
-            if (min_width > 0 || min_height > 0)            
-            {
-        		hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMinSize);
-        		hints.min_width = min_width;
-        		hints.min_height = min_height;
-            }
-            else
-                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMinSize);
-            
-            if (max_width > 0 || max_height > 0)            
-            {
-        		hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMaxSize);
-        		hints.max_width = max_width;
-        		hints.max_height = max_height;
-            }
-            else
-                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMaxSize);
-
-
-        	if (hints.flags != IntPtr.Zero)
-            {
-        		// The Metacity team has decided that they won't care about this when clicking the maximize
-                // icon, will maximize the window to fill the screen/parent no matter what.
-        		// http://bugzilla.ximian.com/show_bug.cgi?id=80021
-        		Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
-        	}
-        }
 
         #region --- IResizable Members ---
 
@@ -984,6 +941,41 @@ namespace OpenTK.Platform.X11
         #endregion
 
         #region --- Private Methods ---
+
+        void SetWindowMinMax(short min_width, short min_height, short max_width, short max_height)
+        {
+            IntPtr dummy;
+            XSizeHints hints = new XSizeHints();
+
+            Functions.XGetWMNormalHints(window.Display, window.WindowHandle, ref hints, out dummy);
+
+            if (min_width > 0 || min_height > 0)
+            {
+                hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMinSize);
+                hints.min_width = min_width;
+                hints.min_height = min_height;
+            }
+            else
+                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMinSize);
+
+            if (max_width > 0 || max_height > 0)
+            {
+                hints.flags = (IntPtr)((int)hints.flags | (int)XSizeHintsFlags.PMaxSize);
+                hints.max_width = max_width;
+                hints.max_height = max_height;
+            }
+            else
+                hints.flags = (IntPtr)((int)hints.flags & ~(int)XSizeHintsFlags.PMaxSize);
+
+
+            if (hints.flags != IntPtr.Zero)
+            {
+                // The Metacity team has decided that they won't care about this when clicking the maximize
+                // icon, will maximize the window to fill the screen/parent no matter what.
+                // http://bugzilla.ximian.com/show_bug.cgi?id=80021
+                Functions.XSetWMNormalHints(window.Display, window.WindowHandle, ref hints);
+            }
+        }
 
         bool IsWindowBorderResizable
         {

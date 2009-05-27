@@ -18,7 +18,6 @@
         <OptimizeCode>true</OptimizeCode>
         <!--<OutputPath>../../Binaries/Release/Libraries</OutputPath>-->
         <DebugInformation>false</DebugInformation>
-        <XmlDocFile>OpenTK.xml</XmlDocFile>
       </Options>
     </Configuration>
 
@@ -46,7 +45,7 @@
       </Configuration>
 
       <Reference name="System"/>
-      
+
       <Files>
         <Match path="." pattern="*.cs" recurse="true"/>
       </Files>
@@ -68,11 +67,15 @@
       </Configuration>
 
       <Reference name="System"/>
+      <Reference name="System.Xml"/>
 
       <Files>
         <Match path="." pattern="*.cs" recurse="true"/>
         <Match path="." pattern="*.spec" recurse="true" buildAction="None"/>
         <Match path="." pattern="*.tm" recurse="true" buildAction="None"/>
+        <Match path="." pattern="*.xml" recurse="true" buildAction="None"/>
+        <Match path="." pattern="*.xslt" recurse="true" buildAction="None"/>
+        <Match path="." pattern="*.txt" recurse="true" buildAction="None"/>
       </Files>
 
     </Project>
@@ -90,6 +93,7 @@
         <Options>
           <OutputPath>../../Binaries/Release/Libraries</OutputPath>
           <AllowUnsafe>true</AllowUnsafe>
+          <XmlDocFile>OpenTK.xml</XmlDocFile>
         </Options>
       </Configuration>
 
@@ -97,6 +101,7 @@
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
       <Reference name="System.Data"/>
+      <Reference name="System.Xml"/>
 
       <Files>
         <Match path="." pattern="*.cs" recurse="true"/>
@@ -118,6 +123,7 @@
         <Options>
           <OutputPath>../../Binaries/Release/Libraries</OutputPath>
           <AllowUnsafe>true</AllowUnsafe>
+          <XmlDocFile>OpenTK.Utilities.xml</XmlDocFile>
         </Options>
       </Configuration>
 
@@ -133,7 +139,7 @@
 
     </Project>
 
-    <Project name="Examples" path="../Source/Examples" language="C#" type="Exe" startupObject="Examples.ExampleLauncher">
+    <Project name="Examples" path="../Source/Examples" language="C#" type="WinExe" startupObject="Examples.Program">
 
       <Configuration name="Debug">
         <Options>
@@ -149,15 +155,18 @@
         </Options>
       </Configuration>
 
-      <Reference name="OpenTK"/>
-      <Reference name="OpenTK.Utilities"/>
+      <Reference name="OpenTK" localCopy="true"/>
+      <Reference name="OpenTK.Utilities" localCopy="true"/>
       <Reference name="System"/>
       <Reference name="System.Drawing"/>
       <Reference name="System.Windows.Forms"/>
       <Reference name="System.Data"/>
+      <Reference name="System.Xml"/>
 
       <Files>
         <Match path="." pattern="*.cs" recurse="true"/>
+        <Match path="." pattern="*.rtf" recurse="true" buildAction="EmbeddedResource" />
+        <Match path="." pattern="*.resx" recurse="true" buildAction="EmbeddedResource"/>
         <Match path="../Examples/Data" pattern="^.*\.(bmp|png|jpg|txt|glsl|wav|ogg)$" useRegex="true" recurse="true" buildAction="None" copyToOutput="Always"/>
         <Match path="./Data" pattern="*.txt" recurse="true" buildAction="None" copyToOutput="Always"/>
         <Match path="./Data" pattern="*.glsl" recurse="true" buildAction="None" copyToOutput="Always"/>

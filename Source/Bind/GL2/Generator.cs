@@ -18,21 +18,26 @@ namespace Bind.GL2
     {
         #region --- Fields ---
 
-        protected static string glTypemap = "GL2\\gl.tm";
+        protected static string glTypemap = "GL2/gl.tm";
         protected static string csTypemap = "csharp.tm";
-        protected static string enumSpec = "GL2\\enum.spec";
-        protected static string enumSpecExt = "GL2\\enumext.spec";
-        protected static string glSpec = "GL2\\gl.spec";
+        protected static string enumSpec = "GL2/enum.spec";
+        protected static string enumSpecExt = "GL2/enumext.spec";
+        protected static string glSpec = "GL2/gl.spec";
         protected static string glSpecExt = "";
-        
+
         protected static string importsFile = "GLCore.cs";
-    	protected static string delegatesFile = "GLDelegates.cs";
-    	protected static string enumsFile = "GLEnums.cs";
-    	protected static string wrappersFile = "GL.cs";
+        protected static string delegatesFile = "GLDelegates.cs";
+        protected static string enumsFile = "GLEnums.cs";
+        protected static string wrappersFile = "GL.cs";
 
         protected static string loadAllFuncName = "LoadAll";
 
         protected static Regex enumToDotNet = new Regex("_[a-z|A-Z]?", RegexOptions.Compiled);
+
+        protected static readonly char[] numbers = "0123456789".ToCharArray();
+        //protected static readonly Dictionary<string, string> doc_replacements;
+
+        DocProcessor doc_processor = new DocProcessor(Path.Combine(Settings.DocPath, Settings.DocFile));
 
         #endregion
 
@@ -59,9 +64,9 @@ namespace Bind.GL2
         {
             // Matches functions that cannot have their trailing 'v' trimmed for CLS-Compliance reasons.
             // Built through trial and error :)
-            Function.endingsAddV =
-                new Regex(@"(Coord1|Attrib(I?)1(u?)|Stream1|Uniform2(u?)|(Point|Convolution|Transform|Sprite|List|Combiner|Tex)Parameter|Fog(Coord)?.*|VertexWeight|(Fragment)?Light(Model)?|Material|ReplacementCodeu?b?|Tex(Gen|Env)|Indexu?.v)",
-                RegexOptions.Compiled);
+            //Function.endingsAddV =
+            //    new Regex(@"(Coord1|Attrib(I?)1(u?)|Stream1|Uniform2(u?)|(Point|Convolution|Transform|Sprite|List|Combiner|Tex)Parameter|Fog(Coord)?.*|VertexWeight|(Fragment)?Light(Model)?|Material|ReplacementCodeu?b?|Tex(Gen|Env)|Indexu?|TextureParameter.v)",
+            //    RegexOptions.Compiled);
 
             Bind.Structures.Type.Initialize(glTypemap, csTypemap);
             Bind.Structures.Enum.Initialize(enumSpec, enumSpecExt);
@@ -69,14 +74,10 @@ namespace Bind.GL2
             Bind.Structures.Function.Initialize();
             Bind.Structures.Delegate.Initialize(glSpec, glSpecExt);
 
-            // Process enums and delegates - create wrappers.
-            Trace.WriteLine("Processing specs, please wait...");
-            //this.Translate();
-            
             this.WriteBindings(
-            	Bind.Structures.Delegate.Delegates,
-            	Bind.Structures.Function.Wrappers,
-            	Bind.Structures.Enum.GLEnums);
+                Bind.Structures.Delegate.Delegates,
+                Bind.Structures.Function.Wrappers,
+                Bind.Structures.Enum.GLEnums);
         }
 
         #endregion
@@ -145,15 +146,17 @@ namespace Bind.GL2
                                 p.Name = Utilities.Keywords.Contains(words[1]) ? "@" + words[1] : words[1];
                                 p.CurrentType = words[2];
                                 p.Pointer = words[4].Contains("array") ? true : words[4].Contains("reference") ? true : false;
+                                if (p.Pointer && words[5].Contains("[1]"))
+                                    p.ElementCount = 1;
                                 p.Flow = words[3] == "in" ? Parameter.FlowDirection.In : Parameter.FlowDirection.Out;
- 
+
                                 d.Parameters.Add(p);
                                 break;
 
-                            // Version directive is not used. GetTexParameterIivEXT and GetTexParameterIuivEXT define two(!) versions (why?)
-                            //case "version": // Line denotes function version (i.e. 1.0, 1.2, 1.5)
-                            //    d.UserData.Add("version", words[1]);
-                            //    break;
+                            // GetTexParameterIivEXT and GetTexParameterIuivEXT define two(!) versions (why?)
+                            case "version": // Line denotes function version (i.e. 1.0, 1.2, 1.5)
+                                d.Version = words[1];
+                                break;
 
                             case "category":
                                 d.Category = words[1];
@@ -311,7 +314,6 @@ namespace Bind.GL2
                     else
                     {
                         // The enum already exists, merge constants.
-                        Trace.WriteLine(String.Format("Enum {0} already defined, merging constants.", e.Name));
                         foreach (Constant t in e.ConstantCollection.Values)
                             Utilities.Merge(enums[e.Name], t);
                     }
@@ -453,14 +455,21 @@ namespace Bind.GL2
         #region ISpecWriter Members
 
         #region void WriteBindings
-        
+
         public void WriteBindings(DelegateCollection delegates, FunctionCollection functions, EnumCollection enums)
         {
+            Console.WriteLine("Writing bindings to {0}", Settings.OutputPath);
             if (!Directory.Exists(Settings.OutputPath))
                 Directory.CreateDirectory(Settings.OutputPath);
 
+            // Enums
             using (BindStreamWriter sw = new BindStreamWriter(Path.Combine(Settings.OutputPath, enumsFile)))
             {
+                WriteLicense(sw);
+                
+                sw.WriteLine("using System;");
+                sw.WriteLine();
+
                 if ((Settings.Compatibility & Settings.Legacy.NestedEnums) != Settings.Legacy.None)
                 {
                     sw.WriteLine("namespace {0}", Settings.OutputNamespace);
@@ -472,7 +481,7 @@ namespace Bind.GL2
                     sw.WriteLine("namespace {0}", Settings.EnumsOutput);
 
                 sw.WriteLine("{");
-                
+
                 sw.Indent();
                 WriteEnums(sw, Bind.Structures.Enum.GLEnums);
                 sw.Unindent();
@@ -485,8 +494,11 @@ namespace Bind.GL2
 
                 sw.WriteLine("}");
             }
+
+            // Delegates
             using (BindStreamWriter sw = new BindStreamWriter(Path.Combine(Settings.OutputPath, delegatesFile)))
             {
+                WriteLicense(sw);
                 sw.WriteLine("namespace {0}", Settings.OutputNamespace);
                 sw.WriteLine("{");
                 sw.Indent();
@@ -500,22 +512,28 @@ namespace Bind.GL2
                 sw.Unindent();
                 sw.WriteLine("}");
             }
+
+            // Core
             using (BindStreamWriter sw = new BindStreamWriter(Path.Combine(Settings.OutputPath, importsFile)))
             {
+                WriteLicense(sw);
                 sw.WriteLine("namespace {0}", Settings.OutputNamespace);
                 sw.WriteLine("{");
                 sw.Indent();
                 //specWriter.WriteTypes(sw, Bind.Structures.Type.CSTypes);
                 sw.WriteLine("using System;");
                 sw.WriteLine("using System.Runtime.InteropServices;");
-                
+
                 WriteImports(sw, Bind.Structures.Delegate.Delegates);
 
                 sw.Unindent();
                 sw.WriteLine("}");
             }
+
+            // Wrappers
             using (BindStreamWriter sw = new BindStreamWriter(Path.Combine(Settings.OutputPath, wrappersFile)))
             {
+                WriteLicense(sw);
                 sw.WriteLine("namespace {0}", Settings.OutputNamespace);
                 sw.WriteLine("{");
                 sw.Indent();
@@ -529,11 +547,11 @@ namespace Bind.GL2
                 sw.WriteLine("}");
             }
         }
-        
+
         #endregion
-        
+
         #region void WriteDelegates
-        
+
         public virtual void WriteDelegates(BindStreamWriter sw, DelegateCollection delegates)
         {
             Trace.WriteLine(String.Format("Writing delegates to:\t{0}.{1}.{2}", Settings.OutputNamespace, Settings.OutputClass, Settings.DelegatesClass));
@@ -549,7 +567,7 @@ namespace Bind.GL2
             sw.WriteLine("internal static partial class {0}", Settings.DelegatesClass);
             sw.WriteLine("{");
             sw.Indent();
-            
+
             foreach (Bind.Structures.Delegate d in delegates.Values)
             {
                 sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
@@ -559,7 +577,7 @@ namespace Bind.GL2
                     d.Name,
                     Settings.FunctionPrefix);
             }
-            
+
             sw.Unindent();
             sw.WriteLine("}");
 
@@ -590,25 +608,25 @@ namespace Bind.GL2
             sw.WriteLine();
             foreach (Bind.Structures.Delegate d in delegates.Values)
             {
-            	if (String.IsNullOrEmpty(d.Extension) || d.Extension == "Core")
-            	{
-	                sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
-	                sw.WriteLine(
-	                    "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"{1}{2}\"{3})]",
+                if (String.IsNullOrEmpty(d.Extension) || d.Extension == "Core")
+                {
+                    sw.WriteLine("[System.Security.SuppressUnmanagedCodeSecurity()]");
+                    sw.WriteLine(
+                        "[System.Runtime.InteropServices.DllImport({0}.Library, EntryPoint = \"{1}{2}\"{3})]",
                         Settings.OutputClass,
                         Settings.FunctionPrefix,
-	                    d.Name,
+                        d.Name,
                         d.Name.EndsWith("W") || d.Name.EndsWith("A") ? ", CharSet = CharSet.Auto" : ", ExactSpelling = true"
-	                );
-	                sw.WriteLine("internal extern static {0};", d.DeclarationString());
-            	}
+                    );
+                    sw.WriteLine("internal extern static {0};", d.DeclarationString());
+                }
             }
             sw.Unindent();
             sw.WriteLine("}");
             sw.Unindent();
             sw.WriteLine("}");
         }
-        
+
         #endregion
 
         #region void WriteWrappers
@@ -619,6 +637,8 @@ namespace Bind.GL2
 
             sw.WriteLine("#pragma warning disable 3019");   // CLSCompliant attribute
             sw.WriteLine("#pragma warning disable 1591");   // Missing doc comments
+            sw.WriteLine("#pragma warning disable 1572");   // Wrong param comments
+            sw.WriteLine("#pragma warning disable 1573");   // Missing param comments
 
             sw.WriteLine();
             sw.WriteLine("static partial class {0}", Settings.OutputClass);
@@ -627,17 +647,20 @@ namespace Bind.GL2
             sw.Indent();
             //sw.WriteLine("static {0}() {1} {2}", className, "{", "}");    // Static init in GLHelper.cs
             sw.WriteLine();
+
+            int current = 0;
+            int y = Console.CursorTop;
             foreach (string key in wrappers.Keys)
             {
                 if (((Settings.Compatibility & Settings.Legacy.NoSeparateFunctionNamespaces) == Settings.Legacy.None) && key != "Core")
                 {
-                	if (!Char.IsDigit(key[0]))
-                	{
-						sw.WriteLine("public static partial class {0}", key);
-                	}
+                    if (!Char.IsDigit(key[0]))
+                    {
+                        sw.WriteLine("public static partial class {0}", key);
+                    }
                     else
                     {
-                    	// Identifiers cannot start with a number:
+                        // Identifiers cannot start with a number:
                         sw.WriteLine("public static partial class {0}{1}", Settings.ConstantPrefix, key);
                     }
                     sw.WriteLine("{");
@@ -646,10 +669,32 @@ namespace Bind.GL2
 
                 foreach (Function f in wrappers[key])
                 {
+                    if ((Settings.Compatibility & Settings.Legacy.NoDocumentation) == 0)
+                    {
+                        Console.WriteLine("Creating docs for #{0} ({1})", current++, f.Name);
+                        try
+                        {
+                            string path = Path.Combine(Settings.DocPath, "gl" + f.WrappedDelegate.Name + ".xml");
+                            if (!File.Exists(path))
+                                path = Path.Combine(Settings.DocPath, "gl" +
+                                    f.TrimmedName + ".xml");
+
+                            if (!File.Exists(path))
+                                path = Path.Combine(Settings.DocPath, "gl" + f.TrimmedName.TrimEnd(numbers) + ".xml");
+
+                            if (File.Exists(path))
+                                sw.WriteLine(doc_processor.ProcessFile(path));
+                        }
+                        catch (FileNotFoundException)
+                        { }
+                    }
+
                     if (!f.CLSCompliant)
                     {
                         sw.WriteLine("[System.CLSCompliant(false)]");
                     }
+                    sw.WriteLine("[AutoGenerated(Category = \"{0}\", Version = \"{1}\", EntryPoint = \"{2}\")]",
+                        f.Category, f.Version, "gl" + f.WrappedDelegate.Name);
                     sw.WriteLine("public static ");
                     sw.Write(f);
                     sw.WriteLine();
@@ -682,7 +727,7 @@ namespace Bind.GL2
 
         #endregion
 
-		#region void WriteEnums
+        #region void WriteEnums
 
         public void WriteEnums(BindStreamWriter sw, EnumCollection enums)
         {
@@ -737,6 +782,16 @@ namespace Bind.GL2
                     }
                 }
             }
+        }
+
+        #endregion
+
+        #region void WriteLicense
+
+        public void WriteLicense(BindStreamWriter sw)
+        {
+            sw.WriteLine(File.ReadAllText(Path.Combine(Settings.InputPath, Settings.LicenseFile)));
+            sw.WriteLine();
         }
 
         #endregion

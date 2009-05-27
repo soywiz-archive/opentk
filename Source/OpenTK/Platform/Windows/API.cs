@@ -18,11 +18,11 @@ using System.Security;
 
 #pragma warning disable 3019    // CLS-compliance checking
 #pragma warning disable 0649    // struct members not explicitly initialized
+#pragma warning disable 0169    // field / method is never used.
+#pragma warning disable 0414    // field assigned but never used.
 
 namespace OpenTK.Platform.Windows
 {
-    #pragma warning disable 3019
-
     #region Type aliases
 
     using HWND = System.IntPtr;
@@ -104,7 +104,7 @@ namespace OpenTK.Platform.Windows
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool SetWindowPos(
             IntPtr handle,
-            WindowPlacementOptions placement,
+            IntPtr insertAfter,
             int x, int y, int cx, int cy,
             SetWindowPosFlags flags
         );
@@ -289,14 +289,13 @@ namespace OpenTK.Platform.Windows
         /// Low-level WINAPI function that retriives the next message in the queue.
         /// </summary>
         /// <param name="msg">The pending message (if any) is stored here.</param>
-        /// <param name="hWnd">Not used</param>
+        /// <param name="windowHandle">Not used</param>
         /// <param name="messageFilterMin">Not used</param>
         /// <param name="messageFilterMax">Not used</param>
-        /// <param name="flags">Not used</param>
         /// <returns>
         /// Nonzero indicates that the function retrieves a message other than WM_QUIT.
         /// Zero indicates that the function retrieves the WM_QUIT message, or that lpMsg is an invalid pointer.
-        /// –1 indicates that an error occurred — for example, the function fails if hWnd is an invalid window handle.
+        /// Â–1 indicates that an error occurred Â— for example, the function fails if hWnd is an invalid window handle.
         /// To get extended error information, call GetLastError.
         /// </returns>
         [System.Security.SuppressUnmanagedCodeSecurity]
@@ -435,7 +434,7 @@ namespace OpenTK.Platform.Windows
         /// 
         /// </summary>
         /// <param name="hwnd"></param>
-        /// <param name="hDC"></param>
+        /// <param name="DC"></param>
         /// <returns></returns>
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -470,11 +469,8 @@ namespace OpenTK.Platform.Windows
 
         #region SwapBuffers
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dc"></param>
-        [DllImport("gdi32.dll")]
+        [SuppressUnmanagedCodeSecurity]
+        [DllImport("gdi32.dll", SetLastError=true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool SwapBuffers(IntPtr dc);
 
@@ -509,7 +505,7 @@ namespace OpenTK.Platform.Windows
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="funcname"></param>
+        /// <param name="dllName"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern IntPtr LoadLibrary(string dllName);
@@ -632,7 +628,7 @@ namespace OpenTK.Platform.Windows
         /// Converts the screen coordinates of a specified point on the screen to client-area coordinates.
         /// </summary>
         /// <param name="hWnd">Handle to the window whose client area will be used for the conversion.</param>
-        /// <param name="lpPoint">Pointer to a POINT structure that specifies the screen coordinates to be converted.</param>
+        /// <param name="point">Pointer to a POINT structure that specifies the screen coordinates to be converted.</param>
         /// <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. Windows NT/2000/XP: To get extended error information, call GetLastError.</returns>
         /// <remarks>
         /// <para>The function uses the window identified by the hWnd parameter and the screen coordinates given in the POINT structure to compute client coordinates. It then replaces the screen coordinates with the client coordinates. The new coordinates are relative to the upper-left corner of the specified window's client area. </para>
@@ -652,7 +648,7 @@ namespace OpenTK.Platform.Windows
         /// Converts the client-area coordinates of a specified point to screen coordinates.
         /// </summary>
         /// <param name="hWnd">Handle to the window whose client area will be used for the conversion.</param>
-        /// <param name="lpPoint">Pointer to a POINT structure that contains the client coordinates to be converted. The new screen coordinates are copied into this structure if the function succeeds.</param>
+        /// <param name="point">Pointer to a POINT structure that contains the client coordinates to be converted. The new screen coordinates are copied into this structure if the function succeeds.</param>
         /// <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. Windows NT/2000/XP: To get extended error information, call GetLastError.</returns>
         /// <remarks>
         /// <para>The ClientToScreen function replaces the client-area coordinates in the POINT structure with the screen coordinates. The screen coordinates are relative to the upper-left corner of the screen. Note, a screen-coordinate point that is above the window's client area has a negative y-coordinate. Similarly, a screen coordinate to the left of a client area has a negative x-coordinate.</para>
@@ -1434,8 +1430,6 @@ namespace OpenTK.Platform.Windows
 
     #region PixelFormatDescriptor
 
-    #pragma warning disable 0169    
-    
     /// <summary>
     /// Describes a pixel format. It is used when interfacing with the WINAPI to create a new Context.
     /// Found in WinGDI.h
@@ -1471,8 +1465,6 @@ namespace OpenTK.Platform.Windows
         internal int DamageMask;
     }
     
-    #pragma warning restore 0169
-
     #endregion
     
     #region internal class LayerPlaneDescriptor
@@ -1484,31 +1476,31 @@ namespace OpenTK.Platform.Windows
     internal struct LayerPlaneDescriptor
     {
         internal static readonly WORD Size = (WORD)Marshal.SizeOf(typeof(LayerPlaneDescriptor)); 
-		internal WORD  Version; 
-		internal DWORD Flags; 
-		internal BYTE  PixelType; 
-		internal BYTE  ColorBits; 
-		internal BYTE  RedBits; 
-		internal BYTE  RedShift; 
-		internal BYTE  GreenBits; 
-		internal BYTE  GreenShift; 
-		internal BYTE  BlueBits; 
-		internal BYTE  BlueShift; 
-		internal BYTE  AlphaBits; 
-		internal BYTE  AlphaShift; 
-		internal BYTE  AccumBits; 
-		internal BYTE  AccumRedBits; 
-		internal BYTE  AccumGreenBits; 
-		internal BYTE  AccumBlueBits; 
-		internal BYTE  AccumAlphaBits; 
-		internal BYTE  DepthBits; 
-		internal BYTE  StencilBits; 
-		internal BYTE  AuxBuffers; 
-		internal BYTE  LayerPlane; 
-		BYTE  Reserved; 
-		internal COLORREF crTransparent; 
-	}
-    
+        internal WORD  Version; 
+        internal DWORD Flags; 
+        internal BYTE  PixelType; 
+        internal BYTE  ColorBits; 
+        internal BYTE  RedBits; 
+        internal BYTE  RedShift; 
+        internal BYTE  GreenBits; 
+        internal BYTE  GreenShift; 
+        internal BYTE  BlueBits; 
+        internal BYTE  BlueShift; 
+        internal BYTE  AlphaBits; 
+        internal BYTE  AlphaShift; 
+        internal BYTE  AccumBits; 
+        internal BYTE  AccumRedBits; 
+        internal BYTE  AccumGreenBits; 
+        internal BYTE  AccumBlueBits; 
+        internal BYTE  AccumAlphaBits; 
+        internal BYTE  DepthBits; 
+        internal BYTE  StencilBits; 
+        internal BYTE  AuxBuffers; 
+        internal BYTE  LayerPlane; 
+        BYTE  Reserved; 
+        internal COLORREF crTransparent; 
+    }
+
     #endregion
 
     #region GlyphMetricsFloat
@@ -1518,8 +1510,7 @@ namespace OpenTK.Platform.Windows
     /// character cell.
     /// </summary>
     /// <remarks>The values of <b>GlyphMetricsFloat</b> are specified as notional units.</remarks>
-    /// <seealso cref="POINTFLOAT" />
-    /// <seealso cref="Wgl.wglUseFontOutlines" />
+    /// <seealso cref="PointFloat" />
     [StructLayout(LayoutKind.Sequential)]
     internal struct GlyphMetricsFloat
     {
@@ -1550,9 +1541,9 @@ namespace OpenTK.Platform.Windows
     #region PointFloat
 
     /// <summary>
-    /// The <b>POINTFLOAT</b> structure contains the x and y coordinates of a point.
+    /// The <b>PointFloat</b> structure contains the x and y coordinates of a point.
     /// </summary>
-    /// <seealso cref="GLYPHMETRICSFLOAT" />
+    /// <seealso cref="GlyphMetricsFloat" />
     [StructLayout(LayoutKind.Sequential)]
     internal struct PointFloat
     {
@@ -2463,6 +2454,22 @@ namespace OpenTK.Platform.Windows
 
     #region --- Enums ---
 
+    #region 
+    
+    internal enum NcCalcSizeOptions
+    {
+        ALIGNTOP = 0x10,
+        ALIGNRIGHT = 0x80,
+        ALIGNLEFT = 0x20,
+        ALIGNBOTTOM = 0x40,
+        HREDRAW = 0x100,
+        VREDRAW = 0x200,
+        REDRAW = (HREDRAW | VREDRAW),
+        VALIDRECTS = 0x400
+    }
+
+    #endregion
+
     #region internal enum DisplayModeSettingsEnum
 
     internal enum DisplayModeSettingsEnum
@@ -3150,10 +3157,10 @@ namespace OpenTK.Platform.Windows
 
     #region QueueStatusFlags
 
-    [Flags]
     /// <summary>
     /// Queue status flags for GetQueueStatus() and MsgWaitForMultipleObjects()
     /// </summary>
+    [Flags]
     internal enum QueueStatusFlags
     {
         /// <summary>
@@ -3403,15 +3410,15 @@ namespace OpenTK.Platform.Windows
         /// <summary>
         /// Windows 2000 and higher only.
         /// </summary>
-	    XBUTTONDOWN		= 0x020B,
+        XBUTTONDOWN        = 0x020B,
         /// <summary>
         /// Windows 2000 and higher only.
         /// </summary>
-	    XBUTTONUP		= 0x020C,
+        XBUTTONUP        = 0x020C,
         /// <summary>
         /// Windows 2000 and higher only.
         /// </summary>
-	    XBUTTONDBLCLK	= 0x020D,
+        XBUTTONDBLCLK    = 0x020D,
         PARENTNOTIFY = 0x0210,
         ENTERMENULOOP = 0x0211,
         EXITMENULOOP = 0x0212,
@@ -3504,7 +3511,7 @@ namespace OpenTK.Platform.Windows
     #region ShowWindowCommand
 
     /// <summary>
-    // ShowWindow() Commands
+    /// ShowWindow() Commands
     /// </summary>
     internal enum ShowWindowCommand
     {
@@ -3703,3 +3710,8 @@ namespace OpenTK.Platform.Windows
 
     #endregion
 }
+
+#pragma warning restore 3019
+#pragma warning restore 0649
+#pragma warning restore 0169
+#pragma warning restore 0414

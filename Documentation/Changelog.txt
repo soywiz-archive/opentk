@@ -1,15 +1,182 @@
 [Legend: complete('+') | WIP('*') | missing('-')]
 
 ---------------------
+OpenTK 0.9.6 -> 0.9.7
+---------------------
++ Bind
+    + Fixed several suffixes that were incorrectly trimmed ("Instanced", "Indexed", "Varyings").
+    + CLS-compliant overloads now contain debugging stubs.
+    
++ OpenTK
+    + Graphics
+	* Initial support for OpenGL 3.1. Some functions and tokens aren't yet available in the specs - these will be added in due time.
+	* Improved type-safety in the OpenGL 3.0 bindings.
+	+ Automatic error checks now display stacktraces.
+
+---------------------
+OpenTK 0.9.5 -> 0.9.6
+---------------------
++ Bind
+	+ Improved heuristics for inline OpenGL documentation.
+	* Void pointers are now mapped to generic arrays (T[]) or references (ref T), where T : struct. Work in progress (see http://www.opentk.com/node/703).
+	+ Generated bindings now automatically check for OpenGL errors, when compiled in debug mode.
+	+ Disabled all generator modes except for GL.
+
++ OpenTK
+	+ Fixed all build warnings (apart from missing documentation comments).
+	+ Graphics
+		+ Improved inline documentation.
+		+ Added automatic OpenGL error checking in debug builds.
+		+ Replaced object overloads with generics for improved type-safety and performance.
+		+ Updated to version 48 specs (fixed some problems with the transform feedback extension).
+	+ Platform
+		+ Fixed GLX context attributes in the GLX_ARB_create_context code path.
+		+ Revert to the legacy GLX code path for pre-GL3.0 contexts (AMD drivers do not support vsync on GL3.0+).
+	+ Audio
+		+ AudioContext now initializes the maximum number of effect slots supported by the drivers.
+		+ Added IsSynchronized property.
+
++ Examples
+	+ New OpenAL example (EFX reverb).
+
+---------------------
+OpenTK 0.9.4 -> 0.9.5
+---------------------
+
++ Bind
+	+ Added support for inline OpenGL documentation.
+	+ Fixed mapping between signed / unsigned wrappers -> signed / unsigned entry points (casts should no longer be necessary).
+
++ Build
+	+ Added System.Xml reference to Bind project.
+	+ Added new documentation files to Bind project.
+
++ OpenTK
+	+ GameWindow / GLControl
+		+ Added new constructors to select the desired GraphicsContext version and flags.
+	+ Graphics
+		+ The GL class now contains inline documentation.
+		+ It is now possible to specify desired version and flags for the OpenGL context (forward-compatible, debug).
+	+ Input
+		+ It is now possible to use devices without axes and/or buttons (e.g. keyboard extensions, tablets).
+	+ Platform
+		+ X11 platform driver now uses glXChooseFBConfig for visual selection, if available.
+		+ X11 platform driver now supports GLX_ARB_create_context (OpenGL 3.0).
+
++ Examples
+	+ Extension test now requests an OpenGL 3.0 context.
+	+ Extension test now shows the parameters of each OpenTK.Graphics.GL function.
+
+
+
+---------------------
+OpenTK 0.9.3 -> 0.9.4
+---------------------
+
++ Bind
+	+ Emits metadata for GL wrappers: entry point, OpenGL version and extension.
+	+ Adds license information to the generated bindings.
+
++ Build
+	+ Promps for input when no arguments are specified. This means you can now build or create the OpenTK solution without opening a terminal.
+
++ OpenTK
+	+ GameWindow
+		+ Added support for JoystickDevices.
+	+ Input
+		+ Added JoystickDevice and IJoystickDriver.
+	+ Platform
+		* Implemented joystick support (Windows and Linux only at the moment).
+	+ Graphics
+		+ Added typesafe support for GL3 functions and enums: ARB_framebuffer_object, ARB_color_buffer_float, ARB_texture_rg, ARB_texture_ compression_rgtc, ARB_texture_float, EXT_texture_integer, EXT_texture_array
+		+ Added support for the complete GL3 spec.
+		* Added support for creating GL3.0-level contexts (Windows only at the moment).
+		+ Added metadata to the GL wrappers.
+		+ Implemented GL.SupportsFunction(MethodInfo).
+
++ Utilities
+	+ Fixed GL1.1 fallback when GL.BlendColor is not supported.
+
++ Examples
+	+ New Extensions viewer that displays the new GL metadata (needs .Net or Mono 2.4+ for full compatibility, but will run on older Mono versions).
+	+ Moved extensions viewer to the Tests category.
+
++ General
+	+ Set mime-type and eol-style properties to the .spec and .tm files.
+
+
+
+---------------------
+OpenTK 0.9.2 -> 0.9.3
+---------------------
+
++ OpenTK
+	+ GameWindow
+		+ Added cancelable Closing event.
+		+ Exit() method is now thread-safe.
+		+ Removed ExitAsync() method - use Exit() instead.
+	+ Graphics
+		+ Fixed version strings in GL.SupportsExtension().
+	+ Input
+		+ Added support for the MouseDevice.Move and .WheelChanged events and improved MouseDevice interface (Issue: "Fix MouseDevice.Move", http://www.opentk.com/node/652).
+	+ Math
+		+ Fixed infinite loop in quaternion constructors (Issue: "Quaternion bug", http://www.opentk.com/node/663)
+	+ Platform
+		+ MacOS support.
+		+ Suppressed build warnings for unused methods and fields in the platform bindings.
+
++ Utilities
+	+ Fixed TextPrinter bug with colors in high quality (Issue: "TextPrinter (TextQuality.High) failure (with patch to fix)", http://www.opentk.com/node/660)
+
++ Examples
+	+ Fixed the JuliaSetFractal and Framebuffer Object examples when the video cards don't support GLSL and FBOs, respectively.
+
++ General
+	+ Set mime-type and eol-style properties for .cs and .txt files.
+	+ Replaced stray tabs with spaces in several files.
+
+		
+
+---------------------
 OpenTK 0.9.1 -> 0.9.2
 ---------------------
++ Bind
+    + Added the Half type to the typemaps.
+
 + OpenTK
     + Platform
         + Added GdiPlus bindings.
-        
+        + Fixed a bug where the KeypardEnter key was reported as Enter on X11.
+        + Changed the Time X11 struct from int to IntPtr.
+        + Improved GLControl implementations.
+    + Graphics
+        + Added Color4 struct that can hold floating-point ARGB colors.
+        + Added several new overloads to the GL class. Most deal with OpenTK.Math and System.Drawing.Color interoperation.
+        + Added support for the Half type.
+    + Math
+        + Added half and double precision structures.
+        + Added missing ref overloads.
+        + All structs now implement the IEquatable interface.
+        + Added the SerializableAttribute to the Quaternion and Quaterniond structs.
+        + Fixed Quaternion/Quaterniond.ToAxisAngle with an angle of 0 degrees.
+        + Quaternion/Quaterniond now follow the recommended class library naming conventions.
+    + General
+        + Fixed build warnings.
+        + Eliminated per-frame memory allocations in release builds.
+
 + Utilities
     + Fonts
         + Updated the layout code to use the new GdiPlus bindings.
+        + Added support for near-, far- and center-aligned text.
+        + Added support for right-to-left and vertical text (not 100% complete).
+        + Added support for subpixel antialiasing (requires GL 1.2 or higher).
+
++ Examples
+    + Improved ExampleLauncher behavior on recent Mono/Linux releases.
+    + Switched to the new TextPrinter implementation.
+    + Changed background color from SteelBlue to MidnightBlue.
+
+
 
 ---------------------
 OpenTK 0.9.0 -> 0.9.1
@@ -55,6 +222,8 @@ OpenTK 0.9.0 -> 0.9.1
 	+ Added Inertia's OpenAL Playback example.
 	+ Made several tests public (Input Logger, Resolutions, GameWindow states).
 
+
+
 -----------------------
 OpenTK 0.3.13 -> 0.9.0
 -----------------------
@@ -92,6 +261,8 @@ Minor version changed to reflect current progress.
 	+ Hidden examples now displayed on Ctrl+F1.
 	+ Bugfixes to GLSL and VBO examples.
 	+ Input logger works again (hidden example).
+
+
 
 -----------------------
 OpenTK 0.3.12 -> 0.3.13

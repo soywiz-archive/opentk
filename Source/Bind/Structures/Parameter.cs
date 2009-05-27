@@ -43,6 +43,7 @@ namespace Bind.Structures
             this.Name = p.Name;
             this.Unchecked = p.Unchecked;
             this.UnmanagedType = p.UnmanagedType;
+            this.Generic = p.Generic;
             this.Flow = p.Flow;
             this.cache = p.cache;
             //this.rebuild = false;
@@ -71,7 +72,7 @@ namespace Bind.Structures
 
         #endregion
 
-        #region UnmanagedType property
+        #region UnmanagedType
 
         UnmanagedType _unmanaged_type;
         /// <summary>
@@ -157,6 +158,17 @@ namespace Bind.Structures
 
         #endregion
 
+        #region public bool Generic
+        
+        bool generic;
+        public bool Generic
+        {
+            get { return generic; }
+            set { generic = value; }
+        }
+
+        #endregion
+
         #region public override string CurrentType
 
         public override string CurrentType
@@ -174,10 +186,32 @@ namespace Bind.Structures
 
         #endregion
 
+        #region public bool DiffersOnlyOnReference
+
+        // Returns true if this parameter differs only on reference compared to another parameter, i.e:
+        // returns true for 'int' & 'ref int'
+        // returns true for 'ref float' & 'float'
+        // returns false 'int' & 'int*'
+        // returns false 'int' & 'int[]'
+        // returns false 'int' & 'float'
+        public bool DiffersOnlyOnReference(Parameter other)
+        {
+            return
+                CurrentType == other.CurrentType &&
+                (Reference && !(other.Reference || other.Array > 0 || other.Pointer) ||
+                other.Reference && !(Reference || Array > 0 || Pointer));
+        }
+
+        #endregion
+
+        #region public override string ToString()
+
         public override string ToString()
         {
             return ToString(false);
         }
+
+        #endregion
 
         #region public string ToString(bool override_unsafe_setting)
 
@@ -217,7 +251,12 @@ namespace Bind.Structures
                     {
                         sb.Append(CurrentType);
                         if (Array > 0)
-                            sb.Append("[]");
+                        {
+                            sb.Append("[");
+                            for (int i = 1; i < Array; i++)
+                                sb.Append(",");
+                            sb.Append("]");
+                        }
                     }
                 }
                 else
@@ -226,7 +265,12 @@ namespace Bind.Structures
                     if (Pointer)
                         sb.Append("*");
                     if (Array > 0)
-                        sb.Append("[]");
+                    {
+                        sb.Append("[");
+                        for (int i = 1; i < Array; i++)
+                            sb.Append(",");
+                        sb.Append("]");
+                    }
                 }
                 if (!String.IsNullOrEmpty(Name))
                 {
@@ -251,25 +295,27 @@ namespace Bind.Structures
             // Find out the necessary wrapper types.
             if (Pointer)/* || CurrentType == "IntPtr")*/
             {
-                WrapperType = WrapperTypes.ArrayParameter;
-
                 if (CurrentType.ToLower().Contains("char") || CurrentType.ToLower().Contains("string"))
                 {
                     // char* or string -> [In] String or [Out] StringBuilder
                     CurrentType =
                         Flow == Parameter.FlowDirection.Out ?
                         "System.Text.StringBuilder" :
-                        "System.String";
+                        "String";
 
                     Pointer = false;
                     WrapperType = WrapperTypes.None;
                 }
                 else if (CurrentType.ToLower().Contains("void") ||
-                         (!String.IsNullOrEmpty(PreviousType) && PreviousType.ToLower().Contains("void"))) /*|| CurrentType.Contains("IntPtr"))*/
+                    (!String.IsNullOrEmpty(PreviousType) && PreviousType.ToLower().Contains("void"))) /*|| CurrentType.Contains("IntPtr"))*/
                 {
                     CurrentType = "IntPtr";
                     Pointer = false;
                     WrapperType = WrapperTypes.GenericParameter;
+                }
+                else
+                {
+                    WrapperType = WrapperTypes.ArrayParameter;
                 }
             }
 
@@ -294,6 +340,8 @@ namespace Bind.Structures
         private bool rebuild = true;
         bool hasPointerParameters;
         bool hasReferenceParameters;
+        bool hasUnsignedParameters;
+        bool hasGenericParameters;
         bool unsafe_types_allowed;
         public bool Rebuild
         {
@@ -321,9 +369,9 @@ namespace Bind.Structures
 
         void BuildCache()
         {
+            BuildReferenceAndPointerParametersCache();
             BuildCallStringCache();
             BuildToStringCache(unsafe_types_allowed);
-            BuildReferenceAndPointerParametersCache();
             Rebuild = false;
         }
 
@@ -335,15 +383,10 @@ namespace Bind.Structures
         {
             get
             {
-                if (!rebuild)
-                {
-                    return hasPointerParameters;
-                }
-                else
-                {
+                if (Rebuild)
                     BuildCache();
-                    return hasPointerParameters;
-                }
+
+                return hasPointerParameters;
             }
         }
 
@@ -355,18 +398,43 @@ namespace Bind.Structures
         {
             get
             {
-                if (!Rebuild)
-                {
-                    return hasReferenceParameters;
-                }
-                else
-                {
+                if (Rebuild)
                     BuildCache();
-                    return hasReferenceParameters;
-                }
+                
+                return hasReferenceParameters;
             }
         }
 
+        #endregion
+
+        #region public bool HasUnsignedParameters
+
+        public bool HasUnsignedParameters
+        {
+            get
+            {
+                if (Rebuild)
+                    BuildCache();
+
+                return hasUnsignedParameters;
+            }
+        }
+
+        #endregion
+
+        #region public bool HasGenericParameters
+
+        public bool HasGenericParameters
+        {
+            get
+            {
+                if (Rebuild)
+                    BuildCache();
+
+                return hasGenericParameters;
+            }
+        }
+        
         #endregion
 
         #region void BuildReferenceAndPointerParametersCache()
@@ -380,6 +448,12 @@ namespace Bind.Structures
 
                 if (p.Reference)
                     hasReferenceParameters = true;
+
+                if (p.Unsigned)
+                    hasUnsignedParameters = true;
+
+                if (p.Generic)
+                    hasGenericParameters = true;
             }
         }
 
@@ -487,7 +561,7 @@ namespace Bind.Structures
                     if (p.Unchecked)
                         sb.Append("unchecked((" + p.CurrentType + ")");
 
-                    if (p.CurrentType != "object")
+                    if (!p.Generic && p.CurrentType != "object")
                     {
                         if (p.CurrentType.ToLower().Contains("string"))
                         {
@@ -508,9 +582,7 @@ namespace Bind.Structures
                         }
                     }
 
-                    sb.Append(
-                        Utilities.Keywords.Contains(p.Name) ? "@" + p.Name : p.Name
-                    );
+                    sb.Append(Utilities.Keywords.Contains(p.Name) ? "@" + p.Name : p.Name);
 
                     if (p.Unchecked)
                         sb.Append(")");

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Globalization;
 
 namespace Bind.Structures
 {
@@ -77,6 +78,20 @@ namespace Bind.Structures
 
         #endregion
 
+        #region Public Members
+
+        // Returns true if the enum contains a collection of flags, i.e. 1, 2, 4, 8, ...
+        public bool IsFlagCollection
+        {
+            get
+            {
+                // It seems that all flag collections contain "Mask" in their names.
+                // This looks like a heuristic, but it holds 100% in practice
+                // (checked all enums to make sure).
+                return Name.Contains("Mask");
+            }
+        }
+
         #region public string Name
 
         public string Name
@@ -87,13 +102,18 @@ namespace Bind.Structures
 
         #endregion
 
-        System.Collections.Hashtable _constant_collection = new System.Collections.Hashtable();
+        #region ConstantCollection
 
-        public System.Collections.Hashtable ConstantCollection
+        Dictionary<string, Constant> _constant_collection = new Dictionary<string, Constant>();
+
+        public IDictionary<string, Constant> ConstantCollection
         {
             get { return _constant_collection; }
-            //set { _constant_collection = value; }
         }
+
+        #endregion
+
+        #region TranslateName
 
         public static string TranslateName(string name)
         {
@@ -113,7 +133,7 @@ namespace Bind.Structures
                 foreach (char c in name)
                 {
                     char char_to_add;
-                    if (c == '_')
+                    if (c == '_' || c == '-')
                         is_after_underscore_or_number = true;
                     else 
                     {
@@ -137,13 +157,28 @@ namespace Bind.Structures
             return translator.ToString();
         }
 
+        #endregion
+
+        #region ToString
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+            List<Constant> constants = new List<Constant>(ConstantCollection.Values);
+            constants.Sort(delegate(Constant c1, Constant c2)
+            {
+                int ret = String.Compare(c1.Value, c2.Value);
+                if (ret == 0)
+                    return String.Compare(c1.Name, c2.Name);
+                return ret;
+            });
 
+            if (IsFlagCollection)
+                sb.AppendLine("[Flags]");
             sb.AppendLine("public enum " + Name);
             sb.AppendLine("{");
-            foreach (Constant c in ConstantCollection.Values)
+
+            foreach (Constant c in constants)
             {
                 sb.Append("    ");
                 sb.Append(c.ToString());
@@ -154,6 +189,10 @@ namespace Bind.Structures
 
             return sb.ToString();
         }
+
+        #endregion
+
+        #endregion
     }
 
     #endregion
@@ -224,39 +263,35 @@ namespace Bind.Structures
 
             if (Settings.DropMultipleTokens)
             {
-
                 // When there are multiple tokens with the same value but different extension
                 // drop the duplicates. Order of preference: core > ARB > EXT > vendor specific
+
+                List<Constant> removed_tokens = new List<Constant>();
+
                 foreach (Enum e in this.Values)
                 {
                     if (e.Name == "All")
                         continue;
 
+                    // This implementation is a not very bright O(n^2).
                     foreach (Constant c in e.ConstantCollection.Values)
                     {
                         foreach (Constant c2 in e.ConstantCollection.Values)
                         {
                             if (c.Name != c2.Name && c.Value == c2.Value)
                             {
-                                if (c.Name.Contains(Constant.Translate("TEXTURE_DEFORMATION_BIT_SGIX")) ||
-                                    c2.Name.Contains(Constant.Translate("TEXTURE_DEFORMATION_BIT_SGIX")))
-                                {
-                                }
-
                                 int prefer = OrderOfPreference(Utilities.GetGL2Extension(c.Name), Utilities.GetGL2Extension(c2.Name));
                                 if (prefer == -1)
-                                {
-                                    c2.Name = "";
-                                    c2.Value = "";
-                                }
+                                    removed_tokens.Add(c2);
                                 else if (prefer == 1)
-                                {
-                                    c.Name = "";
-                                    c.Value = "";
-                                }
+                                    removed_tokens.Add(c);
                             }
                         }
                     }
+
+                    foreach (Constant c in removed_tokens)
+                        e.ConstantCollection.Remove(c.Name);
+                    removed_tokens.Clear();
                 }
             }
         }
@@ -264,22 +299,24 @@ namespace Bind.Structures
         // Return -1 for ext1, 1 for ext2 or 0 if no preference.
         int OrderOfPreference(string ext1, string ext2)
         {
-            // If one is empty and the other note, prefer the empty one.
-            // (empty == core)
+            // If one is empty and the other not, prefer the empty one (empty == core)
             // Otherwise check for Arb and Ext. To reuse the logic for the
             // empty check, let's try to remove first Arb, then Ext from the strings.
-            int ret;
-            ret = OrderOfPreferenceInternal(ext1, ext2);
-            if (ret != 0) return ret;
+            int ret = PreferEmpty(ext1, ext2);
+            if (ret != 0)
+                return ret;
+            
             ext1 = ext1.Replace("Arb", ""); ext2 = ext2.Replace("Arb", "");
-            ret = OrderOfPreferenceInternal(ext1, ext2);
-            if (ret != 0) return ret;
+            ret = PreferEmpty(ext1, ext2);
+            if (ret != 0)
+                return ret;
+            
             ext1 = ext1.Replace("Ext", ""); ext2 = ext2.Replace("Ext", "");
-            return ret;
+            return PreferEmpty(ext1, ext2);
         }
 
         // Prefer the empty string over the non-empty.
-        int OrderOfPreferenceInternal(string ext1, string ext2)
+        int PreferEmpty(string ext1, string ext2)
         {
             if (String.IsNullOrEmpty(ext1) && !String.IsNullOrEmpty(ext2))
                 return -1;

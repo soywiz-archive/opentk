@@ -23,7 +23,7 @@ namespace OpenTK.Audio
         #region --- Fields ---
 
         bool disposed;
-        bool is_processing;
+        bool is_processing, is_synchronized;
         IntPtr device_handle;
         ContextHandle context_handle;
         bool context_exists;
@@ -62,16 +62,11 @@ namespace OpenTK.Audio
         #region public AudioContext()
 
         /// <summary>Constructs a new AudioContext, using the default audio device.</summary>
-        /// <exception cref="NotSupportedException">Occurs when no audio devices are available.</exception>
-        public AudioContext()// : this(available_devices.Count > 0 ? available_devices[0] : null, 0, 0, false, 0) { }
-        {
-            if (!openal_supported)
-                throw new DllNotFoundException("openal32.dll");
-            CreateContext(null, 0, 0, false, 0);
-        }
+        public AudioContext()
+            : this(null, 0, 0, false, true) { }
 
         #endregion
-#if false
+
         #region public AudioContext(string device)
 
         /// <summary>Constructs a new AudioContext, using the specified audio device.</summary>
@@ -80,7 +75,7 @@ namespace OpenTK.Audio
         /// Use AudioContext.AvailableDevices to obtain a list of all available audio devices.
         /// devices.
         /// </remarks>
-        public AudioContext(string device) : this(device, 0, 0, false, 0) { }
+        public AudioContext(string device) : this(device, 0, 0, false, true) { }
 
         #endregion
 
@@ -93,8 +88,7 @@ namespace OpenTK.Audio
         /// Use AudioContext.AvailableDevices to obtain a list of all available audio devices.
         /// devices.
         /// </remarks>
-        /// <see cref="AudioContext(string device, int freq, int refresh, bool sync, int maxEfxSends)"/>
-        public AudioContext(string device, int freq) : this(device, freq, 0, false, 0) { }
+        public AudioContext(string device, int freq) : this(device, freq, 0, false, true) { }
 
         #endregion
 
@@ -108,9 +102,8 @@ namespace OpenTK.Audio
         /// Use AudioContext.AvailableDevices to obtain a list of all available audio devices.
         /// devices.
         /// </remarks>
-        /// <see cref="AudioContext(string device, int freq, int refresh, bool sync, int maxEfxSends)"/>
         public AudioContext(string device, int freq, int refresh)
-            : this(device, freq, refresh, false, 0) { }
+            : this(device, freq, refresh, false, true) { }
 
         #endregion
 
@@ -125,26 +118,25 @@ namespace OpenTK.Audio
         /// Use AudioContext.AvailableDevices to obtain a list of all available audio devices.
         /// devices.
         /// </remarks>
-        /// <see cref="AudioContext(string device, int freq, int refresh, bool sync, int maxEfxSends)"/>
         public AudioContext(string device, int freq, int refresh, bool sync)
-            : this(available_devices[0], freq, refresh, sync, 0) { }
+            : this(available_devices[0], freq, refresh, sync, true) { }
 
         #endregion
 
-        #region public AudioContext(string device, int freq, int refresh, bool sync, int maxSends)
+        #region public AudioContext(string device, int freq, int refresh, bool sync, bool enableEfx)
 
         /// <summary>Creates the audio context using the specified device and device parameters.</summary>
         /// <param name="device">The device descriptor obtained through AudioContext.AvailableDevices.</param>
         /// <param name="freq">Frequency for mixing output buffer, in units of Hz. Pass 0 for driver default.</param>
         /// <param name="refresh">Refresh intervals, in units of Hz. Pass 0 for driver default.</param>
         /// <param name="sync">Flag, indicating a synchronous context.</param>
-        /// <param name="maxSends">Number of auxilliary send slots for the EFX extensions. Can be 0 (use driver default) or higher.</param>
+        /// <param name="enableEfx">Indicates whether the EFX extension should be initialized, if present.</param>
         /// <exception cref="ArgumentNullException">Occurs when the device string is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Occurs when a specified parameter is invalid.</exception>
-        /// <exception cref="InvalidAudioDeviceException">
+        /// <exception cref="AudioDeviceException">
         /// Occurs when the specified device is not available, or is in use by another program.
         /// </exception>
-        /// <exception cref="InvalidAudioContextException">
+        /// <exception cref="AudioContextException">
         /// Occurs when an audio context could not be created with the specified parameters.
         /// </exception>
         /// <exception cref="NotSupportedException">
@@ -158,13 +150,13 @@ namespace OpenTK.Audio
         /// Values higher than supported will be clamped by the driver.
         /// </para>
         /// </remarks>
-        public AudioContext(string device, int freq, int refresh, bool sync, int maxSends)
+        public AudioContext(string device, int freq, int refresh, bool sync, bool enableEfx)
         {
-            CreateContext(device, freq, refresh, sync, maxSends);
+            CreateContext(device, freq, refresh, sync, enableEfx);
         }
 
         #endregion
-#endif
+
         #endregion
 
         #region --- Private Methods ---
@@ -219,7 +211,7 @@ namespace OpenTK.Audio
 
         #endregion
 
-        #region void CreateContext(string device)
+        #region CreateContext
 
         /// <private />
         /// <summary>Creates the audio context using the specified device.</summary>
@@ -227,12 +219,12 @@ namespace OpenTK.Audio
         /// <param name="freq">Frequency for mixing output buffer, in units of Hz. Pass 0 for driver default.</param>
         /// <param name="refresh">Refresh intervals, in units of Hz. Pass 0 for driver default.</param>
         /// <param name="sync">Flag, indicating a synchronous context.</param>
-        /// <param name="maxEfxSends">Number of auxilliary send slots for the EFX extensions. Can be 0 (use driver default) or higher.</param>
+        /// <param name="enableEfx">Indicates whether the EFX extension should be initialized, if present.</param>
         /// /// <exception cref="ArgumentOutOfRangeException">Occurs when a specified parameter is invalid.</exception>
         /// <exception cref="AudioDeviceException">
         /// Occurs when the specified device is not available, or is in use by another program.
         /// </exception>
-        /// <exception cref="AudioDeviceException">
+        /// <exception cref="AudioContextException">
         /// Occurs when an audio context could not be created with the specified parameters.
         /// </exception>
         /// <exception cref="NotSupportedException">
@@ -246,14 +238,16 @@ namespace OpenTK.Audio
         /// Values higher than supported will be clamped by the driver.
         /// </para>
         /// </remarks>
-        void CreateContext(string device, int freq, int refresh, bool sync, int maxEfxSends)
+        void CreateContext(string device, int freq, int refresh, bool sync, bool enableEfx)
         {
+            if (!openal_supported)
+                throw new DllNotFoundException("openal32.dll");
+            
             if (version == Version.OpenAL11 && available_devices.Count == 0)    // Version.OpenAL10 does not support device enumeration.
                 throw new NotSupportedException("No audio hardware is available.");
             if (context_exists) throw new NotSupportedException("Multiple AudioContexts are not supported.");
             if (freq < 0) throw new ArgumentOutOfRangeException("freq", freq, "Should be greater than zero.");
             if (refresh < 0) throw new ArgumentOutOfRangeException("refresh", refresh, "Should be greater than zero.");
-            if (maxEfxSends < 0) throw new ArgumentOutOfRangeException("maxEfxSends", maxEfxSends, "Should be greater than zero.");
 
             if (!String.IsNullOrEmpty(device))
                 device_handle = Alc.OpenDevice(device);
@@ -265,11 +259,9 @@ namespace OpenTK.Audio
                 device_handle = Alc.OpenDevice(available_devices[0]);
             if (device_handle == IntPtr.Zero)
                 throw new AudioDeviceException(String.Format("Audio device '{0}' does not exist or is tied up by another application.",
-                                                             String.IsNullOrEmpty(device) ? "default" : device));
+                    String.IsNullOrEmpty(device) ? "default" : device));
 
             CheckForAlcErrors();
-
-            device_name = device;
 
             // Build the attribute list
             List<int> attributes = new List<int>();
@@ -286,16 +278,17 @@ namespace OpenTK.Audio
                 attributes.Add(refresh);
             }
             
-            attributes.Add((int)AlcContextAttributes.Frequency);
+            attributes.Add((int)AlcContextAttributes.Sync);
             attributes.Add(sync ? 1 : 0);
 
-            if (maxEfxSends > 0)
+            if (enableEfx && Alc.IsExtensionPresent(device_handle, "ALC_EXT_EFX"))
             {
-                throw new NotImplementedException();
-                //if (Alc.IsExtensionPresent(device_handle, "ALC_EXT_EFX"))
-                //attributes.Add((int)AlcContextAttributes.MaxAuxilliarySends);
-                //attributes.Add(maxEfxSends);
+                int num_slots;
+                Alc.GetInteger(device_handle, AlcGetInteger.EfxMaxAuxiliarySends, 1, out num_slots);
+                attributes.Add((int)AlcContextAttributes.EfxMaxAuxiliarySends);
+                attributes.Add(num_slots);
             }
+            attributes.Add(0);
 
             context_handle = Alc.CreateContext(device_handle, attributes.ToArray());
 
@@ -315,8 +308,22 @@ namespace OpenTK.Audio
 
             CheckForAlcErrors();
             
-            //device_name = Alc.GetString(device_handle, AlcGetString.DeviceSpecifier);
-            //Debug.Print(device_name);
+            device_name = Alc.GetString(device_handle, AlcGetString.DeviceSpecifier);
+            int attribute_count;
+            Alc.GetInteger(device_handle, AlcGetInteger.AttributesSize, sizeof(int), out attribute_count);
+            if (attribute_count > 0)
+            {
+                int[] device_attributes = new int[attribute_count];
+                Alc.GetInteger(device_handle, AlcGetInteger.AllAttributes, device_attributes.Length * sizeof(int), out device_attributes[0]);
+                foreach (int attr in device_attributes)
+                {
+                    switch ((AlcContextAttributes)attr)
+                    {
+                        case AlcContextAttributes.Sync: IsSynchronized = true; break;
+                    }
+                }
+            }
+
             lock (audio_context_lock)
             {
                 available_contexts.Add(this.context_handle, this);
@@ -440,6 +447,21 @@ namespace OpenTK.Audio
 
         #endregion
 
+        #region public bool IsProcessing
+
+        /// <summary>
+        /// Gets a System.Boolean indicating whether the AudioContext is
+        /// synchronized.
+        /// </summary>
+        /// <seealso cref="Process"/>
+        public bool IsSynchronized
+        {
+            get { return is_synchronized; }
+            private set { is_synchronized = value; }
+        }
+
+        #endregion
+
         #region public void Process
 
         /// <summary>
@@ -458,7 +480,7 @@ namespace OpenTK.Audio
         /// </remarks>
         /// <exception cref="ObjectDisposedException">Occurs when this function is called after the AudioContext had been disposed.</exception>
         /// <seealso cref="Suspend"/>
-        /// <seealso cref="IsSuspended"/>
+        /// <seealso cref="IsProcessing"/>
         /// <seealso cref="IsSynchronized"/>
         public void Process()
         {
@@ -489,7 +511,7 @@ namespace OpenTK.Audio
         /// </remarks>
         /// <exception cref="ObjectDisposedException">Occurs when this function is called after the AudioContext had been disposed.</exception>
         /// <seealso cref="Process"/>
-        /// <seealso cref="IsSuspended"/>
+        /// <seealso cref="IsProcessing"/>
         /// <seealso cref="IsSynchronized"/>
         public void Suspend()
         {

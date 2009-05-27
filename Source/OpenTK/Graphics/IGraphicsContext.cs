@@ -44,6 +44,22 @@ namespace OpenTK.Graphics
         /// Gets or sets a value indicating whether VSyncing is enabled.
         /// </summary>
         bool VSync { get; set; }
+
+        /// <summary>
+        /// Updates the graphics context.  This must be called when the region the graphics context
+        /// is drawn to is resized.
+        /// </summary>
+        /// <param name="window"></param>
+        void Update(IWindowInfo window);
+
+        /// <summary>Gets the GraphicsMode of this instance.</summary>
+        GraphicsMode GraphicsMode { get; }
+
+        /// <summary>
+        /// Gets or sets a System.Boolean, indicating whether automatic error checking should be performed.
+        /// Influences the debug version of OpenTK.dll, only.
+        /// </summary>
+        bool ErrorChecking { get; set; }
     }
 
     public delegate void DestroyEvent<T>(T sender, EventArgs e);
@@ -56,6 +72,8 @@ namespace OpenTK.Graphics
     /// </summary>
     public interface IGraphicsContextInternal
     {
+        IGraphicsContext Implementation { get; }
+
         ///// <summary>
         ///// Creates an OpenGL context with the specified direct/indirect rendering mode and sharing state with the
         ///// specified IGraphicsContext.
@@ -73,13 +91,10 @@ namespace OpenTK.Graphics
         /// </summary>
         ContextHandle Context { get; }
 
-        /// <summary>
-        /// Gets the IWindowInfo describing the window associated with this context.
-        /// </summary>
+        // <summary>
+        // Gets the IWindowInfo describing the window associated with this context.
+        // </summary>
         //IWindowInfo Info { get; }
-
-        /// <summary>Gets the GraphicsMode of the context.</summary>
-        GraphicsMode GraphicsMode { get; }
 
         ///// <summary>
         ///// Gets a System.IntPtr containing the handle to the OpenGL context which is current in the

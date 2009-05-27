@@ -12,13 +12,22 @@ namespace Bind
 {
     static class Settings
     {
+        // Disable BeforeFieldInit.
+        static Settings() { }
+
+        public const string DefaultInputPath = "../../../Source/Bind/Specifications";
+        public const string DefaultOutputPath = "../../../Source/OpenTK/Graphics/GL";
+        public const string DefaultOutputNamespace = "OpenTK.Graphics";
+        public const string DefaultDocPath = "../../../Source/Bind/Specifications/Docs";
+        public const string DefaultDocFile = "ToInlineDocs.xslt";
+        public const string DefaultLicenseFile = "License.txt";
+
         public static string InputPath = DefaultInputPath;
         public static string OutputPath = DefaultOutputPath;
         public static string OutputNamespace = DefaultOutputNamespace;
-
-        public const string DefaultInputPath = "..\\..\\..\\Source\\Bind\\Specifications";
-        public const string DefaultOutputPath = "..\\..\\..\\Source\\OpenTK\\OpenGL\\Bindings";
-        public const string DefaultOutputNamespace = "OpenTK.Graphics.OpenGL";
+        public static string DocPath = DefaultDocPath;
+        public static string DocFile = DefaultDocFile;
+        public static string LicenseFile = DefaultLicenseFile;
 
         public static string GLClass = "GL";        // Needed by Glu for the AuxEnumsClass. Can be set through -gl:"xxx".
         public static string OutputClass = "GL";    // The real output class. Can be set through -class:"xxx".
@@ -67,13 +76,12 @@ namespace Bind
             }
         }
 
-        // New enums namespace (no nested class).
-        public static string EnumsNamespace;// = "Enums";
+        // New enums namespace (don't use a nested class).
+        public static string EnumsNamespace = null;// = "Enums";
 
         public static string DelegatesClass = "Delegates";
         public static string ImportsClass = "Imports";
 
-        // TODO: Remove legacy for for 0.3.15.
         public static Legacy Compatibility = Legacy.NoDropMultipleTokens;
 
         /// <summary>
@@ -114,6 +122,8 @@ namespace Bind
             NoBoolParameters = 0x100,
             /// <summary>Keep all enum tokens, even if same value (e.g. FooARB, FooEXT and FooSGI).</summary>
             NoDropMultipleTokens = 0x200,
+            /// <summary>Do not emit inline documentation.</summary>
+            NoDocumentation = 0x400,
             Tao = ConstIntEnums |
                   NoAdvancedEnumProcessing |
                   NoPublicUnsafeFunctions |
@@ -123,7 +133,8 @@ namespace Bind
                   TurnVoidPointersToIntPtr |
                   NestedEnums |
                   NoBoolParameters |
-                  NoDropMultipleTokens,
+                  NoDropMultipleTokens |
+                  NoDocumentation
                   /*GenerateAllPermutations,*/
         }
 

@@ -42,17 +42,8 @@ namespace OpenTK.Graphics
 
         static DisplayDevice()
         {
-            switch (System.Environment.OSVersion.Platform)
-            {
-                case PlatformID.Unix:
-                case (PlatformID)128:
-                    implementation = new OpenTK.Platform.X11.X11XrandrDisplayDevice();
-                    break;
-
-                default:
-                    implementation = new OpenTK.Platform.Windows.WinDisplayDeviceDriver();
-                    break;
-            }
+            implementation = Platform.Factory.CreateDisplayDeviceDriver();
+           
             //lock (display_lock)
             //{
             //    int i = 0;
@@ -75,11 +66,6 @@ namespace OpenTK.Graphics
 
             Debug.Print("DisplayDevice {0} ({1}) supports {2} resolutions.",
                 available_displays.Count, primary ? "primary" : "secondary", available_resolutions.Count);
-            
-            Debug.Indent();
-            foreach (DisplayResolution res in available_resolutions)
-                Debug.Print(res == current_resolution ? String.Format(">> {0} <<", res.ToString()) : res.ToString());
-            Debug.Unindent();
 
             lock (display_lock)
             {
@@ -317,9 +303,9 @@ namespace OpenTK.Graphics
 
         #region public override bool Equals(object obj)
 
-        /// <summary>Determines whether the specified DisplayDevices are equal.</summary>
-        /// <param name="obj">The System.Object to check against.</param>
-        /// <returns>True if the System.Object is an equal DisplayDevice; false otherwise.</returns>
+        ///// <summary>Determines whether the specified DisplayDevices are equal.</summary>
+        ///// <param name="obj">The System.Object to check against.</param>
+        ///// <returns>True if the System.Object is an equal DisplayDevice; false otherwise.</returns>
         //public override bool Equals(object obj)
         //{
         //    if (obj is DisplayDevice)
@@ -338,9 +324,9 @@ namespace OpenTK.Graphics
 
         #region public override int GetHashCode()
 
-        /// <summary>Returns a unique hash representing this DisplayDevice.</summary>
-        /// <returns>A System.Int32 that may serve as a hash code for this DisplayDevice.</returns>
-        //public override int GetHashCode()
+        ///// <summary>Returns a unique hash representing this DisplayDevice.</summary>
+        ///// <returns>A System.Int32 that may serve as a hash code for this DisplayDevice.</returns>
+        ////public override int GetHashCode()
         //{
         //    return current_resolution.GetHashCode() ^ IsPrimary.GetHashCode() ^ available_resolutions.Count;
         //}

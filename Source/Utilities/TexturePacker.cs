@@ -35,13 +35,7 @@ namespace OpenTK
 
         #region public Rectangle Add(T item)
 
-        /// <summary>
-        /// Packs the given item into the free space of the TexturePacker.
-        /// </summary>
-        /// <param name="item">The item to pack.</param>
-        /// <returns>A System.Drawing.Rectangle containing the coordinates of the packed item.</returns>
-        /// <exception cref="InvalidOperationException">Occurs if the item is larger than the available TexturePacker area</exception>
-        /// <exception cref="ArgumentException">Occurs if the item already exists in the TexturePacker.</exception>
+        // Packs the given item into the free space of the TexturePacker. Returns the Rectangle of the packed item.
         public void Add(T item, out Rectangle rect)
         {
             if (item.Width > root.Rect.Width || item.Height > root.Rect.Height)
@@ -54,7 +48,7 @@ namespace OpenTK
 
                 // Tree is full and insertion failed:
                 if (node == null)
-                    throw new InvalidOperationException("There is not enough space to add this item. Consider calling the Clear() method.");
+                    throw new TexturePackerFullException();
 
                 //items.Add(item, node);
                 rect = node.Rect;
@@ -192,5 +186,10 @@ namespace OpenTK
         }
 
         #endregion
+    }
+
+    class TexturePackerFullException : Exception
+    {
+        public TexturePackerFullException() : base("There is not enough space to add this item. Consider calling the Clear() method.") { }
     }
 }

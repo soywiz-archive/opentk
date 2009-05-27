@@ -26,11 +26,13 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace OpenTK.Math
 {
-
-    /// <summary>3-component Vector of the Half type. Occupies 6 Byte total.</summary>
+    /// <summary>
+    /// 3-component Vector of the Half type. Occupies 6 Byte total.
+    /// </summary>
     [Serializable, StructLayout(LayoutKind.Sequential)]
     public struct Vector3h : ISerializable, IEquatable<Vector3h>
     {
@@ -189,6 +191,16 @@ namespace OpenTK.Math
 
         #endregion Constructors
 
+        #region Swizzle
+
+        /// <summary>
+        /// Gets or sets an OpenTK.Math.Vector2h with the X and Y components of this instance.
+        /// </summary>
+        [XmlIgnore]
+        public Vector2h Xy { get { return new Vector2h(X, Y); } set { X = value.X; Y = value.Y; } }
+
+        #endregion
+
         #region Half -> Single
 
         /// <summary>
@@ -203,7 +215,6 @@ namespace OpenTK.Math
         /// <summary>
         /// Returns this Half3 instance's contents as Vector3d.
         /// </summary>
-        /// <param name="v">OpenTK.Math.Vector3d</param>
         public Vector3d ToVector3d()
         {
             return new Vector3d(X, Y, Z);
@@ -214,7 +225,7 @@ namespace OpenTK.Math
         #region Conversions
 
         /// <summary>Converts OpenTK.Math.Vector3 to OpenTK.Math.Half3.</summary>
-        /// <param name="v4f">The Vector3 to convert.</param>
+        /// <param name="v3f">The Vector3 to convert.</param>
         /// <returns>The resulting Half vector.</returns>
         public static explicit operator Vector3h(Vector3 v3f)
         {
@@ -222,7 +233,7 @@ namespace OpenTK.Math
         }
 
         /// <summary>Converts OpenTK.Math.Vector3d to OpenTK.Math.Half3.</summary>
-        /// <param name="v4d">The Vector3d to convert.</param>
+        /// <param name="v3d">The Vector3d to convert.</param>
         /// <returns>The resulting Half vector.</returns>
         public static explicit operator Vector3h(Vector3d v3d)
         {
@@ -230,7 +241,7 @@ namespace OpenTK.Math
         }
 
         /// <summary>Converts OpenTK.Math.Half3 to OpenTK.Math.Vector3.</summary>
-        /// <param name="h4">The Half3 to convert.</param>
+        /// <param name="h3">The Half3 to convert.</param>
         /// <returns>The resulting Vector3.</returns>
         public static explicit operator Vector3(Vector3h h3)
         {
@@ -242,7 +253,7 @@ namespace OpenTK.Math
         }
 
         /// <summary>Converts OpenTK.Math.Half3 to OpenTK.Math.Vector3d.</summary>
-        /// <param name="h4">The Half3 to convert.</param>
+        /// <param name="h3">The Half3 to convert.</param>
         /// <returns>The resulting Vector3d.</returns>
         public static explicit operator Vector3d(Vector3h h3)
         {
