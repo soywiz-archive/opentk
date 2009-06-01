@@ -43,11 +43,6 @@ namespace OpenTK.Platform.Windows
 
         static WinGLContext()
         {
-            // Set the GetCurrentContext implementation.
-            // TODO: Does this belong here?
-            if (GraphicsContext.GetCurrentContext == null)
-                GraphicsContext.GetCurrentContext = WinGLContext.GetCurrentContext;
-
             // Dynamically load the OpenGL32.dll in order to use the extension loading capabilities of Wgl.
             if (opengl32Handle == IntPtr.Zero)
             {
@@ -92,7 +87,7 @@ namespace OpenTK.Platform.Windows
             {
                 try
                 {
-                    Debug.WriteLine("Using WGL_ARB_create_context...");
+                    Debug.Write("Using WGL_ARB_create_context... ");
 
                     List<int> attributes = new List<int>();
                     attributes.Add((int)ArbCreateContext.MajorVersion);
@@ -111,6 +106,10 @@ namespace OpenTK.Platform.Windows
                             currentWindow.DeviceContext,
                             sharedContext != null ? (sharedContext as IGraphicsContextInternal).Context.Handle : IntPtr.Zero,
                             attributes.ToArray()));
+                    if (renderContext == ContextHandle.Zero)
+                        Debug.Print("failed. (Error: {0})", Marshal.GetLastWin32Error());
+                    else
+                        Debug.Print("success!");
                 }
                 catch (EntryPointNotFoundException e) { Debug.Print(e.ToString()); }
                 catch (NullReferenceException e) { Debug.Print(e.ToString()); }
@@ -119,7 +118,7 @@ namespace OpenTK.Platform.Windows
             if (renderContext == ContextHandle.Zero)
             {
                 // Failed to create GL3-level context, fall back to GL2.
-                Debug.Write("failed. Falling back to GL2... ");
+                Debug.Write("Falling back to GL2... ");
                 renderContext = new ContextHandle(Wgl.Imports.CreateContext(currentWindow.DeviceContext));
                 if (renderContext == ContextHandle.Zero)
                     renderContext = new ContextHandle(Wgl.Imports.CreateContext(currentWindow.DeviceContext));
@@ -359,15 +358,6 @@ namespace OpenTK.Platform.Windows
             }
         }
 
-
-        #endregion
-
-        #region static ContextHandle GetCurrentContext()
-
-        static ContextHandle GetCurrentContext()
-        {
-            return new ContextHandle(Wgl.GetCurrentContext());
-        }
 
         #endregion
 
