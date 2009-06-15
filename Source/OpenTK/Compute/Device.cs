@@ -35,10 +35,6 @@ namespace OpenTK.Compute
 {
     public sealed class Device : Wrapper<DeviceId>
     {
-        
-
-
-        
         static Dictionary<DeviceType, DeviceId[]> type_to_device_id = new Dictionary<DeviceType, DeviceId[]>();
 
         public static IEnumerable<DeviceId> GetDeviceIds(DeviceType deviceType)
@@ -77,7 +73,6 @@ namespace OpenTK.Compute
                 IntPtr param_value_size,
                 IntPtr param_value,
                 IntPtr param_value_size_ret);
-
         }
     }
 }

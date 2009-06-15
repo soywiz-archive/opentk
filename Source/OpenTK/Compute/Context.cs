@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
@@ -51,36 +52,49 @@ namespace OpenTK.Compute
 
         static class UnsafeNativeMethods
         {
-//            typedef void (*logging_fn)(const char *, const void *, size_t, const void *);
-//  
-//            extern CL_API_ENTRY cl_context CL_API_CALL
-//            clCreateContext(cl_context_properties * /* properties */,
-//                            cl_uint                 /* num_devices */,
-//                            const cl_device_id *    /* devices */,
-//                            logging_fn              /* pfn_notify */,
-//                            void *                  /* user_data */,
-//                            cl_int *                /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_context CL_API_CALL
-//            clCreateContextFromType(cl_context_properties * /* properties */,
-//                                    cl_device_type          /* device_type */,
-//                                    logging_fn              /* pfn_notify */,
-//                                    void *                  /* user_data */,
-//                                    cl_int *                /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clRetainContext(cl_context /* context */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clReleaseContext(cl_context /* context */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clGetContextInfo(cl_context         /* context */, 
-//                             cl_context_info    /* param_name */, 
-//                             size_t             /* param_value_size */, 
-//                             void *             /* param_value */, 
-//                             size_t *           /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
+            // OpenCL 1.0
+            public delegate void NotifyFunction(string errinfo,
+                /* const void * */ IntPtr private_info,
+                /* size_t */ IntPtr cb,
+                /* void * */ IntPtr user_data
+            );
 
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint="clCreateContext")]
+            unsafe public static extern ContextId CreateContext(
+                ContextProperty* properties,
+                uint num_devices,
+                DeviceId* devices,
+                [MarshalAs(UnmanagedType.FunctionPtr)] NotifyFunction pfn_notify,
+                IntPtr user_data, // void*
+                int* errorcode_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clCreateContextFromType")]
+            unsafe public static extern ContextId CreateContextFromType(
+                ContextProperty* properties,
+                DeviceType device_type,
+                uint num_devices,
+                DeviceId* devices,
+                [MarshalAs(UnmanagedType.FunctionPtr)] NotifyFunction pfn_notify,
+                /* void * */ IntPtr user_data,
+                int* errorcode_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clRetainContext")]
+            public static extern int RetainContext(ContextId context);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clReleaseContext")]
+            public static extern int ReleaseContext(ContextId context);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clGetContextInfo")]
+            public static extern int GetContextInfo(ContextId context,
+                ContextInfo param_name,
+                /* size_t */ IntPtr param_value_size,
+                /* void * */ IntPtr param_value,
+                /* size_t * */ IntPtr param_value_size_ret);
         }
     }
 }

@@ -26,70 +26,77 @@
 #endregion
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    public sealed class Memory
+    public abstract class Memory
     {
-        static class UnsafeNativeMethods
+        static class NativeMethods
         {
-//                    
-//            extern CL_API_ENTRY cl_mem CL_API_CALL
-//            clCreateBuffer(cl_context   /* context */,
-//                           cl_mem_flags /* flags */,
-//                           size_t       /* size */,
-//                           void *       /* host_ptr */,
-//                           cl_int *     /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_mem CL_API_CALL
-//            clCreateImage2D(cl_context              /* context */,
-//                            cl_mem_flags            /* flags */,
-//                            const cl_image_format * /* image_format */,
-//                            size_t                  /* image_width */,
-//                            size_t                  /* image_height */,
-//                            size_t                  /* image_row_pitch */, 
-//                            void *                  /* host_ptr */,
-//                            cl_int *                /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//                                    
-//            extern CL_API_ENTRY cl_mem CL_API_CALL
-//            clCreateImage3D(cl_context              /* context */,
-//                            cl_mem_flags            /* flags */,
-//                            const cl_image_format * /* image_format */,
-//                            size_t                  /* image_width */, 
-//                            size_t                  /* image_height */,
-//                            size_t                  /* image_depth */, 
-//                            size_t                  /* image_row_pitch */, 
-//                            size_t                  /* image_slice_pitch */, 
-//                            void *                  /* host_ptr */,
-//                            cl_int *                /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//                                    
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clRetainMemObject(cl_mem /* memobj */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clReleaseMemObject(cl_mem /* memobj */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clGetSupportedImageFormats(cl_context           /* context */,
-//                                       cl_mem_flags         /* flags */,
-//                                       cl_mem_object_type   /* image_type */,
-//                                       cl_uint              /* num_entries */,
-//                                       cl_image_format *    /* image_formats */,
-//                                       cl_uint *            /* num_image_formats */) CL_API_SUFFIX__VERSION_1_0;
-//                                                
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clGetMemObjectInfo(cl_mem           /* memobj */,
-//                               cl_mem_info      /* param_name */, 
-//                               size_t           /* param_value_size */,
-//                               void *           /* param_value */,
-//                               size_t *         /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
-//            
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//            clGetImageInfo(cl_mem           /* image */,
-//                           cl_image_info    /* param_name */, 
-//                           size_t           /* param_value_size */,
-//                           void *           /* param_value */,
-//                           size_t *         /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clCreateBuffer")]
+            unsafe public static extern MemoryId CreateBuffer(ContextId context,
+                MemFlags flags,
+                /* size_t */ IntPtr size,
+                void* host_ptr,
+                int* errcode_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clCreateImage2D")]
+            unsafe public static extern MemoryId CreateImage2D(ContextId context,
+                MemFlags flags,
+                ImageFormat* image_format,
+                /* size_t */ IntPtr image_width,
+                /* size_t */ IntPtr image_height,
+                /* size_t */ IntPtr image_row_pitch,
+                void* host_ptr,
+                int* errcode_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clCreateImage3D")]
+            unsafe public static extern MemoryId CreateImage3D(ContextId context,
+                MemFlags flags,
+                ImageFormat* image_format,
+                /* size_t */ IntPtr image_width,
+                /* size_t */ IntPtr image_height,
+                /* size_t */ IntPtr image_row_pitch,
+                /* size_t */ IntPtr image_slice_pitch,
+                void* host_ptr,
+                int* errcode_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clRetainMemObject")]
+            public static extern int RetainMemObject(MemoryId memobj);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clReleaseMemObject")]
+            public static extern int ReleaseMemObject(MemoryId memobj);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clGetSupportedImageFormats")]
+            unsafe public static extern int GetSupportedImageFormats(ContextId context,
+                MemFlags flags,
+                MemObjectType image_type,
+                uint num_entries,
+                ImageFormat* image_formats,
+                uint* num_image_formats);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clGetMemObjectInfo")]
+            unsafe public static extern int GetMemObjectInfo(MemoryId memobj,
+                MemInfo param_name,
+                /* size_t */ IntPtr param_value_size,
+                void* param_value,
+                /* size_t * */ IntPtr param_value_size_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clGetImageInfo")]
+            unsafe public static extern int GetImageInfo(MemoryId image,
+                ImageInfo param_name,
+                /* size_t */ IntPtr param_value_size,
+                void* param_value,
+                /* size_t * */ IntPtr param_value_size_ret);
         }
     }
 }

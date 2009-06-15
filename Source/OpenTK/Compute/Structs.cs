@@ -89,4 +89,10 @@ namespace OpenTK.Compute
     {
         IntPtr handle;
     }
+
+    public struct ImageFormat
+    {
+        ChannelOrder image_channel_order;
+        ChannelType image_channel_data_type;
+    }
 }
