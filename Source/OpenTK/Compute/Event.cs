@@ -26,30 +26,34 @@
 #endregion
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
     public sealed class Event
     {
         
-        static class UnsafeNativeMethods
+        static class NativeMethods
         {
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//clWaitForEvents(cl_uint             /* num_events */,
-//                const cl_event *    /* event_list */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clGetEventInfo(cl_event         /* event */,
-//               cl_event_info    /* param_name */,
-//               size_t           /* param_value_size */,
-//               void *           /* param_value */,
-//               size_t *         /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
-//                            
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clRetainEvent(cl_event /* event */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clReleaseEvent(cl_event /* event */) CL_API_SUFFIX__VERSION_1_0;
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clWaitForEvents")]
+            public static extern int WaitForEvents(uint num_events, EventId* event_list);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clGetEventInfo")]
+            unsafe public static extern int GetEventInfo(EventId id,
+                EventInfo param_name,
+                /* size_t */ IntPtr param_value_size,
+                void* param_value,
+                /* size_t* */ IntPtr param_value_size_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clRetainEvent")]
+            unsafe public static extern int RetainEvent(EventId @event);
+            
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clReleaseEvent")]
+            unsafe public static extern int ReleaseEvent(EventId @event);
         }
     }
 }
