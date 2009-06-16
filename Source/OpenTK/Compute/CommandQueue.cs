@@ -191,6 +191,14 @@ namespace OpenTK.Compute
                 EventId* event_wait_list,
                 EventId* @event,
                 int* errorcode_ret);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clFlush")]
+            public static extern int Flush(CommandQueueId command_queue);
+
+            // OpenCL 1.0
+            [DllImport(Configuration.Library, EntryPoint = "clFinish")]
+            public static extern int Finish(CommandQueueId command_queue);
         }
     }
 }
