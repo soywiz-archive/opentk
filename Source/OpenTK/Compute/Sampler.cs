@@ -26,32 +26,46 @@
 #endregion
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
+    using cl_context = Handle<Context>;
+    using cl_sampler = Handle<Sampler>;
+
     public sealed class Sampler
     {
-        static class UnsafeNativeMethods
-        {
-//            extern CL_API_ENTRY cl_sampler CL_API_CALL
-//clCreateSampler(cl_context          /* context */,
-//                cl_bool             /* normalized_coords */, 
-//                cl_addressing_mode  /* addressing_mode */, 
-//                cl_filter_mode      /* filter_mode */,
-//                cl_int *            /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clRetainSampler(cl_sampler /* sampler */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clReleaseSampler(cl_sampler /* sampler */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clGetSamplerInfo(cl_sampler         /* sampler */,
-//                 cl_sampler_info    /* param_name */,
-//                 size_t             /* param_value_size */,
-//                 void *             /* param_value */,
-//                 size_t *           /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
-        }
     }
+
+    #region Flat API
+
+    partial class CL
+    {
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clCreateSampler")]
+        public static extern cl_sampler CreateSampler(cl_context context,
+            bool normalized_coords,
+            AddressingMode addressing_mode,
+            FilterMode filter_mode,
+            out int errcode_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clRetainSampler")]
+        public static extern int RetainSampler(cl_sampler sampler);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clReleaseSampler")]
+        public static extern int ReleaseSampler(cl_sampler sampler);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clGetSamplerInfo")]
+        public static extern int GetSamplerInfo(cl_sampler sampler,
+            SamplerInfo param_name,
+            IntPtr param_value_size,
+            IntPtr param_value,
+            out IntPtr param_value_size_ret);
+    }
+
+    #endregion
+
 }
