@@ -75,7 +75,7 @@ namespace OpenTK.Compute
             DeviceInfo param_name,
             IntPtr param_value_size,
             IntPtr param_value,
-            IntPtr param_value_size_ret);
+            out IntPtr param_value_size_ret);
     }
 
     #endregion
