@@ -95,7 +95,7 @@ namespace OpenTK.Compute
            MemInfo param_name,
             /* size_t */ IntPtr param_value_size,
             /* void * */ IntPtr param_value,
-            /* size_t * */ IntPtr param_value_size_ret);
+            /* size_t * */ out IntPtr param_value_size_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clGetImageInfo")]
@@ -103,7 +103,7 @@ namespace OpenTK.Compute
            ImageInfo param_name,
             /* size_t */ IntPtr param_value_size,
            /* void * */ IntPtr param_value,
-            /* size_t * */ IntPtr param_value_size_ret);
+            /* size_t * */ out IntPtr param_value_size_ret);
     }
 
     #endregion
