@@ -26,61 +26,80 @@
 #endregion
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
+    using cl_context = Handle<ComputeContext>;
+    using cl_device_id = Handle<Device>;
+    using cl_program = Handle<Program>;
+
     public sealed class Program
     {
-        
-        static class UnsafeNativeMethods
-        {
-//            extern CL_API_ENTRY cl_program CL_API_CALL
-//clCreateProgramWithSource(cl_context        /* context */,
-//                          cl_uint           /* count */,
-//                          const char **     /* strings */,
-//                          const size_t *    /* lengths */,
-//                          cl_int *          /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_program CL_API_CALL
-//clCreateProgramWithBinary(cl_context            /* context */,
-//                          cl_uint               /* num_devices */,
-//                          const cl_device_id *  /* device_list */,
-//                          const size_t *        /* lengths */,
-//                          const char **         /* binaries */,
-//                          cl_int *              /* binary_status */,
-//                          cl_int *              /* errcode_ret */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clRetainProgram(cl_program /* program */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clReleaseProgram(cl_program /* program */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clBuildProgram(cl_program           /* program */,
-//               cl_uint              /* num_devices */,
-//               const cl_device_id * /* device_list */,
-//               const char *         /* options */, 
-//               void (*pfn_notify)(cl_program /* program */, void * /* user_data */),
-//               void *               /* user_data */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clUnloadCompiler(void) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clGetProgramInfo(cl_program         /* program */,
-//                 cl_program_info    /* param_name */,
-//                 size_t             /* param_value_size */,
-//                 void *             /* param_value */,
-//                 size_t *           /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
-//
-//extern CL_API_ENTRY cl_int CL_API_CALL
-//clGetProgramBuildInfo(cl_program            /* program */,
-//                      cl_device_id          /* device */,
-//                      cl_program_build_info /* param_name */,
-//                      size_t                /* param_value_size */,
-//                      void *                /* param_value */,
-//                      size_t *              /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
-        }
     }
+
+    #region Flat API
+
+    partial class CL
+    {
+        public delegate void NotifyProgram(cl_program program, IntPtr user_data);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clCreateProgramWithSource")]
+        public static extern cl_program CreateProgramWithSource(cl_context context,
+            int count,
+            string[] strings,
+            IntPtr[] lengths,
+            out int errcode_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clCreateProgramWithBinary")]
+        public static extern cl_program CreateProgramWithBinary(cl_context context,
+            int num_devices,
+            cl_device_id[] device_list,
+            IntPtr[] lengths,
+            byte[][] binaries,
+            out int binary_status,
+            out int errcode_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clRetainProgram")]
+        public static extern int RetainProgram(cl_program program);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clReleaseProgram")]
+        public static extern int ReleaseProgram(cl_program program);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clBuildProgram")]
+        public static extern int BuildProgram(cl_program program,
+            int num_devices,
+            cl_device_id[] device_list,
+            string options,
+            NotifyProgram pfn_notify,
+            IntPtr user_data);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clUnloadCompiler")]
+        public static extern int UnloadCompiler();
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clGetProgramInfo")]
+        public static extern int GetProgramInfo(cl_program program,
+            ProgramInfo param_name,
+            IntPtr param_value_size,
+            IntPtr param_value,
+            out IntPtr param_value_size_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clGetProgramBuildInfo")]
+        public static extern int GetProgramBuildInfo(cl_program program,
+            cl_device_id device,
+            ProgramBuildInfo param_name,
+            IntPtr param_value_size,
+            IntPtr param_value,
+            out IntPtr param_value_size_ret);
+    }
+
+    #endregion
 }

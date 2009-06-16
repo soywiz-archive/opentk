@@ -58,7 +58,7 @@ namespace OpenTK.Compute
     partial class CL
     {
         // OpenCL 1.0
-        public delegate void NotifyFunction(string errinfo,
+        public delegate void NotifyContext(string errinfo,
             /* const void * */ IntPtr private_info,
             /* size_t */ IntPtr cb,
             /* void * */ IntPtr user_data
@@ -70,7 +70,7 @@ namespace OpenTK.Compute
            ContextProperty[] properties,
            int num_devices,
            DeviceId[] devices,
-           [MarshalAs(UnmanagedType.FunctionPtr)] NotifyFunction pfn_notify,
+           [MarshalAs(UnmanagedType.FunctionPtr)] NotifyContext pfn_notify,
            IntPtr user_data, // void*
            out int errorcode_ret);
 
@@ -81,7 +81,7 @@ namespace OpenTK.Compute
            DeviceType device_type,
            int num_devices,
            DeviceId[] devices,
-           [MarshalAs(UnmanagedType.FunctionPtr)] NotifyFunction pfn_notify,
+           [MarshalAs(UnmanagedType.FunctionPtr)] NotifyContext pfn_notify,
             /* void * */ IntPtr user_data,
            out int errorcode_ret);
 
