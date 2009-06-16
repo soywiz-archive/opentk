@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_context = Handle<Context>;
+    using cl_context = Handle<ComputeContext>;
     using cl_sampler = Handle<Sampler>;
 
     public sealed class Sampler

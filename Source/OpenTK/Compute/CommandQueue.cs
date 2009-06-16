@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 namespace OpenTK.Compute
 {
     using cl_command_queue = Handle<CommandQueue>;
-    using cl_context = Handle<Context>;
+    using cl_context = Handle<ComputeContext>;
     using cl_event = Handle<Event>;
     using cl_mem = Handle<Memory>;
 

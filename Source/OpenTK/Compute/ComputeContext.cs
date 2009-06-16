@@ -31,11 +31,11 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_context = Handle<Context>;
+    using cl_context = Handle<ComputeContext>;
 
-    public sealed class Context
+    public sealed class ComputeContext
     {
-        public Context(IEnumerable<Device> devices,
+        public ComputeContext(IEnumerable<Device> devices,
             ref ContextProperty properties,
             object data,
             out ErrorCode error)
