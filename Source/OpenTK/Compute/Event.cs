@@ -37,7 +37,7 @@ namespace OpenTK.Compute
         {
             // OpenCL 1.0
             [DllImport(Configuration.Library, EntryPoint = "clWaitForEvents")]
-            public static extern int WaitForEvents(uint num_events, EventId* event_list);
+            unsafe public static extern int WaitForEvents(uint num_events, EventId* event_list);
 
             // OpenCL 1.0
             [DllImport(Configuration.Library, EntryPoint = "clGetEventInfo")]
