@@ -32,25 +32,6 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    public struct DeviceId : IEquatable<DeviceId>
-    {
-        readonly IntPtr Handle;
-
-        internal DeviceId(IntPtr handle)
-        {
-            Handle = handle;
-        }
-
-        #region IEquatable<DeviceId> Members
-
-        public bool Equals(DeviceId instance)
-        {
-            return Handle == instance.Handle;
-        }
-        
-        #endregion
-    }
-
     #region struct Handle<T>
 
     public struct Handle<T> : IEquatable<Handle<T>>, IComparable<Handle<T>>

@@ -32,6 +32,7 @@ namespace OpenTK.Compute
 {
     using cl_command_queue = Handle<CommandQueue>;
     using cl_context = Handle<ComputeContext>;
+    using cl_device_id = Handle<Device>;
     using cl_event = Handle<Event>;
     using cl_mem = Handle<Memory>;
 
@@ -47,9 +48,9 @@ namespace OpenTK.Compute
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clCreateCommandQueue")]
         public static extern cl_command_queue CreateCommandQueue(cl_context context,
-            DeviceId device,
+            cl_device_id device,
             CommandQueueProperties properties,
-            out int errorcode_ret);
+            out ErrorCode errorcode_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clRetainCommandQueue")]
@@ -185,7 +186,7 @@ namespace OpenTK.Compute
            int num_events_in_wait_list,
            cl_event[] event_wait_list,
            ref cl_event @event,
-           out int errorcode_ret);
+           out ErrorCode errorcode_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clEnqueueMapImage")]
@@ -200,7 +201,7 @@ namespace OpenTK.Compute
            int num_events_in_wait_list,
            cl_event[] event_wait_list,
            ref cl_event @event,
-           out int errorcode_ret);
+           out ErrorCode errorcode_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clFlush")]

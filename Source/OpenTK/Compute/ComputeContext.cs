@@ -32,25 +32,33 @@ using System.Runtime.InteropServices;
 namespace OpenTK.Compute
 {
     using cl_context = Handle<ComputeContext>;
+    using cl_device_id = Handle<Device>;
 
     public sealed class ComputeContext
     {
-        //public ComputeContext(IEnumerable<Device> devices,
-        //    IntPtr[] properties,
-        //    object data,
-        //    out ErrorCode error)
-        //{
-        //    error = ErrorCode.Success;
-        //    //object_ = ::clCreateContext(
-        //    //    properties, (cl_int) devices.size(),
-        //    //    (cl_device_id*) &devices.front(),
-        //    //    notifyFptr, data, &error);
+        #region Fields
 
-        //    //detail::errHandler(error, __CREATE_CONTEXT_FROM_TYPE_ERR);
-        //    //if (err != NULL) {
-        //    //    *err = error;
-        //    //}
-        //}
+        public readonly cl_context Handle;
+
+        #endregion
+
+        #region Contsructors
+
+        public ComputeContext(IEnumerable<Device> devices)
+        {
+            ErrorCode error = ErrorCode.Success;
+
+            List<Handle<Device>> dev_handles = new List<Handle<Device>>();
+            foreach (Device device in devices)
+            {
+                dev_handles.Add(device.Handle);
+            }
+
+            Handle = CL.CreateContext(null, dev_handles.Count, dev_handles.ToArray(), null, IntPtr.Zero, out error);
+            Helper.CheckErrorCode(error);
+        }
+
+        #endregion
     }
 
     #region Flat API
@@ -61,18 +69,17 @@ namespace OpenTK.Compute
         public delegate void NotifyContext(string errinfo,
             /* const void * */ IntPtr private_info,
             /* size_t */ IntPtr cb,
-            /* void * */ IntPtr user_data
-        );
+            /* void * */ IntPtr user_data);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clCreateContext")]
         public static extern cl_context CreateContext(
            IntPtr[] properties,
            int num_devices,
-           DeviceId[] devices,
+           cl_device_id[] devices,
            [MarshalAs(UnmanagedType.FunctionPtr)] NotifyContext pfn_notify,
            IntPtr user_data, // void*
-           out int errorcode_ret);
+           out ErrorCode errorcode_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clCreateContextFromType")]
@@ -80,10 +87,10 @@ namespace OpenTK.Compute
            IntPtr[] properties,
            DeviceType device_type,
            int num_devices,
-           DeviceId[] devices,
+           cl_device_id[] devices,
            [MarshalAs(UnmanagedType.FunctionPtr)] NotifyContext pfn_notify,
             /* void * */ IntPtr user_data,
-           out int errorcode_ret);
+           out ErrorCode errorcode_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clRetainContext")]

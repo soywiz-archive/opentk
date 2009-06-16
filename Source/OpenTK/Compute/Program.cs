@@ -55,12 +55,12 @@ namespace OpenTK.Compute
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clCreateProgramWithBinary")]
         public static extern cl_program CreateProgramWithBinary(cl_context context,
-            int num_devices,
-            cl_device_id[] device_list,
-            IntPtr[] lengths,
-            byte[][] binaries,
-            out int binary_status,
-            out int errcode_ret);
+        int num_devices,
+        cl_device_id[] device_list,
+        IntPtr[] lengths,
+        byte[][] binaries,
+        out int binary_status,
+        out int errcode_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clRetainProgram")]

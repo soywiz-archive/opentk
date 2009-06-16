@@ -33,11 +33,15 @@ using System.Security;
 
 namespace OpenTK.Compute
 {
-    public sealed class Device : Wrapper<DeviceId>
-    {
-        static Dictionary<DeviceType, DeviceId[]> type_to_device_id = new Dictionary<DeviceType, DeviceId[]>();
+    using cl_device_id = Handle<Device>;
 
-        public static IEnumerable<DeviceId> GetDeviceIds(DeviceType deviceType)
+    public sealed class Device
+    {
+        public readonly Handle<Device> Handle;
+
+        static Dictionary<DeviceType, cl_device_id[]> type_to_device_id = new Dictionary<DeviceType, cl_device_id[]>();
+
+        public static IEnumerable<cl_device_id> Getcl_device_ids(DeviceType deviceType)
         {
             // Check whether we have already queried this type.
             if (type_to_device_id.ContainsKey(deviceType))
@@ -45,13 +49,13 @@ namespace OpenTK.Compute
 
             // Ensure size of the devices array.
             int num_devices;
-            Helper.CheckErrorCode(CL.GetDeviceIds(deviceType, 0, null, out num_devices));
+            Helper.CheckErrorCode(CL.Getcl_device_ids(deviceType, 0, null, out num_devices));
             if (num_devices == 0)
-                return new DeviceId[0];
-            DeviceId[] ids = new DeviceId[num_devices];
+                return new cl_device_id[0];
+            cl_device_id[] ids = new cl_device_id[num_devices];
 
             // Get the actual matching devices and cache the result.
-            Helper.CheckErrorCode(CL.GetDeviceIds(deviceType, ids.Length, ids, out num_devices));
+            Helper.CheckErrorCode(CL.Getcl_device_ids(deviceType, ids.Length, ids, out num_devices));
             type_to_device_id[deviceType] = ids;
 
             return ids;
@@ -64,14 +68,14 @@ namespace OpenTK.Compute
     {
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clGetDeviceIDs"), SuppressUnmanagedCodeSecurity]
-        public static extern ErrorCode GetDeviceIds(DeviceType deviceType,
+        public static extern ErrorCode Getcl_device_ids(DeviceType deviceType,
             int numEntries,
-            [Out] DeviceId[] devices,
+            [Out] cl_device_id[] devices,
             out int numDevices);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clGetDeviceInfo"), SuppressUnmanagedCodeSecurity]
-        public static extern int GetDeviceInfo(DeviceId device,
+        public static extern int GetDeviceInfo(cl_device_id device,
             DeviceInfo param_name,
             IntPtr param_value_size,
             IntPtr param_value,
