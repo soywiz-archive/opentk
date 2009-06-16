@@ -65,7 +65,7 @@ namespace OpenTK.Compute
             CommandQueueInfo param_name,
             /* size_t */ IntPtr param_value_size,
             /* void * */ IntPtr param_value,
-            /* size_t * */ IntPtr param_value_size_ret);
+            /* size_t * */ out IntPtr param_value_size_ret);
 
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clSetCommandQueueProperty")]
@@ -195,8 +195,8 @@ namespace OpenTK.Compute
            MapFlags map_flags,
            [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] origin,
            [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
-            /* size_t * */ IntPtr image_row_pitch,
-            /* size_t * */ IntPtr image_slice_pitch,
+            /* size_t * */ out IntPtr image_row_pitch,
+            /* size_t * */ out IntPtr image_slice_pitch,
            int num_events_in_wait_list,
            cl_event[] event_wait_list,
            ref cl_event @event,
