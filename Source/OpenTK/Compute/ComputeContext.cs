@@ -35,22 +35,22 @@ namespace OpenTK.Compute
 
     public sealed class ComputeContext
     {
-        public ComputeContext(IEnumerable<Device> devices,
-            ref ContextProperty properties,
-            object data,
-            out ErrorCode error)
-        {
-            error = ErrorCode.Success;
-            //object_ = ::clCreateContext(
-            //    properties, (cl_int) devices.size(),
-            //    (cl_device_id*) &devices.front(),
-            //    notifyFptr, data, &error);
+        //public ComputeContext(IEnumerable<Device> devices,
+        //    IntPtr[] properties,
+        //    object data,
+        //    out ErrorCode error)
+        //{
+        //    error = ErrorCode.Success;
+        //    //object_ = ::clCreateContext(
+        //    //    properties, (cl_int) devices.size(),
+        //    //    (cl_device_id*) &devices.front(),
+        //    //    notifyFptr, data, &error);
 
-            //detail::errHandler(error, __CREATE_CONTEXT_FROM_TYPE_ERR);
-            //if (err != NULL) {
-            //    *err = error;
-            //}
-        }
+        //    //detail::errHandler(error, __CREATE_CONTEXT_FROM_TYPE_ERR);
+        //    //if (err != NULL) {
+        //    //    *err = error;
+        //    //}
+        //}
     }
 
     #region Flat API
@@ -67,7 +67,7 @@ namespace OpenTK.Compute
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clCreateContext")]
         public static extern cl_context CreateContext(
-           ContextProperty[] properties,
+           IntPtr[] properties,
            int num_devices,
            DeviceId[] devices,
            [MarshalAs(UnmanagedType.FunctionPtr)] NotifyContext pfn_notify,
@@ -77,7 +77,7 @@ namespace OpenTK.Compute
         // OpenCL 1.0
         [DllImport(Configuration.Library, EntryPoint = "clCreateContextFromType")]
         public static extern cl_context CreateContextFromType(
-           ContextProperty[] properties,
+           IntPtr[] properties,
            DeviceType device_type,
            int num_devices,
            DeviceId[] devices,

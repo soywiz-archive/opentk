@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
@@ -208,14 +209,14 @@ namespace OpenTK.Compute
 
     #endregion
 
-    public struct ContextProperty
-    {
-        IntPtr property;
-    }
-
+    [StructLayout(LayoutKind.Sequential)]
     public struct ImageFormat
     {
         ChannelOrder image_channel_order;
         ChannelType image_channel_data_type;
+
+        public ChannelOrder ChannelOrder { get { return image_channel_order; } set { image_channel_order = value; } }
+
+        public ChannelType ChannelType { get { return image_channel_data_type; } set { image_channel_data_type = value; } }
     }
 }
