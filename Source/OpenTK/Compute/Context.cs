@@ -99,7 +99,7 @@ namespace OpenTK.Compute
             ContextInfo param_name,
             /* size_t */ IntPtr param_value_size,
             /* void * */ IntPtr param_value,
-            /* size_t * */ IntPtr param_value_size_ret);
+            /* size_t * */ out IntPtr param_value_size_ret);
     }
 
     #endregion
