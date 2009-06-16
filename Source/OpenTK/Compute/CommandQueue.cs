@@ -30,175 +30,186 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
+    using cl_command_queue = Handle<CommandQueue>;
+    using cl_context = Handle<Context>;
+    using cl_event = Handle<Event>;
+    using cl_mem = Handle<Memory>;
+
     public sealed class CommandQueue
     {
-        static class UnsafeNativeMethods
-        {
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint="clCreateCommandQueue")]
-            unsafe public static extern CommandQueueId CreateCommandQueue(ContextId context,
-                DeviceId device,
-                CommandQueueProperties properties,
-                int* errorcode_ret);
-            
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clRetainCommandQueue")]
-            public static extern int RetainCommandQueue(CommandQueueId command_queue);
 
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clReleaseCommandQueue")]
-            public static extern int ReleaseCommandQueue(CommandQueueId command_queue);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clGetCommandQueueInfo")]
-            public static extern int GetCommandQueueInfo(CommandQueueId command_queue,
-                CommandQueueInfo param_name,
-                /* size_t */ IntPtr param_value_size,
-                /* void * */ IntPtr param_value,
-                /* size_t * */ IntPtr param_value_size_ret);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clSetCommandQueueProperty")]
-            unsafe public static extern int SetCommandQueueProperty(CommandQueueId command_queue,
-                CommandQueueProperties properties,
-                bool enable,
-                CommandQueueProperties* old_properties);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueReadBuffer")]
-            unsafe public static extern int EnqueueReadBuffer(CommandQueueId command_queue,
-                MemoryId buffer,
-                bool blocking_read,
-                /* size_t */ IntPtr offset,
-                /* size_t */ IntPtr cb,
-                void* ptr,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event);
-            
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueWriteBuffer")]
-            unsafe public static extern int EnqueueWriteBuffer(CommandQueueId command_queue,
-                MemoryId buffer,
-                bool blocking_write,
-                /* size_t */ IntPtr offset,
-                /* size_t */ IntPtr cb,
-                void* ptr,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyBuffer")]
-            unsafe public static extern int EnqueueCopyBuffer(CommandQueueId command_queue,
-                MemoryId src_buffer,
-                MemoryId dst_buffer,
-                /* size_t */ IntPtr src_offset,
-                /* size_t */ IntPtr dst_offset,
-                /* size_t */ IntPtr cb,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event);
-            
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueReadImage")]
-            unsafe public static extern int EnqueueReadImage(CommandQueueId command_queue,
-               MemoryId image,
-               bool blocking_read,
-               [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] origin,
-               [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
-                /* size_t */ IntPtr row_pitch,
-                /* size_t */ IntPtr slice_pitch,
-               void* ptr,
-               uint num_events_in_wait_list,
-               EventId* event_wait_list,
-               EventId* @event);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueWriteImage")]
-            unsafe public static extern int EnqueueWriteImage(CommandQueueId command_queue,
-               MemoryId image,
-               bool blocking_write,
-               [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] origin,
-               [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
-                /* size_t */ IntPtr input_row_pitch,
-                /* size_t */ IntPtr input_slice_pitch,
-               void* ptr,
-               uint num_events_in_wait_list,
-               EventId* event_wait_list,
-               EventId* @event);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyImage")]
-            unsafe public static extern int EnqueueCopyImage(CommandQueueId command_queue,
-                MemoryId src_image,
-                MemoryId dst_image,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] src_origin,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] dst_origin,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyImageToBuffer")]
-            unsafe public static extern int EnqueueCopyImageToBuffer(CommandQueueId command_queue,
-                MemoryId src_image,
-                MemoryId dst_buffer,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] src_origin,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
-                /* size_t */ IntPtr dst_offset,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyBufferToImage")]
-            unsafe public static extern int EnqueueCopyBufferToImage(CommandQueueId command_queue,
-                MemoryId src_buffer,
-                MemoryId dst_image,
-                /* size_t */ IntPtr src_offset,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] dst_origin,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueMapBuffer")]
-            unsafe public static extern void* EnqueueMapBuffer(CommandQueueId command_queue,
-                MemoryId buffer,
-                bool blocking_map,
-                MapFlags map_flags,
-                /* size_t */ IntPtr offset,
-                /* size_t */ IntPtr cb,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event,
-                int* errorcode_ret);
-            
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clEnqueueMapImage")]
-            unsafe public static extern void* EnqueueMapImage(CommandQueueId command_queue,
-                MemoryId image,
-                bool blocking_map,
-                MapFlags map_flags,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] origin,
-                [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
-                /* size_t * */ IntPtr image_row_pitch,
-                /* size_t * */ IntPtr image_slice_pitch,
-                uint num_events_in_wait_list,
-                EventId* event_wait_list,
-                EventId* @event,
-                int* errorcode_ret);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clFlush")]
-            public static extern int Flush(CommandQueueId command_queue);
-
-            // OpenCL 1.0
-            [DllImport(Configuration.Library, EntryPoint = "clFinish")]
-            public static extern int Finish(CommandQueueId command_queue);
-        }
     }
+
+    #region Flat API
+
+    public partial class CL
+    {
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clCreateCommandQueue")]
+        public static extern cl_command_queue CreateCommandQueue(cl_context context,
+            DeviceId device,
+            CommandQueueProperties properties,
+            out int errorcode_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clRetainCommandQueue")]
+        public static extern int RetainCommandQueue(cl_command_queue command_queue);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clReleaseCommandQueue")]
+        public static extern int ReleaseCommandQueue(cl_command_queue command_queue);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clGetCommandQueueInfo")]
+        public static extern int GetCommandQueueInfo(cl_command_queue command_queue,
+            CommandQueueInfo param_name,
+            /* size_t */ IntPtr param_value_size,
+            /* void * */ IntPtr param_value,
+            /* size_t * */ IntPtr param_value_size_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clSetCommandQueueProperty")]
+        public static extern int SetCommandQueueProperty(cl_command_queue command_queue,
+           CommandQueueProperties properties,
+           bool enable,
+           out CommandQueueProperties old_properties);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueReadBuffer")]
+        public static extern int EnqueueReadBuffer(cl_command_queue command_queue,
+           cl_mem buffer,
+           bool blocking_read,
+            /* size_t */ IntPtr offset,
+            /* size_t */ IntPtr cb,
+           /* void * */ IntPtr ptr,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueWriteBuffer")]
+        public static extern int EnqueueWriteBuffer(cl_command_queue command_queue,
+           cl_mem buffer,
+           bool blocking_write,
+            /* size_t */ IntPtr offset,
+            /* size_t */ IntPtr cb,
+           /* void * */ IntPtr ptr,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyBuffer")]
+        public static extern int EnqueueCopyBuffer(cl_command_queue command_queue,
+           cl_mem src_buffer,
+           cl_mem dst_buffer,
+            /* size_t */ IntPtr src_offset,
+            /* size_t */ IntPtr dst_offset,
+            /* size_t */ IntPtr cb,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueReadImage")]
+        public static extern int EnqueueReadImage(cl_command_queue command_queue,
+          cl_mem image,
+          bool blocking_read,
+          [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] origin,
+          [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
+            /* size_t */ IntPtr row_pitch,
+            /* size_t */ IntPtr slice_pitch,
+          /* void * */ IntPtr ptr,
+          int num_events_in_wait_list,
+          cl_event[] event_wait_list,
+          ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueWriteImage")]
+        public static extern int EnqueueWriteImage(cl_command_queue command_queue,
+          cl_mem image,
+          bool blocking_write,
+          [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] origin,
+          [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
+            /* size_t */ IntPtr input_row_pitch,
+            /* size_t */ IntPtr input_slice_pitch,
+            /* void * */ IntPtr ptr,
+          int num_events_in_wait_list,
+          cl_event[] event_wait_list,
+          ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyImage")]
+        public static extern int EnqueueCopyImage(cl_command_queue command_queue,
+           cl_mem src_image,
+           cl_mem dst_image,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] src_origin,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] dst_origin,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyImageToBuffer")]
+        public static extern int EnqueueCopyImageToBuffer(cl_command_queue command_queue,
+           cl_mem src_image,
+           cl_mem dst_buffer,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] src_origin,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
+            /* size_t */ IntPtr dst_offset,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueCopyBufferToImage")]
+        public static extern int EnqueueCopyBufferToImage(cl_command_queue command_queue,
+           cl_mem src_buffer,
+           cl_mem dst_image,
+            /* size_t */ IntPtr src_offset,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] dst_origin,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueMapBuffer")]
+        public static extern IntPtr EnqueueMapBuffer(cl_command_queue command_queue,
+           cl_mem buffer,
+           bool blocking_map,
+           MapFlags map_flags,
+            /* size_t */ IntPtr offset,
+            /* size_t */ IntPtr cb,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event,
+           out int errorcode_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clEnqueueMapImage")]
+        public static extern IntPtr EnqueueMapImage(cl_command_queue command_queue,
+           cl_mem image,
+           bool blocking_map,
+           MapFlags map_flags,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] origin,
+           [MarshalAs(UnmanagedType.LPArray, SizeConst = 3)] /* size_t * */ IntPtr[] region,
+            /* size_t * */ IntPtr image_row_pitch,
+            /* size_t * */ IntPtr image_slice_pitch,
+           int num_events_in_wait_list,
+           cl_event[] event_wait_list,
+           ref cl_event @event,
+           out int errorcode_ret);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clFlush")]
+        public static extern int Flush(cl_command_queue command_queue);
+
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clFinish")]
+        public static extern int Finish(cl_command_queue command_queue);
+    }
+
+    #endregion
 }

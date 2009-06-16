@@ -7,9 +7,5 @@ namespace OpenTK.Compute
 {
     public sealed class Buffer : Memory
     {
-        static class NativeMethods
-        {
-
-        }
     }
 }
