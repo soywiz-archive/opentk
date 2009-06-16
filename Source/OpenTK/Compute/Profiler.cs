@@ -26,20 +26,28 @@
 #endregion
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
+    using cl_event = Handle<Event>;
+
     public sealed class Profiler
     {
-        
-        static class UnsafeNativeMethods
-        {
-//            extern CL_API_ENTRY cl_int CL_API_CALL
-//clGetEventProfilingInfo(cl_event            /* event */,
-//                        cl_profiling_info   /* param_name */,
-//                        size_t              /* param_value_size */,
-//                        void *              /* param_value */,
-//                        size_t *            /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0;
-        }
     }
+
+    #region Flat API
+
+    partial class CL
+    {
+        // OpenCL 1.0
+        [DllImport(Configuration.Library, EntryPoint = "clGetEventProfilingInfo")]
+        public static extern int GetEventProfilingInfo(cl_event @event,
+            ProfilingInfo param_name,
+            IntPtr param_value_size,
+            IntPtr param_value,
+            out IntPtr param_value_size_ret);
+    }
+
+    #endregion
 }
