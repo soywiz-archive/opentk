@@ -31,35 +31,8 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_context = Handle<ComputeContext>;
-    using cl_device_id = Handle<Device>;
-
-    sealed class ComputeContext
-    {
-        #region Fields
-
-        public readonly cl_context Handle;
-
-        #endregion
-
-        #region Contsructors
-
-        public ComputeContext(IEnumerable<Device> devices)
-        {
-            ErrorCode error = ErrorCode.Success;
-
-            List<Handle<Device>> dev_handles = new List<Handle<Device>>();
-            foreach (Device device in devices)
-            {
-                dev_handles.Add(device.Handle);
-            }
-
-            Handle = CL.CreateContext(null, dev_handles.Count, dev_handles.ToArray(), null, IntPtr.Zero, out error);
-            Helper.CheckErrorCode(error);
-        }
-
-        #endregion
-    }
+    using cl_context = IntPtr;
+    using cl_device_id = IntPtr;
 
     #region Flat API
 

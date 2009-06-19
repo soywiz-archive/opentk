@@ -35,33 +35,6 @@ namespace OpenTK.Compute
 {
     using cl_device_id = IntPtr;
 
-    sealed class Device
-    {
-        public readonly Handle<Device> Handle;
-
-        static Dictionary<DeviceType, cl_device_id[]> type_to_device_id = new Dictionary<DeviceType, cl_device_id[]>();
-
-        public static IEnumerable<cl_device_id> Getcl_device_ids(DeviceType deviceType)
-        {
-            // Check whether we have already queried this type.
-            if (type_to_device_id.ContainsKey(deviceType))
-                return type_to_device_id[deviceType];
-
-            // Ensure size of the devices array.
-            int num_devices;
-            Helper.CheckErrorCode(CL.Getcl_device_ids(deviceType, 0, null, out num_devices));
-            if (num_devices == 0)
-                return new cl_device_id[0];
-            cl_device_id[] ids = new cl_device_id[num_devices];
-
-            // Get the actual matching devices and cache the result.
-            Helper.CheckErrorCode(CL.Getcl_device_ids(deviceType, ids.Length, ids, out num_devices));
-            type_to_device_id[deviceType] = ids;
-
-            return ids;
-        }
-    }
-
     #region Flat API
 
     partial class CL

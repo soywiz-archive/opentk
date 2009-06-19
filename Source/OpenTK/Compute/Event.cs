@@ -32,11 +32,6 @@ namespace OpenTK.Compute
 {
     using cl_event = IntPtr;
 
-    sealed class Event
-    {
-
-    }
-
     #region Flat API
 
     partial class CL

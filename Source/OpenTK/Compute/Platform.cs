@@ -32,11 +32,6 @@ namespace OpenTK.Compute
 {
     using cl_platform_id = IntPtr;
 
-    sealed class Platform
-    {
-
-    }
-
     #region Flat API
 
     partial class CL

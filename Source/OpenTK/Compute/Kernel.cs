@@ -34,10 +34,6 @@ namespace OpenTK.Compute
     using cl_kernel = IntPtr;
     using cl_program = IntPtr;
 
-    sealed class Kernel
-    {
-    }
-
     #region Flat API
 
     partial class CL

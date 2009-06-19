@@ -36,11 +36,6 @@ namespace OpenTK.Compute
     using cl_event = IntPtr;
     using cl_mem = IntPtr;
 
-    sealed class CommandQueue
-    {
-
-    }
-
     #region Flat API
 
     public partial class CL

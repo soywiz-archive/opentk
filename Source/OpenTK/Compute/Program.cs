@@ -34,10 +34,6 @@ namespace OpenTK.Compute
     using cl_device_id = IntPtr;
     using cl_program = IntPtr;
 
-    sealed class Program
-    {
-    }
-
     #region Flat API
 
     partial class CL

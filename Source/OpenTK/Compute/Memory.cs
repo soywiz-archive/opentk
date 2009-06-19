@@ -33,10 +33,6 @@ namespace OpenTK.Compute
     using cl_context = IntPtr;
     using cl_mem = IntPtr;
 
-    abstract class Memory
-    {
-    }
-
     #region Flat API
 
     partial class CL

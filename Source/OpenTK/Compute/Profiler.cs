@@ -32,10 +32,6 @@ namespace OpenTK.Compute
 {
     using cl_event = IntPtr;
 
-    sealed class Profiler
-    {
-    }
-
     #region Flat API
 
     partial class CL

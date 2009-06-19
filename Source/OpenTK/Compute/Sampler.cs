@@ -33,10 +33,6 @@ namespace OpenTK.Compute
     using cl_context = IntPtr;
     using cl_sampler = IntPtr;
 
-    sealed class Sampler
-    {
-    }
-
     #region Flat API
 
     partial class CL
