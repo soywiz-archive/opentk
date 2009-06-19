@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 namespace OpenTK.Platform.Windows
 {
     /// <summary>Describes a win32 window.</summary>
-    public sealed class WinWindowInfo : IWindowInfo
+    internal sealed class WinWindowInfo : IWindowInfo
     {
         IntPtr handle, dc;
         WinWindowInfo parent;
@@ -37,6 +37,7 @@ namespace OpenTK.Platform.Windows
             {
                 if (dc == IntPtr.Zero)
                     dc = Functions.GetDC(this.WindowHandle);
+                    //dc = Functions.GetWindowDC(this.WindowHandle);
                 return dc;
             }
             //set { dc = value; }

@@ -43,7 +43,7 @@ namespace OpenTK.Graphics
 
         static GraphicsContext()
         {
-            GetCurrentContext = Factory.CreateGetCurrentGraphicsContext();
+            GetCurrentContext = Factory.Default.CreateGetCurrentGraphicsContext();
         }
         
         // Necessary to allow creation of dummy GraphicsContexts (see CreateDummyContext static method).
@@ -116,7 +116,7 @@ namespace OpenTK.Graphics
                 if (designMode)
                     implementation = new Platform.Dummy.DummyGLContext();
                 else
-                    implementation = Factory.CreateGLContext(mode, window, shareContext, DirectRendering, major, minor, flags);
+                    implementation = Factory.Default.CreateGLContext(mode, window, shareContext, DirectRendering, major, minor, flags);
 
                 lock (context_lock)
                 {
@@ -184,7 +184,7 @@ namespace OpenTK.Graphics
         /// <summary>
         /// Gets the GraphicsContext that is current in the calling thread.
         /// </summary>
-        public static GraphicsContext CurrentContext
+        public static IGraphicsContext CurrentContext
         {
             get
             {
@@ -240,29 +240,14 @@ namespace OpenTK.Graphics
 
         #region --- Internal Members ---
 
-        bool inside_begin_region;
         List<ErrorCode> error_list = new List<ErrorCode>();
-
-        // Indicates that we entered a GL.Begin() - GL.End() region.
-        [Conditional("DEBUG")]
-        internal void EnterBeginRegion()
-        {
-            inside_begin_region = true;
-        }
-
-        // Indicates that we left a GL.Begin() - GL.End() region.
-        [Conditional("DEBUG")]
-        internal void ExitBeginRegion()
-        {
-            inside_begin_region = false;
-        }
 
         // Retrieve all OpenGL errors to clear the error list.
         // See http://www.opengl.org/documentation/specs/man_pages/hardcopy/GL/html/gl/geterror.html
         [Conditional("DEBUG")]
         internal void ResetErrors()
         {
-            if (check_errors && !inside_begin_region)
+            if (check_errors)
             {
                 while (GL.GetError() != ErrorCode.NoError)
                 { }
@@ -273,7 +258,7 @@ namespace OpenTK.Graphics
         [Conditional("DEBUG")]
         internal void CheckErrors()
         {
-            if (check_errors && !inside_begin_region)
+            if (check_errors)
             {
                 error_list.Clear();
                 ErrorCode error;
@@ -378,13 +363,13 @@ namespace OpenTK.Graphics
         /// <summary>
         /// Makes the GraphicsContext the current rendering target.
         /// </summary>
-        /// <param name="info">A System.Platform.IWindowInfo structure for the window this context is bound to.</param>
+        /// <param name="window">A valid <see cref="OpenTK.Platform.IWindowInfo" /> structure.</param>
         /// <remarks>
         /// You can use this method to bind the GraphicsContext to a different window than the one it was created from.
         /// </remarks>
-        public void MakeCurrent(IWindowInfo info)
+        public void MakeCurrent(IWindowInfo window)
         {
-            implementation.MakeCurrent(info);
+            implementation.MakeCurrent(window);
         }
 
         /// <summary>
@@ -399,6 +384,7 @@ namespace OpenTK.Graphics
         /// <summary>
         /// Raised when a Context is destroyed.
         /// </summary>
+        [Obsolete]
         public event DestroyEvent<IGraphicsContext> Destroy
         {
             add { implementation.Destroy += value; }
