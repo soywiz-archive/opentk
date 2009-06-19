@@ -33,9 +33,9 @@ using System.Security;
 
 namespace OpenTK.Compute
 {
-    using cl_device_id = Handle<Device>;
+    using cl_device_id = IntPtr;
 
-    public sealed class Device
+    sealed class Device
     {
         public readonly Handle<Device> Handle;
 

@@ -34,7 +34,7 @@ namespace OpenTK.Compute
     using cl_context = Handle<ComputeContext>;
     using cl_device_id = Handle<Device>;
 
-    public sealed class ComputeContext
+    sealed class ComputeContext
     {
         #region Fields
 

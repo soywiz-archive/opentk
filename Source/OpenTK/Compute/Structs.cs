@@ -34,7 +34,7 @@ namespace OpenTK.Compute
 {
     #region struct Handle<T>
 
-    public struct Handle<T> : IEquatable<Handle<T>>, IComparable<Handle<T>>
+    struct Handle<T> : IEquatable<Handle<T>>, IComparable<Handle<T>>
     {
         #region Fields
 

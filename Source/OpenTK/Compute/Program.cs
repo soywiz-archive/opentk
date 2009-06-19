@@ -30,11 +30,11 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_context = Handle<ComputeContext>;
-    using cl_device_id = Handle<Device>;
-    using cl_program = Handle<Program>;
+    using cl_context = IntPtr;
+    using cl_device_id = IntPtr;
+    using cl_program = IntPtr;
 
-    public sealed class Program
+    sealed class Program
     {
     }
 

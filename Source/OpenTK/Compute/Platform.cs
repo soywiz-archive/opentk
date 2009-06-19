@@ -30,9 +30,9 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_platform_id = Handle<Platform>;
+    using cl_platform_id = IntPtr;
 
-    public sealed class Platform
+    sealed class Platform
     {
 
     }

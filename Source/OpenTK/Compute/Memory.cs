@@ -30,10 +30,10 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_context = Handle<ComputeContext>;
-    using cl_mem = Handle<Memory>;
+    using cl_context = IntPtr;
+    using cl_mem = IntPtr;
 
-    public abstract class Memory
+    abstract class Memory
     {
     }
 

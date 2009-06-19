@@ -30,9 +30,9 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_event = Handle<Event>;
+    using cl_event = IntPtr;
 
-    public sealed class Profiler
+    sealed class Profiler
     {
     }
 

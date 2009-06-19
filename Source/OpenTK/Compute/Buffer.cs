@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    public sealed class Buffer : Memory
+    sealed class Buffer : Memory
     {
     }
 }

@@ -30,13 +30,13 @@ using System.Runtime.InteropServices;
 
 namespace OpenTK.Compute
 {
-    using cl_command_queue = Handle<CommandQueue>;
-    using cl_context = Handle<ComputeContext>;
-    using cl_device_id = Handle<Device>;
-    using cl_event = Handle<Event>;
-    using cl_mem = Handle<Memory>;
+    using cl_command_queue = IntPtr;
+    using cl_context = IntPtr;
+    using cl_device_id = IntPtr;
+    using cl_event = IntPtr;
+    using cl_mem = IntPtr;
 
-    public sealed class CommandQueue
+    sealed class CommandQueue
     {
 
     }
