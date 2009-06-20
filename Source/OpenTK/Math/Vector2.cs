@@ -339,11 +339,6 @@ namespace OpenTK.Math
         public static readonly Vector2 Zero = new Vector2(0, 0);
 
         /// <summary>
-        /// Defines an instance with all components set to 1.
-        /// </summary>
-        public static readonly Vector2 One = new Vector2(1, 1);
-        
-        /// <summary>
         /// Defines the size of the Vector2 struct in bytes.
         /// </summary>
         public static readonly int SizeInBytes = Marshal.SizeOf(new Vector2());
@@ -353,7 +348,7 @@ namespace OpenTK.Math
         #region Add
 
         /// <summary>
-        /// Add the specified instances
+        /// Add two Vectors
         /// </summary>
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
@@ -746,12 +741,6 @@ namespace OpenTK.Math
 
         #region Operators
 
-        /// <summary>
-        /// Adds the specified instances.
-        /// </summary>
-        /// <param name="left">Left operand.</param>
-        /// <param name="right">Right operand.</param>
-        /// <returns>Result of addition.</returns>
 		public static Vector2 operator +(Vector2 left, Vector2 right)
 		{
 			left.X += right.X;
@@ -759,12 +748,6 @@ namespace OpenTK.Math
 			return left;
 		}
 
-        /// <summary>
-        /// Subtracts the specified instances.
-        /// </summary>
-        /// <param name="left">Left operand.</param>
-        /// <param name="right">Right operand.</param>
-        /// <returns>Result of subtraction.</returns>
 		public static Vector2 operator -(Vector2 left, Vector2 right)
 		{
 			left.X -= right.X;
@@ -772,11 +755,6 @@ namespace OpenTK.Math
 			return left;
 		}
 
-        /// <summary>
-        /// Negates the specified instance.
-        /// </summary>
-        /// <param name="vec">Operand.</param>
-        /// <returns>Result of negation.</returns>
 		public static Vector2 operator -(Vector2 vec)
 		{
 			vec.X = -vec.X;
@@ -784,63 +762,33 @@ namespace OpenTK.Math
 			return vec;
 		}
 
-        /// <summary>
-        /// Multiplies the specified instance by a scalar.
-        /// </summary>
-        /// <param name="vec">Left operand.</param>
-        /// <param name="scale">Right operand.</param>
-        /// <returns>Result of multiplication.</returns>
-		public static Vector2 operator *(Vector2 vec, float scale)
+		public static Vector2 operator *(Vector2 vec, float f)
 		{
-            vec.X *= scale;
-            vec.Y *= scale;
+			vec.X *= f;
+			vec.Y *= f;
 			return vec;
 		}
 
-        /// <summary>
-        /// Multiplies the specified instance by a scalar.
-        /// </summary>
-        /// <param name="scale">Left operand.</param>
-        /// <param name="vec">Right operand.</param>
-        /// <returns>Result of multiplication.</returns>
-        public static Vector2 operator *(float scale, Vector2 vec)
+		public static Vector2 operator *(float f, Vector2 vec)
 		{
-            vec.X *= scale;
-            vec.Y *= scale;
+			vec.X *= f;
+			vec.Y *= f;
 			return vec;
 		}
 
-        /// <summary>
-        /// Divides the specified instance by a scalar.
-        /// </summary>
-        /// <param name="vec">Left operand</param>
-        /// <param name="scale">Right operand</param>
-        /// <returns>Result of the division.</returns>
-		public static Vector2 operator /(Vector2 vec, float scale)
+		public static Vector2 operator /(Vector2 vec, float f)
 		{
-            float mult = 1.0f / scale;
+			float mult = 1.0f / f;
 			vec.X *= mult;
 			vec.Y *= mult;
 			return vec;
 		}
 
-        /// <summary>
-        /// Compares the specified instances for equality.
-        /// </summary>
-        /// <param name="left">Left operand.</param>
-        /// <param name="right">Right operand.</param>
-        /// <returns>True if both instances are equal; false otherwise.</returns>
         public static bool operator ==(Vector2 left, Vector2 right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>
-        /// Compares the specified instances for inequality.
-        /// </summary>
-        /// <param name="left">Left operand.</param>
-        /// <param name="right">Right operand.</param>
-        /// <returns>True if both instances are not equal; false otherwise.</returns>
         public static bool operator !=(Vector2 left, Vector2 right)
         {
             return !left.Equals(right);

@@ -51,12 +51,12 @@ namespace OpenTK.Graphics
 
         #region Constructors
 
-        public ErrorHelper(IGraphicsContext context)
+        public ErrorHelper(GraphicsContext context)
         {
             if (context == null)
                 throw new GraphicsContextMissingException();
 
-            Context = (GraphicsContext)context;
+            Context = context;
             Context.ResetErrors();
         }
 

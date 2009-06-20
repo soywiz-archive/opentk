@@ -15,7 +15,6 @@ namespace OpenTK.Audio
 {
 
     /// <summary>Alut, FreeAlut = Free Audio Library Utilities</summary>
-    [Obsolete("Use OpenTK.Audio.AudioContext and OpenTK.Audio.Alc instead.")]
     public static class Alut
     {
         #region Constants

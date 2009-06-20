@@ -73,11 +73,11 @@ namespace Examples.Tutorial
 
         #region OnResize override
 
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(ResizeEventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
 
-            double ratio = Width / (double)Height;
+            double ratio = e.Width / (double)e.Height;
 
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
@@ -95,7 +95,7 @@ namespace Examples.Tutorial
         /// Place your control logic here. This is the place to respond to user input,
         /// update object positions etc.
         /// </remarks>
-        protected override void OnUpdateFrame(FrameEventArgs e)
+        public override void OnUpdateFrame(UpdateFrameEventArgs e)
         {
             if (Keyboard[OpenTK.Input.Key.Escape])
                 this.Exit();
@@ -105,7 +105,7 @@ namespace Examples.Tutorial
 
         #region OnRenderFrame
 
-        protected override void OnRenderFrame(FrameEventArgs e)
+        public override void OnRenderFrame(RenderFrameEventArgs e)
         {
             base.OnRenderFrame(e);
 

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
-using System.Drawing;
+using System.Windows.Forms;
 
 namespace OpenTK.Graphics
 {
@@ -27,8 +27,6 @@ namespace OpenTK.Graphics
         // TODO: Does not detect changes to primary device.
         // TODO: Mono does not support System.Windows.Forms.Screen.BitsPerPixel -- find workaround!
 
-        #region --- Fields ---
-
         DisplayResolution current_resolution, original_resolution;
         List<DisplayResolution> available_resolutions = new List<DisplayResolution>();
         bool primary;
@@ -40,13 +38,23 @@ namespace OpenTK.Graphics
 
         static IDisplayDeviceDriver implementation;
 
-        #endregion
-
         #region --- Constructors ---
 
         static DisplayDevice()
         {
-            implementation = Platform.Factory.Default.CreateDisplayDeviceDriver();
+            implementation = Platform.Factory.CreateDisplayDeviceDriver();
+           
+            //lock (display_lock)
+            //{
+            //    int i = 0;
+            //    foreach (System.Windows.Forms.Screen scr in System.Windows.Forms.Screen.AllScreens)
+            //    {
+            //        available_displays.Add(new DisplayDevice(scr.Bounds.Width, scr.Bounds.Height, 32, 0, scr.Primary));
+            //        if (scr.Primary)
+            //            primary_display = available_displays[i];
+            //        ++i;
+            //    }
+            //}
         }
 
         internal DisplayDevice(DisplayResolution currentResolution, bool primary,
@@ -70,18 +78,6 @@ namespace OpenTK.Graphics
         #endregion
 
         #region --- Public Methods ---
-
-        #region public Rectangle Bounds
-
-        /// <summary>
-        /// Gets a System.Drawing.Rectangle that contains the current bounds of this DisplayDevice.
-        /// </summary>
-        public Rectangle Bounds
-        {
-            get { return current_resolution.Bounds; }
-        }
-
-        #endregion
 
         #region public int Width
 

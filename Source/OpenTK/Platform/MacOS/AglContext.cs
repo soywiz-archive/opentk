@@ -301,10 +301,7 @@ namespace OpenTK.Platform.MacOS
             }
         }
 
-        [Obsolete]
         public event DestroyEvent<IGraphicsContext> Destroy;
-
-        [Obsolete]
         void OnDestroy()
         {
 

@@ -30,7 +30,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Diagnostics;
 
 namespace OpenTK.Graphics
 {
@@ -38,7 +37,7 @@ namespace OpenTK.Graphics
     {
         #region Fields
 
-        IGraphicsContext context;
+        GraphicsContext context;
         int id;
         int width, height;
         bool disposed;
@@ -251,7 +250,7 @@ namespace OpenTK.Graphics
 
         #region IGraphicsResource.Context
 
-        IGraphicsContext IGraphicsResource.Context { get { return context; } }
+        GraphicsContext IGraphicsResource.Context { get { return context; } }
 
         #endregion
 
@@ -302,17 +301,15 @@ namespace OpenTK.Graphics
                 {
                     GL.DeleteTexture(id);
                 }
-                else
-                {
-                    Debug.Print("[Warning] {0} leaked.", this);
-                }
                 disposed = true;
             }
         }
 
         ~Texture2D()
         {
-            Dispose(false);
+            GraphicsContext context = (this as IGraphicsResource).Context;
+            if (context != null)
+             (context as IGraphicsContextInternal).RegisterForDisposal(this);
         }
 
         #endregion

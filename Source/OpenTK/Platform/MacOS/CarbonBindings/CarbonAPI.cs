@@ -81,11 +81,6 @@ namespace OpenTK.Platform.MacOS.Carbon
             return string.Format(
                 "Rect: [{0}, {1}, {2}, {3}]", X, Y, Width, Height);
         }
-
-        public System.Drawing.Rectangle ToRectangle()
-        {
-            return new System.Drawing.Rectangle(X, Y, Width, Height);
-        }
     }
 
     #endregion
@@ -153,7 +148,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         internal uint EventKind;
     }
 
-    internal enum EventClass : int
+    public enum EventClass : int
     {
         /*
         kEventClassMouse            = FOUR_CHAR_CODE('mous'),
@@ -173,7 +168,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         Menu = 0x6d656e75,
         Window = 0x77696e64,
     }
-    internal enum WindowEventKind : int
+    public enum WindowEventKind : int
     {
         // window events
         WindowUpdate = 1,
@@ -195,7 +190,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         WindowClose = 72,
         WindowClosed = 73,
     }
-    internal enum MouseEventKind : int
+    public enum MouseEventKind : int
     {
         MouseDown = 1,
         MouseUp = 2,
@@ -205,14 +200,14 @@ namespace OpenTK.Platform.MacOS.Carbon
         MouseExited = 9,
         WheelMoved = 10,
     }
-    internal enum MouseButton : short
+    public enum MouseButton : short
     {
         Primary = 1,
         Secondary = 2,
         Tertiary = 3,
     }
 
-    internal enum KeyboardEventKind : int
+    public enum KeyboardEventKind : int
     {
         // raw keyboard events
         RawKeyDown = 1,
@@ -221,7 +216,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         RawKeyModifiersChanged = 4,
     }
 
-    internal enum AppEventKind : int
+    public enum AppEventKind : int
     {
         // application events
         AppActivated = 1,
@@ -270,7 +265,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         typeIEEE64BitFloatingPoint = 0x646f7562,
     }
 
-    internal enum EventMouseButton : int
+    public enum EventMouseButton : int
     {
         Primary = 0,
         Secondary = 1,
@@ -398,7 +393,7 @@ namespace OpenTK.Platform.MacOS.Carbon
 
     #region --- Carbon API Methods ---
 
-    internal partial class API
+    public partial class API
     {
         const string carbon = "/System/Library/Frameworks/Carbon.framework/Versions/Current/Carbon";
         
@@ -449,8 +444,6 @@ namespace OpenTK.Platform.MacOS.Carbon
         internal static extern OSStatus RepositionWindow(IntPtr window, IntPtr parentWindow, WindowPositionMethod method);
         [DllImport(carbon)]
         internal static extern void SizeWindow(IntPtr window, short w, short h, bool fUpdate);
-        [DllImport(carbon)]
-        internal static extern void MoveWindow(IntPtr window, short x, short y, bool fUpdate);
 
         [DllImport(carbon)]
         static extern OSStatus GetWindowBounds(IntPtr window, WindowRegionCode regionCode, out Rect globalBounds);

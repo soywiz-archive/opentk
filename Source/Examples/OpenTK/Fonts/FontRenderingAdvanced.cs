@@ -75,7 +75,7 @@ namespace Examples.Tutorial
 
         #region OnResize
 
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
 
@@ -87,7 +87,7 @@ namespace Examples.Tutorial
 
         #region OnUpdateFrame
 
-        protected override void OnUpdateFrame(FrameEventArgs e)
+        public override void OnUpdateFrame(UpdateFrameEventArgs e)
         {
             if (Keyboard[Key.Space])
                 scroll_speed = 0;
@@ -103,7 +103,7 @@ namespace Examples.Tutorial
 
         #region OnRenderFrame
 
-        protected override void OnRenderFrame(FrameEventArgs e)
+        public override void OnRenderFrame(RenderFrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 

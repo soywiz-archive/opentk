@@ -11,7 +11,9 @@ using System.Drawing;
 using System.Diagnostics;
 
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL.Enums;
 using OpenTK.Input;
 
 namespace Examples.Tutorial
@@ -68,13 +70,15 @@ namespace Examples.Tutorial
         /// </summary>
         /// <param name="e">Contains information on the new GameWindow size.</param>
         /// <remarks>There is no need to call the base implementation.</remarks>
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
 
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
             GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
+
+            base.OnResize(e);
         }
 
         #endregion
@@ -86,7 +90,7 @@ namespace Examples.Tutorial
         /// </summary>
         /// <param name="e">Contains timing information.</param>
         /// <remarks>There is no need to call the base implementation.</remarks>
-        protected override void OnUpdateFrame(FrameEventArgs e)
+        public override void OnUpdateFrame(UpdateFrameEventArgs e)
         {
             // Nothing to do!
         }
@@ -100,7 +104,7 @@ namespace Examples.Tutorial
         /// </summary>
         /// <param name="e">Contains timing information.</param>
         /// <remarks>There is no need to call the base implementation.</remarks>
-        protected override void OnRenderFrame(FrameEventArgs e)
+        public override void OnRenderFrame(RenderFrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 

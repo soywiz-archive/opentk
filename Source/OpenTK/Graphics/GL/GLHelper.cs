@@ -614,11 +614,6 @@ namespace OpenTK.Graphics
 
         #region --- GL Overloads ---
 
-#pragma warning disable 3019
-#pragma warning disable 1591
-#pragma warning disable 1572
-#pragma warning disable 1573
-
         #region public static void Color[34]() overloads
 
         public static void Color3(System.Drawing.Color color)
@@ -1246,11 +1241,6 @@ namespace OpenTK.Graphics
         }
 
         #endregion
-
-#pragma warning restore 3019
-#pragma warning restore 1591
-#pragma warning restore 1572
-#pragma warning restore 1573
 
         #endregion
     }

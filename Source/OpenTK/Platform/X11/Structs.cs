@@ -43,7 +43,7 @@ namespace OpenTK.Platform.X11
     //
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XAnyEvent
+    public struct XAnyEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -53,7 +53,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XKeyEvent
+    public struct XKeyEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -73,7 +73,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XButtonEvent
+    public struct XButtonEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -93,7 +93,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XMotionEvent
+    public struct XMotionEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -113,7 +113,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XCrossingEvent
+    public struct XCrossingEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -135,7 +135,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XFocusChangeEvent
+    public struct XFocusChangeEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -147,7 +147,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XKeymapEvent
+    public struct XKeymapEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -189,7 +189,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XExposeEvent
+    public struct XExposeEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -204,7 +204,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XGraphicsExposeEvent
+    public struct XGraphicsExposeEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -221,7 +221,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XNoExposeEvent
+    public struct XNoExposeEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -233,7 +233,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XVisibilityEvent
+    public struct XVisibilityEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -244,7 +244,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XCreateWindowEvent
+    public struct XCreateWindowEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -261,7 +261,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XDestroyWindowEvent
+    public struct XDestroyWindowEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -272,7 +272,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XUnmapEvent
+    public struct XUnmapEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -284,7 +284,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XMapEvent
+    public struct XMapEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -296,7 +296,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XMapRequestEvent
+    public struct XMapRequestEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -307,7 +307,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XReparentEvent
+    public struct XReparentEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -322,7 +322,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XConfigureEvent
+    public struct XConfigureEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -340,7 +340,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XGravityEvent
+    public struct XGravityEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -353,7 +353,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XResizeRequestEvent
+    public struct XResizeRequestEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -365,7 +365,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XConfigureRequestEvent
+    public struct XConfigureRequestEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -384,7 +384,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XCirculateEvent
+    public struct XCirculateEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -396,7 +396,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XCirculateRequestEvent
+    public struct XCirculateRequestEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -408,7 +408,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XPropertyEvent
+    public struct XPropertyEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -421,7 +421,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XSelectionClearEvent
+    public struct XSelectionClearEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -433,7 +433,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XSelectionRequestEvent
+    public struct XSelectionRequestEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -448,7 +448,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XSelectionEvent
+    public struct XSelectionEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -462,7 +462,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XColormapEvent
+    public struct XColormapEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -475,7 +475,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XClientMessageEvent
+    public struct XClientMessageEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -492,7 +492,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XMappingEvent
+    public struct XMappingEvent
     {
         public XEventName type;
         public IntPtr serial;
@@ -505,7 +505,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XErrorEvent
+    public struct XErrorEvent
     {
         public XEventName type;
         public IntPtr display;
@@ -517,7 +517,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XEventPad
+    public struct XEventPad
     {
         public IntPtr pad0;
         public IntPtr pad1;
@@ -546,7 +546,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Explicit)]
-    internal struct XEvent
+    public struct XEvent
     {
         [FieldOffset(0)]
         public XEventName type;
@@ -651,7 +651,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XSetWindowAttributes
+    public struct XSetWindowAttributes
     {
         public IntPtr background_pixmap;
         public IntPtr background_pixel;
@@ -671,7 +671,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XWindowAttributes
+    public struct XWindowAttributes
     {
         public int x;
         public int y;
@@ -704,7 +704,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XTextProperty
+    public struct XTextProperty
     {
         public string value;
         public IntPtr encoding;
@@ -712,13 +712,13 @@ namespace OpenTK.Platform.X11
         public IntPtr nitems;
     }
 
-    internal enum XWindowClass
+    public enum XWindowClass
     {
         InputOutput = 1,
         InputOnly = 2
     }
 
-    internal enum XEventName
+    public enum XEventName
     {
         KeyPress = 2,
         KeyRelease = 3,
@@ -758,7 +758,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum SetWindowValuemask
+    public enum SetWindowValuemask
     {
         Nothing = 0,
         BackPixmap = 1,
@@ -778,7 +778,7 @@ namespace OpenTK.Platform.X11
         Cursor = 16384
     }
 
-    internal enum CreateWindowArgs
+    public enum CreateWindowArgs
     {
         CopyFromParent = 0,
         ParentRelative = 1,
@@ -786,7 +786,7 @@ namespace OpenTK.Platform.X11
         InputOnly = 2
     }
 
-    internal enum Gravity
+    public enum Gravity
     {
         ForgetGravity = 0,
         NorthWestGravity = 1,
@@ -802,7 +802,7 @@ namespace OpenTK.Platform.X11
     }
 
     [CLSCompliant(false)]
-    internal enum XKeySym : uint
+    public enum XKeySym : uint
     {
         XK_BackSpace = 0xFF08,
         XK_Tab = 0xFF09,
@@ -835,7 +835,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum EventMask
+    public enum EventMask
     {
         NoEventMask = 0,
         KeyPressMask = 1 << 0,
@@ -865,14 +865,14 @@ namespace OpenTK.Platform.X11
         OwnerGrabButtonMask = 1 << 24
     }
 
-    internal enum GrabMode
+    public enum GrabMode
     {
         GrabModeSync = 0,
         GrabModeAsync = 1
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XStandardColormap
+    public struct XStandardColormap
     {
         public IntPtr colormap;
         public IntPtr red_max;
@@ -887,7 +887,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 2), CLSCompliant(false)]
-    internal struct XColor
+    public struct XColor
     {
         public IntPtr pixel;
         public ushort red;
@@ -897,7 +897,7 @@ namespace OpenTK.Platform.X11
         public byte pad;
     }
 
-    internal enum Atom
+    public enum Atom
     {
         AnyPropertyType = 0,
         XA_PRIMARY = 1,
@@ -973,7 +973,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XScreen
+    public struct XScreen
     {
         public IntPtr ext_data;
         public IntPtr display;
@@ -998,7 +998,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum ChangeWindowAttributes
+    public enum ChangeWindowAttributes
     {
         X = 1 << 0,
         Y = 1 << 1,
@@ -1025,7 +1025,7 @@ namespace OpenTK.Platform.X11
         OverrideRedirect = 1<<9,
     }
 
-    internal enum StackMode
+    public enum StackMode
     {
         Above = 0,
         Below = 1,
@@ -1035,7 +1035,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XWindowChanges
+    public struct XWindowChanges
     {
         public int x;
         public int y;
@@ -1047,21 +1047,21 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum ColorFlags
+    public enum ColorFlags
     {
         DoRed = 1 << 0,
         DoGreen = 1 << 1,
         DoBlue = 1 << 2
     }
 
-    internal enum NotifyMode
+    public enum NotifyMode
     {
         NotifyNormal = 0,
         NotifyGrab = 1,
         NotifyUngrab = 2
     }
 
-    internal enum NotifyDetail
+    public enum NotifyDetail
     {
         NotifyAncestor = 0,
         NotifyVirtual = 1,
@@ -1074,7 +1074,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum KeyMasks
+    public enum KeyMasks
     {
         ShiftMask = (1 << 0),
         LockMask = (1 << 1),
@@ -1089,13 +1089,13 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XModifierKeymap
+    public struct XModifierKeymap
     {
         public int max_keypermod;
         public IntPtr modifiermap;
     }
 
-    internal enum PropertyMode
+    public enum PropertyMode
     {
         Replace = 0,
         Prepend = 1,
@@ -1103,7 +1103,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential), CLSCompliant(false)]
-    internal struct XKeyBoardState
+    public struct XKeyBoardState
     {
         public int key_click_percent;
         public int bell_percent;
@@ -1113,7 +1113,7 @@ namespace OpenTK.Platform.X11
         public AutoRepeats auto_repeats;
 
         [StructLayout(LayoutKind.Explicit)]
-        internal struct AutoRepeats
+        public struct AutoRepeats
         {
             [FieldOffset(0)]
             public byte first;
@@ -1124,7 +1124,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum GCFunction
+    public enum GCFunction
     {
         GCFunction = 1 << 0,
         GCPlaneMask = 1 << 1,
@@ -1151,21 +1151,21 @@ namespace OpenTK.Platform.X11
         GCArcMode = 1 << 22
     }
 
-    internal enum GCJoinStyle
+    public enum GCJoinStyle
     {
         JoinMiter = 0,
         JoinRound = 1,
         JoinBevel = 2
     }
 
-    internal enum GCLineStyle
+    public enum GCLineStyle
     {
         LineSolid = 0,
         LineOnOffDash = 1,
         LineDoubleDash = 2
     }
 
-    internal enum GCCapStyle
+    public enum GCCapStyle
     {
         CapNotLast = 0,
         CapButt = 1,
@@ -1173,7 +1173,7 @@ namespace OpenTK.Platform.X11
         CapProjecting = 3
     }
 
-    internal enum GCFillStyle
+    public enum GCFillStyle
     {
         FillSolid = 0,
         FillTiled = 1,
@@ -1181,26 +1181,26 @@ namespace OpenTK.Platform.X11
         FillOpaqueStppled = 3
     }
 
-    internal enum GCFillRule
+    public enum GCFillRule
     {
         EvenOddRule = 0,
         WindingRule = 1
     }
 
-    internal enum GCArcMode
+    public enum GCArcMode
     {
         ArcChord = 0,
         ArcPieSlice = 1
     }
 
-    internal enum GCSubwindowMode
+    public enum GCSubwindowMode
     {
         ClipByChildren = 0,
         IncludeInferiors = 1
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XGCValues
+    public struct XGCValues
     {
         public GXFunction function;
         public IntPtr plane_mask;
@@ -1227,7 +1227,7 @@ namespace OpenTK.Platform.X11
         public byte dashes;
     }
 
-    internal enum GXFunction
+    public enum GXFunction
     {
         GXclear = 0x0,		/* 0 */
         GXand = 0x1,		/* src AND dst */
@@ -1247,28 +1247,28 @@ namespace OpenTK.Platform.X11
         GXset = 0xf		/* 1 */
     }
 
-    internal enum NetWindowManagerState
+    public enum NetWindowManagerState
     {
         Remove = 0,
         Add = 1,
         Toggle = 2
     }
 
-    internal enum RevertTo
+    public enum RevertTo
     {
         None = 0,
         PointerRoot = 1,
         Parent = 2
     }
 
-    internal enum MapState
+    public enum MapState
     {
         IsUnmapped = 0,
         IsUnviewable = 1,
         IsViewable = 2
     }
 
-    internal enum CursorFontShape
+    public enum CursorFontShape
     {
         XC_X_cursor = 0,
         XC_arrow = 2,
@@ -1356,7 +1356,7 @@ namespace OpenTK.Platform.X11
         XC_num_glyphs = 154
     }
 
-    internal enum SystrayRequest
+    public enum SystrayRequest
     {
         SYSTEM_TRAY_REQUEST_DOCK = 0,
         SYSTEM_TRAY_BEGIN_MESSAGE = 1,
@@ -1364,7 +1364,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum XSizeHintsFlags
+    public enum XSizeHintsFlags
     {
         USPosition = (1 << 0),
         USSize = (1 << 1),
@@ -1380,7 +1380,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XSizeHints
+    public struct XSizeHints
     {
         public IntPtr flags;
         public int x;
@@ -1403,7 +1403,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum XWMHintsFlags
+    public enum XWMHintsFlags
     {
         InputHint = (1 << 0),
         StateHint = (1 << 1),
@@ -1415,7 +1415,7 @@ namespace OpenTK.Platform.X11
         AllHints = (InputHint | StateHint | IconPixmapHint | IconWindowHint | IconPositionHint | IconMaskHint | WindowGroupHint)
     }
 
-    internal enum XInitialState
+    public enum XInitialState
     {
         DontCareState = 0,
         NormalState = 1,
@@ -1425,7 +1425,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XWMHints
+    public struct XWMHints
     {
         public IntPtr flags;
         public bool input;
@@ -1439,7 +1439,7 @@ namespace OpenTK.Platform.X11
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct XIconSize
+    public struct XIconSize
     {
         public int min_width;
         public int min_height;
@@ -1449,9 +1449,9 @@ namespace OpenTK.Platform.X11
         public int height_inc;
     }
 
-    internal delegate int XErrorHandler(IntPtr DisplayHandle, ref XErrorEvent error_event);
+    public delegate int XErrorHandler(IntPtr DisplayHandle, ref XErrorEvent error_event);
 
-    internal enum XRequest : byte
+    public enum XRequest : byte
     {
         X_CreateWindow = 1,
         X_ChangeWindowAttributes = 2,
@@ -1576,7 +1576,7 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum XIMProperties
+    public enum XIMProperties
     {
         XIMPreeditArea = 0x0001,
         XIMPreeditCallbacks = 0x0002,
@@ -1590,14 +1590,14 @@ namespace OpenTK.Platform.X11
     }
 
     [Flags]
-    internal enum WindowType
+    public enum WindowType
     {
         Client = 1,
         Whole = 2,
         Both = 3
     }
 
-    internal enum XEmbedMessage
+    public enum XEmbedMessage
     {
         EmbeddedNotify = 0,
         WindowActivate = 1,

@@ -3,7 +3,7 @@ using System;
 
 namespace OpenTK.Platform.MacOS
 {
-    internal class MacOSException : Exception
+    public class MacOSException : Exception
     {
         OSStatus errorCode;
 
@@ -31,7 +31,7 @@ namespace OpenTK.Platform.MacOS
         }
     }
 
-    internal enum OSStatus
+    public enum OSStatus
     {
         NoError = 0,
         

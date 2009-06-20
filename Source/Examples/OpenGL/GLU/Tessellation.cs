@@ -135,7 +135,7 @@ namespace Examples
 
         #region OnResize
 
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
             GL.MatrixMode(MatrixMode.Projection);
@@ -246,7 +246,7 @@ namespace Examples
 
         #region OnRenderFrame
 
-        protected override void OnRenderFrame(FrameEventArgs e)
+        public override void OnRenderFrame(RenderFrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 

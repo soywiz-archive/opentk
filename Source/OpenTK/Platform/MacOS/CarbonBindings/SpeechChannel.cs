@@ -7,7 +7,7 @@ using System.Text;
 namespace OpenTK.Platform.MacOS.Carbon
 {
 
-    internal class SpeechChannel
+    public class SpeechChannel
     {
 
         private IntPtr _id;

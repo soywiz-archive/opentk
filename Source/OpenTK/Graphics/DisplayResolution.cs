@@ -10,14 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
-using System.Drawing;
 
 namespace OpenTK.Graphics
 {
     /// <summary>Contains information regarding a monitor's display resolution.</summary>
     public class DisplayResolution
     {
-        Rectangle bounds;
+        int width, height;
         int bits_per_pixel;
         float refresh_rate;
 
@@ -25,8 +24,15 @@ namespace OpenTK.Graphics
 
         #region public DisplayResolution(int width, int height, int bitsPerPixel, float refreshRate)
 
-        // Creates a new DisplayResolution object for the primary DisplayDevice.
-        internal DisplayResolution(int x, int y, int width, int height, int bitsPerPixel, float refreshRate)
+        /// <summary>
+        /// Creates a new DisplayResolution object for the primary DisplayDevice.
+        /// </summary>
+        /// <param name="width">The requested width in pixels.</param>
+        /// <param name="height">The requested height in pixels.</param>
+        /// <param name="bitsPerPixel">The requested bits per pixel in bits.</param>
+        /// <param name="refreshRate">The requested refresh rate in Herz.</param>
+        /// <remarks>OpenTK will select the closest match between all available resolutions on the primary DisplayDevice.</remarks>
+        internal DisplayResolution(int width, int height, int bitsPerPixel, float refreshRate)
         {
             // Refresh rate may be zero, since this information may not be available on some platforms.
             if (width <= 0) throw new ArgumentOutOfRangeException("width", "Must be greater than zero.");
@@ -34,7 +40,8 @@ namespace OpenTK.Graphics
             if (bitsPerPixel <= 0) throw new ArgumentOutOfRangeException("bitsPerPixel", "Must be greater than zero.");
             if (refreshRate < 0) throw new ArgumentOutOfRangeException("refreshRate", "Must be greater than, or equal to zero.");
 
-            this.bounds = new Rectangle(x, y, width, height);
+            this.width = width;
+            this.height = height;
             this.bits_per_pixel = bitsPerPixel;
             this.refresh_rate = refreshRate;
         }
@@ -77,29 +84,17 @@ namespace OpenTK.Graphics
 
         #region --- Public Methods ---
 
-        #region Bounds
-
-        /// <summary>
-        /// Gets a System.Drawing.Rectangle that contains the bounds of this display device.
-        /// </summary>
-        public Rectangle Bounds
-        {
-            get { return bounds; }
-        }
-
-        #endregion
-
         #region public int Width
 
         /// <summary>Gets a System.Int32 that contains the width of this display in pixels.</summary>
-        public int Width { get { return bounds.Width; } }
+        public int Width { get { return width; } }
 
         #endregion
 
         #region public int Height
 
         /// <summary>Gets a System.Int32 that contains the height of this display in pixels.</summary>
-        public int Height { get { return bounds.Height; } }
+        public int Height { get { return height; } }
 
         #endregion
 
@@ -134,7 +129,7 @@ namespace OpenTK.Graphics
         /// <returns>A System.String representing this DisplayResolution.</returns>
         public override string ToString()
         {
-            return String.Format("{0}x{1}@{2}Hz", Bounds, bits_per_pixel, refresh_rate);
+            return String.Format("{0}x{1}x{2}@{3}Hz", width, height, bits_per_pixel, refresh_rate);
         }
 
         #endregion
@@ -168,7 +163,7 @@ namespace OpenTK.Graphics
         /// <returns>A System.Int32 that may serve as a hash code for this resolution.</returns>
         public override int GetHashCode()
         {
-            return Bounds.GetHashCode() ^ bits_per_pixel ^ refresh_rate.GetHashCode();
+            return width ^ height ^ bits_per_pixel ^ (int)refresh_rate;
         }
 
         #endregion

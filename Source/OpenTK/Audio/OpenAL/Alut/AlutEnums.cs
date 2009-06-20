@@ -11,9 +11,7 @@ using System;
 
 namespace OpenTK.Audio
 {
-    /// <summary>
-    /// Defines the version of the Alut library.
-    /// </summary>
+
     public enum AlutVersions : int
     {
         /// <summary>Defines the A in OpenAL A.B</summary>
@@ -22,9 +20,6 @@ namespace OpenTK.Audio
         ApiMinorVersion = 1,
     }
 
-    /// <summary>
-    /// Defines available alut error codes.
-    /// </summary>
     public enum AlutError : int
     {
         /// <summary>No ALUT error found.</summary>
@@ -67,26 +62,15 @@ namespace OpenTK.Audio
         CorruptOrTruncatedData = 0x211,
     }
 
-    /// <summary>
-    /// Defines available alut waveform types.
-    /// </summary>
     public enum AlutWaveform : int
     {
-        /// <summary>A sine waveform</summary>
         Sine = 0x100,
-        /// <summary>A square waveform</summary>
         Square = 0x101,
-        /// <summary>A sawtooth waveform</summary>
         SawTooth = 0x102,
-        /// <summary>A waveform containing white noise</summary>
         WhiteNoise = 0x103,
-        /// <summary>A waveform containing an impusle</summary>
         Impulse = 0x104,
     }
 
-    /// <summary>
-    /// Defines parameters for alut loaders.
-    /// </summary>
     public enum AlutLoader : int
     {
         ///<summary>For the loaders returning sound buffer in an OpenAL buffer, e.g. Alut.CreateBufferFromFile and Alut.CreateBufferFromFileImage</summary>

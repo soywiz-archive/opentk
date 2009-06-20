@@ -216,7 +216,7 @@ namespace Examples.Tutorial
                 GL.Ext.DeleteFramebuffers(1, ref FBOHandle);
         }
 
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(OpenTK.Platform.ResizeEventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
             GL.MatrixMode(MatrixMode.Projection);
@@ -230,7 +230,7 @@ namespace Examples.Tutorial
             base.OnResize(e);
         }
 
-        protected override void OnUpdateFrame(FrameEventArgs e)
+        public override void OnUpdateFrame(UpdateFrameEventArgs e)
         {
             base.OnUpdateFrame(e);
 
@@ -244,7 +244,7 @@ namespace Examples.Tutorial
                 this.Exit();
         }
 
-        protected override void OnRenderFrame(FrameEventArgs e)
+        public override void OnRenderFrame(RenderFrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             

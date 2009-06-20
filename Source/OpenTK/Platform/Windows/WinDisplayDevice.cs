@@ -52,12 +52,10 @@ namespace OpenTK.Platform.Windows
 
                     // The second function should only be executed when the first one fails
                     // (e.g. when the monitor is disabled)
-                    if (Functions.EnumDisplaySettingsEx(dev1.DeviceName.ToString(), DisplayModeSettingsEnum.CurrentSettings, monitor_mode, 0) ||
-                        Functions.EnumDisplaySettingsEx(dev1.DeviceName.ToString(), DisplayModeSettingsEnum.RegistrySettings, monitor_mode, 0))
+                    if (Functions.EnumDisplaySettings(dev1.DeviceName.ToString(), DisplayModeSettingsEnum.CurrentSettings, monitor_mode) ||
+                        Functions.EnumDisplaySettings(dev1.DeviceName.ToString(), DisplayModeSettingsEnum.RegistrySettings, monitor_mode))
                     {
-                        opentk_dev_current_res = new DisplayResolution(
-                            monitor_mode.Position.X, monitor_mode.Position.Y,
-                            monitor_mode.PelsWidth, monitor_mode.PelsHeight,
+                        opentk_dev_current_res = new DisplayResolution(monitor_mode.PelsWidth, monitor_mode.PelsHeight,
                             monitor_mode.BitsPerPel, monitor_mode.DisplayFrequency);
                         opentk_dev_primary =
                             (dev1.StateFlags & DisplayDeviceStateFlags.PrimaryDevice) != DisplayDeviceStateFlags.None;
@@ -68,7 +66,6 @@ namespace OpenTK.Platform.Windows
                     while (Functions.EnumDisplaySettings(dev1.DeviceName.ToString(), mode_count++, monitor_mode))
                     {
                         DisplayResolution res = new DisplayResolution(
-                            monitor_mode.Position.X, monitor_mode.Position.Y,
                             monitor_mode.PelsWidth, monitor_mode.PelsHeight,
                             monitor_mode.BitsPerPel, monitor_mode.DisplayFrequency);
 
@@ -78,9 +75,7 @@ namespace OpenTK.Platform.Windows
                     // Construct the OpenTK DisplayDevice through the accumulated parameters.
                     // The constructor will automatically add the DisplayDevice to the list
                     // of available devices.
-                    opentk_dev = new OpenTK.Graphics.DisplayDevice(
-                        opentk_dev_current_res,
-                        opentk_dev_primary,
+                    opentk_dev = new OpenTK.Graphics.DisplayDevice(opentk_dev_current_res, opentk_dev_primary,
                         opentk_dev_available_res);
 
                     available_device_names.Add(opentk_dev, dev1.DeviceName);
