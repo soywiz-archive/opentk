@@ -579,9 +579,7 @@ namespace Examples.Properties {
         ///using System.Diagnostics;
         ///
         ///using OpenTK;
-        ///using OpenTK.Graphics.OpenGL;
         ///using OpenTK.Graphics;
-        ///using OpenTK.Graphics.OpenGL.Enums;
         ///using OpenTK.Input;
         ///
         ///namespace Examples.Tutorial
@@ -589,7 +587,7 @@ namespace Examples.Properties {
         ///    /// &lt;summary&gt;
         ///    /// Demonstrates the GameWindow class.
         ///    /// &lt;/summary&gt;
-        ///    [Exampl [rest of string was truncated]&quot;;.
+        ///    [Example(&quot;Simple Window&quot;, ExampleCategory.OpenTK, &quot;GameWindow&quot;, Documentati [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SimpleWindow {
             get {
