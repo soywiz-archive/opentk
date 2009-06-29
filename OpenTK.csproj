@@ -1,0 +1,247 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A37A7E14-0000-0000-0000-000000000000}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>OpenTK</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>
+    </AppDesignerFolder>
+    <RootNamespace>OpenTK</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <StartArguments>
+    </StartArguments>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>False</Optimize>
+    <OutputPath>..\..\Binaries\Debug\Libraries\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;</DefineConstants>
+    <DocumentationFile>OpenTK.xml</DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>True</Optimize>
+    <OutputPath>..\..\Binaries\Release\Libraries\</OutputPath>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>False</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.Xml</Name>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\AudioCapture.cs" />
+    <Compile Include="Audio\AudioDeviceEnumerator.cs" />
+    <Compile Include="ContextHandle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\AudioContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\AudioContextException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\AudioDeviceException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\AudioException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\SoundData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\SoundFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\AL\AL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\AL\ALEnums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\AL\EffectsExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\AL\EffectsExtensionEnums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\AL\EffectsExtensionPresets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\AL\XRamExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\Alc\Alc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\Alc\AlcEnums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\Alut\Alut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Audio\OpenAL\Alut\AlutEnums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\BezierCurve.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\BezierCurveCubic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\BezierCurveQuadric.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Box2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Functions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Half.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Matrix3d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Matrix4.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Matrix4d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Quaternion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Quaterniond.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector2d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector2h.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector3.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector3d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector3h.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector4.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector4d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\Vector4h.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
