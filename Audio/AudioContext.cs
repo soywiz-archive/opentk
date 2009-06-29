@@ -29,19 +29,10 @@ namespace OpenTK.Audio
         bool context_exists;
 
         string device_name;
-        static string default_playback_device, default_recording_device;
         static object audio_context_lock = new object();
-        static List<string> available_playback_devices = new List<string>();
-        static List<string> available_recording_devices = new List<string>();
         static Dictionary<ContextHandle, AudioContext> available_contexts = new Dictionary<ContextHandle, AudioContext>();
-        static bool openal_supported = true;
-        static Version version;
 
-        private enum Version
-        {
-            OpenAL10,
-            OpenAL11
-        }
+
 
         #endregion
 
@@ -56,7 +47,7 @@ namespace OpenTK.Audio
         /// </summary>
         static AudioContext()
         {
-            LoadAvailableDevices();
+            if (AudioDeviceEnumerator.IsInitialized) { }; // force enumeration
         }
 
         #endregion
@@ -121,7 +112,7 @@ namespace OpenTK.Audio
         /// devices.
         /// </remarks>
         public AudioContext(string device, int freq, int refresh, bool sync)
-            : this(available_playback_devices[0], freq, refresh, sync, true) { }
+            : this(AudioDeviceEnumerator.AvailablePlaybackDevices[0], freq, refresh, sync, true) { }
 
         #endregion
 
@@ -163,121 +154,6 @@ namespace OpenTK.Audio
 
         #region --- Private Methods ---
 
-        #region static void LoadAvailableDevices()
-
-        /// <private />
-        /// <static />
-        /// <summary>
-        /// Loads all available audio devices into the available_devices array.
-        /// </summary>
-        /// <remarks>
-        /// Only called by the static AudioContext constructor.
-        /// </remarks>
-        static void LoadAvailableDevices()
-        {
-            lock (audio_context_lock)
-            {
-                if (available_playback_devices.Count == 0)
-                {
-                    IntPtr dummy_device = IntPtr.Zero;
-                    ContextHandle dummy_context = ContextHandle.Zero;
-
-                    try
-                    {
-                        Debug.WriteLine("Enumerating audio devices.");
-                        Debug.Indent();
-
-                        // need a dummy context for correct results
-                        dummy_device = Alc.OpenDevice(null);
-                        dummy_context = Alc.CreateContext(dummy_device, (int[])null);
-                        bool dummy_success = Alc.MakeContextCurrent(dummy_context);
-                        AlcError dummy_error = Alc.GetError(dummy_device);
-                        if (!dummy_success || dummy_error != AlcError.NoError)
-                        {
-                            throw new AudioContextException("Failed to create dummy Context. Device (" + dummy_device.ToString() +
-                                                            ") Context (" + dummy_context.Handle.ToString() +
-                                                            ") MakeContextCurrent " + (dummy_success ? "succeeded" : "failed") +
-                                                            ", Alc Error (" + dummy_error.ToString() + ") " + Alc.GetString(IntPtr.Zero, (AlcGetString)dummy_error));
-                        }
-
-                        // Get a list of all known playback devices, using best extension available
-                        if (Alc.IsExtensionPresent(IntPtr.Zero, "ALC_ENUMERATION_EXT"))
-                        {
-                            version = Version.OpenAL11;
-                            if (Alc.IsExtensionPresent(IntPtr.Zero, "ALC_ENUMERATE_ALL_EXT"))
-                            {
-                                available_playback_devices.AddRange(Alc.GetString(IntPtr.Zero, AlcGetStringList.AllDevicesSpecifier));
-                                default_playback_device = Alc.GetString(IntPtr.Zero, AlcGetString.DefaultAllDevicesSpecifier);
-                            }
-                            else
-                            {
-                                available_playback_devices.AddRange(Alc.GetString(IntPtr.Zero, AlcGetStringList.DeviceSpecifier));
-                                default_playback_device = Alc.GetString(IntPtr.Zero, AlcGetString.DefaultDeviceSpecifier);
-                            }
-                        }
-                        else
-                        {
-                            version = Version.OpenAL10;
-                            Debug.Print("Device enumeration extension not available. Failed to enumerate playback devices.");
-                        }
-                        AlcError playback_err = Alc.GetError(dummy_device);
-                        if (playback_err != AlcError.NoError)
-                            throw new AudioContextException("Alc Error occured when querying available playback devices. " + playback_err.ToString());
-
-                        // Get a list of all known recording devices, at least ALC_ENUMERATION_EXT is needed too
-                        if (version == Version.OpenAL11 && Alc.IsExtensionPresent(IntPtr.Zero, "ALC_EXT_CAPTURE"))
-                        {
-                            available_recording_devices.AddRange(Alc.GetString(IntPtr.Zero, AlcGetStringList.CaptureDeviceSpecifier));
-                            default_recording_device = Alc.GetString(IntPtr.Zero, AlcGetString.CaptureDefaultDeviceSpecifier);
-                        }
-                        else
-                        {
-                            Debug.Print("Capture extension not available. Failed to enumerate recording devices.");
-                        }
-                        AlcError record_err = Alc.GetError(dummy_device);
-                        if (record_err != AlcError.NoError)
-                            throw new AudioContextException("Alc Error occured when querying available recording devices. " + record_err.ToString());
-
-#if DEBUG
-                        Debug.WriteLine("Found playback devices:");
-                        foreach (string s in available_playback_devices)
-                            Debug.WriteLine(s);
-
-                        Debug.WriteLine("Default playback device: " + default_playback_device);
-
-                        Debug.WriteLine("Found recording devices:");
-                        foreach (string s in available_recording_devices)
-                            Debug.WriteLine(s);
-
-                        Debug.WriteLine("Default recording device: " + default_recording_device);
-#endif
-                    }
-                    catch (DllNotFoundException e)
-                    {
-                        Debug.WriteLine(e.ToString());
-                        openal_supported = false;
-                    }
-                    catch (AudioContextException ace)
-                    {
-                        Debug.WriteLine(ace.ToString());
-                    }
-                    finally
-                    {
-                        Debug.Unindent();
-
-                        // clean up the dummy context
-                        Alc.MakeContextCurrent(ContextHandle.Zero);
-                        if (dummy_context != ContextHandle.Zero && dummy_context.Handle != IntPtr.Zero)
-                            Alc.DestroyContext(dummy_context);
-                        if (dummy_device != IntPtr.Zero)
-                            Alc.CloseDevice(dummy_device);
-                    }
-                }
-            }
-        }
-
-        #endregion
-
         #region CreateContext
 
         /// <private />
@@ -307,24 +183,24 @@ namespace OpenTK.Audio
         /// </remarks>
         void CreateContext(string device, int freq, int refresh, bool sync, bool enableEfx)
         {
-            if (!openal_supported)
+            if (!AudioDeviceEnumerator.IsOpenALSupported)
                 throw new DllNotFoundException("openal32.dll");
-            
-            if (version == Version.OpenAL11 && available_playback_devices.Count == 0)    // Version.OpenAL10 does not support device enumeration.
+
+            if (AudioDeviceEnumerator.Version == AudioDeviceEnumerator.AlcVersion.Alc1_1 && AudioDeviceEnumerator.AvailablePlaybackDevices.Count == 0)    // Version.OpenAL10 does not support device enumeration.
                 throw new NotSupportedException("No audio hardware is available.");
             if (context_exists) throw new NotSupportedException("Multiple AudioContexts are not supported.");
             if (freq < 0) throw new ArgumentOutOfRangeException("freq", freq, "Should be greater than zero.");
             if (refresh < 0) throw new ArgumentOutOfRangeException("refresh", refresh, "Should be greater than zero.");
 
-            
+
             if (!String.IsNullOrEmpty(device))
                 device_handle = Alc.OpenDevice(device); // try to open device by name
             if (device_handle == IntPtr.Zero)
                 device_handle = Alc.OpenDevice(null); // try to open default device
             if (device_handle == IntPtr.Zero) // && Alc.IsExtensionPresent(IntPtr.Zero, "ALC_ENUMERATION_EXT")
                 Alc.OpenDevice(Alc.GetString(IntPtr.Zero, AlcGetString.DefaultDeviceSpecifier)); // try use ALC_ENUMERATION_EXT
-            if (device_handle == IntPtr.Zero && available_playback_devices.Count > 0)
-                device_handle = Alc.OpenDevice(available_playback_devices[0]); // try using first-found
+            if (device_handle == IntPtr.Zero && AudioDeviceEnumerator.AvailablePlaybackDevices.Count > 0)
+                device_handle = Alc.OpenDevice(AudioDeviceEnumerator.AvailablePlaybackDevices[0]); // try using first-found
             if (device_handle == IntPtr.Zero)
                 throw new AudioDeviceException(String.Format("Audio device '{0}' does not exist or is tied up by another application.",
                     String.IsNullOrEmpty(device) ? "default" : device));
@@ -333,19 +209,19 @@ namespace OpenTK.Audio
 
             // Build the attribute list
             List<int> attributes = new List<int>();
-            
+
             if (freq != 0)
             {
                 attributes.Add((int)AlcContextAttributes.Frequency);
                 attributes.Add(freq);
             }
-            
+
             if (refresh != 0)
             {
                 attributes.Add((int)AlcContextAttributes.Refresh);
                 attributes.Add(refresh);
             }
-            
+
             attributes.Add((int)AlcContextAttributes.Sync);
             attributes.Add(sync ? 1 : 0);
 
@@ -371,11 +247,11 @@ namespace OpenTK.Audio
             // HACK: OpenAL SI on Linux/ALSA crashes on MakeCurrent. This hack avoids calling MakeCurrent when
             // an old OpenAL version is detect - it may affect outdated OpenAL versions different than OpenAL SI,
             // but it looks like a good compromise for now.
-            if (available_playback_devices.Count > 0)
+            if (AudioDeviceEnumerator.AvailablePlaybackDevices.Count > 0)
                 MakeCurrent();
 
             CheckForAlcErrors();
-            
+
             device_name = Alc.GetString(device_handle, AlcGetString.DeviceSpecifier);
             int attribute_count;
             Alc.GetInteger(device_handle, AlcGetInteger.AttributesSize, sizeof(int), out attribute_count);
@@ -402,12 +278,12 @@ namespace OpenTK.Audio
         #endregion
 
         #region void CheckForAlcErrors()
-        
+
         void CheckForAlcErrors()
         {
             AlcError err = Alc.GetError(device_handle);
             if (err != AlcError.NoError)
-                throw new AudioContextException("Device ("+device_handle+") "+err.ToString());
+                throw new AudioContextException("Device (" + device_handle + ") " + err.ToString());
         }
 
         #endregion
@@ -635,7 +511,7 @@ namespace OpenTK.Audio
         }
 
         #endregion
-
+        /*
         #region public static string[] AvailablePlaybackDevices
 
         /// <summary>
@@ -654,6 +530,7 @@ namespace OpenTK.Audio
 
         #endregion
 
+        
         #region public static string[] AvailableRecordingDevices
 
         /// <summary>
@@ -669,32 +546,14 @@ namespace OpenTK.Audio
                 if (available_recording_devices.Count == 0 && available_playback_devices.Count == 0)
                     LoadAvailableDevices();
 
-                /*
-                if (available_recording_devices.Count == 0)
-                    return new string[] { string.Empty };
-                else
-                    */
-                    return available_recording_devices.ToArray();
+                return available_recording_devices.ToArray();
             }
         }
 
         #endregion
 
-        public static string DefaultPlaybackDevice
-        {
-            get
-            {
-                return default_playback_device;
-            }
-        }
-
-        public static string DefaultRecordingDevice
-        {
-            get
-            {
-                return default_recording_device;
-            }
-        }
+       
+ */
 
         /// <summary>Returns the name of the used device for the current context.</summary>
         public string GetDeviceName
@@ -710,9 +569,9 @@ namespace OpenTK.Audio
         {
             get
             {
-                if (disposed) 
+                if (disposed)
                     throw new ObjectDisposedException(this.ToString());
-              
+
                 return Alc.GetError(this.device_handle);
             }
         }

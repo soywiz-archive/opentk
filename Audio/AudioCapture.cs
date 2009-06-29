@@ -17,11 +17,16 @@ namespace OpenTK.Audio
            {
                get
                {
-                   return IsRecording;
+                   return _isrecording;
                }
            }*/
 
         #region Constructor & Destructor
+
+        static AudioCapture()
+        {
+            if (AudioDeviceEnumerator.IsInitialized) { }; // force enumeration
+        }
 
         [CLSCompliant(true)]
         public AudioCapture(string devicename, int frequency, ALFormat bufferformat, int buffersize)
