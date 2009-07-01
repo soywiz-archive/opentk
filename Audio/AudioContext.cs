@@ -32,8 +32,6 @@ namespace OpenTK.Audio
         static object audio_context_lock = new object();
         static Dictionary<ContextHandle, AudioContext> available_contexts = new Dictionary<ContextHandle, AudioContext>();
 
-
-
         #endregion
 
         #region --- Constructors ---
@@ -47,7 +45,8 @@ namespace OpenTK.Audio
         /// </summary>
         static AudioContext()
         {
-            if (AudioDeviceEnumerator.IsInitialized) { }; // force enumeration
+            if (AudioDeviceEnumerator.IsOpenALSupported) // forces enumeration
+            { } 
         }
 
         #endregion
@@ -186,7 +185,7 @@ namespace OpenTK.Audio
             if (!AudioDeviceEnumerator.IsOpenALSupported)
                 throw new DllNotFoundException("openal32.dll");
 
-            if (AudioDeviceEnumerator.Version == AudioDeviceEnumerator.AlcVersion.Alc1_1 && AudioDeviceEnumerator.AvailablePlaybackDevices.Count == 0)    // Version.OpenAL10 does not support device enumeration.
+            if (AudioDeviceEnumerator.Version == AudioDeviceEnumerator.AlcVersion.Alc1_1 && AudioDeviceEnumerator.AvailablePlaybackDevices.Count == 0)    // Alc 1.0 does not support device enumeration.
                 throw new NotSupportedException("No audio hardware is available.");
             if (context_exists) throw new NotSupportedException("Multiple AudioContexts are not supported.");
             if (freq < 0) throw new ArgumentOutOfRangeException("freq", freq, "Should be greater than zero.");
@@ -197,8 +196,11 @@ namespace OpenTK.Audio
                 device_handle = Alc.OpenDevice(device); // try to open device by name
             if (device_handle == IntPtr.Zero)
                 device_handle = Alc.OpenDevice(null); // try to open default device
-            if (device_handle == IntPtr.Zero) // && Alc.IsExtensionPresent(IntPtr.Zero, "ALC_ENUMERATION_EXT")
-                Alc.OpenDevice(Alc.GetString(IntPtr.Zero, AlcGetString.DefaultDeviceSpecifier)); // try use ALC_ENUMERATION_EXT
+          // this condition is better handled by the 2 lines below it
+          //  if (device_handle == IntPtr.Zero) // && Alc.IsExtensionPresent(IntPtr.Zero, "ALC_ENUMERATION_EXT")
+          //      device_handle = Alc.OpenDevice(Alc.GetString(IntPtr.Zero, AlcGetString.DefaultDeviceSpecifier)); // try use ALC_ENUMERATION_EXT
+            if (device_handle == IntPtr.Zero)
+                device_handle = Alc.OpenDevice(AudioDeviceEnumerator.DefaultPlaybackDevice);
             if (device_handle == IntPtr.Zero && AudioDeviceEnumerator.AvailablePlaybackDevices.Count > 0)
                 device_handle = Alc.OpenDevice(AudioDeviceEnumerator.AvailablePlaybackDevices[0]); // try using first-found
             if (device_handle == IntPtr.Zero)
@@ -556,7 +558,7 @@ namespace OpenTK.Audio
  */
 
         /// <summary>Returns the name of the used device for the current context.</summary>
-        public string GetDeviceName
+        public string CurrentDeviceName
         {
             get
             {
@@ -564,8 +566,8 @@ namespace OpenTK.Audio
             }
         }
 
-        /// <summary>Returns the first encountered error by Alc.</summary>
-        public AlcError GetAlcError
+        /// <summary>Returns the first encountered error by Alc for this device.</summary>
+        public AlcError CurrentAlcError
         {
             get
             {
