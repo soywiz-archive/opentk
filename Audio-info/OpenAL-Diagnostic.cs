@@ -10,9 +10,12 @@ using OpenTK.Audio;
 namespace Audio_Diagnostic
 {
 
-    class Program
+    /// <summary>
+    /// A text-based diagnosis program for OpenAL.
+    /// The constructors will call the OpenAL commands, the Print() methods just show the information.
+    /// </summary>
+    class OpenALDiagnosisProgram
     {
-
         public static void checkForErrors()
         {
             {
@@ -45,21 +48,24 @@ namespace Audio_Diagnostic
             using (AudioContext A = new AudioContext())
             {
                 AlcDiagnostic AlcDiag = new AlcDiagnostic(Alc.GetContextsDevice(Alc.GetCurrentContext()));
+                checkForErrors();
                 AlcDiag.Print();
                 AlcDiag = null;
-                checkForErrors();
+
                 ALDiagnostic ALdiag = new ALDiagnostic();
+                checkForErrors();
                 ALdiag.Print();
                 ALdiag = null;
-                checkForErrors();
+
                 EfxDiagnostic EfxDiag = new EfxDiagnostic();
+                checkForErrors();
                 EfxDiag.Print();
                 EfxDiag = null;
-                checkForErrors();
+
                 XRamDiagnostic XRamDiag = new XRamDiagnostic();
+                checkForErrors();
                 XRamDiag.Print();
                 XRamDiag = null;
-                checkForErrors();
 
                 RecorderDiagnostic rec = new RecorderDiagnostic();
                 rec.Print();
@@ -83,6 +89,8 @@ namespace Audio_Diagnostic
 
         public DeviceDiagnostic()
         {
+            Trace.WriteLine("--- Device related errors ---");
+
             AllPlaybackDevices = AudioDeviceEnumerator.AvailablePlaybackDevices;
             AllRecordingDevices = AudioDeviceEnumerator.AvailableRecordingDevices;
 
@@ -115,7 +123,6 @@ namespace Audio_Diagnostic
             }
             Trace.Unindent();
         }
-
     }
 
     class AlcDiagnostic
@@ -145,6 +152,8 @@ namespace Audio_Diagnostic
 
         public AlcDiagnostic(IntPtr dev)
         {
+            Trace.WriteLine("--- Alc related errors ---");
+
             Alc.GetInteger(dev, AlcGetInteger.MajorVersion, 1, out MajorVersion);
             Alc.GetInteger(dev, AlcGetInteger.MinorVersion, 1, out MinorVersion);
             Alc.GetInteger(dev, AlcGetInteger.EfxMajorVersion, 1, out EfxMajorVersion);
@@ -224,6 +233,8 @@ namespace Audio_Diagnostic
 
         public ALDiagnostic()
         {
+            Trace.WriteLine("--- AL related errors ---");
+
             ExtensionString = AL.Get(ALGetString.Extensions);
             Renderer = AL.Get(ALGetString.Renderer);
             Vendor = AL.Get(ALGetString.Vendor);
@@ -310,6 +321,8 @@ namespace Audio_Diagnostic
 
         public EfxDiagnostic()
         {
+            Trace.WriteLine("--- Efx related errors ---");
+
             EffectsExtension Efx = new EffectsExtension();
             Trace.Assert(Efx.IsInitialized);
 
@@ -394,6 +407,8 @@ namespace Audio_Diagnostic
 
         public XRamDiagnostic()
         {
+            Trace.WriteLine("--- X-RAM related errors ---");
+
             XRamExtension XRam = new XRamExtension();
             if (XRam.IsInitialized)
             {
@@ -452,6 +467,7 @@ namespace Audio_Diagnostic
 
     class RecorderDiagnostic
     {
+        #region Fields
         bool IsDeviceAvailable;
         bool BufferContentsAllZero;
         short MaxSample = short.MinValue;
@@ -462,6 +478,8 @@ namespace Audio_Diagnostic
 
         string DeviceName;
 
+        #endregion Fields
+
         private void CheckRecorderError(string location)
         {
             AlcError err = r.CurrentAlcError;
@@ -471,11 +489,12 @@ namespace Audio_Diagnostic
 
         public RecorderDiagnostic()
         {
+            Trace.WriteLine("--- AudioCapture related errors ---");
             IsDeviceAvailable = false;
 
             try
             {
-                r = new AudioCapture(AudioDeviceEnumerator.DefaultRecordingDevice,(uint) 16000, ALFormat.Mono16, 16000);
+                r = new AudioCapture(AudioDeviceEnumerator.DefaultRecordingDevice, (uint)16000, ALFormat.Mono16, 4096);
             }
             catch (AudioDeviceException ade)
             {
@@ -488,19 +507,19 @@ namespace Audio_Diagnostic
 
             r.Start();
             CheckRecorderError("Alc.CaptureStart");
-            Thread.Sleep(500);
+            Thread.Sleep(100);
             r.Stop();
             CheckRecorderError("Alc.CaptureStop");
 
-            byte[] Buffer = new byte[32000]; // only need 16000 bytes for half a second, but bigger array prevents OutOfArrayBounds exception
+            byte[] Buffer = new byte[8192];
             GCHandle BufferHandle = GCHandle.Alloc(Buffer, GCHandleType.Pinned);
             IntPtr BufferPtr = BufferHandle.AddrOfPinnedObject();
 
             int SamplesBefore = r.AvailableSamples;
             CheckRecorderError("Alc.GetInteger(...CaptureSamples...)");
-            r.GetSamples(BufferPtr, (SamplesBefore > 16000 ? 16000 : SamplesBefore));
+            r.GetSamples(BufferPtr, (SamplesBefore > 4096 ? 4096 : SamplesBefore));
             CheckRecorderError("Alc.CaptureSamples");
-            Thread.Sleep(100); // getsamples doesn't block
+            Thread.Sleep(50); // getsamples doesn't block
 
             int SamplesCaptured = SamplesBefore - r.AvailableSamples;
 
@@ -513,14 +532,14 @@ namespace Audio_Diagnostic
 
             for (int i = 0; i < SamplesCaptured; i++)
             {
-               short sample= BitConverter.ToInt16(Buffer, i * 2);
-               if (sample > MaxSample)
-                   MaxSample = sample;
-               if (sample < MinSample)
-                   MinSample = sample;
+                short sample = BitConverter.ToInt16(Buffer, i * 2);
+                if (sample > MaxSample)
+                    MaxSample = sample;
+                if (sample < MinSample)
+                    MinSample = sample;
             }
 
-            if (ZeroCounter < SamplesCaptured * 2 && SamplesCaptured>0)
+            if (ZeroCounter < SamplesCaptured * 2 && SamplesCaptured > 0)
                 BufferContentsAllZero = false;
             else
                 BufferContentsAllZero = true;
@@ -528,13 +547,15 @@ namespace Audio_Diagnostic
             r.Dispose();
             CheckRecorderError("Alc.CaptureCloseDevice");
 
+            // no playback test needed due to Parrot test app.
+            /*
             uint buf;
             AL.GenBuffer(out buf);
             AL.BufferData(buf, ALFormat.Mono16, BufferPtr, SamplesCaptured * 2, 16000);
             uint src;
             AL.GenSource(out src);
             AL.BindBufferToSource(src, buf);
-            AL.Listener(ALListenerf.Gain, 8.0f);
+            AL.Listener(ALListenerf.Gain, 16.0f);
             AL.SourcePlay(src);
             while (AL.GetSourceState(src) == ALSourceState.Playing)
             {
@@ -544,6 +565,7 @@ namespace Audio_Diagnostic
 
             AL.DeleteSource(ref src);
             AL.DeleteBuffer(ref buf);
+            */
 
             BufferHandle.Free();
         }
@@ -560,7 +582,7 @@ namespace Audio_Diagnostic
 
             Trace.Indent();
             {
-                Trace.WriteLine("Using capture device: "+DeviceName);
+                Trace.WriteLine("Using capture device: " + DeviceName);
                 if (Errorlist.Count > 0)
                 {
                     Trace.WriteLine("Found Alc Errors:");
@@ -571,10 +593,10 @@ namespace Audio_Diagnostic
                     }
                     Trace.Unindent();
 
-                    
+
                 }
-                Trace.WriteLine("Buffer contents after capture was all 0's: "+BufferContentsAllZero);
-                Trace.WriteLine("Sample min/max in recorded data: "+ MinSample+" / "+MaxSample);
+                Trace.WriteLine("Buffer contents after capture was all 0's: " + BufferContentsAllZero);
+                Trace.WriteLine("Sample min/max in recorded data: " + MinSample + " / " + MaxSample);
             }
             Trace.Unindent();
         }

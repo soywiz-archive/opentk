@@ -34,7 +34,7 @@ namespace Parrot
 
         #region Forms related
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_Start_Click(object sender, EventArgs e)
         {
             button_Start.Enabled = false;
             button_Stop.Enabled = true;
@@ -44,7 +44,7 @@ namespace Parrot
             this.StartRecording();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button_Stop_Click(object sender, EventArgs e)
         {
             button_Start.Enabled = true;
             button_Stop.Enabled = false;
@@ -54,9 +54,14 @@ namespace Parrot
             this.StopRecording();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer_GetSamples_Tick(object sender, EventArgs e)
         {
             this.GetSamples();
+        }
+
+        private void Parrot_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.StopRecording();
         }
 
         #endregion Forms related
@@ -80,20 +85,21 @@ namespace Parrot
             }
             catch (AudioException ae)
             {
-                MessageBox.Show("Exception caught when opening playback device.\n" + ae.Message);
+                MessageBox.Show("Fatal: Cannot continue without a playback device.\nException caught when opening playback device.\n" + ae.Message);
+                Application.Exit();
             }
-            if (AC == null)
-                return;
 
             AL.Listener(ALListenerf.Gain, 64.0f);
             src = AL.GenSource();
 
             try
             {
+                /*
                 MessageBox.Show("Using recorder:" +
                                 "\nName: " + (string)comboBox_RecorderSelection.SelectedItem +
                                 "\nFrequency: " + (uint)numericUpDown_Frequency.Value +
                                 "\nSamples: " + (int)numericUpDown_SamplesRingbuffer.Value);
+                */
                 rec = new AudioCapture((string)comboBox_RecorderSelection.SelectedItem, (uint)numericUpDown_Frequency.Value, ALFormat.Mono16, (int)numericUpDown_SamplesRingbuffer.Value);
             }
             catch (AudioDeviceException ade)
@@ -182,6 +188,5 @@ namespace Parrot
         }
 
         #endregion OpenAL related
-
     }
 }

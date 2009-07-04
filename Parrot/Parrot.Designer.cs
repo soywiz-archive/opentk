@@ -115,7 +115,7 @@
             this.numericUpDown_SamplesRingbuffer.TabIndex = 2;
             this.numericUpDown_SamplesRingbuffer.ThousandsSeparator = true;
             this.numericUpDown_SamplesRingbuffer.Value = new decimal(new int[] {
-            16000,
+            4096,
             0,
             0,
             0});
@@ -161,7 +161,7 @@
             this.label_SamplesConsumed.Location = new System.Drawing.Point(6, 52);
             this.label_SamplesConsumed.Name = "label_SamplesConsumed";
             this.label_SamplesConsumed.Size = new System.Drawing.Size(129, 13);
-            this.label_SamplesConsumed.TabIndex = 2;
+            this.label_SamplesConsumed.TabIndex = 103;
             this.label_SamplesConsumed.Text = "Samples consumed: 5432";
             // 
             // button_Stop
@@ -169,24 +169,24 @@
             this.button_Stop.Location = new System.Drawing.Point(129, 19);
             this.button_Stop.Name = "button_Stop";
             this.button_Stop.Size = new System.Drawing.Size(110, 24);
-            this.button_Stop.TabIndex = 1;
+            this.button_Stop.TabIndex = 4;
             this.button_Stop.Text = "Stop recording";
             this.button_Stop.UseVisualStyleBackColor = true;
-            this.button_Stop.Click += new System.EventHandler(this.button2_Click);
+            this.button_Stop.Click += new System.EventHandler(this.button_Stop_Click);
             // 
             // button_Start
             // 
             this.button_Start.Location = new System.Drawing.Point(6, 19);
             this.button_Start.Name = "button_Start";
             this.button_Start.Size = new System.Drawing.Size(110, 24);
-            this.button_Start.TabIndex = 0;
+            this.button_Start.TabIndex = 3;
             this.button_Start.Text = "Start recording";
             this.button_Start.UseVisualStyleBackColor = true;
-            this.button_Start.Click += new System.EventHandler(this.button1_Click);
+            this.button_Start.Click += new System.EventHandler(this.button_Start_Click);
             // 
             // timer_GetSamples
             // 
-            this.timer_GetSamples.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer_GetSamples.Tick += new System.EventHandler(this.timer_GetSamples_Tick);
             // 
             // Parrot
             // 
@@ -200,6 +200,7 @@
             this.Name = "Parrot";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OpenAL Parrot";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Parrot_FormClosing);
             this.groupBox_RecorderParameters.ResumeLayout(false);
             this.groupBox_RecorderParameters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SamplesRingbuffer)).EndInit();
