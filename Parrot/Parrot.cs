@@ -21,7 +21,7 @@ namespace Parrot
 
             #region Fill the combobox
 
-            IList<string> recorders = AudioDeviceEnumerator.AvailableRecordingDevices;
+            IList<string> recorders = AudioCapture.AvailableRecordingDevices;
             for (int i = 0; i < recorders.Count; i++)
             {
                 if (!String.IsNullOrEmpty(recorders[i]))
