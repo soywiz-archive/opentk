@@ -14,11 +14,30 @@ namespace OpenTK.Audio
         private bool _isrecording = false;
 
         private string device_name;
-        public string DeviceName
+        /// <summary>The name of the device associated with this instance.</summary>
+        public string CurrentDeviceName
         {
             get
             {
                 return device_name;
+            }
+        }
+
+        /// <summary>Returns a list of strings containing all known recording devices.</summary>
+        public static IList<string> AvailableRecordingDevices
+        {
+            get
+            {
+                return AudioDeviceEnumerator.AvailableRecordingDevices;
+            }
+        }
+
+        /// <summary>Returns the name of the device that will be used as recording default.</summary>
+        public static string DefaultRecordingDevice
+        {
+            get
+            {
+                return AudioDeviceEnumerator.DefaultRecordingDevice;
             }
         }
 

@@ -513,49 +513,24 @@ namespace OpenTK.Audio
         }
 
         #endregion
-        /*
-        #region public static string[] AvailablePlaybackDevices
 
-        /// <summary>
-        /// Gets a System.String array containing all available audio playback devices.
-        /// </summary>
-        /// <remarks>This property allocates memory.</remarks>
-        public static string[] AvailablePlaybackDevices
+        /// <summary>Returns a list of strings containing all known playback devices.</summary>
+        public static IList<string> AvailablePlaybackDevices
         {
             get
             {
-                if (available_playback_devices.Count == 0)
-                    LoadAvailableDevices();
-                return available_playback_devices.ToArray();
+                return AudioDeviceEnumerator.AvailablePlaybackDevices;
             }
         }
 
-        #endregion
-
-        
-        #region public static string[] AvailableRecordingDevices
-
-        /// <summary>
-        /// Gets a System.String array containing all available audio recording devices.
-        /// </summary>
-        /// <remarks>This property allocates memory.</remarks>
-        public static string[] AvailableRecordingDevices
+        /// <summary>Returns the name of the device that will be used as playback default.</summary>
+        public static string DefaultPlaybackDevice
         {
             get
             {
-                // only call this if there are neither playback nor recording devices known. 
-                // There must be playback devices for OpenAL to do any good, but there may be no recording capabilities
-                if (available_recording_devices.Count == 0 && available_playback_devices.Count == 0)
-                    LoadAvailableDevices();
-
-                return available_recording_devices.ToArray();
+                return AudioDeviceEnumerator.DefaultPlaybackDevice;
             }
         }
-
-        #endregion
-
-       
- */
 
         /// <summary>Returns the name of the used device for the current context.</summary>
         public string CurrentDeviceName

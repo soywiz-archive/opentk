@@ -5,22 +5,34 @@ using System.Diagnostics;
 
 namespace OpenTK.Audio
 {
-    public static class AudioDeviceEnumerator
+    internal static class AudioDeviceEnumerator
     {
         #region All device strings
 
         private static readonly List<string> available_playback_devices = new List<string>();
         private static readonly List<string> available_recording_devices = new List<string>();
 
-        public static IList<string> AvailablePlaybackDevices { get { return available_playback_devices.AsReadOnly(); } }
-        public static IList<string> AvailableRecordingDevices { get { return available_recording_devices.AsReadOnly(); } }
+        internal static IList<string> AvailablePlaybackDevices
+        {
+            get
+            {
+                return available_playback_devices.AsReadOnly();
+            }
+        }
+        internal static IList<string> AvailableRecordingDevices
+        {
+            get
+            {
+                return available_recording_devices.AsReadOnly();
+            }
+        }
 
         #endregion All device strings
 
         #region Default device strings
 
         private static string default_playback_device;
-        public static string DefaultPlaybackDevice
+        internal static string DefaultPlaybackDevice
         {
             get
             {
@@ -29,7 +41,7 @@ namespace OpenTK.Audio
         }
 
         private static string default_recording_device;
-        public static string DefaultRecordingDevice
+        internal static string DefaultRecordingDevice
         {
             get
             {
