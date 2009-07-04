@@ -216,16 +216,16 @@ namespace OpenTK.Audio
     ///<summary>Sound samples: Format specifier.</summary>
     public enum ALFormat : int
     {
-        ///<summary>1 Channel, 8 Bits.</summary>
+        ///<summary>1 Channel, 8 Bits per sample.</summary>
         Mono8 = 0x1100,
 
-        ///<summary>1 Channel, 16 Bits.</summary>
+        ///<summary>1 Channel, 16 Bits per sample.</summary>
         Mono16 = 0x1101,
 
-        ///<summary>2 Channels, 8 Bits each.</summary>
+        ///<summary>2 Channels, 8 Bits per sample each.</summary>
         Stereo8 = 0x1102,
 
-        ///<summary>2 Channels, 16 Bits each.</summary>
+        ///<summary>2 Channels, 16 Bits per sample each.</summary>
         Stereo16 = 0x1103,
 
         /// <summary>1 Channel, A-law encoded data. Requires Extension: AL_EXT_ALAW</summary>
@@ -264,49 +264,49 @@ namespace OpenTK.Audio
         /// <summary>2 Channels, double-precision floating-point data. Requires Extension: AL_EXT_double</summary>
         StereoDoubleExt = 0x10013,
 
-        /// <summary>Multichannel 5.1, 16 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 5.1, 16 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi51Chn16Ext = 0x120B,
 
-        /// <summary>Multichannel 5.1, 32 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 5.1, 32 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi51Chn32Ext = 0x120C,
 
-        /// <summary>Multichannel 5.1, 8 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 5.1, 8 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi51Chn8Ext = 0x120A,
 
-        /// <summary>Multichannel 6.1, 16 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 6.1, 16 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi61Chn16Ext = 0x120E,
 
-        /// <summary>Multichannel 6.1, 32 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 6.1, 32 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi61Chn32Ext = 0x120F,
 
-        /// <summary>Multichannel 6.1, 8 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 6.1, 8 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi61Chn8Ext = 0x120D,
 
-        /// <summary>Multichannel 7.1, 16 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 7.1, 16 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi71Chn16Ext = 0x1211,
 
-        /// <summary>Multichannel 7.1, 32 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 7.1, 32 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi71Chn32Ext = 0x1212,
 
-        /// <summary>Multichannel 7.1, 8 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 7.1, 8 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         Multi71Chn8Ext = 0x1210,
 
-        /// <summary>Multichannel 4.0, 16 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 4.0, 16 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         MultiQuad16Ext = 0x1205,
 
-        /// <summary>Multichannel 4.0, 32 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 4.0, 32 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         MultiQuad32Ext = 0x1206,
 
-        /// <summary>Multichannel 4.0, 8 Bit data. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>Multichannel 4.0, 8 Bits data. Requires Extension: AL_EXT_MCFORMATS</summary>
         MultiQuad8Ext = 0x1204,
 
-        /// <summary>1 Channel rear speaker, 16 Bit data. Also see Quadrophonic setups. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>1 Channel rear speaker, 16 Bits data. See Quadrophonic setups. Requires Extension: AL_EXT_MCFORMATS</summary>
         MultiRear16Ext = 0x1208,
 
-        /// <summary>1 Channel rear speaker, 32 Bit data. Also see Quadrophonic setups. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>1 Channel rear speaker, 32 Bits data. See Quadrophonic setups. Requires Extension: AL_EXT_MCFORMATS</summary>
         MultiRear32Ext = 0x1209,
 
-        /// <summary>1 Channel rear speaker, 8 Bit data. Also see Quadrophonic setups. Requires Extension: AL_EXT_MCFORMATS</summary>
+        /// <summary>1 Channel rear speaker, 8 Bits data. See Quadrophonic setups. Requires Extension: AL_EXT_MCFORMATS</summary>
         MultiRear8Ext = 0x1207,
     }
 
