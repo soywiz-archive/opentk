@@ -7,7 +7,6 @@ namespace OpenTK.Audio
     public class AudioCapture : IDisposable
     {
 
-
         /// <summary>This must stay private info so the end-user cannot call any Alc commands for the recording device.</summary>
         private IntPtr Handle;
 
@@ -53,7 +52,7 @@ namespace OpenTK.Audio
                    "\nDevice Name: " + devicename +
                    "\nCapture frequency: " + frequency +
                    "\nBuffer format: " + bufferformat +
-                   "\nBuffer Size: " + buffersize);
+                   "\nBuffer Size: " + buffersize;
         }
 
         List<string> ErrorMessages = new List<string>();
@@ -127,8 +126,6 @@ namespace OpenTK.Audio
                 default:
                     throw new AudioDeviceException("Alc.CaptureOpenDevice (Handle: " + Handle + ") reports Alc Error: " + err.ToString());
             }
-
-            device_name = devicename;
         }
 
         #endregion Constructor
