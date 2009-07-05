@@ -4,15 +4,22 @@ using System.Diagnostics;
 
 namespace OpenTK.Audio
 {
-    public class AudioCapture : IDisposable
-    {
 
+    /// <summary>
+    /// Provides methods to instantiate, use and destroy an audio device for recording.
+    /// Static methods are provided to list available devices known by the driver.
+    /// </summary>
+    public sealed class AudioCapture : IDisposable
+    {
+        #region private fields
         /// <summary>This must stay private info so the end-user cannot call any Alc commands for the recording device.</summary>
         private IntPtr Handle;
 
         /// <summary>Alc.CaptureStop should be called prior to device shutdown, this keeps track of Alc.CaptureStart/Stop calls.</summary>
         private bool _isrecording = false;
+        #endregion private fields
 
+        #region Device Name
         private string device_name;
         /// <summary>The name of the device associated with this instance.</summary>
         public string CurrentDeviceName
@@ -22,7 +29,9 @@ namespace OpenTK.Audio
                 return device_name;
             }
         }
+        #endregion Device Name
 
+        #region public static properties
         /// <summary>Returns a list of strings containing all known recording devices.</summary>
         public static IList<string> AvailableRecordingDevices
         {
@@ -40,6 +49,7 @@ namespace OpenTK.Audio
                 return AudioDeviceEnumerator.DefaultRecordingDevice;
             }
         }
+        #endregion public static properties
 
         #region Constructor
 
@@ -50,6 +60,7 @@ namespace OpenTK.Audio
             }
         }
 
+        #region Internal Error handling
         private string ErrorMessage(string devicename, uint frequency, ALFormat bufferformat, int buffersize)
         {
             string alcerrmsg;
@@ -74,9 +85,22 @@ namespace OpenTK.Audio
                    "\nBuffer Size: " + buffersize;
         }
 
-        List<string> ErrorMessages = new List<string>();
+        private List<string> ErrorMessages = new List<string>();
+        #endregion Internal Error handling
 
-        [CLSCompliant(true)]
+        /// <summary>
+        /// Opens the default device for audio recording.
+        /// Implicitly set parameters are: 22050Hz, 16Bit Mono, 4096 samples ringbuffer.
+        /// </summary>
+        public AudioCapture():this(AudioCapture.DefaultRecordingDevice, 22050, ALFormat.Mono16, 4096)
+        {
+        }
+
+        /// <summary>Opens a device for audio recording.</summary>
+        /// <param name="devicename">The device name.</param>
+        /// <param name="frequency">The frequency that the data should be captured at.</param>
+        /// <param name="bufferformat">The requested capture buffer format.</param>
+        /// <param name="buffersize">The size of OpenAL's capture internal ring-buffer. This value expects number of samples, not bytes.</param>
         public AudioCapture(string devicename, int frequency, ALFormat bufferformat, int buffersize)
             : this(devicename, (uint)frequency, bufferformat, buffersize)
         {

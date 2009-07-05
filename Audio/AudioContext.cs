@@ -16,7 +16,8 @@ using OpenTK.Audio;
 namespace OpenTK.Audio
 {
     /// <summary>
-    /// Provides methods to create and use an audio context.
+    /// Provides methods to instantiate, use and destroy an audio context for playback.
+    /// Static methods are provided to list available devices known by the driver.
     /// </summary>
     public sealed class AudioContext : IDisposable
     {
@@ -46,10 +47,10 @@ namespace OpenTK.Audio
         static AudioContext()
         {
             if (AudioDeviceEnumerator.IsOpenALSupported) // forces enumeration
-            { } 
+            { }
         }
 
-        #endregion
+        #endregion static AudioContext()
 
         #region public AudioContext()
 
@@ -149,7 +150,7 @@ namespace OpenTK.Audio
 
         #endregion
 
-        #endregion
+        #endregion --- Constructors ---
 
         #region --- Private Methods ---
 
@@ -277,7 +278,7 @@ namespace OpenTK.Audio
             }
         }
 
-        #endregion
+        #endregion --- Private Methods ---
 
         #region void CheckForAlcErrors()
 
@@ -514,6 +515,7 @@ namespace OpenTK.Audio
 
         #endregion
 
+        #region public static IList<string> AvailablePlaybackDevices
         /// <summary>Returns a list of strings containing all known playback devices.</summary>
         public static IList<string> AvailablePlaybackDevices
         {
@@ -522,7 +524,9 @@ namespace OpenTK.Audio
                 return AudioDeviceEnumerator.AvailablePlaybackDevices;
             }
         }
+        #endregion public static IList<string> AvailablePlaybackDevices
 
+        #region public static string DefaultPlaybackDevice
         /// <summary>Returns the name of the device that will be used as playback default.</summary>
         public static string DefaultPlaybackDevice
         {
@@ -531,7 +535,9 @@ namespace OpenTK.Audio
                 return AudioDeviceEnumerator.DefaultPlaybackDevice;
             }
         }
+        #endregion public static string DefaultPlaybackDevice
 
+        #region public string CurrentDeviceName
         /// <summary>Returns the name of the used device for the current context.</summary>
         public string CurrentDeviceName
         {
@@ -540,7 +546,9 @@ namespace OpenTK.Audio
                 return device_name;
             }
         }
+        #endregion public string CurrentDeviceName
 
+        #region public AlcError CurrentAlcError
         /// <summary>Returns the first encountered error by Alc for this device.</summary>
         public AlcError CurrentAlcError
         {
@@ -552,8 +560,9 @@ namespace OpenTK.Audio
                 return Alc.GetError(this.device_handle);
             }
         }
+        #endregion public AlcError CurrentAlcError
 
-        #endregion
+        #endregion --- Public Members ---
 
         #region --- IDisposable Members ---
 
