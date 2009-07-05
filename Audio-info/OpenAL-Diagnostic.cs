@@ -52,7 +52,7 @@ namespace Audio_Diagnostic
                 AlcDiag.Print();
                 AlcDiag = null;
 
-                ALDiagnostic ALdiag = new ALDiagnostic();
+                ALDiagnostic ALdiag = new ALDiagnostic(A);
                 checkForErrors();
                 ALdiag.Print();
                 ALdiag = null;
@@ -220,6 +220,7 @@ namespace Audio_Diagnostic
 
         public readonly Dictionary<string, bool> Extensions = new Dictionary<string, bool>();
 
+        public readonly string DeviceName;
         public readonly float SpeedOfSound;
         public readonly string ExtensionString;
         public readonly string Renderer;
@@ -231,9 +232,11 @@ namespace Audio_Diagnostic
         public readonly uint MaxSources;
         #endregion Fields
 
-        public ALDiagnostic()
+        public ALDiagnostic(AudioContext ac)
         {
             Trace.WriteLine("--- AL related errors ---");
+
+            DeviceName = ac.CurrentDeviceName;
 
             ExtensionString = AL.Get(ALGetString.Extensions);
             Renderer = AL.Get(ALGetString.Renderer);
@@ -264,6 +267,7 @@ namespace Audio_Diagnostic
             Trace.WriteLine("--- AL related analysis ---");
             Trace.Indent();
             {
+                Trace.WriteLine("Used Device: "+DeviceName);
                 Trace.WriteLine("AL Renderer: " + Renderer);
                 Trace.WriteLine("AL Vendor: " + Vendor);
                 Trace.WriteLine("AL Version: " + Version);
