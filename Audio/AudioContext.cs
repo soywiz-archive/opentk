@@ -56,19 +56,13 @@ namespace OpenTK.Audio
 
         /// <summary>Constructs a new AudioContext, using the default audio device.</summary>
         public AudioContext()
-            : this(null, 0, 0, false, true) { }
+            : this(null, 0, 0, false, true, MaxAuxiliarySends.UseDriverDefault) { }
 
         #endregion
 
         #region public AudioContext(string device)
 
-        /// <summary>Constructs a new AudioContext, using the specified audio device.</summary>
-        /// <param name="device">The name of the audio device to use.</param>
-        /// <remarks>
-        /// Use AudioContext.AvailableDevices to obtain a list of all available audio devices.
-        /// devices.
-        /// </remarks>
-        public AudioContext(string device) : this(device, 0, 0, false, true) { }
+        public AudioContext(string device) : this(device, 0, 0, false, true, MaxAuxiliarySends.UseDriverDefault) { }
 
         #endregion
 
@@ -81,7 +75,7 @@ namespace OpenTK.Audio
         /// Use AudioContext.AvailableDevices to obtain a list of all available audio devices.
         /// devices.
         /// </remarks>
-        public AudioContext(string device, int freq) : this(device, freq, 0, false, true) { }
+        public AudioContext(string device, int freq) : this(device, freq, 0, false, true, MaxAuxiliarySends.UseDriverDefault) { }
 
         #endregion
 
@@ -96,11 +90,11 @@ namespace OpenTK.Audio
         /// devices.
         /// </remarks>
         public AudioContext(string device, int freq, int refresh)
-            : this(device, freq, refresh, false, true) { }
+            : this(device, freq, refresh, false, true, MaxAuxiliarySends.UseDriverDefault) { }
 
         #endregion
 
-        #region public AudioContext(string device)
+        #region public AudioContext(string device, int freq, int refresh, bool sync)
 
         /// <summary>Constructs a new AudioContext, using the specified audio device and device parameters.</summary>
         /// <param name="device">The name of the audio device to use.</param>
@@ -145,25 +139,22 @@ namespace OpenTK.Audio
         /// </remarks>
         public AudioContext(string device, int freq, int refresh, bool sync, bool enableEfx)
         {
-            CreateContext(device, freq, refresh, sync, enableEfx);
+            CreateContext(device, freq, refresh, sync, enableEfx, MaxAuxiliarySends.UseDriverDefault);
         }
 
         #endregion
 
-        #endregion --- Constructors ---
+        #region public AudioContext(string device, int freq, int refresh, bool sync, bool enableEfx, MaxAuxiliarySends efxMaxAuxSends)
 
-        #region --- Private Methods ---
-
-        #region CreateContext
-
-        /// <private />
-        /// <summary>Creates the audio context using the specified device.</summary>
-        /// <param name="device">The device descriptor obtained through AudioContext.AvailableDevices, or null for the default device.</param>
+        /// <summary>Creates the audio context using the specified device and device parameters.</summary>
+        /// <param name="device">The device descriptor obtained through AudioContext.AvailableDevices.</param>
         /// <param name="freq">Frequency for mixing output buffer, in units of Hz. Pass 0 for driver default.</param>
         /// <param name="refresh">Refresh intervals, in units of Hz. Pass 0 for driver default.</param>
         /// <param name="sync">Flag, indicating a synchronous context.</param>
         /// <param name="enableEfx">Indicates whether the EFX extension should be initialized, if present.</param>
-        /// /// <exception cref="ArgumentOutOfRangeException">Occurs when a specified parameter is invalid.</exception>
+        /// <param name="efxMaxAuxSends">Requires EFX enabled. The number of desired Auxiliary Sends per source.</param>
+        /// <exception cref="ArgumentNullException">Occurs when the device string is invalid.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Occurs when a specified parameter is invalid.</exception>
         /// <exception cref="AudioDeviceException">
         /// Occurs when the specified device is not available, or is in use by another program.
         /// </exception>
@@ -181,7 +172,61 @@ namespace OpenTK.Audio
         /// Values higher than supported will be clamped by the driver.
         /// </para>
         /// </remarks>
-        void CreateContext(string device, int freq, int refresh, bool sync, bool enableEfx)
+        public AudioContext(string device, int freq, int refresh, bool sync, bool enableEfx, MaxAuxiliarySends efxMaxAuxSends)
+        {
+            CreateContext(device, freq, refresh, sync, enableEfx, efxMaxAuxSends);
+        }
+
+        #endregion
+
+        #endregion --- Constructors ---
+
+        #region --- Private Methods ---
+
+        #region CreateContext
+
+        /// <summary>May be passed at context construction time to indicate the number of desired auxiliary effect slot sends per source.</summary>
+        public enum MaxAuxiliarySends:int
+        {
+            /// <summary>Will chose a reliably working parameter.</summary>
+            UseDriverDefault = 0,
+            /// <summary>One send per source.</summary>
+            One = 1,
+            /// <summary>Two sends per source.</summary>
+            Two = 2,
+            /// <summary>Three sends per source.</summary>
+            Three = 3,
+            /// <summary>Four sends per source.</summary>
+            Four = 4,
+        }
+
+        /// <private />
+        /// <summary>Creates the audio context using the specified device.</summary>
+        /// <param name="device">The device descriptor obtained through AudioContext.AvailableDevices, or null for the default device.</param>
+        /// <param name="freq">Frequency for mixing output buffer, in units of Hz. Pass 0 for driver default.</param>
+        /// <param name="refresh">Refresh intervals, in units of Hz. Pass 0 for driver default.</param>
+        /// <param name="sync">Flag, indicating a synchronous context.</param>
+        /// <param name="enableEfx">Indicates whether the EFX extension should be initialized, if present.</param>
+        /// <param name="efxAuxiliarySends">Requires EFX enabled. The number of desired Auxiliary Sends per source.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Occurs when a specified parameter is invalid.</exception>
+        /// <exception cref="AudioDeviceException">
+        /// Occurs when the specified device is not available, or is in use by another program.
+        /// </exception>
+        /// <exception cref="AudioContextException">
+        /// Occurs when an audio context could not be created with the specified parameters.
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// Occurs when an AudioContext already exists.</exception>
+        /// <remarks>
+        /// <para>For maximum compatibility, you are strongly recommended to use the default constructor.</para>
+        /// <para>Multiple AudioContexts are not supported at this point.</para>
+        /// <para>
+        /// The number of auxilliary EFX sends depends on the audio hardware and drivers. Most Realtek devices, as well
+        /// as the Creative SB Live!, support 1 auxilliary send. Creative's Audigy and X-Fi series support 4 sends.
+        /// Values higher than supported will be clamped by the driver.
+        /// </para>
+        /// </remarks>
+        void CreateContext(string device, int freq, int refresh, bool sync, bool enableEfx, MaxAuxiliarySends efxAuxiliarySends)
         {
             if (!AudioDeviceEnumerator.IsOpenALSupported)
                 throw new DllNotFoundException("openal32.dll");
@@ -201,9 +246,9 @@ namespace OpenTK.Audio
           //  if (device_handle == IntPtr.Zero) // && Alc.IsExtensionPresent(IntPtr.Zero, "ALC_ENUMERATION_EXT")
           //      device_handle = Alc.OpenDevice(Alc.GetString(IntPtr.Zero, AlcGetString.DefaultDeviceSpecifier)); // try use ALC_ENUMERATION_EXT
             if (device_handle == IntPtr.Zero)
-                device_handle = Alc.OpenDevice(AudioDeviceEnumerator.DefaultPlaybackDevice);
-            if (device_handle == IntPtr.Zero && AudioDeviceEnumerator.AvailablePlaybackDevices.Count > 0)
-                device_handle = Alc.OpenDevice(AudioDeviceEnumerator.AvailablePlaybackDevices[0]); // try using first-found
+                device_handle = Alc.OpenDevice(AudioContext.DefaultPlaybackDevice);
+            if (device_handle == IntPtr.Zero && AudioContext.AvailablePlaybackDevices.Count > 0)
+                device_handle = Alc.OpenDevice(AudioContext.AvailablePlaybackDevices[0]); // try using first-found
             if (device_handle == IntPtr.Zero)
                 throw new AudioDeviceException(String.Format("Audio device '{0}' does not exist or is tied up by another application.",
                     String.IsNullOrEmpty(device) ? "default" : device));
@@ -231,7 +276,20 @@ namespace OpenTK.Audio
             if (enableEfx && Alc.IsExtensionPresent(device_handle, "ALC_EXT_EFX"))
             {
                 int num_slots;
-                Alc.GetInteger(device_handle, AlcGetInteger.EfxMaxAuxiliarySends, 1, out num_slots);
+                switch (efxAuxiliarySends)
+                {
+                    case MaxAuxiliarySends.One:
+                    case MaxAuxiliarySends.Two:
+                    case MaxAuxiliarySends.Three:
+                    case MaxAuxiliarySends.Four:
+                        num_slots = (int)efxAuxiliarySends;
+                        break;
+                    default:
+                    case MaxAuxiliarySends.UseDriverDefault:
+                        Alc.GetInteger(device_handle, AlcGetInteger.EfxMaxAuxiliarySends, 1, out num_slots);
+                        break;
+                }
+              
                 attributes.Add((int)AlcContextAttributes.EfxMaxAuxiliarySends);
                 attributes.Add(num_slots);
             }
