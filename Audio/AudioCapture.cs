@@ -121,9 +121,9 @@ namespace OpenTK.Audio
             Handle = Alc.CaptureOpenDevice(devicename, frequency, bufferformat, buffersize);
             if (Handle == IntPtr.Zero)
             {
-              ErrorMessages.Add(ErrorMessage(devicename, frequency, bufferformat, buffersize));
-              device_name = "IntPtr.Zero";
-              Handle = Alc.CaptureOpenDevice(null, frequency, bufferformat, buffersize); 
+                ErrorMessages.Add(ErrorMessage(devicename, frequency, bufferformat, buffersize));
+                device_name = "IntPtr.Zero";
+                Handle = Alc.CaptureOpenDevice(null, frequency, bufferformat, buffersize);
             }
             if (Handle == IntPtr.Zero)
             {
@@ -134,21 +134,7 @@ namespace OpenTK.Audio
             if (Handle == IntPtr.Zero)
             {
                 ErrorMessages.Add(ErrorMessage(AudioDeviceEnumerator.DefaultRecordingDevice, frequency, bufferformat, buffersize));
-                // try iterate through all known devices
-                for (int i = 0; i < AudioDeviceEnumerator.AvailableRecordingDevices.Count; i++)
-                {
-                    device_name = AudioDeviceEnumerator.AvailableRecordingDevices[i];
-                    Handle = Alc.CaptureOpenDevice(AudioDeviceEnumerator.AvailableRecordingDevices[i], frequency, bufferformat, buffersize);
-                    if (Handle == IntPtr.Zero)
-                        ErrorMessages.Add(ErrorMessage(AudioDeviceEnumerator.AvailableRecordingDevices[i], frequency, bufferformat, buffersize));
-                    else
-                        break; // success! found a valid device
-                }
-            }
-
-            // everything failed 
-            if (Handle == IntPtr.Zero)
-            {
+                // everything failed 
                 device_name = "None";
                 foreach (string s in ErrorMessages)
                     Debug.WriteLine(s);

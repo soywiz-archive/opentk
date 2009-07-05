@@ -239,19 +239,26 @@ namespace OpenTK.Audio
 
 
             if (!String.IsNullOrEmpty(device))
+            {
+                device_name = device;
                 device_handle = Alc.OpenDevice(device); // try to open device by name
+            }
             if (device_handle == IntPtr.Zero)
-                device_handle = Alc.OpenDevice(null); // try to open default device
-          // this condition is better handled by the 2 lines below it
-          //  if (device_handle == IntPtr.Zero) // && Alc.IsExtensionPresent(IntPtr.Zero, "ALC_ENUMERATION_EXT")
-          //      device_handle = Alc.OpenDevice(Alc.GetString(IntPtr.Zero, AlcGetString.DefaultDeviceSpecifier)); // try use ALC_ENUMERATION_EXT
+            {
+                device_name = "IntPtr.Zero (null string)";
+                device_handle = Alc.OpenDevice(null); // try to open unnamed default device
+            }
             if (device_handle == IntPtr.Zero)
-                device_handle = Alc.OpenDevice(AudioContext.DefaultPlaybackDevice);
-            if (device_handle == IntPtr.Zero && AudioContext.AvailablePlaybackDevices.Count > 0)
-                device_handle = Alc.OpenDevice(AudioContext.AvailablePlaybackDevices[0]); // try using first-found
+            {
+                device_name = AudioContext.DefaultPlaybackDevice;
+                device_handle = Alc.OpenDevice(AudioContext.DefaultPlaybackDevice); // try to open named default device
+            }
             if (device_handle == IntPtr.Zero)
+            {
+                device_name = "None";
                 throw new AudioDeviceException(String.Format("Audio device '{0}' does not exist or is tied up by another application.",
                     String.IsNullOrEmpty(device) ? "default" : device));
+            }
 
             CheckForAlcErrors();
 
