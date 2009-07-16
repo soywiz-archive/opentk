@@ -33,7 +33,7 @@ namespace OpenTK.Audio
 
         #region public static properties
         /// <summary>Returns a list of strings containing all known recording devices.</summary>
-        public static IList<string> AvailableRecordingDevices
+        public static IList<string> AvailableDevices
         {
             get
             {
@@ -42,7 +42,7 @@ namespace OpenTK.Audio
         }
 
         /// <summary>Returns the name of the device that will be used as recording default.</summary>
-        public static string DefaultRecordingDevice
+        public static string Default
         {
             get
             {
@@ -92,7 +92,7 @@ namespace OpenTK.Audio
         /// Opens the default device for audio recording.
         /// Implicitly set parameters are: 22050Hz, 16Bit Mono, 4096 samples ringbuffer.
         /// </summary>
-        public AudioCapture():this(AudioCapture.DefaultRecordingDevice, 22050, ALFormat.Mono16, 4096)
+        public AudioCapture():this(AudioCapture.Default, 22050, ALFormat.Mono16, 4096)
         {
         }
 

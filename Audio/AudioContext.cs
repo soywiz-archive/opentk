@@ -250,8 +250,8 @@ namespace OpenTK.Audio
             }
             if (device_handle == IntPtr.Zero)
             {
-                device_name = AudioContext.DefaultPlaybackDevice;
-                device_handle = Alc.OpenDevice(AudioContext.DefaultPlaybackDevice); // try to open named default device
+                device_name = AudioContext.Default;
+                device_handle = Alc.OpenDevice(AudioContext.Default); // try to open named default device
             }
             if (device_handle == IntPtr.Zero)
             {
@@ -580,9 +580,9 @@ namespace OpenTK.Audio
 
         #endregion
 
-        #region public static IList<string> AvailablePlaybackDevices
+        #region public static IList<string> AvailableDevices
         /// <summary>Returns a list of strings containing all known playback devices.</summary>
-        public static IList<string> AvailablePlaybackDevices
+        public static IList<string> AvailableDevices
         {
             get
             {
@@ -591,9 +591,9 @@ namespace OpenTK.Audio
         }
         #endregion public static IList<string> AvailablePlaybackDevices
 
-        #region public static string DefaultPlaybackDevice
+        #region public static string Default
         /// <summary>Returns the name of the device that will be used as playback default.</summary>
-        public static string DefaultPlaybackDevice
+        public static string Default
         {
             get
             {
