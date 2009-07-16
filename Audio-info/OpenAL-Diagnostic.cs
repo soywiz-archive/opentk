@@ -91,11 +91,11 @@ namespace Audio_Diagnostic
         {
             Trace.WriteLine("--- Device related errors ---");
 
-            AllPlaybackDevices = AudioContext.AvailablePlaybackDevices;
-            AllRecordingDevices = AudioCapture.AvailableRecordingDevices;
+            AllPlaybackDevices = AudioContext.AvailableDevices;
+            AllRecordingDevices = AudioCapture.AvailableDevices;
 
-            DefaultPlaybackDevice = AudioContext.DefaultPlaybackDevice;
-            DefaultRecordingDevice = AudioCapture.DefaultRecordingDevice;
+            DefaultPlaybackDevice = AudioContext.Default;
+            DefaultRecordingDevice = AudioCapture.Default;
         }
 
         public void Print()
@@ -498,7 +498,7 @@ namespace Audio_Diagnostic
 
             try
             {
-                r = new AudioCapture(AudioCapture.DefaultRecordingDevice, (uint)16000, ALFormat.Mono16, 4096);
+                r = new AudioCapture(AudioCapture.Default, (uint)16000, ALFormat.Mono16, 4096);
             }
             catch (AudioDeviceException ade)
             {

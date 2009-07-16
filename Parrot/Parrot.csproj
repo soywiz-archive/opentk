@@ -69,7 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\User Login\Desktop\opentk-0.9.9\Source\OpenTK\OpenTK.csproj">
+    <ProjectReference Include="..\..\OpenTK\OpenTK.csproj">
       <Project>{A37A7E14-0000-0000-0000-000000000000}</Project>
       <Name>OpenTK</Name>
     </ProjectReference>

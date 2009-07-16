@@ -36,7 +36,7 @@
             this.label_FREQUENCY = new System.Windows.Forms.Label();
             this.numericUpDown_SamplesRingbuffer = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_Frequency = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox_RecordingControls = new System.Windows.Forms.GroupBox();
             this.label_SamplesConsumed = new System.Windows.Forms.Label();
             this.button_Stop = new System.Windows.Forms.Button();
             this.button_Start = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             this.groupBox_RecorderParameters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SamplesRingbuffer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Frequency)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.groupBox_RecordingControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_RecorderSelection
@@ -145,24 +145,24 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label_SamplesConsumed);
-            this.groupBox2.Controls.Add(this.button_Stop);
-            this.groupBox2.Controls.Add(this.button_Start);
-            this.groupBox2.Location = new System.Drawing.Point(12, 121);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(245, 78);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Talk to the parrot";
+            this.groupBox_RecordingControls.Controls.Add(this.label_SamplesConsumed);
+            this.groupBox_RecordingControls.Controls.Add(this.button_Stop);
+            this.groupBox_RecordingControls.Controls.Add(this.button_Start);
+            this.groupBox_RecordingControls.Location = new System.Drawing.Point(12, 121);
+            this.groupBox_RecordingControls.Name = "groupBox2";
+            this.groupBox_RecordingControls.Size = new System.Drawing.Size(245, 78);
+            this.groupBox_RecordingControls.TabIndex = 3;
+            this.groupBox_RecordingControls.TabStop = false;
+            this.groupBox_RecordingControls.Text = "Talk to the parrot";
             // 
             // label_SamplesConsumed
             // 
             this.label_SamplesConsumed.AutoSize = true;
             this.label_SamplesConsumed.Location = new System.Drawing.Point(6, 52);
             this.label_SamplesConsumed.Name = "label_SamplesConsumed";
-            this.label_SamplesConsumed.Size = new System.Drawing.Size(129, 13);
+            this.label_SamplesConsumed.Size = new System.Drawing.Size(108, 13);
             this.label_SamplesConsumed.TabIndex = 103;
-            this.label_SamplesConsumed.Text = "Samples consumed: 5432";
+            this.label_SamplesConsumed.Text = "Samples consumed: -";
             // 
             // button_Stop
             // 
@@ -193,7 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(269, 211);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox_RecordingControls);
             this.Controls.Add(this.groupBox_RecorderParameters);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -205,8 +205,8 @@
             this.groupBox_RecorderParameters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SamplesRingbuffer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Frequency)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox_RecordingControls.ResumeLayout(false);
+            this.groupBox_RecordingControls.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -219,7 +219,7 @@
         private System.Windows.Forms.Label label_FREQUENCY;
         private System.Windows.Forms.NumericUpDown numericUpDown_SamplesRingbuffer;
         private System.Windows.Forms.NumericUpDown numericUpDown_Frequency;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox_RecordingControls;
         private System.Windows.Forms.Label label_SamplesConsumed;
         private System.Windows.Forms.Button button_Stop;
         private System.Windows.Forms.Button button_Start;
