@@ -54,7 +54,7 @@ namespace OpenTK.Math
         public float Z;
 
         /// <summary>
-        /// The Z component of the Vector4.
+        /// The W component of the Vector4.
         /// </summary>
         public float W;
 
