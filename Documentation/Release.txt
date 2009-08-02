@@ -1,18 +1,20 @@
 The Open Toolkit 0.9.8-2 Beta
-Sunday, 31 May 2009
+Sunday, 2 August 2009
 
 
 [Overview]
 
 This release fixes issues identified in OpenTK 0.9.8-1:
 * Bind now handles string arrays correctly. Affects functions GetShaderSource, GetUniformIndices, TransformFeedbackVaryings.
+* TextPrinter.Print() now correctly sets text color.
+* Minor documentation errors have been fixed.
 
 Please visit http://www.opentk.com to report issues or request features.
 
 
 [Known issues]
 
-Mono 2.2 and 2.4 fail to compile this release (bug report: https://bugzilla.novell.com/show_bug.cgi?id=488960). Please compile with Mono 2.0 or 2.4.2+, or use the precompiled binaries.
+Mono 2.2 and 2.4 fail to compile this release. Please compile with Mono 2.0 or 2.4.2+, or use the precompiled binaries (which also work on the affected Mono versions).
 
 OpenTK.Graphics.TextPrinter fails to render text with newlines or a layout rectangle on Mono. This is a Mono GDI+ bug.
 
@@ -23,7 +25,7 @@ Example documentation may not show up correctly when running on Mono. This is a 
 
 Please note that binary compatibility is not preserved between beta releases.
 
-[0.9.8-1]
+[0.9.8-2]
 
 1. Parameters of OpenTK.Graphics.GL.GetShaderSource have been changed: you should now pass a single StringBuilder instead of a StringBuilder[] array.
 

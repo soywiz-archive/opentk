@@ -9,6 +9,12 @@
 + OpenTK
     + Graphics
 	+ Fixed wrappers for functions taking string arrays: TranformFeedbackVaryings, GetUniformIndices, GetShaderSource.
+    + Math
+        + Minor documentation fixes.
+
++ OpenTK.Utilities
+    + TextPrinter
+        + Fixed handling of text color parameter in TextPrinter.Print().
 
 -------------------------
  OpenTK 0.9.8 -> 0.9.8-1
