@@ -12,6 +12,11 @@ This release fixes issues identified in OpenTK 0.9.8-1:
 Please visit http://www.opentk.com to report issues or request features.
 
 
+[Resolved issues]
+
+[#1050]
+
+
 [Known issues]
 
 Mono 2.2 and 2.4 fail to compile this release. Please compile with Mono 2.0 or 2.4.2+, or use the precompiled binaries (which also work on the affected Mono versions).
@@ -31,7 +36,7 @@ Please note that binary compatibility is not preserved between beta releases.
 
 2. Parameters of OpenTK.Graphics.GL.GetUniformIndices have been changed: you should now pass a string[] array instead of a single string.
 
-2. Parameters of OpenTK.Graphics.GL.TransformFeedbackVaryings have been changed: you should now pass a string[] array instead of a single string.
+3. Parameters of OpenTK.Graphics.GL.TransformFeedbackVaryings have been changed: you should now pass a string[] array instead of a single string.
 
 
 [0.9.8-1]

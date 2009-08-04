@@ -8,9 +8,11 @@
     
 + OpenTK
     + Graphics
-	+ Fixed wrappers for functions taking string arrays: TranformFeedbackVaryings, GetUniformIndices, GetShaderSource.
+	    + Fixed wrappers for functions taking string arrays: TranformFeedbackVaryings, GetUniformIndices, GetShaderSource.
     + Math
         + Minor documentation fixes.
+    + Platform
+        + X11XrandrDisplayDevice now ignores invalid resolutions returned by XRandR.
 
 + OpenTK.Utilities
     + TextPrinter
