@@ -43,18 +43,6 @@ namespace OpenTK.Graphics
         static DisplayDevice()
         {
             implementation = Platform.Factory.CreateDisplayDeviceDriver();
-           
-            //lock (display_lock)
-            //{
-            //    int i = 0;
-            //    foreach (System.Windows.Forms.Screen scr in System.Windows.Forms.Screen.AllScreens)
-            //    {
-            //        available_displays.Add(new DisplayDevice(scr.Bounds.Width, scr.Bounds.Height, 32, 0, scr.Primary));
-            //        if (scr.Primary)
-            //            primary_display = available_displays[i];
-            //        ++i;
-            //    }
-            //}
         }
 
         internal DisplayDevice(DisplayResolution currentResolution, bool primary,
