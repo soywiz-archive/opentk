@@ -1242,6 +1242,27 @@ namespace OpenTK.Graphics
 
         #endregion
 
+        #region TexEnv
+
+        public static void TexEnv(TextureEnvTarget target, TextureEnvParameter pname, System.Drawing.Color color)
+        {
+            Color4 c = new Color4(color);
+            unsafe
+            {
+                TexEnv(target, pname, &c.R);
+            }
+        }
+
+        public static void TexEnv(TextureEnvTarget target, TextureEnvParameter pname, Color4 color)
+        {
+            unsafe
+            {
+                TexEnv(target, pname, &color.R);
+            }
+        }
+
+        #endregion
+
         #endregion
     }
 }
