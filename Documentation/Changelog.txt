@@ -1,5 +1,14 @@
 [Legend: complete('+') | WIP('*') | missing('-')]
 
+
+---------------------------
+ OpenTK 0.9.8-2 -> 0.9.8-3
+---------------------------
+
++ OpenTK.Utilities
+    + TextPrinter
+        + Fixed printing when lighting, texture environment or texcoord generation modes have been modified.
+
 ---------------------------
  OpenTK 0.9.8-1 -> 0.9.8-2
 ---------------------------

@@ -1,20 +1,14 @@
-The Open Toolkit 0.9.8-2 Beta
-Sunday, 2 August 2009
+The Open Toolkit 0.9.8-3 Beta
+Sunday, 6 September 2009
 
 
 [Overview]
 
-This release fixes issues identified in OpenTK 0.9.8-1:
-* Bind now handles string arrays correctly. Affects functions GetShaderSource, GetUniformIndices, TransformFeedbackVaryings.
-* TextPrinter.Print() now correctly sets text color.
-* Minor documentation errors have been fixed.
+This release fixes issues identified in OpenTK 0.9.8-2:
+* TextPrinter.Print() now correctly resets lighting, texture environment and texcoord generation modes prior to rendering.
 
 Please visit http://www.opentk.com to report issues or request features.
 
-
-[Resolved issues]
-
-[#1050]
 
 
 [Known issues]
@@ -30,6 +24,11 @@ Example documentation may not show up correctly when running on Mono. This is a 
 
 Please note that binary compatibility is not preserved between beta releases.
 
+[0.9.8-3]
+
+No breaking changes.
+
+
 [0.9.8-2]
 
 1. Parameters of OpenTK.Graphics.GL.GetShaderSource have been changed: you should now pass a single StringBuilder instead of a StringBuilder[] array.
@@ -42,6 +41,7 @@ Please note that binary compatibility is not preserved between beta releases.
 [0.9.8-1]
 
 This release renames GL.GetBoolea to the correct GL.GetBoolean.
+
 
 [0.9.8]
 
