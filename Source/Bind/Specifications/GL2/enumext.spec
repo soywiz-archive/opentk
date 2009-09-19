@@ -7920,4 +7920,6 @@ GetPName enum:
 # ARB_draw_elements_base_vertex tokens
 # http://www.opengl.org/registry/specs/ARB/draw_elements_base_vertex.txt
 
+# ARB_
+
 # End (don't remove, or the last token may be removed!)

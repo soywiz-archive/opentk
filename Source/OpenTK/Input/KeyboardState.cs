@@ -28,20 +28,29 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace OpenTK.Input
 {
     /// <summary>
     /// Encapsulates the state of a Keyboard device.
     /// </summary>
+    // Workaround for gmcs bug (see 
     public struct KeyboardState : IEquatable<KeyboardState>
     {
         #region Fields
 
-        const int NumKeys = ((int)Key.LastKey + 16) / 32;
-        // Todo: The following line triggers bogus CS0214 in gmcs 2.0.1, sigh...
-        // Need to add a workaround using either ExplicitLayout or another trick.
-        //unsafe fixed int Keys[NumKeys];
+        // The number of bits in an integer (for clarity).
+        const int BitsInInt = 32;
+        // The number of integers necessary to store the state for all keys.
+        // Note: we add (BitsInByte / 2) then divide by BitsInByte to ensure the result is rounded up.
+        const int KeyStateStorageSize = ((int)Key.LastKey + BitsInInt / 2) / BitsInInt;
+
+        // Note: The following line triggers bogus CS0214 in gmcs 2.0.1, sigh...
+        // Workaround: declare a nested struct.
+        //unsafe fixed int Keys[KeyStateStorageSize];
+        unsafe struct KeyState { fixed int Keys[KeyStateStorageSize]; }
+        KeyState Keys;
 
         #endregion
 
@@ -57,7 +66,7 @@ namespace OpenTK.Input
         /// <param name="key">The <see cref="OpenTK.Input.Key"/> to check.</param>
         public bool IsKeyDown(Key key)
         {
-            return ReadBit((int)key) != 0;
+            return ReadBit((int)key);
         }
 
         /// <summary>
@@ -66,24 +75,35 @@ namespace OpenTK.Input
         /// <param name="key">The <see cref="OpenTK.Input.Key"/> to check.</param>
         public bool IsKeyUp(Key key)
         {
-            return ReadBit((int)key) == 0;
+            return !ReadBit((int)key);
         }
 
         #endregion
 
         #region Internal Members
 
-        internal int ReadBit(int offset)
+        internal bool ReadBit(int offset)
         {
-            return 0;
-            //unsafe { return (Keys[(offset / 32)] & (1 << (offset % 32))); }
+            unsafe
+            {
+                fixed (KeyState* ptr = &Keys)
+                {
+                    return (*((int*)ptr + (offset / BitsInInt)) & (1 << (offset % BitsInInt))) != 0;
+                }
+            }
         }
 
-        internal enum BitValue { Zero = 0, One = 1 }
-        internal void WriteBit(int offset, BitValue bit)
+        internal void WriteBit(int offset, bool bit)
         {
-            // Todo: this is completely broken.
-            //unsafe { Keys[offset / 32] = Keys[offset / 32] ^ (~(int)bit << (offset % 32)); }
+            unsafe
+            {
+                fixed (KeyState* ptr = &Keys)
+                {
+                    // Note: We can't write to ptr directly, since it's fixed.
+                    int* target = (int*)ptr + (offset / BitsInInt);
+                    *target ^= ~((bit ? 1 : 0) << (offset % BitsInInt));
+                }
+            }
         }
 
         #endregion

@@ -26,13 +26,13 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
-using OpenTK.Graphics;
+using System.Threading;
 using OpenTK.Input;
-using System.Collections.Generic;
 
 namespace OpenTK.Platform.Windows
 {
@@ -40,7 +40,7 @@ namespace OpenTK.Platform.Windows
     /// Drives GameWindow on Windows.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
     /// </summary>
-    internal sealed class WinGLNative : INativeWindow, IInputDriver
+    internal class WinGLNative : INativeWindow, IInputDriver
     {
         #region Fields
 
@@ -48,10 +48,11 @@ namespace OpenTK.Platform.Windows
         readonly static ExtendedWindowStyle ChildStyleEx = 0;
 
         readonly IntPtr Instance = Marshal.GetHINSTANCE(typeof(WinGLNative).Module);
-        readonly IntPtr ClassName = Marshal.StringToHGlobalAuto("OpenTK.INativeWindow" + WindowCount++.ToString());
+        [ThreadStatic] static readonly IntPtr ClassName = Marshal.StringToHGlobalAuto(
+            typeof(INativeWindow).FullName + Thread.CurrentThread.ManagedThreadId.ToString());
         readonly WindowProcedure WindowProcedureDelegate;
 
-        bool class_registered;
+        [ThreadStatic] static bool class_registered;
         bool disposed;
         bool exists;
         WinWindowInfo window, child_window;
@@ -64,8 +65,6 @@ namespace OpenTK.Platform.Windows
 
         static readonly ClassStyle ClassStyle =
             ClassStyle.OwnDC | ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.Ime;
-
-        static int WindowCount = 0; // Used to create unique window class names.
 
         IntPtr DefaultWindowProcedure =
             Marshal.GetFunctionPointerForDelegate(new WindowProcedure(Functions.DefWindowProc));
@@ -84,7 +83,7 @@ namespace OpenTK.Platform.Windows
 
         #region Contructors
 
-        public WinGLNative(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device)
+        public WinGLNative(int x, int y, int width, int height, string title, GameWindowFlags options, DisplayDevice device, bool message_only)
         {
             // This is the main window procedure callback. We need the callback in order to create the window, so
             // don't move it below the CreateWindow calls.
@@ -92,10 +91,21 @@ namespace OpenTK.Platform.Windows
 
             // To avoid issues with Ati drivers on Windows 6+ with compositing enabled, the context will not be
             // bound to the top-level window, but rather to a child window docked in the parent.
-            window = new WinWindowInfo(
-                CreateWindow(x, y, width, height, title, options, device, IntPtr.Zero), null);
-            child_window = new WinWindowInfo(
-                CreateWindow(0, 0, ClientSize.Width, ClientSize.Height, title, options, device, window.WindowHandle), window);
+            if (!message_only)
+            {
+                window = new WinWindowInfo(
+                    CreateWindow(x, y, width, height, title, options, device, IntPtr.Zero), null);
+                child_window = new WinWindowInfo(
+                    CreateWindow(0, 0, ClientSize.Width, ClientSize.Height, title, options, device, window.WindowHandle), window);
+            }
+            else
+            {
+                window = new WinWindowInfo(
+                    CreateWindow(x, y, width, height, title, options, device, API.HwndMessage), null);
+                child_window = window;
+                //child_window = new WinWindowInfo(
+                //    CreateWindow(0, 0, ClientSize.Width, ClientSize.Height, title, options, device, window.WindowHandle), window);
+            }
 
             exists = true;
 
@@ -405,7 +415,7 @@ namespace OpenTK.Platform.Windows
 
                 case WindowMessage.CLOSE:
                     System.ComponentModel.CancelEventArgs e = new System.ComponentModel.CancelEventArgs();
-                    
+
                     if (Closing != null)
                         Closing(this, e);
 
@@ -430,7 +440,7 @@ namespace OpenTK.Platform.Windows
 
                     if (Closed != null)
                         Closed(this, EventArgs.Empty);
-                    
+
                     break;
 
                 #endregion
@@ -443,7 +453,7 @@ namespace OpenTK.Platform.Windows
 
         #region IsIdle
 
-       bool IsIdle
+        bool IsIdle
         {
             get
             {
@@ -530,6 +540,18 @@ namespace OpenTK.Platform.Windows
         }
 
         #endregion
+
+        #endregion
+
+        #region Protected Members
+
+        protected struct MessageArgs
+        {
+            public MSG Message;
+            public IntPtr ReturnValue;
+        }
+        protected delegate void MessageReceivedDelegate(object sender, ref MessageArgs msg);
+        protected event MessageReceivedDelegate MessageReceived = delegate { };
 
         #endregion
 
@@ -929,7 +951,7 @@ namespace OpenTK.Platform.Windows
 
         private int ret;
         MSG msg;
-        public void ProcessEvents()
+        public virtual void ProcessEvents()
         {
             while (!IsIdle)
             {
@@ -943,6 +965,11 @@ namespace OpenTK.Platform.Windows
 
                 Functions.TranslateMessage(ref msg);
                 Functions.DispatchMessage(ref msg);
+
+                MessageArgs args = new MessageArgs();
+                args.Message = msg;
+                MessageReceived(this, ref args);
+                // Todo: check msg.ReturnValue
             }
         }
 
@@ -970,7 +997,7 @@ namespace OpenTK.Platform.Windows
 
         #region IInputDriver Members
 
-        public void Poll()
+        public virtual void Poll()
         {
             joystick_driver.Poll();
         }
@@ -979,7 +1006,8 @@ namespace OpenTK.Platform.Windows
 
         #region IKeyboardDriver Members
 
-        public IList<KeyboardDevice> Keyboard
+#warning "Remove this once the new input drivers are ready."
+        public virtual IList<KeyboardDevice> Keyboard
         {
             get { return keyboards; }
         }
@@ -988,7 +1016,8 @@ namespace OpenTK.Platform.Windows
 
         #region IMouseDriver Members
 
-        public IList<MouseDevice> Mouse
+#warning "Remove this once the new input drivers are ready."
+        public virtual IList<MouseDevice> Mouse
         {
             get { return mice; }
         }
@@ -997,7 +1026,8 @@ namespace OpenTK.Platform.Windows
 
         #region IJoystickDriver Members
 
-        public IList<JoystickDevice> Joysticks
+#warning "Remove this once the new input drivers are ready."
+        public virtual IList<JoystickDevice> Joysticks
         {
             get { return joystick_driver.Joysticks; }
         }

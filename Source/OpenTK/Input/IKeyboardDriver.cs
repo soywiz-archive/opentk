@@ -18,6 +18,7 @@ namespace OpenTK.Input
         /// <summary>
         /// Gets the list of available KeyboardDevices.
         /// </summary>
+        [Obsolete("Use the OpenTK.Input.Keyboard class instead.")]
         IList<KeyboardDevice> Keyboard { get; }
     }
 }

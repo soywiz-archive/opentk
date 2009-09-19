@@ -177,25 +177,26 @@ namespace OpenTK.Graphics
         {
             get
             {
-                if (index == null)
+                //lock (mode_selection_lock)
                 {
-                    GraphicsMode mode;
-                    lock (mode_selection_lock)
+                    if (index == null)
                     {
+                        GraphicsMode mode;
+
                         mode = implementation.SelectGraphicsMode(ColorFormat, Depth, Stencil, Samples, AccumulatorFormat, Buffers, Stereo);
+
+                        Index = mode.Index;
+                        ColorFormat = mode.ColorFormat;
+                        Depth = mode.Depth;
+                        Stencil = mode.Stencil;
+                        Samples = mode.Samples;
+                        AccumulatorFormat = mode.AccumulatorFormat;
+                        Buffers = mode.Buffers;
+                        Stereo = mode.Stereo;
                     }
 
-                    Index = mode.Index;
-                    ColorFormat = mode.ColorFormat;
-                    Depth = mode.Depth;
-                    Stencil = mode.Stencil;
-                    Samples = mode.Samples;
-                    AccumulatorFormat = mode.AccumulatorFormat;
-                    Buffers = mode.Buffers;
-                    Stereo = mode.Stereo;
+                    return index;
                 }
-
-                return index;
             }
             set { index = value; }
         }
@@ -303,13 +304,17 @@ namespace OpenTK.Graphics
         {
             get
             {
-                if (defaultMode == null)
+                //lock (mode_selection_lock)
                 {
-                    Debug.Print("Creating default GraphicsMode ({0}, {1}, {2}, {3}, {4}, {5}, {6}).", DisplayDevice.Default.BitsPerPixel,
-                                16, 0, 0, 0, 2, false);
-                    defaultMode = new GraphicsMode(DisplayDevice.Default.BitsPerPixel, 16, 0, 0, 0, 2, false);
+                    if (defaultMode == null)
+                    {
+                        Debug.Print("Creating default GraphicsMode ({0}, {1}, {2}, {3}, {4}, {5}, {6}).", DisplayDevice.Default.BitsPerPixel,
+                                    16, 0, 0, 0, 2, false);
+                        defaultMode = new GraphicsMode(DisplayDevice.Default.BitsPerPixel, 16, 0, 0, 0, 2, false);
+                        Debug.Print("Default mode index is {0}.", defaultMode.Index);
+                    }
+                    return defaultMode;
                 }
-                return defaultMode;
             }
         }
 
@@ -320,7 +325,7 @@ namespace OpenTK.Graphics
         #region --- Overrides ---
 
         /// <summary>Returns a System.String describing the current GraphicsFormat.</summary>
-        /// <returns>! System.String describing the current GraphicsFormat.</returns>
+        /// <returns>A System.String describing the current GraphicsFormat.</returns>
         public override string ToString()
         {
             return String.Format("Index: {0}, Color: {1}, Depth: {2}, Stencil: {3}, Samples: {4}, Accum: {5}, Buffers: {6}, Stereo: {7}",

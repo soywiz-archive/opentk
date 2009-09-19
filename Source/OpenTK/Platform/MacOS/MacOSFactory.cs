@@ -65,7 +65,7 @@ namespace OpenTK.Platform.MacOS
             return new MacOSGraphicsMode();
         }
 
-        public virtual OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
+        public virtual OpenTK.Input.IInputDriver CreateInputDriver()
         {
             throw new NotImplementedException();
         }

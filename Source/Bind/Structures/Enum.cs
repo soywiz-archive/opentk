@@ -7,8 +7,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml.XPath;
+using System.Text.RegularExpressions;
 
 namespace Bind.Structures
 {
@@ -22,6 +24,8 @@ namespace Bind.Structures
         static StringBuilder translator = new StringBuilder();
         string _name;
         static bool enumsLoaded;
+
+        static readonly Regex SplitCapitals = new Regex(@"((?<=[a-z])[A-Z]|[A-Z](?=[a-z]))", RegexOptions.Compiled);
 
         #region Initialize
 
@@ -80,6 +84,8 @@ namespace Bind.Structures
 
         #region Public Members
 
+        #region IsFlagCollection
+
         // Returns true if the enum contains a collection of flags, i.e. 1, 2, 4, 8, ...
         public bool IsFlagCollection
         {
@@ -92,7 +98,9 @@ namespace Bind.Structures
             }
         }
 
-        #region public string Name
+        #endregion
+
+        #region Name
 
         public string Name
         {
@@ -166,6 +174,58 @@ namespace Bind.Structures
 
         #endregion
 
+        #region TranslateValues
+
+        // Performs the following operations on the ConstantCollection:
+        // 1. constant begins with enum name? => remove duplicated name
+        internal void TranslateValues()
+        {
+            // Todo: this code needs a lot of refinement before it can be used.
+            // For example, it enum.spec contains tokens like NvFooBar.FooBarNv
+            // that would become NvFooBar.Nv with the current implementation (ouch!)
+
+#if false
+
+            // We need to refresh the dictionary keys whenever we change the name
+            // of a constant. Since ConstantCollection is immutable in its foreach loop,
+            // we aggregate the modified keys and change them in a second pass.
+            var keys_to_update = new SortedList<string, string>();
+
+            // Split the enum name into its parts, e.g. 'FramebufferErrorCode' contains
+            // 'Framebuffer', 'Error', 'Code'.
+            var parts = SplitCapitals.Replace(Name, " $1").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var c in ConstantCollection)
+            {
+                // Constants starting with 'All' should not have it trimmed.
+                // For example: AllAttribBits or AllCompletedNv.
+                if (c.Key.StartsWith("All"))
+                    continue;
+
+                foreach (var part in parts.Take(2))
+                {
+                    if (c.Value.Name.StartsWith(part) && c.Value.Name.Length > part.Length + 2)
+                    {
+                        c.Value.Name = c.Value.Name.Substring(part.Length);
+                        
+                        if (!keys_to_update.ContainsKey(c.Key))
+                            keys_to_update.Add(c.Key, c.Key);
+                    }
+                }
+            }
+
+            foreach (var key in keys_to_update.Keys)
+            {
+                var c = ConstantCollection[key];
+                ConstantCollection.Remove(key);
+                ConstantCollection.Add(c.Name, c);
+            }
+
+#endif
+        }
+
+        #endregion
+
         #region ToString
 
         public override string ToString()
@@ -208,11 +268,17 @@ namespace Bind.Structures
 
     public class EnumCollection : SortedDictionary<string, Enum>
     {
+        #region AddRange
+
         internal void AddRange(EnumCollection enums)
         {
             foreach (Enum e in enums.Values)
                 Utilities.Merge(this, e);
         }
+
+        #endregion
+
+        #region Translate
 
         internal void Translate(XPathDocument overrides)
         {
@@ -346,7 +412,16 @@ namespace Bind.Structures
                     removed_tokens.Clear();
                 }
             }
+
+            foreach (var e in Values)
+            {
+                e.TranslateValues();
+            }
         }
+
+        #endregion
+
+        #region OrderOfPreference
 
         // Return -1 for ext1, 1 for ext2 or 0 if no preference.
         int OrderOfPreference(string ext1, string ext2)
@@ -367,6 +442,10 @@ namespace Bind.Structures
             return PreferEmpty(ext1, ext2);
         }
 
+        #endregion
+
+        #region PreferEmpty
+
         // Prefer the empty string over the non-empty.
         int PreferEmpty(string ext1, string ext2)
         {
@@ -378,10 +457,16 @@ namespace Bind.Structures
                 return 0;
         }
 
+        #endregion
+
+        #region TryGetValue
+
         new bool TryGetValue(string key, out Enum value)
         {
             return base.TryGetValue(key, out value);
         }
+
+        #endregion
     }
 
     #endregion

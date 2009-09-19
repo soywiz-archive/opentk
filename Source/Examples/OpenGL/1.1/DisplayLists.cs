@@ -135,9 +135,11 @@ namespace Examples.Tutorial
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            if (Keyboard[OpenTK.Input.Key.Escape])
+            //if (Keyboard[OpenTK.Input.Key.Escape])
+            OpenTK.Input.KeyboardState state = OpenTK.Input.Keyboard.GetState();
+            if (state.IsKeyDown(OpenTK.Input.Key.Escape))
             {
-                this.Exit();
+                Exit();
             }
         }
 

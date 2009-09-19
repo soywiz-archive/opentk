@@ -40,7 +40,7 @@ namespace OpenTK.Platform.Windows
 
         public virtual INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
-            return new WinGLNative(x, y, width, height, title, options, device);
+            return new WinGLNative(x, y, width, height, title, options, device, false);
         }
 
         public virtual IDisplayDeviceDriver CreateDisplayDeviceDriver()
@@ -66,14 +66,18 @@ namespace OpenTK.Platform.Windows
             return new WinGraphicsMode();
         }
 
-        public virtual OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
+        public virtual OpenTK.Input.IInputDriver CreateInputDriver()
         {
-            throw new NotImplementedException();            
             // If Windows version is NT5 or higher, we are able to use raw input.
             if (System.Environment.OSVersion.Version.Major >= 5)
-                return new WinRawKeyboard();
+            {
+                return new WinRawInput();
+            }
             else
-                return new WMInput(null);
+            {
+                throw new NotImplementedException();
+                //return new WMInput(null);
+            }
         }
         
         #endregion

@@ -38,7 +38,7 @@ namespace OpenTK.Platform.X11
             return new X11GraphicsMode();
         }
 
-        public virtual OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
+        public virtual OpenTK.Input.IInputDriver CreateInputDriver()
         {
             throw new NotImplementedException();
         }

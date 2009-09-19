@@ -109,9 +109,9 @@ namespace OpenTK.Platform
             return default_implementation.CreateGraphicsMode();
         }
         
-        public OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
+        public OpenTK.Input.IInputDriver CreateInputDriver()
         {
-            return default_implementation.CreateKeyboardDriver();
+            return default_implementation.CreateInputDriver();
         }
 
         class UnsupportedPlatform : IPlatformFactory
@@ -154,7 +154,7 @@ namespace OpenTK.Platform
                 throw new PlatformNotSupportedException(error_string);
             }
 
-            public OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
+            public OpenTK.Input.IInputDriver CreateInputDriver()
             {
                 throw new PlatformNotSupportedException(error_string);
             }

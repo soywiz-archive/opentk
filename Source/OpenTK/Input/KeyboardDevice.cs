@@ -48,14 +48,15 @@ namespace OpenTK.Input
             {
                 if (keys[(int)key] != value || KeyRepeat)
                 {
+                    bool previous_state = keys[(int)key];
                     keys[(int)key] = value;
 
-                    if (value && KeyDown != null)
+                    if (value && (KeyRepeat || previous_state != value))
                     {
                         args.Key = key;
                         KeyDown(this, args);
                     }
-                    else if (!value && KeyUp != null)
+                    else if (!value && (KeyRepeat || previous_state != value))
                     {
                         args.Key = key;
                         KeyUp(this, args);
@@ -131,7 +132,7 @@ namespace OpenTK.Input
         /// <summary>
         /// Occurs when a key is pressed.
         /// </summary>
-        public event EventHandler<KeyboardKeyEventArgs> KeyDown;
+        public event EventHandler<KeyboardKeyEventArgs> KeyDown = delegate { };
 
         #endregion
 
@@ -140,7 +141,7 @@ namespace OpenTK.Input
         /// <summary>
         /// Occurs when a key is released.
         /// </summary>
-        public event EventHandler<KeyboardKeyEventArgs> KeyUp;
+        public event EventHandler<KeyboardKeyEventArgs> KeyUp = delegate { };
 
         #endregion
 

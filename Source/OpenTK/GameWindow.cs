@@ -357,6 +357,7 @@ namespace OpenTK
         public void Run(double updates_per_second, double frames_per_second)
         {
             EnsureUndisposed();
+            Visible = true;
 
             try
             {

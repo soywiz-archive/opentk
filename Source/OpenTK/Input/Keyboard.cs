@@ -38,7 +38,7 @@ namespace OpenTK.Input
     {
         #region Fields
 
-        //static IKeyboardDriver driver;
+        static IKeyboardDriver driver;
 
         #endregion
 
@@ -46,8 +46,7 @@ namespace OpenTK.Input
 
         static Keyboard()
         {
-            throw new NotImplementedException();
-            //driver = Platform.Factory.Default.CreateKeyboardDriver();
+            driver = Platform.Factory.Default.CreateInputDriver();
         }
 
         #endregion
@@ -57,10 +56,19 @@ namespace OpenTK.Input
         /// <summary>
         /// Retrieves the KeyboardState for the default keyboard device.
         /// </summary>
-        /// <returns>A <see cref="OpenTK.Input.KeyboardState"/> structure containing the state of the keyboard device.</returns>
+        /// <returns>
+        /// A <see cref="OpenTK.Input.KeyboardState"/> structure containing the state
+        /// of the keyboard device.
+        /// </returns>
         public static KeyboardState GetState()
         {
-            return new KeyboardState();
+            (driver as IInputDriver).Poll();
+            KeyboardState state = new KeyboardState();
+            for (int i = 0; i < (int)Key.LastKey; i++)
+            {
+                state.WriteBit(i, driver.Keyboard[0][(Key)i]);
+            }
+            return state;
         }
 
         /// <summary>

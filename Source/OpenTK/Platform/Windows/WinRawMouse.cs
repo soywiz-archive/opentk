@@ -14,6 +14,7 @@ using Microsoft.Win32;
 
 namespace OpenTK.Platform.Windows
 {
+#if false
     /// <summary>
     /// Contains methods to register for and process mouse WM_INPUT messages.
     /// </summary>
@@ -254,4 +255,6 @@ namespace OpenTK.Platform.Windows
 
         #endregion
     }
+
+#endif
 }

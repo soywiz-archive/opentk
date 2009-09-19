@@ -18,24 +18,27 @@ using OpenTK.Input;
 
 namespace OpenTK.Platform.Windows
 {
-    internal class WinRawKeyboard : IKeyboardDriver, IDisposable
+#if false
+    class WinRawKeyboard : IKeyboardDriver, IDisposable
     {
+        #region Fields
+
         private List<KeyboardDevice> keyboards = new List<KeyboardDevice>();
         private IntPtr window;
 
+        #endregion
+
         #region --- Constructors ---
 
-        internal WinRawKeyboard()
-            : this(IntPtr.Zero)
+        public WinRawKeyboard(IntPtr window)
         {
-        }
+            if (window == null)
+                throw new ArgumentNullException("window");
 
-        internal WinRawKeyboard(IntPtr windowHandle)
-        {
             Debug.WriteLine("Initializing keyboard driver (WinRawKeyboard).");
             Debug.Indent();
 
-            this.window = windowHandle;
+            this.window = window;
 
             UpdateKeyboardList();
 
@@ -44,9 +47,11 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region internal static void UpdateKeyboardList()
+        #region Private Members
 
-        internal void UpdateKeyboardList()
+        #region UpdateKeyboardList
+
+        void UpdateKeyboardList()
         {
             int count = WinRawInput.DeviceCount;
             RawInputDeviceList[] ridl = new RawInputDeviceList[count];
@@ -122,9 +127,9 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region internal void RegisterKeyboardDevice(Keyboard kb)
+        #region RegisterKeyboardDevice
 
-        internal void RegisterKeyboardDevice(KeyboardDevice kb)
+        void RegisterKeyboardDevice(KeyboardDevice kb)
         {
             RawInputDevice[] rid = new RawInputDevice[1];
             // Keyboard is 1/6 (page/id). See http://www.microsoft.com/whdc/device/input/HID_HWID.mspx
@@ -151,7 +156,7 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #region internal bool ProcessKeyboardEvent(API.RawInput rin)
+        #region ProcessKeyboardEvent
 
         /// <summary>
         /// Processes raw input events.
@@ -216,6 +221,8 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        #endregion
+
         #region --- IInputDevice Members ---
 
         public string Description
@@ -268,4 +275,5 @@ namespace OpenTK.Platform.Windows
 
         #endregion
     }
+#endif
 }

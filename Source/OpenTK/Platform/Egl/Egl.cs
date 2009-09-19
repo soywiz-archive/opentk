@@ -413,6 +413,7 @@ namespace OpenTK.Platform.Egl
         {
             get
             {
+                System.Diagnostics.Debug.WriteLine("Testing for the existence of EGL libraries (may throw harmless DllNotFoundException)...");
                 try { GetCurrentContext(); }
                 catch (Exception) { return false;  }
                 return true;

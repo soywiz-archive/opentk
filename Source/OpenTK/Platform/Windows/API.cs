@@ -67,7 +67,7 @@ namespace OpenTK.Platform.Windows
     /// For internal use by OpenTK only!
     /// Exposes useful native WINAPI methods and structures.
     /// </summary>
-    internal static class API
+    static class API
     {
         // Prevent BeforeFieldInit optimization, and initialize 'size' fields.
         static API()
@@ -92,6 +92,8 @@ namespace OpenTK.Platform.Windows
         internal static readonly int RawInputDeviceInfoSize;
         internal static readonly int RawMouseSize;
         internal static readonly int WindowInfoSize;
+
+        internal static readonly IntPtr HwndMessage = new IntPtr(-3);    // Defines a message-only window.
     }
 
     internal static class Functions
@@ -540,6 +542,9 @@ namespace OpenTK.Platform.Windows
         [DllImport("gdi32.dll")]
         internal static extern int DescribePixelFormat(IntPtr deviceContext, int pixel, int pfdSize, ref PixelFormatDescriptor pixelFormat);
 
+        [DllImport("gdi32.dll")]
+        internal static extern int DescribePixelFormat(IntPtr deviceContext, int pixel, int pfdSize, PixelFormatDescriptor[] pixelFormat);
+
         #region SetPixelFormat
 
         /// <summary>
@@ -808,8 +813,19 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        [DllImport("user32.dll")]
+        #region IsWindowVisible
+
+        [DllImport("user32.dll", SetLastError=true)]
         public static extern bool IsWindowVisisble(IntPtr intPtr);
+
+        #endregion
+
+        #region SetParent
+
+        [DllImport("user32.dll", SetLastError=true)]
+        public static extern HWND SetParent(HWND hWndChild, HWND hWndNewParent);
+
+        #endregion
 
         #endregion
 
@@ -1627,6 +1643,9 @@ namespace OpenTK.Platform.Windows
         internal int LayerMask;
         internal int VisibleMask;
         internal int DamageMask;
+
+        internal readonly static short SizeInBytes = (short)Marshal.SizeOf(default(PixelFormatDescriptor));
+        internal readonly static short StructureVersion = 1;
     }
     
     #endregion
@@ -1879,7 +1898,7 @@ namespace OpenTK.Platform.Windows
         internal string ClassName;
         //internal string ClassName;
 
-        internal static int SizeInBytes = Marshal.SizeOf(default(WindowClass));
+        internal readonly static int SizeInBytes = Marshal.SizeOf(default(WindowClass));
     }
     #endregion
 
@@ -2184,6 +2203,8 @@ namespace OpenTK.Platform.Windows
         /// Value passed in the wParam parameter of the WM_INPUT message.
         /// </summary>
         internal WPARAM Param;
+
+        internal readonly static int SizeInBytes = Marshal.SizeOf(default(RawInputHeader));
     }
 
     #endregion
