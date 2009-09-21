@@ -50,7 +50,11 @@ namespace OpenTK.Platform.Windows
         readonly IntPtr Instance = Marshal.GetHINSTANCE(typeof(WinGLNative).Module);
         [ThreadStatic] static readonly IntPtr ClassName = Marshal.StringToHGlobalAuto(
             typeof(INativeWindow).FullName + Thread.CurrentThread.ManagedThreadId.ToString());
+
+        // Ensure the delegates are kept alive.
         readonly WindowProcedure WindowProcedureDelegate;
+        readonly WindowProcedure DefaultWindowProcedureDelegate;
+        readonly IntPtr DefaultWindowProcedure;
 
         [ThreadStatic] static bool class_registered;
         bool disposed;
@@ -65,9 +69,6 @@ namespace OpenTK.Platform.Windows
 
         static readonly ClassStyle ClassStyle =
             ClassStyle.OwnDC | ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.Ime;
-
-        IntPtr DefaultWindowProcedure =
-            Marshal.GetFunctionPointerForDelegate(new WindowProcedure(Functions.DefWindowProc));
 
         // Used for IInputDriver implementation
         WinMMJoystick joystick_driver = new WinMMJoystick();
@@ -88,6 +89,8 @@ namespace OpenTK.Platform.Windows
             // This is the main window procedure callback. We need the callback in order to create the window, so
             // don't move it below the CreateWindow calls.
             WindowProcedureDelegate = WindowProcedure;
+            DefaultWindowProcedureDelegate = Functions.DefWindowProc;
+           DefaultWindowProcedure = Marshal.GetFunctionPointerForDelegate(DefaultWindowProcedureDelegate);
 
             // To avoid issues with Ati drivers on Windows 6+ with compositing enabled, the context will not be
             // bound to the top-level window, but rather to a child window docked in the parent.
