@@ -63,16 +63,46 @@ namespace Examples.Shapes
 
         #region Convert to VBO
 
-        public void GetArraysforVBO( out BeginMode primitives, out VertexT2dN3dV3d[] vertices, out uint[] indices )
+        public void GetArraysforVBO(out BeginMode primitives, out VertexT2dN3dV3d[] vertices, out uint[] indices)
         {
             primitives = PrimitiveMode;
 
             vertices = new VertexT2dN3dV3d[VertexArray.Length];
-            for ( uint i = 0; i < VertexArray.Length; i++ )
+            for (uint i = 0; i < VertexArray.Length; i++)
             {
-                vertices[i].TexCoord = (Vector2d)VertexArray[i].TexCoord;
-                vertices[i].Normal = (Vector3d)VertexArray[i].Normal;
-                vertices[i].Position = (Vector3d)VertexArray[i].Position;
+                vertices[i].TexCoord = VertexArray[i].TexCoord;
+                vertices[i].Normal = VertexArray[i].Normal;
+                vertices[i].Position = VertexArray[i].Position;
+            }
+
+            indices = IndexArray;
+        }
+
+        public void GetArraysforVBO(out BeginMode primitives, out VertexT2fN3fV3f[] vertices, out uint[] indices)
+        {
+            primitives = PrimitiveMode;
+
+            vertices = new VertexT2fN3fV3f[VertexArray.Length];
+            for (uint i = 0; i < VertexArray.Length; i++)
+            {
+                vertices[i].TexCoord = (Vector2)VertexArray[i].TexCoord;
+                vertices[i].Normal = (Vector3)VertexArray[i].Normal;
+                vertices[i].Position = (Vector3)VertexArray[i].Position;
+            }
+
+            indices = IndexArray;
+        }
+
+        public void GetArraysforVBO(out BeginMode primitives, out VertexT2hN3hV3h[] vertices, out uint[] indices)
+        {
+            primitives = PrimitiveMode;
+
+            vertices = new VertexT2hN3hV3h[VertexArray.Length];
+            for (uint i = 0; i < VertexArray.Length; i++)
+            {
+                vertices[i].TexCoord = (Vector2h)VertexArray[i].TexCoord;
+                vertices[i].Normal = (Vector3h)VertexArray[i].Normal;
+                vertices[i].Position = (Vector3h)VertexArray[i].Position;
             }
 
             indices = IndexArray;

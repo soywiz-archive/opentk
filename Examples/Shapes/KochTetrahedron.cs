@@ -63,7 +63,7 @@ namespace Examples.Shapes
             for ( int i = 0; i < input.Length; i++ )
             {
                 input[i].SubdivideKoch(height, out output[counter + 0], out output[counter + 1], out output[counter + 2], out output[counter + 3], out output[counter + 4], out output[counter + 5] );
-                counter += 6; // every source triangle emits 4 new triangles
+                counter += 6; // every source triangle emits 6 new triangles
             }
 
         }

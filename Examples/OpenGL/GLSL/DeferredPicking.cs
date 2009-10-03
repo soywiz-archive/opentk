@@ -27,8 +27,19 @@ namespace Examples.Tutorial
         uint[] Attachments = new uint[2];
         uint FBO;
 
-        DrawableShape KochStar;
+        struct Vertex
+        {
+            public Vector3 Position;
+            public Vector3 Normal;
+            public byte R, G, B, A;
+            public uint TriangleIndex;
+        }
 
+        BeginMode VBO_PrimMode;
+        Vertex[] VBO_Array;
+        uint VBO_Handle;
+
+ 
         /// <summary>Load resources here.</summary>
         /// <param name="e">Not used.</param>
         public override void OnLoad(EventArgs e)
@@ -63,7 +74,20 @@ namespace Examples.Tutorial
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
             #endregion Prepare FBO
 
-            KochStar = new KochTetrahedron(1.5f, 0.4, 0.5, KochTetrahedron.eSubdivisions.Three, true);
+            DrawableShape temp_obj = new KochTetrahedron(1.5f, 0.2, 1.1, KochTetrahedron.eSubdivisions.Three, false);
+
+            VertexT2fN3fV3f[] temp_VBO;
+            uint[] temp_IBO;
+            temp_obj.GetArraysforVBO(out VBO_PrimMode, out temp_VBO, out temp_IBO);
+            temp_obj.Dispose();
+
+            VBO_Array = new Vertex[temp_VBO.Length];
+
+            GL.GenBuffers(1, out VBO_Handle);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VBO_Handle);
+            GL.BufferData<VertexT2fN3fV3f>(BufferTarget.ArrayBuffer, (IntPtr)(temp_VBO.Length * 32), temp_VBO, BufferUsageHint.StaticDraw);
+
+            GL.InterleavedArrays(InterleavedArrayFormat.T2fN3fV3f, 0, IntPtr.Zero);
         }
 
         public override void OnUnload(EventArgs e)
@@ -76,8 +100,7 @@ namespace Examples.Tutorial
             GL.DeleteFramebuffers(1, ref FBO);
             GL.DeleteTextures(2, Attachments);
 
-            if (KochStar != null)
-            KochStar.Dispose();
+            GL.DeleteBuffers(1, ref VBO_Handle);
 
             base.OnUnload(e);
         }
@@ -122,12 +145,11 @@ namespace Examples.Tutorial
             GL.Enable(EnableCap.Lighting);
             GL.Enable(EnableCap.Light0);
 
-
             GL.Color3(1f, 1f, 1f);
             GL.Translate(0f, 0f, -3f);
-            KochStar.Draw();
-            
 
+            GL.DrawArrays(VBO_PrimMode, 0, VBO_Array.Length);
+            
             SwapBuffers();
         }
 
