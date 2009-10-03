@@ -1,0 +1,35 @@
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Poem.txt
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Audio\the_ring_that_fell.wav
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\JuliaSet_SM2_FS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\JuliaSet_SM3_FS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\JuliaSet_VS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Simple_FS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Simple_VS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Examples.exe
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Examples.pdb
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\ResolveAssemblyReference.cache
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.ExampleBrowser.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.Parrot.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.WinForms.FontRenderingBasic.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.WinForms.DerivedGLControl.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.WinForms.GameLoopForm.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.WinForms.MultipleGLControlsForm.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.WinForms.SimpleForm.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.WinForms.Extensions.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.Tests.InputLogger.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\OpenTK.Examples.Properties.Resources.resources
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\OpenTK.Examples.csproj.GenerateResource.Cache
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.exe
+D:\Users\Admin Login\Desktop\OpenTK Demos\Examples\obj\Debug\Examples.pdb
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\JuliaColorTable.bmp
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\logo-dark.jpg
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\logo.jpg
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\metal.jpg
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\CubeMap_FS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\CubeMap_VS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\Earth CubeMap.dds
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\Swizzled Textures License.txt
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Parallax_FS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Parallax_VS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\Swizzled Rock Diffuse&Height.DDS
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\Swizzled Rock Normal&Gloss.DDS
