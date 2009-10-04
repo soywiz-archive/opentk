@@ -48,18 +48,18 @@ namespace Examples.Tests
                 }
                 while (pos != stream.Length);
 
-                Console.WriteLine(System.Text.Encoding.Default.GetChars(text));
+                Trace.WriteLine(System.Text.Encoding.Default.GetChars(text));
 
                 stream.Position = 0;
                 Matrix4 matrix = (Matrix4)xs.Deserialize(stream);
 
                 if (Matrix4.Identity == matrix)
-                    Console.WriteLine("Matrix deserialized correctly.");
+                    Trace.WriteLine("Matrix deserialized correctly.");
                 else
-                    Console.WriteLine("Error deserializing matrix.");
+                    Trace.WriteLine("Error deserializing matrix.");
 
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey(false);
+                Trace.WriteLine("Press any key to continue...");
+                Trace.ReadKey(false);
             }
         }
     }

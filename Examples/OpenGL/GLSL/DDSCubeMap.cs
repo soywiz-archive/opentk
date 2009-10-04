@@ -105,9 +105,9 @@ namespace Examples.Tutorial
 
             GL.GetShaderInfoLog( VertexShaderObject, out LogInfo );
             if ( LogInfo.Length > 0 && !LogInfo.Contains( "hardware" ) )
-                Console.WriteLine( "Vertex Shader failed!\nLog:\n" + LogInfo );
+                Trace.WriteLine( "Vertex Shader failed!\nLog:\n" + LogInfo );
             else
-                Console.WriteLine( "Vertex Shader compiled without complaint." );
+                Trace.WriteLine( "Vertex Shader compiled without complaint." );
 
             // Load&Compile Fragment Shader
 
@@ -120,9 +120,9 @@ namespace Examples.Tutorial
             GL.GetShaderInfoLog( FragmentShaderObject, out LogInfo );
 
             if ( LogInfo.Length > 0 && !LogInfo.Contains( "hardware" ) )
-                Console.WriteLine( "Fragment Shader failed!\nLog:\n" + LogInfo );
+                Trace.WriteLine( "Fragment Shader failed!\nLog:\n" + LogInfo );
             else
-                Console.WriteLine( "Fragment Shader compiled without complaint." );
+                Trace.WriteLine( "Fragment Shader compiled without complaint." );
 
             // Link the Shaders to a usable Program
             ProgramObject = GL.CreateProgram( );
@@ -138,19 +138,19 @@ namespace Examples.Tutorial
 
             int[] temp = new int[1];
             GL.GetProgram( ProgramObject, ProgramParameter.LinkStatus, out temp[0] );
-            Console.WriteLine( "Linking Program (" + ProgramObject + ") " + ( ( temp[0] == 1 ) ? "succeeded." : "FAILED!" ) );
+            Trace.WriteLine( "Linking Program (" + ProgramObject + ") " + ( ( temp[0] == 1 ) ? "succeeded." : "FAILED!" ) );
             if ( temp[0] != 1 )
             {
                 GL.GetProgramInfoLog( ProgramObject, out LogInfo );
-                Console.WriteLine( "Program Log:\n" + LogInfo );
+                Trace.WriteLine( "Program Log:\n" + LogInfo );
             }
 
             GL.GetProgram( ProgramObject, ProgramParameter.ActiveAttributes, out temp[0] );
-            Console.WriteLine( "Program registered " + temp[0] + " Attributes. (Should be 4: Pos, UV, Normal, Tangent)" );
+            Trace.WriteLine( "Program registered " + temp[0] + " Attributes. (Should be 4: Pos, UV, Normal, Tangent)" );
 
-            Console.WriteLine( "Tangent attribute bind location: " + GL.GetAttribLocation( ProgramObject, "AttributeTangent" ) );
+            Trace.WriteLine( "Tangent attribute bind location: " + GL.GetAttribLocation( ProgramObject, "AttributeTangent" ) );
 
-            Console.WriteLine( "End of Shader build. GL Error: " + GL.GetError( ) );
+            Trace.WriteLine( "End of Shader build. GL Error: " + GL.GetError( ) );
 
             #endregion Shaders
 
@@ -164,12 +164,12 @@ namespace Examples.Tutorial
             TextureLoaderParameters.EnvMode = TextureEnvMode.Modulate;
 
             ImageDDS.LoadFromDisk( TMU0_Filename, out TMU0_Handle, out TMU0_Target );
-            Console.WriteLine( "Loaded " + TMU0_Filename + " with handle " + TMU0_Handle + " as " + TMU0_Target );
+            Trace.WriteLine( "Loaded " + TMU0_Filename + " with handle " + TMU0_Handle + " as " + TMU0_Target );
 
             #endregion Textures
 
-            Console.WriteLine( "End of Texture Loading. GL Error: " + GL.GetError( ) );
-            Console.WriteLine( );
+            Trace.WriteLine( "End of Texture Loading. GL Error: " + GL.GetError( ) );
+            Trace.WriteLine( "");
 
             sphere = new SlicedSphere(1.5f, Vector3d.Zero, SlicedSphere.eSubdivisions.Four, new SlicedSphere.eDir[] { SlicedSphere.eDir.All }, true);
 
@@ -212,7 +212,7 @@ namespace Examples.Tutorial
             if ( Keyboard[OpenTK.Input.Key.Escape] )
                 this.Exit( );
             if ( Keyboard[OpenTK.Input.Key.Space] )
-                Console.WriteLine( "GL: " + GL.GetError( ) );
+                Trace.WriteLine( "GL: " + GL.GetError( ) );
 
             Trackball.X = Mouse.X;
             Trackball.Y = Mouse.Y;

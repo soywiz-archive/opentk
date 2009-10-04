@@ -33,3 +33,5 @@ D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Parallax_FS.glsl
 D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Parallax_VS.glsl
 D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\Swizzled Rock Diffuse&Height.DDS
 D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Textures\Swizzled Rock Normal&Gloss.DDS
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Picking_VS.glsl
+D:\Users\Admin Login\Desktop\Binaries\OpenTK\Debug\Data\Shaders\Picking_FS.glsl

@@ -53,7 +53,7 @@ namespace Examples.Shapes
                 Lengths[i] = result.Length;
                 TotalLength += result.Length;
             }
-            Console.WriteLine( "the TorusKnot's length is: " + TotalLength + " " );
+            Trace.WriteLine( "the TorusKnot's length is: " + TotalLength + " " );
             #endregion Find the Torus length
 
             VertexArray = new VertexT2dN3dV3d[pathsteps * shapevertices];

@@ -7,6 +7,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 
@@ -94,17 +95,17 @@ namespace Examples.Tutorial
 
             int[] temp = new int[1];
             GL.GetInteger( GetPName.MaxTextureImageUnits, out temp[0] );
-            Console.WriteLine( temp[0] + " TMU's for Fragment Shaders found. (2 required)" );
+            Trace.WriteLine( temp[0] + " TMU's for Fragment Shaders found. (2 required)" );
 
             GL.GetInteger( GetPName.MaxVaryingFloats, out temp[0] );
-            Console.WriteLine( temp[0] + " varying floats between VS and FS allowed. (6 required)" );
+            Trace.WriteLine( temp[0] + " varying floats between VS and FS allowed. (6 required)" );
 
             GL.GetInteger( GetPName.MaxVertexUniformComponents, out temp[0] );
-            Console.WriteLine( temp[0] + " uniform components allowed in Vertex Shader. (6 required)" );
+            Trace.WriteLine( temp[0] + " uniform components allowed in Vertex Shader. (6 required)" );
 
             GL.GetInteger( GetPName.MaxFragmentUniformComponents, out temp[0] );
-            Console.WriteLine( temp[0] + " uniform components allowed in Fragment Shader. (11 required)" );
-            Console.WriteLine( );
+            Trace.WriteLine( temp[0] + " uniform components allowed in Fragment Shader. (11 required)" );
+            Trace.WriteLine("" );
 
             #region GL State
 
@@ -135,9 +136,9 @@ namespace Examples.Tutorial
 
             GL.GetShaderInfoLog( VertexShaderObject, out LogInfo );
             if ( LogInfo.Length > 0 && !LogInfo.Contains( "hardware" ) )
-                Console.WriteLine( "Vertex Shader failed!\nLog:\n" + LogInfo );
+                Trace.WriteLine( "Vertex Shader failed!\nLog:\n" + LogInfo );
             else
-                Console.WriteLine( "Vertex Shader compiled without complaint." );
+                Trace.WriteLine( "Vertex Shader compiled without complaint." );
 
             // Load&Compile Fragment Shader
 
@@ -150,9 +151,9 @@ namespace Examples.Tutorial
             GL.GetShaderInfoLog( FragmentShaderObject, out LogInfo );
 
             if ( LogInfo.Length > 0 && !LogInfo.Contains( "hardware" ) )
-                Console.WriteLine( "Fragment Shader failed!\nLog:\n" + LogInfo );
+                Trace.WriteLine( "Fragment Shader failed!\nLog:\n" + LogInfo );
             else
-                Console.WriteLine( "Fragment Shader compiled without complaint." );
+                Trace.WriteLine( "Fragment Shader compiled without complaint." );
 
             // Link the Shaders to a usable Program
             ProgramObject = GL.CreateProgram( );
@@ -170,19 +171,19 @@ namespace Examples.Tutorial
             GL.DeleteShader( FragmentShaderObject );
 
             GL.GetProgram( ProgramObject, ProgramParameter.LinkStatus, out temp[0] );
-            Console.WriteLine( "Linking Program (" + ProgramObject + ") " + ( ( temp[0] == 1 ) ? "succeeded." : "FAILED!" ) );
+            Trace.WriteLine( "Linking Program (" + ProgramObject + ") " + ( ( temp[0] == 1 ) ? "succeeded." : "FAILED!" ) );
             if ( temp[0] != 1 )
             {
                 GL.GetProgramInfoLog( ProgramObject, out LogInfo );
-                Console.WriteLine( "Program Log:\n" + LogInfo );
+                Trace.WriteLine( "Program Log:\n" + LogInfo );
             }
 
             GL.GetProgram( ProgramObject, ProgramParameter.ActiveAttributes, out temp[0] );
-            Console.WriteLine( "Program registered " + temp[0] + " Attributes. (Should be 4: Pos, UV, Normal, Tangent)" );
+            Trace.WriteLine( "Program registered " + temp[0] + " Attributes. (Should be 4: Pos, UV, Normal, Tangent)" );
 
-            Console.WriteLine( "Tangent attribute bind location: " + GL.GetAttribLocation( ProgramObject, "AttributeTangent" ) );
+            Trace.WriteLine( "Tangent attribute bind location: " + GL.GetAttribLocation( ProgramObject, "AttributeTangent" ) );
 
-            Console.WriteLine( "End of Shader build. GL Error: " + GL.GetError( ) );
+            Trace.WriteLine( "End of Shader build. GL Error: " + GL.GetError( ) );
 
             #endregion Shaders
 
@@ -195,15 +196,15 @@ namespace Examples.Tutorial
             TextureLoaderParameters.EnvMode = TextureEnvMode.Modulate;
 
             ImageDDS.LoadFromDisk( TMU0_Filename, out TMU0_Handle, out TMU0_Target );
-            Console.WriteLine( "Loaded " + TMU0_Filename + " with handle " + TMU0_Handle + " as " + TMU0_Target );
+            Trace.WriteLine( "Loaded " + TMU0_Filename + " with handle " + TMU0_Handle + " as " + TMU0_Target );
            
             ImageDDS.LoadFromDisk( TMU1_Filename, out TMU1_Handle, out TMU1_Target );
-            Console.WriteLine( "Loaded " + TMU1_Filename + " with handle " + TMU1_Handle + " as " + TMU1_Target );
+            Trace.WriteLine( "Loaded " + TMU1_Filename + " with handle " + TMU1_Handle + " as " + TMU1_Target );
 
             #endregion Textures
 
-            Console.WriteLine( "End of Texture Loading. GL Error: " + GL.GetError( ) );
-            Console.WriteLine( );
+            Trace.WriteLine( "End of Texture Loading. GL Error: " + GL.GetError( ) );
+            Trace.WriteLine( "");
         }
 
         public override void OnUnload( EventArgs e )
@@ -242,36 +243,36 @@ namespace Examples.Tutorial
             if ( Keyboard[OpenTK.Input.Key.Escape] )
                 this.Exit( );
             if ( Keyboard[OpenTK.Input.Key.Space] )
-                Console.WriteLine( "GL: " + GL.GetError( ) );
+                Trace.WriteLine( "GL: " + GL.GetError( ) );
             if ( Keyboard[OpenTK.Input.Key.Q] )
             {
                 MaterialScaleAndBiasAndShininess.X += 0.01f;
-                Console.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
+                Trace.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
             }
             if ( Keyboard[OpenTK.Input.Key.A] )
             {
                 MaterialScaleAndBiasAndShininess.X -= 0.01f;
-                Console.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
+                Trace.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
             }
             if ( Keyboard[OpenTK.Input.Key.W] )
             {
                 MaterialScaleAndBiasAndShininess.Y += 0.01f;
-                Console.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
+                Trace.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
             }
             if ( Keyboard[OpenTK.Input.Key.S] )
             {
                 MaterialScaleAndBiasAndShininess.Y -= 0.01f;
-                Console.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
+                Trace.WriteLine( "Scale: " + MaterialScaleAndBiasAndShininess.X + " Bias: " + MaterialScaleAndBiasAndShininess.Y );
             }
             if ( Keyboard[OpenTK.Input.Key.E] )
             {
                 MaterialScaleAndBiasAndShininess.Z += 1f;
-                Console.WriteLine( "Shininess: " + MaterialScaleAndBiasAndShininess.Z );
+                Trace.WriteLine( "Shininess: " + MaterialScaleAndBiasAndShininess.Z );
             }
             if ( Keyboard[OpenTK.Input.Key.D] )
             {
                 MaterialScaleAndBiasAndShininess.Z -= 1f;
-                Console.WriteLine( "Shininess: " + MaterialScaleAndBiasAndShininess.Z );
+                Trace.WriteLine( "Shininess: " + MaterialScaleAndBiasAndShininess.Z );
             }
 
             LightPosition.X = ( -( this.Width / 2 ) + Mouse.X ) / 100f;

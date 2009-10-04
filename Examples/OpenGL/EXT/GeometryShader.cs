@@ -221,8 +221,8 @@ namespace Examples.Tutorial
             if (Keyboard[Key.Space])
             {
                 ErrorCode err = GL.GetError();
-                //Console.WriteLine(err + "  " + Glu.ErrorString((GluErrorCode)err));
-                Console.WriteLine("GL error code: {0}", err);
+                //Trace.WriteLine(err + "  " + Glu.ErrorString((GluErrorCode)err));
+                Trace.WriteLine("GL error code: {0}"+ err);
             }
 
             if (Keyboard[Key.Escape])
