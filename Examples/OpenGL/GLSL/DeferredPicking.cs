@@ -18,30 +18,44 @@ namespace Examples.Tutorial
     {
         /// <summary>Creates a 800x600 window with the specified title.</summary>
         public DeferredPicking()
-            : base(800, 600, GraphicsMode.Default, "OpenTK Quick Start Sample", GameWindowFlags.Default, DisplayDevice.Default, 3, 0, GraphicsContextFlags.Default)
+            : base(800, 600, GraphicsMode.Default, "OpenTK Quick Start Sample", GameWindowFlags.Default, DisplayDevice.Default, 2, 1, GraphicsContextFlags.Default)
         {
             VSync = VSyncMode.On;
         }
 
         const TextureTarget Target = TextureTarget.TextureRectangleArb;
         const int FBO_width = 800;
-        const int FBO_height= 600;
+        const int FBO_height = 600;
         uint[] ColorAttachments = new uint[2];
         uint DepthAttachment;
         uint FBO;
+        DrawBuffersEnum[] FBO_Buffers = new DrawBuffersEnum[] { DrawBuffersEnum.ColorAttachment0, DrawBuffersEnum.ColorAttachment1 }; 
 
         struct Byte4
         {
             public byte R, G, B, A;
+
+            public Byte4(byte[] input)
+            {
+                R = input[0];
+                G = input[1];
+                B = input[2];
+                A = input[3];
+            }
+
+            public uint GetUint()
+            { 
+                byte[] temp= new byte[]{this.R, this.G, this.B, this.A};
+                return BitConverter.ToUInt32(temp, 0);
+            }
         }
 
         struct Vertex
         {
-            public uint TriangleIndex;
-            public Byte4 Color;
-            public Vector3 Position;
+            public Vector3 Position; // 12 bytes
+            public Byte4 Color; // 4 bytes
 
-            public const byte SizeInBytes = 20;
+            public const byte SizeInBytes = 16;
         }
 
         BeginMode VBO_PrimMode;
@@ -49,7 +63,7 @@ namespace Examples.Tutorial
         uint VBO_Handle;
 
         int VertexShaderObject, FragmentShaderObject, ProgramObject;
- 
+
         /// <summary>Load resources here.</summary>
         /// <param name="e">Not used.</param>
         public override void OnLoad(EventArgs e)
@@ -90,6 +104,7 @@ namespace Examples.Tutorial
             #region Prepare FBO
             GL.GenFramebuffers(1, out FBO);
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, FBO);
+            GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.DepthAttachment, Target, DepthAttachment, 0);
             GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment0, Target, ColorAttachments[0], 0);
             GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment1, Target, ColorAttachments[1], 0);
             FramebufferErrorCode FBOerr = GL.CheckFramebufferStatus(FramebufferTarget.Framebuffer);
@@ -100,7 +115,7 @@ namespace Examples.Tutorial
 
             err = GL.GetError();
             if (err != ErrorCode.NoError)
-                Trace.WriteLine("FBO creation failed (Error: "+err+"). Attempting to continue.");
+                Trace.WriteLine("FBO creation failed (Error: " + err + "). Attempting to continue.");
             #endregion Prepare FBO
 
             #region prepare data for VBO from procedural object
@@ -116,32 +131,35 @@ namespace Examples.Tutorial
             int tricounter = -1;
             for (int i = 0; i < temp_VBO.Length; i++)
             {
+                // Position
+                VBO_Array[i].Position = temp_VBO[i].Position;
+
                 // Index
                 if (i % 3 == 0)
                     tricounter++;
-                VBO_Array[i].TriangleIndex = (uint)tricounter;
-
-                // Color
-                switch (i % 3)
-                {
-                    case 0:
-                        VBO_Array[i].Color.R = 255;
-                        break;
-                    case 1:
-                        VBO_Array[i].Color.G = 255;
-                        break;
-                    case 2:
-                        VBO_Array[i].Color.B = 255;
-                        break;
-                }
-                VBO_Array[i].Color.A = 255;
-
-                // Position
-                VBO_Array[i].Position = temp_VBO[i].Position;
+                // TODO: pack uint to Byte4
+                VBO_Array[i].Color = new Byte4(BitConverter.GetBytes(tricounter));
             }
             #endregion prepare data for VBO from procedural object
 
+            #region Setup VBO for drawing
+
+            GL.GenBuffers(1, out VBO_Handle);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VBO_Handle);
+            GL.BufferData<Vertex>(BufferTarget.ArrayBuffer, (IntPtr)(VBO_Array.Length * Vertex.SizeInBytes), VBO_Array, BufferUsageHint.StaticDraw);
+  
+            // Position
+            GL.EnableVertexAttribArray(0);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, Vertex.SizeInBytes, 0);
+            // Color
+            GL.EnableVertexAttribArray(1);
+            GL.VertexAttribPointer(1, 4, VertexAttribPointerType.UnsignedByte, true, Vertex.SizeInBytes, 12);
           
+            err = GL.GetError();
+            if (err != ErrorCode.NoError)
+                Trace.WriteLine("VBO Setup failed (Error: " + err + "). Attempting to continue.");
+
+            #endregion Setup VBO for drawing
 
             #region Shader
 
@@ -153,6 +171,10 @@ namespace Examples.Tutorial
                 GL.ShaderSource(VertexShaderObject, sr.ReadToEnd());
                 GL.CompileShader(VertexShaderObject);
             }
+
+            err = GL.GetError();
+            if (err != ErrorCode.NoError)
+                Trace.WriteLine("Vertex Shader: " + err);
 
             string LogInfo;
             GL.GetShaderInfoLog(VertexShaderObject, out LogInfo);
@@ -172,7 +194,10 @@ namespace Examples.Tutorial
             GL.GetShaderInfoLog(FragmentShaderObject, out LogInfo);
 
             err = GL.GetError();
-            if (LogInfo.Length > 0 && !LogInfo.Contains("hardware") && err != ErrorCode.NoError)
+            if (err != ErrorCode.NoError)
+                Trace.WriteLine("Fragment Shader: " + err);
+
+            if (LogInfo.Length > 0 && !LogInfo.Contains("hardware"))
                 Trace.WriteLine("Fragment Shader failed!\nLog:\n" + LogInfo);
             else
                 Trace.WriteLine("Fragment Shader compiled without complaint.");
@@ -183,14 +208,22 @@ namespace Examples.Tutorial
             GL.AttachShader(ProgramObject, FragmentShaderObject);
 
             // must bind the attributes before linking
-            GL.BindAttribLocation(ProgramObject, 0, "Index");
+
             GL.BindAttribLocation(ProgramObject, 1, "Color");
-            GL.BindAttribLocation(ProgramObject, 2, "Position");
+            GL.BindAttribLocation(ProgramObject, 0, "Position");
 
             // link it all together
             GL.LinkProgram(ProgramObject);
 
+            err = GL.GetError();
+            if (err != ErrorCode.NoError)
+                Trace.WriteLine("LinkProgram: " + err);
+
             GL.UseProgram(ProgramObject);
+
+            err = GL.GetError();
+            if (err != ErrorCode.NoError)
+                Trace.WriteLine("UseProgram: " + err);
 
             // flag ShaderObjects for delete when not used anymore
             GL.DeleteShader(VertexShaderObject);
@@ -206,48 +239,29 @@ namespace Examples.Tutorial
             }
 
             GL.GetProgram(ProgramObject, ProgramParameter.ActiveAttributes, out temp);
-            Trace.WriteLine("Program registered " + temp + " Attributes. (Should be 3: Index, Color and Position)");
+            Trace.WriteLine("Program registered " + temp + " Attributes. (Should be 2: Color and Position)");
 
-            Trace.WriteLine("Index attribute bind location: " + GL.GetAttribLocation(ProgramObject, "Index"));
             Trace.WriteLine("Color attribute bind location: " + GL.GetAttribLocation(ProgramObject, "Color"));
             Trace.WriteLine("Position attribute bind location: " + GL.GetAttribLocation(ProgramObject, "Position"));
 
             Trace.WriteLine("End of Shader build. GL Error: " + GL.GetError());
 
+            GL.UseProgram(0);
+
             #endregion Shader
-
-            #region Setup VBO for drawing
-
-            GL.GenBuffers(1, out VBO_Handle);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VBO_Handle);
-            GL.BufferData<VertexT2fN3fV3f>(BufferTarget.ArrayBuffer, (IntPtr)(temp_VBO.Length * Vertex.SizeInBytes), temp_VBO, BufferUsageHint.StaticDraw);
-
-            // triangle counter
-            GL.EnableVertexAttribArray(0);
-            GL.VertexAttribPointer(0, 1, VertexAttribPointerType.UnsignedInt, false, Vertex.SizeInBytes, 0);
-            // Color
-            GL.EnableVertexAttribArray(1);
-            GL.VertexAttribPointer(1, 4, VertexAttribPointerType.UnsignedByte, true, Vertex.SizeInBytes, 4);
-            // Position
-            GL.EnableVertexAttribArray(3);
-            GL.VertexAttribPointer(2, 3, VertexAttribPointerType.Float, false, Vertex.SizeInBytes, 8);
-
-            err = GL.GetError();
-            if (err != ErrorCode.NoError)
-                Trace.WriteLine("VBO Setup failed (Error: " + err + "). Attempting to continue.");
-
-            #endregion Setup VBO for drawing
 
         }
 
         public override void OnUnload(EventArgs e)
         {
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, FBO);
+            GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.DepthAttachment, Target, 0, 0);
             GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment0, Target, 0, 0);
             GL.FramebufferTexture2D(FramebufferTarget.Framebuffer, FramebufferAttachment.ColorAttachment1, Target, 0, 0);
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
 
             GL.DeleteFramebuffers(1, ref FBO);
+            GL.DeleteTextures(1, ref DepthAttachment);
             GL.DeleteTextures(2, ColorAttachments);
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
@@ -289,18 +303,53 @@ namespace Examples.Tutorial
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            Matrix4 modelview = Matrix4.LookAt( Vector3.UnitZ, Vector3.Zero,Vector3.UnitY);
+            #region Draw Object into FBO
+            Matrix4 modelview = Matrix4.LookAt(Vector3.UnitZ, Vector3.Zero, Vector3.UnitY);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref modelview);
 
-            GL.Enable(EnableCap.Lighting);
-            GL.Enable(EnableCap.Light0);
+            GL.BindFramebuffer(FramebufferTarget.Framebuffer, FBO);
+            GL.DrawBuffers(2, FBO_Buffers);
+            GL.UseProgram(ProgramObject);
 
-            GL.Color3(1f, 1f, 1f);
             GL.Translate(0f, 0f, -3f);
-
             GL.DrawArrays(VBO_PrimMode, 0, VBO_Array.Length);
-            
+
+            GL.UseProgram(0);
+            GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
+            // GL.DrawBuffers(1, DrawBuffersEnum.BackLeft);
+            GL.DrawBuffer(DrawBufferMode.Back);
+            #endregion Draw Object into FBO
+
+            #region Show Color Attachment 0 in backbuffer
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.PushMatrix();
+            Matrix4 portho = Matrix4.CreateOrthographicOffCenter(-1f, 1f, -1f, 1f, -1f, 1f);
+            GL.LoadMatrix(ref portho);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadIdentity();
+
+           // GL.Enable(EnableCap.Texture2D);
+            GL.Enable( (EnableCap)All.TextureRectangleArb );
+            GL.BindTexture(Target, ColorAttachments[0]);
+            GL.Begin(BeginMode.Quads);
+            {
+                GL.Color3(1f, 1f, 1f);
+                GL.TexCoord2(0f,(float)FBO_height); GL.Vertex3(-1f, +1f, 0f);
+                GL.TexCoord2(0f, 0f); GL.Vertex3(-1f, -1f, 0f);
+                GL.TexCoord2((float)FBO_width, 0f); GL.Vertex3(+1f, -1f, 0f);
+                GL.TexCoord2((float)FBO_width, (float)FBO_height); GL.Vertex3(+1f, +1f, 0f);
+            }
+            GL.End();
+            GL.BindTexture(Target,0);
+          //  GL.Disable(EnableCap.Texture2D);
+            GL.Disable((EnableCap)All.TextureRectangleArb);
+
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.PopMatrix();
+            #endregion Show Color Attachment 0 in backbuffer
+
             this.SwapBuffers();
         }
 
