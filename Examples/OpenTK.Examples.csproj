@@ -131,7 +131,7 @@
     </Compile>
     <Compile Include="OpenGL\1.1\StencilCSG.cs" />
     <Compile Include="OpenGL\1.1\TextureMatrix.cs" />
-    <Compile Include="OpenGL\GLSL\DeferredPicking.cs" />
+    <Compile Include="OpenGL\GLSL\Picking.cs" />
     <Compile Include="OpenGL\VBO\DynamicVBO.cs" />
     <Compile Include="OpenGL\GLSL\DDSCubeMap.cs" />
     <Compile Include="OpenGL\GLSL\SwizzledParallax.cs" />
