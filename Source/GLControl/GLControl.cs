@@ -78,17 +78,20 @@ namespace OpenTK
         /// <param name="flags">The GraphicsContextFlags for the OpenGL GraphicsContext.</param>
         public GLControl(GraphicsMode mode, int major, int minor, GraphicsContextFlags flags)
         {
+            if (mode == null)
+                throw new ArgumentNullException("mode");
+            
             SetStyle(ControlStyles.Opaque, true);
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             DoubleBuffered = false;
 
-            InitializeComponent();
-
             this.format = mode;
             this.major = major;
             this.minor = minor;
             this.flags = flags;
+
+            InitializeComponent();
         }
 
         #endregion
@@ -191,6 +194,9 @@ namespace OpenTK
         /// <param name="e">A System.EventArgs that contains the event data.</param>
         protected override void OnResize(EventArgs e)
         {
+            if (IsHandleCreated == false)
+                CreateHandle();
+
             if (context != null)
                 context.Update(Implementation.WindowInfo);
 
@@ -365,7 +371,7 @@ namespace OpenTK
         /// <exception cref="OpenTK.Graphics.GraphicsContextException">
         /// Occurs when no OpenTK.Graphics.GraphicsContext is current in the calling thread.
         /// </exception>
-        [Obsolete("This method will be removed. Please provide your own code to capture framebuffer contents.")]
+        [Obsolete("This method will not work correctly with OpenGL|ES. Please use ReadPixels to capture the contents of the framebuffer (you can then load them into a System.Drawing.Bitmap for further processing or saving them to disk).")]
         public Bitmap GrabScreenshot()
         {
             ValidateState();

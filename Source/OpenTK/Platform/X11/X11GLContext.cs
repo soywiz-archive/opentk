@@ -24,7 +24,6 @@ namespace OpenTK.Platform.X11
         bool vsync_supported;
         int vsync_interval;
         bool glx_loaded;
-        GraphicsMode graphics_mode;
 
         #region --- Constructors ---
 
@@ -35,6 +34,8 @@ namespace OpenTK.Platform.X11
                 throw new ArgumentNullException("mode");
             if (window == null)
                 throw new ArgumentNullException("window");
+
+            Mode = mode;
 
             currentWindow = (X11WindowInfo)window;
             currentWindow.VisualInfo = SelectVisual(mode, currentWindow);
@@ -59,7 +60,7 @@ namespace OpenTK.Platform.X11
 
                 if (ctx != IntPtr.Zero)
                 {
-                    Glx.LoadAll();
+                    new Glx().LoadAll();
                     Glx.MakeCurrent(currentWindow.Display, IntPtr.Zero, IntPtr.Zero);
                     //Glx.DestroyContext(currentWindow.Display, ctx);
                     glx_loaded = true;
@@ -138,8 +139,6 @@ namespace OpenTK.Platform.X11
 
             if (!Glx.IsDirect(currentWindow.Display, Handle.Handle))
                 Debug.Print("Warning: Context is not direct.");
-
-            graphics_mode = mode;
         }
 
         #endregion
@@ -270,10 +269,11 @@ namespace OpenTK.Platform.X11
 
         public override void LoadAll()
         {
-            new OpenTK.Graphics.OpenGL.GL().LoadAll();
-            Glx.LoadAll();
+            new Glx().LoadAll();
             vsync_supported = this.GetAddress("glXSwapIntervalSGI") != IntPtr.Zero;
             Debug.Print("Context supports vsync: {0}.", vsync_supported);
+
+            base.LoadAll();
         }
 
         #endregion

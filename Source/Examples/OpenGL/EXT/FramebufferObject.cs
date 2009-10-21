@@ -52,7 +52,7 @@ namespace Examples.Tutorial
 
         #endregion Randoms
 
-        public override void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             if (!GL.GetString(StringName.Extensions).Contains("EXT_framebuffer_object"))
             {
@@ -201,7 +201,7 @@ namespace Examples.Tutorial
             GL.BindTexture(TextureTarget.Texture2D, 0); // bind default texture
         }
 
-        public override void OnUnload(EventArgs e)
+        protected override void OnUnload(EventArgs e)
         {
             // Clean up what we allocated before exiting
             if (ColorTexture != 0)

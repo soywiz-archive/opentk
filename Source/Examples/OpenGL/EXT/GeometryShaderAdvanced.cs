@@ -839,7 +839,7 @@ namespace Examples.Tutorial
 
         #region overrides
 
-        public override void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             if (!GL.GetString(StringName.Extensions).Contains("EXT_geometry_shader4"))
             {
@@ -869,7 +869,7 @@ namespace Examples.Tutorial
 
         }
 
-        public override void OnUnload(EventArgs e)
+        protected override void OnUnload(EventArgs e)
         {
             if (shaderProgramBox != 0)
                 GL.DeleteProgram(shaderProgramBox);

@@ -65,12 +65,17 @@ namespace CHeaderToXML
             // Adds new enum to the accumulator (acc)
             Func<string, List<XElement>, List<XElement>> enum_name = (line, acc) =>
             {
+				bool is_long_bitfield = false;
+				
                 Func<string, string[]> get_tokens = (_) =>
                     line.Trim("/*. ".ToCharArray()).Split(" _-+".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(t =>
                     {
                         switch (t.ToLower())
                         {
-                            case ("bitfield"): return "Flags";
+                            case ("bitfield"):
+								is_long_bitfield = true;
+								return "Flags";
+						
                             default:
                                 if (t.ToLower() == Prefix)
                                     return "";
@@ -126,7 +131,9 @@ namespace CHeaderToXML
                         case "":
                             return acc;
                         default:
-                            acc.Add(new XElement("enum", new XAttribute("name", @enum)));
+                            acc.Add(new XElement("enum",
+							    new XAttribute("name", @enum),
+                                new XAttribute("type", is_long_bitfield ? "long" : "int")));
                             return acc;
                     }
                 };

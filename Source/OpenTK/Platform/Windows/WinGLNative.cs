@@ -33,6 +33,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using OpenTK.Input;
+using System.IO;
 
 namespace OpenTK.Platform.Windows
 {
@@ -53,18 +54,26 @@ namespace OpenTK.Platform.Windows
 
         // Ensure the delegates are kept alive.
         readonly WindowProcedure WindowProcedureDelegate;
-        readonly WindowProcedure DefaultWindowProcedureDelegate;
-        readonly IntPtr DefaultWindowProcedure;
+        readonly UIntPtr ModalLoopTimerId = new UIntPtr(1);
+        readonly uint ModalLoopTimerPeriod = 1;
+        UIntPtr timer_handle;
+        readonly Functions.TimerProc ModalLoopCallback;
 
         [ThreadStatic] static bool class_registered;
         bool disposed;
         bool exists;
         WinWindowInfo window, child_window;
-        WindowBorder windowBorder = WindowBorder.Resizable, previous_window_border;
+        WindowBorder windowBorder = WindowBorder.Resizable;
+        Nullable<WindowBorder> previous_window_border; // Set when changing to fullscreen state.
+        Nullable<WindowBorder> deferred_window_border; // Set to avoid changing borders during fullscreen state.
         WindowState windowState = WindowState.Normal;
+        bool borderless_maximized_window_state = false; // Hack to get maximized mode with hidden border (not normally possible).
+        bool focused;
 
-        System.Drawing.Rectangle bounds = new System.Drawing.Rectangle();
-        System.Drawing.Rectangle client_rectangle = new System.Drawing.Rectangle();
+        System.Drawing.Rectangle
+            bounds = new System.Drawing.Rectangle(),
+            client_rectangle = new System.Drawing.Rectangle(),
+            previous_bounds = new System.Drawing.Rectangle(); // Used to restore previous size when leaving fullscreen mode.
         Icon icon;
 
         static readonly ClassStyle ClassStyle =
@@ -80,6 +89,11 @@ namespace OpenTK.Platform.Windows
         const long ExtendedBit = 1 << 24;           // Used to distinguish left and right control, alt and enter keys.
         static readonly uint ShiftRightScanCode = Functions.MapVirtualKey(VirtualKeys.RSHIFT, 0);         // Used to distinguish left and right shift keys.
 
+        KeyPressEventArgs key_press = new KeyPressEventArgs((char)0);
+
+        WindowProcedure DefaultWindowProcedureDelegate;
+        IntPtr DefaultWindowProcedure;
+
         #endregion
 
         #region Contructors
@@ -90,7 +104,15 @@ namespace OpenTK.Platform.Windows
             // don't move it below the CreateWindow calls.
             WindowProcedureDelegate = WindowProcedure;
             DefaultWindowProcedureDelegate = Functions.DefWindowProc;
-           DefaultWindowProcedure = Marshal.GetFunctionPointerForDelegate(DefaultWindowProcedureDelegate);
+            DefaultWindowProcedure = Marshal.GetFunctionPointerForDelegate(DefaultWindowProcedureDelegate);
+
+            // This timer callback is called periodically when the window enters a sizing / moving modal loop.
+            ModalLoopCallback = delegate(IntPtr handle, WindowMessage msg, UIntPtr eventId, int time)
+            {
+                // Todo: find a way to notify the frontend that it should process queued up UpdateFrame/RenderFrame events.
+                if (Move != null)
+                    Move(this, EventArgs.Empty);
+            };
 
             // To avoid issues with Ati drivers on Windows 6+ with compositing enabled, the context will not be
             // bound to the top-level window, but rather to a child window docked in the parent.
@@ -137,9 +159,41 @@ namespace OpenTK.Platform.Windows
 
             switch (message)
             {
-                #region Size / Move events
+                #region Size / Move / Style events
 
                 case WindowMessage.ACTIVATE:
+                    // See http://msdn.microsoft.com/en-us/library/ms646274(VS.85).aspx (WM_ACTIVATE notification):
+                    // wParam: The low-order word specifies whether the window is being activated or deactivated.
+                    bool new_focused_state = Focused;
+                    if (IntPtr.Size == 4)
+                        focused = (wParam.ToInt32() & 0xFFFF) != 0;
+                    else
+                        focused = (wParam.ToInt64() & 0xFFFF) != 0;
+
+                    if (new_focused_state != Focused && FocusedChanged != null)
+                        FocusedChanged(this, EventArgs.Empty);
+                    break;
+
+                case WindowMessage.ENTERMENULOOP:
+                case WindowMessage.ENTERSIZEMOVE:
+                    // Entering the modal size/move loop: we don't want rendering to
+                    // stop during this time, so we register a timer callback to continue
+                    // processing from time to time.
+                    timer_handle = Functions.SetTimer(handle, ModalLoopTimerId, ModalLoopTimerPeriod, ModalLoopCallback);
+                    if (timer_handle == UIntPtr.Zero)
+                        Debug.Print("[Warning] Failed to set modal loop timer callback ({0}:{1}->{2}).",
+                            GetType().Name, handle, Marshal.GetLastWin32Error());
+
+                    break;
+
+                case WindowMessage.EXITMENULOOP:
+                case WindowMessage.EXITSIZEMOVE:
+                    // ExitingmModal size/move loop: the timer callback is no longer
+                    // necessary.
+                    if (!Functions.KillTimer(handle, timer_handle))
+                        Debug.Print("[Warning] Failed to kill modal loop timer callback ({0}:{1}->{2}).",
+                            GetType().Name, handle, Marshal.GetLastWin32Error());
+                    timer_handle = UIntPtr.Zero;
                     break;
 
                 case WindowMessage.NCCALCSIZE:
@@ -215,13 +269,22 @@ namespace OpenTK.Platform.Windows
 
                 case WindowMessage.SIZE:
                     SizeMessage state = (SizeMessage)wParam.ToInt64();
+                    WindowState new_state = windowState;
                     switch (state)
                     {
-                        case SizeMessage.RESTORED: windowState = WindowState.Normal; break;
-                        case SizeMessage.MINIMIZED: windowState = WindowState.Minimized; break;
-                        case SizeMessage.MAXIMIZED:
-                            windowState = WindowBorder == WindowBorder.Hidden ? WindowState.Fullscreen : WindowState.Maximized;
+                        case SizeMessage.RESTORED: new_state = borderless_maximized_window_state ?
+                            WindowState.Maximized : WindowState.Normal; break;
+                        case SizeMessage.MINIMIZED: new_state = WindowState.Minimized; break;
+                        case SizeMessage.MAXIMIZED: new_state = WindowBorder == WindowBorder.Hidden ?
+                            WindowState.Fullscreen : WindowState.Maximized;
                             break;
+                    }
+
+                    if (new_state != windowState)
+                    {
+                        windowState = new_state;
+                        if (WindowStateChanged != null)
+                            WindowStateChanged(this, EventArgs.Empty);
                     }
 
                     break;
@@ -229,6 +292,16 @@ namespace OpenTK.Platform.Windows
                 #endregion
 
                 #region Input events
+
+                case WindowMessage.CHAR:
+                    if (IntPtr.Size == 4)
+                        key_press.KeyChar = (char)wParam.ToInt32();
+                    else
+                        key_press.KeyChar = (char)wParam.ToInt64();
+                    
+                    if (KeyPress != null)
+                        KeyPress(this, key_press);
+                    break;
 
                 //case WindowMessage.MOUSELEAVE:
                 //    Cursor.Current = Cursors.Default;
@@ -372,6 +445,9 @@ namespace OpenTK.Platform.Windows
                     }
                     break;
 
+                case WindowMessage.SYSCHAR:
+                    return IntPtr.Zero;
+
                 case WindowMessage.KILLFOCUS:
                     keyboard.ClearKeys();
                     break;
@@ -393,27 +469,6 @@ namespace OpenTK.Platform.Windows
                         Functions.GetClientRect(handle, out rect);
                         client_rectangle = rect.ToRectangle();
                     }
-                    break;
-
-                case WindowMessage.GETICON:
-                    if (icon != null)
-                    {
-                        icon.Dispose();
-                        icon = null;
-                    }
-
-                    if (lParam != IntPtr.Zero)
-                    {
-                        icon = Icon.FromHandle(lParam);
-                    }
-                    else
-                    {
-                        IntPtr icon_handle = Functions.DefWindowProc(handle, message, wParam, lParam);
-                        if (icon_handle != IntPtr.Zero)
-                            icon = Icon.FromHandle(icon_handle);
-                        return icon_handle;
-                    }
-
                     break;
 
                 case WindowMessage.CLOSE:
@@ -504,6 +559,8 @@ namespace OpenTK.Platform.Windows
                 wc.Instance = Instance;
                 wc.WndProc = WindowProcedureDelegate;
                 wc.ClassName = ClassName;
+                wc.Icon = Icon != null ? Icon.Handle : IntPtr.Zero;
+                wc.Cursor = Functions.LoadCursor(CursorName.Arrow);
                 //wc.Background = Functions.GetStockObject(5);
                 ushort atom = Functions.RegisterClassEx(ref wc);
 
@@ -540,6 +597,38 @@ namespace OpenTK.Platform.Windows
                 Functions.DestroyWindow(window.WindowHandle);
                 exists = false;
             }
+        }
+
+        #endregion
+
+        #region GetApplicationIcon
+
+        // Gets the shell application icon for the executing process or the default icon, if not available.
+        Icon GetApplicationIcon()
+        {
+            //return Icon.FromHandle(Functions.LoadIcon(Process.GetCurrentProcess().Handle, ""));
+            try { return Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetEntryAssembly().CodeBase);  }
+            catch { return null; }
+            //IntPtr retval = IntPtr.Zero;
+            //try
+            //{
+            //    SHFILEINFO info = new SHFILEINFO();
+            //    info.szDisplayName = "";
+            //    info.szTypeName = "";
+
+            //    int cbFileInfo = Marshal.SizeOf(info);
+            //    ShGetFileIconFlags flags = ShGetFileIconFlags.Icon | ShGetFileIconFlags.SmallIcon | ShGetFileIconFlags.UseFileAttributes;
+            //    string path = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
+
+            //    retval = Functions.SHGetFileInfo(path, 256, ref info, (uint)cbFileInfo, flags);
+            //    return Icon.FromHandle(info.hIcon);
+            //}
+            //catch
+            //{
+            //    // Shallow exceptions and fall-back to default icon.
+            //    Debug.Print("SHGetFileInfo failed, return value: {0}", retval);
+            //    return null;
+            //}
         }
 
         #endregion
@@ -691,8 +780,9 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
-                Functions.SendMessage(window.WindowHandle, WindowMessage.SETICON, (IntPtr)1, icon == null ? IntPtr.Zero : value.Handle);
                 icon = value;
+                if (window.WindowHandle != IntPtr.Zero)
+                    Functions.SendMessage(window.WindowHandle, WindowMessage.SETICON, (IntPtr)1, icon == null ? IntPtr.Zero : value.Handle);
             }
         }
 
@@ -702,13 +792,7 @@ namespace OpenTK.Platform.Windows
 
         public bool Focused
         {
-            get
-            {
-                IntPtr focus = Functions.GetFocus();
-                return
-                    (window != null && focus == window.WindowHandle) ||
-                    (child_window != null && focus == child_window.WindowHandle);
-            }
+            get { return focused; }
         }
 
         #endregion
@@ -721,17 +805,14 @@ namespace OpenTK.Platform.Windows
             get
             {
                 sb_title.Remove(0, sb_title.Length);
-                Functions.GetWindowText(window.WindowHandle, sb_title, sb_title.MaxCapacity);
+                if (Functions.GetWindowText(window.WindowHandle, sb_title, sb_title.MaxCapacity) == 0)
+                    Debug.Print("Failed to retrieve window title (window:{0}, reason:{2}).", window.WindowHandle, Marshal.GetLastWin32Error());
                 return sb_title.ToString();
             }
             set
             {
-                bool ret = Functions.SetWindowText(window.WindowHandle, value);
-
-                if (ret)
-                    Debug.Print("Window {0} title changed to '{1}'.", window.WindowHandle, Title);
-                else
-                    Debug.Print("Window {0} title failed to change to '{1}'.", window.WindowHandle, Title);
+                if (!Functions.SetWindowText(window.WindowHandle, value))
+                    Debug.Print("Failed to change window title (window:{0}, new title:{1}, reason:{2}).", window.WindowHandle, value, Marshal.GetLastWin32Error());
             }
         }
 
@@ -743,7 +824,7 @@ namespace OpenTK.Platform.Windows
         {
             get
             {
-                return Functions.IsWindowVisisble(window.WindowHandle);
+                return Functions.IsWindowVisible(window.WindowHandle);
             }
             set
             {
@@ -770,7 +851,7 @@ namespace OpenTK.Platform.Windows
 
         public void Close()
         {
-            DestroyWindow();
+            Functions.PostMessage(window.WindowHandle, WindowMessage.CLOSE, IntPtr.Zero, IntPtr.Zero);
         }
 
         #endregion
@@ -789,19 +870,42 @@ namespace OpenTK.Platform.Windows
                     return;
 
                 ShowWindowCommand command = 0;
+                bool exiting_fullscreen = false;
+                borderless_maximized_window_state = false;
 
                 switch (value)
                 {
                     case WindowState.Normal:
                         command = ShowWindowCommand.RESTORE;
-                        if (WindowBorder == WindowBorder.Hidden && previous_window_border != WindowBorder.Hidden)
-                            WindowBorder = previous_window_border;
+
+                        // If we are leaving fullscreen mode we need to restore the border.
+                        if (WindowState == WindowState.Fullscreen)
+                            exiting_fullscreen = true;
                         break;
 
                     case WindowState.Maximized:
-                        command = ShowWindowCommand.MAXIMIZE;
-                        if (WindowBorder == WindowBorder.Hidden && previous_window_border != WindowBorder.Hidden)
-                            WindowBorder = previous_window_border;
+                        // Note: if we use the MAXIMIZE command and the window border is Hidden (i.e. WS_POPUP),
+                        // we will enter fullscreen mode - we don't want that! As a workaround, we'll resize the window
+                        // manually to cover the whole working area of the current monitor.
+
+                        // Reset state to avoid strange interactions with fullscreen/minimized windows.
+                        WindowState = WindowState.Normal;
+
+                        if (WindowBorder == WindowBorder.Hidden)
+                        {
+                            IntPtr current_monitor = Functions.MonitorFromWindow(window.WindowHandle, MonitorFrom.Nearest);
+                            MonitorInfo info = new MonitorInfo();
+                            info.Size = MonitorInfo.SizeInBytes;
+                            Functions.GetMonitorInfo(current_monitor, ref info);
+
+                            previous_bounds = Bounds;
+                            borderless_maximized_window_state = true;
+                            Bounds = info.Work.ToRectangle();
+                        }
+                        else
+                        {
+                            command = ShowWindowCommand.MAXIMIZE;
+                        }
                         break;
 
                     case WindowState.Minimized:
@@ -809,24 +913,40 @@ namespace OpenTK.Platform.Windows
                         break;
 
                     case WindowState.Fullscreen:
-                        // We achieve fullscreen by hiding the window border and maximizing the window.
-                        // We have to 'trick' maximize above to not restore the border, by making it think
-                        // previous_window_border == Hidden.
-                        // After the trick, we store the 'real' previous border, to allow state changes to work
-                        // as expected.
-                        WindowBorder temp = WindowBorder;
-                        previous_window_border = WindowBorder.Hidden;
+                        // We achieve fullscreen by hiding the window border and sending the MAXIMIZE command.
+                        // We cannot use the WindowState.Maximized directly, as that will not send the MAXIMIZE
+                        // command for windows with hidden borders.
+
+                        // Reset state to avoid strange side-effects from maximized/minimized windows.
+                        WindowState = WindowState.Normal;
+
+                        previous_bounds = Bounds;
+                        previous_window_border = WindowBorder;
                         WindowBorder = WindowBorder.Hidden;
-                        WindowState = WindowState.Maximized;
-                        previous_window_border = temp;
+                        command = ShowWindowCommand.MAXIMIZE;
+
                         break;
                 }
 
-                if (WindowStateChanged != null)
-                    WindowStateChanged(this, EventArgs.Empty);
-
                 if (command != 0)
                     Functions.ShowWindow(window.WindowHandle, command);
+
+                // Restore previous window size/location if necessary
+                if (command == ShowWindowCommand.RESTORE && previous_bounds != System.Drawing.Rectangle.Empty)
+                {
+                    Bounds = previous_bounds;
+                    previous_bounds = System.Drawing.Rectangle.Empty;
+                }
+
+                // Restore previous window border or apply pending border change when leaving fullscreen mode.
+                if (exiting_fullscreen)
+                {
+                    WindowBorder =
+                        deferred_window_border.HasValue ? deferred_window_border.Value :
+                        previous_window_border.HasValue ? previous_window_border.Value :
+                        WindowBorder;
+                    deferred_window_border = previous_window_border = null;
+                }
             }
         }
 
@@ -842,8 +962,21 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
+                // Do not allow border changes during fullscreen mode.
+                // Defer them for when we leave fullscreen.
+                if (WindowState == WindowState.Fullscreen)
+                {
+                    deferred_window_border = value;
+                    return;
+                }
+
                 if (windowBorder == value)
                     return;
+
+                // To ensure maximized/minimized windows work correctly, reset state to normal,
+                // change the border, then go back to maximized/minimized.
+                WindowState state = WindowState;
+                WindowState = WindowState.Normal;
 
                 WindowStyle style = WindowStyle.ClipChildren | WindowStyle.ClipSiblings;
 
@@ -877,6 +1010,8 @@ namespace OpenTK.Platform.Windows
                     SetWindowPosFlags.FRAMECHANGED);
 
                 Visible = true;
+
+                WindowState = state;
 
                 if (WindowBorderChanged != null)
                     WindowBorderChanged(this, EventArgs.Empty);
@@ -1053,6 +1188,8 @@ namespace OpenTK.Platform.Windows
                 {
                     // Safe to clean managed resources
                     DestroyWindow();
+                    if (Icon != null)
+                        Icon.Dispose();
                 }
                 else
                 {

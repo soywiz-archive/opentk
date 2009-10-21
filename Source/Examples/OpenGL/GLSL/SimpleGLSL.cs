@@ -58,7 +58,7 @@ namespace Examples.Tutorial
         /// check for GLSL support, and load the shaders.
         /// </summary>
         /// <param name="e">Not used.</param>
-        public override void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             // Check for necessary capabilities:
             string version = GL.GetString(StringName.Version);
@@ -170,7 +170,7 @@ namespace Examples.Tutorial
 
         #region OnUnload
 
-        public override void OnUnload(EventArgs e)
+        protected override void OnUnload(EventArgs e)
         {
             if (shader_program != 0)
                 GL.DeleteProgram(shader_program);

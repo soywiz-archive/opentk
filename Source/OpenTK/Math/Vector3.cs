@@ -114,6 +114,7 @@ namespace OpenTK
 
         /// <summary>Add the Vector passed as parameter to this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
+        [Obsolete("Use static Add() method instead.")]
         public void Add(Vector3 right)
         {
             this.X += right.X;
@@ -124,6 +125,7 @@ namespace OpenTK
         /// <summary>Add the Vector passed as parameter to this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
         [CLSCompliant(false)]
+        [Obsolete("Use static Add() method instead.")]
         public void Add(ref Vector3 right)
         {
             this.X += right.X;
@@ -137,6 +139,7 @@ namespace OpenTK
 
         /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
+        [Obsolete("Use static Subtract() method instead.")]
         public void Sub(Vector3 right)
         {
             this.X -= right.X;
@@ -147,6 +150,7 @@ namespace OpenTK
         /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
         [CLSCompliant(false)]
+        [Obsolete("Use static Subtract() method instead.")]
         public void Sub(ref Vector3 right)
         {
             this.X -= right.X;
@@ -160,6 +164,7 @@ namespace OpenTK
 
         /// <summary>Multiply this instance by a scalar.</summary>
         /// <param name="f">Scalar operand.</param>
+        [Obsolete("Use static Multiply() method instead.")]
         public void Mult(float f)
         {
             this.X *= f;
@@ -173,6 +178,7 @@ namespace OpenTK
 
         /// <summary>Divide this instance by a scalar.</summary>
         /// <param name="f">Scalar operand.</param>
+        [Obsolete("Use static Divide() method instead.")]
         public void Div(float f)
         {
             float mult = 1.0f / f;
@@ -280,6 +286,7 @@ namespace OpenTK
         /// <param name="sx">The scale of the X component.</param>
         /// <param name="sy">The scale of the Y component.</param>
         /// <param name="sz">The scale of the Z component.</param>
+        [Obsolete("Use static Multiply() method instead.")]
         public void Scale(float sx, float sy, float sz)
         {
             this.X = X * sx;
@@ -289,6 +296,7 @@ namespace OpenTK
 
         /// <summary>Scales this instance by the given parameter.</summary>
         /// <param name="scale">The scaling of the individual components.</param>
+        [Obsolete("Use static Multiply() method instead.")]
         public void Scale(Vector3 scale)
         {
             this.X *= scale.X;
@@ -299,6 +307,7 @@ namespace OpenTK
         /// <summary>Scales this instance by the given parameter.</summary>
         /// <param name="scale">The scaling of the individual components.</param>
         [CLSCompliant(false)]
+        [Obsolete("Use static Multiply() method instead.")]
         public void Scale(ref Vector3 scale)
         {
             this.X *= scale.X;
@@ -346,36 +355,7 @@ namespace OpenTK
 
         #endregion
 
-        #region Add
-
-        /// <summary>
-        /// Add two Vectors
-        /// </summary>
-        /// <param name="a">First operand</param>
-        /// <param name="b">Second operand</param>
-        /// <returns>Result of addition</returns>
-        public static Vector3 Add(Vector3 a, Vector3 b)
-        {
-            a.X += b.X;
-            a.Y += b.Y;
-            a.Z += b.Z;
-            return a;
-        }
-
-        /// <summary>
-        /// Add two Vectors
-        /// </summary>
-        /// <param name="a">First operand</param>
-        /// <param name="b">Second operand</param>
-        /// <param name="result">Result of addition</param>
-        public static void Add(ref Vector3 a, ref Vector3 b, out Vector3 result)
-        {
-            result.X = a.X + b.X;
-            result.Y = a.Y + b.Y;
-            result.Z = a.Z + b.Z;
-        }
-
-        #endregion
+        #region Obsolete
 
         #region Sub
 
@@ -385,6 +365,7 @@ namespace OpenTK
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <returns>Result of subtraction</returns>
+        [Obsolete("Use static Subtract() method instead.")]
         public static Vector3 Sub(Vector3 a, Vector3 b)
         {
             a.X -= b.X;
@@ -399,6 +380,7 @@ namespace OpenTK
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <param name="result">Result of subtraction</param>
+        [Obsolete("Use static Subtract() method instead.")]
         public static void Sub(ref Vector3 a, ref Vector3 b, out Vector3 result)
         {
             result.X = a.X - b.X;
@@ -416,6 +398,7 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <returns>Result of the multiplication</returns>
+        [Obsolete("Use static Multiply() method instead.")]
         public static Vector3 Mult(Vector3 a, float f)
         {
             a.X *= f;
@@ -430,6 +413,7 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <param name="result">Result of the multiplication</param>
+        [Obsolete("Use static Multiply() method instead.")]
         public static void Mult(ref Vector3 a, float f, out Vector3 result)
         {
             result.X = a.X * f;
@@ -447,6 +431,7 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <returns>Result of the division</returns>
+        [Obsolete("Use static Divide() method instead.")]
         public static Vector3 Div(Vector3 a, float f)
         {
             float mult = 1.0f / f;
@@ -462,12 +447,169 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <param name="result">Result of the division</param>
+        [Obsolete("Use static Divide() method instead.")]
         public static void Div(ref Vector3 a, float f, out Vector3 result)
         {
             float mult = 1.0f / f;
             result.X = a.X * mult;
             result.Y = a.Y * mult;
             result.Z = a.Z * mult;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Add
+
+        /// <summary>
+        /// Adds two vectors.
+        /// </summary>
+        /// <param name="a">Left operand.</param>
+        /// <param name="b">Right operand.</param>
+        /// <returns>Result of operation.</returns>
+        public static Vector3 Add(Vector3 a, Vector3 b)
+        {
+            Add(ref a, ref b, out a);
+            return a;
+        }
+
+        /// <summary>
+        /// Adds two vectors.
+        /// </summary>
+        /// <param name="a">Left operand.</param>
+        /// <param name="b">Right operand.</param>
+        /// <param name="result">Result of operation.</param>
+        public static void Add(ref Vector3 a, ref Vector3 b, out Vector3 result)
+        {
+            result = new Vector3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+        }
+
+        #endregion
+
+        #region Subtract
+
+        /// <summary>
+        /// Subtract one Vector from another
+        /// </summary>
+        /// <param name="a">First operand</param>
+        /// <param name="b">Second operand</param>
+        /// <returns>Result of subtraction</returns>
+        public static Vector3 Subtract(Vector3 a, Vector3 b)
+        {
+            Subtract(ref a, ref b, out a);
+            return a;
+        }
+
+        /// <summary>
+        /// Subtract one Vector from another
+        /// </summary>
+        /// <param name="a">First operand</param>
+        /// <param name="b">Second operand</param>
+        /// <param name="result">Result of subtraction</param>
+        public static void Subtract(ref Vector3 a, ref Vector3 b, out Vector3 result)
+        {
+            result = new Vector3(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+        }
+
+        #endregion
+
+        #region Multiply
+
+        /// <summary>
+        /// Multiplies a vector by a scalar.
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <returns>Result of the operation.</returns>
+        public static Vector3 Multiply(Vector3 vector, float scale)
+        {
+            Multiply(ref vector, scale, out vector);
+            return vector;
+        }
+
+        /// <summary>
+        /// Multiplies a vector by a scalar.
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <param name="result">Result of the operation.</param>
+        public static void Multiply(ref Vector3 vector, float scale, out Vector3 result)
+        {
+            result = new Vector3(vector.X * scale, vector.Y * scale, vector.Z * scale);
+        }
+
+        /// <summary>
+        /// Multiplies a vector by the components a vector (scale).
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <returns>Result of the operation.</returns>
+        public static Vector3 Multiply(Vector3 vector, Vector3 scale)
+        {
+            Multiply(ref vector, ref scale, out vector);
+            return vector;
+        }
+
+        /// <summary>
+        /// Multiplies a vector by the components of a vector (scale).
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <param name="result">Result of the operation.</param>
+        public static void Multiply(ref Vector3 vector, ref Vector3 scale, out Vector3 result)
+        {
+            result = new Vector3(vector.X * scale.X, vector.Y * scale.Y, vector.Z * scale.Z);
+        }
+
+        #endregion
+
+        #region Divide
+
+        /// <summary>
+        /// Divides a vector by a scalar.
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <returns>Result of the operation.</returns>
+        public static Vector3 Divide(Vector3 vector, float scale)
+        {
+            Divide(ref vector, scale, out vector);
+            return vector;
+        }
+
+        /// <summary>
+        /// Divides a vector by a scalar.
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <param name="result">Result of the operation.</param>
+        public static void Divide(ref Vector3 vector, float scale, out Vector3 result)
+        {
+            Multiply(ref vector, 1 / scale, out result);
+        }
+
+        /// <summary>
+        /// Divides a vector by the components of a vector (scale).
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <returns>Result of the operation.</returns>
+        public static Vector3 Divide(Vector3 vector, Vector3 scale)
+        {
+            Divide(ref vector, ref scale, out vector);
+            return vector;
+        }
+
+        /// <summary>
+        /// Divide a vector by the components of a vector (scale).
+        /// </summary>
+        /// <param name="vector">Left operand.</param>
+        /// <param name="scale">Right operand.</param>
+        /// <param name="result">Result of the operation.</param>
+        public static void Divide(ref Vector3 vector, ref Vector3 scale, out Vector3 result)
+        {
+            result = new Vector3(vector.X / scale.X, vector.Y / scale.Y, vector.Z / scale.Z);
         }
 
         #endregion
@@ -777,14 +919,14 @@ namespace OpenTK
             result = a; // copy
 
             Vector3 temp = b; // copy
-            temp.Sub(ref a);
-            temp.Mult(u);
-            result.Add(ref temp);
+            Subtract(ref temp, ref a, out temp);
+            Multiply(ref temp, u, out temp);
+            Add(ref result, ref temp, out result);
 
             temp = c; // copy
-            temp.Sub(ref a);
-            temp.Mult(v);
-            result.Add(ref temp);
+            Subtract(ref temp, ref a, out temp);
+            Multiply(ref temp, v, out temp);
+            Add(ref result, ref temp, out result);
         }
 
         #endregion

@@ -31,15 +31,15 @@ namespace OpenTK.Compute.CL10
 {
     #pragma warning disable 1591
 
-    public enum AddressingMode
+    public enum AddressingMode : int
     {
-        AddressNone = ((int)0X1130),
-        AddressClampToEdge = ((int)0X1131),
-        AddressClamp = ((int)0X1132),
-        AddressRepeat = ((int)0X1133),
+        AddressNone = ((int)0x1130),
+        AddressClampToEdge = ((int)0x1131),
+        AddressClamp = ((int)0x1132),
+        AddressRepeat = ((int)0x1133),
     }
 
-    public enum All
+    public enum All : int
     {
         DeviceTypeDefault = ((int)(1 << 0)),
         ExecKernel = ((int)(1 << 0)),
@@ -69,176 +69,176 @@ namespace OpenTK.Compute.CL10
         BuildSuccess = ((int)0),
         False = ((int)0),
         Success = ((int)0),
-        Complete = ((int)0X0),
-        None = ((int)0X0),
-        PlatformProfile = ((int)0X0900),
-        PlatformVersion = ((int)0X0901),
-        PlatformName = ((int)0X0902),
-        PlatformVendor = ((int)0X0903),
-        PlatformExtensions = ((int)0X0904),
-        Local = ((int)0X1),
-        ReadOnlyCache = ((int)0X1),
-        Running = ((int)0X1),
-        DeviceType = ((int)0X1000),
-        DeviceVendorId = ((int)0X1001),
-        DeviceMaxComputeUnits = ((int)0X1002),
-        DeviceMaxWorkItemDimensions = ((int)0X1003),
-        DeviceMaxWorkGroupSize = ((int)0X1004),
-        DeviceMaxWorkItemSizes = ((int)0X1005),
-        DevicePreferredVectorWidthChar = ((int)0X1006),
-        DevicePreferredVectorWidthShort = ((int)0X1007),
-        DevicePreferredVectorWidthInt = ((int)0X1008),
-        DevicePreferredVectorWidthLong = ((int)0X1009),
-        DevicePreferredVectorWidthFloat = ((int)0X100a),
-        DevicePreferredVectorWidthDouble = ((int)0X100b),
-        DeviceMaxClockFrequency = ((int)0X100c),
-        DeviceAddressBits = ((int)0X100d),
-        DeviceMaxReadImageArgs = ((int)0X100e),
-        DeviceMaxWriteImageArgs = ((int)0X100f),
-        DeviceMaxMemAllocSize = ((int)0X1010),
-        DeviceImage2dMaxWidth = ((int)0X1011),
-        DeviceImage2dMaxHeight = ((int)0X1012),
-        DeviceImage3dMaxWidth = ((int)0X1013),
-        DeviceImage3dMaxHeight = ((int)0X1014),
-        DeviceImage3dMaxDepth = ((int)0X1015),
-        DeviceImageSupport = ((int)0X1016),
-        DeviceMaxParameterSize = ((int)0X1017),
-        DeviceMaxSamplers = ((int)0X1018),
-        DeviceMemBaseAddrAlign = ((int)0X1019),
-        DeviceMinDataTypeAlignSize = ((int)0X101a),
-        DeviceSingleFpConfig = ((int)0X101b),
-        DeviceGlobalMemCacheType = ((int)0X101c),
-        DeviceGlobalMemCachelineSize = ((int)0X101d),
-        DeviceGlobalMemCacheSize = ((int)0X101e),
-        DeviceGlobalMemSize = ((int)0X101f),
-        DeviceMaxConstantBufferSize = ((int)0X1020),
-        DeviceMaxConstantArgs = ((int)0X1021),
-        DeviceLocalMemType = ((int)0X1022),
-        DeviceLocalMemSize = ((int)0X1023),
-        DeviceErrorCorrectionSupport = ((int)0X1024),
-        DeviceProfilingTimerResolution = ((int)0X1025),
-        DeviceEndianLittle = ((int)0X1026),
-        DeviceAvailable = ((int)0X1027),
-        DeviceCompilerAvailable = ((int)0X1028),
-        DeviceExecutionCapabilities = ((int)0X1029),
-        DeviceQueueProperties = ((int)0X102a),
-        DeviceName = ((int)0X102b),
-        DeviceVendor = ((int)0X102c),
-        DriverVersion = ((int)0X102d),
-        DeviceProfile = ((int)0X102e),
-        DeviceVersion = ((int)0X102f),
-        DeviceExtensions = ((int)0X1030),
-        DevicePlatform = ((int)0X1031),
-        ContextReferenceCount = ((int)0X1080),
-        ContextDevices = ((int)0X1081),
-        ContextProperties = ((int)0X1082),
-        ContextPlatform = ((int)0X1084),
-        QueueContext = ((int)0X1090),
-        QueueDevice = ((int)0X1091),
-        QueueReferenceCount = ((int)0X1092),
-        QueueProperties = ((int)0X1093),
-        R = ((int)0X10b0),
-        A = ((int)0X10b1),
-        Rg = ((int)0X10b2),
-        Ra = ((int)0X10b3),
-        Rgb = ((int)0X10b4),
-        Rgba = ((int)0X10b5),
-        Bgra = ((int)0X10b6),
-        Argb = ((int)0X10b7),
-        Intensity = ((int)0X10b8),
-        Luminance = ((int)0X10b9),
-        SnormInt8 = ((int)0X10d0),
-        SnormInt16 = ((int)0X10d1),
-        UnormInt8 = ((int)0X10d2),
-        UnormInt16 = ((int)0X10d3),
-        UnormShort565 = ((int)0X10d4),
-        UnormShort555 = ((int)0X10d5),
-        UnormInt101010 = ((int)0X10d6),
-        SignedInt8 = ((int)0X10d7),
-        SignedInt16 = ((int)0X10d8),
-        SignedInt32 = ((int)0X10d9),
-        UnsignedInt8 = ((int)0X10da),
-        UnsignedInt16 = ((int)0X10db),
-        UnsignedInt32 = ((int)0X10dc),
-        HalfFloat = ((int)0X10dd),
-        Float = ((int)0X10de),
-        MemObjectBuffer = ((int)0X10f0),
-        MemObjectImage2d = ((int)0X10f1),
-        MemObjectImage3d = ((int)0X10f2),
-        MemType = ((int)0X1100),
-        MemFlags = ((int)0X1101),
-        MemSize = ((int)0X1102),
-        MemHostPtr = ((int)0X1103),
-        MemMapCount = ((int)0X1104),
-        MemReferenceCount = ((int)0X1105),
-        MemContext = ((int)0X1106),
-        ImageFormat = ((int)0X1110),
-        ImageElementSize = ((int)0X1111),
-        ImageRowPitch = ((int)0X1112),
-        ImageSlicePitch = ((int)0X1113),
-        ImageWidth = ((int)0X1114),
-        ImageHeight = ((int)0X1115),
-        ImageDepth = ((int)0X1116),
-        AddressNone = ((int)0X1130),
-        AddressClampToEdge = ((int)0X1131),
-        AddressClamp = ((int)0X1132),
-        AddressRepeat = ((int)0X1133),
-        FilterNearest = ((int)0X1140),
-        FilterLinear = ((int)0X1141),
-        SamplerReferenceCount = ((int)0X1150),
-        SamplerContext = ((int)0X1151),
-        SamplerNormalizedCoords = ((int)0X1152),
-        SamplerAddressingMode = ((int)0X1153),
-        SamplerFilterMode = ((int)0X1154),
-        ProgramReferenceCount = ((int)0X1160),
-        ProgramContext = ((int)0X1161),
-        ProgramNumDevices = ((int)0X1162),
-        ProgramDevices = ((int)0X1163),
-        ProgramSource = ((int)0X1164),
-        ProgramBinarySizes = ((int)0X1165),
-        ProgramBinaries = ((int)0X1166),
-        ProgramBuildStatus = ((int)0X1181),
-        ProgramBuildOptions = ((int)0X1182),
-        ProgramBuildLog = ((int)0X1183),
-        KernelFunctionName = ((int)0X1190),
-        KernelNumArgs = ((int)0X1191),
-        KernelReferenceCount = ((int)0X1192),
-        KernelContext = ((int)0X1193),
-        KernelProgram = ((int)0X1194),
-        KernelWorkGroupSize = ((int)0X11b0),
-        KernelCompileWorkGroupSize = ((int)0X11b1),
-        KernelLocalMemSize = ((int)0X11b2),
-        EventCommandQueue = ((int)0X11d0),
-        EventCommandType = ((int)0X11d1),
-        EventReferenceCount = ((int)0X11d2),
-        EventCommandExecutionStatus = ((int)0X11d3),
-        CommandNdrangeKernel = ((int)0X11f0),
-        CommandTask = ((int)0X11f1),
-        CommandNativeKernel = ((int)0X11f2),
-        CommandReadBuffer = ((int)0X11f3),
-        CommandWriteBuffer = ((int)0X11f4),
-        CommandCopyBuffer = ((int)0X11f5),
-        CommandReadImage = ((int)0X11f6),
-        CommandWriteImage = ((int)0X11f7),
-        CommandCopyImage = ((int)0X11f8),
-        CommandCopyImageToBuffer = ((int)0X11f9),
-        CommandCopyBufferToImage = ((int)0X11fa),
-        CommandMapBuffer = ((int)0X11fb),
-        CommandMapImage = ((int)0X11fc),
-        CommandUnmapMemObject = ((int)0X11fd),
-        CommandMarker = ((int)0X11fe),
-        CommandAcquireGlObjects = ((int)0X11ff),
-        CommandReleaseGlObjects = ((int)0X1200),
-        ProfilingCommandQueued = ((int)0X1280),
-        ProfilingCommandSubmit = ((int)0X1281),
-        ProfilingCommandStart = ((int)0X1282),
-        ProfilingCommandEnd = ((int)0X1283),
-        Global = ((int)0X2),
-        ReadWriteCache = ((int)0X2),
-        Submitted = ((int)0X2),
-        Queued = ((int)0X3),
-        DeviceTypeAll = unchecked((int)0Xffffffff),
-        UintMax = unchecked((int)0Xffffffff),
+        Complete = ((int)0x0),
+        None = ((int)0x0),
+        PlatformProfile = ((int)0x0900),
+        PlatformVersion = ((int)0x0901),
+        PlatformName = ((int)0x0902),
+        PlatformVendor = ((int)0x0903),
+        PlatformExtensions = ((int)0x0904),
+        Local = ((int)0x1),
+        ReadOnlyCache = ((int)0x1),
+        Running = ((int)0x1),
+        DeviceType = ((int)0x1000),
+        DeviceVendorId = ((int)0x1001),
+        DeviceMaxComputeUnits = ((int)0x1002),
+        DeviceMaxWorkItemDimensions = ((int)0x1003),
+        DeviceMaxWorkGroupSize = ((int)0x1004),
+        DeviceMaxWorkItemSizes = ((int)0x1005),
+        DevicePreferredVectorWidthChar = ((int)0x1006),
+        DevicePreferredVectorWidthShort = ((int)0x1007),
+        DevicePreferredVectorWidthInt = ((int)0x1008),
+        DevicePreferredVectorWidthLong = ((int)0x1009),
+        DevicePreferredVectorWidthFloat = ((int)0x100A),
+        DevicePreferredVectorWidthDouble = ((int)0x100B),
+        DeviceMaxClockFrequency = ((int)0x100C),
+        DeviceAddressBits = ((int)0x100D),
+        DeviceMaxReadImageArgs = ((int)0x100E),
+        DeviceMaxWriteImageArgs = ((int)0x100F),
+        DeviceMaxMemAllocSize = ((int)0x1010),
+        DeviceImage2dMaxWidth = ((int)0x1011),
+        DeviceImage2dMaxHeight = ((int)0x1012),
+        DeviceImage3dMaxWidth = ((int)0x1013),
+        DeviceImage3dMaxHeight = ((int)0x1014),
+        DeviceImage3dMaxDepth = ((int)0x1015),
+        DeviceImageSupport = ((int)0x1016),
+        DeviceMaxParameterSize = ((int)0x1017),
+        DeviceMaxSamplers = ((int)0x1018),
+        DeviceMemBaseAddrAlign = ((int)0x1019),
+        DeviceMinDataTypeAlignSize = ((int)0x101A),
+        DeviceSingleFpConfig = ((int)0x101B),
+        DeviceGlobalMemCacheType = ((int)0x101C),
+        DeviceGlobalMemCachelineSize = ((int)0x101D),
+        DeviceGlobalMemCacheSize = ((int)0x101E),
+        DeviceGlobalMemSize = ((int)0x101F),
+        DeviceMaxConstantBufferSize = ((int)0x1020),
+        DeviceMaxConstantArgs = ((int)0x1021),
+        DeviceLocalMemType = ((int)0x1022),
+        DeviceLocalMemSize = ((int)0x1023),
+        DeviceErrorCorrectionSupport = ((int)0x1024),
+        DeviceProfilingTimerResolution = ((int)0x1025),
+        DeviceEndianLittle = ((int)0x1026),
+        DeviceAvailable = ((int)0x1027),
+        DeviceCompilerAvailable = ((int)0x1028),
+        DeviceExecutionCapabilities = ((int)0x1029),
+        DeviceQueueProperties = ((int)0x102A),
+        DeviceName = ((int)0x102B),
+        DeviceVendor = ((int)0x102C),
+        DriverVersion = ((int)0x102D),
+        DeviceProfile = ((int)0x102E),
+        DeviceVersion = ((int)0x102F),
+        DeviceExtensions = ((int)0x1030),
+        DevicePlatform = ((int)0x1031),
+        ContextReferenceCount = ((int)0x1080),
+        ContextDevices = ((int)0x1081),
+        ContextProperties = ((int)0x1082),
+        ContextPlatform = ((int)0x1084),
+        QueueContext = ((int)0x1090),
+        QueueDevice = ((int)0x1091),
+        QueueReferenceCount = ((int)0x1092),
+        QueueProperties = ((int)0x1093),
+        R = ((int)0x10B0),
+        A = ((int)0x10B1),
+        Rg = ((int)0x10B2),
+        Ra = ((int)0x10B3),
+        Rgb = ((int)0x10B4),
+        Rgba = ((int)0x10B5),
+        Bgra = ((int)0x10B6),
+        Argb = ((int)0x10B7),
+        Intensity = ((int)0x10B8),
+        Luminance = ((int)0x10B9),
+        SnormInt8 = ((int)0x10D0),
+        SnormInt16 = ((int)0x10D1),
+        UnormInt8 = ((int)0x10D2),
+        UnormInt16 = ((int)0x10D3),
+        UnormShort565 = ((int)0x10D4),
+        UnormShort555 = ((int)0x10D5),
+        UnormInt101010 = ((int)0x10D6),
+        SignedInt8 = ((int)0x10D7),
+        SignedInt16 = ((int)0x10D8),
+        SignedInt32 = ((int)0x10D9),
+        UnsignedInt8 = ((int)0x10DA),
+        UnsignedInt16 = ((int)0x10DB),
+        UnsignedInt32 = ((int)0x10DC),
+        HalfFloat = ((int)0x10DD),
+        Float = ((int)0x10DE),
+        MemObjectBuffer = ((int)0x10F0),
+        MemObjectImage2d = ((int)0x10F1),
+        MemObjectImage3d = ((int)0x10F2),
+        MemType = ((int)0x1100),
+        MemFlags = ((int)0x1101),
+        MemSize = ((int)0x1102),
+        MemHostPtr = ((int)0x1103),
+        MemMapCount = ((int)0x1104),
+        MemReferenceCount = ((int)0x1105),
+        MemContext = ((int)0x1106),
+        ImageFormat = ((int)0x1110),
+        ImageElementSize = ((int)0x1111),
+        ImageRowPitch = ((int)0x1112),
+        ImageSlicePitch = ((int)0x1113),
+        ImageWidth = ((int)0x1114),
+        ImageHeight = ((int)0x1115),
+        ImageDepth = ((int)0x1116),
+        AddressNone = ((int)0x1130),
+        AddressClampToEdge = ((int)0x1131),
+        AddressClamp = ((int)0x1132),
+        AddressRepeat = ((int)0x1133),
+        FilterNearest = ((int)0x1140),
+        FilterLinear = ((int)0x1141),
+        SamplerReferenceCount = ((int)0x1150),
+        SamplerContext = ((int)0x1151),
+        SamplerNormalizedCoords = ((int)0x1152),
+        SamplerAddressingMode = ((int)0x1153),
+        SamplerFilterMode = ((int)0x1154),
+        ProgramReferenceCount = ((int)0x1160),
+        ProgramContext = ((int)0x1161),
+        ProgramNumDevices = ((int)0x1162),
+        ProgramDevices = ((int)0x1163),
+        ProgramSource = ((int)0x1164),
+        ProgramBinarySizes = ((int)0x1165),
+        ProgramBinaries = ((int)0x1166),
+        ProgramBuildStatus = ((int)0x1181),
+        ProgramBuildOptions = ((int)0x1182),
+        ProgramBuildLog = ((int)0x1183),
+        KernelFunctionName = ((int)0x1190),
+        KernelNumArgs = ((int)0x1191),
+        KernelReferenceCount = ((int)0x1192),
+        KernelContext = ((int)0x1193),
+        KernelProgram = ((int)0x1194),
+        KernelWorkGroupSize = ((int)0x11B0),
+        KernelCompileWorkGroupSize = ((int)0x11B1),
+        KernelLocalMemSize = ((int)0x11B2),
+        EventCommandQueue = ((int)0x11D0),
+        EventCommandType = ((int)0x11D1),
+        EventReferenceCount = ((int)0x11D2),
+        EventCommandExecutionStatus = ((int)0x11D3),
+        CommandNdrangeKernel = ((int)0x11F0),
+        CommandTask = ((int)0x11F1),
+        CommandNativeKernel = ((int)0x11F2),
+        CommandReadBuffer = ((int)0x11F3),
+        CommandWriteBuffer = ((int)0x11F4),
+        CommandCopyBuffer = ((int)0x11F5),
+        CommandReadImage = ((int)0x11F6),
+        CommandWriteImage = ((int)0x11F7),
+        CommandCopyImage = ((int)0x11F8),
+        CommandCopyImageToBuffer = ((int)0x11F9),
+        CommandCopyBufferToImage = ((int)0x11FA),
+        CommandMapBuffer = ((int)0x11FB),
+        CommandMapImage = ((int)0x11FC),
+        CommandUnmapMemObject = ((int)0x11FD),
+        CommandMarker = ((int)0x11FE),
+        CommandAcquireGlObjects = ((int)0x11FF),
+        CommandReleaseGlObjects = ((int)0x1200),
+        ProfilingCommandQueued = ((int)0x1280),
+        ProfilingCommandSubmit = ((int)0x1281),
+        ProfilingCommandStart = ((int)0x1282),
+        ProfilingCommandEnd = ((int)0x1283),
+        Global = ((int)0x2),
+        ReadWriteCache = ((int)0x2),
+        Submitted = ((int)0x2),
+        Queued = ((int)0x3),
+        UintMax = unchecked((int)0xffffffff),
+        DeviceTypeAll = unchecked((int)0xFFFFFFFF),
         True = ((int)1),
         Version10 = ((int)1),
         BuildNone = ((int)-1),
@@ -307,13 +307,13 @@ namespace OpenTK.Compute.CL10
         ImageFormatMismatch = ((int)-9),
     }
 
-    public enum Bool
+    public enum Bool : int
     {
         False = ((int)0),
         True = ((int)1),
     }
 
-    public enum BuildStatus
+    public enum BuildStatus : int
     {
         BuildSuccess = ((int)0),
         BuildNone = ((int)-1),
@@ -321,101 +321,101 @@ namespace OpenTK.Compute.CL10
         BuildInProgress = ((int)-3),
     }
 
-    public enum ChannelOrder
+    public enum ChannelOrder : int
     {
-        R = ((int)0X10b0),
-        A = ((int)0X10b1),
-        Rg = ((int)0X10b2),
-        Ra = ((int)0X10b3),
-        Rgb = ((int)0X10b4),
-        Rgba = ((int)0X10b5),
-        Bgra = ((int)0X10b6),
-        Argb = ((int)0X10b7),
-        Intensity = ((int)0X10b8),
-        Luminance = ((int)0X10b9),
+        R = ((int)0x10B0),
+        A = ((int)0x10B1),
+        Rg = ((int)0x10B2),
+        Ra = ((int)0x10B3),
+        Rgb = ((int)0x10B4),
+        Rgba = ((int)0x10B5),
+        Bgra = ((int)0x10B6),
+        Argb = ((int)0x10B7),
+        Intensity = ((int)0x10B8),
+        Luminance = ((int)0x10B9),
     }
 
-    public enum ChannelType
+    public enum ChannelType : int
     {
-        SnormInt8 = ((int)0X10d0),
-        SnormInt16 = ((int)0X10d1),
-        UnormInt8 = ((int)0X10d2),
-        UnormInt16 = ((int)0X10d3),
-        UnormShort565 = ((int)0X10d4),
-        UnormShort555 = ((int)0X10d5),
-        UnormInt101010 = ((int)0X10d6),
-        SignedInt8 = ((int)0X10d7),
-        SignedInt16 = ((int)0X10d8),
-        SignedInt32 = ((int)0X10d9),
-        UnsignedInt8 = ((int)0X10da),
-        UnsignedInt16 = ((int)0X10db),
-        UnsignedInt32 = ((int)0X10dc),
-        HalfFloat = ((int)0X10dd),
-        Float = ((int)0X10de),
+        SnormInt8 = ((int)0x10D0),
+        SnormInt16 = ((int)0x10D1),
+        UnormInt8 = ((int)0x10D2),
+        UnormInt16 = ((int)0x10D3),
+        UnormShort565 = ((int)0x10D4),
+        UnormShort555 = ((int)0x10D5),
+        UnormInt101010 = ((int)0x10D6),
+        SignedInt8 = ((int)0x10D7),
+        SignedInt16 = ((int)0x10D8),
+        SignedInt32 = ((int)0x10D9),
+        UnsignedInt8 = ((int)0x10DA),
+        UnsignedInt16 = ((int)0x10DB),
+        UnsignedInt32 = ((int)0x10DC),
+        HalfFloat = ((int)0x10DD),
+        Float = ((int)0x10DE),
     }
 
-    public enum CommandExecutionStatus
+    public enum CommandExecutionStatus : int
     {
-        Complete = ((int)0X0),
-        Running = ((int)0X1),
-        Submitted = ((int)0X2),
-        Queued = ((int)0X3),
+        Complete = ((int)0x0),
+        Running = ((int)0x1),
+        Submitted = ((int)0x2),
+        Queued = ((int)0x3),
     }
 
-    public enum CommandQueueFlags
+    public enum CommandQueueFlags : long
     {
         QueueOutOfOrderExecModeEnable = ((int)(1 << 0)),
         QueueProfilingEnable = ((int)(1 << 1)),
     }
 
-    public enum CommandQueueInfo
+    public enum CommandQueueInfo : int
     {
-        QueueContext = ((int)0X1090),
-        QueueDevice = ((int)0X1091),
-        QueueReferenceCount = ((int)0X1092),
-        QueueProperties = ((int)0X1093),
+        QueueContext = ((int)0x1090),
+        QueueDevice = ((int)0x1091),
+        QueueReferenceCount = ((int)0x1092),
+        QueueProperties = ((int)0x1093),
     }
 
-    public enum CommandType
+    public enum CommandType : int
     {
-        CommandNdrangeKernel = ((int)0X11f0),
-        CommandTask = ((int)0X11f1),
-        CommandNativeKernel = ((int)0X11f2),
-        CommandReadBuffer = ((int)0X11f3),
-        CommandWriteBuffer = ((int)0X11f4),
-        CommandCopyBuffer = ((int)0X11f5),
-        CommandReadImage = ((int)0X11f6),
-        CommandWriteImage = ((int)0X11f7),
-        CommandCopyImage = ((int)0X11f8),
-        CommandCopyImageToBuffer = ((int)0X11f9),
-        CommandCopyBufferToImage = ((int)0X11fa),
-        CommandMapBuffer = ((int)0X11fb),
-        CommandMapImage = ((int)0X11fc),
-        CommandUnmapMemObject = ((int)0X11fd),
-        CommandMarker = ((int)0X11fe),
-        CommandAcquireGlObjects = ((int)0X11ff),
-        CommandReleaseGlObjects = ((int)0X1200),
+        CommandNdrangeKernel = ((int)0x11F0),
+        CommandTask = ((int)0x11F1),
+        CommandNativeKernel = ((int)0x11F2),
+        CommandReadBuffer = ((int)0x11F3),
+        CommandWriteBuffer = ((int)0x11F4),
+        CommandCopyBuffer = ((int)0x11F5),
+        CommandReadImage = ((int)0x11F6),
+        CommandWriteImage = ((int)0x11F7),
+        CommandCopyImage = ((int)0x11F8),
+        CommandCopyImageToBuffer = ((int)0x11F9),
+        CommandCopyBufferToImage = ((int)0x11FA),
+        CommandMapBuffer = ((int)0x11FB),
+        CommandMapImage = ((int)0x11FC),
+        CommandUnmapMemObject = ((int)0x11FD),
+        CommandMarker = ((int)0x11FE),
+        CommandAcquireGlObjects = ((int)0x11FF),
+        CommandReleaseGlObjects = ((int)0x1200),
     }
 
-    public enum ContextInfo
+    public enum ContextInfo : int
     {
-        ContextReferenceCount = ((int)0X1080),
-        ContextDevices = ((int)0X1081),
-        ContextProperties = ((int)0X1082),
+        ContextReferenceCount = ((int)0x1080),
+        ContextDevices = ((int)0x1081),
+        ContextProperties = ((int)0x1082),
     }
 
-    public enum ContextProperties
+    public enum ContextProperties : int
     {
-        ContextPlatform = ((int)0X1084),
+        ContextPlatform = ((int)0x1084),
     }
 
-    public enum DeviceExecCapabilitiesFlags
+    public enum DeviceExecCapabilitiesFlags : long
     {
         ExecKernel = ((int)(1 << 0)),
         ExecNativeKernel = ((int)(1 << 1)),
     }
 
-    public enum DeviceFpConfigFlags
+    public enum DeviceFpConfigFlags : long
     {
         FpDenorm = ((int)(1 << 0)),
         FpInfNan = ((int)(1 << 1)),
@@ -425,83 +425,83 @@ namespace OpenTK.Compute.CL10
         FpFma = ((int)(1 << 5)),
     }
 
-    public enum DeviceInfo
+    public enum DeviceInfo : int
     {
-        DeviceType = ((int)0X1000),
-        DeviceVendorId = ((int)0X1001),
-        DeviceMaxComputeUnits = ((int)0X1002),
-        DeviceMaxWorkItemDimensions = ((int)0X1003),
-        DeviceMaxWorkGroupSize = ((int)0X1004),
-        DeviceMaxWorkItemSizes = ((int)0X1005),
-        DevicePreferredVectorWidthChar = ((int)0X1006),
-        DevicePreferredVectorWidthShort = ((int)0X1007),
-        DevicePreferredVectorWidthInt = ((int)0X1008),
-        DevicePreferredVectorWidthLong = ((int)0X1009),
-        DevicePreferredVectorWidthFloat = ((int)0X100a),
-        DevicePreferredVectorWidthDouble = ((int)0X100b),
-        DeviceMaxClockFrequency = ((int)0X100c),
-        DeviceAddressBits = ((int)0X100d),
-        DeviceMaxReadImageArgs = ((int)0X100e),
-        DeviceMaxWriteImageArgs = ((int)0X100f),
-        DeviceMaxMemAllocSize = ((int)0X1010),
-        DeviceImage2dMaxWidth = ((int)0X1011),
-        DeviceImage2dMaxHeight = ((int)0X1012),
-        DeviceImage3dMaxWidth = ((int)0X1013),
-        DeviceImage3dMaxHeight = ((int)0X1014),
-        DeviceImage3dMaxDepth = ((int)0X1015),
-        DeviceImageSupport = ((int)0X1016),
-        DeviceMaxParameterSize = ((int)0X1017),
-        DeviceMaxSamplers = ((int)0X1018),
-        DeviceMemBaseAddrAlign = ((int)0X1019),
-        DeviceMinDataTypeAlignSize = ((int)0X101a),
-        DeviceSingleFpConfig = ((int)0X101b),
-        DeviceGlobalMemCacheType = ((int)0X101c),
-        DeviceGlobalMemCachelineSize = ((int)0X101d),
-        DeviceGlobalMemCacheSize = ((int)0X101e),
-        DeviceGlobalMemSize = ((int)0X101f),
-        DeviceMaxConstantBufferSize = ((int)0X1020),
-        DeviceMaxConstantArgs = ((int)0X1021),
-        DeviceLocalMemType = ((int)0X1022),
-        DeviceLocalMemSize = ((int)0X1023),
-        DeviceErrorCorrectionSupport = ((int)0X1024),
-        DeviceProfilingTimerResolution = ((int)0X1025),
-        DeviceEndianLittle = ((int)0X1026),
-        DeviceAvailable = ((int)0X1027),
-        DeviceCompilerAvailable = ((int)0X1028),
-        DeviceExecutionCapabilities = ((int)0X1029),
-        DeviceQueueProperties = ((int)0X102a),
-        DeviceName = ((int)0X102b),
-        DeviceVendor = ((int)0X102c),
-        DriverVersion = ((int)0X102d),
-        DeviceProfile = ((int)0X102e),
-        DeviceVersion = ((int)0X102f),
-        DeviceExtensions = ((int)0X1030),
-        DevicePlatform = ((int)0X1031),
+        DeviceType = ((int)0x1000),
+        DeviceVendorId = ((int)0x1001),
+        DeviceMaxComputeUnits = ((int)0x1002),
+        DeviceMaxWorkItemDimensions = ((int)0x1003),
+        DeviceMaxWorkGroupSize = ((int)0x1004),
+        DeviceMaxWorkItemSizes = ((int)0x1005),
+        DevicePreferredVectorWidthChar = ((int)0x1006),
+        DevicePreferredVectorWidthShort = ((int)0x1007),
+        DevicePreferredVectorWidthInt = ((int)0x1008),
+        DevicePreferredVectorWidthLong = ((int)0x1009),
+        DevicePreferredVectorWidthFloat = ((int)0x100A),
+        DevicePreferredVectorWidthDouble = ((int)0x100B),
+        DeviceMaxClockFrequency = ((int)0x100C),
+        DeviceAddressBits = ((int)0x100D),
+        DeviceMaxReadImageArgs = ((int)0x100E),
+        DeviceMaxWriteImageArgs = ((int)0x100F),
+        DeviceMaxMemAllocSize = ((int)0x1010),
+        DeviceImage2dMaxWidth = ((int)0x1011),
+        DeviceImage2dMaxHeight = ((int)0x1012),
+        DeviceImage3dMaxWidth = ((int)0x1013),
+        DeviceImage3dMaxHeight = ((int)0x1014),
+        DeviceImage3dMaxDepth = ((int)0x1015),
+        DeviceImageSupport = ((int)0x1016),
+        DeviceMaxParameterSize = ((int)0x1017),
+        DeviceMaxSamplers = ((int)0x1018),
+        DeviceMemBaseAddrAlign = ((int)0x1019),
+        DeviceMinDataTypeAlignSize = ((int)0x101A),
+        DeviceSingleFpConfig = ((int)0x101B),
+        DeviceGlobalMemCacheType = ((int)0x101C),
+        DeviceGlobalMemCachelineSize = ((int)0x101D),
+        DeviceGlobalMemCacheSize = ((int)0x101E),
+        DeviceGlobalMemSize = ((int)0x101F),
+        DeviceMaxConstantBufferSize = ((int)0x1020),
+        DeviceMaxConstantArgs = ((int)0x1021),
+        DeviceLocalMemType = ((int)0x1022),
+        DeviceLocalMemSize = ((int)0x1023),
+        DeviceErrorCorrectionSupport = ((int)0x1024),
+        DeviceProfilingTimerResolution = ((int)0x1025),
+        DeviceEndianLittle = ((int)0x1026),
+        DeviceAvailable = ((int)0x1027),
+        DeviceCompilerAvailable = ((int)0x1028),
+        DeviceExecutionCapabilities = ((int)0x1029),
+        DeviceQueueProperties = ((int)0x102A),
+        DeviceName = ((int)0x102B),
+        DeviceVendor = ((int)0x102C),
+        DriverVersion = ((int)0x102D),
+        DeviceProfile = ((int)0x102E),
+        DeviceVersion = ((int)0x102F),
+        DeviceExtensions = ((int)0x1030),
+        DevicePlatform = ((int)0x1031),
     }
 
-    public enum DeviceLocalMemType
+    public enum DeviceLocalMemType : int
     {
-        Local = ((int)0X1),
-        Global = ((int)0X2),
+        Local = ((int)0x1),
+        Global = ((int)0x2),
     }
 
-    public enum DeviceMemCacheType
+    public enum DeviceMemCacheType : int
     {
-        None = ((int)0X0),
-        ReadOnlyCache = ((int)0X1),
-        ReadWriteCache = ((int)0X2),
+        None = ((int)0x0),
+        ReadOnlyCache = ((int)0x1),
+        ReadWriteCache = ((int)0x2),
     }
 
-    public enum DeviceTypeFlags
+    public enum DeviceTypeFlags : long
     {
         DeviceTypeDefault = ((int)(1 << 0)),
         DeviceTypeCpu = ((int)(1 << 1)),
         DeviceTypeGpu = ((int)(1 << 2)),
         DeviceTypeAccelerator = ((int)(1 << 3)),
-        DeviceTypeAll = unchecked((int)0Xffffffff),
+        DeviceTypeAll = unchecked((int)0xFFFFFFFF),
     }
 
-    public enum ErrorCode
+    public enum ErrorCode : int
     {
         Success = ((int)0),
         DeviceNotFound = ((int)-1),
@@ -551,54 +551,54 @@ namespace OpenTK.Compute.CL10
         ImageFormatMismatch = ((int)-9),
     }
 
-    public enum EventInfo
+    public enum EventInfo : int
     {
-        EventCommandQueue = ((int)0X11d0),
-        EventCommandType = ((int)0X11d1),
-        EventReferenceCount = ((int)0X11d2),
-        EventCommandExecutionStatus = ((int)0X11d3),
+        EventCommandQueue = ((int)0x11D0),
+        EventCommandType = ((int)0x11D1),
+        EventReferenceCount = ((int)0x11D2),
+        EventCommandExecutionStatus = ((int)0x11D3),
     }
 
-    public enum FilterMode
+    public enum FilterMode : int
     {
-        FilterNearest = ((int)0X1140),
-        FilterLinear = ((int)0X1141),
+        FilterNearest = ((int)0x1140),
+        FilterLinear = ((int)0x1141),
     }
 
-    public enum ImageInfo
+    public enum ImageInfo : int
     {
-        ImageFormat = ((int)0X1110),
-        ImageElementSize = ((int)0X1111),
-        ImageRowPitch = ((int)0X1112),
-        ImageSlicePitch = ((int)0X1113),
-        ImageWidth = ((int)0X1114),
-        ImageHeight = ((int)0X1115),
-        ImageDepth = ((int)0X1116),
+        ImageFormat = ((int)0x1110),
+        ImageElementSize = ((int)0x1111),
+        ImageRowPitch = ((int)0x1112),
+        ImageSlicePitch = ((int)0x1113),
+        ImageWidth = ((int)0x1114),
+        ImageHeight = ((int)0x1115),
+        ImageDepth = ((int)0x1116),
     }
 
-    public enum KernelInfo
+    public enum KernelInfo : int
     {
-        KernelFunctionName = ((int)0X1190),
-        KernelNumArgs = ((int)0X1191),
-        KernelReferenceCount = ((int)0X1192),
-        KernelContext = ((int)0X1193),
-        KernelProgram = ((int)0X1194),
+        KernelFunctionName = ((int)0x1190),
+        KernelNumArgs = ((int)0x1191),
+        KernelReferenceCount = ((int)0x1192),
+        KernelContext = ((int)0x1193),
+        KernelProgram = ((int)0x1194),
     }
 
-    public enum KernelWorkGroupInfo
+    public enum KernelWorkGroupInfo : int
     {
-        KernelWorkGroupSize = ((int)0X11b0),
-        KernelCompileWorkGroupSize = ((int)0X11b1),
-        KernelLocalMemSize = ((int)0X11b2),
+        KernelWorkGroupSize = ((int)0x11B0),
+        KernelCompileWorkGroupSize = ((int)0x11B1),
+        KernelLocalMemSize = ((int)0x11B2),
     }
 
-    public enum MapFlags
+    public enum MapFlags : long
     {
         MapRead = ((int)(1 << 0)),
         MapWrite = ((int)(1 << 1)),
     }
 
-    public enum MemFlags
+    public enum MemFlags : long
     {
         MemReadWrite = ((int)(1 << 0)),
         MemWriteOnly = ((int)(1 << 1)),
@@ -608,74 +608,74 @@ namespace OpenTK.Compute.CL10
         MemCopyHostPtr = ((int)(1 << 5)),
     }
 
-    public enum MemInfo
+    public enum MemInfo : int
     {
-        MemType = ((int)0X1100),
-        MemFlags = ((int)0X1101),
-        MemSize = ((int)0X1102),
-        MemHostPtr = ((int)0X1103),
-        MemMapCount = ((int)0X1104),
-        MemReferenceCount = ((int)0X1105),
-        MemContext = ((int)0X1106),
+        MemType = ((int)0x1100),
+        MemFlags = ((int)0x1101),
+        MemSize = ((int)0x1102),
+        MemHostPtr = ((int)0x1103),
+        MemMapCount = ((int)0x1104),
+        MemReferenceCount = ((int)0x1105),
+        MemContext = ((int)0x1106),
     }
 
-    public enum MemObjectType
+    public enum MemObjectType : int
     {
-        MemObjectBuffer = ((int)0X10f0),
-        MemObjectImage2d = ((int)0X10f1),
-        MemObjectImage3d = ((int)0X10f2),
+        MemObjectBuffer = ((int)0x10F0),
+        MemObjectImage2d = ((int)0x10F1),
+        MemObjectImage3d = ((int)0x10F2),
     }
 
-    public enum PlatformInfo
+    public enum PlatformInfo : int
     {
-        PlatformProfile = ((int)0X0900),
-        PlatformVersion = ((int)0X0901),
-        PlatformName = ((int)0X0902),
-        PlatformVendor = ((int)0X0903),
-        PlatformExtensions = ((int)0X0904),
+        PlatformProfile = ((int)0x0900),
+        PlatformVersion = ((int)0x0901),
+        PlatformName = ((int)0x0902),
+        PlatformVendor = ((int)0x0903),
+        PlatformExtensions = ((int)0x0904),
     }
 
-    public enum ProfilingInfo
+    public enum ProfilingInfo : int
     {
-        ProfilingCommandQueued = ((int)0X1280),
-        ProfilingCommandSubmit = ((int)0X1281),
-        ProfilingCommandStart = ((int)0X1282),
-        ProfilingCommandEnd = ((int)0X1283),
+        ProfilingCommandQueued = ((int)0x1280),
+        ProfilingCommandSubmit = ((int)0x1281),
+        ProfilingCommandStart = ((int)0x1282),
+        ProfilingCommandEnd = ((int)0x1283),
     }
 
-    public enum ProgramBuildInfo
+    public enum ProgramBuildInfo : int
     {
-        ProgramBuildStatus = ((int)0X1181),
-        ProgramBuildOptions = ((int)0X1182),
-        ProgramBuildLog = ((int)0X1183),
+        ProgramBuildStatus = ((int)0x1181),
+        ProgramBuildOptions = ((int)0x1182),
+        ProgramBuildLog = ((int)0x1183),
     }
 
-    public enum ProgramInfo
+    public enum ProgramInfo : int
     {
-        ProgramReferenceCount = ((int)0X1160),
-        ProgramContext = ((int)0X1161),
-        ProgramNumDevices = ((int)0X1162),
-        ProgramDevices = ((int)0X1163),
-        ProgramSource = ((int)0X1164),
-        ProgramBinarySizes = ((int)0X1165),
-        ProgramBinaries = ((int)0X1166),
+        ProgramReferenceCount = ((int)0x1160),
+        ProgramContext = ((int)0x1161),
+        ProgramNumDevices = ((int)0x1162),
+        ProgramDevices = ((int)0x1163),
+        ProgramSource = ((int)0x1164),
+        ProgramBinarySizes = ((int)0x1165),
+        ProgramBinaries = ((int)0x1166),
     }
 
-    public enum SamplerInfo
+    public enum SamplerInfo : int
     {
-        SamplerReferenceCount = ((int)0X1150),
-        SamplerContext = ((int)0X1151),
-        SamplerNormalizedCoords = ((int)0X1152),
-        SamplerAddressingMode = ((int)0X1153),
-        SamplerFilterMode = ((int)0X1154),
+        SamplerReferenceCount = ((int)0x1150),
+        SamplerContext = ((int)0x1151),
+        SamplerNormalizedCoords = ((int)0x1152),
+        SamplerAddressingMode = ((int)0x1153),
+        SamplerFilterMode = ((int)0x1154),
     }
 
-    public enum Unknown
+    public enum Unknown : int
     {
         ScharMin = ((int)(-127-1)),
         IntMin = ((int)(-2147483647-1)),
         ShrtMin = ((int)(-32767-1)),
-        UintMax = unchecked((int)0Xffffffff),
+        UintMax = unchecked((int)0xffffffff),
         DblMinExp = ((int)-1021),
         FltMinExp = ((int)-125),
         ScharMax = ((int)127),
@@ -694,7 +694,7 @@ namespace OpenTK.Compute.CL10
         CharBit = ((int)8),
     }
 
-    public enum Version
+    public enum Version : int
     {
         Version10 = ((int)1),
     }

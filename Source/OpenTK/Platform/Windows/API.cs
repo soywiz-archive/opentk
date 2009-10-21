@@ -60,6 +60,12 @@ namespace OpenTK.Platform.Windows
     using LPDEVMODE = DeviceMode;
 
     using HRESULT = System.IntPtr;
+    using HMONITOR = System.IntPtr;
+
+    using DWORD_PTR = System.IntPtr;
+    using UINT_PTR = System.UIntPtr;
+
+    using TIMERPROC = Functions.TimerProc;
 
     #endregion
 
@@ -816,7 +822,7 @@ namespace OpenTK.Platform.Windows
         #region IsWindowVisible
 
         [DllImport("user32.dll", SetLastError=true)]
-        public static extern bool IsWindowVisisble(IntPtr intPtr);
+        public static extern bool IsWindowVisible(IntPtr intPtr);
 
         #endregion
 
@@ -826,6 +832,28 @@ namespace OpenTK.Platform.Windows
         public static extern HWND SetParent(HWND hWndChild, HWND hWndNewParent);
 
         #endregion
+
+        #endregion
+
+        #region LoadIcon
+
+        [DllImport("user32.dll")]
+        public static extern HICON LoadIcon(HINSTANCE hInstance, LPCTSTR lpIconName);
+
+        #endregion
+
+        #region LoadCursor
+
+        [DllImport("user32.dll")]
+        public static extern HCURSOR LoadCursor(HINSTANCE hInstance, LPCTSTR lpCursorName);
+
+        [DllImport("user32.dll")]
+        public static extern HCURSOR LoadCursor(HINSTANCE hInstance, IntPtr lpCursorName);
+
+        public static HCURSOR LoadCursor(CursorName lpCursorName)
+        {
+            return LoadCursor(IntPtr.Zero, new IntPtr((int)lpCursorName));
+        }
 
         #endregion
 
@@ -891,6 +919,20 @@ namespace OpenTK.Platform.Windows
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern BOOL GetMonitorInfo(IntPtr hMonitor, ref MonitorInfo lpmi);
+
+        #endregion
+
+        #region MonitorFromPoint
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern HMONITOR MonitorFromPoint(POINT pt, MonitorFrom dwFlags);
+
+        #endregion
+
+        #region MonitorFromWindow
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern HMONITOR MonitorFromWindow(HWND hwnd, MonitorFrom dwFlags);
 
         #endregion
 
@@ -1399,6 +1441,26 @@ namespace OpenTK.Platform.Windows
         internal static extern IntPtr GetStockObject(int index);
 
         #endregion
+
+        #endregion
+
+        #region Timer Functions
+
+        [DllImport("user32.dll", SetLastError=true)]
+        public static extern UINT_PTR SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc);
+
+        [DllImport("user32.dll", SetLastError=true)]
+        public static extern BOOL KillTimer(HWND hWnd, UINT_PTR uIDEvent);
+
+        [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+        public delegate void TimerProc(HWND hwnd, WindowMessage uMsg, UINT_PTR idEvent, DWORD dwTime);
+
+        #endregion
+
+        #region Shell Functions
+
+        [DllImport("shell32.dll")]
+        public static extern DWORD_PTR SHGetFileInfo(LPCTSTR pszPath, DWORD dwFileAttributes, ref SHFILEINFO psfi, UINT cbFileInfo, ShGetFileIconFlags uFlags);
 
         #endregion
     }
@@ -2694,6 +2756,22 @@ namespace OpenTK.Platform.Windows
 
     #endregion
 
+    #region ShFileInfo
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    struct SHFILEINFO
+    {
+        public IntPtr hIcon;
+        public int iIcon;
+        public uint dwAttributes;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+        public string szDisplayName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+        public string szTypeName;
+    };
+
+    #endregion
+
     #endregion
 
     #region --- Enums ---
@@ -3933,6 +4011,71 @@ namespace OpenTK.Platform.Windows
         DISALLOW_PEEK,
         EXCLUDED_FROM_PEEK,
         LAST
+    }
+
+    #endregion
+
+    #region ShGetFileIcon
+
+    [Flags]
+    enum ShGetFileIconFlags : int
+    {
+        /// <summary>get icon</summary>
+        Icon = 0x000000100,
+        /// <summary>get display name</summary>
+        DisplayName = 0x000000200,
+        /// <summary>get type name</summary>
+        TypeName = 0x000000400,
+        /// <summary>get attributes</summary>
+        Attributes = 0x000000800,
+        /// <summary>get icon location</summary>
+        IconLocation = 0x000001000,
+        /// <summary>return exe type</summary>
+        ExeType = 0x000002000,
+        /// <summary>get system icon index</summary>
+        SysIconIndex = 0x000004000,
+        /// <summary>put a link overlay on icon</summary>
+        LinkOverlay = 0x000008000,
+        /// <summary>show icon in selected state</summary>
+        Selected = 0x000010000,
+        /// <summary>get only specified attributes</summary>
+        Attr_Specified = 0x000020000,
+        /// <summary>get large icon</summary>
+        LargeIcon = 0x000000000,
+        /// <summary>get small icon</summary>
+        SmallIcon = 0x000000001,
+        /// <summary>get open icon</summary>
+        OpenIcon = 0x000000002,
+        /// <summary>get shell size icon</summary>
+        ShellIconSize = 0x000000004,
+        /// <summary>pszPath is a pidl</summary>
+        PIDL = 0x000000008,
+        /// <summary>use passed dwFileAttribute</summary>
+        UseFileAttributes = 0x000000010,
+        /// <summary>apply the appropriate overlays</summary>
+        AddOverlays = 0x000000020,
+        /// <summary>Get the index of the overlay in the upper 8 bits of the iIcon</summary>
+        OverlayIndex = 0x000000040,
+    }
+
+    #endregion
+
+    #region MonitorFrom
+
+    enum MonitorFrom
+    {
+        Null = 0,
+        Primary = 1,
+        Nearest = 2,
+    }
+
+    #endregion
+
+    #region CursorName
+
+    enum CursorName : int
+    {
+        Arrow = 32512
     }
 
     #endregion

@@ -512,6 +512,36 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        #region DeleteIconPixmaps
+        
+        static void DeleteIconPixmaps(IntPtr display, IntPtr window)
+        {
+            IntPtr wmHints_ptr = Functions.XGetWMHints(display, window);
+
+            if (wmHints_ptr != IntPtr.Zero)
+            {
+                XWMHints wmHints = (XWMHints)Marshal.PtrToStructure(wmHints_ptr, typeof(XWMHints));
+                XWMHintsFlags flags = (XWMHintsFlags)wmHints.flags.ToInt32();
+
+                if ((flags & XWMHintsFlags.IconPixmapHint) != 0)
+                {
+                    wmHints.flags = new IntPtr((int)(flags & ~XWMHintsFlags.IconPixmapHint));
+                    Functions.XFreePixmap(display, wmHints.icon_pixmap);
+                }
+
+                if ((flags & XWMHintsFlags.IconMaskHint) != 0)
+                {
+                    wmHints.flags = new IntPtr((int)(flags & ~XWMHintsFlags.IconMaskHint));
+                    Functions.XFreePixmap(display, wmHints.icon_mask);
+                }
+
+                Functions.XSetWMHints(display, window, ref wmHints);
+                Functions.XFree(wmHints_ptr);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region INativeWindow Members
@@ -521,10 +551,8 @@ namespace OpenTK.Platform.X11
         public void ProcessEvents()
         {
             // Process all pending events
-            if (!exists || window == null)
-                return;
-            
-            while (Functions.XCheckWindowEvent(window.Display, window.WindowHandle, window.EventMask, ref e) ||
+            while (Exists && window != null &&
+                   Functions.XCheckWindowEvent(window.Display, window.WindowHandle, window.EventMask, ref e) ||
                    Functions.XCheckTypedWindowEvent(window.Display, window.WindowHandle, XEventName.ClientMessage, ref e))
             {
                 // Respond to the event e
@@ -555,8 +583,9 @@ namespace OpenTK.Platform.X11
                         break;
 
                     case XEventName.ClientMessage:
-                        if (e.ClientMessageEvent.ptr1 == _atom_wm_destroy)
+                        if (!isExiting && e.ClientMessageEvent.ptr1 == _atom_wm_destroy)
                         {
+                            Debug.WriteLine("Exit message received.");
                             CancelEventArgs ce = new CancelEventArgs();
                             if (Closing != null)
                                 Closing(this, ce);
@@ -567,7 +596,8 @@ namespace OpenTK.Platform.X11
                                 
                                 if (Unload != null)
                                     Unload(this, EventArgs.Empty);
-        
+
+                                Debug.WriteLine("Destroying window.");
                                 Functions.XDestroyWindow(window.Display, window.WindowHandle);
                                 break;
                             }
@@ -576,12 +606,13 @@ namespace OpenTK.Platform.X11
                         break;
 
                     case XEventName.DestroyNotify:
+                        Debug.WriteLine("Window destroyed");
                         exists = false;
 
                         if (Closed != null)
                             Closed(this, EventArgs.Empty);
-                        
-                        break;
+
+                        return;
 
                     case XEventName.ConfigureNotify:
                         border_width = e.ConfigureEvent.border_width;
@@ -792,21 +823,20 @@ namespace OpenTK.Platform.X11
                 if (value == icon)
                     return;
 
+                // Note: it seems that Gnome/Metacity does not respect the _NET_WM_ICON hint.
+                // For this reason, we'll also set the icon using XSetWMHints.
                 if (value == null)
                 {
                     Functions.XDeleteProperty(window.Display, window.WindowHandle, _atom_net_wm_icon);
+                    DeleteIconPixmaps(window.Display, window.WindowHandle);
                 }
                 else
                 {
-                    Bitmap bitmap;
-                    int size;
-                    IntPtr[] data;
-                    int index;
-    
-                    bitmap = icon.ToBitmap();
-                    index = 0;
-                    size = bitmap.Width * bitmap.Height + 2;
-                    data = new IntPtr[size];
+                    // Set _NET_WM_ICON
+                    Bitmap bitmap = value.ToBitmap();
+                    int size = bitmap.Width * bitmap.Height + 2;
+                    IntPtr[] data = new IntPtr[size];
+                    int index = 0;
     
                     data[index++] = (IntPtr)bitmap.Width;
                     data[index++] = (IntPtr)bitmap.Height;
@@ -818,10 +848,29 @@ namespace OpenTK.Platform.X11
                     Functions.XChangeProperty(window.Display, window.WindowHandle,
                                   _atom_net_wm_icon, _atom_xa_cardinal, 32,
                                   PropertyMode.Replace, data, size);
+
+                    // Set XWMHints
+                    DeleteIconPixmaps(window.Display, window.WindowHandle);
+                    IntPtr wmHints_ptr = Functions.XGetWMHints(window.Display, window.WindowHandle);
+
+                    if (wmHints_ptr == IntPtr.Zero)
+                        wmHints_ptr = Functions.XAllocWMHints();
+
+                    XWMHints wmHints = (XWMHints)Marshal.PtrToStructure(wmHints_ptr, typeof(XWMHints));
+                    
+                    wmHints.flags = new IntPtr(wmHints.flags.ToInt32() | (int)(XWMHintsFlags.IconPixmapHint | XWMHintsFlags.IconMaskHint));
+                    wmHints.icon_pixmap = Functions.CreatePixmapFromImage(window.Display, bitmap); 
+                    wmHints.icon_mask = Functions.CreateMaskFromImage(window.Display, bitmap); 
+                    
+                    Functions.XSetWMHints(window.Display, window.WindowHandle, ref wmHints);
+                    Functions.XFree (wmHints_ptr);
+
+                    Functions.XSync(window.Display, false);
                 }
 
                 icon = value;
-                IconChanged(this, EventArgs.Empty);
+                if (IconChanged != null)
+                    IconChanged(this, EventArgs.Empty);
             }
         }
 
@@ -1228,9 +1277,14 @@ namespace OpenTK.Platform.X11
         public void Exit()
         {
             XEvent ev = new XEvent();
+            ev.type = XEventName.ClientMessage;
+            ev.ClientMessageEvent.format = 32;
+            ev.ClientMessageEvent.display = window.Display;
+            ev.ClientMessageEvent.window = window.WindowHandle;
             ev.ClientMessageEvent.ptr1 = _atom_wm_destroy;
             Functions.XSendEvent(window.Display, window.WindowHandle, false,
-                new IntPtr((int)EventMask.NoEventMask), ref ev);
+                EventMask.NoEventMask, ref ev);
+            Functions.XFlush(window.Display);
         }
 
         #endregion
@@ -1297,19 +1351,22 @@ namespace OpenTK.Platform.X11
                 {
                     if (window != null && window.WindowHandle != IntPtr.Zero)
                     {
-                        try
+                        if (Exists)
                         {
-                            Functions.XLockDisplay(window.Display);
-                            Functions.XDestroyWindow(window.Display, window.WindowHandle);
-                        }
-                        finally
-                        {
-                            Functions.XUnlockDisplay(window.Display);
-                        }
-    
-                        while (Exists)
-                            ProcessEvents();
+                            try
+                            {
+                                Functions.XLockDisplay(window.Display);
+                                Functions.XDestroyWindow(window.Display, window.WindowHandle);
+                            }
+                            finally
+                            {
+                                Functions.XUnlockDisplay(window.Display);
+                            }
 
+                            while (Exists)
+                                ProcessEvents();
+                        }
+                        
                         if (GraphicsContext.CurrentContext != null)
                             GraphicsContext.CurrentContext.MakeCurrent(null);
                         

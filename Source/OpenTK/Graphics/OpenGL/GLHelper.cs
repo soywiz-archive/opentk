@@ -46,14 +46,11 @@ namespace OpenTK.Graphics.OpenGL
     /// </para>
     /// </remarks>
     /// <see href="http://opengl.org/registry/"/>
-    public sealed partial class GL : BindingsBase
+    public sealed partial class GL : GraphicsBindingsBase
     {
         #region --- Fields ---
 
         internal const string Library = "opengl32.dll";
-
-        static StringBuilder sb = new StringBuilder();
-        static object gl_lock = new object();
 
         private static SortedList<string, bool> AvailableExtensions = new SortedList<string, bool>();
 
@@ -202,7 +199,7 @@ namespace OpenTK.Graphics.OpenGL
         }
 
         #endregion
-#endif
+
         #region private static void BuildExtensionList()
 
         /// <summary>
@@ -335,34 +332,7 @@ namespace OpenTK.Graphics.OpenGL
         }
 
         #endregion
-
-        #region GetAddress
-
-        /// <summary>
-        /// Retrieves the entry point for a dynamically exported OpenGL function.
-        /// </summary>
-        /// <param name="function">The function string for the OpenGL function (eg. "glNewList")</param>
-        /// <returns>
-        /// An IntPtr contaning the address for the entry point, or IntPtr.Zero if the specified
-        /// OpenGL function is not dynamically exported.
-        /// </returns>
-        /// <remarks>
-        /// <para>
-        /// The Marshal.GetDelegateForFunctionPointer method can be used to turn the return value
-        /// into a call-able delegate.
-        /// </para>
-        /// <para>
-        /// This function is cross-platform. It determines the underlying platform and uses the
-        /// correct wgl, glx or agl GetAddress function to retrieve the function pointer.
-        /// </para>
-        /// </remarks>
-        private static IntPtr GetAddress(string function)
-        {
-            return (GraphicsContext.CurrentContext as IGraphicsContextInternal).GetAddress(function);
-        }
-
-        #endregion
-
+#endif
         #endregion
 
         #region --- GL Overloads ---
@@ -371,7 +341,10 @@ namespace OpenTK.Graphics.OpenGL
 #pragma warning disable 1591
 #pragma warning disable 1572
 #pragma warning disable 1573
-        
+
+        // Note: Mono 1.9.1 truncates StringBuilder results (for 'out string' parameters).
+        // We work around this issue by doubling the StringBuilder capacity.
+
         #region public static void Color[34]() overloads
 
         public static void Color3(System.Drawing.Color color)
@@ -402,6 +375,11 @@ namespace OpenTK.Graphics.OpenGL
         public static void ClearColor(System.Drawing.Color color)
         {
             GL.ClearColor(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f, color.A / 255.0f);
+        }
+
+        public static void ClearColor(Color4 color)
+        {
+            GL.ClearColor(color.R, color.G, color.B, color.A);
         }
 
         #endregion
@@ -447,67 +425,67 @@ namespace OpenTK.Graphics.OpenGL
 
         public static void Normal3(Vector3 normal)
         {
-            Delegates.glNormal3f(normal.X, normal.Y, normal.Z);
+            GL.Normal3(normal.X, normal.Y, normal.Z);
         }
 
         public static void RasterPos2(Vector2 pos)
         {
-            Delegates.glRasterPos2f(pos.X, pos.Y);
+            GL.RasterPos2(pos.X, pos.Y);
         }
 
         public static void RasterPos3(Vector3 pos)
         {
-            Delegates.glRasterPos3f(pos.X, pos.Y, pos.Z);
+            GL.RasterPos3(pos.X, pos.Y, pos.Z);
         }
 
         public static void RasterPos4(Vector4 pos)
         {
-            Delegates.glRasterPos4f(pos.X, pos.Y, pos.Z, pos.W);
+            GL.RasterPos4(pos.X, pos.Y, pos.Z, pos.W);
         }
 
         public static void Vertex2(Vector2 v)
         {
-            Delegates.glVertex2f(v.X, v.Y);
+            GL.Vertex2(v.X, v.Y);
         }
 
         public static void Vertex3(Vector3 v)
         {
-            Delegates.glVertex3f(v.X, v.Y, v.Z);
+            GL.Vertex3(v.X, v.Y, v.Z);
         }
 
         public static void Vertex4(Vector4 v)
         {
-            Delegates.glVertex4f(v.X, v.Y, v.Z, v.W);
+            GL.Vertex4(v.X, v.Y, v.Z, v.W);
         }
 
         public static void TexCoord2(Vector2 v)
         {
-            Delegates.glTexCoord2f(v.X, v.Y);
+            GL.TexCoord2(v.X, v.Y);
         }
 
         public static void TexCoord3(Vector3 v)
         {
-            Delegates.glTexCoord3f(v.X, v.Y, v.Z);
+            GL.TexCoord3(v.X, v.Y, v.Z);
         }
 
         public static void TexCoord4(Vector4 v)
         {
-            Delegates.glTexCoord4f(v.X, v.Y, v.Z, v.W);
+            GL.TexCoord4(v.X, v.Y, v.Z, v.W);
         }
 
         public static void Rotate(Single angle, Vector3 axis)
         {
-            Delegates.glRotatef((Single)angle, axis.X, axis.Y, axis.Z);
+            GL.Rotate((Single)angle, axis.X, axis.Y, axis.Z);
         }
 
         public static void Scale(Vector3 scale)
         {
-            Delegates.glScalef(scale.X, scale.Y, scale.Z);
+            GL.Scale(scale.X, scale.Y, scale.Z);
         }
 
         public static void Translate(Vector3 trans)
         {
-            Delegates.glTranslatef(trans.X, trans.Y, trans.Z);
+            GL.Translate(trans.X, trans.Y, trans.Z);
         }
 
         public static void MultMatrix(ref Matrix4 mat)
@@ -516,7 +494,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Single* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glMultMatrixf((Single*)m_ptr);
+                    GL.MultMatrix((Single*)m_ptr);
                 }
             }
         }
@@ -527,7 +505,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Single* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glLoadMatrixf((Single*)m_ptr);
+                    GL.LoadMatrix((Single*)m_ptr);
                 }
             }
         }
@@ -538,7 +516,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Single* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glLoadTransposeMatrixf((Single*)m_ptr);
+                    GL.LoadTransposeMatrix((Single*)m_ptr);
                 }
             }
         }
@@ -549,7 +527,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Single* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glMultTransposeMatrixf((Single*)m_ptr);
+                    GL.MultTransposeMatrix((Single*)m_ptr);
                 }
             }
         }
@@ -560,7 +538,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Double* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glMultMatrixd((Double*)m_ptr);
+                    GL.MultMatrix((Double*)m_ptr);
                 }
             }
         }
@@ -571,7 +549,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Double* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glLoadMatrixd((Double*)m_ptr);
+                    GL.LoadMatrix((Double*)m_ptr);
                 }
             }
         }
@@ -582,7 +560,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Double* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glLoadTransposeMatrixd((Double*)m_ptr);
+                    GL.LoadTransposeMatrix((Double*)m_ptr);
                 }
             }
         }
@@ -593,7 +571,7 @@ namespace OpenTK.Graphics.OpenGL
             {
                 fixed (Double* m_ptr = &mat.Row0.X)
                 {
-                    Delegates.glMultTransposeMatrixd((Double*)m_ptr);
+                    GL.MultTransposeMatrix((Double*)m_ptr);
                 }
             }
         }
@@ -643,7 +621,7 @@ namespace OpenTK.Graphics.OpenGL
         {
             GL.Uniform4(location, vector.X, vector.Y, vector.Z, vector.W);
         }
-        
+
         public static void Uniform4(int location, Color4 color)
         {
             GL.Uniform4(location, color.R, color.G, color.B, color.A);
@@ -653,8 +631,66 @@ namespace OpenTK.Graphics.OpenGL
         {
             GL.Uniform4(location, quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
         }
-        
+
         #endregion
+
+        #endregion
+
+        #region Shaders
+
+        #region GetActiveAttrib
+
+        public static string GetActiveAttrib(int program, int index, out int size, out ActiveAttribType type)
+        {
+            int length;
+            GetProgram(program, OpenTK.Graphics.OpenGL.ProgramParameter.ActiveAttributeMaxLength, out length);
+            StringBuilder sb = new StringBuilder(length == 0 ? 1 : length * 2);
+
+            GetActiveAttrib(program, index, sb.Capacity, out length, out size, out type, sb);
+            return sb.ToString();
+        }
+
+        #endregion
+
+        #region GetActiveUniform
+
+        public static string GetActiveUniform(int program, int uniformIndex, out int size, out ActiveUniformType type)
+        {
+            int length;
+            GetProgram(program, OpenTK.Graphics.OpenGL.ProgramParameter.ActiveUniformMaxLength, out length);
+
+            StringBuilder sb = new StringBuilder(length == 0 ? 1 : length);
+            GetActiveUniform(program, uniformIndex, sb.Capacity, out length, out size, out type, sb);
+            return sb.ToString();
+        }
+
+        #endregion
+
+        #region GetActiveUniformName
+
+        public static string GetActiveUniformName(int program, int uniformIndex)
+        {
+            int length;
+            GetProgram(program, OpenTK.Graphics.OpenGL.ProgramParameter.ActiveUniformMaxLength, out length);
+            StringBuilder sb = new StringBuilder(length == 0 ? 1 : length * 2);
+
+            GetActiveUniformName(program, uniformIndex, sb.Capacity, out length, sb);
+            return sb.ToString();
+        }
+
+        #endregion
+
+        #region GetActiveUniformBlockName
+
+        public static string GetActiveUniformBlockName(int program, int uniformIndex)
+        {
+            int length;
+            GetProgram(program, OpenTK.Graphics.OpenGL.ProgramParameter.ActiveUniformBlockMaxNameLength, out length);
+            StringBuilder sb = new StringBuilder(length == 0 ? 1 : length * 2);
+
+            GetActiveUniformBlockName(program, uniformIndex, sb.Capacity, out length, sb);
+            return sb.ToString();
+        }
 
         #endregion
 
@@ -665,7 +701,7 @@ namespace OpenTK.Graphics.OpenGL
             unsafe
             {
                 int length = @string.Length;
-                Delegates.glShaderSource((UInt32)shader, 1, new string[] { @string }, &length);
+                GL.ShaderSource((UInt32)shader, 1, new string[] { @string }, &length);
             }
         }
 
@@ -677,7 +713,7 @@ namespace OpenTK.Graphics.OpenGL
         {
             string info;
             GetShaderInfoLog(shader, out info);
-            return info;        
+            return info;
         }
 
         #endregion
@@ -695,8 +731,8 @@ namespace OpenTK.Graphics.OpenGL
                     info = String.Empty;
                     return;
                 }
-                StringBuilder sb = new StringBuilder(length);
-                Delegates.glGetShaderInfoLog((UInt32)shader, sb.Capacity, &length, sb);
+                StringBuilder sb = new StringBuilder(length * 2);
+                GL.GetShaderInfoLog((UInt32)shader, sb.Capacity, &length, sb);
                 info = sb.ToString();
             }
         }
@@ -704,16 +740,16 @@ namespace OpenTK.Graphics.OpenGL
         #endregion
 
         #region public static string GetProgramInfoLog(Int32 program)
-        
+
         public static string GetProgramInfoLog(Int32 program)
         {
             string info;
             GetProgramInfoLog(program, out info);
             return info;
         }
-        
+
         #endregion
-        
+
         #region public static void GetProgramInfoLog(Int32 program, out string info)
 
         public static void GetProgramInfoLog(Int32 program, out string info)
@@ -726,11 +762,13 @@ namespace OpenTK.Graphics.OpenGL
                     info = String.Empty;
                     return;
                 }
-                StringBuilder sb = new StringBuilder(length);
-                Delegates.glGetProgramInfoLog((UInt32)program, sb.Capacity, &length, sb);
+                StringBuilder sb = new StringBuilder(length * 2);
+                GL.GetProgramInfoLog((UInt32)program, sb.Capacity, &length, sb);
                 info = sb.ToString();
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -974,7 +1012,7 @@ namespace OpenTK.Graphics.OpenGL
             unsafe
             {
                 fixed (Vector2d* ptr = &vector)
-                    GetFloat(pname, (float*)ptr);
+                    GetDouble(pname, (double*)ptr);
             }
         }
 
@@ -983,7 +1021,7 @@ namespace OpenTK.Graphics.OpenGL
             unsafe
             {
                 fixed (Vector3d* ptr = &vector)
-                    GetFloat(pname, (float*)ptr);
+                    GetDouble(pname, (double*)ptr);
             }
         }
 
@@ -992,7 +1030,7 @@ namespace OpenTK.Graphics.OpenGL
             unsafe
             {
                 fixed (Vector4d* ptr = &vector)
-                    GetFloat(pname, (float*)ptr);
+                    GetDouble(pname, (double*)ptr);
             }
         }
 
@@ -1001,7 +1039,7 @@ namespace OpenTK.Graphics.OpenGL
             unsafe
             {
                 fixed (Matrix4d* ptr = &matrix)
-                    GetFloat(pname, (float*)ptr);
+                    GetDouble(pname, (double*)ptr);
             }
         }
 

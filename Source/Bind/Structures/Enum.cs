@@ -22,7 +22,7 @@ namespace Bind.Structures
         internal static EnumCollection AuxEnums = new EnumCollection();
 
         static StringBuilder translator = new StringBuilder();
-        string _name;
+        string _name, _type;
         static bool enumsLoaded;
 
         static readonly Regex SplitCapitals = new Regex(@"((?<=[a-z])[A-Z]|[A-Z](?=[a-z]))", RegexOptions.Compiled);
@@ -73,12 +73,8 @@ namespace Bind.Structures
         #region Constructors
 
         public Enum()
-        { }
-
-        public Enum(string name)
         {
-            Name = name;
-        }
+		}
 
         #endregion
 
@@ -104,9 +100,16 @@ namespace Bind.Structures
 
         public string Name
         {
-            get { return _name; }
+            get { return _name ?? ""; }
             set { _name = value; }
         }
+		
+		// Typically 'long' or 'int'. Default is 'int'.
+		public string Type
+		{
+			get { return String.IsNullOrEmpty(_type) ? "int" : _type; }
+			set { _type = value; }
+		}
 
         #endregion
 
@@ -123,6 +126,7 @@ namespace Bind.Structures
 
         #region TranslateName
 
+        // Translate the constant's name to match .Net naming conventions
         public static string TranslateName(string name)
         {
             if (String.IsNullOrEmpty(name))
@@ -133,13 +137,12 @@ namespace Bind.Structures
 
             translator.Remove(0, translator.Length);    // Trick to avoid allocating a new StringBuilder.
 
-            // Translate the constant's name to match .Net naming conventions
             if ((Settings.Compatibility & Settings.Legacy.NoAdvancedEnumProcessing) == Settings.Legacy.None)
             {
-                bool is_after_underscore_or_number = true;    // Detect if we just passed a '_' or a number and make the next char
-                                                    // uppercase.
-                bool is_previous_uppercase = false; // Detect if previous character was uppercase, and turn
-                                                    // the current one to lowercase.
+                // Detect if we just passed a '_' or a number and make the next char uppercase.
+                bool is_after_underscore_or_number = true;
+                // Detect if previous character was uppercase, and turn the current one to lowercase.
+                bool is_previous_uppercase = false;
 
                 foreach (char c in name)
                 {
@@ -150,10 +153,12 @@ namespace Bind.Structures
                     {
                         if (Char.IsDigit(c))
                             is_after_underscore_or_number = true;
+
                         char_to_add = is_after_underscore_or_number ? Char.ToUpper(c) :
                             is_previous_uppercase ? Char.ToLower(c) : c;
-                        is_previous_uppercase = Char.IsUpper(c);
                         translator.Append(char_to_add);
+
+                        is_previous_uppercase = Char.IsUpper(c);
                         is_after_underscore_or_number = false;
                     }
                 }
@@ -242,7 +247,10 @@ namespace Bind.Structures
 
             if (IsFlagCollection)
                 sb.AppendLine("[Flags]");
-            sb.AppendLine("public enum " + Name);
+            sb.Append("public enum ");
+			sb.Append(Name);
+			sb.Append(" : ");
+			sb.AppendLine(Type);
             sb.AppendLine("{");
 
             foreach (Constant c in constants)
@@ -285,7 +293,7 @@ namespace Bind.Structures
             if (overrides == null)
                 throw new ArgumentNullException("overrides");
 
-            string path = "/overrides/enum[@name='{0}']";
+            string path = "/overrides/replace/enum[@name='{0}']";
 
             // Translate enum names.
             {
