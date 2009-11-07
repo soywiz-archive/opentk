@@ -1,3 +1,207 @@
+#region License
+ //
+ // The Open Toolkit Library License
+ //
+ // Copyright (c) 2006 - 2009 the Open Toolkit library.
+ //
+ // Permission is hereby granted, free of charge, to any person obtaining a copy
+ // of this software and associated documentation files (the "Software"), to deal
+ // in the Software without restriction, including without limitation the rights to 
+ // use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ // the Software, and to permit persons to whom the Software is furnished to do
+ // so, subject to the following conditions:
+ //
+ // The above copyright notice and this permission notice shall be included in all
+ // copies or substantial portions of the Software.
+ //
+ // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ // OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ // HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ // OTHER DEALINGS IN THE SOFTWARE.
+ //
+ #endregion
+
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.IO;
+using System.Runtime.Serialization;
+
+using OpenTK.Platform;
+
+namespace OpenTK
+{
+    public sealed class Icon : MarshalByRefObject, IIcon
+    {
+        #region Fields
+
+        IIcon implementation;
+
+        #endregion
+
+        #region Constructors
+
+        Icon(IIcon impl)
+        {
+            if (impl == null)
+                throw new ArgumentNullException("impl");
+
+            implementation = impl;
+        }
+
+        public Icon(Stream stream)
+            : this(stream, -1, -1)
+        { }
+
+        public Icon(string fileName)
+            : this(fileName, -1, -1)
+        { }
+
+        public Icon(Icon original, Size size)
+            : this(original, size.Width, size.Height)
+        { }
+
+        public Icon(Stream stream, Size size)
+            : this(stream, size.Width, size.Height)
+        { }
+
+        public Icon(string fileName, Size size)
+            : this(fileName, size.Width, size.Height)
+        { }
+
+        public Icon(Icon original, int width, int height)
+        {
+            if (original == null)
+                throw new ArgumentNullException("original");
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                original.Save(ms);
+                ms.Seek(0, SeekOrigin.Begin);
+                implementation = Factory.Default.CreateIcon(ms, width, height);
+                ms.Close();
+            }
+        }
+
+        public Icon(Stream stream, int width, int height)
+        {
+            if (stream == null)
+                throw new ArgumentNullException("stream");
+
+            implementation = Factory.Default.CreateIcon(stream, width, height);
+        }
+
+        public Icon(string fileName, int width, int height)
+        {
+            if (fileName == null)
+                throw new ArgumentNullException("fileName");
+
+            using (FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                implementation = Factory.Default.CreateIcon(stream, width, height);
+                stream.Close();
+            }
+        }
+
+        #endregion
+
+        #region Public Members
+
+        public override string ToString()
+        {
+            return implementation.ToString();
+        }
+
+        public static implicit operator Icon(System.Drawing.Icon icon)
+        {
+            if (icon == null)
+                throw new ArgumentNullException("icon");
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                icon.Save(ms);
+                ms.Seek(0, SeekOrigin.Begin);
+                Icon ret = (Icon)new IconConverter().ConvertFrom((byte[])ms.GetBuffer());
+                //Icon ret = new Icon(Factory.Default.CreateIcon(ms, icon.Width, icon.Height));
+                ms.Close();
+                return ret;
+            }
+        }
+
+        public static implicit operator System.Drawing.Icon(Icon icon)
+        {
+            if (icon == null)
+                throw new ArgumentNullException("icon");
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                icon.Save(ms);
+                ms.Seek(0, SeekOrigin.Begin);
+                System.Drawing.Icon ret = (System.Drawing.Icon)new System.Drawing.IconConverter().ConvertFrom(ms.GetBuffer());
+                ms.Close();
+                return ret;
+            }
+        }
+
+        #endregion
+
+        #region IIcon Members
+
+        [Browsable(false)]
+        public IntPtr Handle { get { return implementation.Handle; } }
+
+        [Browsable(false)]
+        public int Width { get { return implementation.Width; } }
+
+        [Browsable(false)]
+        public int Height { get { return implementation.Height; } }
+
+        public Size Size { get { return implementation.Size; } }
+
+        public void Save(Stream outputStream)
+        {
+            implementation.Save(outputStream);
+        }
+
+        public byte[] GetData()
+        {
+            return implementation.GetData();
+        }
+
+        #endregion
+
+        #region ISerializable Members
+
+        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            implementation.GetObjectData(info, context);
+        }
+
+        #endregion
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            return new Icon((IIcon)implementation.Clone());
+        }
+
+        #endregion
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            implementation.Dispose();
+        }
+
+        #endregion
+    }
+#if false
 #define NET_2_0
 
 //
@@ -32,24 +236,9 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Security.Permissions;
-using System.Reflection;
-
-namespace OpenTK
-{
-#if EXPERIMENTAL
-    #if !NET_2_0
+#if !NET_2_0
     [ComVisible(false)]
-    #endif
+#endif
     [Serializable]
     //[Editor("Design.IconEditor, " + Consts.AssemblySystem_Drawing_Design, typeof(Design.UITypeEditor))]
     [TypeConverter(typeof(IconConverter))]
@@ -319,7 +508,7 @@ namespace OpenTK
             si.AddValue("IconData", ms.ToArray());
         }
 
-        #if NET_2_0
+#if NET_2_0
         public Icon(Stream stream, Size size) : this(stream, size.Width, size.Height)
         {
         }
@@ -351,7 +540,7 @@ namespace OpenTK
             return SystemIcons.WinLogo;
         }
         */
-        #endif
+#endif
 
         public void Dispose()
         {
@@ -777,7 +966,7 @@ namespace OpenTK
                 ide.bitCount = reader.ReadUInt16();
                 ide.bytesInRes = reader.ReadUInt32();
                 ide.imageOffset = reader.ReadUInt32();
-                #if false
+#if false
                 Console.WriteLine("Entry: {0}", i);
                 Console.WriteLine("\tide.width: {0}", ide.width);
                 Console.WriteLine("\tide.height: {0}", ide.height);
@@ -787,7 +976,7 @@ namespace OpenTK
                 Console.WriteLine("\tide.bitCount: {0}", ide.bitCount);
                 Console.WriteLine("\tide.bytesInRes: {0}", ide.bytesInRes);
                 Console.WriteLine("\tide.imageOffset: {0}", ide.imageOffset);
-                #endif
+#endif
                 
                 // 256x256 icons are decoded as 0x0 (width and height are encoded as BYTE)
                 // and we ignore them just like MS does (at least up to fx 2.0)
@@ -856,7 +1045,7 @@ namespace OpenTK
                 bih.biYPelsPerMeter = bihReader.ReadInt32();
                 bih.biClrUsed = bihReader.ReadUInt32();
                 bih.biClrImportant = bihReader.ReadUInt32();
-                #if false
+#if false
                 Console.WriteLine("Entry: {0}", j);
                 Console.WriteLine("\tbih.biSize: {0}", bih.biSize);
                 Console.WriteLine("\tbih.biWidth: {0}", bih.biWidth);
@@ -869,7 +1058,7 @@ namespace OpenTK
                 Console.WriteLine("\tbih.biYPelsPerMeter: {0}", bih.biYPelsPerMeter);
                 Console.WriteLine("\tbih.biClrUsed: {0}", bih.biClrUsed);
                 Console.WriteLine("\tbih.biClrImportant: {0}", bih.biClrImportant);
-                #endif
+#endif
                 iidata.iconHeader = bih;
                 //Read the number of colors used and corresponding memory occupied by
                 //color table. Fill this memory chunk into rgbquad[]

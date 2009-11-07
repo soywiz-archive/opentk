@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace OpenTK.Platform
@@ -86,37 +87,42 @@ namespace OpenTK.Platform
         public INativeWindow CreateNativeWindow(int x, int y, int width, int height, string title,
             GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
-            return default_implementation.CreateNativeWindow(x, y, width, height, title, mode, options, device);
+            return Default.CreateNativeWindow(x, y, width, height, title, mode, options, device);
         }
 
         public IDisplayDeviceDriver CreateDisplayDeviceDriver()
         {
-            return default_implementation.CreateDisplayDeviceDriver();
+            return Default.CreateDisplayDeviceDriver();
         }
 
         public IGraphicsContext CreateGLContext(GraphicsMode mode, IWindowInfo window, IGraphicsContext shareContext, bool directRendering, int major, int minor, GraphicsContextFlags flags)
         {
-            return default_implementation.CreateGLContext(mode, window, shareContext, directRendering, major, minor, flags);
+            return Default.CreateGLContext(mode, window, shareContext, directRendering, major, minor, flags);
         }
 
         public IGraphicsContext CreateGLContext(ContextHandle handle, IWindowInfo window, IGraphicsContext shareContext, bool directRendering, int major, int minor, GraphicsContextFlags flags)
         {
-            return default_implementation.CreateGLContext(handle, window, shareContext, directRendering, major, minor, flags);
+            return Default.CreateGLContext(handle, window, shareContext, directRendering, major, minor, flags);
         }
 
         public GraphicsContext.GetCurrentContextDelegate CreateGetCurrentGraphicsContext()
         {
-            return default_implementation.CreateGetCurrentGraphicsContext();
+            return Default.CreateGetCurrentGraphicsContext();
         }
 
         public IGraphicsMode CreateGraphicsMode()
         {
-            return default_implementation.CreateGraphicsMode();
+            return Default.CreateGraphicsMode();
         }
         
         public OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
         {
-            return default_implementation.CreateKeyboardDriver();
+            return Default.CreateKeyboardDriver();
+        }
+
+        public IIcon CreateIcon(Stream stream, int width, int height)
+        {
+            return Default.CreateIcon(stream, width, height);
         }
 
         class UnsupportedPlatform : IPlatformFactory
@@ -165,6 +171,11 @@ namespace OpenTK.Platform
             }
 
             public OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
+            {
+                throw new PlatformNotSupportedException(error_string);
+            }
+
+            public IIcon CreateIcon(Stream stream, int width, int height)
             {
                 throw new PlatformNotSupportedException(error_string);
             }

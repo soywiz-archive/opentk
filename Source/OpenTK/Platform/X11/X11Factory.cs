@@ -27,6 +27,7 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using OpenTK.Graphics;
 
 namespace OpenTK.Platform.X11
@@ -81,6 +82,11 @@ namespace OpenTK.Platform.X11
         public virtual OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
         {
             throw new NotImplementedException();
+        }
+
+        public IIcon CreateIcon(Stream stream, int width, int height)
+        {
+            return new GdiPlusIconAdapter(stream, width, height);
         }
 
         #endregion

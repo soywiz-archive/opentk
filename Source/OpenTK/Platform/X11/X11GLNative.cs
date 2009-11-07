@@ -871,17 +871,21 @@ namespace OpenTK.Platform.X11
                 else
                 {
                     // Set _NET_WM_ICON
-                    System.Drawing.Bitmap bitmap = value.ToBitmap();
-                    int size = bitmap.Width * bitmap.Height + 2;
+                    IIcon gdp_icon = new GdiPlusIconAdapter(value);
+                    byte[] icon_data = gdp_icon.GetData();
+                    int size = gdp_icon.Width * gdp_icon.Height + 2;
                     IntPtr[] data = new IntPtr[size];
                     int index = 0;
-    
-                    data[index++] = (IntPtr)bitmap.Width;
-                    data[index++] = (IntPtr)bitmap.Height;
-    
-                    for (int y = 0; y < bitmap.Height; y++)
-                        for (int x = 0; x < bitmap.Width; x++)
-                            data[index++] = (IntPtr)bitmap.GetPixel(x, y).ToArgb();
+
+                    data[index++] = (IntPtr)gdp_icon.Width;
+                    data[index++] = (IntPtr)gdp_icon.Height;
+
+                    int subpixel = 0;
+                    for (int y = 0; y < gdp_icon.Height; y++)
+                        for (int x = 0; x < gdp_icon.Width; x++)
+                            data[index++] = new IntPtr(
+                                icon_data[subpixel++] << 24 | icon_data[subpixel++] << 16 |
+                                icon_data[subpixel++] << 8 | icon_data[subpixel++]);
     
                     Functions.XChangeProperty(window.Display, window.WindowHandle,
                                   _atom_net_wm_icon, _atom_xa_cardinal, 32,
@@ -897,8 +901,8 @@ namespace OpenTK.Platform.X11
                     XWMHints wmHints = (XWMHints)Marshal.PtrToStructure(wmHints_ptr, typeof(XWMHints));
                     
                     wmHints.flags = new IntPtr(wmHints.flags.ToInt32() | (int)(XWMHintsFlags.IconPixmapHint | XWMHintsFlags.IconMaskHint));
-                    wmHints.icon_pixmap = Functions.CreatePixmapFromImage(window.Display, bitmap); 
-                    wmHints.icon_mask = Functions.CreateMaskFromImage(window.Display, bitmap); 
+                    wmHints.icon_pixmap = Functions.CreatePixmapFromImage(window.Display, icon_data, gdp_icon.Width, gdp_icon.Height);
+                    wmHints.icon_mask = Functions.CreateMaskFromImage(window.Display, icon_data, gdp_icon.Width, gdp_icon.Height); 
                     
                     Functions.XSetWMHints(window.Display, window.WindowHandle, ref wmHints);
                     Functions.XFree (wmHints_ptr);

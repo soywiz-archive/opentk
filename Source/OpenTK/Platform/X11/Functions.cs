@@ -529,6 +529,7 @@ namespace OpenTK.Platform.X11
         struct  Pixel
         {
             public byte A, R, G, B;
+
             public Pixel(byte a, byte r, byte g, byte b)
             {
                 A= a;
@@ -536,6 +537,7 @@ namespace OpenTK.Platform.X11
                 G = g;
                 B = b;
             }
+
             public static implicit operator Pixel(int argb)
             {
                 return new Pixel(
@@ -545,54 +547,90 @@ namespace OpenTK.Platform.X11
                     (byte)(argb & 0xFF));
             }
         }
+
         public static IntPtr CreatePixmapFromImage(Display display, System.Drawing.Bitmap image) 
         { 
             int width = image.Width;
             int height = image.Height;
-            int size = width * height; 
 
             System.Drawing.Imaging.BitmapData data = image.LockBits(new System.Drawing.Rectangle(0, 0, width, height),
                 System.Drawing.Imaging.ImageLockMode.ReadOnly,
                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            
-            IntPtr ximage = XCreateImage(display, CopyFromParent, 24, ImageFormat.ZPixmap, 
-                0, data.Scan0, (uint)width, (uint)height, 32, 0); 
-            IntPtr pixmap = XCreatePixmap(display, XDefaultRootWindow(display), 
-                width, height, 24); 
+
+            try { return CreatePixmapFromImage(display, data.Scan0, width, height); }
+            finally { image.UnlockBits(data); }
+        }
+
+        public static IntPtr CreatePixmapFromImage(Display display, byte[] data, int width, int height)
+        {
+            unsafe
+            {
+                fixed (byte* ptr = data)
+                {
+                    return CreatePixmapFromImage(display, new IntPtr(ptr), width, height);
+                }
+            }
+        }
+
+        public static IntPtr CreatePixmapFromImage(Display display, IntPtr scan0, int width, int height)
+        {
+            IntPtr ximage = XCreateImage(display, CopyFromParent, 24, ImageFormat.ZPixmap,
+                0, scan0, (uint)width, (uint)height, 32, 0);
+            IntPtr pixmap = XCreatePixmap(display, XDefaultRootWindow(display),
+                width, height, 24);
             IntPtr gc = XCreateGC(display, pixmap, IntPtr.Zero, null);
-            
+
             XPutImage(display, pixmap, gc, ximage, 0, 0, 0, 0, (uint)width, (uint)height);
-            
+
             XFreeGC(display, gc);
-            image.UnlockBits(data);
-                                         
+
             return pixmap; 
-        } 
+        }
         
         public static IntPtr CreateMaskFromImage(Display display, System.Drawing.Bitmap image) 
         { 
             int width = image.Width; 
-            int height = image.Height; 
-            int stride = (width + 7) >> 3; 
+            int height = image.Height;
+
+            System.Drawing.Imaging.BitmapData data = image.LockBits(new System.Drawing.Rectangle(0, 0, width, height),
+                System.Drawing.Imaging.ImageLockMode.ReadOnly,
+                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            try { return CreateMaskFromImage(display, data.Scan0, width, height); }
+            finally { image.UnlockBits(data); }
+        }
+
+        public static IntPtr CreateMaskFromImage(Display display, byte[] data, int width, int height)
+        {
+            unsafe
+            {
+                fixed (byte* ptr = data)
+                {
+                    return CreateMaskFromImage(display, new IntPtr(ptr), width, height);
+                }
+            }
+        }
+
+        public static IntPtr CreateMaskFromImage(Display display, IntPtr scan0, int width, int height)
+        {
+            int stride = (width + 7) >> 3;
             byte[] mask = new byte[stride * height];
             bool msbfirst = (XBitmapBitOrder(display) == 1); // 1 = MSBFirst
-        
-            for (int y = 0; y < height; ++y) 
-            { 
-                for (int x = 0; x < width; ++x) 
-                { 
-                    byte bit = (byte) (1 << (msbfirst ? (7 - (x & 7)) : (x & 7))); 
-                    int offset = y * stride + (x >> 3); 
-        
-                    if (image.GetPixel(x, y).A >= 128) 
-                        mask[offset] |= bit; 
-                } 
-            } 
-        
-            Pixmap pixmap = XCreatePixmapFromBitmapData(display, XDefaultRootWindow(display), 
-                mask, width, height, new IntPtr(1), IntPtr.Zero, 1); 
-        
-            return pixmap; 
+
+            for (int y = 0; y < height; ++y)
+            {
+                for (int x = 0; x < width; ++x)
+                {
+                    byte bit = (byte)(1 << (msbfirst ? (7 - (x & 7)) : (x & 7)));
+                    int offset = y * stride + (x >> 3);
+
+                    if (Marshal.ReadByte(scan0, y * width + x) >= 128)
+                        mask[offset] |= bit;
+                }
+            }
+
+            return XCreatePixmapFromBitmapData(display, XDefaultRootWindow(display),
+                mask, width, height, new IntPtr(1), IntPtr.Zero, 1);
         }
     }
 }

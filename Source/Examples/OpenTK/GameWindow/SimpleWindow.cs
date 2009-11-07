@@ -22,9 +22,13 @@ namespace Examples.Tutorial
     [Example("Simple Window", ExampleCategory.OpenTK, "GameWindow", Documentation="SimpleWindow")]
     public class SimpleWindow : GameWindow
     {
-        public SimpleWindow() : base(800, 600)
+        public SimpleWindow() : base(800, 600, OpenTK.Graphics.GraphicsMode.Default, "", GameWindowFlags.Fullscreen, DisplayDevice.AvailableDisplays[1])
         {
             Keyboard.KeyDown += Keyboard_KeyDown;
+            WindowStateChanged += (sender, e) =>
+                {
+                    Debug.Print(WindowState.ToString());
+                };
         }
 
         #region Keyboard_KeyDown

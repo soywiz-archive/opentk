@@ -32,6 +32,7 @@ using System.Text;
 namespace OpenTK.Platform.MacOS
 {
     using Graphics;
+    using System.IO;
 
     class MacOSFactory : IPlatformFactory
     {
@@ -73,6 +74,11 @@ namespace OpenTK.Platform.MacOS
         public virtual OpenTK.Input.IKeyboardDriver CreateKeyboardDriver()
         {
             throw new NotImplementedException();
+        }
+
+        public IIcon CreateIcon(Stream stream, int width, int height)
+        {
+            return new GdiPlusIconAdapter(stream, width, height);
         }
         
         #endregion

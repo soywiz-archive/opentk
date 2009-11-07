@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using OpenTK.Input;
 using OpenTK.Graphics;
 
 namespace OpenTK.Platform
@@ -47,6 +48,8 @@ namespace OpenTK.Platform
         
         IGraphicsMode CreateGraphicsMode();
         
-        OpenTK.Input.IKeyboardDriver CreateKeyboardDriver();
+        IKeyboardDriver CreateKeyboardDriver();
+
+        IIcon CreateIcon(System.IO.Stream stream, int width, int height);
     }
 }

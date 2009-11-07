@@ -33,6 +33,7 @@ namespace OpenTK.Platform.Windows
 {
     using Graphics;
     using OpenTK.Input;
+using System.IO;
 
     class WinFactory : IPlatformFactory 
     {
@@ -79,6 +80,11 @@ namespace OpenTK.Platform.Windows
                 return new WinRawKeyboard();
             else
                 return new WMInput(null);
+        }
+
+        public IIcon CreateIcon(Stream stream, int width, int height)
+        {
+            return new GdiPlusIconAdapter(stream, width, height);
         }
         
         #endregion

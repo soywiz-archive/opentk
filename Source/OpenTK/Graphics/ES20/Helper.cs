@@ -26,7 +26,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace OpenTK.Graphics.ES20
@@ -386,16 +385,6 @@ namespace OpenTK.Graphics.ES20
         }
 
         public static void Viewport(System.Drawing.Rectangle rectangle)
-        {
-            GL.Viewport(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
-        }
-
-        public static void Viewport(OpenTK.Point location, OpenTK.Size size)
-        {
-            GL.Viewport(location.X, location.Y, size.Width, size.Height);
-        }
-
-        public static void Viewport(OpenTK.Rectangle rectangle)
         {
             GL.Viewport(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
         }

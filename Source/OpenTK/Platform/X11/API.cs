@@ -72,7 +72,7 @@ namespace OpenTK.Platform.X11
 
         static API()
         {
-            Debug.Print("Initializing threaded X11: {0}.", Functions.XInitThreads().ToString());
+            Debug.Print("Initializing threaded X11: {0}.", Functions.XInitThreads() == 1 ? "success!" : "failed.");
         
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
             
