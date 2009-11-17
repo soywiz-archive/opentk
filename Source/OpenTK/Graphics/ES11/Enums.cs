@@ -24,7 +24,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 #endregion
-
+#if EXPERIMENTAL
 using System;
 
 namespace OpenTK.Graphics.ES11
@@ -1424,3 +1424,4 @@ namespace OpenTK.Graphics.ES11
     }
 
 }
+#endif
