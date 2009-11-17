@@ -30,8 +30,8 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.9.9.4")]
-[assembly: AssemblyFileVersion("0.9.9.4")]
+[assembly: AssemblyVersion("0.9.9.5")]
+[assembly: AssemblyFileVersion("0.9.9.5")]
 
 [assembly: System.CLSCompliant(true)]
 [assembly: System.Security.AllowPartiallyTrustedCallers]
