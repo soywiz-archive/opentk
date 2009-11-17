@@ -82,8 +82,7 @@ namespace OpenTK
         double update_period, render_period;
         double target_update_period, target_render_period;
         // TODO: Implement these:
-        double update_time, render_time;//, event_time;
-        //bool allow_sleep = true;    // If true, GameWindow will call Timer.Sleep() if there is enough time.
+        double update_time, render_time;
         VSyncMode vsync;
 
         Stopwatch update_watch = new Stopwatch(), render_watch = new Stopwatch();
@@ -390,9 +389,6 @@ namespace OpenTK
             }
             finally
             {
-                Debug.Print("Restoring priority.");
-                Thread.CurrentThread.Priority = ThreadPriority.Normal;
-
                 OnUnloadInternal(EventArgs.Empty);
 
                 if (Exists)
