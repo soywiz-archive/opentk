@@ -4,14 +4,15 @@ The Open Toolkit 1.0 beta 2
 
 [Overview]
 
-This is the second beta release of OpenTK 1.0. This release a laarge number of issues identified in the first beta. Additionally:
-* It improves support for Mac OS × (multiple monitors, dock integration, input focus and more).
-* It allows OpenTK to run on *BSD, Solaris and other Unix variants.
-* Adds a number of missing tokens for OpenGL 3.1 and 3.2.
-* Fixes mouse movement on windows and adds support for fractional wheel values (available in high-precision mice).
-* Fixes and optimizes quaternion-vector transforms.
-* Further improves multithreading support on Linux.
-* Works around a Visual Studio bug, which caused a number of OpenGL wrappers to disappear from intellisense.
+This is the second beta release of OpenTK 1.0. This release a laarge number of issues identified in the first beta. Additionally, it:
+* improves support for Mac OS × (multiple monitors, dock integration, input focus and more).
+* allows OpenTK to run on *BSD, Solaris and other Unix variants.
+* fixes a timing issue that caused UpdateFrame events to be raised up to 50% faster than necessary.
+* adds a number of missing tokens for OpenGL 3.1 and 3.2.
+* fixes mouse movement on windows and adds support for fractional wheel values (available in high-precision mice).
+* fixes and optimizes quaternion-vector transforms.
+* further improves multithreading support on Linux.
+* works around a Visual Studio bug, which caused a number of OpenGL wrappers to disappear from intellisense.
 
 Visit http://www.opentk.com for the latest news and information on the Open Toolkit.
 
