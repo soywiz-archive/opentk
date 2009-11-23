@@ -45,7 +45,19 @@ namespace OpenTK.Platform.MacOS
 
             if (shareContext is AglContext)
                 shareContextRef = ((AglContext)shareContext).Handle.Handle;
-            
+			if (shareContext is GraphicsContext)
+			{
+				ContextHandle shareHandle = shareContext != null ?
+					(shareContext as IGraphicsContextInternal).Context : (ContextHandle)IntPtr.Zero;
+
+				shareContextRef = shareHandle.Handle;
+			}
+
+			if (shareContextRef == IntPtr.Zero)
+			{
+				Debug.Print("No context sharing will take place.");
+			}
+
             CreateContext(mode, carbonWindow, shareContextRef, true);
         }
 
@@ -162,8 +174,10 @@ namespace OpenTK.Platform.MacOS
 
                 MyAGLReportError("aglChoosePixelFormat");
             }
-            
-            
+
+
+			Debug.Print("Creating AGL context.  Sharing with {0}", shareContextRef);
+
             // create the context and share it with the share reference.
             Handle = new ContextHandle( Agl.aglCreateContext(myAGLPixelFormat, shareContextRef));
             MyAGLReportError("aglCreateContext");
