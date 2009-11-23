@@ -864,11 +864,32 @@ namespace OpenTK
 
         #endregion
 
-        #endregion
+		#region WindowState
 
-        #region Events
+		/// <summary>
+		/// Gets or states the state of the NativeWindow.
+		/// </summary>
+		public override WindowState WindowState
+		{
+			get
+			{
+				return base.WindowState;
+			}
+			set
+			{
+				base.WindowState = value;
+				Debug.Print("Updating Context after setting WindowState to {0}", value);
+				Context.Update(WindowInfo);
 
-        /// <summary>
+			}
+		}
+		#endregion
+
+		#endregion
+
+		#region Events
+
+		/// <summary>
         /// Occurs before the window is displayed for the first time.
         /// </summary>
         public event EventHandler<EventArgs> Load;
