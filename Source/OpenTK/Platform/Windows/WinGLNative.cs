@@ -627,18 +627,6 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        void EnableMouseLeaveNotifications()
-        {
-            TrackMouseEventStructure tme = new TrackMouseEventStructure();
-            tme.Size = TrackMouseEventStructure.SizeInBytes;
-            tme.Flags |= TrackMouseEventFlags.LEAVE;
-            tme.TrackWindowHandle = child_window.WindowHandle;
-            tme.HoverTime = -1; // HOVER_DEFAULT
-            if (!Functions.TrackMouseEvent(ref tme))
-                Debug.Print("[Error] Failed to enable mouse event tracking. Error: {0}",
-                    Marshal.GetLastWin32Error());
-        }
-
         #endregion
 
         #region INativeWindow Members
