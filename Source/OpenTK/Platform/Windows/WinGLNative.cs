@@ -68,6 +68,7 @@ namespace OpenTK.Platform.Windows
         WindowState windowState = WindowState.Normal;
         bool borderless_maximized_window_state = false; // Hack to get maximized mode with hidden border (not normally possible).
         bool focused;
+        bool mouse_outside_window = true;
 
         Rectangle
             bounds = new Rectangle(),
@@ -296,21 +297,25 @@ namespace OpenTK.Platform.Windows
                         (short)((uint)lParam.ToInt32() & 0x0000FFFF),
                         (short)(((uint)lParam.ToInt32() & 0xFFFF0000) >> 16));
                     mouse.Position = point;
+
+                    if (mouse_outside_window)
                     {
-                        if (!ClientRectangle.Contains(point))
-                        {
-                            Functions.ReleaseCapture();
-                            if (MouseLeave != null)
-                                MouseLeave(this, EventArgs.Empty);
-                        }
-                        else if (Functions.GetCapture() != window.WindowHandle)
-                        {
-                            Functions.SetFocus(window.WindowHandle);
-                            Functions.SetCapture(window.WindowHandle);
-                            if (MouseEnter != null)
-                                MouseEnter(this, EventArgs.Empty);
-                        }
+                        // Once we receive a mouse move event, it means that the mouse has
+                        // re-entered the window.
+                        mouse_outside_window = false;
+                        EnableMouseTracking();
+
+                        if (MouseEnter != null)
+                            MouseEnter(this, EventArgs.Empty);
                     }
+                    break;
+
+                case WindowMessage.MOUSELEAVE:
+                    mouse_outside_window = true;
+                    // Mouse tracking is disabled automatically by the OS
+                    
+                    if (MouseLeave != null)
+                        MouseLeave(this, EventArgs.Empty);
                     break;
 
                 case WindowMessage.MOUSEWHEEL:
@@ -491,6 +496,18 @@ namespace OpenTK.Platform.Windows
             }
 
             return Functions.DefWindowProc(handle, message, wParam, lParam);
+        }
+
+        private void EnableMouseTracking()
+        {
+            TrackMouseEventStructure me = new TrackMouseEventStructure();
+            me.Size = TrackMouseEventStructure.SizeInBytes;
+            me.TrackWindowHandle = child_window.WindowHandle;
+            me.Flags = TrackMouseEventFlags.LEAVE;
+
+            if (!Functions.TrackMouseEvent(ref me))
+                Debug.Print("[Warning] Failed to enable mouse tracking, error: {0}.",
+                    Marshal.GetLastWin32Error());
         }
 
         private void StartTimer(IntPtr handle)
