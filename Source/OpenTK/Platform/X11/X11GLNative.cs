@@ -148,7 +148,8 @@ namespace OpenTK.Platform.X11
                                    EventMask.KeyReleaseMask | EventMask.KeyPressMask | EventMask.KeymapStateMask |
                                    EventMask.PointerMotionMask | EventMask.FocusChangeMask |
                                    EventMask.ButtonPressMask | EventMask.ButtonReleaseMask |
-                                   EventMask.EnterWindowMask | EventMask.LeaveWindowMask;
+                                   EventMask.EnterWindowMask | EventMask.LeaveWindowMask |
+                                   EventMask.PropertyChangeMask;
                 attributes.event_mask = (IntPtr)window.EventMask;
 
                 uint mask = (uint)SetWindowValuemask.ColorMap | (uint)SetWindowValuemask.EventMask |
@@ -237,25 +238,25 @@ namespace OpenTK.Platform.X11
                 Debug.WriteLine("Registering atoms.");
                 _atom_wm_destroy = Functions.XInternAtom(window.Display, "WM_DELETE_WINDOW", true);
             
-            _atom_net_wm_state = Functions.XInternAtom(window.Display, "_NET_WM_STATE", false);
+                _atom_net_wm_state = Functions.XInternAtom(window.Display, "_NET_WM_STATE", false);
                 _atom_net_wm_state_minimized = Functions.XInternAtom(window.Display, "_NET_WM_STATE_MINIMIZED", false);
                 _atom_net_wm_state_fullscreen = Functions.XInternAtom(window.Display, "_NET_WM_STATE_FULLSCREEN", false);
                 _atom_net_wm_state_maximized_horizontal =
-                Functions.XInternAtom(window.Display, "_NET_WM_STATE_MAXIMIZED_HORZ", false);
+                    Functions.XInternAtom(window.Display, "_NET_WM_STATE_MAXIMIZED_HORZ", false);
                 _atom_net_wm_state_maximized_vertical =
-                Functions.XInternAtom(window.Display, "_NET_WM_STATE_MAXIMIZED_VERT", false);
+                    Functions.XInternAtom(window.Display, "_NET_WM_STATE_MAXIMIZED_VERT", false);
             
-            _atom_net_wm_allowed_actions =
-                Functions.XInternAtom(window.Display, "_NET_WM_ALLOWED_ACTIONS", false);
+                _atom_net_wm_allowed_actions =
+                    Functions.XInternAtom(window.Display, "_NET_WM_ALLOWED_ACTIONS", false);
                 _atom_net_wm_action_resize =
-                Functions.XInternAtom(window.Display, "_NET_WM_ACTION_RESIZE", false);
+                    Functions.XInternAtom(window.Display, "_NET_WM_ACTION_RESIZE", false);
                 _atom_net_wm_action_maximize_horizontally =
-                Functions.XInternAtom(window.Display, "_NET_WM_ACTION_MAXIMIZE_HORZ", false);
+                    Functions.XInternAtom(window.Display, "_NET_WM_ACTION_MAXIMIZE_HORZ", false);
                 _atom_net_wm_action_maximize_vertically =
-                Functions.XInternAtom(window.Display, "_NET_WM_ACTION_MAXIMIZE_VERT", false);
+                    Functions.XInternAtom(window.Display, "_NET_WM_ACTION_MAXIMIZE_VERT", false);
 
-            _atom_net_wm_icon =
-                Functions.XInternAtom(window.Display, "_NEW_WM_ICON", false);
+                _atom_net_wm_icon =
+                    Functions.XInternAtom(window.Display, "_NEW_WM_ICON", false);
             
 //            string[] atom_names = new string[]
 //            {
@@ -740,6 +741,12 @@ namespace OpenTK.Platform.X11
                             Functions.XRefreshKeyboardMapping(ref e.MappingEvent);
                         }
                         break;
+
+                   case XEventName.PropertyNotify:
+                       if (e.PropertyEvent.atom == _atom_net_wm_state)
+                            if (WindowStateChanged != null)
+                                WindowStateChanged(this, EventArgs.Empty);
+                        break;
                        
                     default:
                         //Debug.WriteLine(String.Format("{0} event was not handled", e.type));
@@ -980,7 +987,8 @@ namespace OpenTK.Platform.X11
                 {
                     Functions.XGetWindowProperty(window.Display, window.WindowHandle,
                                  _atom_net_wm_state, IntPtr.Zero, new IntPtr(256), false,
-                                 IntPtr.Zero, out actual_atom, out actual_format, out nitems, out bytes_after, ref prop);
+                                 new IntPtr(4) /*XA_ATOM*/, out actual_atom, out actual_format,
+                                 out nitems, out bytes_after, ref prop);
                 }
 
                 if ((long)nitems > 0 && prop != IntPtr.Zero)
@@ -1029,6 +1037,7 @@ namespace OpenTK.Platform.X11
 
                 using (new XLock(window.Display))
                 {
+                    // Reset the current window state
                     if (current_state == OpenTK.WindowState.Minimized)
                         Functions.XMapWindow(window.Display, window.WindowHandle);
                     else if (current_state == OpenTK.WindowState.Fullscreen)
@@ -1087,9 +1096,6 @@ namespace OpenTK.Platform.X11
 
                 if (temporary_resizable)
                     WindowBorder = previous_state;
-
-                if (WindowStateChanged != null)
-                    WindowStateChanged(this, EventArgs.Empty);
             }
         }
 
