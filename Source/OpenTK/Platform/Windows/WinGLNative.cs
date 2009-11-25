@@ -956,6 +956,11 @@ namespace OpenTK.Platform.Windows
                 if (windowBorder == value)
                     return;
 
+                // We wish to avoid making an invisible window visible just to change the border.
+                // However, it's a good idea to make a visible window invisible temporarily, to
+                // avoid garbage caused by the border change.
+                bool was_visible = Visible;
+
                 // To ensure maximized/minimized windows work correctly, reset state to normal,
                 // change the border, then go back to maximized/minimized.
                 WindowState state = WindowState;
@@ -985,7 +990,8 @@ namespace OpenTK.Platform.Windows
                 Functions.AdjustWindowRectEx(ref rect, style, false, ParentStyleEx);
 
                 // This avoids leaving garbage on the background window.
-                Visible = false;
+                if (was_visible)
+                    Visible = false;
 
                 Functions.SetWindowLong(window.WindowHandle, GetWindowLongOffsets.STYLE, (IntPtr)(int)style);
                 Functions.SetWindowPos(window.WindowHandle, IntPtr.Zero, 0, 0, rect.Width, rect.Height,
@@ -995,7 +1001,7 @@ namespace OpenTK.Platform.Windows
                 // Force window to redraw update its borders, but only if it's
                 // already visible (invisible windows will change borders when
                 // they become visible, so no need to make them visiable prematurely).
-                if (Visible)
+                if (was_visible)
                     Visible = true;
 
                 WindowState = state;
