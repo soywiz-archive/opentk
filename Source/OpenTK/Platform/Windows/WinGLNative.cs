@@ -141,8 +141,6 @@ namespace OpenTK.Platform.Windows
 
             keyboards.Add(keyboard);
             mice.Add(mouse);
-
-            EnableMouseLeaveNotifications();
         }
 
         #endregion
