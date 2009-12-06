@@ -76,8 +76,7 @@ namespace OpenTK.Platform.Windows
             previous_bounds = new Rectangle(); // Used to restore previous size when leaving fullscreen mode.
         Icon icon;
 
-        const ClassStyle DefaultClassStyle =
-            ClassStyle.OwnDC | ClassStyle.VRedraw | ClassStyle.HRedraw | ClassStyle.Ime;
+        const ClassStyle DefaultClassStyle = ClassStyle.OwnDC;
 
         readonly IntPtr DefaultWindowProcedure =
             Marshal.GetFunctionPointerForDelegate(new WindowProcedure(Functions.DefWindowProc));
