@@ -625,9 +625,6 @@ namespace OpenTK.Platform.X11
                             {
                                 isExiting = true;
                                 
-                                if (Unload != null)
-                                    Unload(this, EventArgs.Empty);
-
                                 Debug.WriteLine("Destroying window.");
                                 Functions.XDestroyWindow(window.Display, window.WindowHandle);
                                 break;
@@ -1215,79 +1212,11 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
-        #region public bool IsExiting
-
-        public bool IsExiting
-        {
-            get { return isExiting; }
-        }
-
-        #endregion
-
         #region public bool IsIdle
 
         public bool IsIdle
         {
             get { throw new Exception("The method or operation is not implemented."); }
-        }
-
-        #endregion
-
-        #region public bool Fullscreen
-
-        public bool Fullscreen
-        {
-            get
-            {
-                return false;
-                //return fullscreen;
-            }
-            set
-            {
-//                if (value && !fullscreen)
-//                {
-//                    Debug.Print("Going fullscreen");
-//                    Debug.Indent();
-//                    DisableWindowDecorations(); 
-//                    pre_fullscreen_height = this.Height;
-//                    pre_fullscreen_width = this.Width;
-//                    //Functions.XRaiseWindow(this.window.Display, this.Handle);
-//                    Functions.XMoveResizeWindow(this.window.Display, this.Handle, 0, 0, 
-//                        DisplayDevice.Default.Width, DisplayDevice.Default.Height);
-//                    Debug.Unindent();
-//                    fullscreen = true;
-//                }
-//                else if (!value && fullscreen)
-//                {
-//                    Debug.Print("Going windowed");
-//                    Debug.Indent();
-//                    Functions.XMoveResizeWindow(this.window.Display, this.Handle, 0, 0,
-//                        pre_fullscreen_width, pre_fullscreen_height);
-//                    pre_fullscreen_height = pre_fullscreen_width = 0;
-//                    EnableWindowDecorations();
-//                    Debug.Unindent();
-//                    fullscreen = false;
-//                }
-                /*
-                Debug.Print(value ? "Going fullscreen" : "Going windowed");
-                IntPtr state_atom = Functions.XInternAtom(this.window.Display, "_NET_WM_STATE", false);
-                IntPtr fullscreen_atom = Functions.XInternAtom(this.window.Display, "_NET_WM_STATE_FULLSCREEN", false);
-                XEvent xev = new XEvent();
-                xev.ClientMessageEvent.type = XEventName.ClientMessage;
-                xev.ClientMessageEvent.serial = IntPtr.Zero;
-                xev.ClientMessageEvent.send_event = true;
-                xev.ClientMessageEvent.window = this.Handle;
-                xev.ClientMessageEvent.message_type = state_atom;
-                xev.ClientMessageEvent.format = 32;
-                xev.ClientMessageEvent.ptr1 = (IntPtr)(value ? NetWindowManagerState.Add : NetWindowManagerState.Remove);
-                xev.ClientMessageEvent.ptr2 = (IntPtr)(value ? 1 : 0);
-                xev.ClientMessageEvent.ptr3 = IntPtr.Zero;
-                Functions.XSendEvent(this.window.Display, API.RootWindow, false,
-                    (IntPtr)(EventMask.SubstructureRedirectMask | EventMask.SubstructureNotifyMask), ref xev);
-
-                fullscreen = !fullscreen;
-                */
-            }
         }
 
         #endregion
@@ -1461,10 +1390,7 @@ namespace OpenTK.Platform.X11
                             while (Exists)
                                 ProcessEvents();
                         }
-                        
-                        if (GraphicsContext.CurrentContext != null)
-                            GraphicsContext.CurrentContext.MakeCurrent(null);
-                        
+
                         window.Dispose();
                         window = null;
                     }

@@ -287,6 +287,27 @@ namespace OpenTK
 
         #endregion
 
+        #region OnClose
+
+        /// <summary>
+        /// Called when the NativeWindow is about to close.
+        /// </summary>
+        /// <param name="e">
+        /// The <see cref="System.ComponentModel.CancelEventArgs" /> for this event.
+        /// Set e.Cancel to true in order to stop the GameWindow from closing.</param>
+        protected override void OnClosing (System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            if (!e.Cancel)
+            {
+                isExiting = true;
+                OnUnloadInternal(EventArgs.Empty);
+            }
+        }
+
+
+        #endregion
+
         #region OnLoad
 
         /// <summary>
@@ -381,20 +402,25 @@ namespace OpenTK
                 Debug.Print("Entering main loop.");
                 update_watch.Start();
                 render_watch.Start();
-                while (!IsExiting && Exists)
+                while (true)
                 {
                     ProcessEvents();
-                    DispatchUpdateAndRenderFrame(this, EventArgs.Empty);
+                    if (Exists && !IsExiting)
+                        DispatchUpdateAndRenderFrame(this, EventArgs.Empty);
+                    else
+                        return;
                 }
             }
             finally
             {
-                OnUnloadInternal(EventArgs.Empty);
+                Move -= DispatchUpdateAndRenderFrame;
+                Resize -= DispatchUpdateAndRenderFrame;
 
                 if (Exists)
                 {
-                    Dispose();
-                    //while (this.Exists) ProcessEvents(); // TODO: Should similar behaviour be retained, possibly on native window level?
+                    // TODO: Should similar behaviour be retained, possibly on native window level?
+                    //while (this.Exists)
+                    //    ProcessEvents(false);
                 }
             }
         }

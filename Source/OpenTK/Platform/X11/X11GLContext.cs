@@ -370,7 +370,7 @@ namespace OpenTK.Platform.X11
                 {
                     IntPtr display = Display;
                     if (IsCurrent)
-                        MakeCurrent(null);
+                        Glx.MakeCurrent(display, IntPtr.Zero, IntPtr.Zero);
 
                     Glx.DestroyContext(display, Handle);
                 }
