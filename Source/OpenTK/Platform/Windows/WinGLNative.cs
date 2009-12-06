@@ -908,6 +908,8 @@ namespace OpenTK.Platform.Windows
                         WindowBorder = WindowBorder.Hidden;
                         command = ShowWindowCommand.MAXIMIZE;
 
+                        Functions.SetForegroundWindow(window.WindowHandle);
+
                         break;
                 }
 
