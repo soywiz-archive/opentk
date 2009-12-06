@@ -183,22 +183,6 @@ namespace OpenTK.Platform.Windows
                     StopTimer(handle);
                     break;
 
-                case WindowMessage.NCCALCSIZE:
-                    // Need to update the client rectangle, because it has the wrong size on Vista with Aero enabled.
-                    //if (m.WParam == new IntPtr(1))
-                    //{
-                    //    unsafe
-                    //    {
-                    //        NcCalculateSize* nc_calc_size = (NcCalculateSize*)m.LParam;
-                    //        //nc_calc_size->NewBounds = nc_calc_size->OldBounds;
-                    //        //nc_calc_size->OldBounds = nc_calc_size->NewBounds;
-                    //        //client_rectangle = rect.OldClientRectangle;
-                    //    }
-
-                    //    m.Result = new IntPtr((int)(NcCalcSizeOptions.ALIGNTOP | NcCalcSizeOptions.ALIGNLEFT/* | NcCalcSizeOptions.REDRAW*/));
-                    //}
-                    break;
-
                 case WindowMessage.ERASEBKGND:
                     return new IntPtr(1);
 
@@ -483,7 +467,6 @@ namespace OpenTK.Platform.Windows
                     exists = false;
 
                     Functions.UnregisterClass(ClassName, Instance);
-                    //Marshal.FreeHGlobal(ClassName);
                     window.Dispose();
                     child_window.Dispose();
 
