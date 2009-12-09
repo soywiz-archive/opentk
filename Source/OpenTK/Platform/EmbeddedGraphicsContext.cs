@@ -35,8 +35,10 @@ namespace OpenTK.Platform
     {
         public override void LoadAll()
         {
+#if EXPERIMENTAL
             new OpenTK.Graphics.ES10.GL().LoadEntryPoints();
             new OpenTK.Graphics.ES11.GL().LoadEntryPoints();
+#endif
             new OpenTK.Graphics.ES20.GL().LoadEntryPoints();
         }
     }
