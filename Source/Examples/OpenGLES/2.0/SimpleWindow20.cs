@@ -58,7 +58,7 @@ namespace Examples.Tutorial
         {
             base.OnLoad(e);
 
-            Color color = Color.MidnightBlue;
+            Color4 color = Color4.MidnightBlue;
             GL.ClearColor(color.R, color.G, color.B, color.A);
             GL.Enable(EnableCap.DepthTest);
         }
