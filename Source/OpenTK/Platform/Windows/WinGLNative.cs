@@ -669,7 +669,7 @@ namespace OpenTK.Platform.Windows
             }
             set
             {
-                Size = value.Size;
+                ClientSize = value.Size;
             }
         }
 
