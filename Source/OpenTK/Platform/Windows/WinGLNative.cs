@@ -441,7 +441,7 @@ namespace OpenTK.Platform.Windows
                         Functions.GetClientRect(handle, out rect);
                         client_rectangle = rect.ToRectangle();
 
-                        Functions.SetForegroundWindow(window.WindowHandle);
+                        Functions.SetForegroundWindow(handle);
                     }
                     break;
 
