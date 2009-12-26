@@ -38,6 +38,7 @@ using System.Drawing;
 
 namespace OpenTK.Platform.X11
 {
+    /// \internal
     /// <summary>
     /// Drives GameWindow on X11.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
