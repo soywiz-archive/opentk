@@ -490,16 +490,6 @@ namespace OpenTK
                 return;
             double time_left = next_render - time;
 
-            // Todo: remove this?
-            if (VSync == VSyncMode.Adaptive)
-            {
-                // Check if we have enough time for a vsync
-                if (TargetRenderPeriod != 0 && RenderTime > 2.0 * TargetRenderPeriod)
-                    Context.VSync = false;
-                else
-                    Context.VSync = true;
-            }
-
             if (time_left <= 0.0)
             {
                 // Schedule next render event. The 1 second cap ensures
@@ -513,6 +503,22 @@ namespace OpenTK
 
                 if (time > 0)
                 {
+                    // Todo: revisit this code. Maybe check average framerate instead?
+                    // Note: VSyncMode.Adaptive enables vsync by default. The code below
+                    // is supposed to disable vsync if framerate becomes too low (half of target
+                    // framerate in the current approach) and reenable once the framerate
+                    // rises again.
+                    // Note 2: calling Context.VSync = true repeatedly seems to cause jitter on
+                    // some configurations. If possible, we should avoid repeated calls.
+                    if (VSync == VSyncMode.Adaptive && TargetRenderPeriod != 0)
+                    {
+                        // Check if we have enough time for a vsync
+                        if (RenderTime > 2.0 * TargetRenderPeriod)
+                            Context.VSync = false;
+                        else
+                            Context.VSync = true;
+                    }
+
                     render_period = render_args.Time = time;
                     OnRenderFrameInternal(render_args);
                     render_time = render_watch.Elapsed.TotalSeconds;
@@ -1065,7 +1071,8 @@ namespace OpenTK
         /// </summary>
         On,
         /// <summary>
-        /// VSync enabled, but automatically disabled if framerate falls below a specified limit.
+        /// VSync enabled, unless framerate falls below one half of target framerate.
+        /// If no target framerate is specified, this behaves exactly like <see cref="VSyncMode.On"/>.
         /// </summary>
         Adaptive,
     }
