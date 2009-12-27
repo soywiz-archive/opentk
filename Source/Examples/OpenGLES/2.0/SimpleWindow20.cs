@@ -41,7 +41,7 @@ using OpenTK.Graphics.ES20;
 
 namespace Examples.Tutorial
 {
-    [Example("Immediate mode", ExampleCategory.OpenGLES, "2.0", Documentation = "SimpleES20Window")]
+    [Example("Simple ES 2.0", ExampleCategory.OpenGLES, "2.0", Documentation = "SimpleES20Window")]
     public class SimpleES20Window : GameWindow
     {
         #region Constructor
@@ -119,48 +119,6 @@ namespace Examples.Tutorial
 
         private void DrawCube()
         {
-#if false
-            GL.Begin(BeginMode.Quads);
-
-            GL.Color3(Color.Silver);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
-
-            GL.Color3(Color.Honeydew);
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
-
-            GL.Color3(Color.Moccasin);
-
-            GL.Vertex3(-1.0f, -1.0f, -1.0f);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
-
-            GL.Color3(Color.IndianRed);
-            GL.Vertex3(-1.0f, -1.0f, 1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
-
-            GL.Color3(Color.PaleVioletRed);
-            GL.Vertex3(-1.0f, 1.0f, -1.0f);
-            GL.Vertex3(-1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
-
-            GL.Color3(Color.ForestGreen);
-            GL.Vertex3(1.0f, -1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, -1.0f);
-            GL.Vertex3(1.0f, 1.0f, 1.0f);
-            GL.Vertex3(1.0f, -1.0f, 1.0f);
-
-            GL.End();
-#endif
         }
 
         #endregion
