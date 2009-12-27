@@ -37,10 +37,12 @@ namespace OpenTK.Platform.Egl
     // EGL factory for the Windows platform.
     class EglWinPlatformFactory : WinFactory
     {
+        #region Public Members
+
         public override IGraphicsContext CreateGLContext(GraphicsMode mode, IWindowInfo window, IGraphicsContext shareContext, bool directRendering, int major, int minor, GraphicsContextFlags flags)
         {
             WinWindowInfo win_win = (WinWindowInfo)window;
-            IntPtr egl_display = Egl.GetDisplay(IntPtr.Zero);  // Egl.GetDisplay(new EGLNativeDisplayType(win_win.DeviceContext));
+            IntPtr egl_display = GetDisplay(win_win.DeviceContext);
             EglWindowInfo egl_win = new OpenTK.Platform.Egl.EglWindowInfo(win_win.WindowHandle, egl_display);
             return new EglContext(mode, egl_win, shareContext, major, minor, flags);
         }
@@ -48,7 +50,7 @@ namespace OpenTK.Platform.Egl
         public override IGraphicsContext CreateGLContext(ContextHandle handle, IWindowInfo window, IGraphicsContext shareContext, bool directRendering, int major, int minor, GraphicsContextFlags flags)
         {
             WinWindowInfo win_win = (WinWindowInfo)window;
-            IntPtr egl_display = Egl.GetDisplay(IntPtr.Zero);  // Egl.GetDisplay(new EGLNativeDisplayType(win_win.DeviceContext));
+            IntPtr egl_display = GetDisplay(win_win.DeviceContext);
             EglWindowInfo egl_win = new OpenTK.Platform.Egl.EglWindowInfo(win_win.WindowHandle, egl_display);
             return new EglContext(handle, egl_win, shareContext, major, minor, flags);
         }
@@ -57,5 +59,20 @@ namespace OpenTK.Platform.Egl
         {
             return new EglGraphicsMode();
         }
+
+        #endregion
+
+        #region Private Members
+
+        IntPtr GetDisplay(IntPtr dc)
+        {
+            IntPtr display = Egl.GetDisplay(dc);
+            if (display == IntPtr.Zero)
+                display = Egl.GetDisplay(IntPtr.Zero);
+
+            return display;
+        }
+
+        #endregion
     }
 }
