@@ -64,7 +64,7 @@ namespace OpenTK.Platform.Egl
             Mode = new EglGraphicsMode().SelectGraphicsMode(mode.ColorFormat, mode.Depth, mode.Stencil, mode.Samples, mode.AccumulatorFormat, mode.Buffers, mode.Stereo);
             if (!Mode.Index.HasValue)
                 throw new GraphicsModeException("Invalid or unsupported GraphicsMode.");
-            IntPtr config = mode.Index.Value;
+            IntPtr config = Mode.Index.Value;
 
             if (window.Surface == IntPtr.Zero)
                 window.CreateWindowSurface(config);
