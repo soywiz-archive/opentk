@@ -55,6 +55,14 @@ namespace OpenTK.Platform.Egl
             return new EglContext(handle, egl_win, shareContext, major, minor, flags);
         }
 
+        public override GraphicsContext.GetCurrentContextDelegate CreateGetCurrentGraphicsContext()
+        {
+            return (GraphicsContext.GetCurrentContextDelegate)delegate
+            {
+                return new ContextHandle(Egl.GetCurrentContext());
+            };
+        }
+
         public override IGraphicsMode CreateGraphicsMode()
         {
             return new EglGraphicsMode();

@@ -48,5 +48,13 @@ namespace OpenTK.Platform.Egl
             EglWindowInfo egl_win = new OpenTK.Platform.Egl.EglWindowInfo(x11_win.WindowHandle, Egl.GetDisplay(x11_win.Display));
             return new EglContext(handle, egl_win, shareContext, major, minor, flags);
         }
+
+        public override GraphicsContext.GetCurrentContextDelegate CreateGetCurrentGraphicsContext()
+        {
+            return (GraphicsContext.GetCurrentContextDelegate)delegate
+            {
+                return new ContextHandle(Egl.GetCurrentContext());
+            };
+        }
     }
 }
