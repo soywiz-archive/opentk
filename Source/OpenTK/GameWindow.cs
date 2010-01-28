@@ -911,8 +911,9 @@ namespace OpenTK
 			{
 				base.WindowState = value;
 				Debug.Print("Updating Context after setting WindowState to {0}", value);
-				Context.Update(WindowInfo);
 
+				if (Context != null)
+					Context.Update(WindowInfo);
 			}
 		}
 		#endregion
