@@ -342,7 +342,7 @@ namespace OpenTK.Platform.MacOS
 
         bool firstFullScreen = false;
 
-        internal void SetFullScreen(CarbonWindowInfo info)
+        internal void SetFullScreen(CarbonWindowInfo info, out int width, out int height)
         {
 			CarbonGLNative wind = GetCarbonWindow(info);
 
@@ -352,7 +352,10 @@ namespace OpenTK.Platform.MacOS
 			CG.DisplayCapture(GetQuartzDevice(info));
 			Agl.aglSetFullScreen(Handle.Handle, wind.TargetDisplayDevice.Width, wind.TargetDisplayDevice.Height, 0, 0);
 			MakeCurrent(info);
-			
+
+			width = wind.TargetDisplayDevice.Width;
+			height = wind.TargetDisplayDevice.Height;
+
             // This is a weird hack to workaround a bug where the first time a context
             // is made fullscreen, we just end up with a blank screen.  So we undo it as fullscreen
             // and redo it as fullscreen.  
@@ -360,7 +363,7 @@ namespace OpenTK.Platform.MacOS
 			{
 				firstFullScreen = true;
 				UnsetFullScreen(info);
-				SetFullScreen(info);
+				SetFullScreen(info, out width, out height);
 			}
 
 			mIsFullscreen = true;

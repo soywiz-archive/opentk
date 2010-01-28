@@ -104,11 +104,11 @@ namespace OpenTK.Platform.MacOS
 
         public CarbonGLNative(int x, int y, int width, int height, string title, GraphicsMode mode, GameWindowFlags options, DisplayDevice device)
         {
-            CreateNativeWindow(WindowClass.Document,
+			CreateNativeWindow(WindowClass.Document,
                 WindowAttributes.StandardDocument | WindowAttributes.StandardHandler |
                 WindowAttributes.InWindowMenu | WindowAttributes.LiveResize,
                 new Rect((short)x, (short)y, (short)width, (short)height));
-
+			
 			mDisplayDevice = device;
         }
 
@@ -253,15 +253,18 @@ namespace OpenTK.Platform.MacOS
         {
             windowedBounds = bounds;
 
-            context.SetFullScreen(window);
+			int width, height;
+
+            context.SetFullScreen(window, out width, out height);
 
             Debug.Print("Prev Size: {0}, {1}", Width, Height);
+			clientRectangle.Size = new Size(width, height);
+			Debug.Print("New Size: {0}, {1}", Width, Height);
 
 			// TODO: if we go full screen we need to make this use the device specified.
             bounds = mDisplayDevice.Bounds;
 
-            Debug.Print("New Size: {0}, {1}", Width, Height);
-
+            
 			windowState = WindowState.Fullscreen;
         }
 
