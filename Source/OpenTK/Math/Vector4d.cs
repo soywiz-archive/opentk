@@ -260,7 +260,7 @@ namespace OpenTK
         {
             get
             {
-                return (double)System.Math.Sqrt(X * X + Y * Y + Z * Z + W * W);
+                return System.Math.Sqrt(X * X + Y * Y + Z * Z + W * W);
             }
         }
 

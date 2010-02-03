@@ -199,7 +199,7 @@ namespace OpenTK
         {
             get
             {
-                return (float)System.Math.Sqrt(X * X + Y * Y + Z * Z);
+                return System.Math.Sqrt(X * X + Y * Y + Z * Z);
             }
         }
 
