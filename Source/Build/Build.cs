@@ -251,12 +251,12 @@ Assembly signing:
                     break;
 
                 case BuildTarget.Docs:
-                    Console.WriteLine("Generating project documentation");
+                    Console.WriteLine("Generating reference documentation (this may take several minutes)");
                     ExecuteCommand("doxygen", null, null);
                     string latex_path = Path.Combine(Path.Combine(DocPath, "Source"), "latex");
-                    ExecuteCommand("pdflatex", latex_path, "refman.tex");
-                    ExecuteCommand("makeindex", latex_path, "refman.idx");
-                    ExecuteCommand("pdflatex", latex_path, "refman.tex");
+                    ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
+                    ExecuteCommand("makeindex", latex_path, "-q", "refman.idx");
+                    ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
                     File.Copy(Path.Combine(latex_path, "refman.pdf"),
                         Path.Combine(DocPath, ReferenceFile), true);
                     break;
