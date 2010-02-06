@@ -1,4 +1,4 @@
-﻿#region --- License ---
+#region --- License ---
 /* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
  * See license.txt for license info
  */
@@ -28,7 +28,7 @@ namespace OpenTK.Build
         const string bindings = "Generator.Prebuild.xml";
         const string opentk = "OpenTK.Prebuild.xml";
         const string quickstart = "QuickStart.Prebuild.xml";
-        const string DoxyFile = "DoxyFile";
+        const string DoxyFile = "Doxyfile";
         const string ReferenceFile = "Reference.pdf";
 
         const string KeyFile = "OpenTK.snk"; // Do not change
