@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Open Toolkit Library")]
 [assembly: AssemblyProduct("The Open Toolkit Library")]
-[assembly: AssemblyCopyright("Copyright ©  2006-2009 the Open Toolkit Library")]
+[assembly: AssemblyCopyright("Copyright ©  2006-2010 the Open Toolkit Library")]
 [assembly: AssemblyTrademark("OpenTK")]
 [assembly: AssemblyCulture("")]
 
@@ -32,8 +32,8 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("0.9.9.5")]
-[assembly: AssemblyFileVersion("0.9.9.4")]
+[assembly: AssemblyVersion("1.0.0.201")]
+[assembly: AssemblyFileVersion("1.0.0.201")]
 
 [assembly: CLSCompliant(true)]
 [assembly: System.Security.AllowPartiallyTrustedCallers]
