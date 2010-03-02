@@ -56,6 +56,11 @@ namespace Examples.Tests
                 case Key.Number5: WindowBorder = WindowBorder.Resizable; break;
                 case Key.Number6: WindowBorder = WindowBorder.Fixed; break;
                 case Key.Number7: WindowBorder = WindowBorder.Hidden; break;
+
+                case Key.Left: X = X - 16; break;
+                case Key.Right: X = X + 16; break;
+                case Key.Up: Y = Y - 16; break;
+                case Key.Down: Y = Y + 16; break;
             }
         }
 
