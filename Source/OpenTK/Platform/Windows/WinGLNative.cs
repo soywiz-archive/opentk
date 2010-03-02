@@ -69,6 +69,7 @@ namespace OpenTK.Platform.Windows
         bool borderless_maximized_window_state = false; // Hack to get maximized mode with hidden border (not normally possible).
         bool focused;
         bool mouse_outside_window = true;
+        bool invisible_since_creation; // Set by WindowsMessage.CREATE and consumed by Visible = true (calls BringWindowToFront).
 
         Rectangle
             bounds = new Rectangle(),
@@ -165,7 +166,7 @@ namespace OpenTK.Platform.Windows
 
                     if (new_focused_state != Focused && FocusedChanged != null)
                         FocusedChanged(this, EventArgs.Empty);
-                    return IntPtr.Zero;
+                    break;
 
                 case WindowMessage.ENTERMENULOOP:
                 case WindowMessage.ENTERSIZEMOVE:
@@ -268,7 +269,7 @@ namespace OpenTK.Platform.Windows
                         key_press.KeyChar = (char)wParam.ToInt32();
                     else
                         key_press.KeyChar = (char)wParam.ToInt64();
-                    
+
                     if (KeyPress != null)
                         KeyPress(this, key_press);
                     break;
@@ -294,7 +295,7 @@ namespace OpenTK.Platform.Windows
                 case WindowMessage.MOUSELEAVE:
                     mouse_outside_window = true;
                     // Mouse tracking is disabled automatically by the OS
-                    
+
                     if (MouseLeave != null)
                         MouseLeave(this, EventArgs.Empty);
                     break;
@@ -441,13 +442,13 @@ namespace OpenTK.Platform.Windows
                         Functions.GetClientRect(handle, out rect);
                         client_rectangle = rect.ToRectangle();
 
-                        Functions.SetForegroundWindow(handle);
+                        invisible_since_creation = true;
                     }
                     break;
 
                 case WindowMessage.CLOSE:
                     System.ComponentModel.CancelEventArgs e = new System.ComponentModel.CancelEventArgs();
-                    
+
                     if (Closing != null)
                         Closing(this, e);
 
@@ -471,7 +472,7 @@ namespace OpenTK.Platform.Windows
 
                     if (Closed != null)
                         Closed(this, EventArgs.Empty);
-                    
+
                     break;
 
                 #endregion
@@ -518,7 +519,7 @@ namespace OpenTK.Platform.Windows
 
         #region IsIdle
 
-       bool IsIdle
+        bool IsIdle
         {
             get
             {
@@ -798,6 +799,11 @@ namespace OpenTK.Platform.Windows
                 if (value)
                 {
                     Functions.ShowWindow(window.WindowHandle, ShowWindowCommand.SHOW);
+                    if (invisible_since_creation)
+                    {
+                        Functions.BringWindowToTop(window.WindowHandle);
+                        Functions.SetForegroundWindow(window.WindowHandle);
+                    }
                 }
                 else if (!value)
                 {
@@ -900,13 +906,6 @@ namespace OpenTK.Platform.Windows
                 if (command != 0)
                     Functions.ShowWindow(window.WindowHandle, command);
 
-                // Restore previous window size/location if necessary
-                if (command == ShowWindowCommand.RESTORE && previous_bounds != Rectangle.Empty)
-                {
-                    Bounds = previous_bounds;
-                    previous_bounds = Rectangle.Empty;
-                }
-
                 // Restore previous window border or apply pending border change when leaving fullscreen mode.
                 if (exiting_fullscreen)
                 {
@@ -915,6 +914,13 @@ namespace OpenTK.Platform.Windows
                         previous_window_border.HasValue ? previous_window_border.Value :
                         WindowBorder;
                     deferred_window_border = previous_window_border = null;
+                }
+
+                // Restore previous window size/location if necessary
+                if (command == ShowWindowCommand.RESTORE && previous_bounds != Rectangle.Empty)
+                {
+                    Bounds = previous_bounds;
+                    previous_bounds = Rectangle.Empty;
                 }
             }
         }
@@ -1061,7 +1067,7 @@ namespace OpenTK.Platform.Windows
         public event EventHandler<EventArgs> MouseEnter;
 
         public event EventHandler<EventArgs> MouseLeave;
-        
+
         #endregion
 
         #endregion
