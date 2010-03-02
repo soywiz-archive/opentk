@@ -17,14 +17,14 @@ using OpenTK.Input;
 
 namespace Examples.Tests
 {
-    [Example("GameWindow states", ExampleCategory.OpenTK, "Test", Documentation="GameWindowStates")]
+    [Example("GameWindow states", ExampleCategory.OpenTK, "Test", Documentation = "GameWindowStates")]
     public class GameWindowStates : GameWindow
     {
         readonly Font TextFont = new Font(FontFamily.GenericSansSerif, 16);
         readonly Bitmap TextBitmap = new Bitmap(1024, 256);
         int texture;
         bool mouse_in_window = false;
-        
+
         public GameWindowStates()
             : base(800, 600)
         {
@@ -36,6 +36,10 @@ namespace Examples.Tests
             FocusedChanged += delegate(object sender, EventArgs e) { UpdateText(); };
             MouseEnter += delegate(object sender, EventArgs e) { mouse_in_window = true; UpdateText(); };
             MouseLeave += delegate(object sender, EventArgs e) { mouse_in_window = false; UpdateText(); };
+            Move += delegate(object sender, EventArgs e) { UpdateText(); };
+            Resize += delegate(object sender, EventArgs e) { UpdateText(); };
+            Mouse.Move += delegate(object sender, MouseMoveEventArgs e) { UpdateText(); };
+            Mouse.WheelChanged += delegate(object sender, MouseWheelEventArgs e) { UpdateText(); };
         }
 
         void KeyUpHandler(object sender, KeyboardKeyEventArgs e)
@@ -59,13 +63,20 @@ namespace Examples.Tests
         {
             using (Graphics gfx = Graphics.FromImage(TextBitmap))
             {
+                int line = 0;
+
                 gfx.Clear(Color.MidnightBlue);
                 gfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
-                gfx.DrawString(String.Format("[1 - 4]: change WindowState (current: {0}).", this.WindowState), TextFont, Brushes.White, new PointF(0, 0));
-                gfx.DrawString(String.Format("[5 - 7]: change WindowBorder (current: {0}).", this.WindowBorder), TextFont, Brushes.White, new PointF(0, TextFont.Height));
-                gfx.DrawString(String.Format("Focused: {0}.", this.Focused), TextFont, Brushes.White, new PointF(0, 2 * TextFont.Height));
-                gfx.DrawString(String.Format("Mouse {0} window.", mouse_in_window ? "inside" : "outside of"), TextFont, Brushes.White, new PointF(0, 3 * TextFont.Height));
+                gfx.DrawString(String.Format("[1 - 4]: change WindowState (current: {0}).", this.WindowState), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("[5 - 7]: change WindowBorder (current: {0}).", this.WindowBorder), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("Focused: {0}.", this.Focused), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("Mouse {0} window.", mouse_in_window ? "inside" : "outside of"), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("Mouse position: {0}", new Vector3(Mouse.X, Mouse.Y, Mouse.Wheel)), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("Window.Bounds: {0}", Bounds), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("Window.Location: {0}, Size: {1}", Location, Size), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("Window.{{X={0}, Y={1}, Width={2}, Height={3}}}", X, Y, Width, Height), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
+                gfx.DrawString(String.Format("Window.ClientRectangle: {0}", ClientRectangle), TextFont, Brushes.White, new PointF(0, line++ * TextFont.Height));
             }
 
             System.Drawing.Imaging.BitmapData data = TextBitmap.LockBits(new System.Drawing.Rectangle(0, 0, TextBitmap.Width, TextBitmap.Height),
