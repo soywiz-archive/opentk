@@ -719,8 +719,8 @@ namespace OpenTK.Platform.Windows
 
         public int X
         {
-            get { return ClientRectangle.X; }
-            set { ClientRectangle = new Rectangle(new Point(value, Y), Size); }
+            get { return Location.X; }
+            set { Location = new Point(value, Y); }
         }
 
         #endregion
@@ -729,8 +729,8 @@ namespace OpenTK.Platform.Windows
 
         public int Y
         {
-            get { return ClientRectangle.Y; }
-            set { ClientRectangle = new Rectangle(new Point(X, value), Size); }
+            get { return Location.Y; }
+            set { Location = new Point(X, value); }
         }
 
         #endregion
