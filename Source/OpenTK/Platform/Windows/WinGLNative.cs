@@ -37,6 +37,7 @@ using System.Drawing;
 
 namespace OpenTK.Platform.Windows
 {
+    /// \internal
     /// <summary>
     /// Drives GameWindow on Windows.
     /// This class supports OpenTK, and is not intended for use by OpenTK programs.
