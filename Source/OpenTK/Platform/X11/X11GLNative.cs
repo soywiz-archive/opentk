@@ -206,7 +206,6 @@ namespace OpenTK.Platform.X11
 
                 using (new XLock(window.Display))
                 {
-                    Functions.XLockDisplay(window.Display);
                     window.Screen = Functions.XDefaultScreen(window.Display); //API.DefaultScreen;
                     window.RootWindow = Functions.XRootWindow(window.Display, window.Screen); // API.RootWindow;
                 }
@@ -589,10 +588,15 @@ namespace OpenTK.Platform.X11
         public void ProcessEvents()
         {
             // Process all pending events
-            while (Exists && window != null &&
-                   Functions.XCheckWindowEvent(window.Display, window.WindowHandle, window.EventMask, ref e) ||
-                   Functions.XCheckTypedWindowEvent(window.Display, window.WindowHandle, XEventName.ClientMessage, ref e))
+            while (Exists && window != null)
             {
+                using (new XLock(window.Display))
+                {
+                    if (!Functions.XCheckWindowEvent(window.Display, window.WindowHandle, window.EventMask, ref e) &&
+                        !Functions.XCheckTypedWindowEvent(window.Display, window.WindowHandle, XEventName.ClientMessage, ref e))
+                        break;
+                }
+                
                 // Respond to the event e
                 switch (e.type)
                 {
@@ -683,10 +687,7 @@ namespace OpenTK.Platform.X11
                     case XEventName.KeyPress:
                         driver.ProcessEvent(ref e);
                         int status = 0;
-                        using (new XLock(window.Display))
-                        {    
-                            status = Functions.XLookupString(ref e.KeyEvent, ascii, ascii.Length, null, IntPtr.Zero);
-                        }
+                        status = Functions.XLookupString(ref e.KeyEvent, ascii, ascii.Length, null, IntPtr.Zero);
                         Encoding.Default.GetChars(ascii, 0, status, chars, 0);
 
                         EventHandler<KeyPressEventArgs> key_press = KeyPress;
@@ -748,10 +749,7 @@ namespace OpenTK.Platform.X11
                         if (e.MappingEvent.request == 0 || e.MappingEvent.request == 1)
                         {
                             Debug.Print("keybard mapping refreshed");
-                            using (new XLock(window.Display))
-                            {
-                                Functions.XRefreshKeyboardMapping(ref e.MappingEvent);
-                            }
+                            Functions.XRefreshKeyboardMapping(ref e.MappingEvent);
                         }
                         break;
 
