@@ -42,35 +42,6 @@ namespace OpenTK.Platform.X11
 
     #endregion
     
-    #region DisplayLock
-    
-    /*
-    internal class DisplayLock : IDisposable
-    {
-        IntPtr display;
-        
-        public DisplayLock(IntPtr display)
-        {
-            if (display == IntPtr.Zero) throw new ArgumentException("display", "Must be a valid X11 display connection.");
-            this.display = display;
-            Functions.XLockDisplay(display);
-        }
-    
-        publc void Dispose()
-        {
-            Functions.XUnlockDisplay(display);
-            GC.SuppressFinalize(this);
-        }
-        
-        ~DisplayLock()
-        {
-            Functions.XUnlockDisplay(display);
-        }
-    }
-    */
-
-    #endregion
-
     #region Structs
    
     #endregion
