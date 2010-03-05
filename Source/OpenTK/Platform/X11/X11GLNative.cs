@@ -145,7 +145,7 @@ namespace OpenTK.Platform.X11
                 attributes.background_pixel = IntPtr.Zero;
                 attributes.border_pixel = IntPtr.Zero;
                 attributes.colormap = Functions.XCreateColormap(window.Display, window.RootWindow, window.VisualInfo.Visual, 0/*AllocNone*/);
-                window.EventMask = EventMask.StructureNotifyMask | EventMask.SubstructureNotifyMask | EventMask.ExposureMask |
+                window.EventMask = EventMask.StructureNotifyMask /*| EventMask.SubstructureNotifyMask*/ | EventMask.ExposureMask |
                                    EventMask.KeyReleaseMask | EventMask.KeyPressMask | EventMask.KeymapStateMask |
                                    EventMask.PointerMotionMask | EventMask.FocusChangeMask |
                                    EventMask.ButtonPressMask | EventMask.ButtonReleaseMask |
@@ -427,18 +427,21 @@ namespace OpenTK.Platform.X11
 
         bool DisableMotifDecorations()
         {
-            IntPtr atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
-            if (atom != IntPtr.Zero)
+            using (new XLock(window.Display))
             {
-                //Functions.XGetWindowProperty(window.Display, window.WindowHandle, atom, IntPtr.Zero, IntPtr.Zero, false,
-                                             
-                MotifWmHints hints = new MotifWmHints();
-                hints.flags = (IntPtr)MotifFlags.Decorations;
-                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
-                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
-                return true;
+                IntPtr atom = Functions.XInternAtom(this.window.Display, MOTIF_WM_ATOM, true);
+                if (atom != IntPtr.Zero)
+                {
+                    //Functions.XGetWindowProperty(window.Display, window.WindowHandle, atom, IntPtr.Zero, IntPtr.Zero, false,
+                                                 
+                    MotifWmHints hints = new MotifWmHints();
+                    hints.flags = (IntPtr)MotifFlags.Decorations;
+                    Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
+                                              ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
 
         #endregion
@@ -447,16 +450,19 @@ namespace OpenTK.Platform.X11
 
         bool DisableGnomeDecorations()
         {
-            IntPtr atom = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_HINTS, true);
-            if (atom != IntPtr.Zero)
+            using (new XLock(window.Display))
             {
-                IntPtr hints = IntPtr.Zero;
-                Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
-                                          ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
-                return true;
+                IntPtr atom = Functions.XInternAtom(this.window.Display, Constants.XA_WIN_HINTS, true);
+                if (atom != IntPtr.Zero)
+                {
+                    IntPtr hints = IntPtr.Zero;
+                    Functions.XChangeProperty(this.window.Display, this.Handle, atom, atom, 32, PropertyMode.Replace,
+                                              ref hints, Marshal.SizeOf(hints) / IntPtr.Size);
+                    return true;
+                }
+    
+                return false;
             }
-
-            return false;
         }
 
         #endregion
@@ -627,7 +633,10 @@ namespace OpenTK.Platform.X11
                                 isExiting = true;
                                 
                                 Debug.WriteLine("Destroying window.");
-                                Functions.XDestroyWindow(window.Display, window.WindowHandle);
+                                using (new XLock(window.Display))
+                                {
+                                    Functions.XDestroyWindow(window.Display, window.WindowHandle);
+                                }
                                 break;
                             }
                         }
@@ -660,8 +669,8 @@ namespace OpenTK.Platform.X11
                         if (ClientSize != new_size)
                         {
                             bounds.Size = new_size;
-                            bounds.Width += e.ConfigureEvent.border_width;
-                            bounds.Height += e.ConfigureEvent.border_width;
+                            bounds.Width += border_width;
+                            bounds.Height += border_width;
 
                             // Todo: Get the real client rectangle.
                             client_rectangle.Size = new_size;
@@ -673,8 +682,11 @@ namespace OpenTK.Platform.X11
 
                     case XEventName.KeyPress:
                         driver.ProcessEvent(ref e);
-
-                        int status = Functions.XLookupString(ref e.KeyEvent, ascii, ascii.Length, null, IntPtr.Zero);
+                        int status = 0;
+                        using (new XLock(window.Display))
+                        {    
+                            status = Functions.XLookupString(ref e.KeyEvent, ascii, ascii.Length, null, IntPtr.Zero);
+                        }
                         Encoding.Default.GetChars(ascii, 0, status, chars, 0);
 
                         EventHandler<KeyPressEventArgs> key_press = KeyPress;
@@ -736,7 +748,10 @@ namespace OpenTK.Platform.X11
                         if (e.MappingEvent.request == 0 || e.MappingEvent.request == 1)
                         {
                             Debug.Print("keybard mapping refreshed");
-                            Functions.XRefreshKeyboardMapping(ref e.MappingEvent);
+                            using (new XLock(window.Display))
+                            {
+                                Functions.XRefreshKeyboardMapping(ref e.MappingEvent);
+                            }
                         }
                         break;
 
@@ -762,8 +777,11 @@ namespace OpenTK.Platform.X11
             get { return bounds; }
             set
             {
-                Functions.XMoveResizeWindow(window.Display, window.WindowHandle,
-                    value.X, value.Y, value.Width - border_width, value.Height - border_width);
+                using (new XLock(window.Display))
+                {
+                    Functions.XMoveResizeWindow(window.Display, window.WindowHandle,
+                        value.X, value.Y, value.Width - border_width, value.Height - border_width);
+                }
             }
         }
 
@@ -776,7 +794,10 @@ namespace OpenTK.Platform.X11
             get { return Bounds.Location; }
             set
             {
-                Functions.XMoveWindow(window.Display, window.WindowHandle, value.X, value.Y);
+                using (new XLock(window.Display))
+                {
+                    Functions.XMoveWindow(window.Display, window.WindowHandle, value.X, value.Y);
+                }
             }
         }
 
@@ -791,10 +812,13 @@ namespace OpenTK.Platform.X11
             {
                 int width = value.Width - border_width;
                 int height = value.Height - border_width;
-                width = width < 0 ? 1 : width;
-                height = height < 0 ? 1 : height;
+                width = width <= 0 ? 1 : width;
+                height = height <= 0 ? 1 : height;
                 
-                Functions.XResizeWindow(window.Display, window.WindowHandle, width, height);
+                using (new XLock(window.Display))
+                {
+                    Functions.XResizeWindow(window.Display, window.WindowHandle, width, height);
+                }
             }
         }
 
@@ -814,8 +838,11 @@ namespace OpenTK.Platform.X11
             }
             set
             {
-                Functions.XResizeWindow(window.Display, window.WindowHandle,
-                    value.Width, value.Height);
+                using (new XLock(window.Display))
+                {
+                    Functions.XResizeWindow(window.Display, window.WindowHandle,
+                        value.Width, value.Height);
+                }
             }
         }
 
@@ -841,8 +868,8 @@ namespace OpenTK.Platform.X11
 
         public int Width
         {
-            get { return Bounds.Width; }
-            set { Size = new Size(value, Height); }
+            get { return ClientSize.Width; }
+            set { ClientSize = new Size(value, Height); }
         }
 
         #endregion
@@ -851,8 +878,8 @@ namespace OpenTK.Platform.X11
 
         public int Height
         {
-            get { return Bounds.Height; }
-            set { Size = new Size(Width, value); }
+            get { return ClientSize.Height; }
+            set { ClientSize = new Size(Width, value); }
         }
 
         #endregion
@@ -861,7 +888,7 @@ namespace OpenTK.Platform.X11
 
         public int X
         {
-            get { return Bounds.X; }
+            get { return Location.X; }
             set { Location = new Point(value, Y); }
         }
 
@@ -871,7 +898,7 @@ namespace OpenTK.Platform.X11
 
         public int Y
         {
-            get { return Bounds.Y; }
+            get { return Location.Y; }
             set { Location = new Point(X, value); }
         }
 
@@ -1245,7 +1272,10 @@ namespace OpenTK.Platform.X11
             get
             {
                 IntPtr name = IntPtr.Zero;
-                Functions.XFetchName(window.Display, window.WindowHandle, ref name);
+                using (new XLock(window.Display))
+                {
+                    Functions.XFetchName(window.Display, window.WindowHandle, ref name);
+                }
                 if (name != IntPtr.Zero)
                     return Marshal.PtrToStringAnsi(name);
 
@@ -1254,7 +1284,12 @@ namespace OpenTK.Platform.X11
             set
             {
                 if (value != null && value != Title)
-                    Functions.XStoreName(window.Display, window.WindowHandle, value);
+                {
+                    using (new XLock(window.Display))
+                    {
+                        Functions.XStoreName(window.Display, window.WindowHandle, value);
+                    }
+                }
 
                 if (TitleChanged != null)
                     TitleChanged(this, EventArgs.Empty);
@@ -1275,11 +1310,17 @@ namespace OpenTK.Platform.X11
             {
                 if (value && !visible)
                 {
-                    Functions.XMapWindow(window.Display, window.WindowHandle);
+                    using (new XLock(window.Display))
+                    {
+                        Functions.XMapWindow(window.Display, window.WindowHandle);
+                    }
                 }
                 else if (!value && visible)
                 {
-                    Functions.XUnmapWindow(window.Display, window.WindowHandle);
+                    using (new XLock(window.Display))
+                    {
+                        Functions.XUnmapWindow(window.Display, window.WindowHandle);
+                    }
                 }
             }
         }
@@ -1307,9 +1348,12 @@ namespace OpenTK.Platform.X11
             ev.ClientMessageEvent.display = window.Display;
             ev.ClientMessageEvent.window = window.WindowHandle;
             ev.ClientMessageEvent.ptr1 = _atom_wm_destroy;
-            Functions.XSendEvent(window.Display, window.WindowHandle, false,
-                EventMask.NoEventMask, ref ev);
-            Functions.XFlush(window.Display);
+            using (new XLock(window.Display))
+            {
+                Functions.XSendEvent(window.Display, window.WindowHandle, false,
+                    EventMask.NoEventMask, ref ev);
+                Functions.XFlush(window.Display);
+            }
         }
 
         #endregion
@@ -1319,7 +1363,10 @@ namespace OpenTK.Platform.X11
         public void DestroyWindow()
         {
             Debug.WriteLine("X11GLNative shutdown sequence initiated.");
-            Functions.XDestroyWindow(window.Display, window.WindowHandle);
+            using (new XLock(window.Display))
+            {
+                Functions.XDestroyWindow(window.Display, window.WindowHandle);
+            }
         }
 
         #endregion
@@ -1331,7 +1378,10 @@ namespace OpenTK.Platform.X11
             int ox, oy;
             IntPtr child;
 
-            Functions.XTranslateCoordinates(window.Display, window.RootWindow, window.WindowHandle, point.X, point.Y, out ox, out oy, out child);
+            using (new XLock(window.Display))
+            {
+                Functions.XTranslateCoordinates(window.Display, window.RootWindow, window.WindowHandle, point.X, point.Y, out ox, out oy, out child);
+            }
 
             point.X = ox;
             point.Y = oy;
@@ -1348,7 +1398,10 @@ namespace OpenTK.Platform.X11
             int ox, oy;
             IntPtr child;
 
-            Functions.XTranslateCoordinates(window.Display, window.WindowHandle, window.RootWindow, point.X, point.Y, out ox, out oy, out child);
+            using (new XLock(window.Display))
+            {
+                Functions.XTranslateCoordinates(window.Display, window.WindowHandle, window.RootWindow, point.X, point.Y, out ox, out oy, out child);
+            }
 
             point.X = ox;
             point.Y = oy;
@@ -1378,14 +1431,9 @@ namespace OpenTK.Platform.X11
                     {
                         if (Exists)
                         {
-                            try
+                            using (new XLock(window.Display))
                             {
-                                Functions.XLockDisplay(window.Display);
                                 Functions.XDestroyWindow(window.Display, window.WindowHandle);
-                            }
-                            finally
-                            {
-                                Functions.XUnlockDisplay(window.Display);
                             }
 
                             while (Exists)
