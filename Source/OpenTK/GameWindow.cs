@@ -511,7 +511,9 @@ namespace OpenTK
                     // rises again.
                     // Note 2: calling Context.VSync = true repeatedly seems to cause jitter on
                     // some configurations. If possible, we should avoid repeated calls.
-                    if (VSync == VSyncMode.Adaptive && TargetRenderPeriod != 0)
+                    // Note 3: we may not read/write the VSync property without a current context.
+                    // This may come to pass if the user has moved rendering to his own thread.
+                    if (Context.IsCurrent && VSync == VSyncMode.Adaptive && TargetRenderPeriod != 0)
                     {
                         // Check if we have enough time for a vsync
                         if (RenderTime > 2.0 * TargetRenderPeriod)
