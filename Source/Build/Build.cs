@@ -253,12 +253,26 @@ Assembly signing:
                 case BuildTarget.Docs:
                     Console.WriteLine("Generating reference documentation (this may take several minutes)...");
                     Console.WriteLine("Generating html sources...");
-                    ExecuteCommand("doxygen", null, null);
+                    try { ExecuteCommand("doxygen", null, null); }
+                    catch
+                    {
+                        Console.WriteLine("Failed to run \"doxygen\".");
+                        Console.WriteLine("Please consult the documentation for more information.");
+                    }
+
                     string latex_path = Path.Combine(Path.Combine(DocPath, "Source"), "latex");
                     Console.WriteLine("Compiling sources to pdf...");
-                    ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
-                    ExecuteCommand("makeindex", latex_path, "-q", "refman.idx");
-                    ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
+                    try
+                    {
+                        ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
+                        ExecuteCommand("makeindex", latex_path, "-q", "refman.idx");
+                        ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Failed to run \"pdflatex\" or \"makeindex\".");
+                        Console.WriteLine("Please consult the documentation for more information");
+                    }
                     File.Copy(Path.Combine(latex_path, "refman.pdf"),
                         Path.Combine(DocPath, ReferenceFile), true);
                     break;
