@@ -1925,7 +1925,8 @@ namespace OpenTK.Platform.Windows
     #endregion DeviceMode class
 
     #region DisplayDevice
-    
+
+    /// \internal
     /// <summary>
     /// The DISPLAY_DEVICE structure receives information about the display device specified by the iDevNum parameter of the EnumDisplayDevices function.
     /// </summary>
@@ -2143,6 +2144,7 @@ namespace OpenTK.Platform.Windows
 
     #region RawInputDevice
 
+    /// \internal
     /// <summary>
     /// Defines information for the raw input devices.
     /// </summary>
@@ -2184,6 +2186,7 @@ namespace OpenTK.Platform.Windows
 
     #region RawInputDeviceList
 
+    /// \internal
     /// <summary>
     /// Contains information about a raw input device.
     /// </summary>
@@ -2209,6 +2212,7 @@ namespace OpenTK.Platform.Windows
 
     #region RawInput
 
+    /// \internal
     /// <summary>
     /// Contains the raw input from a device.
     /// </summary>
@@ -2700,6 +2704,7 @@ namespace OpenTK.Platform.Windows
 
     #region WindowInfo
 
+    /// \internal
     /// <summary>
     /// Contains window information.
     /// </summary>
