@@ -718,7 +718,7 @@ namespace OpenTK.Platform.Windows
         public int Width
         {
             get { return ClientRectangle.Width; }
-            set { ClientRectangle = new Rectangle(Location, new Size(value, Height)); }
+            set { ClientRectangle = new Rectangle(0, 0, value, Height); }
         }
 
         #endregion
@@ -728,7 +728,7 @@ namespace OpenTK.Platform.Windows
         public int Height
         {
             get { return ClientRectangle.Height; }
-            set { ClientRectangle = new Rectangle(Location, new Size(Width, value)); }
+            set { ClientRectangle = new Rectangle(0, 0, Width, value); }
         }
 
         #endregion
