@@ -68,6 +68,7 @@ namespace OpenTK.Platform.Windows
         bool focused;
         bool mouse_outside_window = true;
         bool invisible_since_creation; // Set by WindowsMessage.CREATE and consumed by Visible = true (calls BringWindowToFront).
+        int suppress_resize; // Used in WindowBorder and WindowState in order to avoid rapid, consecutive resize events.
 
         Rectangle
             bounds = new Rectangle(),
@@ -203,7 +204,7 @@ namespace OpenTK.Platform.Windows
                                     SetWindowPosFlags.NOZORDER | SetWindowPosFlags.NOOWNERZORDER |
                                     SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOSENDCHANGING);
 
-                                if (Resize != null)
+                                if (suppress_resize <= 0 && Resize != null)
                                     Resize(this, EventArgs.Empty);
                             }
                         }
@@ -599,6 +600,34 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
+        void HideBorder()
+        {
+            suppress_resize++;
+            WindowBorder = WindowBorder.Hidden;
+            ProcessEvents();
+            suppress_resize--;
+        }
+
+        void RestoreBorder()
+        {
+            suppress_resize++;
+            WindowBorder =
+                deferred_window_border.HasValue ? deferred_window_border.Value :
+                previous_window_border.HasValue ? previous_window_border.Value :
+                WindowBorder;
+            ProcessEvents();
+            suppress_resize--;
+            deferred_window_border = previous_window_border = null;
+        }
+
+        void ResetWindowState()
+        {
+            suppress_resize++;
+            WindowState = WindowState.Normal;
+            ProcessEvents();
+            suppress_resize--;
+        }
+
         #endregion
 
         #region INativeWindow Members
@@ -851,7 +880,7 @@ namespace OpenTK.Platform.Windows
                         // manually to cover the whole working area of the current monitor.
 
                         // Reset state to avoid strange interactions with fullscreen/minimized windows.
-                        WindowState = WindowState.Normal;
+                        ResetWindowState();
 
                         if (WindowBorder == WindowBorder.Hidden)
                         {
@@ -880,11 +909,11 @@ namespace OpenTK.Platform.Windows
                         // command for windows with hidden borders.
 
                         // Reset state to avoid strange side-effects from maximized/minimized windows.
-                        WindowState = WindowState.Normal;
+                        ResetWindowState();
 
                         previous_bounds = Bounds;
                         previous_window_border = WindowBorder;
-                        WindowBorder = WindowBorder.Hidden;
+                        HideBorder();
                         command = ShowWindowCommand.MAXIMIZE;
 
                         Functions.SetForegroundWindow(window.WindowHandle);
@@ -898,11 +927,7 @@ namespace OpenTK.Platform.Windows
                 // Restore previous window border or apply pending border change when leaving fullscreen mode.
                 if (exiting_fullscreen)
                 {
-                    WindowBorder =
-                        deferred_window_border.HasValue ? deferred_window_border.Value :
-                        previous_window_border.HasValue ? previous_window_border.Value :
-                        WindowBorder;
-                    deferred_window_border = previous_window_border = null;
+                    RestoreBorder();
                 }
 
                 // Restore previous window size/location if necessary
@@ -945,7 +970,7 @@ namespace OpenTK.Platform.Windows
                 // To ensure maximized/minimized windows work correctly, reset state to normal,
                 // change the border, then go back to maximized/minimized.
                 WindowState state = WindowState;
-                WindowState = WindowState.Normal;
+                ResetWindowState();
 
                 WindowStyle style = WindowStyle.ClipChildren | WindowStyle.ClipSiblings;
 
