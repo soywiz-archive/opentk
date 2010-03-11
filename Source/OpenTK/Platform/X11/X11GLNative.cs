@@ -81,6 +81,8 @@ namespace OpenTK.Platform.X11
 
         IntPtr _atom_net_wm_icon;
 
+        IntPtr _atom_net_frame_extents;
+
         readonly IntPtr _atom_xa_cardinal = new IntPtr(6);
         
         //IntPtr _atom_motif_wm_hints;
@@ -92,7 +94,7 @@ namespace OpenTK.Platform.X11
         static readonly IntPtr _atom_toggle = (IntPtr)2;
         
         Rectangle bounds, client_rectangle;
-        int border_width;
+        int border_left, border_right, border_top, border_bottom;
         Icon icon;
         bool has_focus;
         bool visible;
@@ -257,6 +259,9 @@ namespace OpenTK.Platform.X11
 
                 _atom_net_wm_icon =
                     Functions.XInternAtom(window.Display, "_NEW_WM_ICON", false);
+
+                _atom_net_frame_extents =
+                    Functions.XInternAtom(window.Display, "_NET_FRAME_EXTENTS", false);
             
 //            string[] atom_names = new string[]
 //            {
@@ -406,14 +411,14 @@ namespace OpenTK.Platform.X11
                 Debug.Print("Removed decorations through motif.");
                 _decorations_hidden = true;
             }
-
+            
             using (new XLock(window.Display))
             {
                 // Functions.XSetTransientForHint(this.window.Display, this.Handle, this.window.RootWindow);
-    
+
                 // Some WMs remove decorations when this hint is set. Doesn't hurt to try.
                 Functions.XSetTransientForHint(this.window.Display, this.Handle, this.window.RootWindow);
-    
+
                 if (_decorations_hidden)
                 {
                     Functions.XUnmapWindow(this.window.Display, this.Handle);
@@ -421,6 +426,7 @@ namespace OpenTK.Platform.X11
                 }
             }
         }
+        
 
         #region bool DisableMotifDecorations()
 
@@ -483,7 +489,7 @@ namespace OpenTK.Platform.X11
             using (new XLock(window.Display))
             {
                 Functions.XSetTransientForHint(this.window.Display, this.Handle, IntPtr.Zero);
-    
+
                 if (!_decorations_hidden)
                 {
                     Functions.XUnmapWindow(this.window.Display, this.Handle);
@@ -579,6 +585,86 @@ namespace OpenTK.Platform.X11
 
         #endregion
 
+        bool RefreshWindowBorders()
+        {
+            IntPtr atom, nitems, bytes_after, prop = IntPtr.Zero;
+            int format;
+            bool borders_changed = false;
+
+            using (new XLock(window.Display))
+            {
+                Functions.XGetWindowProperty(window.Display, window.WindowHandle,
+                    _atom_net_frame_extents, IntPtr.Zero, new IntPtr(16), false,
+                    (IntPtr)Atom.XA_CARDINAL, out atom, out format, out nitems, out bytes_after, ref prop);
+            }
+
+            if ((prop != IntPtr.Zero))
+            {
+                if ((long)nitems == 4)
+                {
+                    int new_border_left = Marshal.ReadIntPtr(prop, 0).ToInt32();
+                    int new_border_right = Marshal.ReadIntPtr(prop, IntPtr.Size).ToInt32();
+                    int new_border_top = Marshal.ReadIntPtr(prop, IntPtr.Size * 2).ToInt32();
+                    int new_border_bottom = Marshal.ReadIntPtr(prop, IntPtr.Size * 3).ToInt32();
+
+                    borders_changed =
+                        new_border_left != border_left ||
+                        new_border_right != border_right ||
+                        new_border_top != border_top ||
+                        new_border_bottom != border_bottom;
+
+                    border_left = new_border_left;
+                    border_right = new_border_right;
+                    border_top = new_border_top;
+                    border_bottom = new_border_bottom;
+
+                    //Debug.WriteLine(border_left);
+                    //Debug.WriteLine(border_right);
+                    //Debug.WriteLine(border_top);
+                    //Debug.WriteLine(border_bottom);
+                }
+
+                using (new XLock(window.Display))
+                {
+                    Functions.XFree(prop);
+                }
+            }
+
+            return borders_changed;
+        }
+
+        void RefreshWindowBounds(ref XEvent e)
+        {
+            RefreshWindowBorders();
+
+            Point new_location = new Point(
+                e.ConfigureEvent.x - border_left,
+                e.ConfigureEvent.y - border_top);
+            if (Location != new_location)
+            {
+                bounds.Location = new_location;
+                if (Move != null)
+                    Move(this, EventArgs.Empty);
+            }
+
+            // Note: width and height denote the internal (client) size.
+            // To get the external (window) size, we need to add the border size.
+            Size new_size = new Size(
+                e.ConfigureEvent.width + border_left + border_right,
+                e.ConfigureEvent.height + border_top + border_bottom);
+            if (Bounds.Size != new_size)
+            {
+                bounds.Size = new_size;
+                client_rectangle.Size = new Size(e.ConfigureEvent.width, e.ConfigureEvent.height);
+
+                if (this.Resize != null)
+                {
+                    //Debug.WriteLine(new System.Diagnostics.StackTrace());
+                    Resize(this, EventArgs.Empty);
+                }
+            }
+        }
+
         #endregion
 
         #region INativeWindow Members
@@ -657,31 +743,7 @@ namespace OpenTK.Platform.X11
                         return;
 
                     case XEventName.ConfigureNotify:
-                        border_width = e.ConfigureEvent.border_width;
-                        
-                        Point new_location = new Point(e.ConfigureEvent.x, e.ConfigureEvent.y);
-                        if (Location != new_location)
-                        {
-                            bounds.Location = new_location;
-                            if (Move != null)
-                                Move(this, EventArgs.Empty);
-                        }
-
-                        // Note: width and height denote the internal (client) size.
-                        // To get the external (window) size, we need to add the border size.
-                        Size new_size = new Size(e.ConfigureEvent.width, e.ConfigureEvent.height);
-                        if (ClientSize != new_size)
-                        {
-                            bounds.Size = new_size;
-                            bounds.Width += border_width;
-                            bounds.Height += border_width;
-
-                            // Todo: Get the real client rectangle.
-                            client_rectangle.Size = new_size;
-                        
-                            if (this.Resize != null)
-                                Resize(this, EventArgs.Empty);
-                        }
+                        RefreshWindowBounds(ref e);
                         break;
 
                     case XEventName.KeyPress:
@@ -754,9 +816,16 @@ namespace OpenTK.Platform.X11
                         break;
 
                    case XEventName.PropertyNotify:
-                       if (e.PropertyEvent.atom == _atom_net_wm_state)
+                        if (e.PropertyEvent.atom == _atom_net_wm_state)
+                        {
                             if (WindowStateChanged != null)
                                 WindowStateChanged(this, EventArgs.Empty);
+                        }
+
+                        //if (e.PropertyEvent.atom == _atom_net_frame_extents)
+                        //{
+                        //    RefreshWindowBorders();
+                        //}
                         break;
                        
                     default:
@@ -778,8 +847,12 @@ namespace OpenTK.Platform.X11
                 using (new XLock(window.Display))
                 {
                     Functions.XMoveResizeWindow(window.Display, window.WindowHandle,
-                        value.X, value.Y, value.Width - border_width, value.Height - border_width);
+                        value.X,
+                        value.Y,
+                        value.Width - border_left - border_right,
+                        value.Height - border_top - border_bottom);
                 }
+                ProcessEvents();
             }
         }
 
@@ -796,6 +869,7 @@ namespace OpenTK.Platform.X11
                 {
                     Functions.XMoveWindow(window.Display, window.WindowHandle, value.X, value.Y);
                 }
+                ProcessEvents();
             }
         }
 
@@ -808,8 +882,8 @@ namespace OpenTK.Platform.X11
             get { return Bounds.Size; }
             set
             {
-                int width = value.Width - border_width;
-                int height = value.Height - border_width;
+                int width = value.Width - border_left - border_right;
+                int height = value.Height - border_top - border_bottom;
                 width = width <= 0 ? 1 : width;
                 height = height <= 0 ? 1 : height;
                 
@@ -817,6 +891,7 @@ namespace OpenTK.Platform.X11
                 {
                     Functions.XResizeWindow(window.Display, window.WindowHandle, width, height);
                 }
+                ProcessEvents();
             }
         }
 
@@ -841,6 +916,7 @@ namespace OpenTK.Platform.X11
                     Functions.XResizeWindow(window.Display, window.WindowHandle,
                         value.Width, value.Height);
                 }
+                ProcessEvents();
             }
         }
 
@@ -1119,6 +1195,8 @@ namespace OpenTK.Platform.X11
 
                 if (temporary_resizable)
                     WindowBorder = previous_state;
+
+                ProcessEvents();
             }
         }
 
