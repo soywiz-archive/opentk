@@ -47,8 +47,10 @@ namespace Examples.Tutorial
         int viewport_width, viewport_height;
         bool exit = false;
         Thread rendering_thread;
+        object update_lock = new object();
         const float rotation_speed = 180.0f;
         float angle;
+        float aspect_ratio;
 
         readonly VertexPositionColor[] CubeVertices = new VertexPositionColor[]
         {
@@ -143,9 +145,12 @@ namespace Examples.Tutorial
         {
             // Note that we cannot call any OpenGL methods directly. What we can do is set
             // a flag and respond to it from the rendering thread.
-            viewport_changed = true;
-            viewport_width = Width;
-            viewport_height = Height;
+            lock (update_lock)
+            {
+                viewport_changed = true;
+                viewport_width = Width;
+                viewport_height = Height;
+            }
         }
 
         #endregion
@@ -212,16 +217,20 @@ namespace Examples.Tutorial
         /// </summary>
         public void Render(double time)
         {
-            if (viewport_changed)
+            lock (update_lock)
             {
-                GL.Viewport(0, 0, viewport_width, viewport_height);
-
-                double aspect_ratio = viewport_width / (double)viewport_height;
-
-                OpenTK.Matrix4 perspective = OpenTK.Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, (float)aspect_ratio, 1, 64);
-                GL.MatrixMode(MatrixMode.Projection);
-                GL.LoadMatrix(ref perspective);
+                if (viewport_changed)
+                {
+                    GL.Viewport(0, 0, viewport_width, viewport_height);
+                    aspect_ratio = viewport_width / (float)viewport_height;
+                    viewport_changed = false;
+                }
             }
+
+            Matrix4 perspective =
+                Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspect_ratio, 1, 64);
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadMatrix(ref perspective);
 
             Matrix4 lookat = Matrix4.LookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
             GL.MatrixMode(MatrixMode.Modelview);
