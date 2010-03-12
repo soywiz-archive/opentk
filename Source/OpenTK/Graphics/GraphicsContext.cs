@@ -409,6 +409,20 @@ namespace OpenTK.Graphics
         {
             implementation.Update(window);
         }
+
+        /// <summary>
+        /// Loads all OpenGL entry points.
+        /// </summary>
+        /// <exception cref="OpenTK.Graphics.GraphicsContextException">
+        /// Occurs when this instance is not current on the calling thread.
+        /// </exception>
+        public void LoadAll()
+        {
+            if (GraphicsContext.CurrentContext != this)
+                throw new GraphicsContextException();
+
+            implementation.LoadAll();
+        }
         
         #endregion
 
@@ -420,20 +434,6 @@ namespace OpenTK.Graphics
         IGraphicsContext IGraphicsContextInternal.Implementation
         {
             get { return implementation; }
-        }
-
-        /// <summary>
-        /// Loads all OpenGL extensions.
-        /// </summary>
-        /// <exception cref="OpenTK.Graphics.GraphicsContextException">
-        /// Occurs when this instance is not the current GraphicsContext on the calling thread.
-        /// </exception>
-        void IGraphicsContextInternal.LoadAll()
-        {
-            if (GraphicsContext.CurrentContext != this)
-                throw new GraphicsContextException();
-
-            (implementation as IGraphicsContextInternal).LoadAll();
         }
 
         /// <summary>

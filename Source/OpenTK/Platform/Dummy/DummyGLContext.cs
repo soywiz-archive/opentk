@@ -61,13 +61,8 @@ namespace OpenTK.Platform.Dummy
         public override void Update(IWindowInfo window)
         { }
 
-        #endregion
-
-        #region IGraphicsContextInternal Members
-
         public override void LoadAll()
-        {
-        }
+        { }
 
         #endregion
 

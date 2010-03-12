@@ -225,10 +225,6 @@ namespace OpenTK.Platform.Windows
 
         #endregion
 
-        #endregion
-
-        #region --- IGLContextInternal Members ---
-
         #region void LoadAll()
 
         public override void LoadAll()
@@ -241,6 +237,10 @@ namespace OpenTK.Platform.Windows
         }
 
         #endregion
+
+        #endregion
+
+        #region --- IGLContextInternal Members ---
 
         #region IWindowInfo IGLContextInternal.Info
         /*
