@@ -85,7 +85,7 @@ namespace OpenTK.Platform.X11
             }
             Debug.Print("Display connection: {0}, Screen count: {1}", DefaultDisplay, ScreenCount);
 
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+            //AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
         }
 
         static void CurrentDomain_ProcessExit(object sender, EventArgs e)
