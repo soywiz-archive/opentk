@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("The Open Toolkit Compatilibity Module")]
+[assembly: AssemblyTitle("OpenTK.Compatibility")]
 [assembly: AssemblyDescription("Provides compatibility with previous versions of OpenTK and the Tao framework.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Open Toolkit Library")]
 [assembly: AssemblyProduct("The Open Toolkit Library")]
-[assembly: AssemblyCopyright("Copyright ©  2006-2009 the Open Toolkit Library")]
+[assembly: AssemblyCopyright("Copyright ©  2006-2010 the Open Toolkit Library")]
 [assembly: AssemblyTrademark("OpenTK")]
 [assembly: AssemblyCulture("")]
 

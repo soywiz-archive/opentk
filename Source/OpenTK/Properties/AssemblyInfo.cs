@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("The Open Toolkit Library")]
+[assembly: AssemblyTitle("OpenTK")]
 [assembly: AssemblyDescription("Open source game development toolkit for .Net/Mono.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Open Toolkit Library")]

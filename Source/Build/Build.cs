@@ -19,11 +19,12 @@ using OpenTK.Build.Properties;
 
 namespace OpenTK.Build
 {
-    class Project
+    partial class Project
     {
         static readonly string RootPath = Directory.GetCurrentDirectory();
         static readonly string SourcePath = Path.Combine(RootPath, "Source");
         static readonly string DocPath = Path.Combine(RootPath, "Documentation");
+        static readonly string InstallersPath = Path.Combine(RootPath, "Installers");
 
         const string bindings = "Generator.Prebuild.xml";
         const string opentk = "OpenTK.Prebuild.xml";
@@ -34,7 +35,7 @@ namespace OpenTK.Build
         const string KeyFile = "OpenTK.snk"; // Do not change
 
         const string Usage =  @"Usage: Build.exe target
-    target: one of vs, vs9, doc, clean, distclean, help";
+    target: one of vs, vs9, doc, nsis, clean, distclean, help";
 
         const string Help = Usage + @"
 
@@ -42,6 +43,7 @@ Available targets:
     vs:        Create Visual Studio 2005 project files.
     vs9:       Create Visual Studio 2008 project files.
     doc:       Builds html and pdf documentation.
+    nsis:      Builds NSIS installer for Windows.
     clean:     Delete intermediate files but leave final binaries and project
                files intact.
     distclean: Delete intermediate files, final binaries and project files.
@@ -54,6 +56,28 @@ Assembly signing:
 ";
 
         static readonly Assembly Prebuild = Assembly.Load(Resources.Prebuild);
+        static readonly Version AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        static string ProductVersion { get { return AssemblyVersion.Major + "." + AssemblyVersion.Minor; } }
+        static string ProductVersionRevision { get { return AssemblyVersion.Build.ToString(); } }
+        static string ProductVersionExtra
+        {
+            get
+            {
+                // See discussion here: http://www.opentk.com/node/1420#comment-7554
+                // 0-99 = alpha
+                // 100-199 = beta
+                // 200-299 = rc
+                // 300 = final
+                if (AssemblyVersion.Revision < 99)
+                    return "alpha" + AssemblyVersion.Revision % 100;
+                else if (AssemblyVersion.Revision < 199)
+                    return "beta" + AssemblyVersion.Revision % 100;
+                else if (AssemblyVersion.Revision < 299)
+                    return "rc" + AssemblyVersion.Revision % 100;
+                else
+                    return "final";
+            }
+        }
 
         enum BuildTarget
         {
@@ -65,6 +89,7 @@ Assembly signing:
             Clean,
             DistClean,
             Docs,
+            Nsis,
         }
 
         static void PrintUsage()
@@ -132,14 +157,7 @@ Assembly signing:
             File.WriteAllText(quickstart, String.Format(Resources.QuickStart, sign_assembly));
             
             string doxy = Regex.Replace(Resources.DoxyFile, @"(\{\}|\{\w+\})", "");
-            File.WriteAllText(DoxyFile, String.Format(doxy, GetVersion()));
-        }
-
-        // Returns the version of the executing assembly.
-        static string GetVersion()
-        {
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            return version;
+            File.WriteAllText(DoxyFile, String.Format(doxy, AssemblyVersion.ToString()));
         }
 
         // Copies keyfile to the various source directories. This is necessary
@@ -192,6 +210,11 @@ Assembly signing:
                     case "doc":
                     case "docs":
                         target = BuildTarget.Docs;
+                        break;
+
+                    case "nsi":
+                    case "nsis":
+                        target = BuildTarget.Nsis;
                         break;
 
                     case "clean":
@@ -277,6 +300,10 @@ Assembly signing:
                         Path.Combine(DocPath, ReferenceFile), true);
                     break;
 
+                case BuildTarget.Nsis:
+                    BuildNsis();
+                    break;
+
                 case BuildTarget.Clean:
                     Console.WriteLine("Cleaning intermediate object files.");
                     ExecutePrebuild("/clean", "/yes", "/file", bindings);
@@ -284,6 +311,7 @@ Assembly signing:
                     ExecutePrebuild("/clean", "/yes", "/file", quickstart);
                     DeleteDirectories(RootPath, "obj");
                     DeleteFiles(SourcePath, KeyFile);
+                    CleanNsisFiles();
                     break;
 
                 case BuildTarget.DistClean:
@@ -296,6 +324,7 @@ Assembly signing:
                     DeleteDirectories(DocPath, "Source");
                     DeleteFiles(DocPath, ReferenceFile);
                     DeleteFiles(SourcePath, KeyFile);
+                    DistCleanNsisFiles();
 
                     string binaries_path = Path.Combine(RootPath, "Binaries");
                     try
