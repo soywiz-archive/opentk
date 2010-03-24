@@ -34,17 +34,23 @@ namespace OpenTK.Build
 
         const string KeyFile = "OpenTK.snk"; // Do not change
 
-        const string Usage =  @"Usage: Build.exe target
-    target: one of all, vs, vs9, doc, nsis, clean, distclean, help";
+        const string Usage =  @"Solution generator and build script for OpenTK.
+Usage: [mono] Build.exe [target]
+    [mono]: use the Mono VM (otherwise use .Net)
+    [target]: vs, vs9 - generate solutions
+              all, lib, doc, nsis - build specified target
+              clean, distclean - delete intermediate and/or final build results
+              help - display extended usage information";
 
         const string Help = Usage + @"
 
 Available targets:
-    all:       Build project, documentation and installer packages.
     vs:        Create Visual Studio 2005 project files.
     vs9:       Create Visual Studio 2008 project files.
-    doc:       Builds html and pdf documentation.
-    nsis:      Builds NSIS installer for Windows.
+    all:       Build library, documentation and installer packages.
+    lib:       Build library.
+    doc:       Build html and pdf documentation.
+    nsis:      Build NSIS installer for Windows.
     clean:     Delete intermediate files but leave final binaries and project
                files intact.
     distclean: Delete intermediate files, final binaries and project files.
@@ -86,8 +92,8 @@ Assembly signing:
             All,
             VS2005,
             VS2008,
-            Mono,
-            Net,
+            Net20,
+            // Net40, // Not implemented yet
             Clean,
             DistClean,
             Docs,
@@ -193,14 +199,13 @@ Assembly signing:
                         PrintHelp();
                         break;
 
-                    //case "mono":
-                    //case "xbuild":
-                    //    target = BuildTarget.Mono;
-                    //    break;
+                    case "lib":
+                    case "lib20":
+                        target = BuildTarget.Net20;
+                        break;
 
-                    //case "net":
-                    //case "msbuild":
-                    //    target = BuildTarget.Net;
+                    //case "lib40":
+                    //    target = BuildTarget.Net40;
                     //    break;
 
                     case "all":
@@ -223,6 +228,7 @@ Assembly signing:
                         target = BuildTarget.Docs;
                         break;
 
+                    case "ns":
                     case "nsi":
                     case "nsis":
                         target = BuildTarget.Nsis;
@@ -250,25 +256,13 @@ Assembly signing:
         {
             switch (target)
             {
-                //case BuildTarget.Mono:
-                //    Console.WriteLine("Building OpenTK using Mono/XBuild.");
-                //    ExecuteProcess(PrebuildPath, "/target nant /file " + PrebuildXml);
-                //    Console.WriteLine();
-                //    ExecuteProcess(
-                //        "nant",
-                //        "-buildfile:./Build/OpenTK.build -t:mono-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
-                //    CopyBinaries();
-                //    break;
+                case BuildTarget.VS2005:
+                    BuildVS2005();
+                    break;
 
-                //case BuildTarget.Net:
-                //    Console.WriteLine("Building OpenTK using .Net");
-                //    ExecuteProcess(PrebuildPath, "/target nant /file " + PrebuildXml);
-                //    Console.WriteLine();
-                //    ExecuteProcess(
-                //        "nant",
-                //        "-buildfile:./Build/OpenTK.build -t:net-2.0 " + (mode == BuildMode.Debug ? "build-debug" : "build-release"));
-                //    CopyBinaries();
-                //    break;
+                case BuildTarget.VS2008:
+                    BuildVS2008();
+                    break;
 
                 case BuildTarget.All:
                     BuildVS2005();
@@ -278,12 +272,9 @@ Assembly signing:
                     BuildNsis(ProductVersion, ProductVersionRevision, ProductVersionExtra);
                     break;
 
-                case BuildTarget.VS2005:
+                case BuildTarget.Net20:
                     BuildVS2005();
-                    break;
-
-                case BuildTarget.VS2008:
-                    BuildVS2008();
+                    BuildProject();
                     break;
 
                 case BuildTarget.Docs:
