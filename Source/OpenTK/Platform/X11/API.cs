@@ -72,7 +72,8 @@ namespace OpenTK.Platform.X11
 
         static API()
         {
-            Debug.Print("Initializing threaded X11: {0}.", Functions.XInitThreads().ToString());
+            int has_threaded_x = Functions.XInitThreads();
+            Debug.Print("Initializing threaded X11: {0}.", has_threaded_x.ToString());
         
             defaultDisplay = Functions.XOpenDisplay(IntPtr.Zero);
                 
