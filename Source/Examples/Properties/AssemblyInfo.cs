@@ -29,8 +29,8 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.103")]
-[assembly: AssemblyFileVersion("1.0.0.103")]
+[assembly: AssemblyVersion("1.0.0.201")]
+[assembly: AssemblyFileVersion("1.0.0.201")]
 
 #if SIGN_ASSEMBLY
 [assembly: AssemblyKeyFile(@"../../../OpenTK.snk")]
