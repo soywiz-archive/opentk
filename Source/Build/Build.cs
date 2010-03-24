@@ -118,6 +118,7 @@ Assembly signing:
                     args[0] = "vs";
             }
 
+            DateTime start = DateTime.Now;
             try
             {
                 PrepareBuildFiles();
@@ -133,6 +134,9 @@ Assembly signing:
             }
             finally
             {
+                DateTime end = DateTime.Now;
+                Console.WriteLine("Total build time: {0}", end - start);
+
                 // Wait until Prebuild releases the input files.
                 System.Threading.Thread.Sleep(2000);
                 DeleteBuildFiles();
