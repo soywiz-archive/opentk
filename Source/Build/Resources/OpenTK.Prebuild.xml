@@ -77,6 +77,8 @@
       </Configuration>
 
       <Reference name="System"/>
+      <Reference name="Microsoft.Build.Engine"/>
+      <Reference name="Microsoft.Build.Framework"/>
 
       <Files>
         <Match path="." pattern="*.cs" recurse="true"/>

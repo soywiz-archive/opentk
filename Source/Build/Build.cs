@@ -35,11 +35,12 @@ namespace OpenTK.Build
         const string KeyFile = "OpenTK.snk"; // Do not change
 
         const string Usage =  @"Usage: Build.exe target
-    target: one of vs, vs9, doc, nsis, clean, distclean, help";
+    target: one of all, vs, vs9, doc, nsis, clean, distclean, help";
 
         const string Help = Usage + @"
 
 Available targets:
+    all:       Build project, documentation and installer packages.
     vs:        Create Visual Studio 2005 project files.
     vs9:       Create Visual Studio 2008 project files.
     doc:       Builds html and pdf documentation.
@@ -82,6 +83,7 @@ Assembly signing:
         enum BuildTarget
         {
             None = 0,
+            All,
             VS2005,
             VS2008,
             Mono,
@@ -102,6 +104,7 @@ Assembly signing:
             Console.WriteLine(Help);
         }
 
+        [STAThread]
         static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -186,14 +189,18 @@ Assembly signing:
                         PrintHelp();
                         break;
 
-                    case "mono":
-                    case "xbuild":
-                        target = BuildTarget.Mono;
-                        break;
+                    //case "mono":
+                    //case "xbuild":
+                    //    target = BuildTarget.Mono;
+                    //    break;
 
-                    case "net":
-                    case "msbuild":
-                        target = BuildTarget.Net;
+                    //case "net":
+                    //case "msbuild":
+                    //    target = BuildTarget.Net;
+                    //    break;
+
+                    case "all":
+                        target = BuildTarget.All;
                         break;
 
                     case "vs2005":
@@ -259,49 +266,28 @@ Assembly signing:
                 //    CopyBinaries();
                 //    break;
 
+                case BuildTarget.All:
+                    BuildVS2005();
+                    BuildProject();
+                    BuildDocumentation();
+                    BuildVS2005(); // Ensure that QuickStart project contains the correct links.
+                    BuildNsis(ProductVersion, ProductVersionRevision, ProductVersionExtra);
+                    break;
+
                 case BuildTarget.VS2005:
-                    Console.WriteLine("Creating VS2005 project files");
-                    ExecutePrebuild("/target", "vs2008", "/file", bindings);
-                    ExecutePrebuild("/target", "vs2005", "/file", opentk);
-                    ExecutePrebuild("/target", "vs2005", "/file", quickstart);
+                    BuildVS2005();
                     break;
 
                 case BuildTarget.VS2008:
-                    Console.WriteLine("Creating VS2008 project files");
-                    ExecutePrebuild("/target", "vs2008", "/file", bindings);
-                    ExecutePrebuild("/target", "vs2008", "/file", opentk);
-                    ExecutePrebuild("/target", "vs2008", "/file", quickstart);
+                    BuildVS2008();
                     break;
 
                 case BuildTarget.Docs:
-                    Console.WriteLine("Generating reference documentation (this may take several minutes)...");
-                    Console.WriteLine("Generating html sources...");
-                    try { ExecuteCommand("doxygen", null, null); }
-                    catch
-                    {
-                        Console.WriteLine("Failed to run \"doxygen\".");
-                        Console.WriteLine("Please consult the documentation for more information.");
-                    }
-
-                    string latex_path = Path.Combine(Path.Combine(DocPath, "Source"), "latex");
-                    Console.WriteLine("Compiling sources to pdf...");
-                    try
-                    {
-                        ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
-                        ExecuteCommand("makeindex", latex_path, "-q", "refman.idx");
-                        ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Failed to run \"pdflatex\" or \"makeindex\".");
-                        Console.WriteLine("Please consult the documentation for more information");
-                    }
-                    File.Copy(Path.Combine(latex_path, "refman.pdf"),
-                        Path.Combine(DocPath, ReferenceFile), true);
+                    BuildDocumentation();
                     break;
 
                 case BuildTarget.Nsis:
-                    BuildNsis();
+                    BuildNsis(null, null, null);
                     break;
 
                 case BuildTarget.Clean:
@@ -344,6 +330,72 @@ Assembly signing:
                     Console.WriteLine("Unknown target: {0}", target);
                     PrintUsage();
                     break;
+            }
+        }
+
+        static void BuildDocumentation()
+        {
+            Console.WriteLine("Generating reference documentation (this may take several minutes)...");
+            Console.WriteLine("Generating html sources...");
+            try { ExecuteCommand("doxygen", null, null); }
+            catch
+            {
+                Console.WriteLine("Failed to run \"doxygen\".");
+                Console.WriteLine("Please consult the documentation for more information.");
+            }
+
+            string latex_path = Path.Combine(Path.Combine(DocPath, "Source"), "latex");
+            Console.WriteLine("Compiling sources to pdf...");
+            try
+            {
+                ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
+                ExecuteCommand("makeindex", latex_path, "-q", "refman.idx");
+                ExecuteCommand("pdflatex", latex_path, "-interaction=batchmode", "refman.tex");
+            }
+            catch
+            {
+                Console.WriteLine("Failed to run \"pdflatex\" or \"makeindex\".");
+                Console.WriteLine("Please consult the documentation for more information");
+            }
+            File.Copy(Path.Combine(latex_path, "refman.pdf"),
+                Path.Combine(DocPath, ReferenceFile), true);
+        }
+
+        static void BuildVS2005()
+        {
+            Console.WriteLine("Creating VS2005 project files");
+            ExecutePrebuild("/target", "vs2008", "/file", bindings);
+            ExecutePrebuild("/target", "vs2005", "/file", opentk);
+            ExecutePrebuild("/target", "vs2005", "/file", quickstart);
+            PatchPrebuildOutput();
+        }
+
+        static void BuildVS2008()
+        {
+            Console.WriteLine("Creating VS2008 project files");
+            ExecutePrebuild("/target", "vs2008", "/file", bindings);
+            ExecutePrebuild("/target", "vs2008", "/file", opentk);
+            ExecutePrebuild("/target", "vs2008", "/file", quickstart);
+            PatchPrebuildOutput();
+        }
+
+        // Prebuild is fiendishly buggy. Patch a number of known issues
+        // to ensure its output actually works.
+        static void PatchPrebuildOutput()
+        {
+            // Patch 1: sln files contain paths to csproj in the form of
+            // "../[current dir]/Source/". If we rename [current dir]
+            // the generated solutions become invalid. Ugh!
+            Console.WriteLine("Patching paths in prebuild output");
+            foreach (string solution in Directory.GetFiles(RootPath, "*.sln", SearchOption.TopDirectoryOnly))
+            {
+                // We could use an XmlDocument for extra validation,
+                // but it's not worth the extra effort. Let's just remove
+                // the offending part ("../[current dir]") directly.
+                string sln_data = File.ReadAllText(solution);
+                string current_dir = RootPath.Substring(RootPath.LastIndexOf(Path.DirectorySeparatorChar) + 1);
+                sln_data = sln_data.Replace(String.Format("..{0}{1}{0}", Path.DirectorySeparatorChar, current_dir), "");
+                File.WriteAllText(solution, sln_data);
             }
         }
 

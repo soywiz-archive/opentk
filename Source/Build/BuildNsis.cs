@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -33,23 +33,31 @@ namespace OpenTK.Build
 {
     partial class Project
     {
-        static void BuildNsis()
+        static readonly string NsisPath = Path.Combine("Installers", "Nsis");
+
+        // Constructs NSIS installer.
+        // Note 1: for this to work correctly, we need to construct VS projects,
+        // compile them and build documentation first. This is not handled here.
+        // Note 2: if version numbers are not specified, we ask the user explicitly.
+        static void BuildNsis(string pversion, string prevision, string pextra)
         {
             if (!CheckNsisInstallation())
                 return;
 
-            string pversion, prevision, pextra;
-            RequestVersionInfo(out pversion, out prevision, out pextra);
+            Console.WriteLine("IMPORTANT: for a correct NSIS installer, you need to create VS projects, compile them and build documentation first. Use \"Build.exe all\" to do all this automatically.");
 
-            string path = Path.Combine("Installers", "NSIS");
-            string source_nsi = Path.Combine(path, "opentk.nsi");
-            string actual_nsi = Path.Combine(path, "opentk-actual.nsi");
+            if (String.IsNullOrEmpty(pversion) || String.IsNullOrEmpty(prevision) ||
+                String.IsNullOrEmpty(pextra))
+                RequestVersionInfo(out pversion, out prevision, out pextra);
+
+            string source_nsi = Path.Combine(NsisPath, "opentk.nsi");
+            string actual_nsi = Path.Combine(NsisPath, "opentk-actual.nsi");
             File.WriteAllText(actual_nsi, File.ReadAllText(source_nsi)
                 .Replace("{{version}}", pversion)
                 .Replace("{{revision}}", prevision)
                 .Replace("{{extra}}", pextra));
 
-            ExecuteCommand("makensis", path, Path.GetFullPath(actual_nsi));
+            ExecuteCommand("makensis", NsisPath, Path.GetFullPath(actual_nsi));
             File.Delete(actual_nsi);
         }
 
@@ -95,13 +103,13 @@ namespace OpenTK.Build
 
         static void CleanNsisFiles()
         {
-            DeleteFiles(Path.Combine("Installers", "NSIS"), "opentk-actual.nsi");
+            DeleteFiles(Path.Combine("Installers", "Nsis"), "opentk-actual.nsi");
         }
 
         static void DistCleanNsisFiles()
         {
             CleanNsisFiles();
-            DeleteFiles(Path.Combine("Installers", "NSIS"), "*.exe");
+            DeleteFiles(Path.Combine("Installers", "Nsis"), "*.exe");
         }
     }
 }
