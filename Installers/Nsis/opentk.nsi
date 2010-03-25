@@ -168,7 +168,7 @@ Function UninstallPrevious
     DetailPrint "Removing previous installation."
 
     ; Run the uninstaller silently.
-    ExecWait '"$INSTDIR\Uninstall.exe /S"'
+    ExecWait '"$INSTDIR\uninst.exe /S"'
 
     Done:
 
@@ -187,11 +187,11 @@ Section "MainSection" SEC01
 
   SetOutPath $INSTDIR
   File /r /x *.vshost.exe /x *.vshost.exe.manifest /x *.log ..\..\Binaries
-  File /r /x .svn /x Source /x Source ..\..\Documentation
+  File /r /x .svn /x Source /x Source\*.* ..\..\Documentation
   File /r /x .svn /x obj /x *.snk /x *.user /x *.pidb /x html /x latex /x OpenTK*.xml ..\..\Source
-  File /r /x .svn /x *.exe /x *.msi /x *.deb /x *.rpm ..\..\Installers
   File ..\..\Build.exe
   File ..\..\*.sln
+  File /r /x .svn /x opentk-actual.* /x opentk*.exe /x opentk*.msi /x opentk*.deb /x opentk*.rpm ..\..\Installers
 SectionEnd
 
 Section -AdditionalIcons
@@ -216,8 +216,11 @@ Section -Post
   WriteRegStr ${MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
   WriteRegStr ${MULTIUSER_INSTALLMODE_DEFAULT_REGISTRY_KEY} "${DOTNET20_PUBLIC_ASSEMBLIES_KEY}" "" "$INSTDIR\Binaries\OpenTK\Release"
-SectionEnd
+  
+  ; Install necessary dependencies
+  ExecShell "open"  '"$INSTDIR\Installers\Dependencies\oalinst.exe"' /S
 
+SectionEnd
 
 Function un.onUninstSuccess
   HideWindow
