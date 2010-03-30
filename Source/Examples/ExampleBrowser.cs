@@ -118,20 +118,21 @@ namespace Examples
                 string sample = einfo.Attribute.Documentation;
                 string category = einfo.Attribute.Category.ToString();
                 string subcategory = einfo.Attribute.Subcategory;
-                sample = Path.Combine(Path.Combine(Path.Combine(SourcePath, category), subcategory), sample);
-                string sample_rtf = Path.ChangeExtension(sample, "rtf");
-                string sample_cs = Path.ChangeExtension(sample, "cs");
+
+                string path = Path.Combine(Path.Combine(Path.Combine(SourcePath, category), subcategory), sample);
+                string sample_rtf = Path.ChangeExtension(path, "rtf");
+                string sample_cs = Path.ChangeExtension(path, "cs");
 
                 if (File.Exists(sample_rtf))
                 {
-                   docs = File.ReadAllText(sample_rtf);
+                    docs = File.ReadAllText(sample_rtf);
                 }
 
                 if (File.Exists(sample_cs))
                 {
                     source = File.ReadAllText(sample_cs);
                 }
-
+                
                 if (String.IsNullOrEmpty(docs))
                     richTextBoxDescription.Text = String.Format("File {0} not found.", sample_rtf);
                 else
@@ -333,7 +334,7 @@ namespace Examples
             if (list.Images.ContainsKey(category.ToString() + ".png"))
                 return list.Images.IndexOfKey(category.ToString() + ".png");
 
-            return 0;
+            return -1;
         }
 
         static void RunSample(Control parent, ExampleInfo e)
@@ -438,7 +439,7 @@ namespace Examples
             return false;
         }
 
-        #endregion
+       #endregion
 
         #endregion
     }
