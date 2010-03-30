@@ -1,35 +1,13 @@
-#region License
-//
-// The Open Toolkit Library License
-//
-// Copyright (c) 2006 - 2010 the Open Toolkit library, except where noted.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights to 
-// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-// the Software, and to permit persons to whom the Software is furnished to do
-// so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-// OTHER DEALINGS IN THE SOFTWARE.
-//
-#endregion
+// This code is in the Public Domain. It is provided "as is"
+// without express or implied warranty of any kind.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using OpenTK;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 
@@ -45,61 +23,71 @@ namespace Examples.Tutorial
     {
         bool viewport_changed = true;
         int viewport_width, viewport_height;
+        bool position_changed = true;
+        int position_x, position_y;
+        float position_dx, position_dy;
         bool exit = false;
         Thread rendering_thread;
         object update_lock = new object();
-        const float rotation_speed = 180.0f;
-        float angle;
-        float aspect_ratio;
-
-        readonly VertexPositionColor[] CubeVertices = new VertexPositionColor[]
+        const float GravityAccel = -9.81f;
+        struct Particle
         {
-                new VertexPositionColor(-1.0f, -1.0f,  1.0f, Color.DarkRed),
-                new VertexPositionColor( 1.0f, -1.0f,  1.0f, Color.DarkRed),
-                new VertexPositionColor( 1.0f,  1.0f,  1.0f, Color.Gold),
-                new VertexPositionColor(-1.0f,  1.0f,  1.0f, Color.Gold),
-                new VertexPositionColor(-1.0f, -1.0f, -1.0f, Color.DarkRed),
-                new VertexPositionColor( 1.0f, -1.0f, -1.0f, Color.DarkRed), 
-                new VertexPositionColor( 1.0f,  1.0f, -1.0f, Color.Gold),
-                new VertexPositionColor(-1.0f,  1.0f, -1.0f, Color.Gold) 
-        };
-
-        readonly short[] CubeElements = new short[]
-        {
-            0, 1, 2, 2, 3, 0, // front face
-            3, 2, 6, 6, 7, 3, // top face
-            7, 6, 5, 5, 4, 7, // back face
-            4, 0, 3, 3, 7, 4, // left face
-            0, 1, 5, 5, 4, 0, // bottom face
-            1, 5, 6, 6, 2, 1, // right face
-        };
+            public Vector2 Position;
+            public Vector2 Velocity;
+            public Color4 Color;
+        }
+        List<Particle> Particles = new List<Particle>();
+        Random rand = new Random();
 
         public ThreadedRendering()
             : base(800, 600)
         {
-            Keyboard.KeyDown += Keyboard_KeyDown;
+            Keyboard.KeyDown += delegate(object sender, KeyboardKeyEventArgs e)
+            {
+                if (e.Key == Key.Escape)
+                    this.Exit();
+            };
+
+            Keyboard.KeyUp += delegate(object sender, KeyboardKeyEventArgs e)
+            {
+                if (e.Key == Key.F11)
+                    if (this.WindowState == WindowState.Fullscreen)
+                        this.WindowState = WindowState.Normal;
+                    else
+                        this.WindowState = WindowState.Fullscreen;
+            };
+
+            Resize += delegate(object sender, EventArgs e)
+            {
+                // Note that we cannot call any OpenGL methods directly. What we can do is set
+                // a flag and respond to it from the rendering thread.
+                lock (update_lock)
+                {
+                    viewport_changed = true;
+                    viewport_width = Width;
+                    viewport_height = Height;
+                }
+            };
+
+            Move += delegate(object sender, EventArgs e)
+            {
+                // Note that we cannot call any OpenGL methods directly. What we can do is set
+                // a flag and respond to it from the rendering thread.
+                lock (update_lock)
+                {
+                    position_changed = true;
+                    position_dx = (position_x - X) / (float)Width;
+                    position_dy = (position_y - Y) / (float)Height;
+                    position_x = X;
+                    position_y = Y;
+                }
+            };
+
+            // Make sure initial position are correct, otherwise we'll give a huge
+            // initial velocity to the balls.
+            position_x = X;
+            position_y = Y;
         }
-
-        #region Keyboard_KeyDown
-
-        /// <summary>
-        /// Occurs when a key is pressed.
-        /// </summary>
-        /// <param name="sender">The KeyboardDevice which generated this event.</param>
-        /// <param name="e">The key that was pressed.</param>
-        void Keyboard_KeyDown(object sender, KeyboardKeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-                this.Exit();
-
-            if (e.Key == Key.F11)
-                if (this.WindowState == WindowState.Fullscreen)
-                    this.WindowState = WindowState.Normal;
-                else
-                    this.WindowState = WindowState.Fullscreen;
-        }
-
-        #endregion
 
         #region OnLoad
 
@@ -130,27 +118,6 @@ namespace Examples.Tutorial
             rendering_thread.Join();
 
             base.OnUnload(e);
-        }
-
-        #endregion
-
-        #region OnResize
-
-        /// <summary>
-        /// Respond to resize events here.
-        /// </summary>
-        /// <param name="e">Contains information on the new GameWindow size.</param>
-        /// <remarks>There is no need to call the base implementation.</remarks>
-        protected override void OnResize(EventArgs e)
-        {
-            // Note that we cannot call any OpenGL methods directly. What we can do is set
-            // a flag and respond to it from the rendering thread.
-            lock (update_lock)
-            {
-                viewport_changed = true;
-                viewport_width = Width;
-                viewport_height = Height;
-            }
         }
 
         #endregion
@@ -190,21 +157,102 @@ namespace Examples.Tutorial
 
             VSync = VSyncMode.On;
 
+            for (int i = 0; i < 64; i++)
+            {
+                Particle p = new Particle();
+                p.Position = new Vector2((float)rand.NextDouble() * 2 - 1, (float)rand.NextDouble() * 2 - 1);
+                p.Color.R = (float)rand.NextDouble();
+                p.Color.G = (float)rand.NextDouble();
+                p.Color.B = (float)rand.NextDouble();
+                Particles.Add(p);
+            }
+
             // Since we don't use OpenTK's timing mechanism, we need to keep time ourselves;
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
+            Stopwatch render_watch = new Stopwatch();
+            Stopwatch update_watch = new Stopwatch();
+            update_watch.Start();
+            render_watch.Start();
 
             GL.ClearColor(Color.MidnightBlue);
             GL.Enable(EnableCap.DepthTest);
+            GL.Enable(EnableCap.PointSmooth);
+            GL.PointSize(16);
 
             while (!exit)
             {
-                Render(watch.Elapsed.TotalSeconds);
+                Update(update_watch.Elapsed.TotalSeconds);
+                update_watch.Reset();
+                update_watch.Start();
 
-                watch.Reset(); //  Stopwatch may be inaccurate over larger intervals.
-                watch.Start(); // Plus, timekeeping is easier if we always start counting from 0.
+                Render(render_watch.Elapsed.TotalSeconds);
+                render_watch.Reset(); //  Stopwatch may be inaccurate over larger intervals.
+                render_watch.Start(); // Plus, timekeeping is easier if we always start counting from 0.
 
                 SwapBuffers();
+            }
+
+            Context.MakeCurrent(null);
+        }
+
+        #endregion
+
+        #region Update
+
+        void Update(double time)
+        {
+            lock (update_lock)
+            {
+                // When the user moves the window we make the particles react to
+                // this movement. The reaction is semi-random and not physically
+                // correct. It looks quite good, however.
+                if (position_changed)
+                {
+                    for (int i = 0; i < Particles.Count; i++)
+                    {
+                        Particle p = Particles[i];
+                        p.Velocity += new Vector2(
+                            16 * (position_dx + 0.05f * (float)(rand.NextDouble() - 0.5)),
+                            32 * (position_dy + 0.05f * (float)(rand.NextDouble() - 0.5)));
+                        Particles[i] = p;
+                    }
+
+                    position_changed = false;
+                }
+            }
+
+            // For simplicity, we use simple Euler integration to simulate particle movement.
+            // This is not accurate, especially under varying timesteps (as is the case here).
+            // A better solution would have been time-corrected Verlet integration, as
+            // described here:
+            // http://www.gamedev.net/reference/programming/features/verlet/
+            for (int i = 0; i < Particles.Count; i++)
+            {
+                Particle p = Particles[i];
+
+                p.Velocity.X = Math.Abs(p.Position.X) >= 1 ?-p.Velocity.X * 0.92f : p.Velocity.X * 0.97f;
+                p.Velocity.Y = Math.Abs(p.Position.Y) >= 1 ? -p.Velocity.Y * 0.92f : p.Velocity.Y * 0.97f;
+                if (p.Position.Y > -0.99)
+                {
+                    p.Velocity.Y += (float)(GravityAccel * time);
+                }
+                else
+                {
+                    if (Math.Abs(p.Velocity.Y) < 0.02)
+                    {
+                        p.Velocity.Y = 0;
+                        p.Position.Y = -1;
+                    }
+                    else
+                    {
+                        p.Velocity.Y *= 0.9f;
+                    }
+                }
+
+                p.Position += p.Velocity * (float)time;
+                if (p.Position.Y <= -1)
+                    p.Position.Y = -1;
+
+                Particles[i] = p;
             }
         }
 
@@ -222,32 +270,25 @@ namespace Examples.Tutorial
                 if (viewport_changed)
                 {
                     GL.Viewport(0, 0, viewport_width, viewport_height);
-                    aspect_ratio = viewport_width / (float)viewport_height;
                     viewport_changed = false;
                 }
             }
 
             Matrix4 perspective =
-                Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspect_ratio, 1, 64);
+                Matrix4.CreateOrthographic(2, 2, -1, 1);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadMatrix(ref perspective);
 
-            Matrix4 lookat = Matrix4.LookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
             GL.MatrixMode(MatrixMode.Modelview);
-            GL.LoadMatrix(ref lookat);
+            GL.LoadIdentity();
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            angle += rotation_speed * (float)time;
-            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
-
-            GL.Begin(BeginMode.Triangles);
-            for (int i = 0; i < CubeElements.Length; i++)
+            GL.Begin(BeginMode.Points);
+            foreach (Particle p in Particles)
             {
-                int element = CubeElements[i];
-                uint color = CubeVertices[element].Color;
-                GL.Color4((byte)(color), (byte)(color >> 8), (byte)(color >> 16), (byte)(color >> 24));
-                GL.Vertex3(CubeVertices[element].Position);
+                GL.Color4(p.Color);
+                GL.Vertex2(p.Position);
             }
             GL.End();
         }
