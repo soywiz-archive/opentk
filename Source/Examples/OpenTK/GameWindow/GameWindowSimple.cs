@@ -12,7 +12,7 @@ namespace Examples.Tutorial
     /// <summary>
     /// Demonstrates the GameWindow class.
     /// </summary>
-    [Example("GameWindow Simple", ExampleCategory.OpenTK, "1.x", Documentation="GameWindowSimple")]
+    [Example("GameWindow Simple", ExampleCategory.OpenTK, "GameWindow", Documentation = "GameWindowSimple")]
     public class SimpleWindow : GameWindow
     {
         public SimpleWindow() : base(800, 600)
