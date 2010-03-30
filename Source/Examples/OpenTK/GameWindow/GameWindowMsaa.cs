@@ -1,28 +1,20 @@
-﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
- * See license.txt for license info
- */
-#endregion
+﻿// This code is in the Public Domain. It is provided "as is"
+// without express or implied warranty of any kind.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.Diagnostics;
-
 using OpenTK;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 
-namespace Examples.Tutorial
+namespace Examples
 {
-    /// <summary>
-    /// Demonstrates the GameWindow class.
-    /// </summary>
-    [Example("Simple Window", ExampleCategory.OpenTK, "GameWindow", Documentation="SimpleWindow")]
-    public class SimpleWindow : GameWindow
+    [Example("GameWindow MSAA", ExampleCategory.OpenTK, "1.x", Documentation = "GameWindowMsaa")]
+    public class FullscreenAntialias : GameWindow
     {
-        public SimpleWindow() : base(800, 600)
+        public FullscreenAntialias()
+            : base(800, 600, new GraphicsMode(32, 0, 0, 4))
         {
             Keyboard.KeyDown += Keyboard_KeyDown;
         }
@@ -33,7 +25,7 @@ namespace Examples.Tutorial
         /// Occurs when a key is pressed.
         /// </summary>
         /// <param name="sender">The KeyboardDevice which generated this event.</param>
-        /// <param name="e">The key that was pressed.</param>
+        /// <param name="key">The key that was pressed.</param>
         void Keyboard_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
             if (e.Key == Key.Escape)
@@ -75,6 +67,8 @@ namespace Examples.Tutorial
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
             GL.Ortho(-1.0, 1.0, -1.0, 1.0, 0.0, 4.0);
+
+            base.OnResize(e);
         }
 
         #endregion
@@ -128,7 +122,7 @@ namespace Examples.Tutorial
         [STAThread]
         public static void Main()
         {
-            using (SimpleWindow example = new SimpleWindow())
+            using (FullscreenAntialias example = new FullscreenAntialias())
             {
                 // Get the title and category  of this example using reflection.
                 Utilities.SetWindowTitle(example);
