@@ -18,7 +18,7 @@ namespace Examples.Tutorial
     /// Note that all OpenGL function calls should take place at the rendering thread -
     /// OpenGL will not be available on the main thread at all!
     /// </summary>
-    [Example("GameWindow Threaded", ExampleCategory.OpenTK, "GameWindow", Documentation = "GameWindowThreaded")]
+    [Example("GameWindow Threaded", ExampleCategory.OpenTK, "GameWindow", 3, Documentation = "GameWindowThreaded")]
     public class ThreadedRendering : GameWindow
     {
         bool viewport_changed = true;

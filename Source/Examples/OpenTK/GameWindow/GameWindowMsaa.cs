@@ -10,7 +10,7 @@ using OpenTK.Input;
 
 namespace Examples
 {
-    [Example("GameWindow MSAA", ExampleCategory.OpenTK, "GameWindow", Documentation = "GameWindowMsaa")]
+    [Example("GameWindow MSAA", ExampleCategory.OpenTK, "GameWindow", 2, Documentation = "GameWindowMsaa")]
     public class FullscreenAntialias : GameWindow
     {
         public FullscreenAntialias()
