@@ -49,29 +49,40 @@ namespace Examples.Tests
     {
         public static void Main()
         {
-            PrintType(new Simple());
-            PrintType(new Generic<Simple>());
-            PrintType(new Generic<Enum>());
-            PrintType(new Complex());
-            PrintType(new Complex<Enum>());
-            PrintType(new Complex2());
-            PrintType(new Complex3());
-            PrintType(new Complex4());
-            PrintType(new Class());
-            PrintType(new Class<Simple>());
+            TestType(new Simple());
+            TestType(new Generic<Simple>());
+            TestType(new Generic<Enum>());
+            TestType(new Complex());
+            TestType(new Complex<Enum>());
+            TestType(new Complex2());
+            TestType(new Complex3());
+            TestType(new Complex4());
+            TestType(new Class());
+            TestType(new Class<Simple>());
         }
 
-        static bool CheckBlittable<T>(T type)
+        // Tests whether specified type is blittable and prints its marshalled size if so.
+        static void TestType<T>(T instance)
         {
-            return BlittableValueType.Check(type);
+            PrintType<T>();
+            
+            Trace.Write(BlittableValueType.Check(instance) ? "is blittable " : "is not blittable ");
+
+            try
+            {
+                // StrideOf() will throw an ArgumentException if the type is not blittable.
+                Trace.Write(String.Format("({0} bytes)", BlittableValueType.StrideOf(instance)));
+            }
+            catch (Exception e)
+            {
+                Trace.Write(String.Format("({0})", e.GetType().Name));
+            }
+            
+            Trace.WriteLine("");
         }
 
-        static int GetStride<T>(T type)
-        {
-            return BlittableValueType.StrideOf(type);
-        }
-
-        static void PrintType<T>(T instance)
+        // Prints a simple description for the type.
+        static void PrintType<T>()
         {
             Type type = typeof(T);
             string typename = type.GetFields()[0].FieldType.ToString();
@@ -84,10 +95,6 @@ namespace Examples.Tests
 
             Trace.Write(typename.Substring(typename.LastIndexOf('.') + 1));
             Trace.Write(" } ");
-            Trace.Write(CheckBlittable(instance) ? "is blittable " : "is not blittable ");
-            try { Trace.Write(String.Format("({0} bytes)", GetStride(instance))); }
-            catch (Exception e) { Trace.Write(String.Format("({0})", e.GetType().Name)); }
-            Trace.WriteLine("");
         }
     }
 }
