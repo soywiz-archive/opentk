@@ -357,25 +357,31 @@ namespace Examples
                     Trace.WriteLine(String.Format("Launching sample: \"{0}\"", e.Attribute.Title));
                     Trace.WriteLine(String.Empty);
 
-                    Thread thread = new Thread((ThreadStart)delegate { main.Invoke(null, null); });
+                    Thread thread = new Thread((ThreadStart)delegate
+                    {
+                        try
+                        {
+                            main.Invoke(null, null);
+                        }
+                        catch (TargetInvocationException expt)
+                        {
+                            string ex_info;
+                            if (expt.InnerException != null)
+                                ex_info = expt.InnerException.ToString();
+                            else
+                                ex_info = expt.ToString();
+                            MessageBox.Show(ex_info, "An OpenTK example encountered an error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            Debug.Print(expt.ToString());
+                        }
+                        catch (NullReferenceException expt)
+                        {
+                            MessageBox.Show(expt.ToString(), "The Example launcher failed to load the example.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    });
                     thread.IsBackground = true;
                     thread.Start();
                     thread.Join();
-                }
-                catch (TargetInvocationException expt)
-                {
-                    string ex_info;
-                    if (expt.InnerException != null)
-                        ex_info = expt.InnerException.ToString();
-                    else
-                        ex_info = expt.ToString();
-                    MessageBox.Show(ex_info, "An OpenTK example encountered an error.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    Debug.Print(expt.ToString());
-                }
-                catch (NullReferenceException expt)
-                {
-                    MessageBox.Show(expt.ToString(), "The Example launcher failed to load the example.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 finally
                 {
