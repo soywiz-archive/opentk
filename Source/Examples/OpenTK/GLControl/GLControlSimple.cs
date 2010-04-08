@@ -1,23 +1,11 @@
-﻿#region --- License ---
-/* Copyright (c) 2006, 2007 Stefanos Apostolopoulos
- * See license.txt for license info
- */
-#endregion
-
-#region --- Using directives ---
+﻿// This code is in the Public Domain. It is provided "as is"
+// without express or implied warranty of any kind.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
-using OpenTK;
 using OpenTK.Graphics.OpenGL;
-
-#endregion
 
 namespace Examples.WinForms
 {
