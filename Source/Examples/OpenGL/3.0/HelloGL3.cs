@@ -65,7 +65,7 @@ void main(void)
 precision highp float;
 
 const vec3 ambient = vec3(0.1, 0.1, 0.1);
-const vec3 lightVecNormalized = normalize(vec3(0.5, 0.5, 2));
+const vec3 lightVecNormalized = normalize(vec3(0.5, 0.5, 2.0));
 const vec3 lightColor = vec3(0.9, 0.9, 0.7);
 
 in vec3 normal;
@@ -85,7 +85,8 @@ void main(void)
             projectionMatrixLocation,
             vaoHandle,
             positionVboHandle,
-            normalVboHandle;
+            normalVboHandle,
+            eboHandle;
 
         Vector3[] positionVboData = new Vector3[]{
             new Vector3(-1.0f, -1.0f,  1.0f),
@@ -122,7 +123,19 @@ void main(void)
         
         protected override void OnLoad (System.EventArgs e)
         {
-            // Create shaders
+            VSync = VSyncMode.On;
+
+            CreateShaders();
+            CreateVBOs();
+            CreateVAOs();
+
+            // Other state
+            GL.Enable(EnableCap.DepthTest);
+            GL.ClearColor(System.Drawing.Color.MidnightBlue);
+        }
+
+        void CreateShaders()
+        {
             vertexShaderHandle = GL.CreateShader(ShaderType.VertexShader);
             fragmentShaderHandle = GL.CreateShader(ShaderType.FragmentShader);
 
@@ -131,7 +144,7 @@ void main(void)
 
             GL.CompileShader(vertexShaderHandle);
             GL.CompileShader(fragmentShaderHandle);
-            
+
             Debug.WriteLine(GL.GetShaderInfoLog(vertexShaderHandle));
             Debug.WriteLine(GL.GetShaderInfoLog(fragmentShaderHandle));
 
@@ -154,14 +167,13 @@ void main(void)
             float aspectRatio = ClientSize.Width / (float)(ClientSize.Height);
             Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, aspectRatio, 1, 100, out projectionMatrix);
             modelviewMatrix = Matrix4.LookAt(new Vector3(0, 3, 5), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
-            
+
             GL.UniformMatrix4(projectionMatrixLocation, false, ref projectionMatrix);
             GL.UniformMatrix4(modelviewMatrixLocation, false, ref modelviewMatrix);
+        }
 
-            // Create vertex buffer
-            GL.GenVertexArrays(1, out vaoHandle);
-            GL.BindVertexArray(vaoHandle);
-
+        void CreateVBOs()
+        {
             GL.GenBuffers(1, out positionVboHandle);
             GL.BindBuffer(BufferTarget.ArrayBuffer, positionVboHandle);
             GL.BufferData<Vector3>(BufferTarget.ArrayBuffer,
@@ -174,18 +186,38 @@ void main(void)
                 new IntPtr(positionVboData.Length * Vector3.SizeInBytes),
                 positionVboData, BufferUsageHint.StaticDraw);
 
+            GL.GenBuffers(1, out eboHandle);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, eboHandle);
+            GL.BufferData(BufferTarget.ElementArrayBuffer,
+                new IntPtr(sizeof(uint) * indicesVboData.Length),
+                indicesVboData, BufferUsageHint.StaticDraw);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+        }
+
+        void CreateVAOs()
+        {
+            // GL3 allows us to store the vertex layout in a "vertex array object" (VAO).
+            // This means we do not have to re-issue VertexAttribPointer calls
+            // every time we try to use a different vertex layout - these calls are
+            // stored in the VAO so we simply need to bind the correct VAO.
+            GL.GenVertexArrays(1, out vaoHandle);
+            GL.BindVertexArray(vaoHandle);
+
             GL.EnableVertexAttribArray(0);
-            GL.EnableVertexAttribArray(1);
-
+            GL.BindBuffer(BufferTarget.ArrayBuffer, positionVboHandle);
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, true, Vector3.SizeInBytes, 0);
-            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, true, Vector3.SizeInBytes, 0);
-
             GL.BindAttribLocation(shaderProgramHandle, 0, "in_position");
+
+            GL.EnableVertexAttribArray(1);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, normalVboHandle);
+            GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, true, Vector3.SizeInBytes, 0);
             GL.BindAttribLocation(shaderProgramHandle, 1, "in_normal");
-            
-            // Other state
-            GL.Enable(EnableCap.DepthTest);
-            GL.ClearColor(System.Drawing.Color.MidnightBlue);
+
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, eboHandle);
+
+            GL.BindVertexArray(0);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -193,7 +225,7 @@ void main(void)
             Matrix4 rotation = Matrix4.CreateRotationY((float)e.Time);
             Matrix4.Mult(ref rotation, ref modelviewMatrix, out modelviewMatrix);
             GL.UniformMatrix4(modelviewMatrixLocation, false, ref modelviewMatrix);
-            
+
             if (Keyboard[OpenTK.Input.Key.Escape])
                 Exit();
         }
@@ -204,8 +236,9 @@ void main(void)
             
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
+            GL.BindVertexArray(vaoHandle);
             GL.DrawElements(BeginMode.Triangles, indicesVboData.Length,
-                DrawElementsType.UnsignedInt, indicesVboData);
+                DrawElementsType.UnsignedInt, IntPtr.Zero);
 
             SwapBuffers();
         }
