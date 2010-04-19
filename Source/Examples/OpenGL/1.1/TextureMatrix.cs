@@ -10,7 +10,7 @@ using OpenTK.Input;
 namespace Examples.Tutorial
 {
 
-    [Example("Texture Matrix Wormhole", ExampleCategory.OpenGL, "1.1", Documentation = "TextureMatrix")]
+    [Example("Texture Matrix Wormhole", ExampleCategory.OpenGL, "1.x", Documentation = "TextureMatrix")]
   
     class TextureMatrix : GameWindow
     {

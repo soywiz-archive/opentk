@@ -17,7 +17,7 @@ namespace Examples.Tutorial
     /// Each Id is a uint, split into 4 bytes and used as triangle color. In an extra pass, the screen is cleared to uint.MaxValue,
     /// and then the mesh is drawn using color. Using GL.ReadPixels() the value under the mouse cursor is read and can be converted.
     /// </summary>
-    [Example("Picking", ExampleCategory.OpenGL, "1.1", Documentation = "Picking")]
+    [Example("Picking", ExampleCategory.OpenGL, "1.x", Documentation = "Picking")]
     class Picking : GameWindow
     {
         /// <summary>Creates a 800x600 window with the specified title.</summary>
