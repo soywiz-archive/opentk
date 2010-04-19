@@ -16,9 +16,9 @@ namespace Examples.Tutorial
     {
 
         public TextureMatrix()
-            : base(800, 600 )
+            : base(800, 600, new GraphicsMode(32, 16, 0, 4))
         {
-            VSync = VSyncMode.Off;
+            VSync = VSyncMode.On;
         }
 
         int Texture;
@@ -119,17 +119,26 @@ namespace Examples.Tutorial
             GL.GenTextures(1, out texture);
             GL.BindTexture(Target, texture);
 
+            float version = Single.Parse(GL.GetString(StringName.Version).Substring(0, 3), System.Globalization.CultureInfo.InvariantCulture);
+            if (version >= 1.4)
+            {
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.GenerateMipmap, (int)All.True);
+                GL.TexParameter(Target, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);
+            }
+            else
+            {
+                GL.TexParameter(Target, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            }
+            GL.TexParameter(Target, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+
+            GL.TexParameter(Target, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
+            GL.TexParameter(Target, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
+
             Bitmap bitmap = new Bitmap(filename);
             BitmapData data = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(Target, 0, PixelInternalFormat.Rgba, data.Width, data.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
                 GL.Finish();
                 bitmap.UnlockBits(data);
-
-            GL.TexParameter(Target, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
-            GL.TexParameter(Target, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
-
-            GL.TexParameter(Target, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
-            GL.TexParameter(Target, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
 
             if (GL.GetError() != ErrorCode.NoError)
                 throw new Exception("Error loading texture " + filename);
