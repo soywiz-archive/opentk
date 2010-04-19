@@ -43,7 +43,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Examples.Tutorial
 {
-    [Example("Display Lists", ExampleCategory.OpenGL, "1.x", Documentation="DisplayLists")]
+    [Example("Display Lists", ExampleCategory.OpenGL, "1.x", 2, Documentation="DisplayLists")]
     public class T07_Display_Lists_Flower : GameWindow
     {
         #region --- Fields ---

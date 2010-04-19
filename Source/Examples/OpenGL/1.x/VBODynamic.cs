@@ -8,7 +8,7 @@ using OpenTK.Input;
 namespace Examples.Tutorial
 {
 
-    [Example("Dynamic Vertex Buffer Objects", ExampleCategory.OpenGL, "1.x", Documentation = "DynamicVBO")]
+    [Example("VBO Dynamic", ExampleCategory.OpenGL, "1.x", 4, Documentation = "VBODynamic")]
      class T09_VBO_Dynamic: GameWindow
     {
         /// <summary>Creates a 800x600 window with the specified title.</summary>

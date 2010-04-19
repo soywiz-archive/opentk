@@ -22,7 +22,7 @@ using System.Drawing;
 
 namespace Examples.Tutorial
 {
-    [Example("Static Vertex Buffer Objects", ExampleCategory.OpenGL, "1.x", Documentation="VertexBufferObject")]
+    [Example("VBO Static", ExampleCategory.OpenGL, "1.x", 3, Documentation="VBOStatic")]
     public class T08_VBO : GameWindow
     {
         const float rotation_speed = 180.0f;

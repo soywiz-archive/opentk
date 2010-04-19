@@ -22,7 +22,7 @@ namespace Examples.Tutorial
     /// <summary>
     /// Demonstrates simple OpenGL Texturing.
     /// </summary>
-    [Example("Texture mapping", ExampleCategory.OpenGL, "1.x", Documentation="Textures")]
+    [Example("Texture mapping", ExampleCategory.OpenGL, "1.x", 5, Documentation="Textures")]
     public class Textures : GameWindow
     {
         Bitmap bitmap = new Bitmap("Data/Textures/logo.jpg");
