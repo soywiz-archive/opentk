@@ -145,6 +145,8 @@ namespace Examples.Tutorial
         /// <remarks>There is no need to call the base implementation.</remarks>
         protected override void OnRenderFrame(FrameEventArgs e)
         {
+            // Nothing to do. Release the CPU to other threads.
+            Thread.Sleep(1);
         }
 
         #endregion
@@ -307,7 +309,7 @@ namespace Examples.Tutorial
             {
                 // Get the title and category  of this example using reflection.
                 Utilities.SetWindowTitle(example);
-                example.Run(30.0, 0.0);
+                example.Run();
             }
         }
 
