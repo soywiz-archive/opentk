@@ -36,7 +36,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Examples.Tutorial
 {
-    [Example("Basic Geometry Shader", ExampleCategory.OpenGL, "GLSL", Documentation = "Simple usage of EXT_geometry_shader4")]
+    [Example("Basic Geometry Shader", ExampleCategory.OpenGL, "2.x", Documentation = "Simple usage of EXT_geometry_shader4")]
     public class SimpleGeometryShader : GameWindow
     {
         public SimpleGeometryShader()
