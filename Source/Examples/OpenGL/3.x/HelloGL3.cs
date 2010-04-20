@@ -35,7 +35,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Examples.Tutorial
 {
-    [Example("OpenGL 3.0", ExampleCategory.OpenGL, "3.0", Documentation="HelloGL3")]
+    [Example("OpenGL 3.0", ExampleCategory.OpenGL, "3.x", Documentation="HelloGL3")]
     public class HelloGL3 : GameWindow
     {
         string vertexShaderSource = @"
