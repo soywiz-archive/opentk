@@ -164,6 +164,9 @@ namespace OpenTK.Platform.X11
 
                 if (window.WindowHandle == IntPtr.Zero)
                     throw new ApplicationException("XCreateWindow call failed (returned 0).");
+
+                if (title != null)
+                    Functions.XStoreName(window.Display, window.WindowHandle, title);
             }
 
             // Set the window hints
