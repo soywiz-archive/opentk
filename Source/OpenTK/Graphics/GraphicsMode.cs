@@ -14,7 +14,7 @@ using System.Diagnostics;
 namespace OpenTK.Graphics
 {
     /// <summary>Defines the format for graphics operations.</summary>
-    public class GraphicsMode
+    public class GraphicsMode : IEquatable<GraphicsMode>
     {
         ColorFormat color_format, accumulator_format;
         int depth, stencil, buffers, samples;
@@ -366,6 +366,43 @@ namespace OpenTK.Graphics
         {
             return String.Format("Index: {0}, Color: {1}, Depth: {2}, Stencil: {3}, Samples: {4}, Accum: {5}, Buffers: {6}, Stereo: {7}",
                 Index, ColorFormat, Depth, Stencil, Samples, AccumulatorFormat, Buffers, Stereo);
+        }
+
+        /// <summary>
+        /// Returns the hashcode for this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.Int32"/> hashcode for this instance.</returns>
+        public override int GetHashCode()
+        {
+            return Index.GetHashCode();
+        }
+
+        /// <summary>
+        /// Indicates whether obj is equal to this instance.
+        /// </summary>
+        /// <param name="obj">An object instance to compare for equality.</param>
+        /// <returns>True, if obj equals this instance; false otherwise.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is GraphicsMode)
+            {
+                return Equals((GraphicsMode)obj);
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region IEquatable<GraphicsMode> Members
+
+        /// <summary>
+        /// Indicates whether other represents the same mode as this instance.
+        /// </summary>
+        /// <param name="other">The GraphicsMode to compare to.</param>
+        /// <returns>True, if other is equal to this instance; false otherwise.</returns>
+        public bool Equals(GraphicsMode other)
+        {
+            return Index.HasValue && Index == other.Index;
         }
 
         #endregion
