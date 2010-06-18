@@ -1,4 +1,4 @@
-﻿#region --- License ---
+#region --- License ---
 /* Licensed under the MIT/X11 license.
  * Copyright (c) 2006-2008 the OpenTK Team.
  * This notice may not be removed from any source distribution.
@@ -199,7 +199,13 @@ namespace OpenTK.Graphics
                 // A small hack to create a shared context with the first available context.
                 foreach (WeakReference r in GraphicsContext.available_contexts.Values)
                 {
-                    return (IGraphicsContext)r.Target;
+                    // Fix for bug 1874: if a GraphicsContext gets finalized
+                    // (but not disposed), it won't be removed from available_contexts
+                    // making this return null even if another valid context exists.
+                    // The workaround is to simply ignore null targets.
+                    IGraphicsContext target = r.Target as IGraphicsContext;
+                    if (target != null)
+                        return target;
                 }
             }
             return null;
